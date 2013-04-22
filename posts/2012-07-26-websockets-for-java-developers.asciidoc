@@ -1,0 +1,20 @@
+= WebSockets for Java Developers. Princeton JUG talk slides
+:awestruct-layout: post
+
+Last tuesday I delivered presentation at Princeton JUG «WebSockets: The
+Current State of the Most Valuable HTML5 API». +
+HTML5 specification includes WebSockets, a new communication protocol
+for the Web. It's becoming the best choice for building real-time Web
+applications. I did an overview of the servers (including upcoming
+JavaEE 7 RI - Glassfish 4) and frameworks that support WebSockets and
+showed some use cases where WebSockets shine. At the end we had short
+conversation  about various approaches for the server- and client-side
+implementations of WebSockets that can be used in the Web applications
+today.
+
+Here is my slides from that presentation
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+<script async class="speakerdeck-embed" data-slide="2" data-id="501056beac941a000205aee0" data-ratio="1.7777777777777777" src="//speakerdeck.com/assets/embed.js"></script>
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+

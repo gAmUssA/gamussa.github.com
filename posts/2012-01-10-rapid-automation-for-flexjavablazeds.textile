@@ -1,0 +1,8 @@
+---
+layout: post
+title: "Rapid automation for Flex/Java/BlazeDS projects"
+---
+
+Right after vacation I talked on New York Flex User group regarding open source project for Flex/Java developers - Clear toolkit. There is slides of my presentation.
+<iframe frameborder="0" height="451" src="https://docs.google.com/present/embed?id=dgqpwrbr_452gnrs3wks&size=m" width="555"></iframe>
+Feel free to comment!
