@@ -1,0 +1,12 @@
+= New "Java Head Brain" blog prototype
+:awestruct-layout: index
+
+== Disclaimer
+
+The opinions expressed here are my own and are not necessarily shared by my employer, any other organization, or any other individual.
+
+Any trademarked names or labels used in this blog remain the property of their respective trademark owners.
+
+No guarantees are made regarding the accuracy or usefulness of content on this blog, though I do make an effort to be accurate.
+
+Links to external sites do not imply endorsement of the linked-to sites    

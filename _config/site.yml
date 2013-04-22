@@ -1,0 +1,33 @@
+title: My Blog
+author: Viktor Gamov
+local_tz: America/New York
+interpolate: false
+# disqus: myblog.com
+base_url: http://localhost:4242
+
+asciidoctor:
+  :compact: true
+  :eruby: erubis
+  :attributes:
+    idprefix: ''
+    idseparator: '-'
+
+scss:
+  :line_numbers: true
+  :style: :expanded
+# if no profile is specified, the first with a deploy config is selected
+profiles:
+  development:
+    minify: false
+    #disqus_developer: true
+    dev: true
+    deploy:
+      dummy:
+  production:
+    base_url: http://gamussa.github.io/
+    # disqus_developer: false
+    # google_analytics: UA-1234567-1
+    minify: true
+    deploy:
+      host: github_pages
+      branch: master

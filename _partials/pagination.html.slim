@@ -1,0 +1,11 @@
+div.pagination
+    div.previous style="width:50%; float: left"
+        - if page.posts.previous_page
+        a href=page.posts.previous_page.url Previous
+        - if !page.posts.previous_page
+        p Previous
+    div.next style="width:50%; float: right; text-align: right"
+        - if page.posts.next_page
+        a href=page.posts.next_page.url Next
+        - if !page.posts.next_page
+        p Next
