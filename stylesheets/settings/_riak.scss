@@ -2,7 +2,7 @@
 
 // Body
 
-$em-base: 14px;
+$em-base: 16px;
 $body-font-family: 'Titillium Web', Verdana, Arial, sans-serif;
 $body-font-color: #515151;
 $primary-color: #2984A9;
@@ -27,9 +27,7 @@ $sidebar-header-border-size: 0;
 
 $paragraph-text-rendering: $header-text-rendering;
 $paragraph-line-height: 1.5;
-$paragraph-font-size: 1.2em;
 $paragraph-margin-bottom: emCalc(15px);
-$paragraph-text-align: justify;
 
 // Inline Code
 
