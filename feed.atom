@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <id>http://gamussa.github.io/</id>
+  <title>Steeplesoft</title>
+  <author>
+    <name>Viktor Gamov</name>
+  </author>
+</feed>
