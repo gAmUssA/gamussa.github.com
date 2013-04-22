@@ -89,7 +89,7 @@ end
 
 desc 'Build and preview the site locally in development mode'
 task :preview => :check do
-  run_awestruct '-d'
+  run_awestruct '-d --force'
 end
 
 desc 'Generate the site using the development profile'

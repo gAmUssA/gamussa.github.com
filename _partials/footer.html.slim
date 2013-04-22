@@ -1,0 +1,28 @@
+/ Footer
+footer.row
+  .large-12.columns
+    hr /
+    .row
+      .large-6.columns
+        p © Copyright no one at all. Go to town.
+      .large-6.columns
+        ul.inline-list.right
+          li
+            a href="#"
+          li
+            a href="#"
+          li
+            a href="#"
+          li
+            a href="#"
+script
+  |document.write('<script src=' + ('__proto__' in {} ? '/javascripts/vendor/zepto' : '/javascripts/vendor/jquery') + '.js><\/script>')
+script src='/javascripts/foundation/foundation.js'
+  - [:topbar].each do |component|
+    script src="/javascripts/foundation/foundation.#{component}.js"
+script
+  | $(document).foundation();
+script src='/javascripts/vendor/highlight.min.js'
+  script
+    |$(hljs.initHighlighting);
+  /! End Footer

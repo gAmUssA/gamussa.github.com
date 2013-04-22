@@ -1,5 +1,7 @@
 = AsciiDoc Writer's Guide
 Dan Allen
+2013-04-08
+:icons:
 :awestruct-layout: post
 ifndef::awestruct[]
 :toc:

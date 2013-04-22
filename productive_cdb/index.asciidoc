@@ -3,9 +3,10 @@ Viktor Gamov
 2013-02-05
 :icons:
 :awestruct-layout: post
+:toc:
 :Email:     viktor.gamov@faratasystems.com
 
-It's not likely that you'll start developing an enterprise HTML5 applications without using one of the JavaScript frameworks. One of the most feature-complete frameworks is http://www.sencha.com/products/extjs[ExtJS] from Sencha, but its learning curve is a bit steep. Our company, http://faratasystems.com[Farata Systems], has developed an open source software Clear Toolkit for ExtJS. Clear Toolkit includes an Eclipse plugin called Clear Data Builder (CDB). This is a productivity tool - a code generator - that can create a CRUD application for you in no time. This application will have HTML/JavaScript/ExtJS client and Java-based server. In this article you will learn how jump start development of such Web applications. 
+It's not likely that you'll start developing an enterprise HTML5 applications without using one of the JavaScript frameworks. One of the most feature-complete frameworks is http://www.sencha.com/products/extjs[ExtJS] from Sencha, but its learning curve is a bit steep. Our company, http://faratasystems.com[Farata Systems], has developed an open source software Clear Toolkit for ExtJS. Clear Toolkit includes an Eclipse plugin called Clear Data Builder (CDB). This is a productivity tool - a code generator - that can create a CRUD application for you in no time. This application will have HTML/JavaScript/ExtJS client and Java-based server. In this article you will learn how jump start development of such Web applications.
 
 == Part One: ExtJS MVC Application Scaffolding ==
 

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Rapid automation for Flex/Java/BlazeDS projects"
+author: Viktor Gamov
 ---
 
 Right after vacation I talked on New York Flex User group regarding open source project for Flex/Java developers - Clear toolkit. There is slides of my presentation.
