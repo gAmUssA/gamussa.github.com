@@ -2,7 +2,9 @@
 Viktor Gamov
 2013-02-05
 :icons:
+ifndef::awestruct[]
 :awestruct-layout: post
+endif::awestruct[]
 :toc:
 :Email:     viktor.gamov@faratasystems.com
 

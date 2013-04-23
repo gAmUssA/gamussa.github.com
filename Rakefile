@@ -39,6 +39,7 @@
 #  rake -T
 #
 # Now you're Awestruct with rake!
+require "stringex"
 
 $use_bundle_exec = true
 $install_gems = ['awestruct -v "~> 0.5.0"', 'rb-inotify -v "~> 0.9.0"']
@@ -181,6 +182,38 @@ def which(cmd, opts = {})
     end
   end
   return $awestruct_cmd
+end
+
+source_dir      = "."    # source file directory
+posts_dir       = "posts"
+new_post_ext    = "adoc"
+
+# usage rake new_post[my-new-post] or rake new_post['my new post'] or rake new_post (defaults to "new-post")
+desc "Begin a new post in #{source_dir}/#{posts_dir}"
+task :new_post, :title do |t, args|
+  # raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
+  mkdir_p "#{source_dir}/#{posts_dir}"
+  args.with_defaults(:title => 'new-post')
+  title = args.title
+  filename = "#{source_dir}/#{posts_dir}/#{Time.now.strftime('%Y-%m-%d')}-#{title.to_url}.#{new_post_ext}"
+  if File.exist?(filename)
+    abort("rake aborted!") if ask("#{filename} already exists. Do you want to overwrite?", ['y', 'n']) == 'n'
+  end
+  puts "Creating new post: #{filename}"
+  open(filename, 'w') do |post|
+    post.puts "= #{title.gsub(/&/,'&amp;')}"
+    post.puts "Viktor Gamov"
+    post.puts "#{Time.now.strftime('%Y-%m-%d %H:%M')}"
+    post.puts ":imagesdir: ../images"
+    post.puts ":icons:"
+    post.puts "ifndef::awestruct[]"
+    post.puts ":awestruct-layout: post"
+    post.puts ":toc:"
+    post.puts ":idprefix:"
+    post.puts ":idseparator: -"
+    post.puts "endif::awestruct[]"
+    post.puts ":mdash: &#8212;"
+  end
 end
 
 # Print a message to STDOUT
