@@ -26,7 +26,7 @@ profiles:
   production:
     base_url: http://next.javaheadbrain.com
     # disqus_developer: false
-    # google_analytics: UA-1234567-1
+    google_analytics: UA-40354726-1
     minify: true
     deploy:
       host: github_pages
