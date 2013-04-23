@@ -24,4 +24,6 @@ article
               ="#{tag}, "
             - else
               ="#{tag} "
-/! End Main Content
+    - if site.disqus
+      #comments
+        =page.disqus_comments

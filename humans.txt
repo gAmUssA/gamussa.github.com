@@ -4,5 +4,5 @@
 
 /* SITE */
   Standards: HTML5, CSS3
-  Components: jQuery, Orbit, Reveal
-  Software: Coda, Textmate, Git
+  Components: Zepto
+  Software: Sublime Text 2, Intellij IDEA, Git

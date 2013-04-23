@@ -2,7 +2,9 @@ title: 'Java().Head.Brain'
 author: Viktor Gamov
 local_tz: America/New York
 interpolate: false
-# disqus: myblog.com
+disqus: nextjavaheadbraincom
+disqus_generate_id: true
+disqus_developer: true
 base_url: http://localhost:4242
 
 asciidoctor:
@@ -25,7 +27,7 @@ profiles:
       dummy:
   production:
     base_url: http://next.javaheadbrain.com
-    # disqus_developer: false
+    disqus_developer: false
     google_analytics: UA-40354726-1
     minify: true
     deploy:
