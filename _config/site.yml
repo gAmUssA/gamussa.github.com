@@ -24,7 +24,7 @@ profiles:
     deploy:
       dummy:
   production:
-    base_url: http://gamussa.github.io/
+    base_url: http://next.javaheadbrain.com
     # disqus_developer: false
     # google_analytics: UA-1234567-1
     minify: true
