@@ -15,13 +15,14 @@ $white: #fff;
 $em-base: 16px;
 $body-bg: $white;
 $body-font-color: $print-black;
-$body-font-family: Georgia, 'Times New Roman', serif; 
+$body-font-family: 'Titillium Web', Verdana, Arial, sans-serif;
+//$body-font-family: Georgia, 'Times New Roman', serif; 
 $primary-color: $blue;
 $global-radius: 5px;
 
 // Headings
 
-$header-font-family: Lato, sans-serif;
+$header-font-family: $body-font-family;
 $header-font-color: $body-font-color;
 $header-top-margin: 1.25em;
 $header-bottom-margin: 0.45em;
@@ -45,6 +46,7 @@ $definition-list-content-margin-left: emCalc(40px);
 // Paragraphs
 
 $paragraph-line-height: 1.4;
+$paragraph-font-size: 1.2em;
 
 // Inline code
 
