@@ -1,10 +1,9 @@
 = AsciiDoc Writer's Guide
 Dan Allen
-2013-04-08
-:icons:
-:awestruct-layout: post
-ifndef::awestruct[]
+:awestruct-layout: base
 :toc:
+:toc-placement!:
+ifndef::awestruct[]
 :idprefix:
 :idseparator: -
 endif::awestruct[]
@@ -52,6 +51,8 @@ TODO:
 This guide provides a gentle introduction to http://asciidoc.org[AsciiDoc], a +plain+ +text+ documentation *syntax* and *processor*.
 This introduction is intended for anyone who wants to reduce the effort required to write and publish content, whether for technical documentation, articles, web pages or good ol'-fashioned prose.
 
+TIP: If you're looking for a concise survey of the AsciiDoc syntax, check out the link:/docs/asciidoc-quick-reference/[AsciiDoc Syntax Quick Reference].
+
 In this guide, you'll learn:
 
 - The basic structure of an AsciiDoc document
@@ -60,6 +61,8 @@ In this guide, you'll learn:
 - How to render an AsciiDoc document to HTML, DocBook and PDF
 
 In addition to covering the AsciiDoc basics, this guide also suggests a set of conventions to help you create more consistent documents and maximize your writing productivity.
+
+toc::[]
 
 Let's dive in to AsciiDoc!
 
@@ -70,7 +73,7 @@ Let's dive in to AsciiDoc!
 The goal of this section is to teach you how to compose your first AsciiDoc document.
 Hopefully, when you look back, you'll agree it just makes sense.
 
-Your adventures with AsciiDoc begin in your favorite text editor...
+Your adventure with AsciiDoc begins in your favorite text editor...
 
 === ``It's just text, mate.''
 
@@ -348,7 +351,7 @@ _Unordered_ and +ordered+ lists are structurally very similar.
 You can think of them as outline lists that use different types of markers (i.e., bullets).
 In contrast, *labeled* lists--also called variable or term-definition lists--are a collection of labels that each have supporting content and they are rarely nested.
 
-Let's explore each type of list, then mix and match them.
+Let's explore each type of list, then mix them together.
 We'll also look at how to put complex content inside a list item.
 
 ==== Lists of things
@@ -379,7 +382,9 @@ That works too:
 In either case, you don't need to see the output.
 You already know how it will look ;)
 
-NOTE: The marker must be aligned with the left margin and the item text must be offset from the marker by at least one space.
+TIP: You are free to indent the list however it suits you.
+
+IMPORTANT: The item's first line of text must be offset from the marker by at least one space.
 
 What if you wanted to group the grocery list by aisle?
 Then you might organize it as a nested list.
@@ -436,7 +441,9 @@ While it would seem as though the number of asterisks represents the nesting lev
 A new level is created for each unique marker encountered.
 However, it's much more intuitive to follow this convention:
 
- # of asterisks = level of nesting
+____
+# of asterisks = level of nesting
+____
 
 After all, we are shooting for plain text markup that is readable _as is_.
 ====
@@ -481,7 +488,9 @@ Like with unordered lists, you create a nested item by using one or more dots in
 Like with the asterisks in an unordered list, the number of dots in an ordered list doesn't represent the nesting level.
 However, it's much more intuitive to follow this convention:
 
- # of dots = level of nesting
+____
+# of dots = level of nesting
+____
 
 Again, we are shooting for plain text markup that is readable _as is_.
 ====
@@ -489,6 +498,8 @@ Again, we are shooting for plain text markup that is readable _as is_.
 AsciiDoc selects a different number scheme for each level of nesting.
 Here's how the previous list renders:
 
+.A nested ordered list
+====
 . Lists
 .. Outline
 ... Unordered
@@ -498,6 +509,7 @@ Here's how the previous list renders:
 .. Document
 .. Section
 .. Block
+====
 
 The following table shows the number scheme used by default for each nesting level:
 
@@ -693,6 +705,7 @@ Cloud Providers::
 Here's how the list is rendered:
 
 .A hybrid list
+====
 Operating Systems::
   . Linux
     * Ubuntu
@@ -708,6 +721,7 @@ Cloud Providers::
   . IaaS
     * Amazon EC2
     * Rackspace
+====
 
 You can include more complex content in a list item as well.
 
@@ -883,7 +897,7 @@ To include an image on it's own, a _block image_, use the +image::+ prefix in fr
 image::sunset.jpg[]
 ----
 
-If you want to specify alt text, insert it inside the square brackets:
+If you want to specify alt text, include it inside the square brackets:
 
 ----
 image::sunset.jpg[Sunset]
@@ -900,9 +914,12 @@ image::sunset.jpg[Sunset, 300, 200, link="http://www.flickr.com/photos/javh/5448
 The title of a block image is displayed underneath the image when rendered.
 Here's a preview:
 
+.A hyperlinked image with caption
+====
 [[img-sunset]]
 .A mountain sunset
 image::sunset.jpg[Sunset, 300, 200, link="http://www.flickr.com/photos/javh/5448336655"]
+====
 
 If you want to include an image inline, use the +image:+ prefix instead (notice there is only one colon):
 
@@ -1414,13 +1431,28 @@ Here's an example:
 ....
 [source,ruby]
 ----
-require 'asciidoctor' \<1>
+require 'asciidoctor'  #\<1>
 
-puts Asciidoctor.render_file('sample.adoc', :header_footer => true) \<2>
+puts Asciidoctor.render_file('sample.adoc', :header_footer => true)  #\<2>
 ----
 \<1> Imports the library
 \<2> Reads, parses and renders the file
 ....
+
+Here's how the callouts appear when rendered:
+
+[[eg-callouts]]
+.Source code with callouts
+====
+[source,ruby]
+----
+require 'asciidoctor'  #<1>
+
+puts Asciidoctor.render_file('sample.adoc', :header_footer => true)  #<2>
+----
+<1> Imports the library
+<2> Reads, parses and renders the file
+====
 
 ==== Open blocks
 
@@ -1486,7 +1518,7 @@ When they are the most suitable way to present the information, know that you've
 
 You can think of a table as a delimited block that contains one or more bulleted lists.
 The list marker is a vertical bar (+|+).
-Each list represents one row in the table and must have the same number of items.
+Each list represents one row in the table and must share the same number of items (taking into account any column or row spans).
 
 Here's a simple example of a table with two columns and three rows:
 
@@ -1883,7 +1915,7 @@ For legacy reasons, the conversion to PDF is handled by a separate program in th
 
 +a2x+ can accept a DocBook file as input and produce a PDF:
 
- $> a2x -f pdf sample.xml
+ $> a2x -f pdf --fop sample.xml
 
 A new PDF document, named +sample.pdf+, will now be present in the current directory:
 
@@ -1898,7 +1930,7 @@ It was that easy!*
 
 Rather than converting from AsciiDoc to DocBook and then from DocBook to PDF in two steps, +a2x+ can go directly from AsciiDoc to PDF in a single call:
 
- $> a2x -f pdf sample.adoc
+ $> a2x -f pdf --fop sample.adoc
 
 AsciiDoc can also be used for creating HTML-based presentations.
 This use further demonstrates the reusability of the AsciiDoc syntax.
