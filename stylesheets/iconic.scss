@@ -84,7 +84,7 @@ dl dt {
 }
 
 .imageblock {
-  @extend %stretch;
+  // @extend %stretch;
   border: 1px solid $table-border-color;
   margin-top: emCalc(50px);
   margin-bottom: emCalc(50px);
@@ -140,4 +140,12 @@ table.tableblock.grid-all {
 
 #footer {
   border-top: 1px dashed $table-border-color;
+  //background: ;
+}
+
+#copyright {
+  background: #3f3f3f;
+  color: #fff;
+  padding: 10px 0;
+  margin-top: 10px;
 }
