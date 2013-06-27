@@ -19,8 +19,8 @@ script src='/javascripts/foundation/foundation.js'
 script
   | $(document).foundation();
 script src='/javascripts/vendor/highlight.min.js'
-  script
-    |$(hljs.initHighlighting);
+script
+  |$(hljs.initHighlighting());
 - if site.google_analytics
   =google_analytics_async
   /! End Footer

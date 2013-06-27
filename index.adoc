@@ -9,7 +9,7 @@ Thanks for visiting. My name Viktor Gamov. I'm a senior software engineer at htt
 [[enterprisewebbook]]
 == Enterprise Web Development
 [role="header"]
-=== Building HTML5 applications. From Desktop To Mobile
+*Building HTML5 applications: From Desktop To Mobile*
 
 [.th.large-4.columns]
 image::cover_2013_eap.jpg[]
@@ -37,10 +37,8 @@ In the process, you’ll explore options for building a single codebase for both
 [role="large-12 columns"]
 === Disclaimer
 
-The opinions expressed here are my own and are not necessarily shared by my employer, any other organization, or any other individual.
-
-Any trademarked names or labels used in this blog remain the property of their respective trademark owners.
-
-No guarantees are made regarding the accuracy or usefulness of content on this blog, though I do make an effort to be accurate.
-
-Links to external sites do not imply endorsement of the linked-to sites    
+[.panel]
+* The opinions expressed here are my own and are not necessarily shared by my employer, any other organization, or any other individual.
+* Any trademarked names or labels used in this blog remain the property of their respective trademark owners.
+* No guarantees are made regarding the accuracy or usefulness of content on this blog, though I do make an effort to be accurate.
+* Links to external sites do not imply endorsement of the linked-to sites

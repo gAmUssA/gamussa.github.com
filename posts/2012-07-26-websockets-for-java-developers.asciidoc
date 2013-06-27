@@ -1,9 +1,7 @@
 = WebSockets for Java Developers. Princeton JUG talk slides
 :awestruct-layout: post
 
-Last tuesday I delivered presentation at Princeton JUG «WebSockets: The
-Current State of the Most Valuable HTML5 API». +
-HTML5 specification includes WebSockets, a new communication protocol
+Last tuesday I delivered presentation at Princeton JUG «WebSockets: The Current State of the Most Valuable HTML5 API». + HTML5 specification includes WebSockets, a new communication protocol
 for the Web. It's becoming the best choice for building real-time Web
 applications. I did an overview of the servers (including upcoming
 JavaEE 7 RI - Glassfish 4) and frameworks that support WebSockets and

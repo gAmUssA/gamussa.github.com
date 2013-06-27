@@ -7,7 +7,7 @@ title : Archive
   h2.header= year
   - monthly_archive.each do |month, posts|
     h3.subheader= month
-    ul.compact
+    ul.disc
       - posts.each do |post|
         li
           .date= post.date.strftime('%B %d, %Y')

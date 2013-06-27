@@ -1,6 +1,8 @@
 /* Inspired by the O'Reilly typography and the Atlas user manual | http://oreilly.com */
-@import "fonts/titillium-web";
-@import "fonts/noticia-text";
+//@import "fonts/titillium-web";
+@import "fonts/sourcesans-pro";
+@import "fonts/sourcecode-pro";
+//@import "fonts/noticia-text";
 @import "settings/iconic";
 @import "components/asciidoc";
 @import "components/awesome-icons";
@@ -11,6 +13,7 @@
 }
 
 body {
+  font-size: 1.1em;
   //background: linear-gradient(270deg, #333 0, #333 100%) no-repeat 0 0 / 100% 178px;
   //background: -webkit-linear-gradient(270deg, #333 0, #333 100%) no-repeat 0 0 / 100% 178px;
   //background: #595959 image-url('iconic/header-bg.png');
@@ -85,7 +88,7 @@ dl dt {
 
 .imageblock {
   // @extend %stretch;
-  border: 1px solid $table-border-color;
+  //border: 1px solid $table-border-color;
   margin-top: emCalc(50px);
   margin-bottom: emCalc(50px);
   padding: 15px 15px 5px 15px;
