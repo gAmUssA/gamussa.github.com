@@ -1,167 +1,180 @@
-<!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><html class="no-js" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Java().Head.Brain</title><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="author" href="/humans.txt"></head><body class="antialiased"><div class="row"><div class="large-12 columns"><div class="nav-bar right"><ul class="button-group"><li><a class="small button" href="/posts.html">Archive</a></li><li><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Book</a></li></ul></div><h1><a href="http://next.javaheadbrain.com">crash course in java brain surgery</a></h1><hr></div></div></body></html><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h3><a href="/productive_cdb/">Productive Enterprise Web Development with ExtJS and Clear Data Builder</a></h3><h6>Written by <a href="#">Viktor Gamov</a>- <time class="pubdate" datetime="2013-02-05T00:00:00+00:00">Tuesday, February 5, 2013</time></h6><div class="row"><div class="large-12 columns text-justify"><div id="preamble">
-  <div class="sectionbody">
-<div class="paragraph">  
-  <p>It&#8217;s not likely that you&#8217;ll start developing an enterprise HTML5 applications without using one of the JavaScript frameworks. One of the most feature-complete frameworks is <a href="http://www.sencha.com/products/extjs">ExtJS</a> from Sencha, but its learning curve is a bit steep. Our company, <a href="http://faratasystems.com">Farata Systems</a>, has developed an open source software Clear Toolkit for ExtJS. Clear Toolkit includes an Eclipse plugin called Clear Data Builder (CDB). This is a productivity tool - a code generator - that can create a CRUD application for you in no time. This application will have HTML/JavaScript/ExtJS client and Java-based server. In this article you will learn how jump start development of such Web applications.</p>
+<!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><html class="no-js" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Java().Head.Brain</title><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="author" href="/humans.txt"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html">Archive</a></li><li class="divider"></li><li><a href="http://github.com/gamussa">Github</a></li><li class="divider"></li><li><a href="http://twitter.com/gamussa">Twitter</a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Book</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://next.javaheadbrain.com">Crash Course In Java Brain Surgery </a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div></body></html><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h3><a href="/productive_cdb/">Productive Enterprise Web Development with ExtJS and Clear Data Builder</a></h3><h6>Written by <a href="#">Viktor Gamov</a>- <time class="pubdate" datetime="2013-02-05T00:00:00+00:00">Tuesday, February 5, 2013</time></h6><div class="row"><div class="large-12 columns text-justify"><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>It&#8217;s not likely that you&#8217;ll start developing an enterprise HTML5 applications without using one of the JavaScript frameworks. One of the most feature-complete frameworks is <a href="http://www.sencha.com/products/extjs">ExtJS</a> from Sencha, but its learning curve is a bit steep. Our company, <a href="http://faratasystems.com">Farata Systems</a>, has developed an open source software Clear Toolkit for ExtJS. Clear Toolkit includes an Eclipse plugin called Clear Data Builder (CDB). This is a productivity tool - a code generator - that can create a CRUD application for you in no time. This application will have HTML/JavaScript/ExtJS client and Java-based server. In this article you will learn how jump start development of such Web applications.</p>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle" class="title">Table of Contents</div>
-<ol>
-  <li><a href="#part-one-extjs-mvc-application-scaffolding">1. Part One: ExtJS MVC Application Scaffolding</a></li>
-  <li><a href="#part-two-generating-a-crud-application">2. Part Two: Generating a CRUD application</a></li>
-  <li><a href="#part-three-data-pagination">3. Part Three: Data Pagination</a></li>
-  <li>
-    <ol>
-      <li><a href="#conclusion">3.1. Conclusion</a></li>
-      <li><a href="#additional-useful-links">3.2. Additional Useful Links</a></li>
-    </ol>
-  </li>
+<ol type="none" class="sectlevel1">
+<li><a href="#part-one-extjs-mvc-application-scaffolding">Part One: ExtJS MVC Application Scaffolding</a></li>
+<li><a href="#part-two-generating-a-crud-application">Part Two: Generating a CRUD application</a></li>
+<li><a href="#part-three-data-pagination">Part Three: Data Pagination</a></li>
+<li>
+<ol type="none" class="sectlevel2">
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#additional-useful-links">Additional Useful Links</a></li>
+</ol>
+</li>
 </ol>
 </div>
-  </div>
+</div>
 </div>
 <div class="sect1">
-  <h2 id="part-one-extjs-mvc-application-scaffolding">Part One: ExtJS MVC Application Scaffolding</h2>
-  <div class="sectionbody">
-<div class="paragraph">  
-  <p>In part one I&#8217;ll cover the following topics:</p>
-</div><div class="ulist">
-  <ul>
-    <li>
-      <p>What is Clear Toolkit for ExtJS</p>
-    </li>
-    <li>
-      <p>How to create ExtJS MVC application for Java-based project</p>
-    </li>
-    <li>
-      <p>How deploy and run your first ExtJS+Java application on Apache Tomcat server</p>
-    </li>
-  </ul>
+<h2 id="part-one-extjs-mvc-application-scaffolding">Part One: ExtJS MVC Application Scaffolding</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In part one I&#8217;ll cover the following topics:</p>
 </div>
-<div class="paragraph">  
-  <p>Clear Toolkit for ExtJS contains of following parts:</p>
-</div><div class="ulist">
-  <ul>
-    <li>
-      <p>Clear Data Builder - Eclipse plugin that supports code generation ExtJS MVC artifacts based on Java code. CDB comes with wizards to start new project with plain Java or with popular frameworks like Hibernate, Spring, MyBatis.</p>
-    </li>
-    <li>
-      <p>Clear JS - set of JavaScript components that extends ExtJS standard components. E.g. Clear JS contains ChangeObject - a universal way to trace the state changes between old and new versions of the same item in a store.</p>
-    </li>
-    <li>
-      <p>Clear Runtime - Java components that implements server side part of ChangeObject, DirectOptions and etc.</p>
-    </li>
-  </ul>
+<div class="ulist">
+<ul>
+<li>
+<p>What is Clear Toolkit for ExtJS</p>
+</li>
+<li>
+<p>How to create ExtJS MVC application for Java-based project</p>
+</li>
+<li>
+<p>How deploy and run your first ExtJS+Java application on Apache Tomcat server</p>
+</li>
+</ul>
 </div>
-<div class="paragraph">  
-  <p>The phrase "to be more productive" means to write less code and produce the results faster. This is what CDB is for. In this article you&#8217;ll see how Clear Data Builder helps you to integrate the client side with the back end using the RPC style and how to implements data pagination for your application.</p>
-</div><div class="paragraph">  
-  <p>CDB distribution available as plug-in for Eclipse IDE. The current update site of CDB is located <a href="http://cleartoolkit.com/downloads/plugins/extjs/cleardatabuilder/4.1.4/">here</a>.  The current version is 4.1.4 (don&#8217;t be surprised - this is a five-year old code generator, and its previous versions were made for generating the UI for Adobe Flex framework). You can install this plug-in via <code>Install New Software</code> menu in Eclipse IDE. The <a href="#FIG-1">Verifying CDB installation</a> shows how you can validate plug-in installation. If you see "Clear Data Builder for Ext JS feature" in the list of Installed Software in your Eclipse IDE, you&#8217;re good to go.</p>
-</div><div class="admonitionblock important">
-  <table>
-    <tr>
-      <td class="icon">
-        <img src="/images/icons/important.png" alt="Important">
-      </td>
-      <td class="content">
-        You have to have "Eclipse for Java EE Developers" installed, which includes the plugins for automation of the Web applications.
-      </td>
-    </tr>
-  </table>
+<div class="paragraph">
+<p>Clear Toolkit for ExtJS contains of following parts:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Clear Data Builder - Eclipse plugin that supports code generation ExtJS MVC artifacts based on Java code. CDB comes with wizards to start new project with plain Java or with popular frameworks like Hibernate, Spring, MyBatis.</p>
+</li>
+<li>
+<p>Clear JS - set of JavaScript components that extends ExtJS standard components. E.g. Clear JS contains ChangeObject - a universal way to trace the state changes between old and new versions of the same item in a store.</p>
+</li>
+<li>
+<p>Clear Runtime - Java components that implements server side part of ChangeObject, DirectOptions and etc.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The phrase "to be more productive" means to write less code and produce the results faster. This is what CDB is for. In this article you&#8217;ll see how Clear Data Builder helps you to integrate the client side with the back end using the RPC style and how to implements data pagination for your application.</p>
+</div>
+<div class="paragraph">
+<p>CDB distribution available as plug-in for Eclipse IDE. The current update site of CDB is located <a href="http://cleartoolkit.com/downloads/plugins/extjs/cleardatabuilder/4.1.4/">here</a>.  The current version is 4.1.4 (don&#8217;t be surprised - this is a five-year old code generator, and its previous versions were made for generating the UI for Adobe Flex framework). You can install this plug-in via <code>Install New Software</code> menu in Eclipse IDE. The <a href="#FIG-1">Verifying CDB installation</a> shows how you can validate plug-in installation. If you see "Clear Data Builder for Ext JS feature" in the list of Installed Software in your Eclipse IDE, you&#8217;re good to go.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<img src="/images/icons/important.png" alt="Important">
+</td>
+<td class="content">
+You have to have "Eclipse for Java EE Developers" installed, which includes the plugins for automation of the Web applications.
+</td>
+</tr>
+</table>
 </div>
 <div id="FIG-1" class="imageblock">
-  <div class="content">
-    <img src="/images/fig_01.png" alt="image">
-  </div>
-  <div class="title">Figure 1. Verifying CDB installation</div>
+<div class="content">
+<img src="/images/fig_01.png" alt="image">
 </div>
-<div class="paragraph">  
-  <p>Clear Data Builder comes with a set of prepared examples that demonstrate the integration with popular Java frameworks - MyBatis, Hibernate, and Spring. Also, a plain Java project example that doesn&#8217;t use any of the frameworks is available as well. Let&#8217;s start with the creation of the new project by selecting the menu File &#8594; New &#8594; Other &#8594; Clear, and then press Next.</p>
-</div><div id="FIG-2" class="imageblock">
-  <div class="content">
-    <img src="/images/fig_02.png" alt="image">
-  </div>
-  <div class="title">Figure 2. New CDB Project Wizard</div>
+<div class="title">Figure 1. Verifying CDB installation</div>
 </div>
-<div class="paragraph">  
-  <p>First of all let&#8217;s call the new project <code>episode_1_intro</code>. CDB supports different ways of linking the ExtJS framework to the application. In my case, I already have installed ExtJS libraries under my Web server (Apache Tomcat). We&#8217;re going to use this local ExtJS URL, but you can just specify any folder in your machine and CDB will copy the ExtJS file inside your project. Lastly, you can use ExtJS from the Sencha&#8217;s CDN, if you don&#8217;t want to store these libraries inside your project. Besides, using a common CDN will allow Web browser to reuse the cached version of ExtJS.</p>
-</div><div class="paragraph">  
-  <p>For this project we are not going to use any server-side (like MyBatis or Hibernate). Just click the button Finish. First of all, CDB will print some initial messages on the Eclipse console. When CDB runs for the first time it initializes directory structure in the <code>WebContent</code> folder. Inside the WebContent directory CDB creates directory structure which is recommended by Sencha for MVC applications. Also you&#8217;ll get the HTML wrapper - <code>index.html</code> - for this application, which contains the link to the entry point of our application.</p>
-</div><div class="paragraph">  
-  <p>CDB generates an empty project with one sample controller and one view - <code>Viewport.js</code>. To run this application, you need to add the newly generated Dynamic Web Project to Tomcat and start the server (write-click on the Tomcat in the Servers view).</p>
-</div><div id="FIG-3" class="imageblock">
-  <div class="content">
-    <img src="/images/fig_03.png" alt="image">
-  </div>
-  <div class="title">Figure 3. Adding web project to Tomcat</div>
+<div class="paragraph">
+<p>Clear Data Builder comes with a set of prepared examples that demonstrate the integration with popular Java frameworks - MyBatis, Hibernate, and Spring. Also, a plain Java project example that doesn&#8217;t use any of the frameworks is available as well. Let&#8217;s start with the creation of the new project by selecting the menu File &#8594; New &#8594; Other &#8594; Clear, and then press Next.</p>
 </div>
-<div class="paragraph">  
-  <p>Let me switch to web browser to open this application on <code><a href="http://localhost:8080/episode_1_intro">http://localhost:8080/episode_1_intro</a></code> . Voila! Just in couple minutes we&#8217;ve setup new Dynamic Web Project with the ExtJS framework support and one fancy button on UI.</p>
-</div><div id="FIG-4" class="imageblock">
-  <div class="content">
-    <img src="/images/fig_04.png" alt="image">
-  </div>
-  <div class="title">Figure 4. Running scaffolded application</div>
+<div id="FIG-2" class="imageblock">
+<div class="content">
+<img src="/images/fig_02.png" alt="image">
 </div>
-<div class="paragraph">  
-  <p>The next step is to make something useful out of this basic application.</p>
+<div class="title">Figure 2. New CDB Project Wizard</div>
 </div>
-  </div>
-</div><div class="sect1">
-  <h2 id="part-two-generating-a-crud-application">Part Two: Generating a CRUD application</h2>
-  <div class="sectionbody">
-<div class="paragraph">  
-  <p>CRUD stands for Create-Retrieve-Update-Delete. It&#8217;s a well known term for describing the applications that support data manipulation. They can retrieve the data from some data source and update them too. The Part Two agenda is covering exactly this:</p>
-</div><div class="ulist">
-  <ul>
-    <li>
-      <p>Create a simple CRUD ExtJS+Java application</p>
+<div class="paragraph">
+<p>First of all let&#8217;s call the new project <code>episode_1_intro</code>. CDB supports different ways of linking the ExtJS framework to the application. In my case, I already have installed ExtJS libraries under my Web server (Apache Tomcat). We&#8217;re going to use this local ExtJS URL, but you can just specify any folder in your machine and CDB will copy the ExtJS file inside your project. Lastly, you can use ExtJS from the Sencha&#8217;s CDN, if you don&#8217;t want to store these libraries inside your project. Besides, using a common CDN will allow Web browser to reuse the cached version of ExtJS.</p>
+</div>
+<div class="paragraph">
+<p>For this project we are not going to use any server-side (like MyBatis or Hibernate). Just click the button Finish. First of all, CDB will print some initial messages on the Eclipse console. When CDB runs for the first time it initializes directory structure in the <code>WebContent</code> folder. Inside the WebContent directory CDB creates directory structure which is recommended by Sencha for MVC applications. Also you&#8217;ll get the HTML wrapper - <code>index.html</code> - for this application, which contains the link to the entry point of our application.</p>
+</div>
+<div class="paragraph">
+<p>CDB generates an empty project with one sample controller and one view - <code>Viewport.js</code>. To run this application, you need to add the newly generated Dynamic Web Project to Tomcat and start the server (write-click on the Tomcat in the Servers view).</p>
+</div>
+<div id="FIG-3" class="imageblock">
+<div class="content">
+<img src="/images/fig_03.png" alt="image">
+</div>
+<div class="title">Figure 3. Adding web project to Tomcat</div>
+</div>
+<div class="paragraph">
+<p>Let me switch to web browser to open this application on <code><a href="http://localhost:8080/episode_1_intro">http://localhost:8080/episode_1_intro</a></code> . Voila! Just in couple minutes we&#8217;ve setup new Dynamic Web Project with the ExtJS framework support and one fancy button on UI.</p>
+</div>
+<div id="FIG-4" class="imageblock">
+<div class="content">
+<img src="/images/fig_04.png" alt="image">
+</div>
+<div class="title">Figure 4. Running scaffolded application</div>
+</div>
+<div class="paragraph">
+<p>The next step is to make something useful out of this basic application.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="part-two-generating-a-crud-application">Part Two: Generating a CRUD application</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>CRUD stands for Create-Retrieve-Update-Delete. It&#8217;s a well known term for describing the applications that support data manipulation. They can retrieve the data from some data source and update them too. The Part Two agenda is covering exactly this:</p>
+</div>
 <div class="ulist">
-  <ul>
-    <li>
-      <p>Create a POJO and corresponding <code>Ext.data.Model</code></p>
-    </li>
-    <li>
-      <p>Create s Java service and populate <code>Ext.data.Store</code> with data from service</p>
-    </li>
-    <li>
-      <p>Use the auto-generated ExtJS application</p>
-    </li>
-    <li>
-      <p>Extend the auto-generated CRUD methods</p>
-    </li>
-    <li>
-      <p>Use <strong>ChangeObject</strong></p>
-    </li>
-  </ul>
+<ul>
+<li>
+<p>Create a simple CRUD ExtJS+Java application</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Create a POJO and corresponding <code>Ext.data.Model</code></p>
+</li>
+<li>
+<p>Create s Java service and populate <code>Ext.data.Store</code> with data from service</p>
+</li>
+<li>
+<p>Use the auto-generated ExtJS application</p>
+</li>
+<li>
+<p>Extend the auto-generated CRUD methods</p>
+</li>
+<li>
+<p>Use <strong>ChangeObject</strong></p>
+</li>
+</ul>
 </div>
-    </li>
-  </ul>
+</li>
+</ul>
 </div>
-<div class="paragraph">  
-  <p>Now I would like to show how to use Clear Data Builder to create CRUD applications. I&#8217;ll show you how you can turn your Java POJO class into the ExtJS model. I&#8217;ll explain the following:</p>
-</div><div class="ulist">
-  <ul>
-    <li>
-      <p>how you can populate the ExtJS store from a remote service</p>
-    </li>
-    <li>
-      <p>how you can use automatically generated UI for that application</p>
-    </li>
-    <li>
-      <p>how you can extend it</p>
-    </li>
-    <li>
-      <p>what the <code>ChangeObject</code> class is for</p>
-    </li>
-  </ul>
+<div class="paragraph">
+<p>Now I would like to show how to use Clear Data Builder to create CRUD applications. I&#8217;ll show you how you can turn your Java POJO class into the ExtJS model. I&#8217;ll explain the following:</p>
 </div>
-<div class="paragraph">  
-  <p>I will extend the application from Part 1. For my CRUD application I need a Java POJO.  First, I&#8217;ve created the class <code>Person.java</code> in the package <code>dto</code>. Then I&#8217;ve added the fields <code>firstName</code>, <code>lastName</code>, <code>address</code>, <code>ssn</code> and <code>phone</code> and <code>id</code>. Also I need getters and setters for these fields. It&#8217;s good to have a constructor for the that uses these fields,  and a DTO class should have a <code>toString()</code> method. <a href="#LISTING_1">Person data transfer object</a>
+<div class="ulist">
+<ul>
+<li>
+<p>how you can populate the ExtJS store from a remote service</p>
+</li>
+<li>
+<p>how you can use automatically generated UI for that application</p>
+</li>
+<li>
+<p>how you can extend it</p>
+</li>
+<li>
+<p>what the <code>ChangeObject</code> class is for</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>I will extend the application from Part 1. For my CRUD application I need a Java POJO.  First, I&#8217;ve created the class <code>Person.java</code> in the package <code>dto</code>. Then I&#8217;ve added the fields <code>firstName</code>, <code>lastName</code>, <code>address</code>, <code>ssn</code> and <code>phone</code> and <code>id</code>. Also I need getters and setters for these fields. It&#8217;s good to have a constructor for the that uses these fields,  and a DTO class should have a <code>toString()</code> method. <a href="#LISTING_1">Person data transfer object</a>
 Now I need the same corresponding ExtJS model for my <code>Person</code>. Just annotate this class with the CDB annotation called <code>@JSClass</code> to ask CDB to generate the ExtJS model.</p>
-</div><div id="LISTING_1" class="listingblock">
-  <div class="title">Person data transfer object</div>
-  <div class="content monospaced">
-    <pre class="highlight"><code class="java">package dto;
+</div>
+<div id="LISTING_1" class="listingblock">
+<div class="title">Person data transfer object</div>
+<div class="content monospaced">
+<pre class="highlight"><code class="java language-java">package dto;
 
 import com.farata.dto2extjs.annotations.JSClass;
 import com.farata.dto2extjs.annotations.JSGeneratedId;
@@ -189,75 +202,86 @@ public class Person {
 	// Getters and Setter are omitted
 
 }</code></pre>
-  </div>
 </div>
-<div class="paragraph">  
-  <p>Now I need to annotate the <code>id</code> field with the CDB annotation <code>@JSGeneratedId</code>. With this annotation I&#8217;ll instruct CDB to threat this field as auto generated id. Let&#8217;s examine the directory of ExtJS MVC application and lets take a look inside the model folder. Inside the model folder (the JavaScript section) we have the folder dto which corresponds to the Java <code>dto</code> package where the class <code>Person.java</code> resides.</p>
-</div><div id="FIG-5" class="imageblock">
-  <div class="content">
-    <img src="/images/fig_05.png" alt="image">
-  </div>
-  <div class="title">Figure 5. Generated from Java class ExtJS model</div>
 </div>
-<div class="paragraph">  
-  <p>As you can see Clear Data Builder generated two files as recommended by the <a href="http://martinfowler.com/dslCatalog/generationGap.html">Generation Gap pattern</a>, which is about keeping the generated and handwritten parts separate by putting them in different classes linked by inheritance. Let&#8217;s open the person model. In our case the <code>Person.js</code> is extended from the generated <code>_Person.js</code>. Should we need to customize this class, we&#8217;ll do it inside the <code>Person.js</code>, but this underscore-prefixed file will be regenerated each and every time when we change something in our model. CDB follows this pattern for all generated artifacts - Java services, ExtJS models and stores. This model contains all the fields from our Person DTO.</p>
-</div><div class="paragraph">  
-  <p>Now we need to create a Java service to populate the ExtJS store with the data. Let&#8217;s create an interface <code>PersonService</code> in the package <code>service</code>. This service will to return the list of persons. This interface contains one method -<code>List&lt;Person&gt; getPersons()</code>.</p>
-</div><div class="paragraph">  
-  <p>I need to ask CDB to expose this service as a remote object, which is done by the annotation called <code>@JSService</code>.  Another annotation <code>@JSGenetareStore</code> will instruct CDB to generate the store. In this case CDB will create the <em>destination-aware store</em>. This means that store will know from where to populate its content. All configurations of the store&#8217;s proxies will be handled by the code generator. With <code>@JSFillMethod</code> annotation we will identify our main read method (remember the "R" from CRUD).</p>
-</div><div class="paragraph">  
-  <p>Also it would be nice to have some sort of UI to test the service - the annotation <code>@JSGenerateSample</code> will help here. CDB will examine the interface <code>PersonService</code>, and based on these annotations will generate all ExtJS MVC artifacts (models, views, controller) with the sample application.</p>
-</div><div id="LISTING_2" class="listingblock">
-  <div class="title">PersonService interface annotated with CDB annotations</div>
-  <div class="content monospaced">
-    <pre class="highlight"><code class="java">@JSService
+<div class="paragraph">
+<p>Now I need to annotate the <code>id</code> field with the CDB annotation <code>@JSGeneratedId</code>. With this annotation I&#8217;ll instruct CDB to threat this field as auto generated id. Let&#8217;s examine the directory of ExtJS MVC application and lets take a look inside the model folder. Inside the model folder (the JavaScript section) we have the folder dto which corresponds to the Java <code>dto</code> package where the class <code>Person.java</code> resides.</p>
+</div>
+<div id="FIG-5" class="imageblock">
+<div class="content">
+<img src="/images/fig_05.png" alt="image">
+</div>
+<div class="title">Figure 5. Generated from Java class ExtJS model</div>
+</div>
+<div class="paragraph">
+<p>As you can see Clear Data Builder generated two files as recommended by the <a href="http://martinfowler.com/dslCatalog/generationGap.html">Generation Gap pattern</a>, which is about keeping the generated and handwritten parts separate by putting them in different classes linked by inheritance. Let&#8217;s open the person model. In our case the <code>Person.js</code> is extended from the generated <code>_Person.js</code>. Should we need to customize this class, we&#8217;ll do it inside the <code>Person.js</code>, but this underscore-prefixed file will be regenerated each and every time when we change something in our model. CDB follows this pattern for all generated artifacts - Java services, ExtJS models and stores. This model contains all the fields from our Person DTO.</p>
+</div>
+<div class="paragraph">
+<p>Now we need to create a Java service to populate the ExtJS store with the data. Let&#8217;s create an interface <code>PersonService</code> in the package <code>service</code>. This service will to return the list of persons. This interface contains one method -<code>List&lt;Person&gt; getPersons()</code>.</p>
+</div>
+<div class="paragraph">
+<p>I need to ask CDB to expose this service as a remote object, which is done by the annotation called <code>@JSService</code>.  Another annotation <code>@JSGenetareStore</code> will instruct CDB to generate the store. In this case CDB will create the <em>destination-aware store</em>. This means that store will know from where to populate its content. All configurations of the store&#8217;s proxies will be handled by the code generator. With <code>@JSFillMethod</code> annotation we will identify our main read method (remember the "R" from CRUD).</p>
+</div>
+<div class="paragraph">
+<p>Also it would be nice to have some sort of UI to test the service - the annotation <code>@JSGenerateSample</code> will help here. CDB will examine the interface <code>PersonService</code>, and based on these annotations will generate all ExtJS MVC artifacts (models, views, controller) with the sample application.</p>
+</div>
+<div id="LISTING_2" class="listingblock">
+<div class="title">PersonService interface annotated with CDB annotations</div>
+<div class="content monospaced">
+<pre class="highlight"><code class="java language-java">@JSService
 public interface PersonService {
     @JSGenerateStore
     @JSFillMethod
     @JSGenerateSample
     List&lt;Person&gt; getPersons();
 }</code></pre>
-  </div>
 </div>
-<div class="paragraph">  
-  <p>When the code generation is complete, you&#8217;ll get the implementation for the service - <code>PersonServiceImpl</code>. The <code>store</code> folder inside the application folder (<code>WebContent\app</code>) has the store, which is bound to the <code>Person</code> model. And my person model was generated previously. In this case, Clear Data Builder generated store that binds to the remote service.</p>
-</div><div id="FIG-6" class="imageblock">
-  <div class="content">
-    <img src="/images/fig_06.png" alt="image">
-  </div>
-  <div class="title">Figure 6. Structure of store and model folders</div>
 </div>
-<div class="paragraph">  
-  <p>All this intermediate translation from the JavaScript to Java and from Java to JavaScript done by DirectJNgine, which is the server side implementation of the Ext Direct Protocol. You can read about this protocol in <a href="http://www.sencha.com/products/extjs/extdirect">Ext JS documentation</a>.</p>
-</div><div class="paragraph">  
-  <p>There is one more thing not to be missed - Clear Data Builder generated a UI for us!  Check out the <code>samples</code> directory shown on <a href="#FIG-7">Folder with generated samples</a>.</p>
-</div><div id="FIG-7" class="imageblock">
-  <div class="content">
-    <img src="/images/fig_07.png" alt="image">
-  </div>
-  <div class="title">Figure 7. Folder with generated samples</div>
+<div class="paragraph">
+<p>When the code generation is complete, you&#8217;ll get the implementation for the service - <code>PersonServiceImpl</code>. The <code>store</code> folder inside the application folder (<code>WebContent\app</code>) has the store, which is bound to the <code>Person</code> model. And my person model was generated previously. In this case, Clear Data Builder generated store that binds to the remote service.</p>
 </div>
-<div class="paragraph">  
-  <p>You can see the <code>SampleController</code> and <code>SampleGrid</code> panel inside the samples folder. CDB also generates the JavaScript application entry point - <code>sampleApp.js</code>. To test this application just copy the file  <code>SampleController.js</code> into the <code>controller</code> folder, <code>SampleGrid.js</code> panel into the <code>view</code> folder, and the sample application in the root of our <code>WebContent</code> folder. We need to change the application entry point with sampleApp in <code>index.html</code>.</p>
-</div><div class="listingblock">
-  <div class="content monospaced">
-    <pre class="highlight"><code class="html">&lt;script type="text/javascript" src="sampleApp.js"&gt;&lt;/script&gt;</code></pre>
-  </div>
+<div id="FIG-6" class="imageblock">
+<div class="content">
+<img src="/images/fig_06.png" alt="image">
 </div>
-<div class="paragraph">  
-  <p>This is how the generated UI of the sample application looks like <a href="#FIG-7">Folder with generated samples</a></p>
-</div><div id="FIG-8" class="imageblock">
-  <div class="content">
-    <img src="/images/fig_08.png" alt="image">
-  </div>
-  <div class="title">Figure 8. Scaffolded CRUD application template</div>
+<div class="title">Figure 6. Structure of store and model folders</div>
 </div>
-<div class="paragraph">  
-  <p>Let&#8217;s return to the server side code. For services CDB also follows the <em>Generation Gap Pattern</em> and it generated stubs for the service methods. Override these methods when you&#8217;re ready to implement the CRUD functionality  <a href="#LISTING_3">Implementation of PersonService interface</a>.</p>
-</div><div id="LISTING_3" class="listingblock">
-  <div class="title">Implementation of PersonService interface</div>
-  <div class="content monospaced">
-    <pre class="highlight"><code class="java">package service;
+<div class="paragraph">
+<p>All this intermediate translation from the JavaScript to Java and from Java to JavaScript done by DirectJNgine, which is the server side implementation of the Ext Direct Protocol. You can read about this protocol in <a href="http://www.sencha.com/products/extjs/extdirect">Ext JS documentation</a>.</p>
+</div>
+<div class="paragraph">
+<p>There is one more thing not to be missed - Clear Data Builder generated a UI for us!  Check out the <code>samples</code> directory shown on <a href="#FIG-7">Folder with generated samples</a>.</p>
+</div>
+<div id="FIG-7" class="imageblock">
+<div class="content">
+<img src="/images/fig_07.png" alt="image">
+</div>
+<div class="title">Figure 7. Folder with generated samples</div>
+</div>
+<div class="paragraph">
+<p>You can see the <code>SampleController</code> and <code>SampleGrid</code> panel inside the samples folder. CDB also generates the JavaScript application entry point - <code>sampleApp.js</code>. To test this application just copy the file  <code>SampleController.js</code> into the <code>controller</code> folder, <code>SampleGrid.js</code> panel into the <code>view</code> folder, and the sample application in the root of our <code>WebContent</code> folder. We need to change the application entry point with sampleApp in <code>index.html</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre class="highlight"><code class="html language-html">&lt;script type="text/javascript" src="sampleApp.js"&gt;&lt;/script&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is how the generated UI of the sample application looks like <a href="#FIG-7">Folder with generated samples</a></p>
+</div>
+<div id="FIG-8" class="imageblock">
+<div class="content">
+<img src="/images/fig_08.png" alt="image">
+</div>
+<div class="title">Figure 8. Scaffolded CRUD application template</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s return to the server side code. For services CDB also follows the <em>Generation Gap Pattern</em> and it generated stubs for the service methods. Override these methods when you&#8217;re ready to implement the CRUD functionality  <a href="#LISTING_3">Implementation of PersonService interface</a>.</p>
+</div>
+<div id="LISTING_3" class="listingblock">
+<div class="title">Implementation of PersonService interface</div>
+<div class="content monospaced">
+<pre class="highlight"><code class="java language-java">package service;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -300,101 +324,111 @@ public class PersonServiceImpl extends _PersonServiceImpl { // <img src="/images
 	}
 
 }</code></pre>
-  </div>
+</div>
 </div>
 <div class="colist arabic">
-  <table>
-    <tr>
-      <td><img src="/images/icons/callouts/1.png" alt="1"></td>
-      <td>We need to extend the generated method and provide the actual implementation.</td>
-    </tr>
-    <tr>
-      <td><img src="/images/icons/callouts/2.png" alt="2"></td>
-      <td><code>getPerson</code> is our retrieve method (the R in CRUD) .</td>
-    </tr>
-    <tr>
-      <td><img src="/images/icons/callouts/3.png" alt="3"></td>
-      <td>For this sample application we can use <code>java.util.ArrayList</code> class as in-memory server side storage of the <code>Person</code> objects. In real world applications you&#8217;d use a database or other persistent storage.</td>
-    </tr>
-    <tr>
-      <td><img src="/images/icons/callouts/4.png" alt="4"></td>
-      <td><code>fillmethod</code>+<code>doCreate()</code> is our create method (the C in CRUD).</td>
-    </tr>
-    <tr>
-      <td><img src="/images/icons/callouts/5.png" alt="5"></td>
-      <td><code>fillmethod</code>+<code>doUpdate</code> is our update method (the U in CRUD).</td>
-    </tr>
-    <tr>
-      <td><img src="/images/icons/callouts/6.png" alt="6"></td>
-      <td><code>fillmethod</code>+<code>doDelete</code> is our delete method (the D in CRUD).</td>
-    </tr>
-  </table>
+<table>
+<tr>
+<td><img src="/images/icons/callouts/1.png" alt="1"></td>
+<td>We need to extend the generated method and provide the actual implementation.</td>
+</tr>
+<tr>
+<td><img src="/images/icons/callouts/2.png" alt="2"></td>
+<td><code>getPerson</code> is our retrieve method (the R in CRUD) .</td>
+</tr>
+<tr>
+<td><img src="/images/icons/callouts/3.png" alt="3"></td>
+<td>For this sample application we can use <code>java.util.ArrayList</code> class as in-memory server side storage of the <code>Person</code> objects. In real world applications you&#8217;d use a database or other persistent storage.</td>
+</tr>
+<tr>
+<td><img src="/images/icons/callouts/4.png" alt="4"></td>
+<td><code>fillmethod</code>+<code>doCreate()</code> is our create method (the C in CRUD).</td>
+</tr>
+<tr>
+<td><img src="/images/icons/callouts/5.png" alt="5"></td>
+<td><code>fillmethod</code>+<code>doUpdate</code> is our update method (the U in CRUD).</td>
+</tr>
+<tr>
+<td><img src="/images/icons/callouts/6.png" alt="6"></td>
+<td><code>fillmethod</code>+<code>doDelete</code> is our delete method (the D in CRUD).</td>
+</tr>
+</table>
 </div>
-<div class="paragraph">  
-  <p>Click on the <code>Load</code> menu and you&#8217;ll get 4 persons from our server.</p>
-</div><div class="paragraph">  
-  <p>To demonstrate the rest of the CRUD methods we&#8217;ll ask the user to insert one new row, modify three existing ones and remove two rows using the generated Web client. The <code>Clear.data.DirectStore</code> object will automatically create a collection of six `ChangeObject`s - one to represent a new row, three to represent the modified ones, and two for the removed rows.</p>
-</div><div class="paragraph">  
-  <p>When the user clicks on the Sync menu the changes will be sent to the corresponding <code>do...</code> remote method. When you <code>sync()</code> a standard <code>Ext.data.DirectStore</code> ExtJS is POST-ing new, modified and deleted items to the server. When the request is complete the server&#8217;s reply data is applied to the store, expecting that some items can be modified by the server. In case of <code>Clear.data.DirectStore</code> instead of passing around items, we pass the delta, wrapped in the <code>ChangeObject</code>.</p>
-</div><div class="paragraph">  
-  <p>Each instance of the <code>ChangeOject</code> contains the following:</p>
-</div><div class="ulist">
-  <ul>
-    <li>
-      <p><code>newVersion</code>  - it&#8217;s an instance of the newly inserted or modified item. On the Java side it&#8217;s available via <code>getNewVersion()</code>.</p>
-    </li>
-    <li>
-      <p><code>prevVersion</code> - it&#8217;s an instance of the deleted of old version of modified item. On the Java side it&#8217;s available via <code>getPrevVersion()</code>.</p>
-    </li>
-    <li>
-      <p>array of <code>changepropertyNames</code> if this <code>ChangeObject</code> represents an update operation.</p>
-    </li>
-  </ul>
+<div class="paragraph">
+<p>Click on the <code>Load</code> menu and you&#8217;ll get 4 persons from our server.</p>
 </div>
-<div class="paragraph">  
-  <p>The rest of <code>ChangeObject</code> details described on wiki on github (see the link in <em>Useful Links</em> section).</p>
-</div><div class="paragraph">  
-  <p>The corresponding Java implementation of <code>ChangeObject</code> is available on the server side and Clear Toolkit passes <code>ChangeObject</code> instances to the appropriate <code>do*</code> method of the service class. Take a look at the <code>getPersons_doCreate()</code> method from <a href="#LISTING_3">Implementation of PersonService interface</a>. When the server needs to read the data arrived from the client your Java class has to invoke the method <code>changeObject.getNewVersion()</code>. This method will return the JSON object that you need to deserialize into the object <code>Person</code>. This is done in <a href="#LISTING_3">Implementation of PersonService interface</a> and looks like this.</p>
-</div><div class="listingblock">
-  <div class="content monospaced">
-    <pre class="highlight"><code class="java"> Person dto = (Person) deserializeObject(
-                (Map&lt;String, String&gt;) changeObject.getNewVersion(),Person.class);</code></pre>
-  </div>
+<div class="paragraph">
+<p>To demonstrate the rest of the CRUD methods we&#8217;ll ask the user to insert one new row, modify three existing ones and remove two rows using the generated Web client. The <code>Clear.data.DirectStore</code> object will automatically create a collection of six `ChangeObject`s - one to represent a new row, three to represent the modified ones, and two for the removed rows.</p>
 </div>
-  </div>
-</div><div class="sect1">
-  <h2 id="part-three-data-pagination">Part Three: Data Pagination</h2>
-  <div class="sectionbody">
-<div class="paragraph">  
-  <p>The pagination feature is needed in almost every enterprise web application. Often you don&#8217;t want to bring all the  data to the client at once - a page by page feeds is a lot more responsive. The user can navigate back and forth between the pages using pagination UI components. To do that, we need to split our data on the server side into chunks so we can display it only once specific page is required. Implementing pagination is the agenda for the Part Three of this article. Here&#8217;s the plan:</p>
-</div><div class="ulist">
-  <ul>
-    <li>
-      <p>Add the  data pagination to our sample CRUD ExtJS+Java application:</p>
+<div class="paragraph">
+<p>When the user clicks on the Sync menu the changes will be sent to the corresponding <code>do...</code> remote method. When you <code>sync()</code> a standard <code>Ext.data.DirectStore</code> ExtJS is POST-ing new, modified and deleted items to the server. When the request is complete the server&#8217;s reply data is applied to the store, expecting that some items can be modified by the server. In case of <code>Clear.data.DirectStore</code> instead of passing around items, we pass the delta, wrapped in the <code>ChangeObject</code>.</p>
+</div>
+<div class="paragraph">
+<p>Each instance of the <code>ChangeOject</code> contains the following:</p>
+</div>
 <div class="ulist">
-  <ul>
-    <li>
-      <p>Add the <code>Ext.toolbar.Paging</code> component</p>
-    </li>
-    <li>
-      <p>Bind both <em>grid</em> and <em>pagingtoolbar</em> to the same store</p>
-    </li>
-    <li>
-      <p>Use <code>DirectOptions</code> class to read the pagination parameters</p>
-    </li>
-  </ul>
+<ul>
+<li>
+<p><code>newVersion</code>  - it&#8217;s an instance of the newly inserted or modified item. On the Java side it&#8217;s available via <code>getNewVersion()</code>.</p>
+</li>
+<li>
+<p><code>prevVersion</code> - it&#8217;s an instance of the deleted of old version of modified item. On the Java side it&#8217;s available via <code>getPrevVersion()</code>.</p>
+</li>
+<li>
+<p>array of <code>changepropertyNames</code> if this <code>ChangeObject</code> represents an update operation.</p>
+</li>
+</ul>
 </div>
-    </li>
-  </ul>
+<div class="paragraph">
+<p>The rest of <code>ChangeObject</code> details described on wiki on github (see the link in <em>Useful Links</em> section).</p>
 </div>
-<div class="paragraph">  
-  <p>We are going to extend our CRUD application by adding the paging toolbar component bound to the same store as the grid. The class <code>DirectOptions</code> will handle pagination parameters on the server side.</p>
-</div><div class="paragraph">  
-  <p>In Part 1 and 2 you&#8217;ve learned how to generate the UI from the Java back end service and how to generate the ExtJS store and ExtJS model.  In this part you&#8217;ll how to add the pagination functionality to our CRUD  application by asking the server to send only portions of data. I&#8217;ll need to refactor the service code from previous example to generate a little bit more data than only five records. <a href="#LISTING_4">Refactored implementation of PersonService Interface</a></p>
-</div><div id="LISTING_4" class="listingblock">
-  <div class="title">Refactored implementation of PersonService Interface</div>
-  <div class="content monospaced">
-    <pre class="highlight"><code class="java">public class PersonServiceImpl extends _PersonServiceImpl {
+<div class="paragraph">
+<p>The corresponding Java implementation of <code>ChangeObject</code> is available on the server side and Clear Toolkit passes <code>ChangeObject</code> instances to the appropriate <code>do*</code> method of the service class. Take a look at the <code>getPersons_doCreate()</code> method from <a href="#LISTING_3">Implementation of PersonService interface</a>. When the server needs to read the data arrived from the client your Java class has to invoke the method <code>changeObject.getNewVersion()</code>. This method will return the JSON object that you need to deserialize into the object <code>Person</code>. This is done in <a href="#LISTING_3">Implementation of PersonService interface</a> and looks like this.</p>
+</div>
+<div class="listingblock">
+<div class="content monospaced">
+<pre class="highlight"><code class="java language-java"> Person dto = (Person) deserializeObject(
+                (Map&lt;String, String&gt;) changeObject.getNewVersion(),Person.class);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="part-three-data-pagination">Part Three: Data Pagination</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The pagination feature is needed in almost every enterprise web application. Often you don&#8217;t want to bring all the  data to the client at once - a page by page feeds is a lot more responsive. The user can navigate back and forth between the pages using pagination UI components. To do that, we need to split our data on the server side into chunks so we can display it only once specific page is required. Implementing pagination is the agenda for the Part Three of this article. Here&#8217;s the plan:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Add the  data pagination to our sample CRUD ExtJS+Java application:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Add the <code>Ext.toolbar.Paging</code> component</p>
+</li>
+<li>
+<p>Bind both <em>grid</em> and <em>pagingtoolbar</em> to the same store</p>
+</li>
+<li>
+<p>Use <code>DirectOptions</code> class to read the pagination parameters</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>We are going to extend our CRUD application by adding the paging toolbar component bound to the same store as the grid. The class <code>DirectOptions</code> will handle pagination parameters on the server side.</p>
+</div>
+<div class="paragraph">
+<p>In Part 1 and 2 you&#8217;ve learned how to generate the UI from the Java back end service and how to generate the ExtJS store and ExtJS model.  In this part you&#8217;ll how to add the pagination functionality to our CRUD  application by asking the server to send only portions of data. I&#8217;ll need to refactor the service code from previous example to generate a little bit more data than only five records. <a href="#LISTING_4">Refactored implementation of PersonService Interface</a></p>
+</div>
+<div id="LISTING_4" class="listingblock">
+<div class="title">Refactored implementation of PersonService Interface</div>
+<div class="content monospaced">
+<pre class="highlight"><code class="java language-java">public class PersonServiceImpl extends _PersonServiceImpl {
   @Override
     public List&lt;Person&gt; getPersons() {
         List&lt;Person&gt; result = new ArrayList&lt;&gt;();
@@ -404,14 +438,15 @@ public class PersonServiceImpl extends _PersonServiceImpl { // <img src="/images
         return result;
     }
 }</code></pre>
-  </div>
 </div>
-<div class="paragraph">  
-  <p>The Google Chrome Console shows that <code>PersonStore</code> was populated with one thousand records. Let&#8217;s add the pagination component using the Ext <code>toolbarpaging</code> component. Let&#8217;s add it to the file <code>sampleApp.js</code> <a href="#LISTING_5">Sample Application Entry</a>.</p>
-</div><div id="LISTING_5" class="listingblock">
-  <div class="title">Sample Application Entry</div>
-  <div class="content monospaced">
-    <pre class="highlight"><code class="javascript">Ext.Loader.setConfig({
+</div>
+<div class="paragraph">
+<p>The Google Chrome Console shows that <code>PersonStore</code> was populated with one thousand records. Let&#8217;s add the pagination component using the Ext <code>toolbarpaging</code> component. Let&#8217;s add it to the file <code>sampleApp.js</code> <a href="#LISTING_5">Sample Application Entry</a>.</p>
+</div>
+<div id="LISTING_5" class="listingblock">
+<div class="title">Sample Application Entry</div>
+<div class="content monospaced">
+<pre class="highlight"><code class="javascript language-javascript">Ext.Loader.setConfig({
 	disableCaching : false,
 	enabled : true,
 	paths : {
@@ -465,31 +500,32 @@ Ext.application({
 		});
 	}
 });</code></pre>
-  </div>
+</div>
 </div>
 <div class="colist arabic">
-  <table>
-    <tr>
-      <td><img src="/images/icons/callouts/1.png" alt="1"></td>
-      <td>Let&#8217;s manually instantiate this store - create a separate variable <code>myStore</code> for this store and with empty <code>config</code> object.</td>
-    </tr>
-    <tr>
-      <td><img src="/images/icons/callouts/2.png" alt="2"></td>
-      <td>Adding the <code>xtype</code> <code>pagingtoolbar</code> to this component docked items property - I&#8217;d like to display the information and dock this element at the top.</td>
-    </tr>
-    <tr>
-      <td><img src="/images/icons/callouts/3.png" alt="3"></td>
-      <td>Now the paging toolbar is also connected to same store.</td>
-    </tr>
-  </table>
+<table>
+<tr>
+<td><img src="/images/icons/callouts/1.png" alt="1"></td>
+<td>Let&#8217;s manually instantiate this store - create a separate variable <code>myStore</code> for this store and with empty <code>config</code> object.</td>
+</tr>
+<tr>
+<td><img src="/images/icons/callouts/2.png" alt="2"></td>
+<td>Adding the <code>xtype</code> <code>pagingtoolbar</code> to this component docked items property - I&#8217;d like to display the information and dock this element at the top.</td>
+</tr>
+<tr>
+<td><img src="/images/icons/callouts/3.png" alt="3"></td>
+<td>Now the paging toolbar is also connected to same store.</td>
+</tr>
+</table>
 </div>
-<div class="paragraph">  
-  <p>Now we need to fix automatically generated controller to control loading of data on
+<div class="paragraph">
+<p>Now we need to fix automatically generated controller to control loading of data on
 click of <code>Load</code> button <a href="#LISTING_6">Controller for sample application</a>.</p>
-</div><div id="LISTING_6" class="listingblock">
-  <div class="title">Controller for sample application</div>
-  <div class="content monospaced">
-    <pre class="highlight"><code class="javascript">Ext.define('episode_3_pagination.controller.SampleController', {
+</div>
+<div id="LISTING_6" class="listingblock">
+<div class="title">Controller for sample application</div>
+<div class="content monospaced">
+<pre class="highlight"><code class="javascript language-javascript">Ext.define('episode_3_pagination.controller.SampleController', {
 	extend: 'Ext.app.Controller',
 	stores: ['episode_3_pagination.store.dto.PersonStore'],
 	refs: [{								//<img src="/images/icons/callouts/1.png" alt="1">
@@ -511,34 +547,36 @@ click of <code>Load</code> button <a href="#LISTING_6">Controller for sample app
 		store.load();
 	}
 });</code></pre>
-  </div>
+</div>
 </div>
 <div class="colist arabic">
-  <table>
-    <tr>
-      <td><img src="/images/icons/callouts/1.png" alt="1"></td>
-      <td>We can bind the store instance to our grid panel. In controller&#8217;s <code>refs</code> property I&#8217;m referencing our  <code>simplegrid</code> panel with <code>ThePanel</code> alias.</td>
-    </tr>
-    <tr>
-      <td><img src="/images/icons/callouts/2.png" alt="2"></td>
-      <td>In this case I don&#8217;t need to explicitly retrieve the store instance by name. Instead, we can use getters <code>getPanel()</code> and <code>getStore()</code> automatically generated by the ExtJS framework.</td>
-    </tr>
-  </table>
+<table>
+<tr>
+<td><img src="/images/icons/callouts/1.png" alt="1"></td>
+<td>We can bind the store instance to our grid panel. In controller&#8217;s <code>refs</code> property I&#8217;m referencing our  <code>simplegrid</code> panel with <code>ThePanel</code> alias.</td>
+</tr>
+<tr>
+<td><img src="/images/icons/callouts/2.png" alt="2"></td>
+<td>In this case I don&#8217;t need to explicitly retrieve the store instance by name. Instead, we can use getters <code>getPanel()</code> and <code>getStore()</code> automatically generated by the ExtJS framework.</td>
+</tr>
+</table>
 </div>
-<div class="paragraph">  
-  <p>When the user clicks the button <em>next</em> or <em>previous</em> the method <code>loadPage</code> of the underlying store is called. Let&#8217;s examine the <code>directprovider</code> URL - server side router of remoting calls - and see how the direct request looks like.  Open Google Chrome Developer Tools from the menu View &#8594; Developer, refresh the Web page and go to the Network tab. You&#8217;ll that each time the user clicks on the <em>next</em> or <em>previous</em> buttons on the pagination toolbar the component sends <code>directOptions</code> as a part of the request.</p>
-</div><div id="FIG-9" class="imageblock">
-  <div class="content">
-    <img src="/images/fig_09.png" alt="image">
-  </div>
-  <div class="title">Figure 9. Request payload details</div>
+<div class="paragraph">
+<p>When the user clicks the button <em>next</em> or <em>previous</em> the method <code>loadPage</code> of the underlying store is called. Let&#8217;s examine the <code>directprovider</code> URL - server side router of remoting calls - and see how the direct request looks like.  Open Google Chrome Developer Tools from the menu View &#8594; Developer, refresh the Web page and go to the Network tab. You&#8217;ll that each time the user clicks on the <em>next</em> or <em>previous</em> buttons on the pagination toolbar the component sends <code>directOptions</code> as a part of the request.</p>
 </div>
-<div class="paragraph">  
-  <p>Default Ext Direct request doesn&#8217;t carry any information about page size. Clear JS, the client side extension of the ExtJS framework, adds some extra functionality to <code>Ext.data.DirectStore</code> component to pass the page <code>start</code> and <code>limit</code> values to the server side. At this point, the <code>directOptions</code> request property shown in <a href="#FIG-9">Request payload details</a> can be extracted on the server side to get the information about the page&#8217;s boundaries. Let&#8217;s return to the code of <code>PersonServiceImpl</code> and add some extra code there. Right now the pagination doesn&#8217;t work. The server sends the entire thousand records, because the server is not aware that the data has to be paginated. We&#8217;ll fix it in <a href="#LISTING_7">Implementation of PersonService with pagination</a>.</p>
-</div><div id="LISTING_7" class="listingblock">
-  <div class="title">Implementation of PersonService with pagination</div>
-  <div class="content monospaced">
-    <pre class="highlight"><code class="java">package service;
+<div id="FIG-9" class="imageblock">
+<div class="content">
+<img src="/images/fig_09.png" alt="image">
+</div>
+<div class="title">Figure 9. Request payload details</div>
+</div>
+<div class="paragraph">
+<p>Default Ext Direct request doesn&#8217;t carry any information about page size. Clear JS, the client side extension of the ExtJS framework, adds some extra functionality to <code>Ext.data.DirectStore</code> component to pass the page <code>start</code> and <code>limit</code> values to the server side. At this point, the <code>directOptions</code> request property shown in <a href="#FIG-9">Request payload details</a> can be extracted on the server side to get the information about the page&#8217;s boundaries. Let&#8217;s return to the code of <code>PersonServiceImpl</code> and add some extra code there. Right now the pagination doesn&#8217;t work. The server sends the entire thousand records, because the server is not aware that the data has to be paginated. We&#8217;ll fix it in <a href="#LISTING_7">Implementation of PersonService with pagination</a>.</p>
+</div>
+<div id="LISTING_7" class="listingblock">
+<div class="title">Implementation of PersonService with pagination</div>
+<div class="content monospaced">
+<pre class="highlight"><code class="java language-java">package service;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -565,86 +603,90 @@ public class PersonServiceImpl extends _PersonServiceImpl {
 		return result;
 	}
 }</code></pre>
-  </div>
+</div>
 </div>
 <div class="colist arabic">
-  <table>
-    <tr>
-      <td><img src="/images/icons/callouts/1.png" alt="1"></td>
-      <td>On the server side there is a special object called <code>DirectOptions</code>, which comes with Clear Toolkit.</td>
-    </tr>
-    <tr>
-      <td><img src="/images/icons/callouts/2.png" alt="2"></td>
-      <td>We&#8217;re interested in <code>start</code> and in <code>limit</code> options (see <a href="#FIG-9">Request payload details</a>).</td>
-    </tr>
-    <tr>
-      <td><img src="/images/icons/callouts/3.png" alt="3"></td>
-      <td>Calculate the actual limit. Assign the size of the data collection to the <code>limit</code> variable if it&#8217;s  less than the page size (<code>start+limit</code>).</td>
-    </tr>
-    <tr>
-      <td><img src="/images/icons/callouts/4.png" alt="4"></td>
-      <td>Notify the component about the total number of elements on the server side by using <code>DirectOptions.setOption()</code> method with <code>total</code> option.</td>
-    </tr>
-    <tr>
-      <td><img src="/images/icons/callouts/5.png" alt="5"></td>
-      <td>Before returning the result, create a subset, an actual page of data. In this case I need to use method of  <code>java.util.List.sublist()</code> which produces the view of the portion of this list between indexes specified by the <code>start</code> and the <code>limit</code> parameters.</td>
-    </tr>
-  </table>
+<table>
+<tr>
+<td><img src="/images/icons/callouts/1.png" alt="1"></td>
+<td>On the server side there is a special object called <code>DirectOptions</code>, which comes with Clear Toolkit.</td>
+</tr>
+<tr>
+<td><img src="/images/icons/callouts/2.png" alt="2"></td>
+<td>We&#8217;re interested in <code>start</code> and in <code>limit</code> options (see <a href="#FIG-9">Request payload details</a>).</td>
+</tr>
+<tr>
+<td><img src="/images/icons/callouts/3.png" alt="3"></td>
+<td>Calculate the actual limit. Assign the size of the data collection to the <code>limit</code> variable if it&#8217;s  less than the page size (<code>start+limit</code>).</td>
+</tr>
+<tr>
+<td><img src="/images/icons/callouts/4.png" alt="4"></td>
+<td>Notify the component about the total number of elements on the server side by using <code>DirectOptions.setOption()</code> method with <code>total</code> option.</td>
+</tr>
+<tr>
+<td><img src="/images/icons/callouts/5.png" alt="5"></td>
+<td>Before returning the result, create a subset, an actual page of data. In this case I need to use method of  <code>java.util.List.sublist()</code> which produces the view of the portion of this list between indexes specified by the <code>start</code> and the <code>limit</code> parameters.</td>
+</tr>
+</table>
 </div>
-<div class="paragraph">  
-  <p>As you can see from the Network tab in <a href="#FIG-8">Scaffolded CRUD application template</a>, we limited the data load to 25 elements per page. Clicking on <code>next</code> or <code>previous</code> buttons will get you only a page worth of data. The Google Chrome Developers Tools Network tab shows that that we are sending <code>start</code> and <code>limit</code> every time and our response contains object with 25 elements.</p>
-</div><div class="paragraph">  
-  <p>If you&#8217;d like to repeat all of the above steps on you own, watch <a href="http://faratasystems.com/training-at-farata-youtube-chanel/">the screencasts</a> where I perform all the actions described in this article.</p>
-</div><div class="sect2">
-  <h3 id="conclusion">Conclusion</h3>
-<div class="paragraph">  
-  <p>The development of enterprise web application involves many steps that need to be done by developer. But with the right set of tools the repetitive steps can be automated. Remember the DRY principle - don&#8217;t repeat yourself. Try to do more with less efforts. I hope this article will help your to get started start with Clear Data Builder, which should make any ExtJS enterprise software developer more productive.</p>
-</div><div class="paragraph">  
-  <p>Subscribe to our <a href="http://youtube.com/trainingAtFarata">youtube channel</a> to get access to the latest videos, screencasts and learning materials. You are invited to read our upcoming book <a href="http://enterprisewebbook.com/">"Enterprise Web Development"</a> (work in progress) that include coverage of ExtJS.</p>
+<div class="paragraph">
+<p>As you can see from the Network tab in <a href="#FIG-8">Scaffolded CRUD application template</a>, we limited the data load to 25 elements per page. Clicking on <code>next</code> or <code>previous</code> buttons will get you only a page worth of data. The Google Chrome Developers Tools Network tab shows that that we are sending <code>start</code> and <code>limit</code> every time and our response contains object with 25 elements.</p>
 </div>
-</div><div class="sect2">
-  <h3 id="additional-useful-links">Additional Useful Links</h3>
+<div class="paragraph">
+<p>If you&#8217;d like to repeat all of the above steps on you own, watch <a href="http://faratasystems.com/training-at-farata-youtube-chanel/">the screencasts</a> where I perform all the actions described in this article.</p>
+</div>
+<div class="sect2">
+<h3 id="conclusion">Conclusion</h3>
+<div class="paragraph">
+<p>The development of enterprise web application involves many steps that need to be done by developer. But with the right set of tools the repetitive steps can be automated. Remember the DRY principle - don&#8217;t repeat yourself. Try to do more with less efforts. I hope this article will help your to get started start with Clear Data Builder, which should make any ExtJS enterprise software developer more productive.</p>
+</div>
+<div class="paragraph">
+<p>Subscribe to our <a href="http://youtube.com/trainingAtFarata">youtube channel</a> to get access to the latest videos, screencasts and learning materials. You are invited to read our upcoming book <a href="http://enterprisewebbook.com/">"Enterprise Web Development"</a> (work in progress) that include coverage of ExtJS.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="additional-useful-links">Additional Useful Links</h3>
 <div class="ulist">
-  <ul>
-    <li>
-      <p><a href="http://farata.github.com/ClearJS/">Clear Toolkit on Github</a></p>
-    </li>
-    <li>
-      <p><a href="http://cleartoolkit.com/downloads/plugins/extjs/cleardatabuilder/4.1.4/">Clear Data Builder Eclipse update site</a></p>
-    </li>
-    <li>
-      <p><a href="http://docs.sencha.com/ext-js/4-1/#!/guide/application_architecture">ExtJS MVC Application Architecture</a></p>
-    </li>
-    <li>
-      <p><a href="http://docs.sencha.com/ext-js/4-1/#!/api/Ext.data.Model">Ext.data.Model</a></p>
-    </li>
-    <li>
-      <p><a href="http://docs.sencha.com/ext-js/4-1/#!/api/Ext.data.Store">Ext.data.Store</a></p>
-    </li>
-    <li>
-      <p><a href="http://docs.sencha.com/ext-js/4-1/#!/guide/grid">ExtJS Grid Panel</a></p>
-    </li>
-    <li>
-      <p><a href="http://docs.sencha.com/ext-js/4-1/#!/api/Ext.toolbar.Paging">Ext.toolbar.Paging</a></p>
-    </li>
-    <li>
-      <p><a href="http://www.sencha.com/products/extjs/extdirect">Ext Direct</a></p>
-    </li>
-    <li>
-      <p><a href="https://code.google.com/p/directjngine/">DirectJNgine: Direct for Java</a></p>
-    </li>
-    <li>
-      <p><a href="https://github.com/Farata/ClearJS/wiki/Change-Object%3A-Synchronization-Keystone">Change Object: Synchronization Keystone</a></p>
-    </li>
-    <li>
-      <p><a href="https://github.com/Farata/ClearJS/wiki/Data-Pagination">Data Pagination in Clear Toolkit</a></p>
-    </li>
-  </ul>
+<ul>
+<li>
+<p><a href="http://farata.github.com/ClearJS/">Clear Toolkit on Github</a></p>
+</li>
+<li>
+<p><a href="http://cleartoolkit.com/downloads/plugins/extjs/cleardatabuilder/4.1.4/">Clear Data Builder Eclipse update site</a></p>
+</li>
+<li>
+<p><a href="http://docs.sencha.com/ext-js/4-1/#!/guide/application_architecture">ExtJS MVC Application Architecture</a></p>
+</li>
+<li>
+<p><a href="http://docs.sencha.com/ext-js/4-1/#!/api/Ext.data.Model">Ext.data.Model</a></p>
+</li>
+<li>
+<p><a href="http://docs.sencha.com/ext-js/4-1/#!/api/Ext.data.Store">Ext.data.Store</a></p>
+</li>
+<li>
+<p><a href="http://docs.sencha.com/ext-js/4-1/#!/guide/grid">ExtJS Grid Panel</a></p>
+</li>
+<li>
+<p><a href="http://docs.sencha.com/ext-js/4-1/#!/api/Ext.toolbar.Paging">Ext.toolbar.Paging</a></p>
+</li>
+<li>
+<p><a href="http://www.sencha.com/products/extjs/extdirect">Ext Direct</a></p>
+</li>
+<li>
+<p><a href="https://code.google.com/p/directjngine/">DirectJNgine: Direct for Java</a></p>
+</li>
+<li>
+<p><a href="https://github.com/Farata/ClearJS/wiki/Change-Object%3A-Synchronization-Keystone">Change Object: Synchronization Keystone</a></p>
+</li>
+<li>
+<p><a href="https://github.com/Farata/ClearJS/wiki/Data-Pagination">Data Pagination in Clear Toolkit</a></p>
+</li>
+</ul>
 </div>
 </div>
-  </div>
 </div>
-</div></div><footer class="entry-footer"><div id="comments"></div></footer></article></div></div><footer class="row"><div class="large-12 columns"><hr><div class="row"><div class="large-9 columns"><p>© Viktor Gamov 2013—2007</p><p><a href="https://github.com/asciidoctor/asciidoctor-stylesheet-factory/blob/master/sass/iconic.scss">Iconic</a> design Inspired by the O'Reilly typography and the Atlas user manual</p></div><div class="large-3 columns"><ul class="inline-list right"><li><a href="https://github.com/gAmUssA">Github</a></li><li><a href="http://twitter.com/gAmUssA">Twitter</a></li><li><a href="#"></a></li></ul></div></div></div></footer><script>document.write('<script src=' + ('__proto__' in {} ? '/javascripts/vendor/zepto' : '/javascripts/vendor/jquery') + '.js><\/script>')</script><script src="/javascripts/foundation/foundation.js"><script src="/javascripts/foundation/foundation.topbar.js"></script></script><script>$(document).foundation();</script><script src="/javascripts/vendor/highlight.min.js"><script>$(hljs.initHighlighting);</script></script><script type="text/javascript">
+</div>
+</div></div><footer class="entry-footer"><div id="comments"></div></footer></article></div></div><div id="copyright"><div class="row full-width"><div class="large-4 columns"><p>© Viktor Gamov 2013—2007</p></div><div class="large-8 columns"><ul class="inline-list right"><li><a href="https://github.com/gAmUssA">Github</a></li><li><a href="http://twitter.com/gAmUssA">Twitter</a></li><li><a href="#"></a></li></ul></div></div></div><script>document.write('<script src=' + ('__proto__' in {} ? '/javascripts/vendor/zepto' : '/javascripts/vendor/jquery') + '.js><\/script>')</script><script src="/javascripts/foundation/foundation.js"><script src="/javascripts/foundation/foundation.topbar.js"></script></script><script>$(document).foundation();</script><script src="/javascripts/vendor/highlight.min.js"><script>$(hljs.initHighlighting);</script></script><script type="text/javascript">
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount','UA-40354726-1']);
 _gaq.push(['_trackPageview']);
