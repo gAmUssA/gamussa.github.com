@@ -2,7 +2,8 @@
 :awestruct-layout: index
 
 [.panel]
-*What is this all about?*
+.*What is this all about?*
+
 Thanks for visiting. My name Viktor Gamov. I'm a senior software engineer at http://faratasystems.com/[Farata Systems]. I consult financial institutions and startups in design and implementation of Web Applications with HTML5 and Java. I'm a co-organizer of the http://www.meetup.com/NJFlex/[Princeton JUG and NJ Flex meetup] and co-author of OReilly's book <<enterprisewebbook,«Enterprise Web Development. Building HTML5 Applications: From Desktop to Mobile»>>.
 
 [[enterprisewebbook]]

@@ -187,7 +187,7 @@ tt {
 }
 
 #preamble > .sectionbody > .paragraph:first-of-type p {
-  @extend %lead;
+  //@extend %lead;
 }
 
 // nested AsciiDoc document (should put "nested" class on surrounding div)
