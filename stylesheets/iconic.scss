@@ -110,8 +110,9 @@ dl dt {
 .listingblock {
   @extend %stretch;
   & > .content > pre {
-    @include border-radius($global-radius $global-radius 0 0);
-    border: 0;
+    @include border-radius($global-radius);
+    //border: 0;
+    border: 1px solid #bbbbbb;
   }
 }
 
