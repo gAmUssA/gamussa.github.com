@@ -2,10 +2,12 @@
 Dan Allen
 :awestruct-layout: base
 :toc:
+:icons:
 :toc-placement!:
 ifndef::awestruct[]
 :idprefix:
 :idseparator: -
+:awestruct-layout: post
 endif::awestruct[]
 :mdash: &#8212;
 :userguide: http://asciidoc.org/userguide.html

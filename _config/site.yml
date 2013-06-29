@@ -21,7 +21,7 @@ scss:
 profiles:
   development:
     minify: false
-    #disqus_developer: true
+    disqus_developer: true
     dev: true
     deploy:
       dummy:
