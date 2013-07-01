@@ -1,5 +1,6 @@
 = AsciiDoc Writer's Guide
 Dan Allen
+2013-04-16
 :awestruct-layout: base
 :toc:
 :icons:

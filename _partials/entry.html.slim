@@ -24,6 +24,8 @@ article
               ="#{tag}, "
             - else
               ="#{tag} "
-    - if site.disqus
+  - if not page.listing
+    /=partial('pager.html.slim', :post => page)
+    - if site.disqus && !site.disqus_developer
       #comments
-        =page.disqus_comments
+        =page.post.disqus_comments

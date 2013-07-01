@@ -3,8 +3,8 @@ author: Viktor Gamov
 local_tz: America/New York
 interpolate: false
 disqus: nextjavaheadbraincom
-disqus_generate_id: true
-disqus_developer: true
+#disqus_generate_id: true
+disqus_developer: false
 base_url: http://localhost:4242
 
 asciidoctor:
@@ -13,6 +13,9 @@ asciidoctor:
   :attributes:
     idprefix: ''
     idseparator: '-'
+    icons: 'font'
+    sectanchors: ''
+    linkattrs: ''
 
 scss:
   :line_numbers: true
@@ -29,6 +32,7 @@ profiles:
     base_url: http://next.javaheadbrain.com
     disqus_developer: false
     google_analytics: UA-40354726-1
+    compass_output_style: :compressed
     minify: true
     deploy:
       host: github_pages
