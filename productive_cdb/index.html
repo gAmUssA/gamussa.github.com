@@ -20,7 +20,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="part-one-extjs-mvc-application-scaffolding">Part One: ExtJS MVC Application Scaffolding</h2>
+<h2 id="part-one-extjs-mvc-application-scaffolding"><a class="anchor" href="#part-one-extjs-mvc-application-scaffolding"></a>Part One: ExtJS MVC Application Scaffolding</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>In part one I&#8217;ll cover the following topics:</p>
@@ -64,7 +64,7 @@
 <table>
 <tr>
 <td class="icon">
-<img src="/images/icons/important.png" alt="Important">
+<i class="icon-important" title="Important"></i>
 </td>
 <td class="content">
 You have to have "Eclipse for Java EE Developers" installed, which includes the plugins for automation of the Web applications.
@@ -117,7 +117,7 @@ You have to have "Eclipse for Java EE Developers" installed, which includes the 
 </div>
 </div>
 <div class="sect1">
-<h2 id="part-two-generating-a-crud-application">Part Two: Generating a CRUD application</h2>
+<h2 id="part-two-generating-a-crud-application"><a class="anchor" href="#part-two-generating-a-crud-application"></a>Part Two: Generating a CRUD application</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>CRUD stands for Create-Retrieve-Update-Delete. It&#8217;s a well known term for describing the applications that support data manipulation. They can retrieve the data from some data source and update them too. The Part Two agenda is covering exactly this:</p>
@@ -289,21 +289,21 @@ import clear.data.ChangeObject;
 import dto.Person;
 import service.generated.*;
 
-public class PersonServiceImpl extends _PersonServiceImpl { // <img src="/images/icons/callouts/1.png" alt="1">
+public class PersonServiceImpl extends _PersonServiceImpl { // <i class="conum">1</i>
 
 	@Override
-	public List&lt;Person&gt; getPersons() {				// <img src="/images/icons/callouts/2.png" alt="2">
+	public List&lt;Person&gt; getPersons() {				// <i class="conum">2</i>
 		List&lt;Person&gt; result = new ArrayList&lt;&gt;();
 		Integer id= 0;
 		result.add(new Person(++id, "Joe", "Doe", "555-55-55", "1111-11-1111"));
 		result.add(new Person(++id, "Joe", "Doe", "555-55-55", "1111-11-1111"));
 		result.add(new Person(++id, "Joe", "Doe", "555-55-55", "1111-11-1111"));
 		result.add(new Person(++id, "Joe", "Doe", "555-55-55", "1111-11-1111"));
-		return result;		//<img src="/images/icons/callouts/3.png" alt="3">
+		return result;		//<i class="conum">3</i>
 	}
 
 	@Override
-	public void getPersons_doCreate(ChangeObject changeObject) {  // <img src="/images/icons/callouts/4.png" alt="4">
+	public void getPersons_doCreate(ChangeObject changeObject) {  // <i class="conum">4</i>
 		Person dto = (Person) deserializeObject(
 				(Map&lt;String, String&gt;) changeObject.getNewVersion(),
 				Person.class);
@@ -312,13 +312,13 @@ public class PersonServiceImpl extends _PersonServiceImpl { // <img src="/images
 	}
 
 	@Override
-	public void getPersons_doUpdate(ChangeObject changeObject) {	// <img src="/images/icons/callouts/5.png" alt="5">
+	public void getPersons_doUpdate(ChangeObject changeObject) {	// <i class="conum">5</i>
 		// TODO Auto-generated method stub
 		super.getPersons_doUpdate(changeObject);
 	}
 
 	@Override
-	public void getPersons_doDelete(ChangeObject changeObject) {	// <img src="/images/icons/callouts/6.png" alt="6">
+	public void getPersons_doDelete(ChangeObject changeObject) {	// <i class="conum">6</i>
 		// TODO Auto-generated method stub
 		super.getPersons_doDelete(changeObject);
 	}
@@ -329,27 +329,27 @@ public class PersonServiceImpl extends _PersonServiceImpl { // <img src="/images
 <div class="colist arabic">
 <table>
 <tr>
-<td><img src="/images/icons/callouts/1.png" alt="1"></td>
+<td><i class="conum">1</i></td>
 <td>We need to extend the generated method and provide the actual implementation.</td>
 </tr>
 <tr>
-<td><img src="/images/icons/callouts/2.png" alt="2"></td>
+<td><i class="conum">2</i></td>
 <td><code>getPerson</code> is our retrieve method (the R in CRUD) .</td>
 </tr>
 <tr>
-<td><img src="/images/icons/callouts/3.png" alt="3"></td>
+<td><i class="conum">3</i></td>
 <td>For this sample application we can use <code>java.util.ArrayList</code> class as in-memory server side storage of the <code>Person</code> objects. In real world applications you&#8217;d use a database or other persistent storage.</td>
 </tr>
 <tr>
-<td><img src="/images/icons/callouts/4.png" alt="4"></td>
+<td><i class="conum">4</i></td>
 <td><code>fillmethod</code>+<code>doCreate()</code> is our create method (the C in CRUD).</td>
 </tr>
 <tr>
-<td><img src="/images/icons/callouts/5.png" alt="5"></td>
+<td><i class="conum">5</i></td>
 <td><code>fillmethod</code>+<code>doUpdate</code> is our update method (the U in CRUD).</td>
 </tr>
 <tr>
-<td><img src="/images/icons/callouts/6.png" alt="6"></td>
+<td><i class="conum">6</i></td>
 <td><code>fillmethod</code>+<code>doDelete</code> is our delete method (the D in CRUD).</td>
 </tr>
 </table>
@@ -394,7 +394,7 @@ public class PersonServiceImpl extends _PersonServiceImpl { // <img src="/images
 </div>
 </div>
 <div class="sect1">
-<h2 id="part-three-data-pagination">Part Three: Data Pagination</h2>
+<h2 id="part-three-data-pagination"><a class="anchor" href="#part-three-data-pagination"></a>Part Three: Data Pagination</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The pagination feature is needed in almost every enterprise web application. Often you don&#8217;t want to bring all the  data to the client at once - a page by page feeds is a lot more responsive. The user can navigate back and forth between the pages using pagination UI components. To do that, we need to split our data on the server side into chunks so we can display it only once specific page is required. Implementing pagination is the agenda for the Part Three of this article. Here&#8217;s the plan:</p>
@@ -457,7 +457,7 @@ public class PersonServiceImpl extends _PersonServiceImpl { // <img src="/images
 
 Ext.syncRequire('episode_3_pagination.init.InitDirect');
 // Define GridPanel
-var myStore = Ext.create('episode_3_pagination.store.dto.PersonStore',{});		//<img src="/images/icons/callouts/1.png" alt="1">
+var myStore = Ext.create('episode_3_pagination.store.dto.PersonStore',{});		//<i class="conum">1</i>
 Ext.define('episode_3_pagination.view.SampleGridPanel', {
 	extend : 'Ext.grid.Panel',
 	store : myStore,
@@ -468,10 +468,10 @@ Ext.define('episode_3_pagination.view.SampleGridPanel', {
 	}],
 	dockedItems: [
 		{
-			xtype: 'pagingtoolbar',		//<img src="/images/icons/callouts/2.png" alt="2">
+			xtype: 'pagingtoolbar',		//<i class="conum">2</i>
 			displayInfo: true,
 			dock: 'top',
-			store: myStore			//<img src="/images/icons/callouts/3.png" alt="3">
+			store: myStore			//<i class="conum">3</i>
 		}
 	],
 	columns : [
@@ -505,15 +505,15 @@ Ext.application({
 <div class="colist arabic">
 <table>
 <tr>
-<td><img src="/images/icons/callouts/1.png" alt="1"></td>
+<td><i class="conum">1</i></td>
 <td>Let&#8217;s manually instantiate this store - create a separate variable <code>myStore</code> for this store and with empty <code>config</code> object.</td>
 </tr>
 <tr>
-<td><img src="/images/icons/callouts/2.png" alt="2"></td>
+<td><i class="conum">2</i></td>
 <td>Adding the <code>xtype</code> <code>pagingtoolbar</code> to this component docked items property - I&#8217;d like to display the information and dock this element at the top.</td>
 </tr>
 <tr>
-<td><img src="/images/icons/callouts/3.png" alt="3"></td>
+<td><i class="conum">3</i></td>
 <td>Now the paging toolbar is also connected to same store.</td>
 </tr>
 </table>
@@ -528,7 +528,7 @@ click of <code>Load</code> button <a href="#LISTING_6">Controller for sample app
 <pre class="highlight"><code class="javascript language-javascript">Ext.define('episode_3_pagination.controller.SampleController', {
 	extend: 'Ext.app.Controller',
 	stores: ['episode_3_pagination.store.dto.PersonStore'],
-	refs: [{								//<img src="/images/icons/callouts/1.png" alt="1">
+	refs: [{								//<i class="conum">1</i>
 		ref: 'ThePanel',
 		selector: 'samplegridpanel'
 	}],
@@ -543,7 +543,7 @@ click of <code>Load</code> button <a href="#LISTING_6">Controller for sample app
 
 	onLoad: function() {
 		// returns instance of PersonStore
-		var store = this.getThePanel().getStore();		//<img src="/images/icons/callouts/2.png" alt="2">
+		var store = this.getThePanel().getStore();		//<i class="conum">2</i>
 		store.load();
 	}
 });</code></pre>
@@ -552,11 +552,11 @@ click of <code>Load</code> button <a href="#LISTING_6">Controller for sample app
 <div class="colist arabic">
 <table>
 <tr>
-<td><img src="/images/icons/callouts/1.png" alt="1"></td>
+<td><i class="conum">1</i></td>
 <td>We can bind the store instance to our grid panel. In controller&#8217;s <code>refs</code> property I&#8217;m referencing our  <code>simplegrid</code> panel with <code>ThePanel</code> alias.</td>
 </tr>
 <tr>
-<td><img src="/images/icons/callouts/2.png" alt="2"></td>
+<td><i class="conum">2</i></td>
 <td>In this case I don&#8217;t need to explicitly retrieve the store instance by name. Instead, we can use getters <code>getPanel()</code> and <code>getStore()</code> automatically generated by the ExtJS framework.</td>
 </tr>
 </table>
@@ -580,7 +580,7 @@ click of <code>Load</code> button <a href="#LISTING_6">Controller for sample app
 import java.util.ArrayList;
 import java.util.List;
 
-import clear.djn.DirectOptions;			//<img src="/images/icons/callouts/1.png" alt="1">
+import clear.djn.DirectOptions;			//<i class="conum">1</i>
 
 import dto.Person;
 import service.generated.*;
@@ -592,13 +592,13 @@ public class PersonServiceImpl extends _PersonServiceImpl {
 		for (int i=0; i&lt;1000; i++){
 			result.add(new Person(i, "Joe", "Doe", "555-55-55", "1111-11-1111"));
 		}
-		//<img src="/images/icons/callouts/2.png" alt="2">
+		//<i class="conum">2</i>
 		int start = ((Double)DirectOptions.getOption("start")).intValue();
 		int limit = ((Double)DirectOptions.getOption("limit")).intValue();
 
-		limit = Math.min(start+limit, result.size() );		//<img src="/images/icons/callouts/3.png" alt="3">
-		DirectOptions.setOption("total", result.size());	//<img src="/images/icons/callouts/4.png" alt="4">
-		result = result.subList(start, limit);			//<img src="/images/icons/callouts/5.png" alt="5">
+		limit = Math.min(start+limit, result.size() );		//<i class="conum">3</i>
+		DirectOptions.setOption("total", result.size());	//<i class="conum">4</i>
+		result = result.subList(start, limit);			//<i class="conum">5</i>
 
 		return result;
 	}
@@ -608,23 +608,23 @@ public class PersonServiceImpl extends _PersonServiceImpl {
 <div class="colist arabic">
 <table>
 <tr>
-<td><img src="/images/icons/callouts/1.png" alt="1"></td>
+<td><i class="conum">1</i></td>
 <td>On the server side there is a special object called <code>DirectOptions</code>, which comes with Clear Toolkit.</td>
 </tr>
 <tr>
-<td><img src="/images/icons/callouts/2.png" alt="2"></td>
+<td><i class="conum">2</i></td>
 <td>We&#8217;re interested in <code>start</code> and in <code>limit</code> options (see <a href="#FIG-9">Request payload details</a>).</td>
 </tr>
 <tr>
-<td><img src="/images/icons/callouts/3.png" alt="3"></td>
+<td><i class="conum">3</i></td>
 <td>Calculate the actual limit. Assign the size of the data collection to the <code>limit</code> variable if it&#8217;s  less than the page size (<code>start+limit</code>).</td>
 </tr>
 <tr>
-<td><img src="/images/icons/callouts/4.png" alt="4"></td>
+<td><i class="conum">4</i></td>
 <td>Notify the component about the total number of elements on the server side by using <code>DirectOptions.setOption()</code> method with <code>total</code> option.</td>
 </tr>
 <tr>
-<td><img src="/images/icons/callouts/5.png" alt="5"></td>
+<td><i class="conum">5</i></td>
 <td>Before returning the result, create a subset, an actual page of data. In this case I need to use method of  <code>java.util.List.sublist()</code> which produces the view of the portion of this list between indexes specified by the <code>start</code> and the <code>limit</code> parameters.</td>
 </tr>
 </table>
@@ -636,16 +636,16 @@ public class PersonServiceImpl extends _PersonServiceImpl {
 <p>If you&#8217;d like to repeat all of the above steps on you own, watch <a href="http://faratasystems.com/training-at-farata-youtube-chanel/">the screencasts</a> where I perform all the actions described in this article.</p>
 </div>
 <div class="sect2">
-<h3 id="conclusion">Conclusion</h3>
+<h3 id="conclusion"><a class="anchor" href="#conclusion"></a>Conclusion</h3>
 <div class="paragraph">
 <p>The development of enterprise web application involves many steps that need to be done by developer. But with the right set of tools the repetitive steps can be automated. Remember the DRY principle - don&#8217;t repeat yourself. Try to do more with less efforts. I hope this article will help your to get started start with Clear Data Builder, which should make any ExtJS enterprise software developer more productive.</p>
 </div>
 <div class="paragraph">
-<p>Subscribe to our <a href="http://youtube.com/trainingAtFarata">youtube channel</a> to get access to the latest videos, screencasts and learning materials. You are invited to read our upcoming book <a href="http://enterprisewebbook.com/">"Enterprise Web Development"</a> (work in progress) that include coverage of ExtJS.</p>
+<p>Subscribe to our <a href="http://youtube.com/trainingAtFarata">youtube channel</a> to get access to the latest videos, screencasts and learning materials. You are invited to read our upcoming book <a href="http://enterprisewebbook.com/">Enterprise Web Development</a> (work in progress) that include coverage of ExtJS.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="additional-useful-links">Additional Useful Links</h3>
+<h3 id="additional-useful-links"><a class="anchor" href="#additional-useful-links"></a>Additional Useful Links</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -686,7 +686,21 @@ public class PersonServiceImpl extends _PersonServiceImpl {
 </div>
 </div>
 </div>
-</div></div><footer class="entry-footer"><div id="comments"></div></footer></article></div></div><div id="copyright"><div class="row full-width"><div class="large-4 columns"><p>© Viktor Gamov 2013—2007</p></div><div class="large-8 columns"><ul class="inline-list right"><li><a href="https://github.com/gAmUssA">Github</a></li><li><a href="http://twitter.com/gAmUssA">Twitter</a></li><li><a href="#"></a></li></ul></div></div></div><script>document.write('<script src=' + ('__proto__' in {} ? '/javascripts/vendor/zepto' : '/javascripts/vendor/jquery') + '.js><\/script>')</script><script src="/javascripts/foundation/foundation.js"><script src="/javascripts/foundation/foundation.topbar.js"></script></script><script>$(document).foundation();</script><script src="/javascripts/vendor/highlight.min.js"></script><script>$(hljs.initHighlighting());</script><script type="text/javascript">
+</div></div><footer class="entry-footer"></footer><div id="comments">
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+            var disqus_shortname = 'nextjavaheadbraincom';
+            var disqus_url = "http://next.javaheadbrain.com/productive_cdb/";
+            var disqus_developer = null;
+            var disqus_identifier = null;
+            (function() {
+              var dsq = document.createElement("script"); dsq.type = "text/javascript"; dsq.async = true;
+              dsq.src = "http://nextjavaheadbraincom.disqus.com/embed.js";
+              (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(dsq);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=nextjavaheadbraincom">comments powered by Disqus.</a></noscript>
+          </div></article></div></div><div id="copyright"><div class="row full-width"><div class="large-4 columns"><p>© Viktor Gamov 2013—2007</p></div><div class="large-8 columns"><ul class="inline-list right"><li><a href="https://github.com/gAmUssA">Github</a></li><li><a href="http://twitter.com/gAmUssA">Twitter</a></li><li><a href="#"></a></li></ul></div></div></div><script>document.write('<script src=' + ('__proto__' in {} ? '/javascripts/vendor/zepto' : '/javascripts/vendor/jquery') + '.js><\/script>')</script><script src="/javascripts/foundation/foundation.js"><script src="/javascripts/foundation/foundation.topbar.js"></script></script><script>$(document).foundation();</script><script src="/javascripts/vendor/highlight.min.js"></script><script>$(hljs.initHighlighting());</script><script type="text/javascript">
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount','UA-40354726-1']);
 _gaq.push(['_trackPageview']);
