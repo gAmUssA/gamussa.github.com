@@ -15,8 +15,6 @@ endif::awestruct[]
 New achievement unlocked - I'm going to deliver the talk at JavaOne 2013! 
 This year I will be talking about very demanding and interesting topic for me - about integration Java and JavaScript.
 
-This year I will be talking about very demanding and interesting topic for me - about integration Java and JavaScript.
-
 Here is quick abstract of my *[BOF5793]* session:
 
 ""
