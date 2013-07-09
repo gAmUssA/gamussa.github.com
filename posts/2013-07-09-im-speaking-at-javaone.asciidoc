@@ -1,0 +1,32 @@
+= I'm speaking at JavaOne 2013
+Viktor Gamov
+2013-07-09 01:30
+:imagesdir: ../images
+:icons:
+ifndef::awestruct[]
+:awestruct-layout: post
+:awestruct-tags: [javaone, javascript]
+:toc:
+:idprefix:
+:idseparator: -
+endif::awestruct[]
+:mdash: &#8212;
+
+New achievement unlocked - I'm going to deliver the talk at JavaOne 2013! 
+This year I will be talking about very demanding and interesting topic for me - about integration Java and JavaScript.
+
+This year I will be talking about very demanding and interesting topic for me - about integration Java and JavaScript.
+
+Here is quick abstract of my *[BOF5793]* session:
+
+""
+There is a perception in the Java community that JavaScript is a second-rate interpreted language whose main purpose is to make Web pages a little prettier. But JavaScript is actually a powerful, flexible, dynamically typed language. And today the language has been experiencing a revival driven by the interest in HTML5. Nashorn is a modern JavaScript engine available on the JVM, and it's already included with JDK8 builds. This presentation is about building polyglot applications with Java and JavaScript.
+""
+
+Essentially, during this talk I will demonstrate how to leverage Java API from JavaScript and use both languages side-by-side in real-world use-cases like servlet programming, RESTful WebServices and etc. I have couple ideas regarding the examples for this sessions. I definitely will report about my experiments in this blog.
+
+[role="radius small-4 small-centered columns"]
+image::javascript.png[]
+
+You can find details about this session the https://oracleus.activeevents.com/2013/connect/sessionDetail.ww?SESSION_ID=5793[JavaOne website]. 
+Keep in touch for updates by following me on http://twitter.com/gAmUssA[twitter] and I hope to see you in San Francisco in September.

@@ -10,7 +10,7 @@ conversation  about various approaches for the server- and client-side
 implementations of WebSockets that can be used in the Web applications
 today.
 
-Here is my slides from that presentation
+Here are my slides from that presentation:
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 <script async class="speakerdeck-embed" data-slide="2" data-id="501056beac941a000205aee0" data-ratio="1.7777777777777777" src="//speakerdeck.com/assets/embed.js"></script>

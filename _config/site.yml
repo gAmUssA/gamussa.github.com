@@ -4,8 +4,8 @@ local_tz: America/New York
 interpolate: false
 disqus: nextjavaheadbraincom
 #disqus_generate_id: true
-disqus_developer: false
-base_url: http://localhost:4242
+disqus_developer: true
+#base_url: http://localhost:4242
 
 asciidoctor:
   :compact: true
