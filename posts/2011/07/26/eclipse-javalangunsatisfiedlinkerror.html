@@ -1,0 +1,123 @@
+<!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><html class="no-js" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Eclipse: java.lang.UnsatisfiedLinkError: Cannot load 32-bit SWT libraries on 64-bit JVM | Java.Head.Brain</title><meta name="author" content="Viktor Gamov"><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@asciidoctor"><meta name="twitter:url" content="http://next.javaheadbrain.com/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html"><meta name="twitter:title" content="Eclipse: java.lang.UnsatisfiedLinkError: Cannot load 32-bit SWT libraries on 64-bit JVM"><meta name="twitter:description" content="Last weekend spend in setup of environment for eclipse plug-in development. I have task to fix and update one plugin. This is add-on to Flash..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html">Blog</a></li><li class="divider"></li><li><a href="http://github.com/gamussa">Github</a></li><li class="divider"></li><li><a href="http://twitter.com/gamussa">Twitter</a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://next.javaheadbrain.com">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h2 class="header"><a href="/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html">Eclipse: java.lang.UnsatisfiedLinkError: Cannot load 32-bit SWT libraries on 64-bit JVM</a></h2><h5 class="subheader">Written by&nbsp <a href="#">Viktor Gamov</a>&nbsp- <time class="pubdate" datetime="2011-07-26T04:22:00+00:00">Tuesday, July 26, 2011</time></h5><div class="row"><div class="large-12 columns text-justify"><p><a href="http://4.bp.blogspot.com/-9dnzyV85GIY/Ti5AjeUNXJI/AAAAAAAAA0A/o07suDvhURw/s1600/1311653968_eclipse.png"><img src="http://4.bp.blogspot.com/-9dnzyV85GIY/Ti5AjeUNXJI/AAAAAAAAA0A/o07suDvhURw/s1600/1311653968_eclipse.png" alt=""></a></p>
+
+<p>Last weekend spend in setup of environment for eclipse plug-in development. I have task to fix and update one plugin. This is add-on to Flash Builder.  But before adding something, it&#39;s good to run that plugin before. My environment is Mac OS X 10.7 Lion, Eclipse 3.6 (32bit because FB not supported 64bit version of Eclipse) and Flash Builder 4.5. But I faced with odd exception</p>
+
+<pre><code>!SESSION 2011-07-25 23:59:39.350
+-----------------------------------------------
+
+eclipse.buildId=M20110210-1200
+
+java.version=1.6.0_26
+
+java.vendor=Apple Inc.
+
+BootLoader constants: OS=macosx, ARCH=x86, WS=cocoa, NL=en_US
+
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+
+Command-line arguments:  -product org.eclipse.epp.package.jee.product -data
+/Users/apple/Workspaces/work/../runtime-EclipseApplication -dev file:/Users/apple/Workspaces/work/.metadata/.plugins/org.eclipse.pde.core/Eclipse
+Application/dev.properties -os macosx -ws cocoa -arch x86 -consoleLog
+
+
+
+!ENTRY org.eclipse.osgi 4 0 2011-07-25 23:59:57.129
+
+!MESSAGE Application error
+
+!STACK 1
+
+java.lang.UnsatisfiedLinkError: Cannot load 32-bit SWT libraries on 64-bit
+JVM
+
+ at org.eclipse.swt.internal.Library.loadLibrary(Library.java:197)
+
+ at org.eclipse.swt.internal.Library.loadLibrary(Library.java:174)
+
+ at org.eclipse.swt.internal.C.(C.java:21)
+
+ at org.eclipse.swt.internal.cocoa.NSThread.isMainThread(NSThread.java:33)
+
+ at org.eclipse.swt.graphics.Device.(Device.java:116)
+
+ at org.eclipse.swt.widgets.Display.(Display.java:671)
+
+ at org.eclipse.swt.widgets.Display.(Display.java:662)
+
+ at org.eclipse.ui.internal.Workbench.createDisplay(Workbench.java:708)
+
+ at org.eclipse.ui.PlatformUI.createDisplay(PlatformUI.java:161)
+
+ at org.eclipse.ui.internal.ide.application.IDEApplication.createDisplay(IDEApplication.java:145)
+
+ at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:88)
+
+ at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+
+ at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+
+ at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+
+ at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:369)
+
+ at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+
+ at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+
+ at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+
+ at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+
+ at java.lang.reflect.Method.invoke(Method.java:597)
+
+ at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:620)
+
+ at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
+
+ at org.eclipse.equinox.launcher.Main.run(Main.java:1408)
+
+ at org.eclipse.equinox.launcher.Main.main(Main.java:1384)
+
+An error has occurred. See the log file
+
+/Users/apple/Workspaces/runtime-EclipseApplication/.metadata/.log.
+</code></pre>
+
+<p>Mac OS X shipped with 2 versions of JVM - 32 bit and 64 bit accordingly. So, 
+First I tried to change order of JVM preference from /Application/Utilities/Java 
+Preferences but it didn&#39;t work.</p>
+
+<p><a href="http://3.bp.blogspot.com/-isacmmvTbSE/Ti4-JJeYuwI/AAAAAAAAAzw/W_U-0Xap5L8/s1600/Screen+Shot+2011-07-26+at+12.08.30+AM.png"><img src="http://3.bp.blogspot.com/-isacmmvTbSE/Ti4-JJeYuwI/AAAAAAAAAzw/W_U-0Xap5L8/s640/Screen+Shot+2011-07-26+at+12.08.30+AM.png" alt=""></a></p>
+
+<p>After consulting with colleagues and googling I come up with solution. I went 
+to Eclipse→Preferences→Java→Installed JRE and add default JVM argument *<em>-d32 
+*</em>(must be small d)</p>
+
+<p><a href="http://2.bp.blogspot.com/-e49-TQlstWw/Ti4_nvylakI/AAAAAAAAAz4/EKfU03X9lxE/s1600/Screen+Shot+2011-07-26+at+12.16.05+AM.png"><img src="http://2.bp.blogspot.com/-e49-TQlstWw/Ti4_nvylakI/AAAAAAAAAz4/EKfU03X9lxE/s400/Screen+Shot+2011-07-26+at+12.16.05+AM.png" alt=""></a></p>
+
+<p>This command forces to use 32bit JVM. Happy coding!</p>
+</div></div><footer class="entry-footer"></footer><div id="comments">
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+            var disqus_shortname = 'nextjavaheadbraincom';
+            var disqus_url = "http://next.javaheadbrain.com/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html";
+            var disqus_developer = null;
+            var disqus_identifier = null;
+            (function() {
+              var dsq = document.createElement("script"); dsq.type = "text/javascript"; dsq.async = true;
+              dsq.src = "http://nextjavaheadbraincom.disqus.com/embed.js";
+              (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(dsq);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=nextjavaheadbraincom">comments powered by Disqus.</a></noscript>
+          </div></article></div></div></body></html><div id="copyright"><div class="row full-width"><div class="large-4 columns"><p>© Viktor Gamov 2013—2007</p></div><div class="large-8 columns"><ul class="inline-list right"><li><a href="https://github.com/gAmUssA">Github</a></li><li><a href="http://twitter.com/gAmUssA">Twitter</a></li><li><a href="#"></a></li></ul></div></div></div><script>document.write('<script src=' + ('__proto__' in {} ? '/javascripts/vendor/zepto' : '/javascripts/vendor/jquery') + '.js><\/script>')</script><script src="/javascripts/foundation/foundation.js"><script src="/javascripts/foundation/foundation.topbar.js"></script></script><script>$(document).foundation();</script><script src="/javascripts/vendor/highlight.min.js"></script><script>$(hljs.initHighlighting());</script><script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount','UA-40354726-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+ var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!--End Footer-->
