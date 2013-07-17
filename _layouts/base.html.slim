@@ -1,23 +1,51 @@
 doctype 5
-html
+|<!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]-->
+|<!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]-->
+html.no-js lang="en"
   head
     meta charset='utf-8'
-    title=(page.title ? [page.title, site.title] : [site.title]) * ' | '
+    meta name='viewport' content='width=device-width, initial-scale=1.0'
+    title=(page.title && page.title != site.title ? [page.title, site.title] : [site.title, site.description]) * ' | '
+    - if page.layout == 'post'
+      meta name='author' content=page.author
+      meta name='twitter:card' content='summary'
+      meta name='twitter:creator' content='@asciidoctor'
+      meta name='twitter:url' content="#{site.base_url}#{page.url}"
+      meta name='twitter:title' content=page.title
+      meta name='twitter:description' content=summarize(html_to_text(page.content).strip.gsub(/^[:space:]*\n/, ''), 25)
     link rel="stylesheet" href='/stylesheets/app.css'
-    link rel="stylesheet" href='/stylesheets/normalize.css'
-    // script src='/scripts/some.js'
-    //javascript:
-        someInlineJs();
-    css:
-      .someInlineCss {
-      }
-  body
-    div.header
-      h1 Java Head Brain
-    div.content
-      = content
-    div.footer
-      h3 Im in the footer!
-    javascript:
-    - if site.google_analytics
-      =google_analytics_async
+    script src='/javascripts/vendor/custom.modernizr.js'
+    link rel="shortcut icon" href="/images/favicon.ico"
+    link rel='author' href='/humans.txt'
+
+  body.antialiased
+    nav.top-bar
+      ul.title-area
+        li.name
+          h1
+            a href='/' Viktor Gamov
+      section.top-bar-section
+        ul.right
+          li.divider
+          li
+            a href='/posts.html' Blog
+          li.divider
+          li
+            a href='http://github.com/gamussa' Github
+          li.divider
+          li
+            a href='http://twitter.com/gamussa' Twitter
+          li.divider
+          li.has-form
+            a.small.button href='http://enterprisewebbook.com' Enterprise Web Development
+    .row
+      .large-12.column
+        h1.header
+          a href =site.base_url Crash Course In Java Brain Surgery
+        h6.subheader insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general
+        hr /
+    /! Main Page Content
+    .row
+      =content
+
+=partial('footer.html.slim')
