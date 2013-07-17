@@ -21,6 +21,7 @@ gem 'tomdoc', '~> 0.2.5', :group => :test
 gem 'RedCloth', :require => 'redcloth'
 gem 'rb-fsevent', '~> 0.9'
 gem "stringex", "~> 2.0.3"
+gem "redcarpet"
 
 # required to use the minify extension
 #gem 'uglifier', '~> 1.3.0'
