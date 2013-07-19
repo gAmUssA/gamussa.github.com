@@ -206,13 +206,14 @@ task :new_post, :title do |t, args|
     post.puts "#{Time.now.strftime('%Y-%m-%d %H:%M')}"
     post.puts ":imagesdir: ../images"
     post.puts ":icons:"
+    post.puts ":keywords:"
+    post.puts ":toc:"
     post.puts "ifndef::awestruct[]"
     post.puts ":awestruct-layout: post"
-    post.puts ":toc:"
+    post.puts ":awestruct-tags: []"
     post.puts ":idprefix:"
     post.puts ":idseparator: -"
     post.puts "endif::awestruct[]"
-    post.puts ":mdash: &#8212;"
   end
 end
 
