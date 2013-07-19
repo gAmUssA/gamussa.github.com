@@ -22,10 +22,11 @@ gem 'RedCloth', :require => 'redcloth'
 gem 'rb-fsevent', '~> 0.9'
 gem "stringex", "~> 2.0.3"
 gem "redcarpet"
-
+gem "coffee-script"
 # required to use the minify extension
-#gem 'uglifier', '~> 1.3.0'
-#gem 'htmlcompressor', '~> 0.0.3'
+gem 'uglifier', '~> 1.3.0'
+gem 'htmlcompressor', '~> 0.0.3'
+
 # set EXECJS_RUNTIME=SpiderMonkey as alternative to theruby(racer|rhino)
 #gem 'therubyracer', '~> 0.11.4', :platforms => [:ruby]
 #gem 'therubyrhino', '~> 2.0.2', :platforms => [:jruby]
