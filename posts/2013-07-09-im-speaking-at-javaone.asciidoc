@@ -3,10 +3,11 @@ Viktor Gamov
 2013-07-09 01:30
 :imagesdir: ../images
 :icons:
+:toc:
+:keywords: Java, JavaSctipt, Nashorn, JavaOne
 ifndef::awestruct[]
 :awestruct-layout: post
 :awestruct-tags: [javaone, javascript]
-:toc:
 :idprefix:
 :idseparator: -
 endif::awestruct[]

@@ -1,0 +1,59 @@
+= Getting Started With Nashorn
+Viktor Gamov
+2013-07-17 23:00
+:imagesdir: ../images
+:icons: font
+:toc:
+:toc-placement!:
+ifndef::awestruct[]
+:awestruct-layout: post
+:awestruct-published: false
+:awestruct-tags: [nashorn, javascript, java]
+:idprefix:
+:idseparator: -
+endif::awestruct[]
+:mdash: &#8212;
+:jdk-ea: https://jdk8.java.net/download.html
+:my-j1: https://oracleus.activeevents.com/2013/connect/sessionDetail.ww?SESSION_ID=5793
+
+.TL;DR
+NOTE: You can {jdk-ea}[download] Early Access Release of JDK8 which include +nashorn.jar+ and +jjs+ JavaScript shell. Add JDK _bin_ directory to +PATH+ with command: +
+`export JAVA_HOME=$(/usr/libexec/java_home -v 1.8); export PATH=$JAVA_HOME/bin:$PATH` +
+Type `jjs` and enter to a JavaScript http://en.wikipedia.org/wiki/REPL[REPL]
+
+'''
+
+WARNING: THIS IS A DRAFT!
+
+toc::[]
+
+While preparing to {my-j1}[my JavaOne 2013 talk], I decide to write down some notes about my progress, tip and tricks that descover during my experiments. Consider it as my roadtrip notes.
+As you learned from my previous post, I'm going to talk about Nashorn - JavaScript engine 100% written in Java. Nashorn will replace Mozilla Rhino in upcoming JDK8. But even today, Nashorn overperfom Rhino in bunch of test. As Rhino, Nashorn is implementing JSR 223: Scripting for the JavaTM Platform. But we will get there.
+
+== Getting Nashorn's sources ==
+
+.Prerequisities
+* http://www.sourcetreeapp.com/[*SourceTree.app*] to download sources from OpenJDK repository. We don't to mess around with command line tools for Mercurial. And SourceTree available for OSX and Windows.
+* http://ant.apache.org/[Apache Ant]
+* Also you need Mozilla Rhino if you want to run benchmarks to compare Nashorn and Rhino
+
+== Build Nashorn ==
+
+* `cd make`
+* `ant clean; ant`
+* dist/nashorn.jar
+
+== Running
+
+== Using Nashorn with JDK7
+
+* clone https://bitbucket.org/ramonza/nashorn-backport[Nashorn JDK7 backport]
+* build similarly to JDK8 version
+* append boot classpath with 
++
+
+.Augment JDK boot class path with backport Nashonr jar
+[source,shell]
+----
+export JAVA_OPTS="-Xbootclasspath/a:/YOUR_PATH_TO_NASHORN-BACKPORT_DIR/dist/nashorn.jar"
+----
