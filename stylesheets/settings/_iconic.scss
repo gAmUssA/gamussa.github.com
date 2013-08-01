@@ -15,7 +15,7 @@ $white: #fff;
 $em-base: 16px;
 $body-bg: $white;
 $body-font-color: $print-black;
-$body-font-family: 'Droid Sans', Verdana, Arial, sans-serif;
+$body-font-family: 'Lato', sans-serif;
 //$body-font-family: 'Source Sans Pro', Verdana, Arial, sans-serif;
 //$body-font-family: 'Titillium Web', Verdana, Arial, sans-serif;
 //$body-font-family: Georgia, 'Times New Roman', serif;
@@ -25,7 +25,8 @@ $global-radius: 5px;
 // Headings
 
 //$header-font-family: $body-font-family;
-$header-font-family: "Oswald", $body-font-family;
+//$header-font-family: "Oswald", $body-font-family;
+$header-font-family: "Lato", $body-font-family;
 $header-font-color: $body-font-color;
 $header-top-margin: 1.25em;
 $header-bottom-margin: 0.45em;
