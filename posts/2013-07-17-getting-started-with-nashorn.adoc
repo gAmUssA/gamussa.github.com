@@ -37,11 +37,13 @@ As you learned from my previous post, I'm going to talk about Nashorn - JavaScri
 * http://ant.apache.org/[Apache Ant]
 * Also you need Mozilla Rhino if you want to run benchmarks to compare Nashorn and Rhino
 
-== Build Nashorn ==
+== Build Nashorn For JDK 8
 
+* Install JDK 8 from http://jdk8.java.net/download.html[here]
+* Use JDK 8 
 * `cd make`
 * `ant clean; ant`
-* dist/nashorn.jar
+* Grab latest jar from _dist/nashorn.jar_
 
 == Running
 
