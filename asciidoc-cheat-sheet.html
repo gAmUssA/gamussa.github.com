@@ -15,7 +15,7 @@ different AsciiDoc version and using different css styles</a>.</p>
 </div>
 <div id="toc" class="toc">
 <div id="toctitle" class="title">Table of Contents</div>
-<ol type="none" class="sectlevel1">
+<ul class="sectlevel1">
 <li><a href="#abstract">Abstract</a></li>
 <li><a href="#document-header">Document header</a></li>
 <li><a href="#attributes">Attributes</a></li>
@@ -23,26 +23,20 @@ different AsciiDoc version and using different css styles</a>.</p>
 <li><a href="#paragraphs">Paragraphs</a></li>
 <li><a href="#blocks">Blocks</a></li>
 <li><a href="#text">Text</a></li>
-<li><a href="#macros-links-images-amp-include">Macros: links, images &amp; include</a></li>
+<li><a href="#macros-links-images-include">Macros: links, images &amp; include</a></li>
 <li><a href="#lists">Lists</a></li>
 <li><a href="#tables">Tables</a></li>
-</ol>
+</ul>
 </div>
+
 </div>
 </div>
 <div class="sect1">
 <h2 id="document-header"><a class="anchor" href="#document-header"></a>Document header</h2>
 <div class="sectionbody">
 <div class="listingblock">
-<div class="content monospaced">
-<pre>Main Header
-===========
-Optional Author Name &lt;optional@author.email&gt;
-Optional version, optional date
-:Author:    AlternativeWayToSetOptional Author Name
-:Email:     &lt;AlternativeWayToSetOptional@author.email&gt;
-:Date:      AlternativeWayToSetOptional date
-:Revision:  AlternativeWayToSetOptional version</pre>
+<div class="content">
+<pre>Main Header&#10;===========&#10;Optional Author Name &lt;optional@author.email&gt;&#10;Optional version, optional date&#10;:Author:    AlternativeWayToSetOptional Author Name&#10;:Email:     &lt;AlternativeWayToSetOptional@author.email&gt;&#10;:Date:      AlternativeWayToSetOptional date&#10;:Revision:  AlternativeWayToSetOptional version</pre>
 </div>
 </div>
 </div>
@@ -65,6 +59,7 @@ To get attribute value use {attributename} syntax.</p>
 </div>
 <div class="paragraph">
 <p>Line
+with bad attribute {qwe} will be
 deleted</p>
 </div>
 <div class="paragraph">
@@ -76,37 +71,13 @@ deleted</p>
 <h2 id="headers"><a class="anchor" href="#headers"></a>Headers</h2>
 <div class="sectionbody">
 <div class="listingblock">
-<div class="content monospaced">
-<pre>Level 1
--------
-Text.
-
-Level 2
-~~~~~~~
-Text.
-
-Level 3
-^^^^^^^
-Text.
-
-Level 4
-+++++++
-Text.</pre>
+<div class="content">
+<pre>Level 1&#10;-------&#10;Text.&#10;&#10;Level 2&#10;~~~~~~~&#10;Text.&#10;&#10;Level 3&#10;^^^^^^^&#10;Text.&#10;&#10;Level 4&#10;+++++++&#10;Text.</pre>
 </div>
 </div>
 <div class="listingblock">
-<div class="content monospaced">
-<pre>== Level 1
-Text.
-
-=== Level 2
-Text.
-
-==== Level 3
-Text.
-
-===== Level 4
-Text.</pre>
+<div class="content">
+<pre>== Level 1&#10;Text.&#10;&#10;=== Level 2&#10;Text.&#10;&#10;==== Level 3&#10;Text.&#10;&#10;===== Level 4&#10;Text.</pre>
 </div>
 </div>
 </div>
@@ -121,14 +92,13 @@ paragraph.</p>
 </div>
 <div class="literalblock">
 <div class="title">Optional Title</div>
-<div class="content monospaced">
-<pre>Literal paragraph.
- Must be indented.</pre>
+<div class="content">
+<pre>Literal paragraph.&#10; Must be indented.</pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Optional Title</div>
-<div class="content monospaced">
+<div class="content">
 <pre class="highlight"><code class="perl language-perl">die 'connect: '.$dbh-&gt;errstr;</code></pre>
 </div>
 </div>
@@ -218,21 +188,14 @@ Caution.
 <div class="sectionbody">
 <div class="listingblock">
 <div class="title">Optional Title</div>
-<div class="content monospaced">
-<pre>*Listing* Block
-
-Use: code or file listings</pre>
+<div class="content">
+<pre>*Listing* Block&#10;&#10;Use: code or file listings</pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Optional Title</div>
-<div class="content monospaced">
-<pre class="highlight"><code class="perl language-perl"># *Source* block
-# Use: highlight code listings
-# (require `source-highlight` or `pygmentize`)
-use DBI;
-my $dbh = DBI-&gt;connect('...',$u,$p)
-    or die "connect: $dbh-&gt;errstr";</code></pre>
+<div class="content">
+<pre class="highlight"><code class="perl language-perl"># *Source* block&#10;# Use: highlight code listings&#10;# (require `source-highlight` or `pygmentize`)&#10;use DBI;&#10;my $dbh = DBI-&gt;connect('...',$u,$p)&#10;    or die "connect: $dbh-&gt;errstr";</code></pre>
 </div>
 </div>
 <div class="sidebarblock">
@@ -260,7 +223,7 @@ my $dbh = DBI-&gt;connect('...',$u,$p)
 can be changed using</p>
 </div>
 <div class="literalblock">
-<div class="content monospaced">
+<div class="content">
 <pre>[caption="Custom: "]</pre>
 </div>
 </div>
@@ -288,16 +251,12 @@ can be changed using</p>
 </table>
 </div>
 <text:p>*Passthrough* Block</text:p>
-<text:p>Use: backend-specific markup like</text:p><div class="literalblock">
-<div class="title">Optional Title</div>
-<div class="content monospaced">
-<pre>*Literal* Block
 
-Use: workaround when literal
-paragraph (indented) like
-  1. First.
-  2. Second.
-incorrectly processed as list.</pre>
+<text:p>Use: backend-specific markup like</text:p>
+<div class="literalblock">
+<div class="title">Optional Title</div>
+<div class="content">
+<pre>*Literal* Block&#10;&#10;Use: workaround when literal&#10;paragraph (indented) like&#10;  1. First.&#10;  2. Second.&#10;incorrectly processed as list.</pre>
 </div>
 </div>
 <div class="quoteblock">
@@ -311,8 +270,7 @@ incorrectly processed as list.</pre>
 </div>
 </blockquote>
 <div class="attribution">
-<cite>cite source</cite>
-<br>
+<cite>cite source</cite><br>
 &#8212; cite author
 </div>
 </div>
@@ -356,7 +314,8 @@ line break</p>
 <div class="paragraph">
 <p>&#169; &#174; &#8482;&#8201;&#8212;&#8201;&#8230; &#8594; &#8592; &#8658; &#8656; &#182;</p>
 </div>
-<hr><div class="paragraph">
+<hr>
+<div class="paragraph">
 <p>Escaped:
 _italic_, _italic_,
 t__e__st, t__e__st,
@@ -368,7 +327,7 @@ t__e__st, t__e__st,
 </div>
 </div>
 <div class="sect1">
-<h2 id="macros-links-images-amp-include"><a class="anchor" href="#macros-links-images-amp-include"></a>Macros: links, images &amp; include</h2>
+<h2 id="macros-links-images-include"><a class="anchor" href="#macros-links-images-include"></a>Macros: links, images &amp; include</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>If you&#8217;ll need to use space in url/path you should replace it with %20.</p>
@@ -740,7 +699,6 @@ there no such files. :)</p>
 <tr>
 <td class="hdlist1">
 Term 1
-<br>
 </td>
 <td class="hdlist2">
 <p>Definition 1</p>
@@ -749,7 +707,6 @@ Term 1
 <tr>
 <td class="hdlist1">
 Term 2
-<br>
 </td>
 <td class="hdlist2">
 <p>Definition 2</p>
@@ -762,7 +719,6 @@ Term 2
 <tr>
 <td class="hdlist1">
 Term 2.1
-<br>
 </td>
 <td class="hdlist2">
 <p>Definition 2.1</p>
@@ -771,7 +727,6 @@ Term 2.1
 <tr>
 <td class="hdlist1">
 Term 2.2
-<br>
 </td>
 <td class="hdlist2">
 <p>Definition 2.2</p>
@@ -796,7 +751,6 @@ Term 2.2
 <tr>
 <td class="hdlist1">
 Term 4.1
-<br>
 </td>
 <td class="hdlist2">
 <p>Definition 4.1</p>
@@ -805,7 +759,6 @@ Term 4.1
 <tr>
 <td class="hdlist1">
 Term 4.2
-<br>
 </td>
 <td class="hdlist2">
 <p>Definition 4.2</p>
@@ -818,7 +771,6 @@ Term 4.2
 <tr>
 <td class="hdlist1">
 Term 4.2.1
-<br>
 </td>
 <td class="hdlist2">
 <p>Definition 4.2.1</p>
@@ -827,7 +779,6 @@ Term 4.2.1
 <tr>
 <td class="hdlist1">
 Term 4.2.2
-<br>
 </td>
 <td class="hdlist2">
 <p>Definition 4.2.2</p>
@@ -995,7 +946,7 @@ continuation</p>
 <li>
 <p>bullet</p>
 <div class="literalblock">
-<div class="content monospaced">
+<div class="content">
 <pre>literal continuation</pre>
 </div>
 </div>
@@ -1007,10 +958,8 @@ continuation</p>
 <p>Non-literal continuation.</p>
 </div>
 <div class="listingblock">
-<div class="content monospaced">
-<pre>any block can be
-
-included in list</pre>
+<div class="content">
+<pre>any block can be&#10;&#10;included in list</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1152,6 +1101,7 @@ included in list</pre>
 </tr>
 </tbody>
 </table>
+
 <table class="tableblock frame-topbot grid-none" style="width:60%; ">
 <caption class="title">Table 2. CSV data, 15% each column</caption>
 <colgroup>
@@ -1181,6 +1131,7 @@ included in list</pre>
 </tr>
 </tbody>
 </table>
+
 <table class="tableblock frame-all grid-rows" style="width:100%; ">
 <colgroup>
 <col style="width:20%;">
@@ -1215,6 +1166,7 @@ included in list</pre>
 </tr>
 </tbody>
 </table>
+
 <table class="tableblock frame-all grid-all" style="width:100%; ">
 <caption class="title">Table 3. Multiline cells, row/col span</caption>
 <colgroup>
@@ -1223,13 +1175,15 @@ included in list</pre>
 <col style="width:25%;">
 <col style="width:25%;"> 
 </colgroup>
-<tbody>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Date</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Duration</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Avg HR</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Notes</p></td>
+<th class="tableblock halign-left valign-top">Date</th>
+<th class="tableblock halign-left valign-top">Duration</th>
+<th class="tableblock halign-left valign-top">Avg HR</th>
+<th class="tableblock halign-left valign-top">Notes</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">22-Aug-08</p></td>
 <td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock">10:24</p></td>
@@ -1249,9 +1203,9 @@ for this interval.</p></td>
 </tr>
 </tbody>
 </table>
+
 </div>
-</div>
-</div></div><footer class="entry-footer"></footer><div id="comments">
+</div></div></div><footer class="entry-footer"></footer><div id="comments">
             <div id="disqus_thread"></div>
             <script type="text/javascript">
             var disqus_shortname = 'nextjavaheadbraincom';
