@@ -28,6 +28,16 @@ pre > code {
 
 //*:not(pre) > code
 
+*:not(pre) > code {
+  font-size: $code-font-size;
+  padding: $code-padding;
+  white-space: nowrap;
+  background-color: $code-bg-color;
+  border: $code-border-size $code-border-style $code-border-color;
+  @include radius;
+  text-shadow: none;
+}
+
 tt {
   @extend code;
 }
@@ -36,7 +46,7 @@ tt {
   font-size: $code-font-size;
   padding: $code-padding;
   white-space: nowrap;
-  background-color: $code-bg-color;
+  //background-color: $code-bg-color;
   border: $code-border-size $code-border-style $code-border-color;
   @include radius;
   text-shadow: none;

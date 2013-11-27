@@ -9,7 +9,7 @@ Thanks for visiting. My name Viktor Gamov. I'm a senior software engineer at htt
 [[enterprisewebbook]]
 == Enterprise Web Development
 [role="header"]
-*Building HTML5 applications: From Desktop To Mobile*
+=== Building HTML5 applications: From Desktop To Mobile
 
 [.th.large-4.columns]
 image::cover_2013_eap.jpg[]

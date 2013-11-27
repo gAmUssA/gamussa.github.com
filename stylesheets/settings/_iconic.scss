@@ -15,8 +15,7 @@ $white: #fff;
 $em-base: 16px;
 $body-bg: $white;
 $body-font-color: $print-black;
-$body-font-family: 'Lato', sans-serif;
-//$body-font-family: 'Source Sans Pro', Verdana, Arial, sans-serif;
+$body-font-family: 'Roboto', sans-serif;
 //$body-font-family: 'Titillium Web', Verdana, Arial, sans-serif;
 //$body-font-family: Georgia, 'Times New Roman', serif;
 $primary-color: $blue;
@@ -26,7 +25,7 @@ $global-radius: 5px;
 
 //$header-font-family: $body-font-family;
 //$header-font-family: "Oswald", $body-font-family;
-$header-font-family: "Lato", $body-font-family;
+$header-font-family: "Bitter", $body-font-family;
 $header-font-color: $body-font-color;
 $header-top-margin: 1.25em;
 $header-bottom-margin: 0.45em;
@@ -55,14 +54,13 @@ $paragraph-font-size: 1em;
 
 // Inline code
 
-$code-color: $body-font-color;
-$code-bg-color: #dfdfdf;
+$code-color: #0084c5;
+$code-bg-color: #dce3e6;
 $code-font-size: .9em;
-//$code-font-family: 'Liberation Mono', Courier, monospace;
-$code-font-family: 'Droid Sans Mono', Courier, monospace;
+$code-font-family: "Monaco", "Menlo" Consolas, "Courier New", monospace;
 $code-font-weight: normal;
 $code-border-size: 1px;
-$code-padding: 0 3px;
+$code-padding: 1px 3px;
 
 // Code blocks
 
@@ -70,7 +68,7 @@ $code-padding: 0 3px;
 $pre-bg: #ffffee;
 $pre-font-size: $code-font-size;
 //$pre-font-family: "Monaco", Consolas, "Lucida Console", Courier, monospace;
-$pre-font-family: "Droid Sans Mono", Consolas, "Lucida Console", Courier, monospace;
+$pre-font-family: "Monaco", "Menlo" Consolas, "Courier New", monospace;
 //$pre-font-color: $white;
 //$pre-font-color: #111111;
 $pre-font-color: #000000;
