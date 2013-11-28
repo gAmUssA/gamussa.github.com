@@ -1,9 +1,9 @@
-<!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><html class="no-js" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Productive Enterprise Web Development with ExtJS and Clear Data Builder | Java.Head.Brain</title><meta name="author" content="Viktor Gamov"><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@asciidoctor"><meta name="twitter:url" content="http://next.javaheadbrain.com/productive_cdb/"><meta name="twitter:title" content="Productive Enterprise Web Development with ExtJS and Clear Data Builder"><meta name="twitter:description" content="It&#8217;s not likely that you&#8217;ll start developing an enterprise HTML5 applications without using one of the JavaScript frameworks. One of the most feature-complete frameworks is..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html">Blog</a></li><li class="divider"></li><li><a href="http://github.com/gamussa">Github</a></li><li class="divider"></li><li><a href="http://twitter.com/gamussa">Twitter</a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://next.javaheadbrain.com">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h2 class="header"><a href="/productive_cdb/">Productive Enterprise Web Development with ExtJS and Clear Data Builder</a></h2><h5 class="subheader">Written by&nbsp <a href="#">Viktor Gamov</a>&nbsp- <time class="pubdate" datetime="2013-02-05T00:00:00+00:00">Tuesday, February 5, 2013</time></h5><div class="row"><div class="large-12 columns text-justify"><div id="preamble">
+<!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><html class="no-js" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Productive Enterprise Web Development with ExtJS and Clear Data Builder | Java.Head.Brain</title><meta name="author" content="Viktor Gamov"><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@asciidoctor"><meta name="twitter:url" content="http://next.javaheadbrain.com/productive_cdb/"><meta name="twitter:title" content="Productive Enterprise Web Development with ExtJS and Clear Data Builder"><meta name="twitter:description" content="It&#8217;s not likely that you&#8217;ll start developing an enterprise HTML5 applications without using one of the JavaScript frameworks. One of the most feature-complete frameworks is..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html">Blog</a></li><li class="divider"></li><li><a href="http://github.com/gamussa">Github</a></li><li class="divider"></li><li><a href="http://twitter.com/gamussa">Twitter</a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://next.javaheadbrain.com">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h2 class="header"><a href="/productive_cdb/">Productive Enterprise Web Development with ExtJS and Clear Data Builder</a></h2><h5 class="subheader">Written by&nbsp <a href="#">Viktor Gamov</a>&nbsp- <time class="pubdate" datetime="2013-02-05T00:00:00+00:00">Tuesday, February 5, 2013</time></h5><div class="row"><div class="large-12 columns text-left"><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>It&#8217;s not likely that you&#8217;ll start developing an enterprise HTML5 applications without using one of the JavaScript frameworks. One of the most feature-complete frameworks is <a href="http://www.sencha.com/products/extjs">ExtJS</a> from Sencha, but its learning curve is a bit steep. Our company, <a href="http://faratasystems.com">Farata Systems</a>, has developed an open source software Clear Toolkit for ExtJS. Clear Toolkit includes an Eclipse plugin called Clear Data Builder (CDB). This is a productivity tool - a code generator - that can create a CRUD application for you in no time. This application will have HTML/JavaScript/ExtJS client and Java-based server. In this article you will learn how jump start development of such Web applications.</p>
 </div>
-<div id="toc" class="toc">
+<div id="toc" class="toc2">
 <div id="toctitle" class="title">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#part-one-extjs-mvc-application-scaffolding">Part One: ExtJS MVC Application Scaffolding</a></li>
@@ -175,7 +175,34 @@ Now I need the same corresponding ExtJS model for my <code>Person</code>. Just a
 <div id="LISTING_1" class="listingblock">
 <div class="title">Person data transfer object</div>
 <div class="content">
-<pre class="highlight"><code class="java language-java">package dto;&#10;&#10;import com.farata.dto2extjs.annotations.JSClass;&#10;import com.farata.dto2extjs.annotations.JSGeneratedId;&#10;&#10;@JSClass&#10;public class Person {&#10;&#10;	@JSGeneratedId&#10;	private Integer id;&#10;	private String firstName;&#10;	private String lastName;&#10;	private String phone;&#10;	private String ssn;&#10;&#10;	public Person(Integer id, String firstName, String lastName, String phone,&#10;			String ssn) {&#10;		super();&#10;		this.id = id;&#10;		this.firstName = firstName;&#10;		this.lastName = lastName;&#10;		this.phone = phone;&#10;		this.ssn = ssn;&#10;	}&#10;&#10;	// Getters and Setter are omitted&#10;&#10;}</code></pre>
+<pre class="highlight nowrap"><code class="java language-java">package dto;
+
+import com.farata.dto2extjs.annotations.JSClass;
+import com.farata.dto2extjs.annotations.JSGeneratedId;
+
+@JSClass
+public class Person {
+
+	@JSGeneratedId
+	private Integer id;
+	private String firstName;
+	private String lastName;
+	private String phone;
+	private String ssn;
+
+	public Person(Integer id, String firstName, String lastName, String phone,
+			String ssn) {
+		super();
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.phone = phone;
+		this.ssn = ssn;
+	}
+
+	// Getters and Setter are omitted
+
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -202,7 +229,13 @@ Now I need the same corresponding ExtJS model for my <code>Person</code>. Just a
 <div id="LISTING_2" class="listingblock">
 <div class="title">PersonService interface annotated with CDB annotations</div>
 <div class="content">
-<pre class="highlight"><code class="java language-java">@JSService&#10;public interface PersonService {&#10;    @JSGenerateStore&#10;    @JSFillMethod&#10;    @JSGenerateSample&#10;    List&lt;Person&gt; getPersons();&#10;}</code></pre>
+<pre class="highlight nowrap"><code class="java language-java">@JSService
+public interface PersonService {
+    @JSGenerateStore
+    @JSFillMethod
+    @JSGenerateSample
+    List&lt;Person&gt; getPersons();
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -231,7 +264,7 @@ Now I need the same corresponding ExtJS model for my <code>Person</code>. Just a
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="html language-html">&lt;script type="text/javascript" src="sampleApp.js"&gt;&lt;/script&gt;</code></pre>
+<pre class="highlight nowrap"><code class="html language-html">&lt;script type="text/javascript" src="sampleApp.js"&gt;&lt;/script&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -249,7 +282,49 @@ Now I need the same corresponding ExtJS model for my <code>Person</code>. Just a
 <div id="LISTING_3" class="listingblock">
 <div class="title">Implementation of PersonService interface</div>
 <div class="content">
-<pre class="highlight"><code class="java language-java">package service;&#10;import java.util.ArrayList;&#10;import java.util.List;&#10;&#10;import clear.data.ChangeObject;&#10;import dto.Person;&#10;import service.generated.*;&#10;&#10;public class PersonServiceImpl extends _PersonServiceImpl { <i class="conum" data-value="1"></i><b>(1)</b>&#10;&#10;	@Override&#10;	public List&lt;Person&gt; getPersons() {				<i class="conum" data-value="2"></i><b>(2)</b>&#10;		List&lt;Person&gt; result = new ArrayList&lt;&gt;();&#10;		Integer id= 0;&#10;		result.add(new Person(++id, "Joe", "Doe", "555-55-55", "1111-11-1111"));&#10;		result.add(new Person(++id, "Joe", "Doe", "555-55-55", "1111-11-1111"));&#10;		result.add(new Person(++id, "Joe", "Doe", "555-55-55", "1111-11-1111"));&#10;		result.add(new Person(++id, "Joe", "Doe", "555-55-55", "1111-11-1111"));&#10;		return result;		<i class="conum" data-value="3"></i><b>(3)</b>&#10;	}&#10;&#10;	@Override&#10;	public void getPersons_doCreate(ChangeObject changeObject) {  <i class="conum" data-value="4"></i><b>(4)</b>&#10;		Person dto = (Person) deserializeObject(&#10;				(Map&lt;String, String&gt;) changeObject.getNewVersion(),&#10;				Person.class);&#10;&#10;		System.out.println(dto.toString());&#10;	}&#10;&#10;	@Override&#10;	public void getPersons_doUpdate(ChangeObject changeObject) {	<i class="conum" data-value="5"></i><b>(5)</b>&#10;		// TODO Auto-generated method stub&#10;		super.getPersons_doUpdate(changeObject);&#10;	}&#10;&#10;	@Override&#10;	public void getPersons_doDelete(ChangeObject changeObject) {	<i class="conum" data-value="6"></i><b>(6)</b>&#10;		// TODO Auto-generated method stub&#10;		super.getPersons_doDelete(changeObject);&#10;	}&#10;&#10;}</code></pre>
+<pre class="highlight nowrap"><code class="java language-java">package service;
+import java.util.ArrayList;
+import java.util.List;
+
+import clear.data.ChangeObject;
+import dto.Person;
+import service.generated.*;
+
+public class PersonServiceImpl extends _PersonServiceImpl { <i class="conum" data-value="1"></i><b>(1)</b>
+
+	@Override
+	public List&lt;Person&gt; getPersons() {				<i class="conum" data-value="2"></i><b>(2)</b>
+		List&lt;Person&gt; result = new ArrayList&lt;&gt;();
+		Integer id= 0;
+		result.add(new Person(++id, "Joe", "Doe", "555-55-55", "1111-11-1111"));
+		result.add(new Person(++id, "Joe", "Doe", "555-55-55", "1111-11-1111"));
+		result.add(new Person(++id, "Joe", "Doe", "555-55-55", "1111-11-1111"));
+		result.add(new Person(++id, "Joe", "Doe", "555-55-55", "1111-11-1111"));
+		return result;		<i class="conum" data-value="3"></i><b>(3)</b>
+	}
+
+	@Override
+	public void getPersons_doCreate(ChangeObject changeObject) {  <i class="conum" data-value="4"></i><b>(4)</b>
+		Person dto = (Person) deserializeObject(
+				(Map&lt;String, String&gt;) changeObject.getNewVersion(),
+				Person.class);
+
+		System.out.println(dto.toString());
+	}
+
+	@Override
+	public void getPersons_doUpdate(ChangeObject changeObject) {	<i class="conum" data-value="5"></i><b>(5)</b>
+		// TODO Auto-generated method stub
+		super.getPersons_doUpdate(changeObject);
+	}
+
+	@Override
+	public void getPersons_doDelete(ChangeObject changeObject) {	<i class="conum" data-value="6"></i><b>(6)</b>
+		// TODO Auto-generated method stub
+		super.getPersons_doDelete(changeObject);
+	}
+
+}</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -313,7 +388,8 @@ Now I need the same corresponding ExtJS model for my <code>Person</code>. Just a
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="java language-java"> Person dto = (Person) deserializeObject(&#10;                (Map&lt;String, String&gt;) changeObject.getNewVersion(),Person.class);</code></pre>
+<pre class="highlight nowrap"><code class="java language-java"> Person dto = (Person) deserializeObject(
+                (Map&lt;String, String&gt;) changeObject.getNewVersion(),Person.class);</code></pre>
 </div>
 </div>
 </div>
@@ -353,7 +429,16 @@ Now I need the same corresponding ExtJS model for my <code>Person</code>. Just a
 <div id="LISTING_4" class="listingblock">
 <div class="title">Refactored implementation of PersonService Interface</div>
 <div class="content">
-<pre class="highlight"><code class="java language-java">public class PersonServiceImpl extends _PersonServiceImpl {&#10;  @Override&#10;    public List&lt;Person&gt; getPersons() {&#10;        List&lt;Person&gt; result = new ArrayList&lt;&gt;();&#10;        for (int i=0; i&lt;1000; i++){&#10;            result.add(new Person(i, "Joe", "Doe", "555-55-55", "1111-11-1111"));&#10;        }&#10;        return result;&#10;    }&#10;}</code></pre>
+<pre class="highlight nowrap"><code class="java language-java">public class PersonServiceImpl extends _PersonServiceImpl {
+  @Override
+    public List&lt;Person&gt; getPersons() {
+        List&lt;Person&gt; result = new ArrayList&lt;&gt;();
+        for (int i=0; i&lt;1000; i++){
+            result.add(new Person(i, "Joe", "Doe", "555-55-55", "1111-11-1111"));
+        }
+        return result;
+    }
+}</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -362,7 +447,60 @@ Now I need the same corresponding ExtJS model for my <code>Person</code>. Just a
 <div id="LISTING_5" class="listingblock">
 <div class="title">Sample Application Entry</div>
 <div class="content">
-<pre class="highlight"><code class="javascript language-javascript">Ext.Loader.setConfig({&#10;	disableCaching : false,&#10;	enabled : true,&#10;	paths : {&#10;		episode_3_pagination : 'app',&#10;		Clear : 'clear'&#10;	}&#10;});&#10;&#10;Ext.syncRequire('episode_3_pagination.init.InitDirect');&#10;// Define GridPanel&#10;var myStore = Ext.create('episode_3_pagination.store.dto.PersonStore',{});		<i class="conum" data-value="1"></i><b>(1)</b>&#10;Ext.define('episode_3_pagination.view.SampleGridPanel', {&#10;	extend : 'Ext.grid.Panel',&#10;	store : myStore,&#10;	alias : 'widget.samplegridpanel',&#10;	autoscroll : true,&#10;	plugins : [{&#10;		ptype : 'cellediting'&#10;	}],&#10;	dockedItems: [&#10;		{&#10;			xtype: 'pagingtoolbar',		<i class="conum" data-value="2"></i><b>(2)</b>&#10;			displayInfo: true,&#10;			dock: 'top',&#10;			store: myStore			<i class="conum" data-value="3"></i><b>(3)</b>&#10;		}&#10;	],&#10;	columns : [&#10;		{header : 'firstName', dataIndex : 'firstName', editor : {xtype : 'textfield'}, flex : 1 },&#10;		{header : 'id', dataIndex : 'id', flex : 1 },&#10;		{header : 'lastName', dataIndex : 'lastName', editor : {xtype : 'textfield'}, flex : 1 },&#10;		{header : 'phone', dataIndex : 'phone', editor : {xtype : 'textfield'}, flex : 1 },&#10;		{header : 'ssn', dataIndex : 'ssn', editor : {xtype : 'textfield'}, flex : 1 }],&#10;	tbar : [&#10;		{text : 'Load', action : 'load'},&#10;		{text : 'Add', action : 'add'},&#10;		{text : 'Remove', action : 'remove'},&#10;		{text : 'Sync', action : 'sync'}&#10;		]&#10;	});&#10;// Launch the application&#10;Ext.application({&#10;	name : 'episode_3_pagination',&#10;	requires : ['Clear.override.ExtJSOverrider'],&#10;	controllers : ['SampleController'],&#10;	launch : function() {&#10;		Ext.create('Ext.container.Viewport', {&#10;			items : [{&#10;				xtype : 'samplegridpanel'&#10;			}]&#10;		});&#10;	}&#10;});</code></pre>
+<pre class="highlight nowrap"><code class="javascript language-javascript">Ext.Loader.setConfig({
+	disableCaching : false,
+	enabled : true,
+	paths : {
+		episode_3_pagination : 'app',
+		Clear : 'clear'
+	}
+});
+
+Ext.syncRequire('episode_3_pagination.init.InitDirect');
+// Define GridPanel
+var myStore = Ext.create('episode_3_pagination.store.dto.PersonStore',{});		<i class="conum" data-value="1"></i><b>(1)</b>
+Ext.define('episode_3_pagination.view.SampleGridPanel', {
+	extend : 'Ext.grid.Panel',
+	store : myStore,
+	alias : 'widget.samplegridpanel',
+	autoscroll : true,
+	plugins : [{
+		ptype : 'cellediting'
+	}],
+	dockedItems: [
+		{
+			xtype: 'pagingtoolbar',		<i class="conum" data-value="2"></i><b>(2)</b>
+			displayInfo: true,
+			dock: 'top',
+			store: myStore			<i class="conum" data-value="3"></i><b>(3)</b>
+		}
+	],
+	columns : [
+		{header : 'firstName', dataIndex : 'firstName', editor : {xtype : 'textfield'}, flex : 1 },
+		{header : 'id', dataIndex : 'id', flex : 1 },
+		{header : 'lastName', dataIndex : 'lastName', editor : {xtype : 'textfield'}, flex : 1 },
+		{header : 'phone', dataIndex : 'phone', editor : {xtype : 'textfield'}, flex : 1 },
+		{header : 'ssn', dataIndex : 'ssn', editor : {xtype : 'textfield'}, flex : 1 }],
+	tbar : [
+		{text : 'Load', action : 'load'},
+		{text : 'Add', action : 'add'},
+		{text : 'Remove', action : 'remove'},
+		{text : 'Sync', action : 'sync'}
+		]
+	});
+// Launch the application
+Ext.application({
+	name : 'episode_3_pagination',
+	requires : ['Clear.override.ExtJSOverrider'],
+	controllers : ['SampleController'],
+	launch : function() {
+		Ext.create('Ext.container.Viewport', {
+			items : [{
+				xtype : 'samplegridpanel'
+			}]
+		});
+	}
+});</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -388,7 +526,28 @@ click of <code>Load</code> button <a href="#LISTING_6">Controller for sample app
 <div id="LISTING_6" class="listingblock">
 <div class="title">Controller for sample application</div>
 <div class="content">
-<pre class="highlight"><code class="javascript language-javascript">Ext.define('episode_3_pagination.controller.SampleController', {&#10;	extend: 'Ext.app.Controller',&#10;	stores: ['episode_3_pagination.store.dto.PersonStore'],&#10;	refs: [{								<i class="conum" data-value="1"></i><b>(1)</b>&#10;		ref: 'ThePanel',&#10;		selector: 'samplegridpanel'&#10;	}],&#10;&#10;	init: function() {&#10;		this.control({&#10;			'samplegridpanel button[action=load]': {&#10;				click: this.onLoad&#10;			}&#10;		});&#10;	},&#10;&#10;	onLoad: function() {&#10;		// returns instance of PersonStore&#10;		var store = this.getThePanel().getStore();		<i class="conum" data-value="2"></i><b>(2)</b>&#10;		store.load();&#10;	}&#10;});</code></pre>
+<pre class="highlight nowrap"><code class="javascript language-javascript">Ext.define('episode_3_pagination.controller.SampleController', {
+	extend: 'Ext.app.Controller',
+	stores: ['episode_3_pagination.store.dto.PersonStore'],
+	refs: [{								<i class="conum" data-value="1"></i><b>(1)</b>
+		ref: 'ThePanel',
+		selector: 'samplegridpanel'
+	}],
+
+	init: function() {
+		this.control({
+			'samplegridpanel button[action=load]': {
+				click: this.onLoad
+			}
+		});
+	},
+
+	onLoad: function() {
+		// returns instance of PersonStore
+		var store = this.getThePanel().getStore();		<i class="conum" data-value="2"></i><b>(2)</b>
+		store.load();
+	}
+});</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -418,7 +577,33 @@ click of <code>Load</code> button <a href="#LISTING_6">Controller for sample app
 <div id="LISTING_7" class="listingblock">
 <div class="title">Implementation of PersonService with pagination</div>
 <div class="content">
-<pre class="highlight"><code class="java language-java">package service;&#10;import java.util.ArrayList;&#10;import java.util.List;&#10;&#10;import clear.djn.DirectOptions;			<i class="conum" data-value="1"></i><b>(1)</b>&#10;&#10;import dto.Person;&#10;import service.generated.*;&#10;&#10;public class PersonServiceImpl extends _PersonServiceImpl {&#10;	@Override&#10;	public List&lt;Person&gt; getPersons() {&#10;		List&lt;Person&gt; result = new ArrayList&lt;&gt;();&#10;		for (int i=0; i&lt;1000; i++){&#10;			result.add(new Person(i, "Joe", "Doe", "555-55-55", "1111-11-1111"));&#10;		}&#10;		<i class="conum" data-value="2"></i><b>(2)</b>&#10;		int start = ((Double)DirectOptions.getOption("start")).intValue();&#10;		int limit = ((Double)DirectOptions.getOption("limit")).intValue();&#10;&#10;		limit = Math.min(start+limit, result.size() );		<i class="conum" data-value="3"></i><b>(3)</b>&#10;		DirectOptions.setOption("total", result.size());	<i class="conum" data-value="4"></i><b>(4)</b>&#10;		result = result.subList(start, limit);			<i class="conum" data-value="5"></i><b>(5)</b>&#10;&#10;		return result;&#10;	}&#10;}</code></pre>
+<pre class="highlight nowrap"><code class="java language-java">package service;
+import java.util.ArrayList;
+import java.util.List;
+
+import clear.djn.DirectOptions;			<i class="conum" data-value="1"></i><b>(1)</b>
+
+import dto.Person;
+import service.generated.*;
+
+public class PersonServiceImpl extends _PersonServiceImpl {
+	@Override
+	public List&lt;Person&gt; getPersons() {
+		List&lt;Person&gt; result = new ArrayList&lt;&gt;();
+		for (int i=0; i&lt;1000; i++){
+			result.add(new Person(i, "Joe", "Doe", "555-55-55", "1111-11-1111"));
+		}
+		<i class="conum" data-value="2"></i><b>(2)</b>
+		int start = ((Double)DirectOptions.getOption("start")).intValue();
+		int limit = ((Double)DirectOptions.getOption("limit")).intValue();
+
+		limit = Math.min(start+limit, result.size() );		<i class="conum" data-value="3"></i><b>(3)</b>
+		DirectOptions.setOption("total", result.size());	<i class="conum" data-value="4"></i><b>(4)</b>
+		result = result.subList(start, limit);			<i class="conum" data-value="5"></i><b>(5)</b>
+
+		return result;
+	}
+}</code></pre>
 </div>
 </div>
 <div class="colist arabic">
