@@ -90,12 +90,15 @@ end
 
 desc 'Build and preview the site locally in development mode'
 task :preview => :check do
-  run_awestruct '-d --force'
+  # run_awestruct '-d --force'
+  run_awestruct '-P development -g -s'
 end
 
-desc 'Generate the site using the development profile'
-task :gen => :check do
-  run_awestruct '-P development -g --force'
+desc 'Generate the site using the specified profile (default: development)'
+task :gen, [:profile] => :check do |task, args|
+  profile = args[:profile] || 'development'
+  profile = 'production' if profile == 'prod'
+  run_awestruct "-P #{profile} -g --force"
 end
 
 desc 'Generate the site and deploy to production'

@@ -3,7 +3,7 @@
 
 source 'https://rubygems.org'
 
-gem "awestruct", "~> 0.5.4.rc2"
+gem 'awestruct', "0.5.2.1"
 gem 'asciidoctor', '~> 0.1.4'
 gem 'erubis', '~> 2.7.0'
 gem 'haml', '~> 4.0.0'

@@ -8,8 +8,9 @@ disqus: nextjavaheadbraincom
 disqus_developer: true
 #base_url: http://localhost:4242
 
+haml:
+  :ugly: true
 asciidoctor:
-  :compact: true
   :eruby: erubis
   :attributes:
     idprefix: ''
@@ -17,6 +18,8 @@ asciidoctor:
     icons: 'font'
     sectanchors: ''
     linkattrs: ''
+    #source-highlighter: highlight.js
+    'prewrap!': ''
 
 scss:
   :line_numbers: true
