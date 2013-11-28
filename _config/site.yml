@@ -2,7 +2,7 @@ title: 'Java.Head.Brain'
 description: 'insinuation and speculations'
 author: Viktor Gamov
 local_tz: America/New York
-interpolate: false
+#interpolate: false
 disqus: nextjavaheadbraincom
 #disqus_generate_id: true
 disqus_developer: true
