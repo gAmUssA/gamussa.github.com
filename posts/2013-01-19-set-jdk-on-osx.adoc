@@ -11,6 +11,8 @@ ifndef::awestruct[]
 endif::awestruct[]
 :mdash: &#8212;
 
+image::terminal_java.png[]
+
 [.panel]
 Apple announced to remove Java Preferences app from Mac OS X. +
 Details could be found here http://support.apple.com/kb/HT5493). Let's try to fix it.
