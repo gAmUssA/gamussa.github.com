@@ -3,11 +3,11 @@
 
 source 'https://rubygems.org'
 
-gem 'awestruct', '0.5.4.rc3'
-gem 'asciidoctor', '~> 1.5.0.preview3'
+gem 'awestruct', '0.5.5'
+gem 'asciidoctor', '1.5.2'
 gem 'erubis', '~> 2.7.0'
 gem 'haml', '~> 4.0.0'
-gem 'tilt', '~> 1.4.0'
+gem 'tilt', '~> 2.0.0'
 gem 'slim', '~> 2.0.0'
 gem 'zurb-foundation', '~> 4.3.0'
 gem 'rb-inotify', '~> 0.9.0', :platforms => [:ruby, :jruby]
