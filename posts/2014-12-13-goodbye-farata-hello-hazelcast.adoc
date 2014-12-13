@@ -1,0 +1,42 @@
+= Goodbye, Farata. Hello, Hazelcast!
+Viktor Gamov
+2014-12-13 00:13
+:imagesdir: ../images
+:icons: font
+:keywords: farata, hazelcast
+:toc:
+ifndef::awestruct[]
+:awestruct-layout: post
+:awestruct-tags: [hazelcast, job]
+:idprefix:
+:idseparator: -
+endif::awestruct[]
+
+[quote, Wayne Dyer]
+____
+Go for it now. The future is promised to no one.
+____
+
+image::HazelcastLogo-Blue_Dark_1200w.png[hazelcast, 50%, float="right",align="center"]
+
+.TL;DR
+NOTE: Monday, December 15, I'm staring my new role as Solution Architect at http://hazelcast.com[Hazelcast]. +
+
+http://pleer.com/tracks/4445417GRwk[I've had a great time] at http://faratasystems.com[Farata Systems] over the past 4 years and 3 months. It was my first workplace in US, and it was incredible place to work. During that period, I learned so many technologies, tools, frameworks and even languages so I can say with confidence that it was quite a ride!
+
+I joined Farata as Senior RIA (who does remember that abbreviation?) Developer in 2010. I've helped financial institutions and startups of New York area to build awesome applications with Flex technology. After Adobe abandoned Flex, my colleagues and me dove into the deep blue sea of HTML5. We have learned a lot, and we have generously http://github.com/yfain/WebDevForJavaProgrammers[shared our findings] with a community. We wrote http://enterprisewebbook.com/[«Enterprise Web Development»  book] - a quintessence of our research and consulting work in a field of modern web development in the big companies.
+I'm very grateful to the founders of Farata - http://twitter.com/yfain[Yakov], Victor and Anatole - for everything that I learned from them.
+
+Sometimes, you get a chance in your life that you should not miss. Otherwise, you will regret it later. 
+
+Monday is my first day at http://hazelcast.com[Hazelcast], a leading in-memory data grid company with HQ in Palo Alto, California. I want say huge thanks to https://twitter.com/fuadm[Fuad], https://twitter.com/oztalip[Talip] and https://twitter.com/gregrluck[Greg] for the opportunity to grow with the company.
+
+I'm very excited to join the Hazelcast Engineering Team as Solution Architect. I will be responsible for help our East Coast clients to build better software using our product (both http://hazelcast.org[open-source part], and http://hazelcast.com/products/hazelcast-enterprise/[the commercial extensions]). 
+Ultimately, I'll be doing the pretty much same sorts of things I've been doing of the past couple years - write code, talk on the conferences, meetups and user groups, run workshops, and create videos - to show the developers how to use Hazelcast more efficiently.
+
+I will do my best to keep you posted here with what I learn. Saying that, expect there will be more technical articles from me.
+
+Wish me the best of luck...
+
+*p.s.* If you have any questions regarding Hazelcast technology, feel free to contact me `viktor at hazelcast dot com`.
+
