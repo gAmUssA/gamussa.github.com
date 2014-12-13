@@ -6,11 +6,11 @@ export JAVA_HOME=$(/usr/libexec/java_home -v..."><link rel="stylesheet" href="/s
 <table>
 <tr>
 <td class="icon">
-<i class="icon-note" title="Note"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 <div class="title">TL;DR</div>
-You can <a href="https://jdk8.java.net/download.html">download</a> Early Access Release of JDK8 which include <code>nashorn.jar</code> and <code>jjs</code> JavaScript shell. Add JDK <em>bin</em> directory to <code>PATH</code> with command:<br>
+You can <a href="https://jdk8.java.net/download.html">download</a> Early Access Release of JDK8 which include nashorn.jar and jjs JavaScript shell. Add JDK <em>bin</em> directory to PATH with command:<br>
 <code>export JAVA_HOME=$(/usr/libexec/java_home -v 1.8); export PATH=$JAVA_HOME/bin:$PATH</code><br>
 Type <code>jjs</code> and enter to a JavaScript <a href="http://en.wikipedia.org/wiki/REPL">REPL</a>
 </td>
@@ -22,7 +22,7 @@ Type <code>jjs</code> and enter to a JavaScript <a href="http://en.wikipedia.org
 <table>
 <tr>
 <td class="icon">
-<i class="icon-warning" title="Warning"></i>
+<i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
 THIS IS A DRAFT!
@@ -39,7 +39,6 @@ THIS IS A DRAFT!
 <li><a href="#using-nashorn-with-jdk7">Using Nashorn with JDK7</a></li>
 </ul>
 </div>
-
 <div class="paragraph">
 <p>While preparing to <a href="https://oracleus.activeevents.com/2013/connect/sessionDetail.ww?SESSION_ID=5793">my JavaOne 2013 talk</a>, I decide to write down some notes about my progress, tip and tricks that descover during my experiments. Consider it as my roadtrip notes.
 As you learned from my previous post, I&#8217;m going to talk about Nashorn - JavaScript engine 100% written in Java. Nashorn will replace Mozilla Rhino in upcoming JDK8. But even today, Nashorn overperfom Rhino in bunch of test. As Rhino, Nashorn is implementing JSR 223: Scripting for the JavaTM Platform. But we will get there.</p>
@@ -111,7 +110,7 @@ As you learned from my previous post, I&#8217;m going to talk about Nashorn - Ja
 <div class="listingblock">
 <div class="title">Augment JDK boot class path with backport Nashonr jar</div>
 <div class="content">
-<pre class="highlight nowrap"><code class="shell language-shell">export JAVA_OPTS="-Xbootclasspath/a:/YOUR_PATH_TO_NASHORN-BACKPORT_DIR/dist/nashorn.jar"</code></pre>
+<pre class="highlight nowrap"><code class="language-shell" data-lang="shell">export JAVA_OPTS="-Xbootclasspath/a:/YOUR_PATH_TO_NASHORN-BACKPORT_DIR/dist/nashorn.jar"</code></pre>
 </div>
 </div>
 </li>
@@ -132,7 +131,7 @@ As you learned from my previous post, I&#8217;m going to talk about Nashorn - Ja
             })();
             </script>
             <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=nextjavaheadbraincom">comments powered by Disqus.</a></noscript>
-          </div></article></div></div></body></html><div id="copyright"><div class="row full-width"><div class="large-4 columns"><p>© Viktor Gamov 2013—2007</p></div><div class="large-8 columns"><ul class="inline-list right"><li><a href="https://github.com/gAmUssA">Github</a></li><li><a href="http://twitter.com/gAmUssA">Twitter</a></li><li><a href="#"></a></li></ul></div></div></div><script>document.write('<script src=' + ('__proto__' in {} ? '/javascripts/vendor/zepto' : '/javascripts/vendor/jquery') + '.js><\/script>')</script><script src="/javascripts/foundation/foundation.js"><script src="/javascripts/foundation/foundation.topbar.js"></script></script><script>$(document).foundation();</script><script src="/javascripts/vendor/highlight.min.js"></script><script>$(hljs.initHighlighting());</script><script type="text/javascript">
+          </div></article></div></div></body></html><div id="copyright"><div class="row full-width"><div class="large-4 columns"><p>© Viktor Gamov 2014—2007</p></div><div class="large-8 columns"><ul class="inline-list right"><li><a href="https://github.com/gAmUssA">Github</a></li><li><a href="http://twitter.com/gAmUssA">Twitter</a></li><li><a href="#"></a></li></ul></div></div></div><script>document.write('<script src=' + ('__proto__' in {} ? '/javascripts/vendor/zepto' : '/javascripts/vendor/jquery') + '.js><\/script>')</script><script src="/javascripts/foundation/foundation.js"><script src="/javascripts/foundation/foundation.topbar.js"></script></script><script>$(document).foundation();</script><script src="/javascripts/vendor/highlight.min.js"></script><script>$(hljs.initHighlighting());</script><script type="text/javascript">
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount','UA-40354726-1']);
 _gaq.push(['_trackPageview']);

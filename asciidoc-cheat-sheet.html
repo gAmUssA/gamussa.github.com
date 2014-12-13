@@ -13,22 +13,7 @@ markup syntax changes) and using different css styles. Here is list with
 <a href="http://powerman.name/doc/asciidoc-index">all available cheatsheets for
 different AsciiDoc version and using different css styles</a>.</p>
 </div>
-<div id="toc" class="toc">
-<div id="toctitle" class="title">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#abstract">Abstract</a></li>
-<li><a href="#document-header">Document header</a></li>
-<li><a href="#attributes">Attributes</a></li>
-<li><a href="#headers">Headers</a></li>
-<li><a href="#paragraphs">Paragraphs</a></li>
-<li><a href="#blocks">Blocks</a></li>
-<li><a href="#text">Text</a></li>
-<li><a href="#macros-links-images-include">Macros: links, images &amp; include</a></li>
-<li><a href="#lists">Lists</a></li>
-<li><a href="#tables">Tables</a></li>
-</ul>
-</div>
-
+<!-- toc disabled -->
 </div>
 </div>
 <div class="sect1">
@@ -131,7 +116,7 @@ paragraph.</p>
 <div class="listingblock">
 <div class="title">Optional Title</div>
 <div class="content">
-<pre class="highlight nowrap"><code class="perl language-perl">die 'connect: '.$dbh-&gt;errstr;</code></pre>
+<pre class="highlight nowrap"><code class="language-perl" data-lang="perl">die 'connect: '.$dbh-&gt;errstr;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -141,7 +126,7 @@ paragraph.</p>
 <table>
 <tr>
 <td class="icon">
-<i class="icon-note" title="Note"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 <div class="title">Optional Title</div>
@@ -155,7 +140,7 @@ This is an example
 <table>
 <tr>
 <td class="icon">
-<i class="icon-note" title="Note"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 <div class="title">Optional Title</div>
@@ -169,7 +154,7 @@ single-paragraph note.
 <table>
 <tr>
 <td class="icon">
-<i class="icon-tip" title="Tip"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 Tip.
@@ -181,7 +166,7 @@ Tip.
 <table>
 <tr>
 <td class="icon">
-<i class="icon-important" title="Important"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 Important.
@@ -193,7 +178,7 @@ Important.
 <table>
 <tr>
 <td class="icon">
-<i class="icon-warning" title="Warning"></i>
+<i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
 Warning.
@@ -205,7 +190,7 @@ Warning.
 <table>
 <tr>
 <td class="icon">
-<i class="icon-caution" title="Caution"></i>
+<i class="fa icon-caution" title="Caution"></i>
 </td>
 <td class="content">
 Caution.
@@ -229,7 +214,7 @@ Use: code or file listings</pre>
 <div class="listingblock">
 <div class="title">Optional Title</div>
 <div class="content">
-<pre class="highlight nowrap"><code class="perl language-perl"># *Source* block
+<pre class="highlight nowrap"><code class="language-perl" data-lang="perl"># *Source* block
 # Use: highlight code listings
 # (require `source-highlight` or `pygmentize`)
 use DBI;
@@ -275,7 +260,7 @@ can be changed using</p>
 <table>
 <tr>
 <td class="icon">
-<i class="icon-note" title="Note"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 <div class="title">Optional Title</div>
@@ -315,8 +300,8 @@ incorrectly processed as list.</pre>
 </div>
 </blockquote>
 <div class="attribution">
-<cite>cite source</cite><br>
-&#8212; cite author
+&#8212; cite author<br>
+<cite>cite source</cite>
 </div>
 </div>
 </div>
@@ -329,10 +314,10 @@ incorrectly processed as list.</pre>
 line break</p>
 </div>
 <div class="paragraph">
-<p>normal, <em>italic</em>, <strong>bold</strong>, <code>mono</code>.</p>
+<p>normal, <em>italic</em>, <strong>bold</strong>, mono.</p>
 </div>
 <div class="paragraph">
-<p>&#8220;double quoted&#8221;, &#8216;single quoted&#8217;.</p>
+<p>``double quoted'', `single quoted'.</p>
 </div>
 <div class="paragraph">
 <p>normal, <sup>super</sup>, <sub>sub</sub>.</p>
@@ -341,23 +326,23 @@ line break</p>
 <p>Command: <code>ls -al</code></p>
 </div>
 <div class="paragraph">
-<p><code>mono <strong>bold</strong></code></p>
+<p>mono *bold*</p>
 </div>
 <div class="paragraph">
-<p><code>passthru *bold*</code></p>
+<p><code>passthru <strong>bold</strong></code></p>
 </div>
 <div class="paragraph">
-<p>Path: <em>/some/filez.txt</em>, <em>.b</em></p>
+<p>Path: '/some/filez.txt', '.b'</p>
 </div>
 <div class="paragraph">
 <p><span class="red">red text</span> <span class="yellow-background">on yellow</span>
 <span class="big">large</span> <strong class="red yellow-background big">all bold</strong></p>
 </div>
 <div class="paragraph">
-<p>Chars: n<em>i</em><strong>b</strong><code>m</code><span class="red">r</span></p>
+<p>Chars: n<em>i</em><strong>b</strong>m<span class="red">r</span></p>
 </div>
 <div class="paragraph">
-<p>&#169; &#174; &#8482;&#8201;&#8212;&#8201;&#8230; &#8594; &#8592; &#8658; &#8656; &#182;</p>
+<p>&#169; &#174; &#8482;&#8201;&#8212;&#8201;&#8230;&#8203; &#8594; &#8592; &#8658; &#8656; &#182;</p>
 </div>
 <hr>
 <div class="paragraph">
@@ -366,8 +351,8 @@ _italic_, _italic_,
 t__e__st, t__e__st,
 <b>bold</b>, &lt;b&gt;normal&lt;/b&gt;
 &amp;#182;
-&#8216;not single quoted&#8217;
-`\`not double quoted''</p>
+`not single quoted'
+\`\`not double quoted''</p>
 </div>
 </div>
 </div>
@@ -381,7 +366,7 @@ t__e__st, t__e__st,
 <p>Paragraph or block 1.</p>
 </div>
 <div class="paragraph">
-<p>anchor:anchor-2[]
+<p><a id="anchor-2"></a>
 Paragraph or block 2.</p>
 </div>
 <div class="paragraph">
@@ -392,11 +377,11 @@ Paragraph or block 2.</p>
 </div>
 <div class="paragraph">
 <p><a href="asciidoc-cheat-sheet">This document</a>
-<a href="asciidoc-cheat-sheet.html">asciidoc-cheat-sheet.html</a>
+<a href="asciidoc-cheat-sheet.html" class="bare">asciidoc-cheat-sheet.html</a>
 <a href="/index.html">This site root</a></p>
 </div>
 <div class="paragraph">
-<p><a href="http://google.com">http://google.com</a>
+<p><a href="http://google.com" class="bare">http://google.com</a>
 <a href="http://google.com">Google Search</a>
 <a href="mailto:root@localhost">email admin</a></p>
 </div>
@@ -1107,14 +1092,14 @@ included in list</pre>
 <h2 id="tables"><a class="anchor" href="#tables"></a>Tables</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can fill table from CSV file using <code>include::</code> macros inside table.</p>
+<p>You can fill table from CSV file using include:: macros inside table.</p>
 </div>
-<table class="tableblock frame-all grid-all" style="width:100%; ">
+<table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 1. An example table</caption>
 <colgroup>
-<col style="width:33%;">
-<col style="width:33%;">
-<col style="width:33%;"> 
+<col style="width: 33%;">
+<col style="width: 33%;">
+<col style="width: 33%;">
 </colgroup>
 <thead>
 <tr>
@@ -1148,14 +1133,13 @@ included in list</pre>
 </tr>
 </tbody>
 </table>
-
-<table class="tableblock frame-topbot grid-none" style="width:60%; ">
+<table class="tableblock frame-topbot grid-none" style="width: 60%;">
 <caption class="title">Table 2. CSV data, 15% each column</caption>
 <colgroup>
-<col style="width:25%;">
-<col style="width:25%;">
-<col style="width:25%;">
-<col style="width:25%;"> 
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
 </colgroup>
 <tbody>
 <tr>
@@ -1178,14 +1162,13 @@ included in list</pre>
 </tr>
 </tbody>
 </table>
-
-<table class="tableblock frame-all grid-rows" style="width:100%; ">
+<table class="tableblock frame-all grid-rows spread">
 <colgroup>
-<col style="width:20%;">
-<col style="width:20%;">
-<col style="width:20%;">
-<col style="width:20%;">
-<col style="width:20%;"> 
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
 </colgroup>
 <thead>
 <tr>
@@ -1213,14 +1196,13 @@ included in list</pre>
 </tr>
 </tbody>
 </table>
-
-<table class="tableblock frame-all grid-all" style="width:100%; ">
+<table class="tableblock frame-all grid-all spread">
 <caption class="title">Table 3. Multiline cells, row/col span</caption>
 <colgroup>
-<col style="width:25%;">
-<col style="width:25%;">
-<col style="width:25%;">
-<col style="width:25%;"> 
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
 </colgroup>
 <thead>
 <tr>
@@ -1250,7 +1232,6 @@ for this interval.</p></td>
 </tr>
 </tbody>
 </table>
-
 </div>
 </div></div></div><footer class="entry-footer"></footer><div id="comments">
             <div id="disqus_thread"></div>
@@ -1266,7 +1247,7 @@ for this interval.</p></td>
             })();
             </script>
             <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=nextjavaheadbraincom">comments powered by Disqus.</a></noscript>
-          </div></article></div></div></body></html><div id="copyright"><div class="row full-width"><div class="large-4 columns"><p>© Viktor Gamov 2013—2007</p></div><div class="large-8 columns"><ul class="inline-list right"><li><a href="https://github.com/gAmUssA">Github</a></li><li><a href="http://twitter.com/gAmUssA">Twitter</a></li><li><a href="#"></a></li></ul></div></div></div><script>document.write('<script src=' + ('__proto__' in {} ? '/javascripts/vendor/zepto' : '/javascripts/vendor/jquery') + '.js><\/script>')</script><script src="/javascripts/foundation/foundation.js"><script src="/javascripts/foundation/foundation.topbar.js"></script></script><script>$(document).foundation();</script><script src="/javascripts/vendor/highlight.min.js"></script><script>$(hljs.initHighlighting());</script><script type="text/javascript">
+          </div></article></div></div></body></html><div id="copyright"><div class="row full-width"><div class="large-4 columns"><p>© Viktor Gamov 2014—2007</p></div><div class="large-8 columns"><ul class="inline-list right"><li><a href="https://github.com/gAmUssA">Github</a></li><li><a href="http://twitter.com/gAmUssA">Twitter</a></li><li><a href="#"></a></li></ul></div></div></div><script>document.write('<script src=' + ('__proto__' in {} ? '/javascripts/vendor/zepto' : '/javascripts/vendor/jquery') + '.js><\/script>')</script><script src="/javascripts/foundation/foundation.js"><script src="/javascripts/foundation/foundation.topbar.js"></script></script><script>$(document).foundation();</script><script src="/javascripts/vendor/highlight.min.js"></script><script>$(hljs.initHighlighting());</script><script type="text/javascript">
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount','UA-40354726-1']);
 _gaq.push(['_trackPageview']);

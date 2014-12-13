@@ -3,21 +3,7 @@
 <div class="paragraph">
 <p>It&#8217;s not likely that you&#8217;ll start developing an enterprise HTML5 applications without using one of the JavaScript frameworks. One of the most feature-complete frameworks is <a href="http://www.sencha.com/products/extjs">ExtJS</a> from Sencha, but its learning curve is a bit steep. Our company, <a href="http://faratasystems.com">Farata Systems</a>, has developed an open source software Clear Toolkit for ExtJS. Clear Toolkit includes an Eclipse plugin called Clear Data Builder (CDB). This is a productivity tool - a code generator - that can create a CRUD application for you in no time. This application will have HTML/JavaScript/ExtJS client and Java-based server. In this article you will learn how jump start development of such Web applications.</p>
 </div>
-<div id="toc" class="toc2">
-<div id="toctitle" class="title">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#part-one-extjs-mvc-application-scaffolding">Part One: ExtJS MVC Application Scaffolding</a></li>
-<li><a href="#part-two-generating-a-crud-application">Part Two: Generating a CRUD application</a></li>
-<li><a href="#part-three-data-pagination">Part Three: Data Pagination</a></li>
-<li>
-<ul class="sectlevel2">
-<li><a href="#conclusion">Conclusion</a></li>
-<li><a href="#additional-useful-links">Additional Useful Links</a></li>
-</ul>
-</li>
-</ul>
-</div>
-
+<!-- toc disabled -->
 </div>
 </div>
 <div class="sect1">
@@ -59,13 +45,13 @@
 <p>The phrase "to be more productive" means to write less code and produce the results faster. This is what CDB is for. In this article you&#8217;ll see how Clear Data Builder helps you to integrate the client side with the back end using the RPC style and how to implements data pagination for your application.</p>
 </div>
 <div class="paragraph">
-<p>CDB distribution available as plug-in for Eclipse IDE. The current update site of CDB is located <a href="http://cleartoolkit.com/downloads/plugins/extjs/cleardatabuilder/4.1.4/">here</a>.  The current version is 4.1.4 (don&#8217;t be surprised - this is a five-year old code generator, and its previous versions were made for generating the UI for Adobe Flex framework). You can install this plug-in via <code>Install New Software</code> menu in Eclipse IDE. The <a href="#FIG-1">Verifying CDB installation</a> shows how you can validate plug-in installation. If you see "Clear Data Builder for Ext JS feature" in the list of Installed Software in your Eclipse IDE, you&#8217;re good to go.</p>
+<p>CDB distribution available as plug-in for Eclipse IDE. The current update site of CDB is located <a href="http://cleartoolkit.com/downloads/plugins/extjs/cleardatabuilder/4.1.4/">here</a>.  The current version is 4.1.4 (don&#8217;t be surprised - this is a five-year old code generator, and its previous versions were made for generating the UI for Adobe Flex framework). You can install this plug-in via Install New Software menu in Eclipse IDE. The <a href="#FIG-1">Verifying CDB installation</a> shows how you can validate plug-in installation. If you see "Clear Data Builder for Ext JS feature" in the list of Installed Software in your Eclipse IDE, you&#8217;re good to go.</p>
 </div>
 <div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="icon-important" title="Important"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 You have to have "Eclipse for Java EE Developers" installed, which includes the plugins for automation of the Web applications.
@@ -89,13 +75,13 @@ You have to have "Eclipse for Java EE Developers" installed, which includes the 
 <div class="title">Figure 2. New CDB Project Wizard</div>
 </div>
 <div class="paragraph">
-<p>First of all let&#8217;s call the new project <code>episode_1_intro</code>. CDB supports different ways of linking the ExtJS framework to the application. In my case, I already have installed ExtJS libraries under my Web server (Apache Tomcat). We&#8217;re going to use this local ExtJS URL, but you can just specify any folder in your machine and CDB will copy the ExtJS file inside your project. Lastly, you can use ExtJS from the Sencha&#8217;s CDN, if you don&#8217;t want to store these libraries inside your project. Besides, using a common CDN will allow Web browser to reuse the cached version of ExtJS.</p>
+<p>First of all let&#8217;s call the new project episode_1_intro. CDB supports different ways of linking the ExtJS framework to the application. In my case, I already have installed ExtJS libraries under my Web server (Apache Tomcat). We&#8217;re going to use this local ExtJS URL, but you can just specify any folder in your machine and CDB will copy the ExtJS file inside your project. Lastly, you can use ExtJS from the Sencha&#8217;s CDN, if you don&#8217;t want to store these libraries inside your project. Besides, using a common CDN will allow Web browser to reuse the cached version of ExtJS.</p>
 </div>
 <div class="paragraph">
-<p>For this project we are not going to use any server-side (like MyBatis or Hibernate). Just click the button Finish. First of all, CDB will print some initial messages on the Eclipse console. When CDB runs for the first time it initializes directory structure in the <code>WebContent</code> folder. Inside the WebContent directory CDB creates directory structure which is recommended by Sencha for MVC applications. Also you&#8217;ll get the HTML wrapper - <code>index.html</code> - for this application, which contains the link to the entry point of our application.</p>
+<p>For this project we are not going to use any server-side (like MyBatis or Hibernate). Just click the button Finish. First of all, CDB will print some initial messages on the Eclipse console. When CDB runs for the first time it initializes directory structure in the WebContent folder. Inside the WebContent directory CDB creates directory structure which is recommended by Sencha for MVC applications. Also you&#8217;ll get the HTML wrapper - index.html - for this application, which contains the link to the entry point of our application.</p>
 </div>
 <div class="paragraph">
-<p>CDB generates an empty project with one sample controller and one view - <code>Viewport.js</code>. To run this application, you need to add the newly generated Dynamic Web Project to Tomcat and start the server (write-click on the Tomcat in the Servers view).</p>
+<p>CDB generates an empty project with one sample controller and one view - Viewport.js. To run this application, you need to add the newly generated Dynamic Web Project to Tomcat and start the server (write-click on the Tomcat in the Servers view).</p>
 </div>
 <div id="FIG-3" class="imageblock">
 <div class="content">
@@ -104,7 +90,7 @@ You have to have "Eclipse for Java EE Developers" installed, which includes the 
 <div class="title">Figure 3. Adding web project to Tomcat</div>
 </div>
 <div class="paragraph">
-<p>Let me switch to web browser to open this application on <code><a href="http://localhost:8080/episode_1_intro">http://localhost:8080/episode_1_intro</a></code> . Voila! Just in couple minutes we&#8217;ve setup new Dynamic Web Project with the ExtJS framework support and one fancy button on UI.</p>
+<p>Let me switch to web browser to open this application on http://localhost:8080/episode_1_intro . Voila! Just in couple minutes we&#8217;ve setup new Dynamic Web Project with the ExtJS framework support and one fancy button on UI.</p>
 </div>
 <div id="FIG-4" class="imageblock">
 <div class="content">
@@ -169,13 +155,13 @@ You have to have "Eclipse for Java EE Developers" installed, which includes the 
 </ul>
 </div>
 <div class="paragraph">
-<p>I will extend the application from Part 1. For my CRUD application I need a Java POJO.  First, I&#8217;ve created the class <code>Person.java</code> in the package <code>dto</code>. Then I&#8217;ve added the fields <code>firstName</code>, <code>lastName</code>, <code>address</code>, <code>ssn</code> and <code>phone</code> and <code>id</code>. Also I need getters and setters for these fields. It&#8217;s good to have a constructor for the that uses these fields,  and a DTO class should have a <code>toString()</code> method. <a href="#LISTING_1">Person data transfer object</a>
-Now I need the same corresponding ExtJS model for my <code>Person</code>. Just annotate this class with the CDB annotation called <code>@JSClass</code> to ask CDB to generate the ExtJS model.</p>
+<p>I will extend the application from Part 1. For my CRUD application I need a Java POJO.  First, I&#8217;ve created the class Person.java in the package <code>dto</code>. Then I&#8217;ve added the fields <code>firstName</code>, <code>lastName</code>, <code>address</code>, <code>ssn</code> and <code>phone</code> and <code>id</code>. Also I need getters and setters for these fields. It&#8217;s good to have a constructor for the that uses these fields,  and a DTO class should have a <code>toString()</code> method. <a href="#LISTING_1">Person data transfer object</a>
+Now I need the same corresponding ExtJS model for my Person. Just annotate this class with the CDB annotation called <code>@JSClass</code> to ask CDB to generate the ExtJS model.</p>
 </div>
 <div id="LISTING_1" class="listingblock">
 <div class="title">Person data transfer object</div>
 <div class="content">
-<pre class="highlight nowrap"><code class="java language-java">package dto;
+<pre class="highlight nowrap"><code class="language-java" data-lang="java">package dto;
 
 import com.farata.dto2extjs.annotations.JSClass;
 import com.farata.dto2extjs.annotations.JSGeneratedId;
@@ -206,7 +192,7 @@ public class Person {
 </div>
 </div>
 <div class="paragraph">
-<p>Now I need to annotate the <code>id</code> field with the CDB annotation <code>@JSGeneratedId</code>. With this annotation I&#8217;ll instruct CDB to threat this field as auto generated id. Let&#8217;s examine the directory of ExtJS MVC application and lets take a look inside the model folder. Inside the model folder (the JavaScript section) we have the folder dto which corresponds to the Java <code>dto</code> package where the class <code>Person.java</code> resides.</p>
+<p>Now I need to annotate the <code>id</code> field with the CDB annotation <code>@JSGeneratedId</code>. With this annotation I&#8217;ll instruct CDB to threat this field as auto generated id. Let&#8217;s examine the directory of ExtJS MVC application and lets take a look inside the model folder. Inside the model folder (the JavaScript section) we have the folder dto which corresponds to the Java dto package where the class Person.java resides.</p>
 </div>
 <div id="FIG-5" class="imageblock">
 <div class="content">
@@ -215,7 +201,7 @@ public class Person {
 <div class="title">Figure 5. Generated from Java class ExtJS model</div>
 </div>
 <div class="paragraph">
-<p>As you can see Clear Data Builder generated two files as recommended by the <a href="http://martinfowler.com/dslCatalog/generationGap.html">Generation Gap pattern</a>, which is about keeping the generated and handwritten parts separate by putting them in different classes linked by inheritance. Let&#8217;s open the person model. In our case the <code>Person.js</code> is extended from the generated <code>_Person.js</code>. Should we need to customize this class, we&#8217;ll do it inside the <code>Person.js</code>, but this underscore-prefixed file will be regenerated each and every time when we change something in our model. CDB follows this pattern for all generated artifacts - Java services, ExtJS models and stores. This model contains all the fields from our Person DTO.</p>
+<p>As you can see Clear Data Builder generated two files as recommended by the <a href="http://martinfowler.com/dslCatalog/generationGap.html">Generation Gap pattern</a>, which is about keeping the generated and handwritten parts separate by putting them in different classes linked by inheritance. Let&#8217;s open the person model. In our case the Person.js is extended from the generated _Person.js. Should we need to customize this class, we&#8217;ll do it inside the Person.js, but this underscore-prefixed file will be regenerated each and every time when we change something in our model. CDB follows this pattern for all generated artifacts - Java services, ExtJS models and stores. This model contains all the fields from our Person DTO.</p>
 </div>
 <div class="paragraph">
 <p>Now we need to create a Java service to populate the ExtJS store with the data. Let&#8217;s create an interface <code>PersonService</code> in the package <code>service</code>. This service will to return the list of persons. This interface contains one method -<code>List&lt;Person&gt; getPersons()</code>.</p>
@@ -229,7 +215,7 @@ public class Person {
 <div id="LISTING_2" class="listingblock">
 <div class="title">PersonService interface annotated with CDB annotations</div>
 <div class="content">
-<pre class="highlight nowrap"><code class="java language-java">@JSService
+<pre class="highlight nowrap"><code class="language-java" data-lang="java">@JSService
 public interface PersonService {
     @JSGenerateStore
     @JSFillMethod
@@ -239,7 +225,7 @@ public interface PersonService {
 </div>
 </div>
 <div class="paragraph">
-<p>When the code generation is complete, you&#8217;ll get the implementation for the service - <code>PersonServiceImpl</code>. The <code>store</code> folder inside the application folder (<code>WebContent\app</code>) has the store, which is bound to the <code>Person</code> model. And my person model was generated previously. In this case, Clear Data Builder generated store that binds to the remote service.</p>
+<p>When the code generation is complete, you&#8217;ll get the implementation for the service - <code>PersonServiceImpl</code>. The store folder inside the application folder (WebContent\app) has the store, which is bound to the Person model. And my person model was generated previously. In this case, Clear Data Builder generated store that binds to the remote service.</p>
 </div>
 <div id="FIG-6" class="imageblock">
 <div class="content">
@@ -251,7 +237,7 @@ public interface PersonService {
 <p>All this intermediate translation from the JavaScript to Java and from Java to JavaScript done by DirectJNgine, which is the server side implementation of the Ext Direct Protocol. You can read about this protocol in <a href="http://www.sencha.com/products/extjs/extdirect">Ext JS documentation</a>.</p>
 </div>
 <div class="paragraph">
-<p>There is one more thing not to be missed - Clear Data Builder generated a UI for us!  Check out the <code>samples</code> directory shown on <a href="#FIG-7">Folder with generated samples</a>.</p>
+<p>There is one more thing not to be missed - Clear Data Builder generated a UI for us!  Check out the samples directory shown on <a href="#FIG-7">Folder with generated samples</a>.</p>
 </div>
 <div id="FIG-7" class="imageblock">
 <div class="content">
@@ -260,11 +246,11 @@ public interface PersonService {
 <div class="title">Figure 7. Folder with generated samples</div>
 </div>
 <div class="paragraph">
-<p>You can see the <code>SampleController</code> and <code>SampleGrid</code> panel inside the samples folder. CDB also generates the JavaScript application entry point - <code>sampleApp.js</code>. To test this application just copy the file  <code>SampleController.js</code> into the <code>controller</code> folder, <code>SampleGrid.js</code> panel into the <code>view</code> folder, and the sample application in the root of our <code>WebContent</code> folder. We need to change the application entry point with sampleApp in <code>index.html</code>.</p>
+<p>You can see the SampleController and SampleGrid panel inside the samples folder. CDB also generates the JavaScript application entry point - sampleApp.js. To test this application just copy the file  SampleController.js into the controller folder, SampleGrid.js panel into the view folder, and the sample application in the root of our WebContent folder. We need to change the application entry point with sampleApp in index.html.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="html language-html">&lt;script type="text/javascript" src="sampleApp.js"&gt;&lt;/script&gt;</code></pre>
+<pre class="highlight nowrap"><code class="language-html" data-lang="html">&lt;script type="text/javascript" src="sampleApp.js"&gt;&lt;/script&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -282,7 +268,7 @@ public interface PersonService {
 <div id="LISTING_3" class="listingblock">
 <div class="title">Implementation of PersonService interface</div>
 <div class="content">
-<pre class="highlight nowrap"><code class="java language-java">package service;
+<pre class="highlight nowrap"><code class="language-java" data-lang="java">package service;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -339,30 +325,30 @@ public class PersonServiceImpl extends _PersonServiceImpl { <i class="conum" dat
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>For this sample application we can use <code>java.util.ArrayList</code> class as in-memory server side storage of the <code>Person</code> objects. In real world applications you&#8217;d use a database or other persistent storage.</td>
+<td>For this sample application we can use java.util.ArrayList class as in-memory server side storage of the <code>Person</code> objects. In real world applications you&#8217;d use a database or other persistent storage.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td><code>fillmethod</code>+<code>doCreate()</code> is our create method (the C in CRUD).</td>
+<td>fillmethod+<code>doCreate()</code> is our create method (the C in CRUD).</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td><code>fillmethod</code>+<code>doUpdate</code> is our update method (the U in CRUD).</td>
+<td>fillmethod+<code>doUpdate</code> is our update method (the U in CRUD).</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="6"></i><b>6</b></td>
-<td><code>fillmethod</code>+<code>doDelete</code> is our delete method (the D in CRUD).</td>
+<td>fillmethod+<code>doDelete</code> is our delete method (the D in CRUD).</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Click on the <code>Load</code> menu and you&#8217;ll get 4 persons from our server.</p>
+<p>Click on the Load menu and you&#8217;ll get 4 persons from our server.</p>
 </div>
 <div class="paragraph">
 <p>To demonstrate the rest of the CRUD methods we&#8217;ll ask the user to insert one new row, modify three existing ones and remove two rows using the generated Web client. The <code>Clear.data.DirectStore</code> object will automatically create a collection of six `ChangeObject`s - one to represent a new row, three to represent the modified ones, and two for the removed rows.</p>
 </div>
 <div class="paragraph">
-<p>When the user clicks on the Sync menu the changes will be sent to the corresponding <code>do...</code> remote method. When you <code>sync()</code> a standard <code>Ext.data.DirectStore</code> ExtJS is POST-ing new, modified and deleted items to the server. When the request is complete the server&#8217;s reply data is applied to the store, expecting that some items can be modified by the server. In case of <code>Clear.data.DirectStore</code> instead of passing around items, we pass the delta, wrapped in the <code>ChangeObject</code>.</p>
+<p>When the user clicks on the Sync menu the changes will be sent to the corresponding <code>do&#8230;&#8203;</code> remote method. When you <code>sync()</code> a standard <code>Ext.data.DirectStore</code> ExtJS is POST-ing new, modified and deleted items to the server. When the request is complete the server&#8217;s reply data is applied to the store, expecting that some items can be modified by the server. In case of <code>Clear.data.DirectStore</code> instead of passing around items, we pass the delta, wrapped in the <code>ChangeObject</code>.</p>
 </div>
 <div class="paragraph">
 <p>Each instance of the <code>ChangeOject</code> contains the following:</p>
@@ -388,7 +374,7 @@ public class PersonServiceImpl extends _PersonServiceImpl { <i class="conum" dat
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="java language-java"> Person dto = (Person) deserializeObject(
+<pre class="highlight nowrap"><code class="language-java" data-lang="java"> Person dto = (Person) deserializeObject(
                 (Map&lt;String, String&gt;) changeObject.getNewVersion(),Person.class);</code></pre>
 </div>
 </div>
@@ -429,7 +415,7 @@ public class PersonServiceImpl extends _PersonServiceImpl { <i class="conum" dat
 <div id="LISTING_4" class="listingblock">
 <div class="title">Refactored implementation of PersonService Interface</div>
 <div class="content">
-<pre class="highlight nowrap"><code class="java language-java">public class PersonServiceImpl extends _PersonServiceImpl {
+<pre class="highlight nowrap"><code class="language-java" data-lang="java">public class PersonServiceImpl extends _PersonServiceImpl {
   @Override
     public List&lt;Person&gt; getPersons() {
         List&lt;Person&gt; result = new ArrayList&lt;&gt;();
@@ -442,12 +428,12 @@ public class PersonServiceImpl extends _PersonServiceImpl { <i class="conum" dat
 </div>
 </div>
 <div class="paragraph">
-<p>The Google Chrome Console shows that <code>PersonStore</code> was populated with one thousand records. Let&#8217;s add the pagination component using the Ext <code>toolbarpaging</code> component. Let&#8217;s add it to the file <code>sampleApp.js</code> <a href="#LISTING_5">Sample Application Entry</a>.</p>
+<p>The Google Chrome Console shows that <code>PersonStore</code> was populated with one thousand records. Let&#8217;s add the pagination component using the Ext <code>toolbarpaging</code> component. Let&#8217;s add it to the file sampleApp.js <a href="#LISTING_5">Sample Application Entry</a>.</p>
 </div>
 <div id="LISTING_5" class="listingblock">
 <div class="title">Sample Application Entry</div>
 <div class="content">
-<pre class="highlight nowrap"><code class="javascript language-javascript">Ext.Loader.setConfig({
+<pre class="highlight nowrap"><code class="language-javascript" data-lang="javascript">Ext.Loader.setConfig({
 	disableCaching : false,
 	enabled : true,
 	paths : {
@@ -507,11 +493,11 @@ Ext.application({
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Let&#8217;s manually instantiate this store - create a separate variable <code>myStore</code> for this store and with empty <code>config</code> object.</td>
+<td>Let&#8217;s manually instantiate this store - create a separate variable <code>myStore</code> for this store and with empty config object.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Adding the <code>xtype</code> <code>pagingtoolbar</code> to this component docked items property - I&#8217;d like to display the information and dock this element at the top.</td>
+<td>Adding the xtype <code>pagingtoolbar</code> to this component docked items property - I&#8217;d like to display the information and dock this element at the top.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
@@ -521,12 +507,12 @@ Ext.application({
 </div>
 <div class="paragraph">
 <p>Now we need to fix automatically generated controller to control loading of data on
-click of <code>Load</code> button <a href="#LISTING_6">Controller for sample application</a>.</p>
+click of Load button <a href="#LISTING_6">Controller for sample application</a>.</p>
 </div>
 <div id="LISTING_6" class="listingblock">
 <div class="title">Controller for sample application</div>
 <div class="content">
-<pre class="highlight nowrap"><code class="javascript language-javascript">Ext.define('episode_3_pagination.controller.SampleController', {
+<pre class="highlight nowrap"><code class="language-javascript" data-lang="javascript">Ext.define('episode_3_pagination.controller.SampleController', {
 	extend: 'Ext.app.Controller',
 	stores: ['episode_3_pagination.store.dto.PersonStore'],
 	refs: [{								<i class="conum" data-value="1"></i><b>(1)</b>
@@ -572,12 +558,12 @@ click of <code>Load</code> button <a href="#LISTING_6">Controller for sample app
 <div class="title">Figure 9. Request payload details</div>
 </div>
 <div class="paragraph">
-<p>Default Ext Direct request doesn&#8217;t carry any information about page size. Clear JS, the client side extension of the ExtJS framework, adds some extra functionality to <code>Ext.data.DirectStore</code> component to pass the page <code>start</code> and <code>limit</code> values to the server side. At this point, the <code>directOptions</code> request property shown in <a href="#FIG-9">Request payload details</a> can be extracted on the server side to get the information about the page&#8217;s boundaries. Let&#8217;s return to the code of <code>PersonServiceImpl</code> and add some extra code there. Right now the pagination doesn&#8217;t work. The server sends the entire thousand records, because the server is not aware that the data has to be paginated. We&#8217;ll fix it in <a href="#LISTING_7">Implementation of PersonService with pagination</a>.</p>
+<p>Default Ext Direct request doesn&#8217;t carry any information about page size. Clear JS, the client side extension of the ExtJS framework, adds some extra functionality to Ext.data.DirectStore component to pass the page start and limit values to the server side. At this point, the <code>directOptions</code> request property shown in <a href="#FIG-9">Request payload details</a> can be extracted on the server side to get the information about the page&#8217;s boundaries. Let&#8217;s return to the code of <code>PersonServiceImpl</code> and add some extra code there. Right now the pagination doesn&#8217;t work. The server sends the entire thousand records, because the server is not aware that the data has to be paginated. We&#8217;ll fix it in <a href="#LISTING_7">Implementation of PersonService with pagination</a>.</p>
 </div>
 <div id="LISTING_7" class="listingblock">
 <div class="title">Implementation of PersonService with pagination</div>
 <div class="content">
-<pre class="highlight nowrap"><code class="java language-java">package service;
+<pre class="highlight nowrap"><code class="language-java" data-lang="java">package service;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -614,7 +600,7 @@ public class PersonServiceImpl extends _PersonServiceImpl {
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>We&#8217;re interested in <code>start</code> and in <code>limit</code> options (see <a href="#FIG-9">Request payload details</a>).</td>
+<td>We&#8217;re interested in start and in limit options (see <a href="#FIG-9">Request payload details</a>).</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
@@ -622,16 +608,16 @@ public class PersonServiceImpl extends _PersonServiceImpl {
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Notify the component about the total number of elements on the server side by using <code>DirectOptions.setOption()</code> method with <code>total</code> option.</td>
+<td>Notify the component about the total number of elements on the server side by using <code>DirectOptions.setOption()</code> method with total option.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>Before returning the result, create a subset, an actual page of data. In this case I need to use method of  <code>java.util.List.sublist()</code> which produces the view of the portion of this list between indexes specified by the <code>start</code> and the <code>limit</code> parameters.</td>
+<td>Before returning the result, create a subset, an actual page of data. In this case I need to use method of  java.util.List.sublist() which produces the view of the portion of this list between indexes specified by the <code>start</code> and the <code>limit</code> parameters.</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>As you can see from the Network tab in <a href="#FIG-8">Scaffolded CRUD application template</a>, we limited the data load to 25 elements per page. Clicking on <code>next</code> or <code>previous</code> buttons will get you only a page worth of data. The Google Chrome Developers Tools Network tab shows that that we are sending <code>start</code> and <code>limit</code> every time and our response contains object with 25 elements.</p>
+<p>As you can see from the Network tab in <a href="#FIG-8">Scaffolded CRUD application template</a>, we limited the data load to 25 elements per page. Clicking on next or previous buttons will get you only a page worth of data. The Google Chrome Developers Tools Network tab shows that that we are sending start and limit every time and our response contains object with 25 elements.</p>
 </div>
 <div class="paragraph">
 <p>If you&#8217;d like to repeat all of the above steps on you own, watch <a href="http://faratasystems.com/training-at-farata-youtube-chanel/">the screencasts</a> where I perform all the actions described in this article.</p>
@@ -700,7 +686,7 @@ public class PersonServiceImpl extends _PersonServiceImpl {
             })();
             </script>
             <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=nextjavaheadbraincom">comments powered by Disqus.</a></noscript>
-          </div></article></div></div></body></html><div id="copyright"><div class="row full-width"><div class="large-4 columns"><p>© Viktor Gamov 2013—2007</p></div><div class="large-8 columns"><ul class="inline-list right"><li><a href="https://github.com/gAmUssA">Github</a></li><li><a href="http://twitter.com/gAmUssA">Twitter</a></li><li><a href="#"></a></li></ul></div></div></div><script>document.write('<script src=' + ('__proto__' in {} ? '/javascripts/vendor/zepto' : '/javascripts/vendor/jquery') + '.js><\/script>')</script><script src="/javascripts/foundation/foundation.js"><script src="/javascripts/foundation/foundation.topbar.js"></script></script><script>$(document).foundation();</script><script src="/javascripts/vendor/highlight.min.js"></script><script>$(hljs.initHighlighting());</script><script type="text/javascript">
+          </div></article></div></div></body></html><div id="copyright"><div class="row full-width"><div class="large-4 columns"><p>© Viktor Gamov 2014—2007</p></div><div class="large-8 columns"><ul class="inline-list right"><li><a href="https://github.com/gAmUssA">Github</a></li><li><a href="http://twitter.com/gAmUssA">Twitter</a></li><li><a href="#"></a></li></ul></div></div></div><script>document.write('<script src=' + ('__proto__' in {} ? '/javascripts/vendor/zepto' : '/javascripts/vendor/jquery') + '.js><\/script>')</script><script src="/javascripts/foundation/foundation.js"><script src="/javascripts/foundation/foundation.topbar.js"></script></script><script>$(document).foundation();</script><script src="/javascripts/vendor/highlight.min.js"></script><script>$(hljs.initHighlighting());</script><script type="text/javascript">
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount','UA-40354726-1']);
 _gaq.push(['_trackPageview']);
