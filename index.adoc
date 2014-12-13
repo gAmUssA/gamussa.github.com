@@ -4,7 +4,7 @@
 [.panel]
 .*What is this all about?*
 
-Thanks for visiting. My name Viktor Gamov. I'm a senior software engineer at http://faratasystems.com/[Farata Systems]. I consult financial institutions and startups in design and implementation of Web Applications with HTML5 and Java. I'm a co-organizer of the http://www.meetup.com/NJFlex/[Princeton JUG and NJ Flex meetup] and co-author of OReilly's book <<enterprisewebbook,«Enterprise Web Development. Building HTML5 Applications: From Desktop to Mobile»>>.
+Thanks for visiting. My name Viktor Gamov. I'm a Solution Architect at http://hazelcast.com[Hazelcast]. I'm a co-organizer of the http://www.meetup.com/NJFlex/[Princeton JUG and NJ Flex meetup] and co-author of OReilly's book <<enterprisewebbook,«Enterprise Web Development. Building HTML5 Applications: From Desktop to Mobile»>>.
 
 [[enterprisewebbook]]
 == Enterprise Web Development
@@ -12,7 +12,7 @@ Thanks for visiting. My name Viktor Gamov. I'm a senior software engineer at htt
 === Building HTML5 applications: From Desktop To Mobile
 
 [.th.large-4.columns]
-image::cover_2013_eap.jpg[]
+image::cover.png[Cover]
 
 [role="large-8 columns"]
 _How do you make your enterprise applications or sites available on an assortment of mobile devices as well as the desktop? This hands-on guide shows you how to build HTML5 applications that will satisfy both requirements. You’ll start by learning how to use HTML, JavaScript, CSS, and related technologies to build a sample website for the desktop, and then you’ll discover how to adapt the code for the mobile web._
@@ -30,8 +30,8 @@ In the process, you’ll explore options for building a single codebase for both
 
 ++++
 <br />
-<a class="small button success radius" target="_blank" href="http://enterprisewebbook.com">Read for Free Online!</a>
-<a class="small button" href="http://shop.oreilly.com/product/0636920028314.do?&code=WKERRLS">Buy with discount at O'Reilly</a>
+<a class="small button success radius" target="_blank" href="http://enterprisewebbook.com">Read Free chapters Online!</a>
+<a class="small button" href="http://shop.oreilly.com/product/0636920028314.do?&code=WKERRLS">Buy at O'Reilly</a>
 ++++
 
 [role="large-12 columns"]
