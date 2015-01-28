@@ -7,7 +7,7 @@ Viktor Gamov
 :toc:
 ifndef::awestruct[]
 :awestruct-layout: post
-:awestruct-tags: []
+:awestruct-tags: [hazelcast, imdg]
 :idprefix:
 :idseparator: -
 endif::awestruct[]
@@ -19,7 +19,7 @@ You're an architect or a developer with years of experience creating amazing app
 
 Trust me, it's not as bad as it appears and setting up in-memory data is NOT as hard as you think. This hands-on workshop will cover the things you need to know to be successful on your first low latency in-memory based project.
 
-== Initial Agenda For A Workshop
+== Brief Agenda Of A Workshop
 
 Here is a brief agenda of this 1/2 Day Session:
 

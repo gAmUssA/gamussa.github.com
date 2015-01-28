@@ -7,7 +7,7 @@ Viktor Gamov
 :toc:
 ifndef::awestruct[]
 :awestruct-layout: post
-:awestruct-tags: [hazelcast, job]
+:awestruct-tags: [hazelcast, job, farata]
 :idprefix:
 :idseparator: -
 endif::awestruct[]
