@@ -17,6 +17,7 @@ html.no-js lang="en"
     script src='/javascripts/vendor/custom.modernizr.js'
     link rel="shortcut icon" href="/images/favicon.ico"
     link rel='author' href='/humans.txt'
+    link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" /
 
   body.antialiased
     nav.top-bar
@@ -28,13 +29,22 @@ html.no-js lang="en"
         ul.right
           li.divider
           li
-            a href='/posts.html' Blog
+            a href='/posts.html'
+              span.icon
+                i.fa.fa-bars
+              | &nbspBlog
           li.divider
           li
-            a href='http://github.com/gamussa' Github
+            a href='http://github.com/gamussa'
+              | Github&nbsp
+              span.icon
+                i.fa.fa-github
           li.divider
           li
-            a href='http://twitter.com/gamussa' Twitter
+            a href='http://twitter.com/gamussa'
+              | Twitter&nbsp
+              span.icon
+                i.fa.fa-twitter
           li.divider
           li.has-form
             a.small.button href='http://enterprisewebbook.com' Enterprise Web Development
