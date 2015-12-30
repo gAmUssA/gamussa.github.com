@@ -6,7 +6,7 @@ GEM
       open4
     Platform (0.4.0)
     RedCloth (4.2.9)
-    asciidoctor (1.5.2)
+    asciidoctor (1.5.3)
     awestruct (0.5.5)
       asciidoctor
       bootstrap-sass (~> 3.1.1.0)
@@ -125,7 +125,7 @@ PLATFORMS
 
 DEPENDENCIES
   RedCloth
-  asciidoctor (= 1.5.2)
+  asciidoctor (= 1.5.3)
   awestruct (= 0.5.5)
   coffee-script
   erubis (~> 2.7.0)
