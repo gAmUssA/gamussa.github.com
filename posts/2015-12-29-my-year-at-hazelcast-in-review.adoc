@@ -1,6 +1,7 @@
 = My Year At Hazelcast In Review
 Viktor Gamov
 2015-12-29 17:04
+:revdate: 2015-12-31 17:54:56 -0600
 :imagesdir: ../images
 :icons: font
 :iconfont-cdn: //maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css
@@ -20,6 +21,11 @@ While I am already looking forward to 2016, here is a quick recap of my 2015 wit
 toc::[]
 
 image::laptop.jpg[align="center"]
+
+== Revisions history
+
+* *v1.1* Added Atlanta JUG video link
+* *v1.0* Initial blog post
 
 == Into
 
@@ -70,7 +76,12 @@ Here is a sampling of some of the places and topics where I presented this year.
 |Atlanta JUG            |Atlanta, GA        |Distributed Caching with JCache and Beyond         |2015-12-15
 |===  
 
-Videos from QCon 2015 talk http://www.infoq.com/presentations/in-memory-data[is available].
+Video from QCon 2015 talk http://www.infoq.com/presentations/in-memory-data[is available].
+
+Video from JCache talk given at Atlanta JUG 12/15/2015
+
+[role="text-center"]
+video::150375058[vimeo, width=640, height=480]
 
 SpringOne 2GX 2015 talks were recorded and will be available shortly. 
 Keep an eye on this http://www.infoq.com/springone-2gx-2015/[page].
