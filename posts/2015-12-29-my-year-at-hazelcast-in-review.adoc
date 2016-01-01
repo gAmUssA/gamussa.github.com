@@ -1,7 +1,6 @@
 = My Year At Hazelcast In Review
 Viktor Gamov
 2015-12-29 17:04
-:revdate: 2015-12-31 17:54:56 -0600
 :imagesdir: ../images
 :icons: font
 :iconfont-cdn: //maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css
@@ -24,8 +23,8 @@ image::laptop.jpg[align="center"]
 
 == Revisions history
 
-* *v1.1* Added Atlanta JUG video link
-* *v1.0* Initial blog post
+* *v1.1* 12/31/2015 - Added Atlanta JUG video link
+* *v1.0* 12/29/2015 - Initial blog post
 
 == Into
 
