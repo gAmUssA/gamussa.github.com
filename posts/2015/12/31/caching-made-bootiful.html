@@ -1,0 +1,333 @@
+<!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><html class="no-js" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Caching Made Bootiful — Hazelcast Way | Java.Head.Brain</title><meta name="author" content="Viktor Gamov"><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@asciidoctor"><meta name="twitter:url" content="http://next.javaheadbrain.com/posts/2015/12/31/caching-made-bootiful.html"><meta name="twitter:title" content="Caching Made Bootiful — Hazelcast Way"><meta name="twitter:description" content="Table of content
+Intro
+Slow service
+Enable Caching
+It&#8217;s a wrap!
+TL;DR
+Source code from this blog is posted on the Hazelcast Code Examples repository on Github.
+The folks at OpenCredo recently..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html"><span class="icon"><i class="fa fa-bars"></i></span>&nbspBlog</a></li><li class="divider"></li><li><a href="http://github.com/gamussa">Github&nbsp<span class="icon"><i class="fa fa-github"></i></span></a></li><li class="divider"></li><li><a href="http://twitter.com/gamussa">Twitter&nbsp<span class="icon"><i class="fa fa-twitter"></i></span></a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://next.javaheadbrain.com">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h2 class="header"><a href="/posts/2015/12/31/caching-made-bootiful.html">Caching Made Bootiful — Hazelcast Way</a></h2><h5 class="subheader">Written by&nbsp <a href="#">Viktor Gamov</a>&nbsp- <time class="pubdate" datetime="2015-12-31T22:18:23-06:00">Thursday, December 31, 2015</time></h5><div class="row"><div class="large-12 columns text-left"><div id="toc" class="toc">
+<div id="toctitle">Table of content</div>
+<ul class="sectlevel1">
+<li><a href="#intro">Intro</a></li>
+<li><a href="#slow-service">Slow service</a></li>
+<li><a href="#enable-caching">Enable Caching</a></li>
+<li><a href="#it-s-a-wrap">It&#8217;s a wrap!</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="/images/hazelcast_boot_1.png" alt="hazelcast boot 1" width="40%">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">TL;DR</div>
+Source code from this blog is posted on <a href="https://github.com/hazelcast/hazelcast-code-samples/tree/master/hazelcast-integration/springboot-caching">the Hazelcast Code Examples repository on Github</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph lead">
+<p>The folks at OpenCredo recently published a blog post entitled <a href="https://www.opencredo.com/2015/12/01/spring-booting-hazelcast/">«Running and Testing Hazelcast in a Spring Boot Application</a>».
+They introduce some of the basic features of Hazelcast including: Spring dependency injection, how to embed it in a Spring Boot application and write simple integration tests.
+It is a really good first reading if your using Spring.
+Make sure you check it out.</p>
+</div>
+<div class="paragraph">
+<p>In this post, I will demonstrate how to add caching capabilities using Hazelcast in your Spring Boot application.
+You will see how the Spring Framework caching abstraction plays nicely with Hazelcast without invoking an explicit Hazelcast API.</p>
+</div>
+<!-- toc disabled -->
+<div class="paragraph">
+<p>Let&#8217;s <a href="#intro">get going</a>!</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="intro"><a class="anchor" href="#intro"></a>Intro</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As many of you know, a <strong>cache</strong> stores the data so that future requests for that data is faster.</p>
+</div>
+<div class="paragraph">
+<p>If the requested data is in the cache (<strong>cache hit</strong>), this request can be served by simply reading the cache, which is faster because it bypasses slow data retrieval or time-consuming computations.
+If the data is not in the cache (<strong>cache miss</strong>), the data has to be recomputed or fetched from its original storage location, which is slower.</p>
+</div>
+<div class="paragraph">
+<p>In this use-case, I will demonstrate techniques you can speed up various parts of your applications that suffer from slow performance.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="slow-service"><a class="anchor" href="#slow-service"></a>Slow service</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>My service returns city names (method <code>getCity()</code>).
+I know that retrieving a city might take some time, so I will use <a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/html/cache.html">Spring Caching</a> annotations to delegate cache interactions with Spring.</p>
+</div>
+<div class="paragraph">
+<p>My service is annotated with Spring Annotations</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-java" data-lang="java">import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+
+public interface IDummyBean {
+
+    @Cacheable("city") <i class="conum" data-value="1"></i><b>(1)</b>
+    String getCity();
+
+    @CachePut(value = "city", key = "#city + 1") <i class="conum" data-value="2"></i><b>(2)</b>
+    String setCity(String city);
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><code>@Cachable</code> annotation triggers population of a cache</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td><code>@CachePut</code> annotation updates the cache without interfering with the method execution</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Here is an implementation of this service.
+It returns the city of Ankara (one of the Hazelcast offices locations).
+Potentially, I could have used Spring Data or another framework to provide an implementation of a service over a range of SQL or NoSQL stores.
+For simplicity in this example, I will use a naive implementation that simulates typical latency (like network service, slow delay, poorly tuned database, etc).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-java" data-lang="java">public class DummyBean implements IDummyBean {
+    @Override
+    public String getCity() {
+        try {
+            TimeUnit.SECONDS.sleep(5); <i class="conum" data-value="1"></i><b>(1)</b>
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return "Ankara";
+    }
+    @Override public String setCity(String city) {
+        return city;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>REMEMBER: This is an emulation of a slow method.  Don&#8217;t do it in real life!</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>I simply annotate a slow method with the <code>@Cacheble</code> annotation and let Spring Boot do the heavy lifting. This is all I need to do with my application logic.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="enable-caching"><a class="anchor" href="#enable-caching"></a>Enable Caching</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Hazelcast is often an embedded component of an application.
+Ultimately, the application instance becomes a member of the Hazelcast cluster.
+Another option is to separate the actual storage - Hazelcast Cluster - and the application logic by applying a <em>client / server</em> (or in our case <em>client / cluster</em>) setup.</p>
+</div>
+<div class="paragraph">
+<p>For my example, I have two Spring Boot applications.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A <code>BootifulMember</code> is a Spring Boot application with a fully auto-configured embedded Hazelcast member.
+During application startup, Spring Boot scans the classpath for <code>hazelcast.xml</code> and automatically instantiates Spring&#8217;s
+<code>CacheManager</code> bean backed by <code>HazelcastInstance</code>.</p>
+<div class="listingblock">
+<div class="title">BootifulMember class</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-java" data-lang="java">@SpringBootApplication
+@EnableCaching  <i class="conum" data-value="1"></i><b>(1)</b>
+public class BootifulMember {
+    public static void main(String[] args) {
+        new SpringApplicationBuilder().profiles("member").sources(BootifulMember.class).run(args);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>An <code>@EnableCaching</code> annotation activates Spring Boot «magic» for <code>Hazelcastinstance</code> instantiation.</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p><code>BootifulClient</code> is a Spring Boot web application. It also uses Spring Boot auto configuration for Hazelcast.
+But in this case, it scans Spring Configuration for a <code>CacheManager</code> bean backed by <code>HazelcastClient.newHazelcastClientinstance()</code> and picks <code>hazelcast-client.xml</code> from the classpath.</p>
+<div class="listingblock">
+<div class="title">Bootiful client application</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-java" data-lang="java">@SpringBootApplication
+@EnableCaching
+public class BootifulClient {
+    public static void main(String[] args) {
+        new SpringApplicationBuilder().sources(BootifulClient.class).profiles("client").run(args);
+    }
+
+    @Bean
+    public IDummyBean dummyBean() {
+        return new DummyBean();     <i class="conum" data-value="1"></i><b>(1)</b>
+    }
+
+    @Bean
+    @Profile("client")
+    HazelcastInstance hazelcastInstance() {
+        return HazelcastClient.newHazelcastClient();    <i class="conum" data-value="2"></i><b>(2)</b>
+    }
+
+    @Bean
+    CacheManager cacheManager() {
+        return new HazelcastCacheManager(hazelcastInstance()); <i class="conum" data-value="3"></i><b>(3)</b>
+    }
+
+    @RestController
+    static class CityController {
+
+        private final Logger logger = LoggerFactory.getLogger(CityController.class);
+
+        @Autowired
+        IDummyBean dummy;   <i class="conum" data-value="4"></i><b>(4)</b>
+
+        @RequestMapping("/city")
+        public String getCity() { <i class="conum" data-value="5"></i><b>(5)</b>
+            String logFormat = "%s call took %d millis with result: %s";
+            long start1 = nanoTime();
+            String city = dummy.getCity();
+            long end1 = nanoTime();
+            logger.info(format(logFormat, "Rest", TimeUnit.NANOSECONDS.toMillis(end1 - start1), city));
+            return city;
+        }
+
+        @RequestMapping(value = "city/{city}", method = RequestMethod.GET) <i class="conum" data-value="6"></i><b>(6)</b>
+        public String setCity(@PathVariable String city) {
+            return dummy.setCity(city);
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>I&#8217;m providing the instance of <code>IDummyBean</code> in the application context.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>I&#8217;m providing <code>HazelcastInstance</code> based on the client configuration from <code>hazelcast-client.xml</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Spring Framework generated proxies for annotated methods will interact with caches using a <code>CacheManager</code> class backed by the Hazelcast client instance.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Property injection. Don&#8217;t do this in your real life applications.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>I&#8217;m measuring the time inside a Rest Controller method and reporting it to the console.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>By hitting url <code><a href="http://localhost:8081/city/nyc" class="bare">http://localhost:8081/city/nyc</a></code>, for example, we&#8217;re writing value <code>nyc</code> to the <code>city</code> cache.</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>By calling the application on <code><a href="http://localhost:8081/city" class="bare">http://localhost:8081/city</a></code> multiple times, you can take a look at logs in the console.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">2015-12-31 00:29:16.372  INFO --- c.h.s.c.BootifulClient$CityController: Rest call took 5075 millis with result: Ankara
+2015-12-31 00:29:17.986  INFO --- c.h.s.c.BootifulClient$CityController: Rest call took 3 millis with result: Ankara
+2015-12-31 00:29:19.008  INFO --- c.h.s.c.BootifulClient$CityController: Rest call took 1 millis with result: Ankara
+2015-12-31 00:29:19.936  INFO --- c.h.s.c.BootifulClient$CityController: Rest call took 1 millis with result: Ankara</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You notice that the first call took ~5 sec to return the response.
+But in all subsequent calls to this URL, the return the response almost immediately.
+We improved our application speed 5000 times!!!</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This is a tip for production deployment of your «bootiful» application. By running <code>mvn package spring-boot:repackage</code>, the Spring Boot Maven plugin will generate an executable jar <code>java -jar..</code> with <code>BootifulMember</code> as the main class.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="it-s-a-wrap"><a class="anchor" href="#it-s-a-wrap"></a>It&#8217;s a wrap!</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Congrats!
+Now you know how you can benefit from Hazelcast caching auto configuration in Spring Boot applications.
+In the next blog post, I will review techniques using JCache — a vendor independent caching API for Java — to enable caching in your Spring Boot application.
+Meanwhile, if you have any questions, feel free to post them in the comments section below!</p>
+</div>
+<div class="paragraph">
+<p>Happy caching and Happy New Year!</p>
+</div>
+</div>
+</div></div></div><footer class="entry-footer"><div class="tags"><span class="title">tags: </span><a href="/posts/tags/hazelcast">hazelcast, </a><a href="/posts/tags/spring boot">spring boot </a></div></footer><div id="comments">
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+            var disqus_shortname = 'nextjavaheadbraincom';
+            var disqus_url = "http://next.javaheadbrain.com/posts/2015/12/31/caching-made-bootiful.html";
+            var disqus_developer = null;
+            var disqus_identifier = null;
+            (function() {
+              var dsq = document.createElement("script"); dsq.type = "text/javascript"; dsq.async = true;
+              dsq.src = "http://nextjavaheadbraincom.disqus.com/embed.js";
+              (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(dsq);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=nextjavaheadbraincom">comments powered by Disqus.</a></noscript>
+          </div></article></div></div></body></html><div id="copyright"><div class="row full-width"><div class="large-4 columns"><p>© Viktor Gamov 2015—2007</p></div><div class="large-8 columns"><ul class="inline-list right"><li><a href="https://github.com/gAmUssA"></a>Github&nbsp<span class="icon"><i class="fa fa-github"></i></span></li><li><a href="http://twitter.com/gAmUssA"></a>Twitter&nbsp<span class="icon"><i class="fa fa-twitter"></i></span></li><li><a href="#"></a></li></ul></div></div></div><script>document.write('<script src=' + ('__proto__' in {} ? '/javascripts/vendor/zepto' : '/javascripts/vendor/jquery') + '.js><\/script>')</script><script src="/javascripts/foundation/foundation.js"><script src="/javascripts/foundation/foundation.topbar.js"></script></script><script>$(document).foundation();</script><script src="/javascripts/vendor/highlight.min.js"></script><script>$(hljs.initHighlighting());</script><script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount','UA-40354726-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+ var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!--End Footer-->
