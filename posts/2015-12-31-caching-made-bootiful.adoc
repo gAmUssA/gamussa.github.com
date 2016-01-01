@@ -101,7 +101,9 @@ public class DummyBean implements IDummyBean {
     }
 }
 ----
-<1> REMEMBER: This is an emulation of a slow method.  Don't do it in real life!
+<1> Slow _O_o_ method!
+
+WARNING: This is an emulation of a slow method.  Don't do it in real life!
 
 I simply annotate a slow method with the `@Cacheble` annotation and let Spring Boot do the heavy lifting. This is all I need to do with my application logic. 
 
