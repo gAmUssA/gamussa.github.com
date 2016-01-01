@@ -1,0 +1,218 @@
+= Caching Made Bootiful — Hazelcast Way
+Viktor Gamov
+2015-12-31 22:05
+:imagesdir: ../images
+:revdate: 2015-12-31 22:18:23 -0600
+:linkattrs:
+:ast: &ast;
+:y: &#10003;
+:n: &#10008;
+:y: icon:check-sign[role="green"]
+:n: icon:check-minus[role="red"]
+:c: icon:file-text-alt[role="blue"]
+:toc: auto
+:toc-placement: auto
+:toc-position: right
+:toc-title: Table of content
+:toclevels: 3
+:sectanchors:
+:icons: font
+:iconfont-cdn: //maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css
+:keywords: hazelcast, open source, jug
+:source-highlighter: highlight.js
+:experimental:
+ifndef::awestruct[]
+:awestruct-layout: post
+:awestruct-tags: [hazelcast, spring boot]
+:idprefix:
+:idseparator: -
+endif::awestruct[]
+
+image::hazelcast_boot_1.png[width=40%, align="center"]
+
+.TL;DR
+NOTE: Source code from this blog is posted on https://github.com/hazelcast/hazelcast-code-samples/tree/master/hazelcast-integration/springboot-caching[the Hazelcast Code Examples repository on Github].
+
+[role="lead"]
+The folks at OpenCredo recently published a blog post entitled https://www.opencredo.com/2015/12/01/spring-booting-hazelcast/[«Running and Testing Hazelcast in a Spring Boot Application]». 
+They introduce some of the basic features of Hazelcast including: Spring dependency injection, how to embed it in a Spring Boot application and write simple integration tests. 
+It is a really good first reading if your using Spring. 
+Make sure you check it out.
+
+In this post, I will demonstrate how to add caching capabilities using Hazelcast in your Spring Boot application. 
+You will see how the Spring Framework caching abstraction plays nicely with Hazelcast without invoking an explicit Hazelcast API.
+
+toc::[]
+
+Let's <<intro, get going>>!
+
+[[intro]]
+== Intro
+
+As many of you know, a *cache* stores the data so that future requests for that data is faster. 
+
+If the requested data is in the cache (*cache hit*), this request can be served by simply reading the cache, which is faster because it bypasses slow data retrieval or time-consuming computations. 
+If the data is not in the cache (*cache miss*), the data has to be recomputed or fetched from its original storage location, which is slower.
+
+In this use-case, I will demonstrate techniques you can speed up various parts of your applications that suffer from slow performance.
+
+== Slow service
+
+My service returns city names (method `getCity()`). 
+I know that retrieving a city might take some time, so I will use http://docs.spring.io/spring/docs/current/spring-framework-reference/html/cache.html[Spring Caching] annotations to delegate cache interactions with Spring.
+
+My service is annotated with Spring Annotations
+[source,java]
+----
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+
+public interface IDummyBean {
+
+    @Cacheable("city") // <1>
+    String getCity();
+
+    @CachePut(value = "city", key = "#city + 1") <2>
+    String setCity(String city);
+}
+----
+<1> `@Cachable` annotation triggers population of a cache
+<2> `@CachePut` annotation updates the cache without interfering with the method execution
+
+Here is an implementation of this service. 
+It returns the city of Ankara (one of the Hazelcast offices locations).
+Potentially, I could have used Spring Data or another framework to provide an implementation of a service over a range of SQL or NoSQL stores. 
+For simplicity in this example, I will use a naive implementation that simulates typical latency (like network service, slow delay, poorly tuned database, etc).
+
+[source,java]
+----
+public class DummyBean implements IDummyBean {
+    @Override
+    public String getCity() {
+        try {
+            TimeUnit.SECONDS.sleep(5); // <1>
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return "Ankara";
+    }
+    @Override public String setCity(String city) {
+        return city;
+    }
+}
+----
+<1> REMEMBER: This is an emulation of a slow method.  Don't do it in real life!
+
+I simply annotate a slow method with the `@Cacheble` annotation and let Spring Boot do the heavy lifting. This is all I need to do with my application logic. 
+
+== Enable Caching
+
+Hazelcast is often an embedded component of an application. 
+Ultimately, the application instance becomes a member of the Hazelcast cluster.
+Another option is to separate the actual storage - Hazelcast Cluster - and the application logic by applying a _client / server_ (or in our case _client / cluster_) setup.
+
+For my example, I have two Spring Boot applications.
+
+- A `BootifulMember` is a Spring Boot application with a fully auto-configured embedded Hazelcast member.
+During application startup, Spring Boot scans the classpath for `hazelcast.xml` and automatically instantiates Spring's
+`CacheManager` bean backed by `HazelcastInstance`.
++
+
+.BootifulMember class
+[source, java]
+----
+@SpringBootApplication
+@EnableCaching  // <1>
+public class BootifulMember {
+    public static void main(String[] args) {
+        new SpringApplicationBuilder().profiles("member").sources(BootifulMember.class).run(args);
+    }
+}
+----
+<1> An `@EnableCaching` annotation activates Spring Boot «magic» for `Hazelcastinstance` instantiation.
+
+- `BootifulClient` is a Spring Boot web application. It also uses Spring Boot auto configuration for Hazelcast.
+But in this case, it scans Spring Configuration for a `CacheManager` bean backed by `HazelcastClient.newHazelcastClientinstance()` and picks `hazelcast-client.xml` from the classpath. 
++
+
+.Bootiful client application
+[source,java]
+----
+@SpringBootApplication
+@EnableCaching
+public class BootifulClient {
+    public static void main(String[] args) {
+        new SpringApplicationBuilder().sources(BootifulClient.class).profiles("client").run(args);
+    }
+
+    @Bean
+    public IDummyBean dummyBean() { 
+        return new DummyBean();     // <1>
+    }
+
+    @Bean
+    @Profile("client")
+    HazelcastInstance hazelcastInstance() {
+        return HazelcastClient.newHazelcastClient();    // <2>
+    }
+
+    @Bean
+    CacheManager cacheManager() {
+        return new HazelcastCacheManager(hazelcastInstance()); // <3>
+    }
+
+    @RestController
+    static class CityController {
+
+        private final Logger logger = LoggerFactory.getLogger(CityController.class);
+
+        @Autowired
+        IDummyBean dummy;   // <4>
+
+        @RequestMapping("/city")
+        public String getCity() { // <5>
+            String logFormat = "%s call took %d millis with result: %s";
+            long start1 = nanoTime();
+            String city = dummy.getCity();
+            long end1 = nanoTime();
+            logger.info(format(logFormat, "Rest", TimeUnit.NANOSECONDS.toMillis(end1 - start1), city));
+            return city;
+        }
+
+        @RequestMapping(value = "city/{city}", method = RequestMethod.GET) // <6>
+        public String setCity(@PathVariable String city) {
+            return dummy.setCity(city);
+        }
+    }
+}
+----
+<1> I'm providing the instance of `IDummyBean` in the application context.
+<2> I'm providing `HazelcastInstance` based on the client configuration from `hazelcast-client.xml`
+<3> Spring Framework generated proxies for annotated methods will interact with caches using a `CacheManager` class backed by the Hazelcast client instance. 
+<4> Property injection. Don't do this in your real life applications.
+<5> I'm measuring the time inside a Rest Controller method and reporting it to the console.
+<6> By hitting url `http://localhost:8081/city/nyc`, for example, we're writing value `nyc` to the `city` cache.
+
+By calling the application on `http://localhost:8081/city` multiple times, you can take a look at logs in the console.
+
+----
+2015-12-31 00:29:16.372  INFO --- c.h.s.c.BootifulClient$CityController: Rest call took 5075 millis with result: Ankara
+2015-12-31 00:29:17.986  INFO --- c.h.s.c.BootifulClient$CityController: Rest call took 3 millis with result: Ankara
+2015-12-31 00:29:19.008  INFO --- c.h.s.c.BootifulClient$CityController: Rest call took 1 millis with result: Ankara
+2015-12-31 00:29:19.936  INFO --- c.h.s.c.BootifulClient$CityController: Rest call took 1 millis with result: Ankara
+----
+
+You notice that the first call took ~5 sec to return the response. 
+But in all subsequent calls to this URL, the return the response almost immediately.
+We improved our application speed 5000 times!!!
+
+NOTE: This is a tip for production deployment of your «bootiful» application. By running `mvn package spring-boot:repackage`, the Spring Boot Maven plugin will generate an executable jar `java -jar..` with `BootifulMember` as the main class.
+
+== It's a wrap!
+
+Congrats! 
+Now you know how you can benefit from Hazelcast caching auto configuration in Spring Boot applications. 
+In the next blog post, I will review techniques using JCache — a vendor independent caching API for Java — to enable caching in your Spring Boot application.
+Meanwhile, if you have any questions, feel free to post them in the comments section below!
+
+Happy caching and Happy New Year!
