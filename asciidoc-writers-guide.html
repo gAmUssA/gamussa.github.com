@@ -1,4 +1,43 @@
-<!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><html class="no-js" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>AsciiDoc Writer&#8217;s Guide | Java.Head.Brain</title><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html"><span class="icon"><i class="fa fa-bars"></i></span>&nbspBlog</a></li><li class="divider"></li><li><a href="http://github.com/gamussa">Github&nbsp<span class="icon"><i class="fa fa-github"></i></span></a></li><li class="divider"></li><li><a href="http://twitter.com/gamussa">Twitter&nbsp<span class="icon"><i class="fa fa-twitter"></i></span></a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://next.javaheadbrain.com">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="preamble">
+<!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><html class="no-js" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>AsciiDoc Writer&#8217;s Guide | Java.Head.Brain</title><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html"><span class="icon"><i class="fa fa-bars"></i></span>&nbspBlog</a></li><li class="divider"></li><li><a href="http://github.com/gamussa">Github&nbsp<span class="icon"><i class="fa fa-github"></i></span></a></li><li class="divider"></li><li><a href="http://twitter.com/gamussa">Twitter&nbsp<span class="icon"><i class="fa fa-twitter"></i></span></a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://next.javaheadbrain.com">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#writing-in-asciidoc">Writing in AsciiDoc</a>
+<ul class="sectlevel2">
+<li><a href="#it-s-just-text-mate">``It&#8217;s just text, mate.''</a></li>
+<li><a href="#content-is-king">Content is king!</a></li>
+<li><a href="#admonitions">Admonitions</a></li>
+<li><a href="#mild-punctuation-strong-impact">Mild punctuation, strong impact</a></li>
+<li><a href="#lists-lists-lists">Lists, lists, lists</a></li>
+<li><a href="#links-and-images">Links and images</a></li>
+<li><a href="#titles-titles-titles">Titles, titles, titles</a></li>
+</ul>
+</li>
+<li><a href="#building-blocks-in-asciidoc">Building blocks in AsciiDoc</a>
+<ul class="sectlevel2">
+<li><a href="#delimited-blocks">Delimited blocks</a></li>
+<li><a href="#block-metadata">Block metadata</a></li>
+<li><a href="#masquerading-blocks">Masquerading blocks</a></li>
+<li><a href="#delimiters-optional">Delimiters optional</a></li>
+<li><a href="#a-new-perspective-on-tables">A new perspective on tables</a></li>
+</ul>
+</li>
+<li><a href="#what-else-can-asciidoc-do">What else can AsciiDoc do?</a></li>
+<li><a href="#rendering-your-document">Rendering your document</a>
+<ul class="sectlevel2">
+<li><a href="#installing-asciidoc">Installing AsciiDoc</a></li>
+<li><a href="#converting-a-document-to-html-5">Converting a document to HTML 5</a></li>
+<li><a href="#converting-a-document-to-docbook">Converting a document to DocBook</a></li>
+<li><a href="#converting-the-document-to-pdf">Converting the document to PDF</a></li>
+<li><a href="#producing-html-based-presentations">Producing HTML-based presentations</a></li>
+<li><a href="#output-galore">Output galore</a></li>
+<li><a href="#where-else-is-asciidoc-rendered">Where else is AsciiDoc rendered?</a></li>
+</ul>
+</li>
+<li><a href="#wrap-up">Wrap-up</a></li>
+<li><a href="#glossary">Glossary</a></li>
+</ul>
+</div>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>This guide provides a gentle introduction to <a href="http://asciidoc.org">AsciiDoc</a>, a plain text documentation <strong>syntax</strong> and <strong>processor</strong>.
@@ -42,45 +81,6 @@ If you&#8217;re looking for a concise survey of the AsciiDoc syntax, consult the
 <div class="paragraph">
 <p>Let&#8217;s dive in to AsciiDoc!</p>
 </div>
-</div>
-<div id="toc" class="toc">
-<div id="toctitle">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#writing-in-asciidoc">Writing in AsciiDoc</a>
-<ul class="sectlevel2">
-<li><a href="#it-s-just-text-mate">``It&#8217;s just text, mate.''</a></li>
-<li><a href="#content-is-king">Content is king!</a></li>
-<li><a href="#admonitions">Admonitions</a></li>
-<li><a href="#mild-punctuation-strong-impact">Mild punctuation, strong impact</a></li>
-<li><a href="#lists-lists-lists">Lists, lists, lists</a></li>
-<li><a href="#links-and-images">Links and images</a></li>
-<li><a href="#titles-titles-titles">Titles, titles, titles</a></li>
-</ul>
-</li>
-<li><a href="#building-blocks-in-asciidoc">Building blocks in AsciiDoc</a>
-<ul class="sectlevel2">
-<li><a href="#delimited-blocks">Delimited blocks</a></li>
-<li><a href="#block-metadata">Block metadata</a></li>
-<li><a href="#masquerading-blocks">Masquerading blocks</a></li>
-<li><a href="#delimiters-optional">Delimiters optional</a></li>
-<li><a href="#a-new-perspective-on-tables">A new perspective on tables</a></li>
-</ul>
-</li>
-<li><a href="#what-else-can-asciidoc-do">What else can AsciiDoc do?</a></li>
-<li><a href="#rendering-your-document">Rendering your document</a>
-<ul class="sectlevel2">
-<li><a href="#installing-asciidoc">Installing AsciiDoc</a></li>
-<li><a href="#converting-a-document-to-html-5">Converting a document to HTML 5</a></li>
-<li><a href="#converting-a-document-to-docbook">Converting a document to DocBook</a></li>
-<li><a href="#converting-the-document-to-pdf">Converting the document to PDF</a></li>
-<li><a href="#producing-html-based-presentations">Producing HTML-based presentations</a></li>
-<li><a href="#output-galore">Output galore</a></li>
-<li><a href="#where-else-is-asciidoc-rendered">Where else is AsciiDoc rendered?</a></li>
-</ul>
-</li>
-<li><a href="#wrap-up">Wrap-up</a></li>
-<li><a href="#glossary">Glossary</a></li>
-</ul>
 </div>
 </div>
 <div class="sect1">
@@ -241,7 +241,7 @@ To make a paragraph an admonition, prefix it with an uppercase label, such as in
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>NOTE: Admonition paragraphs call attention to special words of advice.</code></pre>
+<pre class="highlightjs highlight nowrap"><code>NOTE: Admonition paragraphs call attention to special words of advice.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -300,7 +300,7 @@ AsciiDoc refers to this markup as <em>quoted text</em>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>I can't believe it, we *won*!</code></pre>
+<pre class="highlightjs highlight nowrap"><code>I can't believe it, we *won*!</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -383,7 +383,7 @@ For instance, to emphasis the first letter of a word, you need to surround it in
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>**F**our score and seven years ago...</code></pre>
+<pre class="highlightjs highlight nowrap"><code>**F**our score and seven years ago...</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -406,7 +406,7 @@ For instance:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>Type the word [userinput]#asciidoc# into the search bar.</code></pre>
+<pre class="highlightjs highlight nowrap"><code>Type the word [userinput]#asciidoc# into the search bar.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -414,7 +414,7 @@ For instance:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-html" data-lang="html">&lt;span class="userinput"&gt;asciidoc&lt;/span&gt;</code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-html" data-lang="html">&lt;span class="userinput"&gt;asciidoc&lt;/span&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -437,7 +437,7 @@ In those cases, you&#8217;ll need to use markup to escape the text.</p>
 <p>To prevent punctuation from being interpreted, proceed it with a backslash:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>\*Stars* will not be bold, but rather appear as *Stars*.
+<pre class="highlightjs highlight nowrap"><code>\*Stars* will not be bold, but rather appear as *Stars*.
 The backslash character is automatically removed.</code></pre>
 </div>
 </div>
@@ -447,7 +447,7 @@ The backslash character is automatically removed.</code></pre>
 <p>To exclude a phrase from substitutions, enclose it in double dollars ($$):</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>$$*Stars*$$ will not be bold, but rather appear as *Stars*.
+<pre class="highlightjs highlight nowrap"><code>$$*Stars*$$ will not be bold, but rather appear as *Stars*.
 Special characters are still escaped so, $$&lt;p&gt;$$ appears as &lt;p&gt;.
 Double dollar is commonly used to wrap URLs containing punctuation.</code></pre>
 </div>
@@ -458,7 +458,7 @@ Double dollar is commonly used to wrap URLs containing punctuation.</code></pre>
 <p>To exclude a phrase from substitutions and disable escaping of special characters, enclose it in triple pluses (+++) or the inline pass:[] macro:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>The markup +++&lt;u&gt;underline me&lt;/u&gt;+++ renders as underlined text.
+<pre class="highlightjs highlight nowrap"><code>The markup +++&lt;u&gt;underline me&lt;/u&gt;+++ renders as underlined text.
 The markup pass:[&lt;u&gt;underline me&lt;/u&gt;] produces the same result.
 Triple plus and pass:[] are often used to output custom HTML or XML.</code></pre>
 </div>
@@ -469,7 +469,7 @@ Triple plus and pass:[] are often used to output custom HTML or XML.</code></pre
 <p>To exclude a phrase from substitutions, disable escaping of special characters and render it as monospaced text, enclose it in backticks (`):</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>This `*literal*` will appear as *literal* in a monospace font.
+<pre class="highlightjs highlight nowrap"><code>This `*literal*` will appear as *literal* in a monospace font.
 Backticks are commonly used around inline code containing markup.</code></pre>
 </div>
 </div>
@@ -588,7 +588,7 @@ Chances are, what you&#8217;d type is exactly how you define an outline list in 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>* Milk
+<pre class="highlightjs highlight nowrap"><code>* Milk
 * Eggs
 * Bread
 * Bananas</code></pre>
@@ -601,7 +601,7 @@ That works too:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>- Milk
+<pre class="highlightjs highlight nowrap"><code>- Milk
 - Eggs
 - Bread
 - Bananas</code></pre>
@@ -644,7 +644,7 @@ Then you might organize it as a nested list.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>* Diary
+<pre class="highlightjs highlight nowrap"><code>* Diary
 ** Milk
 ** Eggs
 * Bakery
@@ -658,7 +658,7 @@ Then you might organize it as a nested list.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>* Kingdom
+<pre class="highlightjs highlight nowrap"><code>* Kingdom
 ** Phylum
 *** Class
 **** Order
@@ -681,7 +681,7 @@ Then you might organize it as a nested list.</p>
 <div class="listingblock">
 <div class="title">List without nested items</div>
 <div class="content">
-<pre class="highlight nowrap"><code>- Fedora
+<pre class="highlightjs highlight nowrap"><code>- Fedora
 - Ubuntu
 - Slackware</code></pre>
 </div>
@@ -692,7 +692,7 @@ Then you might organize it as a nested list.</p>
 <div class="listingblock">
 <div class="title">List with nested items</div>
 <div class="content">
-<pre class="highlight nowrap"><code>* Linux
+<pre class="highlightjs highlight nowrap"><code>* Linux
 ** Fedora
 ** Ubuntu
 ** Slackware
@@ -730,7 +730,7 @@ Instinct might tell you to prefix each item with a number, like in this next lis
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>1. Protons
+<pre class="highlightjs highlight nowrap"><code>1. Protons
 2. Electrons
 3. Neutrons</code></pre>
 </div>
@@ -740,7 +740,7 @@ Instinct might tell you to prefix each item with a number, like in this next lis
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>. Protons
+<pre class="highlightjs highlight nowrap"><code>. Protons
 . Electrons
 . Neutrons</code></pre>
 </div>
@@ -750,7 +750,7 @@ Instinct might tell you to prefix each item with a number, like in this next lis
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>. Lists
+<pre class="highlightjs highlight nowrap"><code>. Lists
 .. Outline
 ... Unordered
 ... Ordered
@@ -894,7 +894,7 @@ You can also set the starting number using the start attribute:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>["lowerroman", start=5]
+<pre class="highlightjs highlight nowrap"><code>["lowerroman", start=5]
 . Five
 . Six
 [loweralpha]
@@ -915,7 +915,7 @@ You can also set the starting number using the start attribute:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>.Shopping list
+<pre class="highlightjs highlight nowrap"><code>.Shopping list
 * Milk
 * Eggs
 * Bread
@@ -955,7 +955,7 @@ Each item in a labeled list consists of a term or phrase followed by:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>CPU:: The brain of the computer.
+<pre class="highlightjs highlight nowrap"><code>CPU:: The brain of the computer.
 Hard drive:: Permanent storage for operating system and/or user files.
 RAM:: Temporarily stores information the CPU uses during operation.
 Keyboard:: Used to enter text or control items on the screen.
@@ -1005,7 +1005,7 @@ Here&#8217;s a preview of how this list is rendered:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>[horizontal]
+<pre class="highlightjs highlight nowrap"><code>[horizontal]
 CPU:: The brain of the computer.
 Hard drive:: Permanent storage for operating system and/or user files.
 RAM:: Temporarily stores information the CPU uses during operation.</code></pre>
@@ -1017,7 +1017,7 @@ For instance, we could rewrite the grocery list from above so that each aisle is
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>Diary::
+<pre class="highlightjs highlight nowrap"><code>Diary::
 * Milk
 * Eggs
 Bakery::
@@ -1057,7 +1057,7 @@ AsciiDoc works hard to infer the relationships between the items that are most i
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>. Linux
+<pre class="highlightjs highlight nowrap"><code>. Linux
 * Fedora
 * Ubuntu
 * Slackware
@@ -1324,7 +1324,7 @@ Here&#8217;s an example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>* Apples
+<pre class="highlightjs highlight nowrap"><code>* Apples
 * Oranges
 * Bananas
 
@@ -1350,7 +1350,7 @@ Just include the URL in the document and AsciiDoc will turn it into a link.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>You can learn more about AsciiDoc at http://asciidoc.org.</code></pre>
+<pre class="highlightjs highlight nowrap"><code>You can learn more about AsciiDoc at http://asciidoc.org.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1374,7 +1374,7 @@ AsciiDoc recognizes URLs that begin with http://, https://, ftp://, and irc://.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>http://asciidoc.org[AsciiDoc] is a lightweight markup language.</code></pre>
+<pre class="highlightjs highlight nowrap"><code>http://asciidoc.org[AsciiDoc] is a lightweight markup language.</code></pre>
 </div>
 </div>
 </div>
@@ -1390,7 +1390,7 @@ In Asciidoctor 0.1.3, you can enable parsing of link macro attributes by setting
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>:linkattrs:</code></pre>
+<pre class="highlightjs highlight nowrap"><code>:linkattrs:</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1398,7 +1398,7 @@ In Asciidoctor 0.1.3, you can enable parsing of link macro attributes by setting
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>http://google.com[Google, window="_blank"]</code></pre>
+<pre class="highlightjs highlight nowrap"><code>http://google.com[Google, window="_blank"]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1407,7 +1407,7 @@ Just end the link text with a caret (^):</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>http://google.com[Google^]</code></pre>
+<pre class="highlightjs highlight nowrap"><code>http://google.com[Google^]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1415,7 +1415,7 @@ Just end the link text with a caret (^):</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>http://google.com[Google^, role="external"]</code></pre>
+<pre class="highlightjs highlight nowrap"><code>http://google.com[Google^, role="external"]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1429,7 +1429,7 @@ Just end the link text with a caret (^):</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>link:editing-asciidoc-with-live-preview[Editing with Live Preview]</code></pre>
+<pre class="highlightjs highlight nowrap"><code>link:editing-asciidoc-with-live-preview[Editing with Live Preview]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1437,7 +1437,7 @@ Just end the link text with a caret (^):</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>link:editing-asciidoc-with-live-preview/#livereload[LiveReload]</code></pre>
+<pre class="highlightjs highlight nowrap"><code>link:editing-asciidoc-with-live-preview/#livereload[LiveReload]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1452,7 +1452,7 @@ You create a cross reference by enclosing the element&#8217;s id in double angle
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>The section &lt;&lt;content-is-king&gt;&gt; covers paragraphs in AsciiDoc.</code></pre>
+<pre class="highlightjs highlight nowrap"><code>The section &lt;&lt;content-is-king&gt;&gt; covers paragraphs in AsciiDoc.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1461,7 +1461,7 @@ If you want to customize the linked text, include it after the id, separated by 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>Learn how to create &lt;&lt;content-is-king,paragraphs&gt;&gt; in AsciiDoc.</code></pre>
+<pre class="highlightjs highlight nowrap"><code>Learn how to create &lt;&lt;content-is-king,paragraphs&gt;&gt; in AsciiDoc.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1476,7 +1476,7 @@ The difference, of course, is that they display the image in the document.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>image::sunset.jpg[]</code></pre>
+<pre class="highlightjs highlight nowrap"><code>image::sunset.jpg[]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1484,7 +1484,7 @@ The difference, of course, is that they display the image in the document.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>image::sunset.jpg[Sunset]</code></pre>
+<pre class="highlightjs highlight nowrap"><code>image::sunset.jpg[Sunset]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1492,7 +1492,7 @@ The difference, of course, is that they display the image in the document.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>[[img-sunset]]
+<pre class="highlightjs highlight nowrap"><code>[[img-sunset]]
 .A mountain sunset
 image::sunset.jpg[Sunset, 300, 200, link="http://www.flickr.com/photos/javh/5448336655"]</code></pre>
 </div>
@@ -1543,7 +1543,7 @@ You should use the imagesdir attribute to avoid hard coding the shared path to y
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>Press the image:save.png[Save, title="Save"] button.</code></pre>
+<pre class="highlightjs highlight nowrap"><code>Press the image:save.png[Save, title="Save"] button.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1608,7 +1608,7 @@ This syntax is the simplest (and thus recommended) way to declare a document tit
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>= Lightweight Markup Languages
+<pre class="highlightjs highlight nowrap"><code>= Lightweight Markup Languages
 
 According to Wikipedia...</code></pre>
 </div>
@@ -1663,7 +1663,7 @@ Let&#8217;s see how to add additional information to the header, including an au
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>= Lightweight Markup Languages
+<pre class="highlightjs highlight nowrap"><code>= Lightweight Markup Languages
 Doc Writer &lt;doc.writer@asciidoc.org&gt;
 v1.0, 2012-01-01
 
@@ -1713,7 +1713,7 @@ The content is optional.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>= User Guide
+<pre class="highlightjs highlight nowrap"><code>= User Guide
 Doc Writer &lt;doc.writer@asciidoc.org&gt;
 2012-01-01
 :appversion: 1.0.0</code></pre>
@@ -1736,7 +1736,7 @@ There should be no blank lines between the first attribute entry and the rest of
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>The current version of the application is {appversion}.</code></pre>
+<pre class="highlightjs highlight nowrap"><code>The current version of the application is {appversion}.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1745,7 +1745,7 @@ Here&#8217;s an example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>:fedpkg: https://apps.fedoraproject.org/packages/asciidoc</code></pre>
+<pre class="highlightjs highlight nowrap"><code>:fedpkg: https://apps.fedoraproject.org/packages/asciidoc</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1753,7 +1753,7 @@ Here&#8217;s an example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>Information about the AsciiDoc package in Fedora is found at {fedpkg}.</code></pre>
+<pre class="highlightjs highlight nowrap"><code>Information about the AsciiDoc package in Fedora is found at {fedpkg}.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1764,7 +1764,7 @@ Here&#8217;s an example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>:toc2:</code></pre>
+<pre class="highlightjs highlight nowrap"><code>:toc2:</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1772,7 +1772,7 @@ Here&#8217;s an example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>:linkcss!:</code></pre>
+<pre class="highlightjs highlight nowrap"><code>:linkcss!:</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1780,7 +1780,7 @@ Here&#8217;s an example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>:imagesdir: ./images
+<pre class="highlightjs highlight nowrap"><code>:imagesdir: ./images
 :iconsdir: ./icons
 :stylesdir: ./styles
 :scriptsdir: ./js</code></pre>
@@ -1826,7 +1826,7 @@ The number of equal signs represents the nesting level (using a 0-based index).<
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>= Document Title (Level 0)
+<pre class="highlightjs highlight nowrap"><code>= Document Title (Level 0)
 
 == Level 1 Section
 
@@ -1873,7 +1873,7 @@ There are two rules you must follow:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>= Document Title
+<pre class="highlightjs highlight nowrap"><code>= Document Title
 
 = Illegal Level 0 Section (violates rule #1)
 
@@ -1888,7 +1888,7 @@ Once the first section is reached, content is associated with the section that p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>== First Section
+<pre class="highlightjs highlight nowrap"><code>== First Section
 
 Content of first section
 
@@ -1919,7 +1919,7 @@ That means the outline of a Markdown document will render just fine as an AsciiD
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>:numbered:</code></pre>
+<pre class="highlightjs highlight nowrap"><code>:numbered:</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1928,7 +1928,7 @@ When you want to turn off the numbering, add an exclamation point to the end of 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>:numbered!:
+<pre class="highlightjs highlight nowrap"><code>:numbered!:
 
 == Unnumbered Section</code></pre>
 </div>
@@ -1941,7 +1941,7 @@ If a document title is not present, this content is not wrapped in a preamble se
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>= Document Title
+<pre class="highlightjs highlight nowrap"><code>= Document Title
 
 preamble
 
@@ -1984,7 +1984,7 @@ The line must begin with a dot (.) and be followed immediately by the title text
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>.TODO list
+<pre class="highlightjs highlight nowrap"><code>.TODO list
 - Learn the AsciiDoc syntax
 - Install AsciiDoc
 - Write my document in AsciiDoc</code></pre>
@@ -2011,7 +2011,7 @@ These components are referred to as <em>delimited blocks</em> because they are s
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>----
+<pre class="highlightjs highlight nowrap"><code>----
 This is an example of a _listing block_.
 The content inside is rendered as &lt;pre&gt; text.
 ----</code></pre>
@@ -2036,7 +2036,7 @@ The content inside is rendered as &lt;pre&gt; text.</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-html" data-lang="html">&lt;div class="listingblock"&gt;
+<pre class="highlightjs highlight nowrap"><code class="language-html" data-lang="html">&lt;div class="listingblock"&gt;
   &lt;div class="content monospaced"&gt;
     &lt;pre&gt;This is an example of a _listing block_.
 The content inside is rendered as &amp;lt;pre&amp;gt; text.&lt;/pre&gt;
@@ -2246,7 +2246,7 @@ There are several types of metadata:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>.Gettysburg Address
+<pre class="highlightjs highlight nowrap"><code>.Gettysburg Address
 [[gettysburg]]
 [quote, Abraham Lincoln, Soldiers' National Cemetery Dedication]
 ____
@@ -2325,7 +2325,7 @@ The block style is the first positional attribute in the block attribute list.</
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>[NOTE]
+<pre class="highlightjs highlight nowrap"><code>[NOTE]
 ====
 This is an example of an admonition block.
 
@@ -2354,7 +2354,7 @@ Just shove the raw code into a listing block.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>----
+<pre class="highlightjs highlight nowrap"><code>----
 require 'asciidoctor'
 
 puts Asciidoctor.render_file('sample.adoc', :header_footer =&gt; true)
@@ -2366,7 +2366,7 @@ puts Asciidoctor.render_file('sample.adoc', :header_footer =&gt; true)
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>[source,ruby]
+<pre class="highlightjs highlight nowrap"><code>[source,ruby]
 ----
 require 'asciidoctor'
 
@@ -2380,7 +2380,7 @@ Just use the AsciiDoc include macro:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>[source,ruby]
+<pre class="highlightjs highlight nowrap"><code>[source,ruby]
 ----
 include::example.rb[]
 ----</code></pre>
@@ -2394,7 +2394,7 @@ Here&#8217;s an example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>[source,ruby]
+<pre class="highlightjs highlight nowrap"><code>[source,ruby]
 ----
 require 'asciidoctor'  #&lt;1&gt;
 
@@ -2412,7 +2412,7 @@ puts Asciidoctor.render_file('sample.adoc', :header_footer =&gt; true)  #&lt;2&g
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-ruby" data-lang="ruby">require 'asciidoctor'  <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight nowrap"><code class="language-ruby" data-lang="ruby">require 'asciidoctor'  <i class="conum" data-value="1"></i><b>(1)</b>
 
 puts Asciidoctor.render_file('sample.adoc', :header_footer =&gt; true)  <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
@@ -2460,7 +2460,7 @@ When you&#8217;ve encountered a complex requirement that you can meet using the 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>++++
+<pre class="highlightjs highlight nowrap"><code>++++
 &lt;video poster="images/movie-reel.png"&gt;
   &lt;source src="videos/writing-zen.webm" type="video/webm"&gt;
 &lt;/video&gt;
@@ -2495,7 +2495,7 @@ You can use <a href="http://asciidoc.org/userguide.html#_conditional_inclusion_m
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>[listing]
+<pre class="highlightjs highlight nowrap"><code>[listing]
 sudo yum install asciidoc</code></pre>
 </div>
 </div>
@@ -2504,7 +2504,7 @@ sudo yum install asciidoc</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>[quote]
+<pre class="highlightjs highlight nowrap"><code>[quote]
 Never do today what you can put off 'til tomorrow.</code></pre>
 </div>
 </div>
@@ -2530,7 +2530,7 @@ Each list represents one row in the table and must share the same number of item
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>[cols=2]
+<pre class="highlightjs highlight nowrap"><code>[cols=2]
 |===
 |Firefox
 |Web Browser
@@ -2552,7 +2552,7 @@ Since we are putting each column on a separate line, we have to be explicit abou
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>[cols=2, options="header"]
+<pre class="highlightjs highlight nowrap"><code>[cols=2, options="header"]
 |===
 |Name
 |Group
@@ -2572,7 +2572,7 @@ Since we are putting each column on a separate line, we have to be explicit abou
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>[options="header"]
+<pre class="highlightjs highlight nowrap"><code>[options="header"]
 |===
 |Name |Group
 
@@ -2590,7 +2590,7 @@ A new cell begins when another non-escaped vertical bar (|) is encountered.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>[options="header"]
+<pre class="highlightjs highlight nowrap"><code>[options="header"]
 |===
 |Name |Group |Description
 
@@ -2614,7 +2614,7 @@ The number of entries in the list determines the number of columns:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>[cols="2,3,5", options="header"]
+<pre class="highlightjs highlight nowrap"><code>[cols="2,3,5", options="header"]
 |===
 |Name |Group |Description
 
@@ -2637,7 +2637,7 @@ performance and portability.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>[cols="2,3,5a", options="header"]
+<pre class="highlightjs highlight nowrap"><code>[cols="2,3,5a", options="header"]
 |===
 |Name |Group |Description
 
@@ -2663,7 +2663,7 @@ It's designed for:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>a|Mozilla Firefox is an open-source web browser.
+<pre class="highlightjs highlight nowrap"><code>a|Mozilla Firefox is an open-source web browser.
 It's designed for:
 
 * standards compliance,
@@ -2681,7 +2681,7 @@ Just set the format block attribute to csv and insert CSV data inside the block 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>[format="csv", options="header"]
+<pre class="highlightjs highlight nowrap"><code>[format="csv", options="header"]
 |===
 Artist,Track,Genre
 Baauer,Harlem Shake,Hip Hop
@@ -2694,7 +2694,7 @@ The Lumineers,Ho Hey,Folk Rock
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>[format="csv", options="header"]
+<pre class="highlightjs highlight nowrap"><code>[format="csv", options="header"]
 |===
 include::tracks.csv[]
 |===</code></pre>
@@ -2986,7 +2986,7 @@ To have the images embedded into the document as well, pass the data-uri attribu
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code>= Document Title
+<pre class="highlightjs highlight nowrap"><code>= Document Title
 Doc Writer &lt;doc.writer@asciidoc.org&gt;
 2012-01-01
 :data-uri:
@@ -3060,7 +3060,7 @@ For example, to generate an HTML document:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-ruby" data-lang="ruby">require 'asciidoctor'
+<pre class="highlightjs highlight nowrap"><code class="language-ruby" data-lang="ruby">require 'asciidoctor'
 
 Asciidoctor.render_file('sample.adoc', :in_place =&gt; true)</code></pre>
 </div>
@@ -3070,7 +3070,7 @@ Asciidoctor.render_file('sample.adoc', :in_place =&gt; true)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-ruby" data-lang="ruby">html = Asciidoctor.render_file('sample.adoc', :header_footer =&gt; true)
+<pre class="highlightjs highlight nowrap"><code class="language-ruby" data-lang="ruby">html = Asciidoctor.render_file('sample.adoc', :header_footer =&gt; true)
 puts html</code></pre>
 </div>
 </div>
@@ -3079,7 +3079,7 @@ puts html</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-ruby" data-lang="ruby">Asciidoctor.render_file('sample.adoc', :in_place =&gt; true,
+<pre class="highlightjs highlight nowrap"><code class="language-ruby" data-lang="ruby">Asciidoctor.render_file('sample.adoc', :in_place =&gt; true,
     :backend =&gt; 'docbook')</code></pre>
 </div>
 </div>

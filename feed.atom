@@ -1,8 +1,1675 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
-  <id>http://gamussa.github.io/</id>
-  <title>Steeplesoft</title>
-  <author>
-    <name>Viktor Gamov</name>
-  </author>
+<id>http://next.javaheadbrain.com/</id>
+<title>Steeplesoft</title>
+<author>
+<name>Viktor Gamov</name>
+</author>
+<updated>2015-12-31T22:24:49-05:00</updated>
+<link href="http://next.javaheadbrain.com/feed.atom" rel="self" type="application/atom+xml" />
+<link href="http://next.javaheadbrain.com/" rel="alternate" type="text/html" />
+<entry>
+<id>http://next.javaheadbrain.com/posts/2015/12/31/caching-made-bootiful.html</id>
+<title>Caching Made Bootiful — Hazelcast Way</title>
+<updated>2015-12-31T22:24:49-05:00</updated>
+<published>2015-12-31T22:18:23-06:00</published>
+<link href="http://next.javaheadbrain.com/posts/2015/12/31/caching-made-bootiful.html" rel="alternate" type="text/html" />
+<author>
+<name>Viktor Gamov</name>
+</author>
+<category term="hazelcast"></category>
+<category term="spring boot"></category>
+<summary>
+Table of content
+
+Intro
+Slow service
+Enable Caching
+It&#8217;s a wrap!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+TL;DR
+Source code from this blog is posted on the Hazelcast Code Examples repository on Github.
+
+
+
+
+
+The folks at OpenCredo recently published a blog post entitled «Running and Testing Hazelcast in a Spring Boot Application».
+They introduce some of the basic features of Hazelcast including: Spring dependency injection, how to embed it in a Spring Boot application and write simple integration tests.
+It is a really good first reading if your using Spring.
+Make sure you check it out.
+
+
+In this post, I will demonstrate how to add caching capabilities using Hazelcast in your Spring Boot application.
+You will see how...
+</summary>
+<content type="html">
+&lt;div id=&quot;toc&quot; class=&quot;toc&quot;&gt;
+&lt;div id=&quot;toctitle&quot;&gt;Table of content&lt;/div&gt;
+&lt;ul class=&quot;sectlevel1&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#intro&quot;&gt;Intro&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#slow-service&quot;&gt;Slow service&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#enable-caching&quot;&gt;Enable Caching&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#it-s-a-wrap&quot;&gt;It’s a wrap!&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&quot;preamble&quot;&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;http://next.javaheadbrain.com/images/hazelcast_boot_1.png&quot; alt=&quot;hazelcast boot 1&quot; width=&quot;40%&quot; /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock note&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;fa icon-note&quot; title=&quot;Note&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;TL;DR&lt;/div&gt;
+Source code from this blog is posted on &lt;a href=&quot;https://github.com/hazelcast/hazelcast-code-samples/tree/master/hazelcast-integration/springboot-caching&quot;&gt;the Hazelcast Code Examples repository on Github&lt;/a&gt;.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph lead&quot;&gt;
+&lt;p&gt;The folks at OpenCredo recently published a blog post entitled &lt;a href=&quot;https://www.opencredo.com/2015/12/01/spring-booting-hazelcast/&quot;&gt;«Running and Testing Hazelcast in a Spring Boot Application&lt;/a&gt;».
+They introduce some of the basic features of Hazelcast including: Spring dependency injection, how to embed it in a Spring Boot application and write simple integration tests.
+It is a really good first reading if your using Spring.
+Make sure you check it out.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;In this post, I will demonstrate how to add caching capabilities using Hazelcast in your Spring Boot application.
+You will see how the Spring Framework caching abstraction plays nicely with Hazelcast without invoking an explicit Hazelcast API.&lt;/p&gt;
+&lt;/div&gt;
+&lt;!-- toc disabled --&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Let’s &lt;a href=&quot;#intro&quot;&gt;get going&lt;/a&gt;!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;intro&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#intro&quot;&gt;&lt;/a&gt;Intro&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;As many of you know, a &lt;strong&gt;cache&lt;/strong&gt; stores the data so that future requests for that data is faster.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If the requested data is in the cache (&lt;strong&gt;cache hit&lt;/strong&gt;), this request can be served by simply reading the cache, which is faster because it bypasses slow data retrieval or time-consuming computations.
+If the data is not in the cache (&lt;strong&gt;cache miss&lt;/strong&gt;), the data has to be recomputed or fetched from its original storage location, which is slower.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;In this use-case, I will demonstrate techniques you can speed up various parts of your applications that suffer from slow performance.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;slow-service&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#slow-service&quot;&gt;&lt;/a&gt;Slow service&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;My service returns city names (method &lt;code&gt;getCity()&lt;/code&gt;).
+I know that retrieving a city might take some time, so I will use &lt;a href=&quot;http://docs.spring.io/spring/docs/current/spring-framework-reference/html/cache.html&quot;&gt;Spring Caching&lt;/a&gt; annotations to delegate cache interactions with Spring.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;My service is annotated with Spring Annotations&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+
+public interface IDummyBean {
+
+    @Cacheable(&amp;quot;city&amp;quot;) &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+    String getCity();
+
+    @CachePut(value = &amp;quot;city&amp;quot;, key = &amp;quot;#city + 1&amp;quot;) &lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
+    String setCity(String city);
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;@Cachable&lt;/code&gt; annotation triggers population of a cache&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;@CachePut&lt;/code&gt; annotation updates the cache without interfering with the method execution&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Here is an implementation of this service.
+It returns the city of Ankara (one of the Hazelcast offices locations).
+Potentially, I could have used Spring Data or another framework to provide an implementation of a service over a range of SQL or NoSQL stores.
+For simplicity in this example, I will use a naive implementation that simulates typical latency (like network service, slow delay, poorly tuned database, etc).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;public class DummyBean implements IDummyBean {
+    @Override
+    public String getCity() {
+        try {
+            TimeUnit.SECONDS.sleep(5); &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return &amp;quot;Ankara&amp;quot;;
+    }
+    @Override public String setCity(String city) {
+        return city;
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Slow &lt;em&gt;O_o&lt;/em&gt; method!&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock warning&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;fa icon-warning&quot; title=&quot;Warning&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+This is an emulation of a slow method.  Don’t do it in real life!
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;I simply annotate a slow method with the &lt;code&gt;@Cacheble&lt;/code&gt; annotation and let Spring Boot do the heavy lifting. This is all I need to do with my application logic.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;enable-caching&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#enable-caching&quot;&gt;&lt;/a&gt;Enable Caching&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Hazelcast is often an embedded component of an application.
+Ultimately, the application instance becomes a member of the Hazelcast cluster.
+Another option is to separate the actual storage - Hazelcast Cluster - and the application logic by applying a &lt;em&gt;client / server&lt;/em&gt; (or in our case &lt;em&gt;client / cluster&lt;/em&gt;) setup.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;For my example, I have two Spring Boot applications.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;A &lt;code&gt;BootifulMember&lt;/code&gt; is a Spring Boot application with a fully auto-configured embedded Hazelcast member.
+During application startup, Spring Boot scans the classpath for &lt;code&gt;hazelcast.xml&lt;/code&gt; and automatically instantiates Spring’s
+&lt;code&gt;CacheManager&lt;/code&gt; bean backed by &lt;code&gt;HazelcastInstance&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;BootifulMember class&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;@SpringBootApplication
+@EnableCaching  &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+public class BootifulMember {
+    public static void main(String[] args) {
+        new SpringApplicationBuilder().profiles(&amp;quot;member&amp;quot;).sources(BootifulMember.class).run(args);
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;An &lt;code&gt;@EnableCaching&lt;/code&gt; annotation activates Spring Boot «magic» for &lt;code&gt;Hazelcastinstance&lt;/code&gt; instantiation.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;BootifulClient&lt;/code&gt; is a Spring Boot web application. It also uses Spring Boot auto configuration for Hazelcast.
+But in this case, it scans Spring Configuration for a &lt;code&gt;CacheManager&lt;/code&gt; bean backed by &lt;code&gt;HazelcastClient.newHazelcastClientinstance()&lt;/code&gt; and picks &lt;code&gt;hazelcast-client.xml&lt;/code&gt; from the classpath.&lt;/p&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;Bootiful client application&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;@SpringBootApplication
+@EnableCaching
+public class BootifulClient {
+    public static void main(String[] args) {
+        new SpringApplicationBuilder().sources(BootifulClient.class).profiles(&amp;quot;client&amp;quot;).run(args);
+    }
+
+    @Bean
+    public IDummyBean dummyBean() {
+        return new DummyBean();     &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+    }
+
+    @Bean
+    @Profile(&amp;quot;client&amp;quot;)
+    HazelcastInstance hazelcastInstance() {
+        return HazelcastClient.newHazelcastClient();    &lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
+    }
+
+    @Bean
+    CacheManager cacheManager() {
+        return new HazelcastCacheManager(hazelcastInstance()); &lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;
+    }
+
+    @RestController
+    static class CityController {
+
+        private final Logger logger = LoggerFactory.getLogger(CityController.class);
+
+        @Autowired
+        IDummyBean dummy;   &lt;i class=&quot;conum&quot; data-value=&quot;4&quot;&gt;&lt;/i&gt;&lt;b&gt;(4)&lt;/b&gt;
+
+        @RequestMapping(&amp;quot;/city&amp;quot;)
+        public String getCity() { &lt;i class=&quot;conum&quot; data-value=&quot;5&quot;&gt;&lt;/i&gt;&lt;b&gt;(5)&lt;/b&gt;
+            String logFormat = &amp;quot;%s call took %d millis with result: %s&amp;quot;;
+            long start1 = nanoTime();
+            String city = dummy.getCity();
+            long end1 = nanoTime();
+            logger.info(format(logFormat, &amp;quot;Rest&amp;quot;, TimeUnit.NANOSECONDS.toMillis(end1 - start1), city));
+            return city;
+        }
+
+        @RequestMapping(value = &amp;quot;city/{city}&amp;quot;, method = RequestMethod.GET) &lt;i class=&quot;conum&quot; data-value=&quot;6&quot;&gt;&lt;/i&gt;&lt;b&gt;(6)&lt;/b&gt;
+        public String setCity(@PathVariable String city) {
+            return dummy.setCity(city);
+        }
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;I’m providing the instance of &lt;code&gt;IDummyBean&lt;/code&gt; in the application context.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;I’m providing &lt;code&gt;HazelcastInstance&lt;/code&gt; based on the client configuration from &lt;code&gt;hazelcast-client.xml&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Spring Framework generated proxies for annotated methods will interact with caches using a &lt;code&gt;CacheManager&lt;/code&gt; class backed by the Hazelcast client instance.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;4&quot;&gt;&lt;/i&gt;&lt;b&gt;4&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Property injection. Don’t do this in your real life applications.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;5&quot;&gt;&lt;/i&gt;&lt;b&gt;5&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;I’m measuring the time inside a Rest Controller method and reporting it to the console.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;6&quot;&gt;&lt;/i&gt;&lt;b&gt;6&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;By hitting url &lt;code&gt;&lt;a href=&quot;http://localhost:8081/city/nyc&quot; class=&quot;bare&quot;&gt;http://localhost:8081/city/nyc&lt;/a&gt;&lt;/code&gt;, for example, we’re writing value &lt;code&gt;nyc&lt;/code&gt; to the &lt;code&gt;city&lt;/code&gt; cache.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;By calling the application on &lt;code&gt;&lt;a href=&quot;http://localhost:8081/city&quot; class=&quot;bare&quot;&gt;http://localhost:8081/city&lt;/a&gt;&lt;/code&gt; multiple times, you can take a look at logs in the console.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;nowrap&quot;&gt;2015-12-31 00:29:16.372  INFO --- c.h.s.c.BootifulClient$CityController: Rest call took 5075 millis with result: Ankara
+2015-12-31 00:29:17.986  INFO --- c.h.s.c.BootifulClient$CityController: Rest call took 3 millis with result: Ankara
+2015-12-31 00:29:19.008  INFO --- c.h.s.c.BootifulClient$CityController: Rest call took 1 millis with result: Ankara
+2015-12-31 00:29:19.936  INFO --- c.h.s.c.BootifulClient$CityController: Rest call took 1 millis with result: Ankara&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You notice that the first call took ~5 sec to return the response.
+But in all subsequent calls to this URL, the return the response almost immediately.
+We improved our application speed 5000 times!!!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock note&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;fa icon-note&quot; title=&quot;Note&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+This is a tip for production deployment of your «bootiful» application. By running &lt;code&gt;mvn package spring-boot:repackage&lt;/code&gt;, the Spring Boot Maven plugin will generate an executable jar &lt;code&gt;java -jar..&lt;/code&gt; with &lt;code&gt;BootifulMember&lt;/code&gt; as the main class.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;it-s-a-wrap&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#it-s-a-wrap&quot;&gt;&lt;/a&gt;It’s a wrap!&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Congrats!
+Now you know how you can benefit from Hazelcast caching auto configuration in Spring Boot applications.
+In the next blog post, I will review techniques using JCache — a vendor independent caching API for Java — to enable caching in your Spring Boot application.
+Meanwhile, if you have any questions, feel free to post them in the comments section below!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Happy caching and Happy New Year!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content>
+</entry>
+<entry>
+<id>http://next.javaheadbrain.com/posts/2015/12/29/my-year-at-hazelcast-in-review.html</id>
+<title>My Year At Hazelcast In Review</title>
+<updated>2016-01-06T11:03:41-05:00</updated>
+<published>2015-12-29T17:00:00+00:00</published>
+<link href="http://next.javaheadbrain.com/posts/2015/12/29/my-year-at-hazelcast-in-review.html" rel="alternate" type="text/html" />
+<author>
+<name>Viktor Gamov</name>
+</author>
+<category term="hazelcast"></category>
+<category term="open source"></category>
+<category term="jug"></category>
+<summary>
+Table of Contents
+
+Into
+Hazelcast Trainings 
+Conferences and Events 
+Contributions 
+Plans for 2016 
+
+
+
+
+
+
+
+
+
+
+
+TL;DR
+It has been an awesome year full travelling (roughly 20 states), POCs for the clients and the prospects, training (including public classes) and conference talks.
+While I am already looking forward to 2016, here is a quick recap of my 2015 with Hazelcast.
+
+
+
+
+
+
+
+
+
+
+
+Table 1. Revisions history
+
+
+
+
+
+
+
+Version
+Date
+Comments
+
+
+
+
+v1.2
+1/6/2015
+Added Groovy Puzzlers Video link from SpringOne 2GX
+
+
+v1.1
+12/31/2015
+Added Atlanta JUG video link
+
+
+v1.0
+12/29/2015
+Initial blog post
+
+
+
+
+
+
+Into
+
+
+2015 has been a helluva of a year for me, which started off with a new job: the Solutions Architect in Hazelcast - Open Source In-Memory Data Grid company.
+In addition to travelling...
+</summary>
+<content type="html">
+&lt;div id=&quot;toc&quot; class=&quot;toc&quot;&gt;
+&lt;div id=&quot;toctitle&quot;&gt;Table of Contents&lt;/div&gt;
+&lt;ul class=&quot;sectlevel1&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#into&quot;&gt;Into&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#hazelcast-trainings-span-class-icon-i-class-fa-fa-graduation-cap-i-span&quot;&gt;Hazelcast Trainings &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-graduation-cap&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#events&quot;&gt;Conferences and Events &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-calendar&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#contributions-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;Contributions &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#plans-for-2016-span-class-icon-i-class-fa-fa-expand-i-span&quot;&gt;Plans for 2016 &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-expand&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&quot;preamble&quot;&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;admonitionblock note&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;fa icon-note&quot; title=&quot;Note&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;TL;DR&lt;/div&gt;
+It has been an awesome year full travelling (roughly 20 states), POCs for the clients and the prospects, training (including public classes) and conference talks.
+While I am already looking forward to 2016, here is a quick recap of my 2015 with Hazelcast.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;!-- toc disabled --&gt;
+&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;http://next.javaheadbrain.com/images/laptop.jpg&quot; alt=&quot;laptop&quot; /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;table class=&quot;tableblock frame-all grid-all&quot; style=&quot;width: 60%;&quot;&gt;
+&lt;caption class=&quot;title&quot;&gt;Table 1. Revisions history&lt;/caption&gt;
+&lt;colgroup&gt;
+&lt;col style=&quot;width: 33%;&quot; /&gt;
+&lt;col style=&quot;width: 33%;&quot; /&gt;
+&lt;col style=&quot;width: 33%;&quot; /&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th class=&quot;tableblock halign-left valign-top&quot;&gt;Version&lt;/th&gt;
+&lt;th class=&quot;tableblock halign-left valign-top&quot;&gt;Date&lt;/th&gt;
+&lt;th class=&quot;tableblock halign-left valign-top&quot;&gt;Comments&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;&lt;strong&gt;v1.2&lt;/strong&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;1/6/2015&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Added Groovy Puzzlers Video link from SpringOne 2GX&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;&lt;strong&gt;v1.1&lt;/strong&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;12/31/2015&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Added Atlanta JUG video link&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;&lt;strong&gt;v1.0&lt;/strong&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;12/29/2015&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Initial blog post&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;into&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#into&quot;&gt;&lt;/a&gt;Into&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph lead&quot;&gt;
+&lt;p&gt;2015 has been a &lt;em&gt;helluva&lt;/em&gt; of a year for me, which started off with a new job: &lt;a href=&quot;http://next.javaheadbrain.com/posts/2014/12/13/goodbye-farata-hello-hazelcast.html&quot;&gt;the Solutions Architect in Hazelcast&lt;/a&gt; - Open Source In-Memory Data Grid company.
+In addition to travelling to over 20 states, I had &lt;a href=&quot;#events&quot;&gt;numerous opportunities&lt;/a&gt; to share my programming experience and how to develop and deploy the distributed systems.
+I enjoyed the conference talks, &lt;a href=&quot;http://blog.hazelcast.com/author/viktor-gamov/&quot;&gt;blog posts&lt;/a&gt;, and podcasts (&lt;a href=&quot;http://razbor-poletov.com&quot;&gt;1&lt;/a&gt;, &lt;a href=&quot;http://theartofprogramming.podbean.com/e/выпуск-№100-—-the-art-of-programming-java-learningдва-слова/&quot;&gt;2&lt;/a&gt;, &lt;a href=&quot;http://ctocast.com/post/135596766138/ctocast-15-виктор-гамов-Hazelcast&quot;&gt;3&lt;/a&gt; in Russian).&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;hazelcast-trainings-span-class-icon-i-class-fa-fa-graduation-cap-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#hazelcast-trainings-span-class-icon-i-class-fa-fa-graduation-cap-i-span&quot;&gt;&lt;/a&gt;Hazelcast Trainings &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-graduation-cap&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;As a part of &lt;a href=&quot;https://hazelcast.com/services/solutions-team/&quot;&gt;the solutions team at Hazelcast&lt;/a&gt;, I lead numerous training engagements for clients and open public classes in many places across the country, including Tampa, FL, Richmond, VA, New York, NY, Jersey City, NJ, Rockville, MD and Cary, NC.
+Just a couple months ago we launched our training portal - &lt;a href=&quot;https://university.hazelcast.com/&quot;&gt;Hazelcast University&lt;/a&gt;.
+And I’m very pleased to tell you while it wasn’t easy, we did it!
+It has been rewarding to receive all the positive comments on the training labs.&lt;/p&gt;
+&lt;/div&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot; lang=&quot;en&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;5 minute in someone’s &lt;a href=&quot;https://twitter.com/hashtag/Hazelcast?src=hash&quot;&gt;#Hazelcast&lt;/a&gt; project &lt;a href=&quot;https://t.co/lfoeFNcdtn&quot;&gt;https://t.co/lfoeFNcdtn&lt;/a&gt; Learn from the source &lt;a href=&quot;https://t.co/DivHmCbVrW&quot;&gt;https://t.co/DivHmCbVrW&lt;/a&gt;&lt;/p&gt;— Viktor Gamov (@gAmUssA) &lt;a href=&quot;https://twitter.com/gAmUssA/status/675520617668562944&quot;&gt;December 12, 2015&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;By the way, don’t hesitate to ping me on &lt;a href=&quot;https://twitter.com/gamussa&quot;&gt;Twitter&lt;/a&gt; if you’re interested in attending one of our courses online or in-person.
+I might even be able to provide you with discount!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;events&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#events&quot;&gt;&lt;/a&gt;Conferences and Events &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-calendar&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;One of my favorite activities in 2015 was getting to speak at many JUGs and conferences.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;http://next.javaheadbrain.com/images/richmond_jcache.jpg&quot; alt=&quot;50%&quot; width=&quot;50%&quot; /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Here is a sampling of some of the places and topics where I presented this year.&lt;/p&gt;
+&lt;/div&gt;
+&lt;table class=&quot;tableblock frame-all grid-all spread&quot;&gt;
+&lt;colgroup&gt;
+&lt;col style=&quot;width: 25%;&quot; /&gt;
+&lt;col style=&quot;width: 25%;&quot; /&gt;
+&lt;col style=&quot;width: 25%;&quot; /&gt;
+&lt;col style=&quot;width: 25%;&quot; /&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th class=&quot;tableblock halign-left valign-top&quot;&gt;Event Name&lt;/th&gt;
+&lt;th class=&quot;tableblock halign-left valign-top&quot;&gt;Location&lt;/th&gt;
+&lt;th class=&quot;tableblock halign-left valign-top&quot;&gt;Topic&lt;/th&gt;
+&lt;th class=&quot;tableblock halign-left valign-top&quot;&gt;Date&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;DevNexus 2015&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Atlanta, GA&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Applied real-world projects with Java and JavaScript&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;2015-03-11&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Code PaLOUsa&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Louisville, KY&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Ground-up Introduction To In-Memory Data&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;2015-04 27-30&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;HUG-NYC Princeton JUG&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;OnlineNY, NJ&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Hazelcast: In-Memory Data Grid Without Black Magic&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;2015-05-07&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;QCon New York&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;New York, NY&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Ground-up Introduction To In-Memory Data&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;2015-06-12&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;SpringOne 2GX 2015&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Washington, DC&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;The Epic Groovy Puzzlers S02: The Revenge of the parentheses&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;2015-09-16&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;SpringOne 2GX 2015&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Washington, DC&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Spring Framework: The Ultimate Configurations Battle!&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;2015-09-16&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;North Boynton Coders&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Boynton Beach, FL&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Hazelcast for Java Developers&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;2015-10-21&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Orlando JUG&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Orlando, FL&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Distributed Caching and JCache&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;2015-10-22&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;GreenJUG&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Greenville, SC&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Hazelcast for Java Developers&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;2015-11-12&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Richmond JUG&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Richmond, VA&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Distributed Caching and JCache&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;2015-11-18&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Atlanta JUG&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Atlanta, GA&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Distributed Caching with JCache and Beyond&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;2015-12-15&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Video from QCon 2015 talk &lt;a href=&quot;http://www.infoq.com/presentations/in-memory-data&quot;&gt;is available&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Video from JCache talk given at Atlanta JUG 12/15/2015&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;videoblock text-center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;iframe width=&quot;640&quot; height=&quot;480&quot; src=&quot;https://player.vimeo.com/video/150375058&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Video from Groovy Puzzlers Talk with (&lt;a href=&quot;https://twitter.com/jbaruch&quot;&gt;@jbaruch&lt;/a&gt;) &lt;a href=&quot;http://www.infoq.com/presentations/groovy-puzzlers&quot;&gt;is available&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Other SpringOne 2GX 2015 talks were recorded and will be available shortly.
+Keep an eye on this &lt;a href=&quot;http://www.infoq.com/springone-2gx-2015/&quot;&gt;page&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;contributions-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#contributions-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;/a&gt;Contributions &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;When people ask me how one can contribute to an open source project, I suggest starting with something small but valuable like the documentation.
+It also helps to understand internal organizational mechanics of the project, the team, and the community.
+I did this myself!
+One of my first contributions to the project was a contribution to the &lt;a href=&quot;http://hazelcast.org/mastering-hazelcast/&quot;&gt;«Mastering Hazelcast»&lt;/a&gt; book.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock tip&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;fa icon-tip&quot; title=&quot;Tip&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+If you want to learn something more beyond &lt;a href=&quot;http://hazelcast.org/documentation/&quot;&gt;official documentation&lt;/a&gt; (which is awesome. Kudos to the documentation team!) I highly recommend this book by Hazelcast Quality, Stability and Performance team lead &lt;a href=&quot;https://twitter.com/PeterVeentjer&quot;&gt;Peter Veentjer&lt;/a&gt;.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;I helped the team to improve usability by converting exciting sources from LaTeX to asciidoc. With &lt;a href=&quot;http://asciidoctor.org&quot;&gt;asciidoctor&lt;/a&gt; tool we could render both online, &lt;a href=&quot;https://hazelcast.com/resources/mastering-hazelcast/&quot;&gt;PDF&lt;/a&gt; and &lt;a href=&quot;http://bit.ly/1QWWbrZ&quot;&gt;&lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-book&quot;&gt;&lt;/i&gt;&lt;/span&gt; EPUB&lt;/a&gt; versions.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Another important part of Hazelcast open source infrastructure is the collection of code samples. I contributed &lt;a href=&quot;https://github.com/hazelcast/hazelcast-code-samples/pulls?utf8=✓&amp;amp;q=is%3Apr+author%3AgAmUssA&quot;&gt;a number of samples&lt;/a&gt; including Hazelcast integration with &lt;a href=&quot;https://github.com/hazelcast/hazelcast-code-samples/tree/master/hazelcast-integration/mongodb&quot;&gt;MongoDB&lt;/a&gt;, &lt;a href=&quot;https://github.com/hazelcast/hazelcast-code-samples/tree/master/jcache&quot;&gt;JCache&lt;/a&gt; and &lt;a href=&quot;https://github.com/hazelcast/hazelcast-code-samples/tree/master/hazelcast-integration/springboot-caching&quot;&gt;Spring Boot&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Couple months ago, our engineering team &lt;a href=&quot;http://docs.hazelcast.org/docs/protocol/1.0-developer-preview/client-protocol.html&quot;&gt;published&lt;/a&gt; specification of Open Client protocol for Hazelcast.
+This enables to anyone from the community to develop Hazelcast for any missing language.
+A couple of my team mates (including yours truly) have started &lt;a href=&quot;https://github.com/hazelcast-incubator/hazelcast-nodejs-client&quot;&gt;Hazelcast Node.js client project&lt;/a&gt;.
+Currently, it’s in pre-alpha state but it already can connect to Hazelcast cluster and perform some basic IMaps operation.
+This is another great way to contribute to this open source project.
+Jump in!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;plans-for-2016-span-class-icon-i-class-fa-fa-expand-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#plans-for-2016-span-class-icon-i-class-fa-fa-expand-i-span&quot;&gt;&lt;/a&gt;Plans for 2016 &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-expand&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;I’m looking forward to expanding the geography of my talks on Distributed Systems and Hazelcast  - We have confirmed the inaugural Hazelcast User Group meet-up for Toronto in February:&lt;/p&gt;
+&lt;/div&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot; lang=&quot;en&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Hey Canada ! It’s actually happening - &lt;a href=&quot;https://twitter.com/hazelcast&quot;&gt;@Hazelcast&lt;/a&gt; User Group &lt;a href=&quot;https://twitter.com/hashtag/Toronto?src=hash&quot;&gt;#Toronto&lt;/a&gt; sponsored by &lt;a href=&quot;https://twitter.com/UXPSystems&quot;&gt;@UXPSystems&lt;/a&gt;!
+RSVP &lt;a href=&quot;https://t.co/8jVhXnc3lt&quot;&gt;https://t.co/8jVhXnc3lt&lt;/a&gt;&lt;/p&gt;— Viktor Gamov (@gAmUssA) &lt;a href=&quot;https://twitter.com/gAmUssA/status/676513433701978112&quot;&gt;December 14, 2015&lt;/a&gt;&lt;/blockquote&gt; &lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+&lt;div class=&quot;olist lowerroman&quot;&gt;
+&lt;ol class=&quot;lowerroman&quot; type=&quot;i&quot;&gt;
+&lt;li&gt;
+&lt;p&gt;I’m coming back to &lt;a href=&quot;https://devnexus.com/s/speakers/4846&quot;&gt;Devnexus 2016&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot; lang=&quot;en&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt; I will participate in one more presentation at DevNexus. My role is to defend XML :( 
+&lt;a href=&quot;https://twitter.com/hashtag/devnexus?src=hash&quot;&gt;#devnexus&lt;/a&gt; &lt;a href=&quot;https://twitter.com/gAmUssA&quot;&gt;@gAmUssA&lt;/a&gt; &lt;a href=&quot;https://twitter.com/jbaruch&quot;&gt;@jbaruch&lt;/a&gt; &lt;a href=&quot;https://t.co/5SFd3PxGwW&quot;&gt;pic.twitter.com/5SFd3PxGwW&lt;/a&gt;&lt;/p&gt;— Yakov Fain (@yfain) &lt;a href=&quot;https://twitter.com/yfain/status/674945818130952192&quot;&gt;December 10, 2015&lt;/a&gt;&lt;/blockquote&gt; &lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;I’m already confirmed to join the line-up of awesome speakers at the largest Java conference in Russia- JPoint 2016.&lt;/p&gt;
+&lt;/div&gt;
+&lt;blockquote class=&quot;twitter-tweet&quot; lang=&quot;en&quot;&gt;&lt;p lang=&quot;uk&quot; dir=&quot;ltr&quot;&gt;Анонс конференции &lt;a href=&quot;https://twitter.com/hashtag/JPoint?src=hash&quot;&gt;#JPoint&lt;/a&gt; 2016 &lt;a href=&quot;https://t.co/wmeE8UXLzh&quot;&gt;https://t.co/wmeE8UXLzh&lt;/a&gt; &lt;a href=&quot;https://twitter.com/hashtag/java?src=hash&quot;&gt;#java&lt;/a&gt; &lt;a href=&quot;https://twitter.com/JUGru&quot;&gt;@JUGru&lt;/a&gt; &lt;a href=&quot;https://twitter.com/hashtag/razborpoletov?src=hash&quot;&gt;#razborpoletov&lt;/a&gt; &lt;a href=&quot;https://twitter.com/hashtag/Hazelcast?src=hash&quot;&gt;#Hazelcast&lt;/a&gt; &lt;a href=&quot;https://t.co/KdK7vBx5NJ&quot;&gt;pic.twitter.com/KdK7vBx5NJ&lt;/a&gt;&lt;/p&gt;— Viktor Gamov (@gAmUssA) &lt;a href=&quot;https://twitter.com/gAmUssA/status/677336503148814337&quot;&gt;December 17, 2015&lt;/a&gt;&lt;/blockquote&gt; &lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;As always, I encourage you to keep an eye on &lt;a href=&quot;https://hazelcast.com/company/events/&quot;&gt;Hazelcast Events&lt;/a&gt; page.
+We’re going to have a lot of exciting stuff in 2016.
+Looking forward to 2016 — Happy New Year &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-tree&quot;&gt;&lt;/i&gt;&lt;/span&gt;!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content>
+</entry>
+<entry>
+<id>http://next.javaheadbrain.com/posts/2015/01/27/ground-up-introduction-to-in-memory-data.html</id>
+<title>Ground-up Introduction To In-Memory Data</title>
+<updated>2015-12-31T22:24:49-05:00</updated>
+<published>2015-01-27T22:00:00+00:00</published>
+<link href="http://next.javaheadbrain.com/posts/2015/01/27/ground-up-introduction-to-in-memory-data.html" rel="alternate" type="text/html" />
+<author>
+<name>Viktor Gamov</name>
+</author>
+<category term="hazelcast"></category>
+<category term="imdg"></category>
+<summary>
+Table of Contents
+
+Brief Agenda Of A Workshop
+Intrigued ?
+
+
+
+
+
+
+
+
+
+
+
+TL;DR
+This April, I&#8217;m going to deliver half-day workshop «Ground-up Introduction To In-Memory Data» at Code PaLOUsa conference in Louisville, KY.
+
+
+
+
+
+You&#8217;re an architect or a developer with years of experience creating amazing applications. You&#8217;ve just been assigned to a gasp low latency project! Because you&#8217;re an expert, you&#8217;re expected to master a new In-Memory caching/data technology and be productive from day 1. You feel completely lost as you open the JAR files. Not only that, but you have to contend with new topologies and data stores like NoSQL or Hadoop.
+
+
+Trust me, it&#8217;s not as...
+</summary>
+<content type="html">
+&lt;div id=&quot;toc&quot; class=&quot;toc&quot;&gt;
+&lt;div id=&quot;toctitle&quot;&gt;Table of Contents&lt;/div&gt;
+&lt;ul class=&quot;sectlevel1&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#brief-agenda-of-a-workshop&quot;&gt;Brief Agenda Of A Workshop&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#intrigued&quot;&gt;Intrigued ?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&quot;preamble&quot;&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;admonitionblock note&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;fa icon-note&quot; title=&quot;Note&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;TL;DR&lt;/div&gt;
+This April, &lt;a href=&quot;http://codepalousa.com/blog/2015/code-palousa-2015-session-listing/&quot;&gt;I’m going to deliver&lt;/a&gt; half-day workshop «Ground-up Introduction To In-Memory Data» at &lt;a href=&quot;http://codepalousa.com&quot;&gt;Code PaLOUsa&lt;/a&gt; conference in Louisville, KY.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You’re an architect or a developer with years of experience creating amazing applications. You’ve just been assigned to a &lt;strong&gt;gasp&lt;/strong&gt; low latency project! Because you’re an expert, you’re expected to master a new &lt;em&gt;In-Memory caching/data technology&lt;/em&gt; and be productive from &lt;strong&gt;day 1&lt;/strong&gt;. You feel completely lost as you open the JAR files. Not only that, but you have to contend with new topologies and data stores like NoSQL or Hadoop.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Trust me, it’s not as bad as it appears and setting up in-memory data is NOT as hard as you think. This hands-on workshop will cover the things you need to know to be successful on your first low latency in-memory based project.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;brief-agenda-of-a-workshop&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#brief-agenda-of-a-workshop&quot;&gt;&lt;/a&gt;Brief Agenda Of A Workshop&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Here is a brief agenda of this 1/2 Day Session:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The In-Memory landscape you need to know&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Four Distributed Data Topologies that work well&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Making In-Memory Reliable, Scalable and Durable&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;When to go NoSQL or not&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Techniques for Really Big In-Memory Data&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=zBaKtAQqfMo&quot;&gt;Enough talk&lt;/a&gt; - &lt;strong&gt;Hands-on workshop&lt;/strong&gt;: In-Memory Alive and You Did it.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;intrigued&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#intrigued&quot;&gt;&lt;/a&gt;Intrigued ?&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Make sure that you’re following &lt;a href=&quot;https://twitter.com/CodePaLOUsa&quot;&gt;conference&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/gamussa&quot;&gt;me&lt;/a&gt; on twitter for updates. &lt;a href=&quot;http://codepalousa.com/plan/event-location/&quot;&gt;See you in Louisville, KY!&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content>
+</entry>
+<entry>
+<id>http://next.javaheadbrain.com/posts/2014/12/13/goodbye-farata-hello-hazelcast.html</id>
+<title>Goodbye, Farata. Hello, Hazelcast!</title>
+<updated>2015-12-31T22:24:49-05:00</updated>
+<published>2014-12-13T00:00:00+00:00</published>
+<link href="http://next.javaheadbrain.com/posts/2014/12/13/goodbye-farata-hello-hazelcast.html" rel="alternate" type="text/html" />
+<author>
+<name>Viktor Gamov</name>
+</author>
+<category term="hazelcast"></category>
+<category term="job"></category>
+<category term="farata"></category>
+<summary>
+Table of Contents
+
+
+
+
+
+Go for it now. The future is promised to no one.
+
+
+
+&#8212; Wayne Dyer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+TL;DR
+Monday, December 15, I&#8217;m staring my new role as Solution Architect at Hazelcast.
+
+
+
+
+
+I&#8217;ve had a great time at Farata Systems over the past 4 years and 3 months. It was my first workplace in US, and it was incredible place to work. During that period, I learned so many technologies, tools, frameworks and even languages so I can say with confidence that it was quite a ride!
+
+
+I joined Farata as Senior RIA (who does remember that abbreviation?) Developer in 2010. I&#8217;ve helped financial institutions and startups...
+</summary>
+<content type="html">
+&lt;div id=&quot;toc&quot; class=&quot;toc&quot;&gt;
+&lt;div id=&quot;toctitle&quot;&gt;Table of Contents&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class=&quot;quoteblock&quot;&gt;
+&lt;blockquote&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Go for it now. The future is promised to no one.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;div class=&quot;attribution&quot;&gt;
+— Wayne Dyer
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center;float: right&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;http://next.javaheadbrain.com/images/HazelcastLogo-Blue_Dark_1200w.png&quot; alt=&quot;hazelcast&quot; width=&quot;50%&quot; /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock note&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;fa icon-note&quot; title=&quot;Note&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;TL;DR&lt;/div&gt;
+Monday, December 15, I’m staring my new role as Solution Architect at &lt;a href=&quot;http://hazelcast.com&quot;&gt;Hazelcast&lt;/a&gt;.&lt;br /&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;http://pleer.com/tracks/4445417GRwk&quot;&gt;I’ve had a great time&lt;/a&gt; at &lt;a href=&quot;http://faratasystems.com&quot;&gt;Farata Systems&lt;/a&gt; over the past 4 years and 3 months. It was my first workplace in US, and it was incredible place to work. During that period, I learned so many technologies, tools, frameworks and even languages so I can say with confidence that it was quite a ride!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;I joined Farata as Senior RIA (who does remember that abbreviation?) Developer in 2010. I’ve helped financial institutions and startups of New York area to build awesome applications with Flex technology. After Adobe abandoned Flex, my colleagues and me dove into the deep blue sea of HTML5. We have learned a lot, and we have generously &lt;a href=&quot;http://github.com/yfain/WebDevForJavaProgrammers&quot;&gt;shared our findings&lt;/a&gt; with a community. We wrote &lt;a href=&quot;http://enterprisewebbook.com/&quot;&gt;«Enterprise Web Development»  book&lt;/a&gt; - a quintessence of our research and consulting work in a field of modern web development in the big companies.
+I’m very grateful to the founders of Farata - &lt;a href=&quot;http://twitter.com/yfain&quot;&gt;Yakov&lt;/a&gt;, Victor and Anatole - for everything that I learned from them.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Sometimes, you get a chance in your life that you should not miss. Otherwise, you will regret it later.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Monday is my first day at &lt;a href=&quot;http://hazelcast.com&quot;&gt;Hazelcast&lt;/a&gt;, a leading in-memory data grid company with HQ in Palo Alto, California. I want say huge thanks to &lt;a href=&quot;https://twitter.com/fuadm&quot;&gt;Fuad&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/oztalip&quot;&gt;Talip&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/gregrluck&quot;&gt;Greg&lt;/a&gt; for the opportunity to grow with the company.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;I’m very excited to join the Hazelcast Engineering Team as Solution Architect. I will be responsible for help our East Coast clients to build better software using our product (both &lt;a href=&quot;http://hazelcast.org&quot;&gt;open-source part&lt;/a&gt;, and &lt;a href=&quot;http://hazelcast.com/products/hazelcast-enterprise/&quot;&gt;the commercial extensions&lt;/a&gt;).
+Ultimately, I’ll be doing the pretty much same sorts of things I’ve been doing of the past couple years - write code, talk on the conferences, meetups and user groups, run workshops, and create videos - to show the developers how to use Hazelcast more efficiently.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;I will do my best to keep you posted here with what I learn. Saying that, expect there will be more technical articles from me.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Wish me the best of luck!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&lt;strong&gt;p.s.&lt;/strong&gt; If you have any questions regarding Hazelcast technology, feel free to contact me &lt;code&gt;viktor at hazelcast dot com&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+</entry>
+<entry>
+<id>http://next.javaheadbrain.com/posts/2013/07/17/getting-started-with-nashorn.html</id>
+<title>Getting Started With Nashorn</title>
+<updated>2015-12-31T22:24:49-05:00</updated>
+<published>2013-07-17T23:00:00+00:00</published>
+<link href="http://next.javaheadbrain.com/posts/2013/07/17/getting-started-with-nashorn.html" rel="alternate" type="text/html" />
+<author>
+<name>Viktor Gamov</name>
+</author>
+<category term="nashorn"></category>
+<category term="javascript"></category>
+<category term="java"></category>
+<summary>
+TL;DR
+You can download Early Access Release of JDK8 which include nashorn.jar and jjs JavaScript shell. Add JDK bin directory to PATH with command:
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8); export PATH=$JAVA_HOME/bin:$PATH
+Type jjs and enter to a JavaScript REPL
+
+
+
+
+
+
+
+
+
+
+
+
+THIS IS A DRAFT!
+
+
+
+
+
+Table of Contents
+
+Getting Nashorn&#8217;s sources
+Build Nashorn For JDK 8
+Running
+Using Nashorn with JDK7
+
+
+
+While preparing to my JavaOne 2013 talk, I decide to write down some notes about my progress, tip and tricks that descover during my experiments. Consider it as my roadtrip notes.
+As you learned from my previous post, I&#8217;m going to talk about Nashorn - JavaScript engine 100% written in Java. Nashorn will...
+</summary>
+<content type="html">
+&lt;div id=&quot;preamble&quot;&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;admonitionblock note&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;fa icon-note&quot; title=&quot;Note&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;TL;DR&lt;/div&gt;
+You can &lt;a href=&quot;https://jdk8.java.net/download.html&quot;&gt;download&lt;/a&gt; Early Access Release of JDK8 which include nashorn.jar and jjs JavaScript shell. Add JDK &lt;em&gt;bin&lt;/em&gt; directory to PATH with command:&lt;br /&gt;
+&lt;code&gt;export JAVA_HOME=$(/usr/libexec/java_home -v 1.8); export PATH=$JAVA_HOME/bin:$PATH&lt;/code&gt;&lt;br /&gt;
+Type &lt;code&gt;jjs&lt;/code&gt; and enter to a JavaScript &lt;a href=&quot;http://en.wikipedia.org/wiki/REPL&quot;&gt;REPL&lt;/a&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;hr /&gt;
+&lt;div class=&quot;admonitionblock warning&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;fa icon-warning&quot; title=&quot;Warning&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+THIS IS A DRAFT!
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&quot;toc&quot; class=&quot;toc&quot;&gt;
+&lt;div id=&quot;toctitle&quot; class=&quot;title&quot;&gt;Table of Contents&lt;/div&gt;
+&lt;ul class=&quot;sectlevel1&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#getting-nashorn-s-sources&quot;&gt;Getting Nashorn’s sources&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#build-nashorn-for-jdk-8&quot;&gt;Build Nashorn For JDK 8&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#running&quot;&gt;Running&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#using-nashorn-with-jdk7&quot;&gt;Using Nashorn with JDK7&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;While preparing to &lt;a href=&quot;https://oracleus.activeevents.com/2013/connect/sessionDetail.ww?SESSION_ID=5793&quot;&gt;my JavaOne 2013 talk&lt;/a&gt;, I decide to write down some notes about my progress, tip and tricks that descover during my experiments. Consider it as my roadtrip notes.
+As you learned from my previous post, I’m going to talk about Nashorn - JavaScript engine 100% written in Java. Nashorn will replace Mozilla Rhino in upcoming JDK8. But even today, Nashorn overperfom Rhino in bunch of test. As Rhino, Nashorn is implementing JSR 223: Scripting for the JavaTM Platform. But we will get there.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;getting-nashorn-s-sources&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#getting-nashorn-s-sources&quot;&gt;&lt;/a&gt;Getting Nashorn’s sources&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;Prerequisities&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.sourcetreeapp.com/&quot;&gt;&lt;strong&gt;SourceTree.app&lt;/strong&gt;&lt;/a&gt; to download sources from OpenJDK repository. We don’t to mess around with command line tools for Mercurial. And SourceTree available for OSX and Windows.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;http://ant.apache.org/&quot;&gt;Apache Ant&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Also you need Mozilla Rhino if you want to run benchmarks to compare Nashorn and Rhino&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;build-nashorn-for-jdk-8&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#build-nashorn-for-jdk-8&quot;&gt;&lt;/a&gt;Build Nashorn For JDK 8&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Install JDK 8 from &lt;a href=&quot;http://jdk8.java.net/download.html&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Use JDK 8&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;cd make&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;ant clean; ant&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Grab latest jar from &lt;em&gt;dist/nashorn.jar&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;running&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#running&quot;&gt;&lt;/a&gt;Running&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;using-nashorn-with-jdk7&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#using-nashorn-with-jdk7&quot;&gt;&lt;/a&gt;Using Nashorn with JDK7&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;clone &lt;a href=&quot;https://bitbucket.org/ramonza/nashorn-backport&quot;&gt;Nashorn JDK7 backport&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;build similarly to JDK8 version&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;append boot classpath with&lt;/p&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;Augment JDK boot class path with backport Nashonr jar&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlight nowrap&quot;&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;export JAVA_OPTS=&amp;quot;-Xbootclasspath/a:/YOUR_PATH_TO_NASHORN-BACKPORT_DIR/dist/nashorn.jar&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content>
+</entry>
+<entry>
+<id>http://next.javaheadbrain.com/posts/2013/07/09/im-speaking-at-javaone.html</id>
+<title>I&#8217;m speaking at JavaOne 2013</title>
+<updated>2015-12-31T22:24:49-05:00</updated>
+<published>2013-07-09T01:00:00+00:00</published>
+<link href="http://next.javaheadbrain.com/posts/2013/07/09/im-speaking-at-javaone.html" rel="alternate" type="text/html" />
+<author>
+<name>Viktor Gamov</name>
+</author>
+<category term="javaone"></category>
+<category term="javascript"></category>
+<summary>
+Table of Contents
+
+
+
+New achievement unlocked - I&#8217;m going to deliver the talk at JavaOne 2013!
+This year I will be talking about very demanding and interesting topic for me - about integration Java and JavaScript.
+
+
+Here is quick abstract of my [BOF5793] session:
+
+
+
+
+There is a perception in the Java community that JavaScript is a second-rate interpreted language whose main purpose is to make Web pages a little prettier. But JavaScript is actually a powerful, flexible, dynamically typed language. And today the language has been experiencing a revival driven by the interest in HTML5. Nashorn is a modern JavaScript engine available on the...
+</summary>
+<content type="html">
+&lt;div id=&quot;toc&quot; class=&quot;toc&quot;&gt;
+&lt;div id=&quot;toctitle&quot;&gt;Table of Contents&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;New achievement unlocked - I’m going to deliver the talk at JavaOne 2013!
+This year I will be talking about very demanding and interesting topic for me - about integration Java and JavaScript.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Here is quick abstract of my &lt;strong&gt;[BOF5793]&lt;/strong&gt; session:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;quoteblock&quot;&gt;
+&lt;blockquote&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;There is a perception in the Java community that JavaScript is a second-rate interpreted language whose main purpose is to make Web pages a little prettier. But JavaScript is actually a powerful, flexible, dynamically typed language. And today the language has been experiencing a revival driven by the interest in HTML5. Nashorn is a modern JavaScript engine available on the JVM, and it’s already included with JDK8 builds. This presentation is about building polyglot applications with Java and JavaScript.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Essentially, during this talk I will demonstrate how to leverage Java API from JavaScript and use both languages side-by-side in real-world use-cases like servlet programming, RESTful WebServices and etc. I have couple ideas regarding the examples for this sessions. I definitely will report about my experiments in this blog.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock radius small-4 small-centered columns&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;http://next.javaheadbrain.com/images/javascript.png&quot; alt=&quot;javascript&quot; /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You can find details about this session the &lt;a href=&quot;https://oracleus.activeevents.com/2013/connect/sessionDetail.ww?SESSION_ID=5793&quot;&gt;JavaOne website&lt;/a&gt;.
+Keep in touch for updates by following me on &lt;a href=&quot;http://twitter.com/gAmUssA&quot;&gt;twitter&lt;/a&gt; and I hope to see you in San Francisco in September.&lt;/p&gt;
+&lt;/div&gt;
+</content>
+</entry>
+<entry>
+<id>http://next.javaheadbrain.com/posts/2013/01/19/set-jdk-on-osx.html</id>
+<title>Set JDK on OSX</title>
+<updated>2015-12-31T22:24:49-05:00</updated>
+<published>2013-01-19T14:00:00+00:00</published>
+<link href="http://next.javaheadbrain.com/posts/2013/01/19/set-jdk-on-osx.html" rel="alternate" type="text/html" />
+<author>
+<name>Viktor Gamov</name>
+</author>
+<category term="osx"></category>
+<category term="java"></category>
+<category term="protip"></category>
+<category term="zsh"></category>
+<summary>
+Apple announced to remove Java Preferences app from Mac OS X.
+Details could be found here http://support.apple.com/kb/HT5493). Let&#8217;s try to fix it.
+
+
+Generally, Java applications will use the JAVA_HOME environment variable to pick a JDK.
+
+
+To set to JDK 6
+
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.6)
+
+
+
+To set JDK 7
+
+ export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)
+
+
+
+To set JDK 8
+
+ export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+
+
+
+Created aliases for my zsh shell
+
+alias setjdk16='export JAVA_HOME=$(/usr/libexec/java_home -v 1.6)'
+alias setjdk17='export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)'
+alias setjdk18='export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)'
+
+
+
+For exotic cases, like Netbeans follow instruction here...
+</summary>
+<content type="html">
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;http://next.javaheadbrain.com/images/terminal_java.png&quot; alt=&quot;terminal java&quot; /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph panel&quot;&gt;
+&lt;p&gt;Apple announced to remove Java Preferences app from Mac OS X.&lt;br /&gt;
+Details could be found here &lt;a href=&quot;http://support.apple.com/kb/HT5493&quot; class=&quot;bare&quot;&gt;http://support.apple.com/kb/HT5493&lt;/a&gt;). Let’s try to fix it.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Generally, Java applications will use the JAVA_HOME environment variable to pick a JDK.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;To set to JDK 6&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlight nowrap&quot;&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;export JAVA_HOME=$(/usr/libexec/java_home -v 1.6)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;To set JDK 7&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlight nowrap&quot;&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt; export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;To set JDK 8&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlight nowrap&quot;&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt; export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;Created aliases for my zsh shell&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlight nowrap&quot;&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;alias setjdk16=&amp;apos;export JAVA_HOME=$(/usr/libexec/java_home -v 1.6)&amp;apos;
+alias setjdk17=&amp;apos;export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)&amp;apos;
+alias setjdk18=&amp;apos;export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)&amp;apos;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;For exotic cases, like Netbeans follow instruction &lt;a href=&quot;https://blogs.oracle.com/bobby/entry/switching_jdks_on_mac&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</content>
+</entry>
+<entry>
+<id>http://next.javaheadbrain.com/posts/2012/07/26/websockets-for-java-developers.html</id>
+<title>WebSockets for Java Developers. Princeton JUG talk slides</title>
+<updated>2015-12-31T22:24:49-05:00</updated>
+<published>2012-07-26T00:00:00+00:00</published>
+<link href="http://next.javaheadbrain.com/posts/2012/07/26/websockets-for-java-developers.html" rel="alternate" type="text/html" />
+<summary>
+Last tuesday I delivered presentation at Princeton JUG «WebSockets: The Current State of the Most Valuable HTML5 API». + HTML5 specification includes WebSockets, a new communication protocol
+for the Web. It&#8217;s becoming the best choice for building real-time Web
+applications. I did an overview of the servers (including upcoming
+JavaEE 7 RI - Glassfish 4) and frameworks that support WebSockets and
+showed some use cases where WebSockets shine. At the end we had short
+conversation  about various approaches for the server- and client-side
+implementations of WebSockets that can be used in the Web applications
+today.
+
+
+Here are my slides from that presentation:...
+</summary>
+<content type="html">
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Last tuesday I delivered presentation at Princeton JUG «WebSockets: The Current State of the Most Valuable HTML5 API». + HTML5 specification includes WebSockets, a new communication protocol
+for the Web. It’s becoming the best choice for building real-time Web
+applications. I did an overview of the servers (including upcoming
+JavaEE 7 RI - Glassfish 4) and frameworks that support WebSockets and
+showed some use cases where WebSockets shine. At the end we had short
+conversation  about various approaches for the server- and client-side
+implementations of WebSockets that can be used in the Web applications
+today.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Here are my slides from that presentation:&lt;/p&gt;
+&lt;/div&gt;
+&lt;script async=&quot;&quot; class=&quot;speakerdeck-embed&quot; data-slide=&quot;2&quot; data-id=&quot;501056beac941a000205aee0&quot; data-ratio=&quot;1.7777777777777777&quot; src=&quot;//speakerdeck.com/assets/embed.js&quot;&gt;&lt;/script&gt;
+</content>
+</entry>
+<entry>
+<id>http://next.javaheadbrain.com/posts/2012/05/21/alfred-showhide-desktop-icons-on-mac-os.html</id>
+<title>Alfred Extension: Show/Hide desktop icons on Mac OS X</title>
+<updated>2015-12-31T22:24:49-05:00</updated>
+<published>2012-05-21T00:00:00+00:00</published>
+<link href="http://next.javaheadbrain.com/posts/2012/05/21/alfred-showhide-desktop-icons-on-mac-os.html" rel="alternate" type="text/html" />
+<category term="alfred"></category>
+<category term="shell"></category>
+<category term="macos x"></category>
+<summary>
+For some reasons, I’m using desktop as temporary storage of files &#8211; downloaded from internet, in-progress documents, screenshots and code snippets. Time after time I create screencasts and I need to have clean desktop.
+First, I tried to find available solution and have found Desktop Curtain. I don’t need all this fanciness (different desktop wallpapers, customization) so $2.99 is overkill for me and for this taks.
+
+So, I decide to create my own solution with help of shell and Alfred.
+Googled for Mac OS X command and I created simple script what I wrapped after as Alfred Extension. 
+
+You can download Alfred Extension...
+</summary>
+<content type="html">
+&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;a href=&quot;http://next.javaheadbrain.com/images/blog/2012-05-21-alfred-showhide-desktop-icons-on-mac-os/2012-05-21-alfred-showhide-desktop-icons-on-mac-os_1.png&quot; imageanchor=&quot;1&quot; style=&quot;margin-left: 1em; margin-right: 1em;&quot;&gt;&lt;img border=&quot;0&quot; height=&quot;103&quot; src=&quot;http://next.javaheadbrain.com/images/blog/2012-05-21-alfred-showhide-desktop-icons-on-mac-os/2012-05-21-alfred-showhide-desktop-icons-on-mac-os_1.png&quot; width=&quot;400&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&lt;p&gt;For some reasons, I’m using desktop as temporary storage of files – downloaded from internet, in-progress documents, screenshots and code snippets. Time after time I create screencasts and I need to have clean desktop.&lt;br /&gt;
+First, I tried to find available solution and have found &lt;a href=&quot;http://manytricks.com/desktopcurtain/&quot;&gt;Desktop Curtain&lt;/a&gt;. I don’t need all this fanciness (different desktop wallpapers, customization) so $2.99 is overkill for me and for this taks.&lt;br /&gt;
+&lt;a name=&quot;more&quot;&gt;&lt;/a&gt;&lt;br /&gt;
+So, I decide to create my own solution with help of shell and Alfred.&lt;br /&gt;
+Googled for Mac OS X command and I created simple script what I wrapped after as Alfred Extension. &lt;br /&gt;
+&lt;script src=&quot;https://gist.github.com/2760502.js?file=toggle_desktop_icons.sh&quot;&gt;&lt;/script&gt;&lt;br /&gt;
+You can download Alfred Extension for my &lt;a href=&quot;https://dl.dropbox.com/u/1585128/Toggle_Desktop_Icons.alfredextension&quot;&gt;Dropbox&lt;/a&gt;. To use it you need to have &lt;a href=&quot;http://www.alfredapp.com/powerpack/&quot;&gt;Alfred PowerPack&lt;/a&gt; purchased. &lt;br /&gt;
+Cheers&lt;/p&gt;
+</content>
+</entry>
+<entry>
+<id>http://next.javaheadbrain.com/posts/2012/05/16/webjars-for-assets-management-in-your.html</id>
+<title>WebJars for assets management in your project</title>
+<updated>2015-12-31T22:24:49-05:00</updated>
+<published>2012-05-16T00:00:00+00:00</published>
+<link href="http://next.javaheadbrain.com/posts/2012/05/16/webjars-for-assets-management-in-your.html" rel="alternate" type="text/html" />
+<category term="java"></category>
+<category term="ext js"></category>
+<category term="github"></category>
+<category term="maven"></category>
+<summary>
+Usage automatic build tools for dependency management is best practice in Java world and usage of tools such as Maven has been proven by the years.
+But what if utilize existing Maven knowledge of Java dependencies management for JavaScript projects. Hopefully, some Java and JVM frameworks (like Grails or Play2) provided their own way of dealing with static resources.
+But in most common situations, you don’t have lot of options for deployment your application.
+To read the full post, surf on over to the Farata Systems Blog: http://flexblog.faratasystems.com/2012/05/16/using-webjars-for-assets-management-in-javascript-projects 
+Thanks everyone...
+</summary>
+<content type="html">
+&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;a href=&quot;http://next.javaheadbrain.com/images/blog/2012-05-16-webjars-for-assets-management-in-your/webJars+app+screen2.png&quot; imageanchor=&quot;1&quot; style=&quot;clear: left; float: left; margin-bottom: 1em; margin-right: 1em;&quot;&gt;&lt;img border=&quot;0&quot; height=&quot;168&quot; src=&quot;http://next.javaheadbrain.com/images/blog/2012-05-16-webjars-for-assets-management-in-your/webJars+app+screen2.png&quot; width=&quot;400&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&lt;p&gt;Usage automatic build tools for dependency management is best practice in Java world and usage of tools such as Maven has been proven by the years.&lt;br /&gt;
+But what if utilize existing Maven knowledge of Java dependencies management for JavaScript projects. Hopefully, some Java and JVM frameworks (like &lt;a href=&quot;http://blog.springsource.org/2011/06/30/countdown-to-grails-2-0-static-resources/&quot;&gt;Grails&lt;/a&gt; or &lt;a href=&quot;http://www.jamesward.com/2012/04/25/introducing-webjars-web-libraries-as-managed-dependencies&quot;&gt;Play2&lt;/a&gt;) provided their own way of dealing with static resources.&lt;br /&gt;
+But in most common situations, you don’t have lot of options for deployment your application.&lt;/p&gt;
+&lt;p&gt;&lt;a name=&quot;more&quot;&gt;&lt;/a&gt;To read the full post, surf on over to the Farata Systems Blog: &lt;a href=&quot;http://flexblog.faratasystems.com/2012/05/16/using-webjars-for-assets-management-in-javascript-projects&quot;&gt;http://flexblog.faratasystems.com/2012/05/16/using-webjars-for-assets-management-in-javascript-projects &lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Thanks everyone&lt;/p&gt;
+</content>
+</entry>
+<entry>
+<id>http://next.javaheadbrain.com/posts/2012/01/28/how-to-download-videos-from-infoq-for.html</id>
+<title>How to download videos from InfoQ for offline viewing</title>
+<updated>2015-12-31T22:24:49-05:00</updated>
+<published>2012-01-28T06:15:00+00:00</published>
+<link href="http://next.javaheadbrain.com/posts/2012/01/28/how-to-download-videos-from-infoq-for.html" rel="alternate" type="text/html" />
+<author>
+<name>Viktor Gamov</name>
+</author>
+<summary>
+From my humble opinion, InfoQ is one of best resources for developers nowadays. You can find lot of IT related stuff - interviews, articles, presentations slides and videos. And today I would like to talk about videos from InfoQ in particular. Is always good to have offline version to watch it during long commute, for instance. Unfortunately, InfoQ administration for some reasons not allow to download videos.
+However, I found very elegant solution how to do that. I did it on my MacOS X with Safari, probably it will work with Safari for Windows as well.
+
+
+Go to Safari Preferences, Advanced tab and activate Develop menu...
+</summary>
+<content type="html">
+&lt;p&gt;&lt;a href=&quot;http://cdn4.infoq.com/styles/i/logo-infoq.gif&quot;&gt;&lt;img src=&quot;http://cdn4.infoq.com/styles/i/logo-infoq.gif&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;From my humble opinion, &lt;a href=&quot;http://www.infoq.com/&quot;&gt;InfoQ&lt;/a&gt; is one of best resources for developers nowadays. You can find lot of IT related stuff - interviews, articles, presentations slides and videos. And today I would like to talk about videos from InfoQ in particular. Is always good to have offline version to watch it during long commute, for instance. Unfortunately, InfoQ administration for some reasons not allow to download videos.&lt;br /&gt;
+However, I found very elegant solution how to do that. I did it on my MacOS X with Safari, probably it will work with Safari for Windows as well.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Go to Safari Preferences, Advanced tab and activate Develop menu item&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://img.skitch.com/20120128-83adqeb8wr6c67dbdhmduh93e2.jpg&quot;&gt;&lt;img src=&quot;https://img.skitch.com/20120128-83adqeb8wr6c67dbdhmduh93e2.jpg&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Change browser User Agent to iOS (iPad or iPhone)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://img.skitch.com/20120128-x5fg6rsj7cwmpnj2qscu8t2431.jpg&quot;&gt;&lt;img src=&quot;https://img.skitch.com/20120128-x5fg6rsj7cwmpnj2qscu8t2431.jpg&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Go to page that contains desired movie. For example, I tool this video &lt;a href=&quot;http://www.infoq.com/presentations/JVM-Performance-Tuning-twitter&quot;&gt;http://www.infoq.com/presentations/JVM-Performance-Tuning-twitter &lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Thanks to InfoQ developers for providing HTML5 interface with video tag support. Now you can open page source (Right click → View Source) and search for that tag. In source tag you can find full url to desired movie&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://img.skitch.com/20120128-x9nf7y47136yd3ry28du53s1ec.jpg&quot;&gt;&lt;img src=&quot;https://img.skitch.com/20120128-x9nf7y47136yd3ry28du53s1ec.jpg&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Use &lt;em&gt;curl -O&lt;/em&gt; or simply paste link to address bar of Safari and download video&lt;/li&gt;
+&lt;li&gt;Enjoy! &lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+</entry>
+<entry>
+<id>http://next.javaheadbrain.com/posts/2012/01/10/rapid-automation-for-flexjavablazeds.html</id>
+<title>Rapid automation for Flex/Java/BlazeDS projects</title>
+<updated>2015-12-31T22:24:49-05:00</updated>
+<published>2012-01-10T00:00:00+00:00</published>
+<link href="http://next.javaheadbrain.com/posts/2012/01/10/rapid-automation-for-flexjavablazeds.html" rel="alternate" type="text/html" />
+<author>
+<name>Viktor Gamov</name>
+</author>
+<summary>
+Right after vacation I talked on New York Flex User group regarding open source project for Flex/Java developers &#8211; Clear Toolkit. Here are the slides of my presentation.
+
+Feel free to comment!...
+</summary>
+<content type="html">
+&lt;p&gt;Right after vacation I talked on New York Flex User group regarding open source project for Flex/Java developers – Clear Toolkit. Here are the slides of my presentation.&lt;br /&gt;
+&lt;iframe frameborder=&quot;0&quot; height=&quot;451&quot; src=&quot;https://docs.google.com/present/embed?id=dgqpwrbr_452gnrs3wks&amp;amp;size=m&quot; width=&quot;555&quot;&gt;&lt;/iframe&gt;&lt;br /&gt;
+Feel free to comment!&lt;/p&gt;
+</content>
+</entry>
+<entry>
+<id>http://next.javaheadbrain.com/posts/2011/09/11/adobe-max.html</id>
+<title>Adobe MAX</title>
+<updated>2015-12-31T22:24:49-05:00</updated>
+<published>2011-09-11T23:07:00+00:00</published>
+<link href="http://next.javaheadbrain.com/posts/2011/09/11/adobe-max.html" rel="alternate" type="text/html" />
+<author>
+<name>Viktor Gamov</name>
+</author>
+<summary>
+Here are the small notes from Adobe MAX conference:
+
+
+Flash is still here. Adobe creates tools for seamless transition b/w Flash and HTML5 (Adobe Edge)
+Touch apps is next big thing.
+Mobile apps developed with Flash/Flex/Air and packaged to native.
+Upcomming changes in Flash runtime- workers - actionScript threads
+Upcomming changes in AIR platform - native extensions
+Creative Cloud - another big thing was announced. Sharing and collaboration b/w creative suite applications and new touch app....
+</summary>
+<content type="html">
+&lt;p&gt;Here are the small notes from Adobe MAX conference:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Flash is still here. Adobe creates tools for seamless transition b/w Flash and HTML5 (Adobe Edge)&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;Touch apps is next big thing.&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;Mobile apps developed with Flash/Flex/Air and packaged to native.&lt;/li&gt;
+&lt;li&gt;Upcomming changes in Flash runtime- &lt;em&gt;workers&lt;/em&gt; - actionScript threads&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;Upcomming changes in AIR platform - native extensions&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;Creative Cloud - another big thing was announced. Sharing and collaboration b/w creative suite applications and new touch app. &lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+</entry>
+<entry>
+<id>http://next.javaheadbrain.com/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html</id>
+<title>Eclipse: java.lang.UnsatisfiedLinkError: Cannot load 32-bit SWT libraries on 64-bit JVM</title>
+<updated>2015-12-31T22:24:49-05:00</updated>
+<published>2011-07-26T04:22:00+00:00</published>
+<link href="http://next.javaheadbrain.com/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html" rel="alternate" type="text/html" />
+<author>
+<name>Viktor Gamov</name>
+</author>
+<summary>
+Last weekend spend in setup of environment for eclipse plug-in development. I have task to fix and update one plugin. This is add-on to Flash Builder.  But before adding something, it&#39;s good to run that plugin before. My environment is Mac OS X 10.7 Lion, Eclipse 3.6 (32bit because FB not supported 64bit version of Eclipse) and Flash Builder 4.5. But I faced with odd exception
+
+!SESSION 2011-07-25 23:59:39.350
+-----------------------------------------------
+
+eclipse.buildId=M20110210-1200
+
+java.version=1.6.0_26
+
+java.vendor=Apple Inc.
+
+BootLoader constants: OS=macosx, ARCH=x86, WS=cocoa, NL=en_US
+
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+
+Command-line arguments:  -product org.eclipse.epp.package.jee.product -data
+/Users/apple/Workspaces/work/../runtime-EclipseApplication -dev file:/Users/apple/Workspaces/work/.metadata/.plugins/org.eclipse.pde.core/Eclipse
+Application/dev.properties -os macosx -ws cocoa -arch x86 -consoleLog
+
+
+
+!ENTRY org.eclipse.osgi 4 0 2011-07-25 23:59:57.129
+
+!MESSAGE Application error
+
+!STACK 1
+
+java.lang.UnsatisfiedLinkError: Cannot load...
+</summary>
+<content type="html">
+&lt;p&gt;&lt;a href=&quot;http://4.bp.blogspot.com/-9dnzyV85GIY/Ti5AjeUNXJI/AAAAAAAAA0A/o07suDvhURw/s1600/1311653968_eclipse.png&quot;&gt;&lt;img src=&quot;http://4.bp.blogspot.com/-9dnzyV85GIY/Ti5AjeUNXJI/AAAAAAAAA0A/o07suDvhURw/s1600/1311653968_eclipse.png&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Last weekend spend in setup of environment for eclipse plug-in development. I have task to fix and update one plugin. This is add-on to Flash Builder.  But before adding something, it&amp;apos;s good to run that plugin before. My environment is Mac OS X 10.7 Lion, Eclipse 3.6 (32bit because FB not supported 64bit version of Eclipse) and Flash Builder 4.5. But I faced with odd exception&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;!SESSION 2011-07-25 23:59:39.350
+-----------------------------------------------
+
+eclipse.buildId=M20110210-1200
+
+java.version=1.6.0_26
+
+java.vendor=Apple Inc.
+
+BootLoader constants: OS=macosx, ARCH=x86, WS=cocoa, NL=en_US
+
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+
+Command-line arguments:  -product org.eclipse.epp.package.jee.product -data
+/Users/apple/Workspaces/work/../runtime-EclipseApplication -dev file:/Users/apple/Workspaces/work/.metadata/.plugins/org.eclipse.pde.core/Eclipse
+Application/dev.properties -os macosx -ws cocoa -arch x86 -consoleLog
+
+
+
+!ENTRY org.eclipse.osgi 4 0 2011-07-25 23:59:57.129
+
+!MESSAGE Application error
+
+!STACK 1
+
+java.lang.UnsatisfiedLinkError: Cannot load 32-bit SWT libraries on 64-bit
+JVM
+
+ at org.eclipse.swt.internal.Library.loadLibrary(Library.java:197)
+
+ at org.eclipse.swt.internal.Library.loadLibrary(Library.java:174)
+
+ at org.eclipse.swt.internal.C.(C.java:21)
+
+ at org.eclipse.swt.internal.cocoa.NSThread.isMainThread(NSThread.java:33)
+
+ at org.eclipse.swt.graphics.Device.(Device.java:116)
+
+ at org.eclipse.swt.widgets.Display.(Display.java:671)
+
+ at org.eclipse.swt.widgets.Display.(Display.java:662)
+
+ at org.eclipse.ui.internal.Workbench.createDisplay(Workbench.java:708)
+
+ at org.eclipse.ui.PlatformUI.createDisplay(PlatformUI.java:161)
+
+ at org.eclipse.ui.internal.ide.application.IDEApplication.createDisplay(IDEApplication.java:145)
+
+ at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:88)
+
+ at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+
+ at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+
+ at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+
+ at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:369)
+
+ at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+
+ at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+
+ at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+
+ at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+
+ at java.lang.reflect.Method.invoke(Method.java:597)
+
+ at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:620)
+
+ at org.eclipse.equinox.launcher.Main.basicRun(Main.java:575)
+
+ at org.eclipse.equinox.launcher.Main.run(Main.java:1408)
+
+ at org.eclipse.equinox.launcher.Main.main(Main.java:1384)
+
+An error has occurred. See the log file
+
+/Users/apple/Workspaces/runtime-EclipseApplication/.metadata/.log.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Mac OS X shipped with 2 versions of JVM - 32 bit and 64 bit accordingly. So, 
+First I tried to change order of JVM preference from /Application/Utilities/Java 
+Preferences but it didn&amp;apos;t work.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://3.bp.blogspot.com/-isacmmvTbSE/Ti4-JJeYuwI/AAAAAAAAAzw/W_U-0Xap5L8/s1600/Screen+Shot+2011-07-26+at+12.08.30+AM.png&quot;&gt;&lt;img src=&quot;http://3.bp.blogspot.com/-isacmmvTbSE/Ti4-JJeYuwI/AAAAAAAAAzw/W_U-0Xap5L8/s640/Screen+Shot+2011-07-26+at+12.08.30+AM.png&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;After consulting with colleagues and googling I come up with solution. I went 
+to Eclipse→Preferences→Java→Installed JRE and add default JVM argument *&lt;em&gt;-d32 
+*&lt;/em&gt;(must be small d)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://2.bp.blogspot.com/-e49-TQlstWw/Ti4_nvylakI/AAAAAAAAAz4/EKfU03X9lxE/s1600/Screen+Shot+2011-07-26+at+12.16.05+AM.png&quot;&gt;&lt;img src=&quot;http://2.bp.blogspot.com/-e49-TQlstWw/Ti4_nvylakI/AAAAAAAAAz4/EKfU03X9lxE/s400/Screen+Shot+2011-07-26+at+12.16.05+AM.png&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This command forces to use 32bit JVM. Happy coding!&lt;/p&gt;
+
+</content>
+</entry>
+<entry>
+<id>http://next.javaheadbrain.com/posts/2011/07/10/building-and-testing-with-gradle-my.html</id>
+<title>Building and Testing with Gradle - My Book Review</title>
+<updated>2015-12-31T22:24:49-05:00</updated>
+<published>2011-07-10T20:57:00+00:00</published>
+<link href="http://next.javaheadbrain.com/posts/2011/07/10/building-and-testing-with-gradle-my.html" rel="alternate" type="text/html" />
+<author>
+<name>Viktor Gamov</name>
+</author>
+<summary>
+Last month I participated in JAXConf conference on San Jose, CA. There was many talks related to agile development and code quality stuff. And after that event I started looking to Gradle - next generation build tool. Couple weeks later I found a Building and Testing with Gradle written by git evangelists Tim Berglundand ( @tlberglund) and Matthew McCullough (@matthewmccull).  
+
+Book very focused and easy to read. I got my dirty cheap ebook version on thursday night, read this book during my commute to work and now come up with this review.
+[][7]
+Looking at the table of contents, you can see the book covers big...
+</summary>
+<content type="html">
+&lt;p&gt;&lt;a href=&quot;http://covers.oreilly.com/images/0636920019909/lrg.jpg&quot;&gt;&lt;img src=&quot;http://covers.oreilly.com/images/0636920019909/lrg.jpg&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Last month I participated in JAXConf conference on San Jose, CA. There was many talks related to agile development and code quality stuff. And after that event I started looking to &lt;a href=&quot;http://www.gradle.org/&quot;&gt;Gradle&lt;/a&gt; - next generation build tool. Couple weeks later I found a &lt;a href=&quot;http://oreilly.com/catalog/0636920019909/&quot;&gt;Building and Testing with Gradle&lt;/a&gt; written by git evangelists Tim Berglundand ( &lt;a href=&quot;http://twitter.com/tlberglund&quot;&gt;@tlberglund&lt;/a&gt;) and Matthew McCullough (&lt;a href=&quot;http://twitter.com/matthewmccull&quot;&gt;@matthewmccull&lt;/a&gt;).  &lt;/p&gt;
+
+&lt;p&gt;Book very focused and easy to read. I got&lt;a href=&quot;https://twitter.com/gamussa/status/89181037036449792&quot;&gt; my dirty cheap ebook version&lt;/a&gt; on thursday night, read this book during my commute to work and now come up with this review.&lt;br /&gt;
+[][7]&lt;br /&gt;
+Looking at the &lt;a href=&quot;http://oreilly.com/catalog/0636920019909#toc&quot;&gt;table of contents&lt;/a&gt;, you can see the book covers big part of questions.&lt;br /&gt;
+What this book is about:  &lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;How to configure your first build&lt;/li&gt;
+&lt;li&gt;Building Java and Groovy projects&lt;/li&gt;
+&lt;li&gt;Protect you investments and reuse you ant and maven scripts.&lt;/li&gt;
+&lt;li&gt;Integrate code quality routines and popular testing frameworks with gradle build&lt;/li&gt;
+&lt;li&gt;Modularize your project&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;What this books isn&amp;apos;t about:  &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;It&amp;apos;s not a cookbook. &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This books gives you great overview of gradle infrastructure, but there isn&amp;apos;t ready-to-use solutions. If you want to have Problem-Solution reading please take a look on &lt;a href=&quot;http://wiki.gradle.org/display/GRADLE/Cookbook&quot;&gt;Gradle cookbook &lt;/a&gt;on official wiki. But still, this book is very practical.  &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Plugin development&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Gradle provides lot of functionality for customizing you gradle build. But it&amp;apos;s imposible to cover each and every aspects of building process on particular company or project. This book doesn&amp;apos;t contain information about developing custom plugins for non-java applications. But is you want to start building your own gradle stuff - &lt;a href=&quot;http://gradle.codehaus.org/Plugins#Plugins-WritingCustomPlugins&quot;&gt;welcome to wiki&lt;/a&gt;  &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Summary:&lt;/strong&gt;&lt;br /&gt;
+If you suffered enough from Ant and Maven XML-configs and custom workarounds, want improve you productivity while developing build files for your app and passionate about DSL and Groovy, I encourage you to take a look at gradle and Book will help you kick-off your gradle journey.  &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;After reading - go code!&lt;/strong&gt;&lt;br /&gt;
+After you done with book, go to &lt;a href=&quot;https://github.com/gradleware/oreilly-gradle-book-examples&quot;&gt;GitHub repository&lt;/a&gt; and get I book&amp;apos;s source code. Then go to &lt;a href=&quot;https://github.com/gradle/gradle&quot;&gt;another GitHub repo&lt;/a&gt; and get gradle sources and start to participate and contribute to Gradle project.&lt;/p&gt;
+
+&lt;p&gt;[7]: &lt;/p&gt;
+
+</content>
+</entry>
 </feed>
