@@ -21,10 +21,14 @@ toc::[]
 
 image::laptop.jpg[align="center"]
 
-== Revisions history
-
-* *v1.1* 12/31/2015 - Added Atlanta JUG video link
-* *v1.0* 12/29/2015 - Initial blog post
+.Revisions history
+[width="60%",cols="",options="header"]
+|===
+|Version    |Date   | Comments
+|*v1.2*     |1/6/2015   | Added Groovy Puzzlers Video link from SpringOne 2GX
+|*v1.1*     |12/31/2015 | Added Atlanta JUG video link
+|*v1.0*     |12/29/2015 | Initial blog post
+|===
 
 == Into
 
@@ -82,7 +86,10 @@ Video from JCache talk given at Atlanta JUG 12/15/2015
 [role="text-center"]
 video::150375058[vimeo, width=640, height=480]
 
-SpringOne 2GX 2015 talks were recorded and will be available shortly. 
+
+Video from Groovy Puzzlers Talk with (https://twitter.com/jbaruch[@jbaruch]) http://www.infoq.com/presentations/groovy-puzzlers[is available].
+
+Other SpringOne 2GX 2015 talks were recorded and will be available shortly. 
 Keep an eye on this http://www.infoq.com/springone-2gx-2015/[page].
 
 == Contributions icon:code-fork[] 
