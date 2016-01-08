@@ -4,7 +4,7 @@
 source 'https://rubygems.org'
 
 gem 'awestruct', '0.5.6'
-gem 'asciidoctor', '1.5.3'
+gem 'asciidoctor', '1.5.4'
 gem 'erubis', '~> 2.7.0'
 gem 'haml', '~> 4.0.0'
 gem 'tilt', '~> 2.0.0'
