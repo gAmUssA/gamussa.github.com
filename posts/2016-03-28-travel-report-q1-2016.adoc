@@ -1,0 +1,128 @@
+= Travel Report - Q1 2016
+Viktor Gamov
+2016-03-28 23:12
+:awestruct-draft: true
+:imagesdir: ../images
+:icons:
+:keywords:
+:toc:
+ifndef::awestruct[]
+:awestruct-layout: post
+:awestruct-tags: []
+:idprefix:
+:idseparator: -
+endif::awestruct[]
+:mentions-uri-pattern: http://twitter.com/%s
+:experimental:
+:enterprisedataworld: http://edw2016.dataversity.net/sessionPop.cfm?confid=94&proposalid=8216
+:jpoint_1: http://javapoint.ru/talks/gamov/
+:jpoint_2: http://students.javapoint.ru/talks/gamov/
+:swampup: https://swampup.jfrog.com/?schedule=pragmatic-scalability-under-the-hood-of-artifactory-ha
+:jugmsk: TBD
+:geekout: http://2016.geekout.ee/schedule/distributed-caching-with-jcache-and-beyond/
+
+.TL;DR
+NOTE: Life on the road. It's a brief review of first three months of 2016.
+Major events - Toronto JUG, Central Ohio JUG, DevNexus.
+
+toc::[]
+
+
+image::luggage.jpeg[align="center", width=50%, height=50%]
+
+.Revisions history
+[width="60%",cols="",options="header"]
+|===
+|Version    |Date   | Comments
+|*v1.0*     |3/28/2015 | Initial blog post
+|===
+
+== Intro
+
+Instead of doing one blog at the end of the year, I will try to write one blog in 3 months (or maybe more) about travel and speaking engagements.
+Even thought, 2016 just began, I was managed spoke 4-5 events.
+
+
+[[events]]
+== Conferences and User Groups icon:calendar[]
+
+=== Toronto JUG, Toronto, CA
+
+After a vacation with my family in beautiful Miami, FL,  it was a tough trip to Canada.
+After a whole day of meetings with the clients and the prospects in Toronto, I was invited to speak at Toronto JUG.
+It was a first time when Java User group event happened in the bar.
+
+image::torontojug.jpeg[align="center", width=50%, height=50%]
+
+Literally!
+The developers were able to eat, drink and enjoy the show by truly yours.
+Felt myself as a struggling standup comedian.
+
+Video is available https://www.youtube.com/watch?v=sToNgv_R6rQ[here]
+
+=== Central Ohio Java User Group (COJUG), Dublin, OH
+
+Another fascinating thing happened this year.
+I never presented on the meetup event during the lunch time.
+COJUG folks have found this format is more flexible.
+Of course, they have a traditional "after work" format.
+
+image::cojug.jpeg[align="center", width=50%, height=50%]
+
+But with additional "lunch time event" COJUG members can be more flexible on time.
+Some people have time during a lunch break, and some people have time after work.
+I was very surprised when I realized that
+
+
+=== DevNexus 2016, Atlanta, GA
+
+DevNexus this year was a blast!
+This year I did three talks!
+
+- Ground Up Introduction to in-memory Data (Grids)
+
+[role="text-center"]
+video::eeJs0KnT2eg[youtube, width=640, height=480]
+
+- Ultimate Spring Configurations Face-off with @jbaruch and @yfain.
+- Epic Groovy Puzzlers: Season 2 with @jbaruch.
+
+Also, I was interviewed by @steveonjava about in-memory data grids topic
+
+[role="text-center"]
+video::lgabhNr6LqM[youtube, width=640, height=480]
+
+=== New York Spring User Group, New York, NY
+
+During a short stay at home, I did a talk at http://www.meetup.com/NYC-SUG/events/228892296/[New York Spring Users Meetup] where I talked about caching use cases in Spring Boot projects.
+
+=== Chattanooga Developers Meetup, Chattanooga, TN
+
+Chattanooga Cho-Cho was my final destination for this month.
+Another group that prefer productive lunch breaks!
+And they have live video stream from the event!
+
+[role="text-center"]
+video::NtbMjx1cdJs[youtube, width=640, height=480]
+
+== The Plans For Q2 icon:plane[]
+
+[options="header"]
+|===
+|Event Name                 |Location           |Topic                                              |Date
+|Hazelcast Webinar Series   |Online             |Caching Made Bootiful                              |April, 4
+|Philly Emerging Tech 2016  |Philadelphia, PA   |Just a Hazelcast Booth                             |April, 11-12
+|DevRelConf                 |San Francisco, CA  |Learn from gurus of developer relationships        |April, 16
+|Enterprise Data World      |San Diego, CA      |{enterprisedataworld}[Ground-up introduction in in-memory data grids]     |April 17-18
+|JPoint                     |Moscow, RU         |{jpoint_1}[Распределенные кэши: Беспредел!]                    |April 22-23
+|JPoint, Student's Day      |Moscow, RU         |{jpoint_2}[Распределяй и властвуй: введение в распределенные системы]   |April 24
+|Moscow JUG                 |Moscow, RU         |Все что вы хотели знать о Hazelcast, но боялись спросить    | April 26
+|OSCON                      |Austin,TX          |Just a Hazelcast booth                             |May 17-19
+|swampUp!                   |Napa, CA           |{swampup}[Pragmatic Scalability: under the hoot of Artifactory HA]  |May 23-24
+|GeekOut                    |Tallin, Estonia    |{geekout}[Distributed Caching with JCache and Beyond]         |June 9-10
+|===
+
+
+== Stay In Touch
+
+As always, I encourage you to keep an eye on https://hazelcast.com/company/events/[Hazelcast Events] page or follow me at @gamussa on Twitter!
