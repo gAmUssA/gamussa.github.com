@@ -22,7 +22,8 @@ body {
 .literalblock,
 .listingblock {
   & > .content > pre {
-    @include single-box-shadow(#AEB9B6, 0, 1px, 4px, $inset:inset);
+    //@include single-box-shadow(0, 1px, 4px, $inset:inset, #AEB9B6);
+    @include single-box-shadow(0, 1px, 4px, null, #AEB9B6);
     @include border-radius(5px);
     //font-size: 80%;
   }
@@ -77,13 +78,13 @@ p > em {
   //@include bg-noise-mono(#444445, 8, .125, 200);
   @include border-radius(5px);
   & > .content {
-    & > .title { 
+    & > .title {
       color: #f1f1f1;
       text-shadow: 0px 2px 2px black;
       font-size: emCalc(20px);
       font-weight: bold;
     }
-    ul, p { 
+    ul, p {
       color: #f1f1f1;
       text-shadow: 0px 1px 1px black;
     }
@@ -110,7 +111,7 @@ p > em {
 
 table.tableblock.grid-all {
   @include border-radius(0);
-  @include single-box-shadow(#999, 0, 1px, 3px);
+  @include single-box-shadow(0, 1px, 3px, null, #999);
 }
 
 #footer {

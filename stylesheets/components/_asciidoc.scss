@@ -224,7 +224,7 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
   td.content {
     padding-left: emCalc(18px);
     padding-right: emCalc(20px);
-    border-left: $hr-border-width $hr-border-style $hr-border-color; 
+    border-left: $hr-border-width $hr-border-style $hr-border-color;
     color: $blockquote-font-color;
 
     & > .paragraph:last-child > p {
@@ -245,7 +245,7 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
 }
 
 .exampleblock.result > .content {
-  @include single-box-shadow($panel-border-color, 0, 1px, 8px); 
+  @include single-box-shadow(0, 1px, 8px, null, $panel-border-color);
 }
 
 .imageblock {
@@ -301,7 +301,7 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
     white-space: pre;
     overflow-x: auto;
     line-height: $pre-line-height;
-    
+
     & > code {
       color: $pre-font-color;
       font-family: $pre-font-family;
@@ -315,7 +315,7 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
       //font-size: 12px;
       //padding: emCalc(12px);
 
-      font-size: $pre-font-size * .8; 
+      font-size: $pre-font-size * .8;
     }
 
     @media #{$small} {
@@ -586,7 +586,7 @@ span.footnoteref {
   span.big {
     font-size: larger;
   }
-  
+
   span.small {
     font-size: smaller;
   }
@@ -602,7 +602,7 @@ span.footnoteref {
     span.#{$color} {
       // color: scale-color(string-to-color($color), $lightness: $rainbow-lightness);
     }
-  
+
     span.#{$color}-background {
       // background-color: scale-color(string-to-color($color), $lightness: $rainbow-bg-lightness);
     }
