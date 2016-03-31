@@ -91,7 +91,9 @@ end
 desc 'Build and preview the site locally in development mode'
 task :preview => :check do
   # run_awestruct '-d --force'
-  run_awestruct '-P development -g -s'
+  # run_awestruct '-P development -g -s'
+  run_awestruct '-P development -a --generate-on-access --livereload -s'
+
 end
 
 desc 'Generate the site using the specified profile (default: development)'
@@ -160,7 +162,7 @@ end
 
 # Execute Awestruct
 def run_awestruct(args)
-  system "#{$use_bundle_exec ? 'bundle exec ' : ''}awestruct #{args}" 
+  system "#{$use_bundle_exec ? 'bundle exec ' : ''}awestruct #{args}"
 end
 
 # A cross-platform means of finding an executable in the $PATH.
