@@ -3,6 +3,7 @@ require 'erubis'
 require 'tilt'
 require 'zurb-foundation'
 require 'posts_archiver'
+require 'awestruct_ext'
 
 Awestruct::Extensions::Pipeline.new do
   extension Awestruct::Extensions::Posts.new('/posts', :posts)
