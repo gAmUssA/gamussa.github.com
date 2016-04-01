@@ -175,7 +175,7 @@ You have to have "Eclipse for Java EE Developers" installed, which includes the 
 </div>
 <div class="paragraph">
 <p>I will extend the application from Part 1. For my CRUD application I need a Java POJO.  First, I&#8217;ve created the class Person.java in the package <code>dto</code>. Then I&#8217;ve added the fields <code>firstName</code>, <code>lastName</code>, <code>address</code>, <code>ssn</code> and <code>phone</code> and <code>id</code>. Also I need getters and setters for these fields. It&#8217;s good to have a constructor for the that uses these fields,  and a DTO class should have a <code>toString()</code> method. <a href="#LISTING_1">Person data transfer object</a>
-Now I need the same corresponding ExtJS model for my Person. Just annotate this class with the CDB annotation called <code>@JSClass</code> to ask CDB to generate the ExtJS model.</p>
+Now I need the same corresponding ExtJS model for my Person. Just annotate this class with the CDB annotation called <code><a href="https://github.com/JSClass">@JSClass</a></code> to ask CDB to generate the ExtJS model.</p>
 </div>
 <div id="LISTING_1" class="listingblock">
 <div class="title">Person data transfer object</div>
@@ -211,7 +211,7 @@ public class Person {
 </div>
 </div>
 <div class="paragraph">
-<p>Now I need to annotate the <code>id</code> field with the CDB annotation <code>@JSGeneratedId</code>. With this annotation I&#8217;ll instruct CDB to threat this field as auto generated id. Let&#8217;s examine the directory of ExtJS MVC application and lets take a look inside the model folder. Inside the model folder (the JavaScript section) we have the folder dto which corresponds to the Java dto package where the class Person.java resides.</p>
+<p>Now I need to annotate the <code>id</code> field with the CDB annotation <code><a href="https://github.com/JSGeneratedId">@JSGeneratedId</a></code>. With this annotation I&#8217;ll instruct CDB to threat this field as auto generated id. Let&#8217;s examine the directory of ExtJS MVC application and lets take a look inside the model folder. Inside the model folder (the JavaScript section) we have the folder dto which corresponds to the Java dto package where the class Person.java resides.</p>
 </div>
 <div id="FIG-5" class="imageblock">
 <div class="content">
@@ -226,10 +226,10 @@ public class Person {
 <p>Now we need to create a Java service to populate the ExtJS store with the data. Let&#8217;s create an interface <code>PersonService</code> in the package <code>service</code>. This service will to return the list of persons. This interface contains one method -<code>List&lt;Person&gt; getPersons()</code>.</p>
 </div>
 <div class="paragraph">
-<p>I need to ask CDB to expose this service as a remote object, which is done by the annotation called <code>@JSService</code>.  Another annotation <code>@JSGenetareStore</code> will instruct CDB to generate the store. In this case CDB will create the <em>destination-aware store</em>. This means that store will know from where to populate its content. All configurations of the store&#8217;s proxies will be handled by the code generator. With <code>@JSFillMethod</code> annotation we will identify our main read method (remember the "R" from CRUD).</p>
+<p>I need to ask CDB to expose this service as a remote object, which is done by the annotation called <code><a href="https://github.com/JSService">@JSService</a></code>.  Another annotation <code><a href="https://github.com/JSGenetareStore">@JSGenetareStore</a></code> will instruct CDB to generate the store. In this case CDB will create the <em>destination-aware store</em>. This means that store will know from where to populate its content. All configurations of the store&#8217;s proxies will be handled by the code generator. With <code><a href="https://github.com/JSFillMethod">@JSFillMethod</a></code> annotation we will identify our main read method (remember the "R" from CRUD).</p>
 </div>
 <div class="paragraph">
-<p>Also it would be nice to have some sort of UI to test the service - the annotation <code>@JSGenerateSample</code> will help here. CDB will examine the interface <code>PersonService</code>, and based on these annotations will generate all ExtJS MVC artifacts (models, views, controller) with the sample application.</p>
+<p>Also it would be nice to have some sort of UI to test the service - the annotation <code><a href="https://github.com/JSGenerateSample">@JSGenerateSample</a></code> will help here. CDB will examine the interface <code>PersonService</code>, and based on these annotations will generate all ExtJS MVC artifacts (models, views, controller) with the sample application.</p>
 </div>
 <div id="LISTING_2" class="listingblock">
 <div class="title">PersonService interface annotated with CDB annotations</div>
@@ -705,7 +705,7 @@ public class PersonServiceImpl extends _PersonServiceImpl {
             })();
             </script>
             <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=nextjavaheadbraincom">comments powered by Disqus.</a></noscript>
-          </div></article></div></div></body></html><div id="copyright"><div class="row full-width"><div class="large-4 columns"><p>© Viktor Gamov 2015—2007</p></div><div class="large-8 columns"><ul class="inline-list right"><li><a href="https://github.com/gAmUssA"></a>Github&nbsp<span class="icon"><i class="fa fa-github"></i></span></li><li><a href="http://twitter.com/gAmUssA"></a>Twitter&nbsp<span class="icon"><i class="fa fa-twitter"></i></span></li><li><a href="#"></a></li></ul></div></div></div><script>document.write('<script src=' + ('__proto__' in {} ? '/javascripts/vendor/zepto' : '/javascripts/vendor/jquery') + '.js><\/script>')</script><script src="/javascripts/foundation/foundation.js"><script src="/javascripts/foundation/foundation.topbar.js"></script></script><script>$(document).foundation();</script><script src="/javascripts/vendor/highlight.min.js"></script><script>$(hljs.initHighlighting());</script><script type="text/javascript">
+          </div></article></div></div></body></html><div id="copyright"><div class="row full-width"><div class="large-4 columns"><p>© Viktor Gamov 2016—2007</p></div><div class="large-8 columns"><ul class="inline-list right"><li><a href="https://github.com/gAmUssA"></a>Github&nbsp<span class="icon"><i class="fa fa-github"></i></span></li><li><a href="http://twitter.com/gAmUssA"></a>Twitter&nbsp<span class="icon"><i class="fa fa-twitter"></i></span></li><li><a href="#"></a></li></ul></div></div></div><script>document.write('<script src=' + ('__proto__' in {} ? '/javascripts/vendor/zepto' : '/javascripts/vendor/jquery') + '.js><\/script>')</script><script src="/javascripts/foundation/foundation.js"><script src="/javascripts/foundation/foundation.topbar.js"></script></script><script>$(document).foundation();</script><script src="/javascripts/vendor/highlight.min.js"></script><script>$(hljs.initHighlighting());</script><script type="text/javascript">
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount','UA-40354726-1']);
 _gaq.push(['_trackPageview']);

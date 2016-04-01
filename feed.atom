@@ -5,13 +5,13 @@
 <author>
 <name>Viktor Gamov</name>
 </author>
-<updated>2015-12-31T22:24:49-05:00</updated>
+<updated>2016-01-06T11:06:29-05:00</updated>
 <link href="http://next.javaheadbrain.com/feed.atom" rel="self" type="application/atom+xml" />
 <link href="http://next.javaheadbrain.com/" rel="alternate" type="text/html" />
 <entry>
 <id>http://next.javaheadbrain.com/posts/2015/12/31/caching-made-bootiful.html</id>
 <title>Caching Made Bootiful — Hazelcast Way</title>
-<updated>2015-12-31T22:24:49-05:00</updated>
+<updated>2016-01-06T11:06:29-05:00</updated>
 <published>2015-12-31T22:18:23-06:00</published>
 <link href="http://next.javaheadbrain.com/posts/2015/12/31/caching-made-bootiful.html" rel="alternate" type="text/html" />
 <author>
@@ -148,11 +148,11 @@ public interface IDummyBean {
 &lt;table&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;@Cachable&lt;/code&gt; annotation triggers population of a cache&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&lt;a href=&quot;https://github.com/Cachable&quot;&gt;@Cachable&lt;/a&gt;&lt;/code&gt; annotation triggers population of a cache&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
-&lt;td&gt;&lt;code&gt;@CachePut&lt;/code&gt; annotation updates the cache without interfering with the method execution&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&lt;a href=&quot;https://github.com/CachePut&quot;&gt;@CachePut&lt;/a&gt;&lt;/code&gt; annotation updates the cache without interfering with the method execution&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
 &lt;/div&gt;
@@ -201,7 +201,7 @@ This is an emulation of a slow method.  Don’t do it in real life!
 &lt;/table&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;I simply annotate a slow method with the &lt;code&gt;@Cacheble&lt;/code&gt; annotation and let Spring Boot do the heavy lifting. This is all I need to do with my application logic.&lt;/p&gt;
+&lt;p&gt;I simply annotate a slow method with the &lt;code&gt;&lt;a href=&quot;https://github.com/Cacheble&quot;&gt;@Cacheble&lt;/a&gt;&lt;/code&gt; annotation and let Spring Boot do the heavy lifting. This is all I need to do with my application logic.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -238,7 +238,7 @@ public class BootifulMember {
 &lt;table&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
-&lt;td&gt;An &lt;code&gt;@EnableCaching&lt;/code&gt; annotation activates Spring Boot «magic» for &lt;code&gt;Hazelcastinstance&lt;/code&gt; instantiation.&lt;/td&gt;
+&lt;td&gt;An &lt;code&gt;&lt;a href=&quot;https://github.com/EnableCaching&quot;&gt;@EnableCaching&lt;/a&gt;&lt;/code&gt; annotation activates Spring Boot «magic» for &lt;code&gt;Hazelcastinstance&lt;/code&gt; instantiation.&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
 &lt;/div&gt;
@@ -378,7 +378,7 @@ Meanwhile, if you have any questions, feel free to post them in the comments sec
 <entry>
 <id>http://next.javaheadbrain.com/posts/2015/12/29/my-year-at-hazelcast-in-review.html</id>
 <title>My Year At Hazelcast In Review</title>
-<updated>2016-01-06T11:03:41-05:00</updated>
+<updated>2016-03-29T09:43:12-04:00</updated>
 <published>2015-12-29T17:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2015/12/29/my-year-at-hazelcast-in-review.html" rel="alternate" type="text/html" />
 <author>
@@ -407,7 +407,7 @@ Plans for 2016
 
 
 TL;DR
-It has been an awesome year full travelling (roughly 20 states), POCs for the clients and the prospects, training (including public classes) and conference talks.
+It has been an awesome year full traveling (roughly 20 states), POCs for the clients and the prospects, training (including public classes) and conference talks.
 While I am already looking forward to 2016, here is a quick recap of my 2015 with Hazelcast.
 
 
@@ -481,7 +481,7 @@ In addition to travelling...
 &lt;/td&gt;
 &lt;td class=&quot;content&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;TL;DR&lt;/div&gt;
-It has been an awesome year full travelling (roughly 20 states), POCs for the clients and the prospects, training (including public classes) and conference talks.
+It has been an awesome year full traveling (roughly 20 states), POCs for the clients and the prospects, training (including public classes) and conference talks.
 While I am already looking forward to 2016, here is a quick recap of my 2015 with Hazelcast.
 &lt;/td&gt;
 &lt;/tr&gt;
@@ -496,9 +496,9 @@ While I am already looking forward to 2016, here is a quick recap of my 2015 wit
 &lt;table class=&quot;tableblock frame-all grid-all&quot; style=&quot;width: 60%;&quot;&gt;
 &lt;caption class=&quot;title&quot;&gt;Table 1. Revisions history&lt;/caption&gt;
 &lt;colgroup&gt;
-&lt;col style=&quot;width: 33%;&quot; /&gt;
-&lt;col style=&quot;width: 33%;&quot; /&gt;
-&lt;col style=&quot;width: 33%;&quot; /&gt;
+&lt;col style=&quot;width: 33.3333%;&quot; /&gt;
+&lt;col style=&quot;width: 33.3333%;&quot; /&gt;
+&lt;col style=&quot;width: 33.3334%;&quot; /&gt;
 &lt;/colgroup&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -598,7 +598,7 @@ I might even be able to provide you with discount!&lt;/p&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;HUG-NYC Princeton JUG&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;OnlineNY, NJ&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Online NY/NJ&lt;/p&gt;&lt;/td&gt;
 &lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Hazelcast: In-Memory Data Grid Without Black Magic&lt;/p&gt;&lt;/td&gt;
 &lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;2015-05-07&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
@@ -664,7 +664,7 @@ I might even be able to provide you with discount!&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Video from Groovy Puzzlers Talk with (&lt;a href=&quot;https://twitter.com/jbaruch&quot;&gt;@jbaruch&lt;/a&gt;) &lt;a href=&quot;http://www.infoq.com/presentations/groovy-puzzlers&quot;&gt;is available&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Video from Groovy Puzzlers Talk with (&lt;a href=&quot;https://twitter.com/jbaruch&quot;&gt;&lt;a href=&quot;https://github.com/jbaruch&quot;&gt;@jbaruch&lt;/a&gt;&lt;/a&gt;) &lt;a href=&quot;http://www.infoq.com/presentations/groovy-puzzlers&quot;&gt;is available&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;Other SpringOne 2GX 2015 talks were recorded and will be available shortly.
@@ -742,7 +742,7 @@ Looking forward to 2016 — Happy New Year &lt;span class=&quot;icon&quot;&g
 <entry>
 <id>http://next.javaheadbrain.com/posts/2015/01/27/ground-up-introduction-to-in-memory-data.html</id>
 <title>Ground-up Introduction To In-Memory Data</title>
-<updated>2015-12-31T22:24:49-05:00</updated>
+<updated>2016-01-06T11:06:29-05:00</updated>
 <published>2015-01-27T22:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2015/01/27/ground-up-introduction-to-in-memory-data.html" rel="alternate" type="text/html" />
 <author>
@@ -852,7 +852,7 @@ This April, &lt;a href=&quot;http://codepalousa.com/blog/2015/code-palousa-2015-
 <entry>
 <id>http://next.javaheadbrain.com/posts/2014/12/13/goodbye-farata-hello-hazelcast.html</id>
 <title>Goodbye, Farata. Hello, Hazelcast!</title>
-<updated>2015-12-31T22:24:49-05:00</updated>
+<updated>2016-01-06T11:06:29-05:00</updated>
 <published>2014-12-13T00:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2014/12/13/goodbye-farata-hello-hazelcast.html" rel="alternate" type="text/html" />
 <author>
@@ -862,12 +862,6 @@ This April, &lt;a href=&quot;http://codepalousa.com/blog/2015/code-palousa-2015-
 <category term="job"></category>
 <category term="farata"></category>
 <summary>
-Table of Contents
-
-
-
-
-
 Go for it now. The future is promised to no one.
 
 
@@ -897,13 +891,9 @@ Monday, December 15, I&#8217;m staring my new role as Solution Architect at Haze
 I&#8217;ve had a great time at Farata Systems over the past 4 years and 3 months. It was my first workplace in US, and it was incredible place to work. During that period, I learned so many technologies, tools, frameworks and even languages so I can say with confidence that it was quite a ride!
 
 
-I joined Farata as Senior RIA (who does remember that abbreviation?) Developer in 2010. I&#8217;ve helped financial institutions and startups...
+I joined Farata as Senior RIA (who does remember that abbreviation?) Developer in 2010. I&#8217;ve helped financial institutions and startups of New...
 </summary>
 <content type="html">
-&lt;div id=&quot;toc&quot; class=&quot;toc&quot;&gt;
-&lt;div id=&quot;toctitle&quot;&gt;Table of Contents&lt;/div&gt;
-
-&lt;/div&gt;
 &lt;div class=&quot;quoteblock&quot;&gt;
 &lt;blockquote&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
@@ -963,7 +953,7 @@ Ultimately, I’ll be doing the pretty much same sorts of things I’ve been doi
 <entry>
 <id>http://next.javaheadbrain.com/posts/2013/07/17/getting-started-with-nashorn.html</id>
 <title>Getting Started With Nashorn</title>
-<updated>2015-12-31T22:24:49-05:00</updated>
+<updated>2016-01-06T11:06:29-05:00</updated>
 <published>2013-07-17T23:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2013/07/17/getting-started-with-nashorn.html" rel="alternate" type="text/html" />
 <author>
@@ -1131,7 +1121,7 @@ As you learned from my previous post, I’m going to talk about Nashorn - JavaSc
 <entry>
 <id>http://next.javaheadbrain.com/posts/2013/07/09/im-speaking-at-javaone.html</id>
 <title>I&#8217;m speaking at JavaOne 2013</title>
-<updated>2015-12-31T22:24:49-05:00</updated>
+<updated>2016-01-06T11:06:29-05:00</updated>
 <published>2013-07-09T01:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2013/07/09/im-speaking-at-javaone.html" rel="alternate" type="text/html" />
 <author>
@@ -1140,10 +1130,6 @@ As you learned from my previous post, I’m going to talk about Nashorn - JavaSc
 <category term="javaone"></category>
 <category term="javascript"></category>
 <summary>
-Table of Contents
-
-
-
 New achievement unlocked - I&#8217;m going to deliver the talk at JavaOne 2013!
 This year I will be talking about very demanding and interesting topic for me - about integration Java and JavaScript.
 
@@ -1153,13 +1139,9 @@ Here is quick abstract of my [BOF5793] session:
 
 
 
-There is a perception in the Java community that JavaScript is a second-rate interpreted language whose main purpose is to make Web pages a little prettier. But JavaScript is actually a powerful, flexible, dynamically typed language. And today the language has been experiencing a revival driven by the interest in HTML5. Nashorn is a modern JavaScript engine available on the...
+There is a perception in the Java community that JavaScript is a second-rate interpreted language whose main purpose is to make Web pages a little prettier. But JavaScript is actually a powerful, flexible, dynamically typed language. And today the language has been experiencing a revival driven by the interest in HTML5. Nashorn is a modern JavaScript engine available on the JVM, and...
 </summary>
 <content type="html">
-&lt;div id=&quot;toc&quot; class=&quot;toc&quot;&gt;
-&lt;div id=&quot;toctitle&quot;&gt;Table of Contents&lt;/div&gt;
-
-&lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;New achievement unlocked - I’m going to deliver the talk at JavaOne 2013!
 This year I will be talking about very demanding and interesting topic for me - about integration Java and JavaScript.&lt;/p&gt;
@@ -1191,7 +1173,7 @@ Keep in touch for updates by following me on &lt;a href=&quot;http://twitter.com
 <entry>
 <id>http://next.javaheadbrain.com/posts/2013/01/19/set-jdk-on-osx.html</id>
 <title>Set JDK on OSX</title>
-<updated>2015-12-31T22:24:49-05:00</updated>
+<updated>2016-01-06T11:06:29-05:00</updated>
 <published>2013-01-19T14:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2013/01/19/set-jdk-on-osx.html" rel="alternate" type="text/html" />
 <author>
@@ -1284,7 +1266,7 @@ alias setjdk18=&amp;apos;export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)&amp;a
 <entry>
 <id>http://next.javaheadbrain.com/posts/2012/07/26/websockets-for-java-developers.html</id>
 <title>WebSockets for Java Developers. Princeton JUG talk slides</title>
-<updated>2015-12-31T22:24:49-05:00</updated>
+<updated>2016-01-06T11:06:29-05:00</updated>
 <published>2012-07-26T00:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2012/07/26/websockets-for-java-developers.html" rel="alternate" type="text/html" />
 <summary>
@@ -1320,7 +1302,7 @@ today.&lt;/p&gt;
 <entry>
 <id>http://next.javaheadbrain.com/posts/2012/05/21/alfred-showhide-desktop-icons-on-mac-os.html</id>
 <title>Alfred Extension: Show/Hide desktop icons on Mac OS X</title>
-<updated>2015-12-31T22:24:49-05:00</updated>
+<updated>2016-01-06T11:06:29-05:00</updated>
 <published>2012-05-21T00:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2012/05/21/alfred-showhide-desktop-icons-on-mac-os.html" rel="alternate" type="text/html" />
 <category term="alfred"></category>
@@ -1349,7 +1331,7 @@ Cheers&lt;/p&gt;
 <entry>
 <id>http://next.javaheadbrain.com/posts/2012/05/16/webjars-for-assets-management-in-your.html</id>
 <title>WebJars for assets management in your project</title>
-<updated>2015-12-31T22:24:49-05:00</updated>
+<updated>2016-01-06T11:06:29-05:00</updated>
 <published>2012-05-16T00:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2012/05/16/webjars-for-assets-management-in-your.html" rel="alternate" type="text/html" />
 <category term="java"></category>
@@ -1374,7 +1356,7 @@ But in most common situations, you don’t have lot of options for deployment yo
 <entry>
 <id>http://next.javaheadbrain.com/posts/2012/01/28/how-to-download-videos-from-infoq-for.html</id>
 <title>How to download videos from InfoQ for offline viewing</title>
-<updated>2015-12-31T22:24:49-05:00</updated>
+<updated>2016-01-06T11:06:29-05:00</updated>
 <published>2012-01-28T06:15:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2012/01/28/how-to-download-videos-from-infoq-for.html" rel="alternate" type="text/html" />
 <author>
@@ -1422,7 +1404,7 @@ However, I found very elegant solution how to do that. I did it on my MacOS X wi
 <entry>
 <id>http://next.javaheadbrain.com/posts/2012/01/10/rapid-automation-for-flexjavablazeds.html</id>
 <title>Rapid automation for Flex/Java/BlazeDS projects</title>
-<updated>2015-12-31T22:24:49-05:00</updated>
+<updated>2016-01-06T11:06:29-05:00</updated>
 <published>2012-01-10T00:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2012/01/10/rapid-automation-for-flexjavablazeds.html" rel="alternate" type="text/html" />
 <author>
@@ -1442,7 +1424,7 @@ Feel free to comment!&lt;/p&gt;
 <entry>
 <id>http://next.javaheadbrain.com/posts/2011/09/11/adobe-max.html</id>
 <title>Adobe MAX</title>
-<updated>2015-12-31T22:24:49-05:00</updated>
+<updated>2016-01-06T11:06:29-05:00</updated>
 <published>2011-09-11T23:07:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2011/09/11/adobe-max.html" rel="alternate" type="text/html" />
 <author>
@@ -1476,7 +1458,7 @@ Creative Cloud - another big thing was announced. Sharing and collaboration b/w 
 <entry>
 <id>http://next.javaheadbrain.com/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html</id>
 <title>Eclipse: java.lang.UnsatisfiedLinkError: Cannot load 32-bit SWT libraries on 64-bit JVM</title>
-<updated>2015-12-31T22:24:49-05:00</updated>
+<updated>2016-01-06T11:06:29-05:00</updated>
 <published>2011-07-26T04:22:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html" rel="alternate" type="text/html" />
 <author>
@@ -1617,7 +1599,7 @@ to Eclipse→Preferences→Java→Installed JRE and add default JVM argument *&l
 <entry>
 <id>http://next.javaheadbrain.com/posts/2011/07/10/building-and-testing-with-gradle-my.html</id>
 <title>Building and Testing with Gradle - My Book Review</title>
-<updated>2015-12-31T22:24:49-05:00</updated>
+<updated>2016-01-06T11:06:29-05:00</updated>
 <published>2011-07-10T20:57:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2011/07/10/building-and-testing-with-gradle-my.html" rel="alternate" type="text/html" />
 <author>
