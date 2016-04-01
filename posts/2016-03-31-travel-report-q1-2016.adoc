@@ -27,7 +27,6 @@ Major events - Toronto JUG, Central Ohio JUG, DevNexus.
 
 toc::[]
 
-
 image::luggage.jpeg[align="center", width=50%, height=50%]
 
 .Revisions history
