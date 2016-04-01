@@ -1,6 +1,6 @@
 = Travel Report - Q1 2016
 Viktor Gamov
-2016-03-28 23:12
+2016-03-31 20:12
 :awestruct-draft: true
 :imagesdir: ../images
 :icons:
@@ -34,50 +34,54 @@ image::luggage.jpeg[align="center", width=50%, height=50%]
 [width="60%",cols="",options="header"]
 |===
 |Version    |Date   | Comments
-|*v1.0*     |3/28/2015 | Initial blog post
+|*v1.0*     |3/31/2015 | Initial blog post
 |===
 
 == Intro
 
-Instead of doing one blog at the end of the year, I will try to write one blog in 3 months (or maybe more) about travel and speaking engagements.
-Even thought, 2016 just began, I was managed spoke 4-5 events.
-
+At the suggestion of those of you who read my blog and send me comments, I am going to try to write one post about travel and events per quarter.
+With that said, 2016 just began, and I have already completed five events to share with you.
 
 [[events]]
 == Conferences and User Groups icon:calendar[]
 
 === Toronto JUG, Toronto, CA
 
-After a vacation with my family in beautiful Miami, FL,  it was a tough trip to Canada.
-After a whole day of meetings with the clients and the prospects in Toronto, I was invited to speak at Toronto JUG.
-It was a first time when Java User group event happened in the bar.
+After a vacation with my family in the warm sand of Miami, FL, it was a tough trip to Canada during the winter.
+I spent the entire day of working with the clients and prospects in Toronto.
+Then I was off to speak at Toronto JUG.
+The Java User Group happened right at the bar. It was a first for me!
 
 image::torontojug.jpeg[align="center", width=50%, height=50%]
 
 Literally!
-The developers were able to eat, drink and enjoy the show by truly yours.
-Felt myself as a struggling standup comedian.
+The developers got to eat, drink and enjoy the show by truly yours.
+I found myself feeling like a struggling standup comedian.
+You will enjoy watching me dream about being at the bar myself!
 
 Video is available https://www.youtube.com/watch?v=sToNgv_R6rQ[here]
 
 === Central Ohio Java User Group (COJUG), Dublin, OH
 
-Another fascinating thing happened this year.
-I never presented on the meetup event during the lunch time.
-COJUG folks have found this format is more flexible.
-Of course, they have a traditional "after work" format.
+Then it was off to another fascinating first in Ohio.
+I presented to this meet-up group during lunch time.
+The COJUG folks have found this format is more flexible for many of the members.
+Of course, they have a traditional "after work" format they use too.
+That allows them to make their events work for a larger number of schedules too.
 
 image::cojug.jpeg[align="center", width=50%, height=50%]
 
-But with additional "lunch time event" COJUG members can be more flexible on time.
-Some people have time during a lunch break, and some people have time after work.
-I was very surprised when I realized that
-
+Kudos to those organizers for offering flexibility!
 
 === DevNexus 2016, Atlanta, GA
 
-DevNexus this year was a blast!
-This year I did three talks!
+Next was DevNexus, sponsored by the AJUG.
+This year was once again a blast.
+
+image::devnexus_2016.jpg[align="center", width=50%, height=50%]
+
+I met over 200 people and did three talks.
+If you were unfortunate and did not get to attend, perhaps one of these three talks will provide some encouragement to get you to the next year event.
 
 - Ground Up Introduction to in-memory Data (Grids)
 
@@ -87,26 +91,36 @@ video::eeJs0KnT2eg[youtube, width=640, height=480]
 - Ultimate Spring Configurations Face-off with @jbaruch and @yfain.
 - Epic Groovy Puzzlers: Season 2 with @jbaruch.
 
-Also, I was interviewed by @steveonjava about in-memory data grids topic
+The week culminated with an interview by @steveonjava.
+I always enjoy being ask to discuss the value of using in-memory data grids.
 
 [role="text-center"]
 video::lgabhNr6LqM[youtube, width=640, height=480]
 
 === New York Spring User Group, New York, NY
 
-During a short stay at home, I did a talk at http://www.meetup.com/NYC-SUG/events/228892296/[New York Spring Users Meetup] where I talked about caching use cases in Spring Boot projects.
+Finally, I got a few days at home and could head over to do a session for them on caching use cases in Spring Boot projects.
+http://www.meetup.com/NYC-SUG/events/228892296/[New York Spring Users Meet-up]
+If you have one of these use cases on the horizon, let me know what you think and if I can help—drop me a note!
+
+NOTE: By the way, I will be doing a webinar on the similar topic next week.
+Make sure to RSVP http://www2.hazelcast.com/l/30822/2016-03-16/75v5cp[here].
 
 === Chattanooga Developers Meetup, Chattanooga, TN
 
-Chattanooga Cho-Cho was my final destination for this month.
-Another group that prefer productive lunch breaks!
-And they have live video stream from the event!
+The Chattanooga Cho-Cho was my final destination for this month.
+It was another group that prefers a productive lunch break with AWESOME chicken biscuits!
+A chicken biscuit for lunch was also a first for me!
+But it won’t be the last time I have that for lunch!
+They have live video stream from the event for members that can’t get there for lunch!
+I am really impressed with the flexibility that JUG organizers are developing to make these learning and networking sessions work for such a variety of schedules!
 
 [role="text-center"]
 video::NtbMjx1cdJs[youtube, width=640, height=480]
 
 == The Plans For Q2 icon:plane[]
 
+.As you will see the plan for Q2 is even bigger and broader!
 [options="header"]
 |===
 |Event Name                 |Location           |Topic                                              |Date
@@ -125,4 +139,6 @@ video::NtbMjx1cdJs[youtube, width=640, height=480]
 
 == Stay In Touch
 
-As always, I encourage you to keep an eye on https://hazelcast.com/company/events/[Hazelcast Events] page or follow me at @gamussa on Twitter!
+I look forward to meeting even more of you in person this quarter!
+
+For even more opportunities to develop your distributed system knowledge, I encourage you to keep an eye on https://hazelcast.com/company/events/[Hazelcast Events] page or follow me at @gamussa on Twitter!
