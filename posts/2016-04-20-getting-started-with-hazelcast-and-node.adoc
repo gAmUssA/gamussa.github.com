@@ -1,0 +1,233 @@
+= Getting Started with Hazelcast and Node.js
+Viktor Gamov <viktor@hazelcast.com>, © 2016 Hazelcast, Inc.
+2016-04-18
+:revdate: 2016-04-18 6:05:51 -0600
+:imagesdir: ../images
+:icons:
+:keywords: hazelcast node.js
+ifndef::awestruct[]
+:awestruct-layout: post
+:awestruct-tags: []
+:idprefix:
+:idseparator: -
+endif::awestruct[]
+:linkattrs:
+:ast: &ast;
+:y: &#10003;
+:n: &#10008;
+:y: icon:check-sign[role="green"]
+:n: icon:check-minus[role="red"]
+:c: icon:file-text-alt[role="blue"]
+:toc: auto
+:toc-placement: auto
+:toc-position: right
+:toc-title: Table of content
+:toclevels: 3
+:idprefix:
+:idseparator: -
+:sectanchors:
+:icons: font
+:source-highlighter: highlight.js
+:highlightjs-theme: idea
+:experimental:
+:apidocs: http://hazelcast.github.io/hazelcast-nodejs-client/api/0.2/docs
+:start_scripts: http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#using-the-scripts-in-the-package
+:downloads: http://hazelcast.org/download/
+:so-hazelcast: http://stackoverflow.com/questions/tagged/hazelcast
+:hazecast-nodejs-client: http://hazelcast.github.io/hazelcast-nodejs-client/
+:hazecast-chat: https://gitter.im/hazelcast/hazelcast
+:hazelcast-nodejs-chat: https://gitter.im/hazelcast/hazelcast-nodejs-client
+
+.TL;DR
+NOTE: Install the package `npm install hazelcast-client`, <<fullapp,grab a demo app>> and read {apidocs}[API docs].
+Time To «Hello World!» less than 5 min.
+
+image::node.png[align="center"]
+
+toc::[]
+
+== Intro
+
+On the behalf of Hazelcast Team, I'm pleased to announce the availability of version 0.2 of the Hazelcast Client for Node.js.
+
+The new version includes following features:
+
+* `IMap`
++
+Node.js client supports following operations of `IMap` - `get`, `put`, `remove`.
+
+* Smart Client
+
++
+A client connects to each cluster node.
+Since each data partition uses the well known and *consistent hashing algorithm*, each client can send an operation to the relevant cluster node.
+This increases the overall throughput and efficiency.
+Plus, you don't need to restart the client when adding or removing nodes from the cluster.
+* Distributed Object Listener
+
++
+Enables the notification regarding the creation and deletion of a distributed object (like `IMap`) on the cluster.
+
+Hazelcast Client for Node.js is available from NPM.
+API documentation available on {apidocs}[Github].
+
+== Let's Write Your First Node.js App with Hazelcast
+
+=== Before you start
+
+. You need to download Hazelcast from {downloads}[official website] and unpack it to any folder.
+. Start Hazelcast cluster using {start_scripts}[startup scripts]
+
+=== Install The Hazelcast Client Package from NPM
+
+If you have Node Package Manager (npm) installed, you will be able to install the Hazelcast Node.js client just by running this from the command line.
+
+[source,bash]
+----
+npm install hazelcast-client
+----
+
+=== Your First Hazelcast App
+
+For this introduction, we are going to be creating a simple console application by opening a text editor and creating a JavaScript file.
+To begin, we need to connect to our cluster and retrieve the «persons» map.
+
+.Connect to local Hazelcast cluster
+[source,javascript]
+----
+var HazelcastClient = require('hazelcast-client').Client; // <1>
+var Config = require('hazelcast-client').Config; // <2>
+
+var config = new Config.ClientConfig();
+config.networkConfig.addresses = [{host: '127.0.0.1', port: '5701'}]; // <3>
+var map = {};
+HazelcastClient
+    .newHazelcastClient(config)       //<4>
+    .then(function (hazelcastClient) {  // <5>
+        map = hazelcastClient.getMap("persons");
+         // do stuff with map
+    });
+----
+
+<1> Importing `Client` class.
+<2> Importing `Config` class.
+<3> Providing an address of local Hazelcast cluster.
+<4> There is another method `Hazelcast.newHazelcastClient()` that doesn't take parameters.
+It uses the default config with local addresses.
+
+<5> A function `newHazelcastClient` returns a promise. A promise is an object that represents the return value or the thrown exception that the function may eventually provide.
+
+Now that you are connected to the cluster and have retrieved personMap, let’s insert a John Doe object into the "persons" map.
+
+[source,javascript]
+----
+var insertPerson = function (map) {
+    var person = {     // <1>
+        firstName: "John",
+        lastName: "Doe",
+        age: 42
+    };
+    map.put(1, person).then(function (previousValue) { // <2>
+        console.log("Previous value: " + JSON.stringify(previousValue));
+    });
+};
+----
+<1> This is the person object that will be inserted into Hazelcast IMap
+<2> A `put` operation returns a promise of previous value for a given key.
+
+Similarly, you can read and delete the object from IMap.
+
+[source,javascript]
+----
+var readPerson = function (map) {
+    map.get(1).then(function (value) {
+        // do object stuff here
+    })
+};
+
+var deletePerson = function (map) {
+    map.remove(1).then(function (value) {
+        // do object stuff here
+    })
+};
+----
+
+
+[[fullapp]]
+.Full source of the simple CRUD application
+[source,javascript]
+----
+var HazelcastClient = require('hazelcast-client').Client;
+var Config = require('hazelcast-client').Config;
+
+var config = new Config.ClientConfig();
+config.networkConfig.addresses = [{host: '127.0.0.1', port: '5701'}];
+
+var map = {};
+
+HazelcastClient
+    .newHazelcastClient(config)
+    .then(function (hazelcastClient) {
+        map = hazelcastClient.getMap("persons");
+        insertPerson(map);
+        readPerson(map);
+        deletePerson(map);
+    });
+
+var printValue = function (text, value) {
+    console.log(text + JSON.stringify(value));
+};
+
+var insertPerson = function (map) {
+    var person = {
+        firstName: "Joe",
+        lastName: "Doe",
+        age: 42
+    };
+    map.put(1, person).then(function (previousValue) {
+        printValue("Previous value: ", previousValue);
+    });
+};
+
+var readPerson = function (map) {
+    map.get(1).then(function (value) {
+        printValue("Value for key=1: ", value);
+    })
+};
+
+var deletePerson = function (map) {
+    map.remove(1).then(function (value) {
+        printValue("Previous value: ", value);
+    })
+};
+----
+
+The output of this application should look like this:
+
+[source,bash]
+----
+[DefaultLogger] INFO at ClusterService: Members received.
+[ Member {
+    address: Address { host: '10.10.26.22', port: 5701 },
+    uuid: '25fd2aae-a0e6-4293-94db-8f5d6af62ca8',
+    isLiteMember: false,
+    attributes: {} } ]
+[DefaultLogger] INFO at HazelcastClient: Client started
+Previous value: null
+Value for key=1: {"firstName":"Joe","lastName":"Doe","age":42}
+Previous value: {"firstName":"Joe","lastName":"Doe","age":42}
+----
+
+Congrats!
+You have just connected to a Hazelcast cluster and performed basic CRUD operations against Hazelcast IMap and demonstrated the ease of using Hazelcast with the Node.js client.
+
+'''
+
+== Resources
+
+* {hazecast-nodejs-client}[Hazelcast Node.js client code on github]
+* Chat with the developers
+** {hazecast-chat}[Hazelcast Chat]
+** {hazelcast-nodejs-chat}[Hazelcast Node.js client Chat]
+* http://groups.google.com/group/hazelcast[Google Group]
+* {so-hazelcast}[Stackoverflow]
