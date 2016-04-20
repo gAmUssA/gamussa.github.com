@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/guard/guard.git
-  revision: 2ba5b1727b1c65c33ffbffd36c7d1e6874919dde
+  revision: b2130a0efb51d30cc7a5878f0bd6dc7eeb1bb155
   specs:
     guard (2.13.0)
       formatador (>= 0.2.4)
@@ -141,7 +141,7 @@ GEM
     tomdoc (0.2.5)
       colored
       ruby_parser (>= 2.0.4)
-    tzinfo (0.3.48)
+    tzinfo (0.3.49)
     uglifier (1.3.0)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
