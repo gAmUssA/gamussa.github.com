@@ -1,7 +1,7 @@
 = What's New in Hazelcast Node.js Client
 Mustafa Iman <mustafa.iman@hazelcast.com>, Viktor Gamov <viktor@hazelcast.com>
-2016-09-25
-:revdate: 2016-09-25 6:05:51 -0600
+2016-09-09
+:revdate: 2016-09-09 6:05:51 -0600
 :imagesdir: ../images
 :icons:
 :keywords: hazelcast node.js
@@ -19,9 +19,7 @@ endif::awestruct[]
 :y: icon:check-sign[role="green"]
 :n: icon:check-minus[role="red"]
 :c: icon:file-text-alt[role="blue"]
-:toc: auto
-:toc-placement: auto
-:toc-position: right
+:toc: macro
 :toc-title: Table of content
 :toclevels: 3
 :idprefix:
@@ -29,7 +27,7 @@ endif::awestruct[]
 :sectanchors:
 :icons: font
 :source-highlighter: highlight.js
-:highlightjs-theme: idea
+:highlightjs-theme: tomorrow-night-eighties
 :experimental:
 :apidocs: http://hazelcast.github.io/hazelcast-nodejs-client/api/0.4/docs
 :so-hazelcast: http://stackoverflow.com/questions/tagged/hazelcast
@@ -42,44 +40,44 @@ endif::awestruct[]
 :multimap_docs: http://hazelcast.github.io/hazelcast-nodejs-client/api/0.4/docs/interfaces/_proxy_multimap_.multimap.html
 :serialization_docs: http://hazelcast.github.io/hazelcast-nodejs-client/api/0.4/docs/modules/_serialization_serializable_.html
 
+image::node.png[align="center"]
+
 .TL;DR
 NOTE: Rejoice, JavaScript people!
-There are many new features in Hazelcast Node.js Client 0.4. 
+There are many new features in Hazelcast Node.js Client 0.4.1. 
 It will take you up to 10 minutes to read this blog and learn what's new!
 Also, if you read this blog post till the end, you will learn what's coming to future releases.
 
-image::node.png[align="center"]
-
 toc::[]
 
-It has been a while since out first blog post on Hazelcast Node.js Client footnote:[http://blog.hazelcast.com/getting-started-with-hazelcast-and-node-js-2/]. 
-Our brave developers were very busy adding new features and making Hazelcast Node.js Client faster!
+It has been a while since out first blog post on Hazelcast Node.js Client footnote:[http://blog.hazelcast.com/getting-started-with-hazelcast-and-node-js-2/].
+Our brave developers were very busy adding new features and making Hazelcast Node.js Client faster! 
 
-WARNING: If you haven't read previous Getting Started blog post, it's perfect opportunity to press «Pause» button now. Getting started post contains all required info for you to make Hazelcast Node.js Client gears 
- 
-Also, we brought full interoperability with other clients.
-
-.Let's have a quick look at this first because:
-[quote, Ron Burgundy, Anchorman: The Legend of Ron Burgundy]     
-I don't know how to put this, but it's kind of a big deal. 
-
-image::ron.jpg[align="left"]
+WARNING: If you haven't read previous Getting Started blog post, it's a perfect opportunity to press kbd:[Pause] button now. 
+Getting started post contains all required information to make Hazelcast Node.js Client gears moving. 
 
 [[whats-new-in-0.4]]
 == What's new
 
 Alright. 
-Since our previous announcement of v0.2, we added most of the frequently used features in Hazelcast to Node.js client. 
-Here a just a few:
+Since our previous announcement of v0.2, we added the most of the frequently used features of Hazelcast to Node.js client. 
 
-* Distributed Map aka `IMap`
-* Predicates
+Here are just a few:
+
+* Distributed Map aka `IMap` with support of Predicates and Entry Processors 
 * MultiMap
 * Set
 * List
 * Distributed Locks aka `ILock`
 * Queue
 
+Also, we brought full interoperability with other Hazelcast clients footnote:[https://hazelcast.org/clients-languages/].
+
+.Let's have a quick look at this first because:
+[quote, Ron Burgundy, Anchorman: The Legend of Ron Burgundy]     
+I don't know how to put this, but it's kind of a big deal. 
+
+image::ron.jpg[align="left"]
 
 [[serialization-support-and-interoperability-of-languages]]
 === Serialization and Interoperability with other Hazelcast clients 
@@ -88,26 +86,125 @@ Hazelcast Node.js client now supports all native serialization techniques that H
 This means that you can just connect your Node.js client to your working Hazelcast cluster and read what is already there, put new objects and read them from other clients.
 The fact that Node.js client supports Hazelcast native serialization means that it is now fully compatible with all available client languages. 
 The client serializes string, number, and array data types automatically.
-This makes text-based serialization formats like JSON or XML good candidate for message.
-Whereas the developers should provide serializers for custom objects.
+This makes text-based serialization formats like JSON or XML suitable candidate for a message.
+The developers should provide serializers for custom objects.
 
-For example, Java application (based on Java Client) can store results of heavy computations, and Node.js, .NET or Python applications can consume this results for the purposes of displaying for the web (Node.js), in Rich Desktop Application (.NET / C#) or for further Data Science with Python math packages.
+====
+For example, a Java application uses Hazelcast Java Client to store the results of a long-running computation (like Map/Reduce job), and Node.js, `.NET` or Python applications can consume the results for displaying for the web (Node.js), in Rich Desktop Application (.NET / C#) or for further research and Data Science with Python math packages.
+====
 
-You can checkout
-http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#serialization[Serialization Section] and
-{serialization_docs}[Node.js documentation] about how to register custom serializers. 
-All you need to do is adding relevant methods to your objects.
+To demonstrate this approach, let's write `Java` `<==>` `Node.js` application.
+We will use `Person` object from the previous blog post. 
+It has 3 properties - `firstName`, `lastName` and `age`.
+
+[source,java]
+.Person.java
+----
+public class Person implements IdentifiedDataSerializable { // #1
+    String firstName;
+    String lastName;
+    int age;
+
+    public Person() {
+    }
+
+    public Person(String firstName, String lastName, int age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+    }
+
+    @Override
+    public void writeData(ObjectDataOutput out) throws IOException { // #2
+        out.writeUTF(firstName);
+        out.writeUTF(lastName);
+        out.writeInt(age);
+    }
+
+    @Override
+    public void readData(ObjectDataInput in) throws IOException { // #3
+        this.firstName = in.readUTF();
+        this.lastName = in.readUTF();
+        this.age = in.readInt();
+    }
+
+    @Override public int getFactoryId() {
+        return 42;
+    }
+
+    @Override public int getId() {
+        return 42;
+    }
+}
+----
+<1> A `Person` object implements IdentifiedDataSerializable - fast serialization from Hazelcast.
+<2> A `writeData` method defines how property values will be written to the binary output.
+<3> A `readData` method defines how values can be retrieved from binary input.
+
+NOTE: Make sure you read from input in the same order you as you wrote to binary out.
+Detailed description of `IdentifiedDataSerializable` methods can be found «Serialization» footnote:[http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#identifieddataserializable] section of http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html[Hazelcast Documentation].
+
+Let's take a look how JavaScript counterpart object looks like
 
 [source,javascript]
 ----
-// TBD
+function Person(firstName, lastName, age) { #1
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+}
+
+Person.prototype.getFactoryId = function () {
+    return 42;
+};
+
+Person.prototype.getClassId = function () {
+    return 42;
+};
+
+Person.prototype.writeData = function (dataOutput) { #2
+    dataOutput.writeUTF(this.firstName);
+    dataOutput.writeUTF(this.lastName);
+    dataOutput.writeInt(this.age);
+};
+
+Person.prototype.readData = function (dataInput) { // #3
+    this.firstName = dataInput.readUTF();
+    this.lastName = dataInput.readUTF();
+    this.age = dataInput.readInt();
+};
 ----
+<1> JavaScript doesn't have a interfaces as Java. So, it's just a Javascript object.
+<2> Similarly to Java object, we need to implement `writeData`...
+<3> ... and `readData` methods.
+
+.Last step - register `DataSerializableFactory` in client config
+[source,javascript]
+----
+var config = new Config.ClientConfig();
+config.serializationConfig.dataSerializableFactories[42] = {
+    create: function (type) {
+        if (type === 42) { // #1
+            return new Person();
+        }
+    }
+};
+----
+<1> Based on `typeId`, Hazelcast will figure out what object will be restored from the binary data.
+
+You can checkout
+http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#serialization[Serialization Section] and 
+{serialization_docs}[Node.js documentation] about how to register custom serializers. 
 
 [[predicates]]
 === Predicates
 
-When you need the entries that satisfy some condition from a distributed Map instance, you needed to retrieve all entries from that map and filter them on the client side. 
-This method uses a substantial amount of network communion. 
+Hazelcast IMap is an essentially key-value store. 
+And usually, a developer uses the keys to retrieve data.  
+But in certain cases, a developer doesn't know a key.
+Or when a developer needs to find many entries satisfy a condition from a distributed Map. 
+In this case, you needed to retrieve all entries from that map and filter them on the client side. 
+But this method leads to the substantial amount of network communion. 
 If you are looking for a small subset of the entries, it is much more convenient to retrieve only the entries you are looking for using newly introduced predicates.
 
 Let's say you keep ages of people in a Hazelcast map.
@@ -117,7 +214,7 @@ Let's say you keep ages of people in a Hazelcast map.
 map.putAll(['Alice', 34], ['Joe', 22], ['George', 27]);
 ----
 
-You can easily retrieve entries of people that are older than 25 with following code snippet
+You can quickly retrieve entries of people that are older than 25 with following code snippet
 
 [source,javascript]
 ----
@@ -140,21 +237,54 @@ map.keySetWithPredicate(Predicates.greaterThan('this', 25));
 
 will return only names of `Alice` and `George`.
 
-You can find full list of available predicates at {predicate_docs}[API docs]
+You can find a full list of available predicates at {predicate_docs}[API docs].
 
 [[multimap]]
 === MultiMap, Set, List
 
 MultiMap is a particular version of Map supports multiple values associated with a single key.
 
+[source,javascript]
+.The restaurants MultiMap
 ----
-var multiMap = client.getMultiMap('cluster-multimap');
-// add 2 values with same key 
-// print result
-// TBD list and set
+var mmap = hazelcastClient.getMultiMap('restaurants'); // #1
+mmap.put("New York", "Red Lobster") // #2
+    .then(() => {
+        return mmap.put("New York", "Eataly");
+    })
+    .then(() => {
+        return mmap.get("New York");
+    })
+    .then((list) => {
+        console.log(list);
+    });
+
+mmap.put("Las Vegas", "Burgr") // #3
+    .then(() => {
+            return mmap.put("Las Vegas", "Alibi");
+        }
+    ).then(() => {
+    return mmap.put("Las Vegas", "Pub & Grill");
+
+}).then(() => {
+    return mmap.get("Las Vegas")
+}).then((list) => {
+    console.log(list);
+});
+----
+<1> In this example we have MultiMap of restaurants
+<2> Name of the city used as a key - `New York` or `Las Vegas`
+<3> When we need to get a collection of entries. 
+Hazelcast MultiMap supports two types of values - `Set` (doesn't allow duplicates, default) and `List` (preserves order).
+It can be configured using cluster config footnote:[http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#configuring-multimap].
+
+.Output looks like follows
+----
+[ 'Eataly', 'Red Lobster' ]
+[ 'Pub & Grill', 'Alibi', 'Burgr' ]
 ----
 
-{multimap_docs}[MultiMap API]
+You can find more info here - {multimap_docs}[MultiMap API].
 
 [[lock]]
 === Distributed Lock
@@ -163,50 +293,140 @@ If you need to synchronize your data accesses through cluster Hazelcast's distri
 
 [source,javascript]
 ----
-var globalLock = client.getLock('cluster-lock');
+var globalLock = client.getLock('global-lock');
+
+globalLock.lock();
+// you can do some job here which doesn't allow shared access
+globalLock.unlock();
 ----
 
 All supported lock operations are listed in {ilock_docs}[ILock API]
 
+[[queue]]
 === Messaging with Queue
 
+Hazelcast distributed queue enables all cluster members and client to interact with it. 
+Using Hazelcast distributed queue, you can add an item from one client and read it from another.
+FIFO ordering will apply to all queue operations across the cluster. 
+
 [source, javascript]
+.Client 1 - Consumer of tasks
+[source,javascript]
 ----
+var logger = hazelcastClient.loggingService;
+var queue = hazelcastClient.getQueue('tasks');
+
+// slow consumer
+setInterval(() => {
+    queue.take().then((task) => {
+        logger.info("Consumer", `executing task: ${task}`);
+    });
+}, 1000);
 ----
 
+.Client 2 - Producer of tasks
+[source,javascript]
+----
+var logger = hazelcastClient.loggingService;
+var queue = hazelcastClient.getQueue('tasks');
 
-[[whats-next]]
-== Sneak Peak of v0.5 and beyond
+// fast producer
+setInterval(() => {
+    var task = tasks[Math.floor(Math.random() * tasks.length)];
+    logger.info("Producer", `publishing task: ${task}`);
+    queue.offer(task);
+}, 500);
+----
 
-image::wonka.jpg[]
+In this example, Hazelcast's used as a «buffer» to separate fast producer from slow consumer to prevent consumer overloading.
 
 === Data Affinity 
 
-One of the things that developers should expect from the upcoming version of Node.js client is ability increase locality of computations and data access on a cluster. 
-Starting from version 0.5, users will be able to control on which partitions each key is stored. 
+One of the things that we brought to `v0.4.1` is ability increase locality of computations and data access on a cluster. 
+The Developers will be able to control on which partitions each key is stored. 
 It is only a matter of adding a `getPartitionKey()` function to user objects.
 
 [source,javascript]
+.A developer needs to implement `getPartitionKey` method
 ----
-// TBD
-----
+'use strict';
+let Client = require('hazelcast-client').Client;
 
-Having selected key partition explicitly, users can benefit from on the cluster processing of entries using EntryProcessor`s. 
+function Company(name, address) { // #1
+    this.name = name;
+    this.address = address;
+}
+
+Company.prototype.getName = function () { 
+    return this.name;
+};
+
+function Associate(firstName, lastName, companyName) { // #2
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.companyName = companyName;
+}
+
+Associate.prototype.getCompanyName = function () {
+    return this.companyName;
+};
+
+function PartitionAwareKey(key, partitionKey) {
+    this.key = key;
+    this.partitionKey = partitionKey;
+}
+
+PartitionAwareKey.prototype.getPartitionKey = function () { // #3
+    return this.partitionKey;
+};
+
+Client.newHazelcastClient().then((hazelcastClient) => {
+    let companyMap = hazelcastClient.getMap('companyMap');
+    let associateMap = hazelcastClient.getMap('associateMap');
+    let partitionService = hazelcastClient.getPartitionService();
+
+    let company = new Company("IBM", "Armonk, North Castle, NY");
+    let associate = new Associate("John", "Smith", company.getName());
+
+    let key1 = new PartitionAwareKey("k1", company.getName());  // #4
+    let key2 = new PartitionAwareKey("a1", associate.getCompanyName()); // #4
+
+    console.log(partitionService.getPartitionId(key1)); // #5
+    console.log(partitionService.getPartitionId(key2)); // #5
+
+    companyMap.set(key1, company).then(() => { // #6
+        associateMap.set(key2, associate);
+    });
+
+});
+----
+<1> An object `Company` contains name and address of a company.
+<2> An object `Associate` contains info about company's employee.
+<3> `PartitionAwareKey` (sort of composite key) should have `getPartitionId` method that Hazelcast will use to collocate related data.
+<4> A `companyName` property used as partition id.
+<5> A `partitionId` for both keys will be the same...
+<6> ...meaning «John Smith» and «IBM» will be co-located on the same partition.
+
+Having selected key partition explicitly, users can benefit from on the cluster processing of entries using EntryProcessor's. 
 Entry processor eliminates the cost of transferring entries between cluster and clients back and forth for simple transformations.
+
+To learn more about Data Affinity in Hazelcast, check official documentation footnote:[http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#data-affinity].
+
+[[whats-next]]
+== Sneak Peek of v0.5 and beyond
+
+image::wonka.jpg[]
 
 === Even more Data Structures!
 
 New release of Node.js client will introduce new data structures such as `RingBuffer` and `Topic`.
 These data structures are suitable for implementing pub-sub use cases. 
+Together with `Queue`, `RB` and `Topic` enable messaging capabilities for your application.
+Check <<queue, Messaging with Queue>> section for peer-to-peer communication example.
 
-[source,javascript]
-----
-// TBD
-----
+=== Fresh Meat
 
-=== Fresh meat
-
-Even though v0.5 is not released yet you don't have to wait for to try these new features. 
+Even though v0.5 is not released yet, you don't have to wait for to try these new features. 
 You can build the client locally footnote:[https://github.com/hazelcast/hazelcast-nodejs-client#building-and-installing-from-sources].
 
 .Or, thanks to NPM,  install Hazelcast Client from `master` branch.
@@ -225,6 +445,6 @@ There a bunch of way to provide the feedback:
 ** if you have found a bug, please report 
 * Chat with the developers
 ** {hazecast-chat}[Hazelcast Chat]
-** {hazelcast-nodejs-chat}[Hazelcast Node.js client Chat] footnote:[It is a community chat / forum but not a support portal. We can help with answering the questions, and provide pointers but we're not going to write code for you. We are encourage people in the community share the knowledge, please, don't abuse it. If you're interested in 24/7 support, we have a dedicated support portal available on commertial terms. Contact `sales at hazelcast dot com` to learn more.]
+** {hazelcast-nodejs-chat}[Hazelcast Node.js client Chat] footnote:[It is a community chat / forum but not a support portal. We can help with answering the questions, and provide pointers but we're not going to write code for you. We are encouraging people in the community to share the knowledge, please, don't abuse it. If you're interested in 24/7 support, we have a dedicated support portal available on commercial terms. Contact `sales at hazelcast dot com` to learn more.]
 * http://groups.google.com/group/hazelcast[Google Group]
 * {so-hazelcast}[Stackoverflow]
