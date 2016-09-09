@@ -1,27 +1,15 @@
-<!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><html class="no-js" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Getting Started with Hazelcast and Node.js | Java.Head.Brain</title><meta name="author" content="Viktor Gamov"><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@asciidoctor"><meta name="twitter:url" content="http://next.javaheadbrain.com/posts/2016/04/18/getting-started-with-hazelcast-and-node.html"><meta name="twitter:title" content="Getting Started with Hazelcast and Node.js"><meta name="twitter:description" content="Table of content
+<!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><html class="no-js" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Getting Started with Hazelcast and Node.js | Java.Head.Brain</title><meta name="author" content="Viktor Gamov"><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@asciidoctor"><meta name="twitter:url" content="http://next.javaheadbrain.com/posts/2016/04/18/getting-started-with-hazelcast-and-node.html"><meta name="twitter:title" content="Getting Started with Hazelcast and Node.js"><meta name="twitter:description" content="TL;DR
+Install the package npm install hazelcast-client, grab a demo app and read API docs.
+Time To «Hello World!» less than 5 min.
+Table of content
 Intro
-Let&#8217;s Write Your First Node.js App with Hazelcast
-Before you start
-Install The Hazelcast Client Package from NPM
-Your First Hazelcast App
-Resources
-TL;DR
-Install the package npm install..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html"><span class="icon"><i class="fa fa-bars"></i></span>&nbspBlog</a></li><li class="divider"></li><li><a href="http://github.com/gamussa">Github&nbsp<span class="icon"><i class="fa fa-github"></i></span></a></li><li class="divider"></li><li><a href="http://twitter.com/gamussa">Twitter&nbsp<span class="icon"><i class="fa fa-twitter"></i></span></a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://next.javaheadbrain.com">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h2 class="header"><a href="/posts/2016/04/18/getting-started-with-hazelcast-and-node.html">Getting Started with Hazelcast and Node.js</a></h2><h5 class="subheader">Written by&nbsp <a href="#">Viktor Gamov</a>&nbsp- <time class="pubdate" datetime="2016-04-18T06:05:51-06:00">Monday, April 18, 2016</time></h5><div class="row"><div class="large-12 columns text-left"><div id="toc" class="toc">
-<div id="toctitle">Table of content</div>
-<ul class="sectlevel1">
-<li><a href="#intro">Intro</a></li>
-<li><a href="#let-s-write-your-first-node-js-app-with-hazelcast">Let&#8217;s Write Your First Node.js App with Hazelcast</a>
-<ul class="sectlevel2">
-<li><a href="#before-you-start">Before you start</a></li>
-<li><a href="#install-the-hazelcast-client-package-from-npm">Install The Hazelcast Client Package from NPM</a></li>
-<li><a href="#your-first-hazelcast-app">Your First Hazelcast App</a></li>
-</ul>
-</li>
-<li><a href="#resources">Resources</a></li>
-</ul>
-</div>
-<div id="preamble">
+Let&#8217;s Write Your..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html"><span class="icon"><i class="fa fa-bars"></i></span>&nbspBlog</a></li><li class="divider"></li><li><a href="http://github.com/gamussa">Github&nbsp<span class="icon"><i class="fa fa-github"></i></span></a></li><li class="divider"></li><li><a href="http://twitter.com/gamussa">Twitter&nbsp<span class="icon"><i class="fa fa-twitter"></i></span></a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://next.javaheadbrain.com">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h2 class="header"><a href="/posts/2016/04/18/getting-started-with-hazelcast-and-node.html">Getting Started with Hazelcast and Node.js</a></h2><h5 class="subheader">Written by&nbsp <a href="#">Viktor Gamov</a>&nbsp- <time class="pubdate" datetime="2016-04-18T06:05:51-06:00">Monday, April 18, 2016</time></h5><div class="row"><div class="large-12 columns text-left"><div id="preamble">
 <div class="sectionbody">
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="/images/node.png" alt="node">
+</div>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -36,12 +24,20 @@ Time To «Hello World!» less than 5 min.
 </tr>
 </table>
 </div>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="/images/node.png" alt="node">
+<div id="toc" class="toc">
+<div id="toctitle" class="title">Table of content</div>
+<ul class="sectlevel1">
+<li><a href="#intro">Intro</a></li>
+<li><a href="#let-s-write-your-first-node-js-app-with-hazelcast">Let&#8217;s Write Your First Node.js App with Hazelcast</a>
+<ul class="sectlevel2">
+<li><a href="#before-you-start">Before you start</a></li>
+<li><a href="#install-the-hazelcast-client-package-from-npm">Install The Hazelcast Client Package from NPM</a></li>
+<li><a href="#your-first-hazelcast-app">Your First Hazelcast App</a></li>
+</ul>
+</li>
+<li><a href="#resources">Resources</a></li>
+</ul>
 </div>
-</div>
-<!-- toc disabled -->
 </div>
 </div>
 <div class="sect1">
@@ -309,7 +305,7 @@ You have just connected to a Hazelcast cluster and performed basic CRUD operatio
 </ul>
 </div>
 </div>
-</div></div></div><footer class="entry-footer"><div class="tags"><span class="title">tags: </span></div></footer><div id="comments">
+</div></div></div><footer class="entry-footer"><div class="tags"><span class="title">tags: </span><a href="/posts/tags/hazelcast">hazelcast, </a><a href="/posts/tags/nodejs">nodejs </a></div></footer><div id="comments">
             <div id="disqus_thread"></div>
             <script type="text/javascript">
             var disqus_shortname = 'nextjavaheadbraincom';

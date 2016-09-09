@@ -5,19 +5,29 @@
 <author>
 <name>Viktor Gamov</name>
 </author>
-<updated>2016-04-20T08:36:00-04:00</updated>
+<updated>2016-09-09T02:53:19-04:00</updated>
 <link href="http://next.javaheadbrain.com/feed.atom" rel="self" type="application/atom+xml" />
 <link href="http://next.javaheadbrain.com/" rel="alternate" type="text/html" />
 <entry>
 <id>http://next.javaheadbrain.com/posts/2016/04/18/getting-started-with-hazelcast-and-node.html</id>
 <title>Getting Started with Hazelcast and Node.js</title>
-<updated>2016-04-20T08:36:00-04:00</updated>
+<updated>2016-09-09T02:53:19-04:00</updated>
 <published>2016-04-18T06:05:51-06:00</published>
 <link href="http://next.javaheadbrain.com/posts/2016/04/18/getting-started-with-hazelcast-and-node.html" rel="alternate" type="text/html" />
 <author>
 <name>Viktor Gamov</name>
 </author>
+<category term="hazelcast"></category>
+<category term="nodejs"></category>
 <summary>
+TL;DR
+Install the package npm install hazelcast-client, grab a demo app and read API docs.
+Time To «Hello World!» less than 5 min.
+
+
+
+
+
 Table of content
 
 Intro
@@ -29,28 +39,6 @@ Your First Hazelcast App
 
 
 Resources
-
-
-
-
-
-
-
-
-
-
-
-TL;DR
-Install the package npm install hazelcast-client, grab a demo app and read API docs.
-Time To «Hello World!» less than 5 min.
-
-
-
-
-
-
-
-
 
 
 
@@ -79,22 +67,13 @@ A client connects to each cluster node.
 Since each data partition uses the well known and consistent hashing algorithm, each client can send an operation...
 </summary>
 <content type="html">
-&lt;div id=&quot;toc&quot; class=&quot;toc&quot;&gt;
-&lt;div id=&quot;toctitle&quot;&gt;Table of content&lt;/div&gt;
-&lt;ul class=&quot;sectlevel1&quot;&gt;
-&lt;li&gt;&lt;a href=&quot;#intro&quot;&gt;Intro&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#let-s-write-your-first-node-js-app-with-hazelcast&quot;&gt;Let’s Write Your First Node.js App with Hazelcast&lt;/a&gt;
-&lt;ul class=&quot;sectlevel2&quot;&gt;
-&lt;li&gt;&lt;a href=&quot;#before-you-start&quot;&gt;Before you start&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#install-the-hazelcast-client-package-from-npm&quot;&gt;Install The Hazelcast Client Package from NPM&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#your-first-hazelcast-app&quot;&gt;Your First Hazelcast App&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#resources&quot;&gt;Resources&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
 &lt;div id=&quot;preamble&quot;&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;http://next.javaheadbrain.com/images/node.png&quot; alt=&quot;node&quot; /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;div class=&quot;admonitionblock note&quot;&gt;
 &lt;table&gt;
 &lt;tr&gt;
@@ -109,12 +88,20 @@ Time To «Hello World!» less than 5 min.
 &lt;/tr&gt;
 &lt;/table&gt;
 &lt;/div&gt;
-&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/node.png&quot; alt=&quot;node&quot; /&gt;
+&lt;div id=&quot;toc&quot; class=&quot;toc&quot;&gt;
+&lt;div id=&quot;toctitle&quot; class=&quot;title&quot;&gt;Table of content&lt;/div&gt;
+&lt;ul class=&quot;sectlevel1&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#intro&quot;&gt;Intro&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#let-s-write-your-first-node-js-app-with-hazelcast&quot;&gt;Let’s Write Your First Node.js App with Hazelcast&lt;/a&gt;
+&lt;ul class=&quot;sectlevel2&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#before-you-start&quot;&gt;Before you start&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#install-the-hazelcast-client-package-from-npm&quot;&gt;Install The Hazelcast Client Package from NPM&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#your-first-hazelcast-app&quot;&gt;Your First Hazelcast App&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#resources&quot;&gt;Resources&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;!-- toc disabled --&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect1&quot;&gt;
@@ -386,388 +373,9 @@ You have just connected to a Hazelcast cluster and performed basic CRUD operatio
 </content>
 </entry>
 <entry>
-<id>http://next.javaheadbrain.com/posts/2016/03/31/travel-report-q1-2016.html</id>
-<title>Travel Report - Q1 2016</title>
-<updated>2016-04-20T08:36:00-04:00</updated>
-<published>2016-03-31T20:00:00+00:00</published>
-<link href="http://next.javaheadbrain.com/posts/2016/03/31/travel-report-q1-2016.html" rel="alternate" type="text/html" />
-<author>
-<name>Viktor Gamov</name>
-</author>
-<summary>
-Table of Contents
-
-Intro
-Conferences and User Groups 
-
-Toronto JUG, Toronto, CA
-Central Ohio Java User Group (COJUG), Dublin, OH
-DevNexus 2016, Atlanta, GA
-New York Spring User Group, New York, NY
-Chattanooga Developers Meetup, Chattanooga, TN
-
-
-The Plans For Q2 
-Stay In Touch
-
-
-
-
-
-
-
-
-
-
-
-TL;DR
-Life on the road. It&#8217;s a brief review of first three months of 2016.
-Major events - Toronto JUG, Central Ohio JUG, DevNexus.
-
-
-
-
-
-
-
-
-
-
-
-Table 1. Revisions history
-
-
-
-
-
-
-
-Version
-Date
-Comments
-
-
-
-
-v1.0
-3/31/2015
-Initial blog post
-
-
-
-
-
-
-Intro
-
-
-At the suggestion of those of you who read my blog and send me comments, I am going to try to write one post about travel and events per quarter.
-With that said, 2016 just began, and I have...
-</summary>
-<content type="html">
-&lt;div id=&quot;toc&quot; class=&quot;toc&quot;&gt;
-&lt;div id=&quot;toctitle&quot;&gt;Table of Contents&lt;/div&gt;
-&lt;ul class=&quot;sectlevel1&quot;&gt;
-&lt;li&gt;&lt;a href=&quot;#intro&quot;&gt;Intro&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#events&quot;&gt;Conferences and User Groups &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-calendar&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;
-&lt;ul class=&quot;sectlevel2&quot;&gt;
-&lt;li&gt;&lt;a href=&quot;#toronto-jug-toronto-ca&quot;&gt;Toronto JUG, Toronto, CA&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#central-ohio-java-user-group-cojug-dublin-oh&quot;&gt;Central Ohio Java User Group (COJUG), Dublin, OH&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#devnexus-2016-atlanta-ga&quot;&gt;DevNexus 2016, Atlanta, GA&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#new-york-spring-user-group-new-york-ny&quot;&gt;New York Spring User Group, New York, NY&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#chattanooga-developers-meetup-chattanooga-tn&quot;&gt;Chattanooga Developers Meetup, Chattanooga, TN&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#the-plans-for-q2-span-class-icon-i-class-fa-fa-plane-i-span&quot;&gt;The Plans For Q2 &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-plane&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#stay-in-touch&quot;&gt;Stay In Touch&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&quot;preamble&quot;&gt;
-&lt;div class=&quot;sectionbody&quot;&gt;
-&lt;div class=&quot;admonitionblock note&quot;&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td class=&quot;icon&quot;&gt;
-&lt;i class=&quot;fa icon-note&quot; title=&quot;Note&quot;&gt;&lt;/i&gt;
-&lt;/td&gt;
-&lt;td class=&quot;content&quot;&gt;
-&lt;div class=&quot;title&quot;&gt;TL;DR&lt;/div&gt;
-Life on the road. It’s a brief review of first three months of 2016.
-Major events - Toronto JUG, Central Ohio JUG, DevNexus.
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;!-- toc disabled --&gt;
-&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/luggage.jpeg&quot; alt=&quot;luggage&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;table class=&quot;tableblock frame-all grid-all&quot; style=&quot;width: 60%;&quot;&gt;
-&lt;caption class=&quot;title&quot;&gt;Table 1. Revisions history&lt;/caption&gt;
-&lt;colgroup&gt;
-&lt;col style=&quot;width: 33.3333%;&quot; /&gt;
-&lt;col style=&quot;width: 33.3333%;&quot; /&gt;
-&lt;col style=&quot;width: 33.3334%;&quot; /&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th class=&quot;tableblock halign-left valign-top&quot;&gt;Version&lt;/th&gt;
-&lt;th class=&quot;tableblock halign-left valign-top&quot;&gt;Date&lt;/th&gt;
-&lt;th class=&quot;tableblock halign-left valign-top&quot;&gt;Comments&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;&lt;strong&gt;v1.0&lt;/strong&gt;&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;3/31/2015&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Initial blog post&lt;/p&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;intro&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#intro&quot;&gt;&lt;/a&gt;Intro&lt;/h2&gt;
-&lt;div class=&quot;sectionbody&quot;&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;At the suggestion of those of you who read my blog and send me comments, I am going to try to write one post about travel and events per quarter.
-With that said, 2016 just began, and I have already completed five events to share with you.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;events&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#events&quot;&gt;&lt;/a&gt;Conferences and User Groups &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-calendar&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h2&gt;
-&lt;div class=&quot;sectionbody&quot;&gt;
-&lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;toronto-jug-toronto-ca&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#toronto-jug-toronto-ca&quot;&gt;&lt;/a&gt;Toronto JUG, Toronto, CA&lt;/h3&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;After a vacation with my family in the warm sand of Miami, FL, it was a tough trip to Canada during the winter.
-I spent the entire day of working with the clients and prospects in Toronto.
-Then I was off to speak at Toronto JUG.
-The Java User Group happened right at the bar. It was a first for me!&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/torontojug.jpeg&quot; alt=&quot;torontojug&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Literally!
-The developers got to eat, drink and enjoy the show by truly yours.
-I found myself feeling like a struggling standup comedian.
-You will enjoy watching me dream about being at the bar myself!&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Video is available &lt;a href=&quot;https://www.youtube.com/watch?v=sToNgv_R6rQ&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;central-ohio-java-user-group-cojug-dublin-oh&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#central-ohio-java-user-group-cojug-dublin-oh&quot;&gt;&lt;/a&gt;Central Ohio Java User Group (COJUG), Dublin, OH&lt;/h3&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Then it was off to another fascinating first in Ohio.
-I presented to this meet-up group during lunch time.
-The COJUG folks have found this format is more flexible for many of the members.
-Of course, they have a traditional &amp;quot;after work&amp;quot; format they use too.
-That allows them to make their events work for a larger number of schedules too.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/cojug.jpeg&quot; alt=&quot;cojug&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Kudos to those organizers for offering flexibility!&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;devnexus-2016-atlanta-ga&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#devnexus-2016-atlanta-ga&quot;&gt;&lt;/a&gt;DevNexus 2016, Atlanta, GA&lt;/h3&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Next was DevNexus, sponsored by the AJUG.
-This year was once again a blast.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/devnexus_2016.jpg&quot; alt=&quot;devnexus 2016&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;I met over 200 people and did three talks.
-If you were unfortunate and did not get to attend, perhaps one of these three talks will provide some encouragement to get you to the next year event.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;ulist&quot;&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Ground Up Introduction to in-memory Data (Grids)&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&quot;videoblock text-center&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;iframe width=&quot;640&quot; height=&quot;480&quot; src=&quot;https://www.youtube.com/embed/eeJs0KnT2eg?rel=0&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;ulist&quot;&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Ultimate Spring Configurations Face-off with &lt;a href=&quot;http://twitter.com/jbaruch&quot;&gt;@jbaruch&lt;/a&gt; and &lt;a href=&quot;http://twitter.com/yfain&quot;&gt;@yfain&lt;/a&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Epic Groovy Puzzlers: Season 2 with &lt;a href=&quot;http://twitter.com/jbaruch&quot;&gt;@jbaruch&lt;/a&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;The week culminated with an interview by &lt;a href=&quot;http://twitter.com/steveonjava&quot;&gt;@steveonjava&lt;/a&gt;.
-I always enjoy being ask to discuss the value of using in-memory data grids.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;videoblock text-center&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;iframe width=&quot;640&quot; height=&quot;480&quot; src=&quot;https://www.youtube.com/embed/lgabhNr6LqM?rel=0&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;new-york-spring-user-group-new-york-ny&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#new-york-spring-user-group-new-york-ny&quot;&gt;&lt;/a&gt;New York Spring User Group, New York, NY&lt;/h3&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Finally, I got a few days at home and could head over to do a session for them on caching use cases in Spring Boot projects.
-&lt;a href=&quot;http://www.meetup.com/NYC-SUG/events/228892296/&quot;&gt;New York Spring Users Meet-up&lt;/a&gt;
-If you have one of these use cases on the horizon, let me know what you think and if I can help—drop me a note!&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;admonitionblock note&quot;&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td class=&quot;icon&quot;&gt;
-&lt;i class=&quot;fa icon-note&quot; title=&quot;Note&quot;&gt;&lt;/i&gt;
-&lt;/td&gt;
-&lt;td class=&quot;content&quot;&gt;
-By the way, I will be doing a webinar on the similar topic next week.
-Make sure to RSVP &lt;a href=&quot;http://www2.hazelcast.com/l/30822/2016-03-16/75v5cp&quot;&gt;here&lt;/a&gt;.
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;chattanooga-developers-meetup-chattanooga-tn&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#chattanooga-developers-meetup-chattanooga-tn&quot;&gt;&lt;/a&gt;Chattanooga Developers Meetup, Chattanooga, TN&lt;/h3&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;The Chattanooga Cho-Cho was my final destination for this month.
-It was another group that prefers a productive lunch break with AWESOME chicken biscuits!
-A chicken biscuit for lunch was also a first for me!
-But it won’t be the last time I have that for lunch!
-They have live video stream from the event for members that can’t get there for lunch!
-I am really impressed with the flexibility that JUG organizers are developing to make these learning and networking sessions work for such a variety of schedules!&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;videoblock text-center&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;iframe width=&quot;640&quot; height=&quot;480&quot; src=&quot;https://www.youtube.com/embed/NtbMjx1cdJs?rel=0&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;the-plans-for-q2-span-class-icon-i-class-fa-fa-plane-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#the-plans-for-q2-span-class-icon-i-class-fa-fa-plane-i-span&quot;&gt;&lt;/a&gt;The Plans For Q2 &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-plane&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h2&gt;
-&lt;div class=&quot;sectionbody&quot;&gt;
-&lt;table class=&quot;tableblock frame-all grid-all spread&quot;&gt;
-&lt;caption class=&quot;title&quot;&gt;Table 2. As you will see the plan for Q2 is even bigger and broader!&lt;/caption&gt;
-&lt;colgroup&gt;
-&lt;col style=&quot;width: 25%;&quot; /&gt;
-&lt;col style=&quot;width: 25%;&quot; /&gt;
-&lt;col style=&quot;width: 25%;&quot; /&gt;
-&lt;col style=&quot;width: 25%;&quot; /&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th class=&quot;tableblock halign-left valign-top&quot;&gt;Event Name&lt;/th&gt;
-&lt;th class=&quot;tableblock halign-left valign-top&quot;&gt;Location&lt;/th&gt;
-&lt;th class=&quot;tableblock halign-left valign-top&quot;&gt;Topic&lt;/th&gt;
-&lt;th class=&quot;tableblock halign-left valign-top&quot;&gt;Date&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Hazelcast Webinar Series&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Online&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Caching Made Bootiful&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;April, 4&lt;/p&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Philly Emerging Tech 2016&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Philadelphia, PA&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Just a Hazelcast Booth&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;April, 11-12&lt;/p&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;DevRelConf&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;San Francisco, CA&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Learn from gurus of developer relationships&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;April, 16&lt;/p&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Enterprise Data World&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;San Diego, CA&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;&lt;a href=&quot;http://edw2016.dataversity.net/sessionPop.cfm?confid=94&amp;amp;proposalid=8216&quot;&gt;Ground-up introduction in in-memory data grids&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;April 17-18&lt;/p&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;JPoint&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Moscow, RU&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;&lt;a href=&quot;http://javapoint.ru/talks/gamov/&quot;&gt;Распределенные кэши: Беспредел!&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;April 22-23&lt;/p&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;JPoint, Student’s Day&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Moscow, RU&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;&lt;a href=&quot;http://students.javapoint.ru/talks/gamov/&quot;&gt;Распределяй и властвуй: введение в распределенные системы&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;April 24&lt;/p&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Moscow JUG&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Moscow, RU&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Все что вы хотели знать о Hazelcast, но боялись спросить&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;April 26&lt;/p&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;OSCON&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Austin,TX&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Just a Hazelcast booth&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;May 17-19&lt;/p&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;swampUp!&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Napa, CA&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;&lt;a href=&quot;https://swampup.jfrog.com/?schedule=pragmatic-scalability-under-the-hood-of-artifactory-ha&quot;&gt;Pragmatic Scalability: under the hoot of Artifactory HA&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;May 23-24&lt;/p&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;GeekOut&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Tallin, Estonia&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;&lt;a href=&quot;http://2016.geekout.ee/schedule/distributed-caching-with-jcache-and-beyond/&quot;&gt;Distributed Caching with JCache and Beyond&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
-&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;June 9-10&lt;/p&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;stay-in-touch&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#stay-in-touch&quot;&gt;&lt;/a&gt;Stay In Touch&lt;/h2&gt;
-&lt;div class=&quot;sectionbody&quot;&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;I look forward to meeting even more of you in person this quarter!&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;For even more opportunities to develop your distributed system knowledge, I encourage you to keep an eye on &lt;a href=&quot;https://hazelcast.com/company/events/&quot;&gt;Hazelcast Events&lt;/a&gt; page or follow me at &lt;a href=&quot;http://twitter.com/gamussa&quot;&gt;@gamussa&lt;/a&gt; on Twitter!&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-</content>
-</entry>
-<entry>
 <id>http://next.javaheadbrain.com/posts/2015/12/31/caching-made-bootiful.html</id>
 <title>Caching Made Bootiful — Hazelcast Way</title>
-<updated>2016-04-20T08:36:00-04:00</updated>
+<updated>2016-09-09T02:45:08-04:00</updated>
 <published>2015-12-31T22:18:23-06:00</published>
 <link href="http://next.javaheadbrain.com/posts/2015/12/31/caching-made-bootiful.html" rel="alternate" type="text/html" />
 <author>
@@ -776,28 +384,6 @@ I am really impressed with the flexibility that JUG organizers are developing to
 <category term="hazelcast"></category>
 <category term="spring boot"></category>
 <summary>
-Table of content
-
-Intro
-Slow service
-Enable Caching
-It&#8217;s a wrap!
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 TL;DR
 Source code from this blog is posted on the Hazelcast Code Examples repository on Github.
 
@@ -812,18 +398,9 @@ Make sure you check it out.
 
 
 In this post, I will demonstrate how to add caching capabilities using Hazelcast in your Spring Boot application.
-You will see how...
+You will see how the Spring Framework caching abstraction plays...
 </summary>
 <content type="html">
-&lt;div id=&quot;toc&quot; class=&quot;toc&quot;&gt;
-&lt;div id=&quot;toctitle&quot;&gt;Table of content&lt;/div&gt;
-&lt;ul class=&quot;sectlevel1&quot;&gt;
-&lt;li&gt;&lt;a href=&quot;#intro&quot;&gt;Intro&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#slow-service&quot;&gt;Slow service&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#enable-caching&quot;&gt;Enable Caching&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#it-s-a-wrap&quot;&gt;It’s a wrap!&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
 &lt;div id=&quot;preamble&quot;&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
@@ -854,7 +431,15 @@ Make sure you check it out.&lt;/p&gt;
 &lt;p&gt;In this post, I will demonstrate how to add caching capabilities using Hazelcast in your Spring Boot application.
 You will see how the Spring Framework caching abstraction plays nicely with Hazelcast without invoking an explicit Hazelcast API.&lt;/p&gt;
 &lt;/div&gt;
-&lt;!-- toc disabled --&gt;
+&lt;div id=&quot;toc&quot; class=&quot;toc&quot;&gt;
+&lt;div id=&quot;toctitle&quot; class=&quot;title&quot;&gt;Table of content&lt;/div&gt;
+&lt;ul class=&quot;sectlevel1&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#intro&quot;&gt;Intro&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#slow-service&quot;&gt;Slow service&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#enable-caching&quot;&gt;Enable Caching&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#it-s-a-wrap&quot;&gt;It’s a wrap!&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;Let’s &lt;a href=&quot;#intro&quot;&gt;get going&lt;/a&gt;!&lt;/p&gt;
 &lt;/div&gt;
@@ -1134,7 +719,7 @@ Meanwhile, if you have any questions, feel free to post them in the comments sec
 <entry>
 <id>http://next.javaheadbrain.com/posts/2015/12/29/my-year-at-hazelcast-in-review.html</id>
 <title>My Year At Hazelcast In Review</title>
-<updated>2016-04-20T08:36:00-04:00</updated>
+<updated>2016-09-09T02:45:52-04:00</updated>
 <published>2015-12-29T17:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2015/12/29/my-year-at-hazelcast-in-review.html" rel="alternate" type="text/html" />
 <author>
@@ -1144,24 +729,6 @@ Meanwhile, if you have any questions, feel free to post them in the comments sec
 <category term="open source"></category>
 <category term="jug"></category>
 <summary>
-Table of Contents
-
-Into
-Hazelcast Trainings 
-Conferences and Events 
-Contributions 
-Plans for 2016 
-
-
-
-
-
-
-
-
-
-
-
 TL;DR
 It has been an awesome year full traveling (roughly 20 states), POCs for the clients and the prospects, training (including public classes) and conference talks.
 While I am already looking forward to 2016, here is a quick recap of my 2015 with Hazelcast.
@@ -1170,9 +737,13 @@ While I am already looking forward to 2016, here is a quick recap of my 2015 wit
 
 
 
+Table of Contents
 
-
-
+Into
+Hazelcast Trainings 
+Conferences and Events 
+Contributions 
+Plans for 2016 
 
 
 
@@ -1217,18 +788,13 @@ Into
 In addition to travelling...
 </summary>
 <content type="html">
-&lt;div id=&quot;toc&quot; class=&quot;toc&quot;&gt;
-&lt;div id=&quot;toctitle&quot;&gt;Table of Contents&lt;/div&gt;
-&lt;ul class=&quot;sectlevel1&quot;&gt;
-&lt;li&gt;&lt;a href=&quot;#into&quot;&gt;Into&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#hazelcast-trainings-span-class-icon-i-class-fa-fa-graduation-cap-i-span&quot;&gt;Hazelcast Trainings &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-graduation-cap&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#events&quot;&gt;Conferences and Events &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-calendar&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#contributions-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;Contributions &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#plans-for-2016-span-class-icon-i-class-fa-fa-expand-i-span&quot;&gt;Plans for 2016 &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-expand&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
 &lt;div id=&quot;preamble&quot;&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;http://next.javaheadbrain.com/images/laptop.jpg&quot; alt=&quot;laptop&quot; /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;div class=&quot;admonitionblock note&quot;&gt;
 &lt;table&gt;
 &lt;tr&gt;
@@ -1243,11 +809,15 @@ While I am already looking forward to 2016, here is a quick recap of my 2015 wit
 &lt;/tr&gt;
 &lt;/table&gt;
 &lt;/div&gt;
-&lt;!-- toc disabled --&gt;
-&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
-&lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/laptop.jpg&quot; alt=&quot;laptop&quot; /&gt;
-&lt;/div&gt;
+&lt;div id=&quot;toc&quot; class=&quot;toc&quot;&gt;
+&lt;div id=&quot;toctitle&quot; class=&quot;title&quot;&gt;Table of Contents&lt;/div&gt;
+&lt;ul class=&quot;sectlevel1&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#into&quot;&gt;Into&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#hazelcast-trainings-span-class-icon-i-class-fa-fa-graduation-cap-i-span&quot;&gt;Hazelcast Trainings &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-graduation-cap&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#events&quot;&gt;Conferences and Events &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-calendar&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#contributions-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;Contributions &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#plans-for-2016-span-class-icon-i-class-fa-fa-expand-i-span&quot;&gt;Plans for 2016 &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-expand&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/div&gt;
 &lt;table class=&quot;tableblock frame-all grid-all&quot; style=&quot;width: 60%;&quot;&gt;
 &lt;caption class=&quot;title&quot;&gt;Table 1. Revisions history&lt;/caption&gt;
@@ -1496,9 +1066,324 @@ Looking forward to 2016 — Happy New Year &lt;span class=&quot;icon&quot;&g
 </content>
 </entry>
 <entry>
+<id>http://next.javaheadbrain.com/posts/2015/11/02/hazelcast-for-mongodb-developers.html</id>
+<title>Hazelcast for MongoDB Developers</title>
+<updated>2016-09-09T02:47:04-04:00</updated>
+<published>2015-11-02T16:31:53-06:00</published>
+<link href="http://next.javaheadbrain.com/posts/2015/11/02/hazelcast-for-mongodb-developers.html" rel="alternate" type="text/html" />
+<author>
+<name>Viktor Gamov &lt;viktor@hazelcast.com&gt;, © 2015 Hazelcast, Inc.</name>
+</author>
+<summary>
+TL;DR
+When I talk to the developers about Hazelcast, many of them ask how Hazelcast is different from NOSQL databases, and particularly from MongoDB.
+In this blog post, I will try to answer this question once and for all.
+
+
+
+
+
+Table of content
+
+Introduction
+Features
+
+Simplicity
+The Benefits For Java Developers
+Distributed  Computing
+Persistence
+
+IMap and MapStore
+
+
+
+
+Summary
+
+
+
+
+
+Introduction
+
+
+MongoDB is an open source, document-oriented database designed with both scalability and developer agility in mind. Instead of storing your data in tables and rows as you would with a relational database, in MongoDB you store JSON-like documents with a dynamic schema.
+In short, MongoDB is an NOSQL data store, primarily concerned with storing/persisting and...
+</summary>
+<content type="html">
+&lt;div id=&quot;preamble&quot;&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;http://next.javaheadbrain.com/images/hazelcast_mongo.jpg&quot; alt=&quot;hazelcast mongo&quot; /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock note&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;fa icon-note&quot; title=&quot;Note&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;TL;DR&lt;/div&gt;
+When I talk to the developers about Hazelcast, many of them ask how Hazelcast is different from NOSQL databases, and particularly from MongoDB.
+In this blog post, I will try to answer this question once and for all.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&quot;toc&quot; class=&quot;toc&quot;&gt;
+&lt;div id=&quot;toctitle&quot; class=&quot;title&quot;&gt;Table of content&lt;/div&gt;
+&lt;ul class=&quot;sectlevel1&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#introduction&quot;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#features&quot;&gt;Features&lt;/a&gt;
+&lt;ul class=&quot;sectlevel2&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#simplicity&quot;&gt;Simplicity&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#the-benefits-for-java-developers&quot;&gt;The Benefits For Java Developers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#distributed-computing&quot;&gt;Distributed  Computing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#persistence&quot;&gt;Persistence&lt;/a&gt;
+&lt;ul class=&quot;sectlevel3&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#code-imap-code-and-code-mapstore-code&quot;&gt;&lt;code&gt;IMap&lt;/code&gt; and &lt;code&gt;MapStore&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#summary&quot;&gt;Summary&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;introduction&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&lt;strong&gt;MongoDB&lt;/strong&gt; is an open source, document-oriented database designed with both scalability and developer agility in mind. Instead of storing your data in tables and rows as you would with a relational database, in MongoDB you store JSON-like documents with a dynamic schema.
+In short, MongoDB is an NOSQL data store, primarily concerned with storing/persisting and retrieving schema-free data.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Hazelcast is an open source (Apache v2 license), distributed, highly available and scalable In-Memory Data Grid used as an in-memory data store, cache, message broker and distributed computation platform.
+Hazelcast emphasizes high-speed access to distributed data (usually as a distributed cache), distributed computing and distributed messaging.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://hazelcast.com/use-cases/nosql/nosql-data-store/&quot;&gt;Hazelcast can act like an NOSQL store&lt;/a&gt;. MongoDB has some data grid / compute grid capabilities, but it isn’t optimized. As such, comparing Hazelcast and MongoDB head-to-head on capabilities is a bit like comparing apples and oranges.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Often Hazelcast and MongoDB work together, rather than compete. Hazelcast supports using MongoDB as a backend data store. It’s easy to map Hazelcast data to MongoDB for write-through or write-behind persistence.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Let’s overview Hazelcast and MongoDB features and see how they can compliment each other.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;features&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#features&quot;&gt;&lt;/a&gt;Features&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;simplicity&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#simplicity&quot;&gt;&lt;/a&gt;Simplicity&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Both technologies are simple to get running.
+I was able to get MongoDB up and running in less than ten minutes.
+For example, on my mac I can install MongoDВ with command using &lt;strong&gt;&lt;a href=&quot;http://brew.sh&quot;&gt;&lt;code&gt;brew&lt;/code&gt;&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;brew mongo install&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;http://hazelcast.org/getting-started/&quot;&gt;Hazelcast is similarly easy&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;the-benefits-for-java-developers&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#the-benefits-for-java-developers&quot;&gt;&lt;/a&gt;The Benefits For Java Developers&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If you’re writing a Java application (or any of the various languages that run on the JVM), Hazelcast and MongoDB fit into your ecosystem extremely well.
+For Hazelcast, being able to use Java objects directly in the cluster without worrying about a data translation layer is a big productivity bonus.
+Working with MongoDB requires either using their data structures or writing/configuring a data translation layer.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sidebarblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The BSON library comprehensively supports BSON, the data storage and network transfer format that MongoDB uses for &amp;quot;documents&amp;quot;. BSON, short for Binary JSON, is a binary-encoded serialization of JSON-like documents.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;MongoDB ships with a driver for Java.
+Also, there is a Java Object Document Mapper framework that makes the translation from Mongo documents to Java objects and vise-verse much easier.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;In terms of deployment and integration in Java applications, Hazelcast can give you very low latency data access through various mechanisms, especially Near Cache on Hazelcast clients and embedded deployment of Hazelcast members. With MongoDB, network latency will be experienced, since it doesn’t have a local memory cache.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;distributed-computing&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#distributed-computing&quot;&gt;&lt;/a&gt;Distributed  Computing&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Hazelcast’s distributed computing framework is extremely powerful.
+It allows arbitrary business logic to execute with the locality of reference, and be distributed across the cluster for straightforward scale-out support.
+MongoDB supports a single-threaded map-reduce framework but doesn’t support arbitrary user code execution.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Hazelcast’s support for distributed computing gives it capabilities that MongoDB just doesn’t have.
+Distributed concurrency tools like locks, semaphores, and queues make short work of coordinating computation on multiple nodes that is very difficult to implement natively.
+I know that many people use MongoDB as their message broker.
+However, I can’t imagine how one does any of those things practically using just MongoDB.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;persistence&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#persistence&quot;&gt;&lt;/a&gt;Persistence&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Hazelcast is focused on low-latency access to distributed data and distributed computing.
+By default, it doesn’t touch a disk or any other persistent store.
+Hazelcast isn’t a database.
+MongoDB is very much a persistent database.
+It has its issues with persistence (e.g., it can be a bit fragile since it writes to memory and, by default, doesn’t sync to the file system on every write).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Let’s take a look how we can benefit from MongoDB persistence with Hazelcast.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect3&quot;&gt;
+&lt;h4 id=&quot;code-imap-code-and-code-mapstore-code&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#code-imap-code-and-code-mapstore-code&quot;&gt;&lt;/a&gt;&lt;code&gt;IMap&lt;/code&gt; and &lt;code&gt;MapStore&lt;/code&gt;&lt;/h4&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;A corner store of Hazelcast’s read-through / write-thought capabilities are two interfaces &lt;code&gt;MapLoader&lt;/code&gt; and &lt;code&gt;MapStore&lt;/code&gt;. A developer needs to implement &lt;code&gt;MapLoader&lt;/code&gt; interface if only reads from database are required.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;MapLoader inteface&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;public interface MapLoader&amp;lt;K, V&amp;gt; {
+
+    V load(K key); &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+
+    Map&amp;lt;K, V&amp;gt; loadAll(Collection&amp;lt;K&amp;gt; keys); &lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
+
+    Iterable&amp;lt;K&amp;gt; loadAllKeys(); &lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Loads the value of a given key. If distributed map doesn’t contain the value for the given key then Hazelcast will call implementation’s load (key) method to obtain the value.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Loads given keys. This is batch load operation so that implementation can optimize the multiple loads.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Loads all of the keys from the store.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;A &lt;code&gt;MapStore&lt;/code&gt; interface extends &lt;code&gt;MapLoader&lt;/code&gt; and allows to save &lt;code&gt;IMap&lt;/code&gt; entries in a database.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;MapStore Interface&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;public interface MapStore&amp;lt;K, V&amp;gt; extends MapLoader&amp;lt;K, V&amp;gt; {
+
+    void store(K key, V value); &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+
+    void storeAll(Map&amp;lt;K, V&amp;gt; map); &lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
+
+    void delete(K key); &lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;
+
+    void deleteAll(Collection&amp;lt;K&amp;gt; keys); &lt;i class=&quot;conum&quot; data-value=&quot;4&quot;&gt;&lt;/i&gt;&lt;b&gt;(4)&lt;/b&gt;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Stores the key-value pair.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Stores multiple entries. Implementation of this method can optimize the store operation by storing all entries in one database connection.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Deletes the entry with a given key from the store.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;4&quot;&gt;&lt;/i&gt;&lt;b&gt;4&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Deletes multiple entries from the store.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;To learn about &lt;code&gt;MapLoader&lt;/code&gt; and &lt;code&gt;MapStore&lt;/code&gt;, please, check official &lt;a href=&quot;http://docs.hazelcast.org/docs/3.5/manual/html-single/index.html#map-persistence&quot;&gt;Hazelcast documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;To interact with MongoDB, I’m going to use &lt;code&gt;mongo-java-driver&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;Mongo Java Driver dependency&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&amp;lt;dependency&amp;gt;
+   &amp;lt;groupId&amp;gt;org.mongodb&amp;lt;/groupId&amp;gt;
+   &amp;lt;artifactId&amp;gt;mongo-java-driver&amp;lt;/artifactId&amp;gt;
+   &amp;lt;version&amp;gt;${mongo-java-driver.version}&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;MongoClient mongoClient = new MongoClient(new MongoClientURI(mongoUrl)); &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+MongoCollection collection = mongoClient.getDatabase(dbName).getCollection(collectionName); &lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
+final Document document = (Document) collection.find(eq(&amp;quot;_id&amp;quot;, key)).first(); &lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;
+collection.insertOne(document); &lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Establishing connection to MondoDb instance based on URI like &lt;code&gt;mongodb://localhost:27017&lt;/code&gt;.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;A &lt;code&gt;MongoClient&lt;/code&gt; class provides methods to connect to MongoDB instance, get access to databases, collections, documents and etc.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;A &lt;code&gt;MongoCollection&lt;/code&gt; class allows to CRUD operations on Documents in collection.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sidebarblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You can find a full source code of example application &lt;a href=&quot;https://github.com/hazelcast/hazelcast-code-samples/tree/master/hazelcast-integration/mongodb&quot;&gt;in &lt;code&gt;hazelcast-code-samples&lt;/code&gt; repository&lt;/a&gt;. In this repository, you can find a ton of useful Hazelcast samples.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;summary&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#summary&quot;&gt;&lt;/a&gt;Summary&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;MongoDB and Hazelcast can both provide low-latency access to distributed, schema-free data.
+MongoDB is more suitable if you’re just looking for an NOSQL data store.
+Hazelcast’s distributed data structures, and computing capabilities lend themselves to a host of applications beyond what MongoDB is capable.
+They can be used separately as solutions for different problems or together as a complementary set of technologies.
+I hope in this blog post I answered most of the questions about Hazelcast v. MongoDB.
+If I didn’t, please, ask me in the comments below.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content>
+</entry>
+<entry>
 <id>http://next.javaheadbrain.com/posts/2015/01/27/ground-up-introduction-to-in-memory-data.html</id>
 <title>Ground-up Introduction To In-Memory Data</title>
-<updated>2016-04-20T08:36:00-04:00</updated>
+<updated>2016-08-08T22:39:28-04:00</updated>
 <published>2015-01-27T22:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2015/01/27/ground-up-introduction-to-in-memory-data.html" rel="alternate" type="text/html" />
 <author>
@@ -1608,7 +1493,7 @@ This April, &lt;a href=&quot;http://codepalousa.com/blog/2015/code-palousa-2015-
 <entry>
 <id>http://next.javaheadbrain.com/posts/2014/12/13/goodbye-farata-hello-hazelcast.html</id>
 <title>Goodbye, Farata. Hello, Hazelcast!</title>
-<updated>2016-04-20T08:36:00-04:00</updated>
+<updated>2016-09-09T02:48:02-04:00</updated>
 <published>2014-12-13T00:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2014/12/13/goodbye-farata-hello-hazelcast.html" rel="alternate" type="text/html" />
 <author>
@@ -1709,7 +1594,7 @@ Ultimately, I’ll be doing the pretty much same sorts of things I’ve been doi
 <entry>
 <id>http://next.javaheadbrain.com/posts/2013/07/17/getting-started-with-nashorn.html</id>
 <title>Getting Started With Nashorn</title>
-<updated>2016-04-20T08:36:00-04:00</updated>
+<updated>2016-09-09T02:48:46-04:00</updated>
 <published>2013-07-17T23:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2013/07/17/getting-started-with-nashorn.html" rel="alternate" type="text/html" />
 <author>
@@ -1877,7 +1762,7 @@ As you learned from my previous post, I’m going to talk about Nashorn - JavaSc
 <entry>
 <id>http://next.javaheadbrain.com/posts/2013/07/09/im-speaking-at-javaone.html</id>
 <title>I&#8217;m speaking at JavaOne 2013</title>
-<updated>2016-04-20T08:36:00-04:00</updated>
+<updated>2016-08-08T22:39:28-04:00</updated>
 <published>2013-07-09T01:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2013/07/09/im-speaking-at-javaone.html" rel="alternate" type="text/html" />
 <author>
@@ -1929,7 +1814,7 @@ Keep in touch for updates by following me on &lt;a href=&quot;http://twitter.com
 <entry>
 <id>http://next.javaheadbrain.com/posts/2013/01/19/set-jdk-on-osx.html</id>
 <title>Set JDK on OSX</title>
-<updated>2016-04-20T08:36:00-04:00</updated>
+<updated>2016-08-08T22:39:28-04:00</updated>
 <published>2013-01-19T14:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2013/01/19/set-jdk-on-osx.html" rel="alternate" type="text/html" />
 <author>
@@ -2022,7 +1907,7 @@ alias setjdk18=&amp;apos;export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)&amp;a
 <entry>
 <id>http://next.javaheadbrain.com/posts/2012/07/26/websockets-for-java-developers.html</id>
 <title>WebSockets for Java Developers. Princeton JUG talk slides</title>
-<updated>2016-04-20T08:36:00-04:00</updated>
+<updated>2016-08-08T22:39:28-04:00</updated>
 <published>2012-07-26T00:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2012/07/26/websockets-for-java-developers.html" rel="alternate" type="text/html" />
 <summary>
@@ -2058,7 +1943,7 @@ today.&lt;/p&gt;
 <entry>
 <id>http://next.javaheadbrain.com/posts/2012/05/21/alfred-showhide-desktop-icons-on-mac-os.html</id>
 <title>Alfred Extension: Show/Hide desktop icons on Mac OS X</title>
-<updated>2016-04-20T08:36:00-04:00</updated>
+<updated>2016-08-08T22:39:28-04:00</updated>
 <published>2012-05-21T00:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2012/05/21/alfred-showhide-desktop-icons-on-mac-os.html" rel="alternate" type="text/html" />
 <category term="alfred"></category>
@@ -2087,7 +1972,7 @@ Cheers&lt;/p&gt;
 <entry>
 <id>http://next.javaheadbrain.com/posts/2012/05/16/webjars-for-assets-management-in-your.html</id>
 <title>WebJars for assets management in your project</title>
-<updated>2016-04-20T08:36:00-04:00</updated>
+<updated>2016-08-08T22:39:28-04:00</updated>
 <published>2012-05-16T00:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2012/05/16/webjars-for-assets-management-in-your.html" rel="alternate" type="text/html" />
 <category term="java"></category>
@@ -2112,7 +1997,7 @@ But in most common situations, you don’t have lot of options for deployment yo
 <entry>
 <id>http://next.javaheadbrain.com/posts/2012/01/28/how-to-download-videos-from-infoq-for.html</id>
 <title>How to download videos from InfoQ for offline viewing</title>
-<updated>2016-04-20T08:36:00-04:00</updated>
+<updated>2016-08-08T22:39:28-04:00</updated>
 <published>2012-01-28T06:15:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2012/01/28/how-to-download-videos-from-infoq-for.html" rel="alternate" type="text/html" />
 <author>
@@ -2160,7 +2045,7 @@ However, I found very elegant solution how to do that. I did it on my MacOS X wi
 <entry>
 <id>http://next.javaheadbrain.com/posts/2012/01/10/rapid-automation-for-flexjavablazeds.html</id>
 <title>Rapid automation for Flex/Java/BlazeDS projects</title>
-<updated>2016-04-20T08:36:00-04:00</updated>
+<updated>2016-08-08T22:39:28-04:00</updated>
 <published>2012-01-10T00:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2012/01/10/rapid-automation-for-flexjavablazeds.html" rel="alternate" type="text/html" />
 <author>
@@ -2180,7 +2065,7 @@ Feel free to comment!&lt;/p&gt;
 <entry>
 <id>http://next.javaheadbrain.com/posts/2011/09/11/adobe-max.html</id>
 <title>Adobe MAX</title>
-<updated>2016-04-20T08:36:00-04:00</updated>
+<updated>2016-08-08T22:39:28-04:00</updated>
 <published>2011-09-11T23:07:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2011/09/11/adobe-max.html" rel="alternate" type="text/html" />
 <author>
@@ -2214,7 +2099,7 @@ Creative Cloud - another big thing was announced. Sharing and collaboration b/w 
 <entry>
 <id>http://next.javaheadbrain.com/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html</id>
 <title>Eclipse: java.lang.UnsatisfiedLinkError: Cannot load 32-bit SWT libraries on 64-bit JVM</title>
-<updated>2016-04-20T08:36:00-04:00</updated>
+<updated>2016-08-08T22:39:28-04:00</updated>
 <published>2011-07-26T04:22:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html" rel="alternate" type="text/html" />
 <author>
@@ -2355,7 +2240,7 @@ to Eclipse→Preferences→Java→Installed JRE and add default JVM argument *&l
 <entry>
 <id>http://next.javaheadbrain.com/posts/2011/07/10/building-and-testing-with-gradle-my.html</id>
 <title>Building and Testing with Gradle - My Book Review</title>
-<updated>2016-04-20T08:36:00-04:00</updated>
+<updated>2016-08-08T22:39:28-04:00</updated>
 <published>2011-07-10T20:57:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2011/07/10/building-and-testing-with-gradle-my.html" rel="alternate" type="text/html" />
 <author>

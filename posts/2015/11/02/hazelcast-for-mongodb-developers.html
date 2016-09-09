@@ -1,0 +1,293 @@
+<!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><html class="no-js" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Hazelcast for MongoDB Developers | Java.Head.Brain</title><meta name="author" content="Viktor Gamov &lt;viktor@hazelcast.com&gt;, © 2015 Hazelcast, Inc."><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@asciidoctor"><meta name="twitter:url" content="http://next.javaheadbrain.com/posts/2015/11/02/hazelcast-for-mongodb-developers.html"><meta name="twitter:title" content="Hazelcast for MongoDB Developers"><meta name="twitter:description" content="TL;DR
+When I talk to the developers about Hazelcast, many of them ask how Hazelcast is different from NOSQL databases, and particularly from MongoDB.
+In this blog..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html"><span class="icon"><i class="fa fa-bars"></i></span>&nbspBlog</a></li><li class="divider"></li><li><a href="http://github.com/gamussa">Github&nbsp<span class="icon"><i class="fa fa-github"></i></span></a></li><li class="divider"></li><li><a href="http://twitter.com/gamussa">Twitter&nbsp<span class="icon"><i class="fa fa-twitter"></i></span></a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://next.javaheadbrain.com">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h2 class="header"><a href="/posts/2015/11/02/hazelcast-for-mongodb-developers.html">Hazelcast for MongoDB Developers</a></h2><h5 class="subheader">Written by&nbsp <a href="#">Viktor Gamov &lt;viktor@hazelcast.com&gt;, © 2015 Hazelcast, Inc.</a>&nbsp- <time class="pubdate" datetime="2015-11-02T16:31:53-06:00">Monday, November 2, 2015</time></h5><div class="row"><div class="large-12 columns text-left"><div id="preamble">
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="/images/hazelcast_mongo.jpg" alt="hazelcast mongo">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">TL;DR</div>
+When I talk to the developers about Hazelcast, many of them ask how Hazelcast is different from NOSQL databases, and particularly from MongoDB.
+In this blog post, I will try to answer this question once and for all.
+</td>
+</tr>
+</table>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle" class="title">Table of content</div>
+<ul class="sectlevel1">
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#features">Features</a>
+<ul class="sectlevel2">
+<li><a href="#simplicity">Simplicity</a></li>
+<li><a href="#the-benefits-for-java-developers">The Benefits For Java Developers</a></li>
+<li><a href="#distributed-computing">Distributed  Computing</a></li>
+<li><a href="#persistence">Persistence</a>
+<ul class="sectlevel3">
+<li><a href="#code-imap-code-and-code-mapstore-code"><code>IMap</code> and <code>MapStore</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#summary">Summary</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="introduction"><a class="anchor" href="#introduction"></a>Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>MongoDB</strong> is an open source, document-oriented database designed with both scalability and developer agility in mind. Instead of storing your data in tables and rows as you would with a relational database, in MongoDB you store JSON-like documents with a dynamic schema.
+In short, MongoDB is an NOSQL data store, primarily concerned with storing/persisting and retrieving schema-free data.</p>
+</div>
+<div class="paragraph">
+<p>Hazelcast is an open source (Apache v2 license), distributed, highly available and scalable In-Memory Data Grid used as an in-memory data store, cache, message broker and distributed computation platform.
+Hazelcast emphasizes high-speed access to distributed data (usually as a distributed cache), distributed computing and distributed messaging.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://hazelcast.com/use-cases/nosql/nosql-data-store/">Hazelcast can act like an NOSQL store</a>. MongoDB has some data grid / compute grid capabilities, but it isn&#8217;t optimized. As such, comparing Hazelcast and MongoDB head-to-head on capabilities is a bit like comparing apples and oranges.</p>
+</div>
+<div class="paragraph">
+<p>Often Hazelcast and MongoDB work together, rather than compete. Hazelcast supports using MongoDB as a backend data store. It&#8217;s easy to map Hazelcast data to MongoDB for write-through or write-behind persistence.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s overview Hazelcast and MongoDB features and see how they can compliment each other.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="features"><a class="anchor" href="#features"></a>Features</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="simplicity"><a class="anchor" href="#simplicity"></a>Simplicity</h3>
+<div class="paragraph">
+<p>Both technologies are simple to get running.
+I was able to get MongoDB up and running in less than ten minutes.
+For example, on my mac I can install MongoDВ with command using <strong><a href="http://brew.sh"><code>brew</code></a></strong>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-sh" data-lang="sh">brew mongo install</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="http://hazelcast.org/getting-started/">Hazelcast is similarly easy</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="the-benefits-for-java-developers"><a class="anchor" href="#the-benefits-for-java-developers"></a>The Benefits For Java Developers</h3>
+<div class="paragraph">
+<p>If you&#8217;re writing a Java application (or any of the various languages that run on the JVM), Hazelcast and MongoDB fit into your ecosystem extremely well.
+For Hazelcast, being able to use Java objects directly in the cluster without worrying about a data translation layer is a big productivity bonus.
+Working with MongoDB requires either using their data structures or writing/configuring a data translation layer.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>The BSON library comprehensively supports BSON, the data storage and network transfer format that MongoDB uses for "documents". BSON, short for Binary JSON, is a binary-encoded serialization of JSON-like documents.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>MongoDB ships with a driver for Java.
+Also, there is a Java Object Document Mapper framework that makes the translation from Mongo documents to Java objects and vise-verse much easier.</p>
+</div>
+<div class="paragraph">
+<p>In terms of deployment and integration in Java applications, Hazelcast can give you very low latency data access through various mechanisms, especially Near Cache on Hazelcast clients and embedded deployment of Hazelcast members. With MongoDB, network latency will be experienced, since it doesn’t have a local memory cache.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="distributed-computing"><a class="anchor" href="#distributed-computing"></a>Distributed  Computing</h3>
+<div class="paragraph">
+<p>Hazelcast&#8217;s distributed computing framework is extremely powerful.
+It allows arbitrary business logic to execute with the locality of reference, and be distributed across the cluster for straightforward scale-out support.
+MongoDB supports a single-threaded map-reduce framework but doesn&#8217;t support arbitrary user code execution.</p>
+</div>
+<div class="paragraph">
+<p>Hazelcast&#8217;s support for distributed computing gives it capabilities that MongoDB just doesn&#8217;t have.
+Distributed concurrency tools like locks, semaphores, and queues make short work of coordinating computation on multiple nodes that is very difficult to implement natively.
+I know that many people use MongoDB as their message broker.
+However, I can&#8217;t imagine how one does any of those things practically using just MongoDB.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="persistence"><a class="anchor" href="#persistence"></a>Persistence</h3>
+<div class="paragraph">
+<p>Hazelcast is focused on low-latency access to distributed data and distributed computing.
+By default, it doesn&#8217;t touch a disk or any other persistent store.
+Hazelcast isn&#8217;t a database.
+MongoDB is very much a persistent database.
+It has its issues with persistence (e.g., it can be a bit fragile since it writes to memory and, by default, doesn&#8217;t sync to the file system on every write).</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s take a look how we can benefit from MongoDB persistence with Hazelcast.</p>
+</div>
+<div class="sect3">
+<h4 id="code-imap-code-and-code-mapstore-code"><a class="anchor" href="#code-imap-code-and-code-mapstore-code"></a><code>IMap</code> and <code>MapStore</code></h4>
+<div class="paragraph">
+<p>A corner store of Hazelcast&#8217;s read-through / write-thought capabilities are two interfaces <code>MapLoader</code> and <code>MapStore</code>. A developer needs to implement <code>MapLoader</code> interface if only reads from database are required.</p>
+</div>
+<div class="listingblock">
+<div class="title">MapLoader inteface</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-java" data-lang="java">public interface MapLoader&lt;K, V&gt; {
+
+    V load(K key); <i class="conum" data-value="1"></i><b>(1)</b>
+
+    Map&lt;K, V&gt; loadAll(Collection&lt;K&gt; keys); <i class="conum" data-value="2"></i><b>(2)</b>
+
+    Iterable&lt;K&gt; loadAllKeys(); <i class="conum" data-value="3"></i><b>(3)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Loads the value of a given key. If distributed map doesn&#8217;t contain the value for the given key then Hazelcast will call implementation&#8217;s load (key) method to obtain the value.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Loads given keys. This is batch load operation so that implementation can optimize the multiple loads.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Loads all of the keys from the store.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A <code>MapStore</code> interface extends <code>MapLoader</code> and allows to save <code>IMap</code> entries in a database.</p>
+</div>
+<div class="listingblock">
+<div class="title">MapStore Interface</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-java" data-lang="java">public interface MapStore&lt;K, V&gt; extends MapLoader&lt;K, V&gt; {
+
+    void store(K key, V value); <i class="conum" data-value="1"></i><b>(1)</b>
+
+    void storeAll(Map&lt;K, V&gt; map); <i class="conum" data-value="2"></i><b>(2)</b>
+
+    void delete(K key); <i class="conum" data-value="3"></i><b>(3)</b>
+
+    void deleteAll(Collection&lt;K&gt; keys); <i class="conum" data-value="4"></i><b>(4)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Stores the key-value pair.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Stores multiple entries. Implementation of this method can optimize the store operation by storing all entries in one database connection.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Deletes the entry with a given key from the store.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Deletes multiple entries from the store.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To learn about <code>MapLoader</code> and <code>MapStore</code>, please, check official <a href="http://docs.hazelcast.org/docs/3.5/manual/html-single/index.html#map-persistence">Hazelcast documentation</a>.</p>
+</div>
+<div class="paragraph">
+<p>To interact with MongoDB, I&#8217;m going to use <code>mongo-java-driver</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Mongo Java Driver dependency</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+   &lt;groupId&gt;org.mongodb&lt;/groupId&gt;
+   &lt;artifactId&gt;mongo-java-driver&lt;/artifactId&gt;
+   &lt;version&gt;${mongo-java-driver.version}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-java" data-lang="java">MongoClient mongoClient = new MongoClient(new MongoClientURI(mongoUrl)); <i class="conum" data-value="1"></i><b>(1)</b>
+MongoCollection collection = mongoClient.getDatabase(dbName).getCollection(collectionName); <i class="conum" data-value="2"></i><b>(2)</b>
+final Document document = (Document) collection.find(eq("_id", key)).first(); <i class="conum" data-value="3"></i><b>(3)</b>
+collection.insertOne(document); <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Establishing connection to MondoDb instance based on URI like <code>mongodb://localhost:27017</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>A <code>MongoClient</code> class provides methods to connect to MongoDB instance, get access to databases, collections, documents and etc.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>A <code>MongoCollection</code> class allows to CRUD operations on Documents in collection.</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>You can find a full source code of example application <a href="https://github.com/hazelcast/hazelcast-code-samples/tree/master/hazelcast-integration/mongodb">in <code>hazelcast-code-samples</code> repository</a>. In this repository, you can find a ton of useful Hazelcast samples.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary"><a class="anchor" href="#summary"></a>Summary</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>MongoDB and Hazelcast can both provide low-latency access to distributed, schema-free data.
+MongoDB is more suitable if you&#8217;re just looking for an NOSQL data store.
+Hazelcast&#8217;s distributed data structures, and computing capabilities lend themselves to a host of applications beyond what MongoDB is capable.
+They can be used separately as solutions for different problems or together as a complementary set of technologies.
+I hope in this blog post I answered most of the questions about Hazelcast v. MongoDB.
+If I didn&#8217;t, please, ask me in the comments below.</p>
+</div>
+</div>
+</div></div></div><footer class="entry-footer"></footer><div id="comments">
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+            var disqus_shortname = 'nextjavaheadbraincom';
+            var disqus_url = "http://next.javaheadbrain.com/posts/2015/11/02/hazelcast-for-mongodb-developers.html";
+            var disqus_developer = null;
+            var disqus_identifier = null;
+            (function() {
+              var dsq = document.createElement("script"); dsq.type = "text/javascript"; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(dsq);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=nextjavaheadbraincom">comments powered by Disqus.</a></noscript>
+          </div></article></div></div></body></html><div id="copyright"><div class="row full-width"><div class="large-4 columns"><p>© Viktor Gamov 2016—2007</p></div><div class="large-8 columns"><ul class="inline-list right"><li><a href="https://github.com/gAmUssA"></a>Github&nbsp<span class="icon"><i class="fa fa-github"></i></span></li><li><a href="http://twitter.com/gAmUssA"></a>Twitter&nbsp<span class="icon"><i class="fa fa-twitter"></i></span></li><li><a href="#"></a></li></ul></div></div></div><script>document.write('<script src=' + ('__proto__' in {} ? '/javascripts/vendor/zepto' : '/javascripts/vendor/jquery') + '.js><\/script>')</script><script src="/javascripts/foundation/foundation.js"><script src="/javascripts/foundation/foundation.topbar.js"></script></script><script>$(document).foundation();</script><script src="/javascripts/vendor/highlight.min.js"></script><script>$(hljs.initHighlighting());</script><script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount','UA-40354726-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+ var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!--End Footer-->
