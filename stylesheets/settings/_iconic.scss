@@ -57,7 +57,7 @@ $paragraph-font-size: 1em;
 $code-color: #0084c5;
 $code-bg-color: #dce3e6;
 $code-font-size: .9em;
-$code-font-family: "Source Code Pro", "Monaco", "Menlo", Consolas, "Courier New", monospace;
+$code-font-family: "Fira Code", monospace;
 $code-font-weight: normal;
 $code-border-size: 1px;
 $code-padding: 1px 3px;
@@ -68,11 +68,11 @@ $code-padding: 1px 3px;
 $pre-bg: #ffffee;
 $pre-font-size: $code-font-size;
 //$pre-font-family: "Monaco", Consolas, "Lucida Console", Courier, monospace;
-$pre-font-family: "Monaco", "Menlo" Consolas, "Courier New", monospace;
+$pre-font-family: "Fira Code", monospace;
 //$pre-font-color: $white;
 //$pre-font-color: #111111;
 $pre-font-color: #000000;
-$pre-font-size: .8em;
+$pre-font-size: .9em;
 $pre-padding: emCalc(17px);
 
 // Panels
