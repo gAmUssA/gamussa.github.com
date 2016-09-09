@@ -1,0 +1,174 @@
+= Hazelcast for MongoDB Developers
+Viktor Gamov <viktor@hazelcast.com>, © 2015 Hazelcast, Inc.
+2015-11-02
+:revdate: 2015-11-02 16:31:53 -0600
+:linkattrs:
+:ast: &ast;
+:y: &#10003;
+:n: &#10008;
+:y: icon:check-sign[role="green"]
+:n: icon:check-minus[role="red"]
+:c: icon:file-text-alt[role="blue"]
+:toc: macro
+:toc-title: Table of content
+:toclevels: 3
+:idprefix:
+:idseparator: -
+:sectanchors:
+:icons: font
+:source-highlighter: highlight.js
+:highlightjs-theme: idea
+:experimental:
+
+image::hazelcast_mongo.jpg[]
+
+.TL;DR
+NOTE: When I talk to the developers about Hazelcast, many of them ask how Hazelcast is different from NOSQL databases, and particularly from MongoDB. 
+In this blog post, I will try to answer this question once and for all.
+
+toc::[]
+
+== Introduction
+
+*MongoDB* is an open source, document-oriented database designed with both scalability and developer agility in mind. Instead of storing your data in tables and rows as you would with a relational database, in MongoDB you store JSON-like documents with a dynamic schema. 
+In short, MongoDB is an NOSQL data store, primarily concerned with storing/persisting and retrieving schema-free data.
+
+Hazelcast is an open source (Apache v2 license), distributed, highly available and scalable In-Memory Data Grid used as an in-memory data store, cache, message broker and distributed computation platform. 
+Hazelcast emphasizes high-speed access to distributed data (usually as a distributed cache), distributed computing and distributed messaging. 
+
+https://hazelcast.com/use-cases/nosql/nosql-data-store/[Hazelcast can act like an NOSQL store]. MongoDB has some data grid / compute grid capabilities, but it isn't optimized. As such, comparing Hazelcast and MongoDB head-to-head on capabilities is a bit like comparing apples and oranges.
+
+Often Hazelcast and MongoDB work together, rather than compete. Hazelcast supports using MongoDB as a backend data store. It's easy to map Hazelcast data to MongoDB for write-through or write-behind persistence.
+
+Let's overview Hazelcast and MongoDB features and see how they can compliment each other.
+
+== Features
+
+=== Simplicity 
+
+Both technologies are simple to get running.
+I was able to get MongoDB up and running in less than ten minutes. 
+For example, on my mac I can install MongoDВ with command using *http://brew.sh[`brew`]*.
+
+[source,sh]
+----
+brew mongo install
+----
+
+http://hazelcast.org/getting-started/[Hazelcast is similarly easy].
+
+=== The Benefits For Java Developers
+
+If you're writing a Java application (or any of the various languages that run on the JVM), Hazelcast and MongoDB fit into your ecosystem extremely well.
+For Hazelcast, being able to use Java objects directly in the cluster without worrying about a data translation layer is a big productivity bonus. 
+Working with MongoDB requires either using their data structures or writing/configuring a data translation layer.
+
+****
+The BSON library comprehensively supports BSON, the data storage and network transfer format that MongoDB uses for "documents". BSON, short for Binary JSON, is a binary-encoded serialization of JSON-like documents.
+****
+
+MongoDB ships with a driver for Java. 
+Also, there is a Java Object Document Mapper framework that makes the translation from Mongo documents to Java objects and vise-verse much easier.
+
+In terms of deployment and integration in Java applications, Hazelcast can give you very low latency data access through various mechanisms, especially Near Cache on Hazelcast clients and embedded deployment of Hazelcast members. With MongoDB, network latency will be experienced, since it doesn’t have a local memory cache.
+
+=== Distributed  Computing
+
+Hazelcast's distributed computing framework is extremely powerful. 
+It allows arbitrary business logic to execute with the locality of reference, and be distributed across the cluster for straightforward scale-out support. 
+MongoDB supports a single-threaded map-reduce framework but doesn't support arbitrary user code execution.
+
+Hazelcast's support for distributed computing gives it capabilities that MongoDB just doesn't have. 
+Distributed concurrency tools like locks, semaphores, and queues make short work of coordinating computation on multiple nodes that is very difficult to implement natively. 
+I know that many people use MongoDB as their message broker. 
+However, I can't imagine how one does any of those things practically using just MongoDB.
+
+=== Persistence 
+
+Hazelcast is focused on low-latency access to distributed data and distributed computing. 
+By default, it doesn't touch a disk or any other persistent store. 
+Hazelcast isn't a database. 
+MongoDB is very much a persistent database. 
+It has its issues with persistence (e.g., it can be a bit fragile since it writes to memory and, by default, doesn't sync to the file system on every write).
+
+Let's take a look how we can benefit from MongoDB persistence with Hazelcast.
+
+==== `IMap` and `MapStore`
+
+A corner store of Hazelcast's read-through / write-thought capabilities are two interfaces `MapLoader` and `MapStore`. A developer needs to implement `MapLoader` interface if only reads from database are required. 
+
+.MapLoader inteface
+[source,java]
+----
+public interface MapLoader<K, V> {
+
+    V load(K key); // <1>
+
+    Map<K, V> loadAll(Collection<K> keys); // <2>
+
+    Iterable<K> loadAllKeys(); // <3>
+}
+----
+<1> Loads the value of a given key. If distributed map doesn't contain the value for the given key then Hazelcast will call implementation's load (key) method to obtain the value.
+<2> Loads given keys. This is batch load operation so that implementation can optimize the multiple loads.
+<3> Loads all of the keys from the store. 
+
+A `MapStore` interface extends `MapLoader` and allows to save `IMap` entries in a database.
+
+.MapStore Interface
+[source,java]
+----
+public interface MapStore<K, V> extends MapLoader<K, V> {
+    
+    void store(K key, V value); // <1>
+
+    void storeAll(Map<K, V> map); // <2>
+
+    void delete(K key); // <3>
+
+    void deleteAll(Collection<K> keys); // <4>
+}
+----
+<1> Stores the key-value pair.
+<2> Stores multiple entries. Implementation of this method can optimize the store operation by storing all entries in one database connection.
+<3> Deletes the entry with a given key from the store.
+<4> Deletes multiple entries from the store.
+
+To learn about `MapLoader` and `MapStore`, please, check official http://docs.hazelcast.org/docs/3.5/manual/html-single/index.html#map-persistence[Hazelcast documentation]. 
+
+To interact with MongoDB, I'm going to use `mongo-java-driver`.
+
+.Mongo Java Driver dependency
+[source,xml]
+----
+<dependency>
+   <groupId>org.mongodb</groupId>
+   <artifactId>mongo-java-driver</artifactId>
+   <version>${mongo-java-driver.version}</version>
+</dependency>
+----
+
+[source,java]
+----
+MongoClient mongoClient = new MongoClient(new MongoClientURI(mongoUrl)); // <1>
+MongoCollection collection = mongoClient.getDatabase(dbName).getCollection(collectionName); // <2>
+final Document document = (Document) collection.find(eq("_id", key)).first(); // <3>
+collection.insertOne(document); // <3>
+----
+<1> Establishing connection to MondoDb instance based on URI like `mongodb://localhost:27017`.
+<2> A `MongoClient` class provides methods to connect to MongoDB instance, get access to databases, collections, documents and etc.
+<3> A `MongoCollection` class allows to CRUD operations on Documents in collection. 
+
+****
+You can find a full source code of example application https://github.com/hazelcast/hazelcast-code-samples/tree/master/hazelcast-integration/mongodb[in `hazelcast-code-samples` repository]. In this repository, you can find a ton of useful Hazelcast samples.
+****
+
+
+== Summary
+
+MongoDB and Hazelcast can both provide low-latency access to distributed, schema-free data. 
+MongoDB is more suitable if you're just looking for an NOSQL data store. 
+Hazelcast's distributed data structures, and computing capabilities lend themselves to a host of applications beyond what MongoDB is capable. 
+They can be used separately as solutions for different problems or together as a complementary set of technologies. 
+I hope in this blog post I answered most of the questions about Hazelcast v. MongoDB. 
+If I didn't, please, ask me in the comments below.

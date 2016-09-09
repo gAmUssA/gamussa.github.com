@@ -10,9 +10,7 @@ Viktor Gamov
 :y: icon:check-sign[role="green"]
 :n: icon:check-minus[role="red"]
 :c: icon:file-text-alt[role="blue"]
-:toc: auto
-:toc-placement: auto
-:toc-position: right
+:toc: macro
 :toc-title: Table of content
 :toclevels: 3
 :sectanchors:

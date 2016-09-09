@@ -7,7 +7,7 @@ Viktor Gamov <viktor@hazelcast.com>
 :keywords: hazelcast node.js
 ifndef::awestruct[]
 :awestruct-layout: post
-:awestruct-tags: []
+:awestruct-tags: [hazelcast, nodejs]
 :idprefix:
 :idseparator: -
 endif::awestruct[]
@@ -18,9 +18,7 @@ endif::awestruct[]
 :y: icon:check-sign[role="green"]
 :n: icon:check-minus[role="red"]
 :c: icon:file-text-alt[role="blue"]
-:toc: auto
-:toc-placement: auto
-:toc-position: right
+:toc: macro
 :toc-title: Table of content
 :toclevels: 3
 :idprefix:
@@ -38,11 +36,11 @@ endif::awestruct[]
 :hazecast-chat: https://gitter.im/hazelcast/hazelcast
 :hazelcast-nodejs-chat: https://gitter.im/hazelcast/hazelcast-nodejs-client
 
+image::node.png[align="center"]
+
 .TL;DR
 NOTE: Install the package `npm install hazelcast-client`, <<fullapp,grab a demo app>> and read {apidocs}[API docs].
 Time To «Hello World!» less than 5 min.
-
-image::node.png[align="center"]
 
 toc::[]
 

@@ -3,7 +3,7 @@ Viktor Gamov
 2013-07-17 23:00
 :imagesdir: ../images
 :icons: font
-:toc:
+:toc: macro
 :toc-placement!:
 ifndef::awestruct[]
 :awestruct-layout: post

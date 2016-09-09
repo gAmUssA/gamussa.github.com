@@ -5,7 +5,7 @@ Viktor Gamov
 :icons: font
 :iconfont-cdn: //maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css
 :keywords: hazelcast, open source, jug
-:toc: auto
+:toc: macro
 ifndef::awestruct[]
 :awestruct-layout: post
 :awestruct-tags: [hazelcast, open source, jug]
@@ -13,13 +13,13 @@ ifndef::awestruct[]
 :idseparator: -
 endif::awestruct[]
 
+image::laptop.jpg[align="center"]
+
 .TL;DR
 NOTE: It has been an awesome year full traveling (roughly 20 states), POCs for the clients and the prospects, training (including public classes) and conference talks.
 While I am already looking forward to 2016, here is a quick recap of my 2015 with Hazelcast.
 
 toc::[]
-
-image::laptop.jpg[align="center"]
 
 .Revisions history
 [width="60%",cols="",options="header"]

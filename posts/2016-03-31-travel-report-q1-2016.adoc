@@ -5,7 +5,7 @@ Viktor Gamov
 :imagesdir: ../images
 :icons:
 :keywords:
-:toc:
+:toc: macro
 ifndef::awestruct[]
 :awestruct-layout: post
 :awestruct-tags: []
