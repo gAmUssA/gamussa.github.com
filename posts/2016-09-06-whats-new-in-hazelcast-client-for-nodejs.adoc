@@ -10,7 +10,7 @@ ifndef::awestruct[]
 :awestruct-tags: [hazelcast, nodejs]
 :idprefix:
 :idseparator: -
-:awestruct-draft: true
+:awestruct-draft: false
 endif::awestruct[]
 :linkattrs:
 :ast: &ast;
