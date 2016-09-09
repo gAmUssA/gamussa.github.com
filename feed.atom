@@ -5,13 +5,732 @@
 <author>
 <name>Viktor Gamov</name>
 </author>
-<updated>2016-09-09T15:34:01-04:00</updated>
+<updated>2016-09-09T15:34:45-04:00</updated>
 <link href="http://next.javaheadbrain.com/feed.atom" rel="self" type="application/atom+xml" />
 <link href="http://next.javaheadbrain.com/" rel="alternate" type="text/html" />
 <entry>
+<id>http://next.javaheadbrain.com/posts/2016/09/09/whats-new-in-hazelcast-client-for-nodejs.html</id>
+<title>What&#8217;s New in Hazelcast Node.js Client</title>
+<updated>2016-09-09T15:34:45-04:00</updated>
+<published>2016-09-09T06:05:51-06:00</published>
+<link href="http://next.javaheadbrain.com/posts/2016/09/09/whats-new-in-hazelcast-client-for-nodejs.html" rel="alternate" type="text/html" />
+<author>
+<name>Mustafa Iman &lt;mustafa.iman@hazelcast.com&gt;, Viktor Gamov &lt;viktor@hazelcast.com&gt;</name>
+</author>
+<category term="hazelcast"></category>
+<category term="nodejs"></category>
+<summary>
+TL;DR
+Rejoice, JavaScript people!
+There are many new features in Hazelcast Node.js Client 0.4.1.
+In the 10 minutes, you spend reading this blog I will cover "what&#8217;s new"!
+Also, if you read this blog post till the end, you will also learn what&#8217;s coming to future releases.
+
+
+
+
+
+Table of content
+
+What&#8217;s new
+
+Serialization and Interoperability with other Hazelcast clients
+Predicates
+MultiMap, Set, List
+Distributed Lock
+Messaging with Queue
+Data Affinity
+
+
+Sneak Peek of v0.5 and beyond
+
+Even more Data Structures!
+Fresh Meat
+
+
+Resources
+
+
+
+It has been a while since out first blog post on Hazelcast Node.js Client [1].
+Our brave developers have been very busy adding new features and making Hazelcast Node.js Client faster!
+
+
+
+
+
+
+
+
+If you haven&#8217;t read previous...
+</summary>
+<content type="html">
+&lt;div id=&quot;preamble&quot;&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;http://next.javaheadbrain.com/images/node.png&quot; alt=&quot;node&quot; /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock note&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;fa icon-note&quot; title=&quot;Note&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;TL;DR&lt;/div&gt;
+Rejoice, JavaScript people!
+There are many new features in Hazelcast Node.js Client 0.4.1.
+In the 10 minutes, you spend reading this blog I will cover &amp;quot;what’s new&amp;quot;!
+Also, if you read this blog post till the end, you will also learn what’s coming to future releases.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&quot;toc&quot; class=&quot;toc&quot;&gt;
+&lt;div id=&quot;toctitle&quot; class=&quot;title&quot;&gt;Table of content&lt;/div&gt;
+&lt;ul class=&quot;sectlevel1&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#whats-new-in-0.4&quot;&gt;What’s new&lt;/a&gt;
+&lt;ul class=&quot;sectlevel2&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#serialization-support-and-interoperability-of-languages&quot;&gt;Serialization and Interoperability with other Hazelcast clients&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#predicates&quot;&gt;Predicates&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#multimap&quot;&gt;MultiMap, Set, List&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#lock&quot;&gt;Distributed Lock&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#queue&quot;&gt;Messaging with Queue&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#data-affinity&quot;&gt;Data Affinity&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#whats-next&quot;&gt;Sneak Peek of v0.5 and beyond&lt;/a&gt;
+&lt;ul class=&quot;sectlevel2&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#even-more-data-structures&quot;&gt;Even more Data Structures!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#fresh-meat&quot;&gt;Fresh Meat&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#resources&quot;&gt;Resources&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;It has been a while since out first blog post on Hazelcast Node.js Client &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_1&quot; class=&quot;footnote&quot; href=&quot;#_footnote_1&quot; title=&quot;View footnote.&quot;&gt;1&lt;/a&gt;]&lt;/sup&gt;.
+Our brave developers have been very busy adding new features and making Hazelcast Node.js Client faster!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock warning&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;fa icon-warning&quot; title=&quot;Warning&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+If you haven’t read previous Getting Started blog post, it’s a perfect opportunity to press &lt;kbd&gt;Pause&lt;/kbd&gt; button now.
+That &amp;quot;Getting started&amp;quot; post contains all required information to get the Hazelcast Node.js Client gears moving.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;whats-new-in-0.4&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#whats-new-in-0.4&quot;&gt;&lt;/a&gt;What’s new&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;admonitionblock important&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;fa icon-important&quot; title=&quot;Important&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+The code example in this article were tested under &lt;code&gt;node v6.3.1 (npm v3.10.3)&lt;/code&gt; with Hazelcast Client &lt;code&gt;0.4.1&lt;/code&gt;.
+Many examples contain modern EcmaScript 6 syntax constructs, like &lt;code&gt;⇒&lt;/code&gt; aka &amp;quot;far arrow&amp;quot; and etc.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Alright.
+Since our previous announcement of v0.2, we added the most of the frequently used features of Hazelcast to Node.js client. Including:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Distributed Map aka &lt;code&gt;IMap&lt;/code&gt; with support of Predicates and Entry Processors&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;MultiMap&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Set&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;List&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Distributed Locks aka &lt;code&gt;ILock&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Queue&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Also, we brought full interoperability with other Hazelcast clients &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_2&quot; class=&quot;footnote&quot; href=&quot;#_footnote_2&quot; title=&quot;View footnote.&quot;&gt;2&lt;/a&gt;]&lt;/sup&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;quoteblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;Let’s have a quick look at this first because:&lt;/div&gt;
+&lt;blockquote&gt;
+I don’t know how to put this, but it’s kind of a big deal.
+&lt;/blockquote&gt;
+&lt;div class=&quot;attribution&quot;&gt;
+— Ron Burgundy&lt;br /&gt;
+&lt;cite&gt;Anchorman: The Legend of Ron Burgundy&lt;/cite&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot; style=&quot;text-align: left&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;http://next.javaheadbrain.com/images/ron.jpg&quot; alt=&quot;ron&quot; /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;serialization-support-and-interoperability-of-languages&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#serialization-support-and-interoperability-of-languages&quot;&gt;&lt;/a&gt;Serialization and Interoperability with other Hazelcast clients&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Hazelcast Node.js client now supports all native serialization techniques that Hazelcast supports.
+Meaning you can just connect your Node.js client to your working Hazelcast cluster and read what is already there, put new objects and read them from other clients.
+The fact that Node.js client supports Hazelcast native serialization means it is also fully compatible with all available client languages.
+The client serializes string, number, and array data types automatically.
+This makes text-based serialization formats like JSON or XML suitable candidate for a message.
+Developers can provide serializers for custom objects.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;exampleblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;For example, a Java application uses Hazelcast Java Client to store the results of a long-running computation (like Map/Reduce job), and Node.js, &lt;code&gt;.NET&lt;/code&gt; or Python applications can consume the results for displaying for the web (Node.js), in Rich Desktop Application (.NET / C#) or for further research and data science with Python math packages.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;To demonstrate this approach, let’s write &lt;code&gt;Java&lt;/code&gt; &lt;code&gt;⇐⇒&lt;/code&gt; &lt;code&gt;Node.js&lt;/code&gt; application.
+We will use &lt;code&gt;Person&lt;/code&gt; object from the previous blog post.
+It has 3 properties - &lt;code&gt;firstName&lt;/code&gt;, &lt;code&gt;lastName&lt;/code&gt; and &lt;code&gt;age&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;Person.java&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;public class Person implements IdentifiedDataSerializable { &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+    String firstName;
+    String lastName;
+    int age;
+
+    public Person() {
+    }
+
+    public Person(String firstName, String lastName, int age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+    }
+
+    @Override
+    public void writeData(ObjectDataOutput out) throws IOException { &lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
+        out.writeUTF(firstName);
+        out.writeUTF(lastName);
+        out.writeInt(age);
+    }
+
+    @Override
+    public void readData(ObjectDataInput in) throws IOException { &lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;
+        this.firstName = in.readUTF();
+        this.lastName = in.readUTF();
+        this.age = in.readInt();
+    }
+
+    @Override public int getFactoryId() {
+        return 42;
+    }
+
+    @Override public int getId() {
+        return 42;
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;A &lt;code&gt;Person&lt;/code&gt; object implements IdentifiedDataSerializable - fast serialization from Hazelcast.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;A &lt;code&gt;writeData&lt;/code&gt; method defines how property values will be written to the binary output.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;A &lt;code&gt;readData&lt;/code&gt; method defines how values can be retrieved from binary input.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock note&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;fa icon-note&quot; title=&quot;Note&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+Make sure you read from input in the same order you as you wrote to the binary output.
+Detailed description of &lt;code&gt;IdentifiedDataSerializable&lt;/code&gt; methods can be found «Serialization» &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_3&quot; class=&quot;footnote&quot; href=&quot;#_footnote_3&quot; title=&quot;View footnote.&quot;&gt;3&lt;/a&gt;]&lt;/sup&gt; section of &lt;a href=&quot;http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html&quot;&gt;Hazelcast Documentation&lt;/a&gt;.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;Let’s look what a JavaScript counterpart object looks like.&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;function Person(firstName, lastName, age) { &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+}
+
+Person.prototype.getFactoryId = function () {
+    return 42;
+};
+
+Person.prototype.getClassId = function () {
+    return 42;
+};
+
+Person.prototype.writeData = function (dataOutput) { &lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
+    dataOutput.writeUTF(this.firstName);
+    dataOutput.writeUTF(this.lastName);
+    dataOutput.writeInt(this.age);
+};
+
+Person.prototype.readData = function (dataInput) { &lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;
+    this.firstName = dataInput.readUTF();
+    this.lastName = dataInput.readUTF();
+    this.age = dataInput.readInt();
+};&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;JavaScript doesn’t have interfaces as Java. So, it’s just a JavaScript object.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Similarly to Java object, we need to implement &lt;code&gt;writeData&lt;/code&gt;…​&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;…​ and &lt;code&gt;readData&lt;/code&gt; methods.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;Last step - register &lt;code&gt;DataSerializableFactory&lt;/code&gt; in client config object&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;var config = new Config.ClientConfig();
+config.serializationConfig.dataSerializableFactories[42] = {
+    create: (type) =&amp;gt; {
+        if (type === 42) { &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+            return new Person();
+        }
+    }
+};&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Based on &lt;code&gt;typeId&lt;/code&gt;, Hazelcast will figure out what object will be restored from the binary data.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You can checkout
+&lt;a href=&quot;http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#serialization&quot;&gt;Serialization Section&lt;/a&gt; and
+&lt;a href=&quot;http://hazelcast.github.io/hazelcast-nodejs-client/api/0.4/docs/modules/_serialization_serializable_.html&quot;&gt;Node.js documentation&lt;/a&gt; about how to register custom serializers.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;predicates&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#predicates&quot;&gt;&lt;/a&gt;Predicates&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Hazelcast IMap is an essentially key-value store.
+And usually, a developer uses the keys to retrieve data.
+But in certain cases, a developer doesn’t know a key.
+Or when a developer needs to find many entries satisfy a condition from a distributed Map.
+In this case, you needed to retrieve all entries from that map and filter them on the client side.
+But this method leads to the substantial amount of network communion.
+If you are looking for a small subset of the entries, it is more efficient to retrieve only the entries you are looking for using newly introduced predicates.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Let’s say you keep ages of people in a Hazelcast map.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;map.putAll([&amp;apos;Alice&amp;apos;, 34], [&amp;apos;Joe&amp;apos;, 22], [&amp;apos;George&amp;apos;, 27]);&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You can quickly retrieve entries of people that are older than 25 with following code snippet&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;var Predicates = require(&amp;apos;hazelcast-client&amp;apos;).Predicates;
+map.entrySetWithPredicate(Predicates.greaterThan(&amp;apos;this&amp;apos;, 25)).then((people) =&amp;gt; {
+    people.forEach((person) =&amp;gt; {
+        console.log(&amp;apos;Person: &amp;apos; + person[0] + &amp;apos;, age: &amp;apos; + person[1]);
+   });
+});&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Above snippet will print names and ages of &lt;code&gt;Alice&lt;/code&gt; and &lt;code&gt;George&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If you only need their names but not ages,&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;map.keySetWithPredicate(Predicates.greaterThan(&amp;apos;this&amp;apos;, 25));&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;will return only names of &lt;code&gt;Alice&lt;/code&gt; and &lt;code&gt;George&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You can find a full list of available predicates at &lt;a href=&quot;http://hazelcast.github.io/hazelcast-nodejs-client/api/0.4/docs/modules/_core_predicate_.html&quot;&gt;API docs&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;multimap&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#multimap&quot;&gt;&lt;/a&gt;MultiMap, Set, List&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;MultiMap is a particular version of a Map that supports multiple values associated with a single key.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;The restaurants MultiMap&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;var mmap = hazelcastClient.getMultiMap(&amp;apos;restaurants&amp;apos;); &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+mmap.put(&amp;quot;New York&amp;quot;, &amp;quot;Red Lobster&amp;quot;) &lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
+    .then(() =&amp;gt; {
+        return mmap.put(&amp;quot;New York&amp;quot;, &amp;quot;Eataly&amp;quot;);
+    })
+    .then(() =&amp;gt; {
+        return mmap.get(&amp;quot;New York&amp;quot;);
+    })
+    .then((list) =&amp;gt; {
+        console.log(list);
+    });
+
+mmap.put(&amp;quot;Las Vegas&amp;quot;, &amp;quot;Burgr&amp;quot;) &lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;
+    .then(() =&amp;gt; {
+            return mmap.put(&amp;quot;Las Vegas&amp;quot;, &amp;quot;Alibi&amp;quot;);
+        }
+    ).then(() =&amp;gt; {
+    return mmap.put(&amp;quot;Las Vegas&amp;quot;, &amp;quot;Pub &amp;amp; Grill&amp;quot;);
+
+}).then(() =&amp;gt; {
+    return mmap.get(&amp;quot;Las Vegas&amp;quot;)
+}).then((list) =&amp;gt; {
+    console.log(list);
+});&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;In this example we have MultiMap of restaurants&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Name of the city used as a key - &lt;code&gt;New York&lt;/code&gt; or &lt;code&gt;Las Vegas&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;When we need to get a collection of entries.
+Hazelcast MultiMap supports two types of values - &lt;code&gt;Set&lt;/code&gt; (doesn’t allow duplicates, default) and &lt;code&gt;List&lt;/code&gt; (preserves order).
+It can be configured using cluster config object &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_4&quot; class=&quot;footnote&quot; href=&quot;#_footnote_4&quot; title=&quot;View footnote.&quot;&gt;4&lt;/a&gt;]&lt;/sup&gt;.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;Output looks like follows&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;nowrap&quot;&gt;[ &amp;apos;Eataly&amp;apos;, &amp;apos;Red Lobster&amp;apos; ]
+[ &amp;apos;Pub &amp;amp; Grill&amp;apos;, &amp;apos;Alibi&amp;apos;, &amp;apos;Burgr&amp;apos; ]&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You can find more info here - &lt;a href=&quot;http://hazelcast.github.io/hazelcast-nodejs-client/api/0.4/docs/interfaces/_proxy_multimap_.multimap.html&quot;&gt;MultiMap API&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;lock&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#lock&quot;&gt;&lt;/a&gt;Distributed Lock&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If you need to synchronize your data access through the cluster, Hazelcast’s distributed lock implementation will come useful.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;var globalLock = client.getLock(&amp;apos;global-lock&amp;apos;);
+
+globalLock.lock();
+// you can do some job here which doesn&amp;apos;t allow shared access
+globalLock.unlock();&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;All supported lock operations are listed in &lt;a href=&quot;http://hazelcast.github.io/hazelcast-nodejs-client/api/0.4/docs/interfaces/_proxy_ilock_.ilock.html&quot;&gt;ILock API&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;queue&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#queue&quot;&gt;&lt;/a&gt;Messaging with Queue&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Hazelcast distributed queue enables all cluster members and client to interact with it.
+Using Hazelcast distributed queue, you can add an item from one client and read it from another.
+FIFO ordering will apply to all queue operations across the cluster.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;Client 1 - Consumer of tasks&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;var logger = hazelcastClient.loggingService;
+var queue = hazelcastClient.getQueue(&amp;apos;tasks&amp;apos;);
+
+// slow consumer
+setInterval(() =&amp;gt; {
+    queue.take().then((task) =&amp;gt; {
+        logger.info(&amp;quot;Consumer&amp;quot;, `executing task: ${task}`);
+    });
+}, 1000);&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;Client 2 - Producer of tasks&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;var logger = hazelcastClient.loggingService;
+var queue = hazelcastClient.getQueue(&amp;apos;tasks&amp;apos;);
+
+// fast producer
+setInterval(() =&amp;gt; {
+    var task = tasks[Math.floor(Math.random() * tasks.length)];
+    logger.info(&amp;quot;Producer&amp;quot;, `publishing task: ${task}`);
+    queue.offer(task);
+}, 500);&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;In this example, Hazelcast’s uses a «buffer» to separate a fast producer from a slow consumer and this prevents consumer overloading.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;data-affinity&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#data-affinity&quot;&gt;&lt;/a&gt;Data Affinity&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;One of the things that we brought to &lt;code&gt;v0.4.1&lt;/code&gt; is ability increase locality of computations and data access on a cluster.
+Developers will be able to control on which partitions each key is stored.
+It is only a matter of adding a &lt;code&gt;getPartitionKey()&lt;/code&gt; function to user objects.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;A developer needs to implement &lt;code&gt;getPartitionKey&lt;/code&gt; method&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&amp;apos;use strict&amp;apos;;
+let Client = require(&amp;apos;hazelcast-client&amp;apos;).Client;
+
+function Company(name, address) { &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+    this.name = name;
+    this.address = address;
+}
+
+Company.prototype.getName = function () {
+    return this.name;
+};
+
+function Associate(firstName, lastName, companyName) { &lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.companyName = companyName;
+}
+
+Associate.prototype.getCompanyName = function () {
+    return this.companyName;
+};
+
+function PartitionAwareKey(key, partitionKey) {
+    this.key = key;
+    this.partitionKey = partitionKey;
+}
+
+PartitionAwareKey.prototype.getPartitionKey = function () { &lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;
+    return this.partitionKey;
+};
+
+Client.newHazelcastClient().then((hazelcastClient) =&amp;gt; {
+    let companyMap = hazelcastClient.getMap(&amp;apos;companyMap&amp;apos;);
+    let associateMap = hazelcastClient.getMap(&amp;apos;associateMap&amp;apos;);
+    let partitionService = hazelcastClient.getPartitionService();
+
+    let company = new Company(&amp;quot;IBM&amp;quot;, &amp;quot;Armonk, North Castle, NY&amp;quot;);
+    let associate = new Associate(&amp;quot;John&amp;quot;, &amp;quot;Smith&amp;quot;, company.getName());
+
+    let key1 = new PartitionAwareKey(&amp;quot;k1&amp;quot;, company.getName());  &lt;i class=&quot;conum&quot; data-value=&quot;4&quot;&gt;&lt;/i&gt;&lt;b&gt;(4)&lt;/b&gt;
+    let key2 = new PartitionAwareKey(&amp;quot;a1&amp;quot;, associate.getCompanyName()); &lt;i class=&quot;conum&quot; data-value=&quot;4&quot;&gt;&lt;/i&gt;&lt;b&gt;(4)&lt;/b&gt;
+
+    console.log(partitionService.getPartitionId(key1)); &lt;i class=&quot;conum&quot; data-value=&quot;5&quot;&gt;&lt;/i&gt;&lt;b&gt;(5)&lt;/b&gt;
+    console.log(partitionService.getPartitionId(key2)); &lt;i class=&quot;conum&quot; data-value=&quot;5&quot;&gt;&lt;/i&gt;&lt;b&gt;(5)&lt;/b&gt;
+
+    companyMap.set(key1, company).then(() =&amp;gt; { &lt;i class=&quot;conum&quot; data-value=&quot;6&quot;&gt;&lt;/i&gt;&lt;b&gt;(6)&lt;/b&gt;
+        associateMap.set(key2, associate);
+    });
+
+});&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;An object &lt;code&gt;Company&lt;/code&gt; contains name and address of a company.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;An object &lt;code&gt;Associate&lt;/code&gt; contains info about company’s employee.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;PartitionAwareKey&lt;/code&gt; (sort of a composite key) should have &lt;code&gt;getPartitionId&lt;/code&gt; method that Hazelcast will use to collocate related data.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;4&quot;&gt;&lt;/i&gt;&lt;b&gt;4&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;A &lt;code&gt;companyName&lt;/code&gt; property used as partition id.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;5&quot;&gt;&lt;/i&gt;&lt;b&gt;5&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;A &lt;code&gt;partitionId&lt;/code&gt; for both keys will be the same…​&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;6&quot;&gt;&lt;/i&gt;&lt;b&gt;6&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;…​meaning «John Smith» and «IBM» will be co-located on the same partition.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Having selected key partition explicitly, users can benefit from on the cluster processing of entries using EntryProcessor’s.
+Entry processor eliminates the cost of transferring entries between cluster and clients back and forth for simple transformations.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;To learn more about Data Affinity in Hazelcast, check official documentation &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_5&quot; class=&quot;footnote&quot; href=&quot;#_footnote_5&quot; title=&quot;View footnote.&quot;&gt;5&lt;/a&gt;]&lt;/sup&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;whats-next&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#whats-next&quot;&gt;&lt;/a&gt;Sneak Peek of v0.5 and beyond&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;http://next.javaheadbrain.com/images/wonka.jpg&quot; alt=&quot;wonka&quot; /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;even-more-data-structures&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#even-more-data-structures&quot;&gt;&lt;/a&gt;Even more Data Structures!&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;New release of Node.js client will introduce new data structures such as &lt;code&gt;RingBuffer&lt;/code&gt; and &lt;code&gt;Topic&lt;/code&gt;.
+These data structures are suitable for implementing pub-sub use cases.
+Together with &lt;code&gt;Queue&lt;/code&gt;, &lt;code&gt;RB&lt;/code&gt; and &lt;code&gt;Topic&lt;/code&gt; enable messaging capabilities for your application.
+Check &lt;a href=&quot;#queue&quot;&gt;Messaging with Queue&lt;/a&gt; section for peer-to-peer communication example.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;fresh-meat&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#fresh-meat&quot;&gt;&lt;/a&gt;Fresh Meat&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Even though v0.5 is not released yet, you don’t have to wait for to try these new features.
+You can build the client locally &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_6&quot; class=&quot;footnote&quot; href=&quot;#_footnote_6&quot; title=&quot;View footnote.&quot;&gt;6&lt;/a&gt;]&lt;/sup&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;Or, thanks to NPM,  install Hazelcast Client from &lt;code&gt;master&lt;/code&gt; branch.&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;nowrap&quot;&gt;npm install git+https://git@github.com:hazelcast/hazelcast-nodejs-client.git&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The feedback and pull requests are greatly appreciated.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;resources&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#resources&quot;&gt;&lt;/a&gt;Resources&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;As always, please, stay in touch.
+There a bunch of way to provide the feedback:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Hazelcast Node.js Client &lt;a href=&quot;http://github.com/hazelcast/hazelcast-nodejs-client/&quot;&gt;repository on github&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;if you have found a bug, please report&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Chat with the developers&lt;/p&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://gitter.im/hazelcast/hazelcast&quot;&gt;Hazelcast Chat&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://gitter.im/hazelcast/hazelcast-nodejs-client&quot;&gt;Hazelcast Node.js client Chat&lt;/a&gt; &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_7&quot; class=&quot;footnote&quot; href=&quot;#_footnote_7&quot; title=&quot;View footnote.&quot;&gt;7&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;http://groups.google.com/group/hazelcast&quot;&gt;Google Group&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;http://stackoverflow.com/questions/tagged/hazelcast&quot;&gt;Stackoverflow&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;footnotes&quot;&gt;
+&lt;hr /&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnote_1&quot;&gt;
+&lt;a href=&quot;#_footnoteref_1&quot;&gt;1&lt;/a&gt;. &lt;a href=&quot;http://blog.hazelcast.com/getting-started-with-hazelcast-and-node-js-2/&quot; class=&quot;bare&quot;&gt;http://blog.hazelcast.com/getting-started-with-hazelcast-and-node-js-2/&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnote_2&quot;&gt;
+&lt;a href=&quot;#_footnoteref_2&quot;&gt;2&lt;/a&gt;. &lt;a href=&quot;https://hazelcast.org/clients-languages/&quot; class=&quot;bare&quot;&gt;https://hazelcast.org/clients-languages/&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnote_3&quot;&gt;
+&lt;a href=&quot;#_footnoteref_3&quot;&gt;3&lt;/a&gt;. &lt;a href=&quot;http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#identifieddataserializable&quot; class=&quot;bare&quot;&gt;http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#identifieddataserializable&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnote_4&quot;&gt;
+&lt;a href=&quot;#_footnoteref_4&quot;&gt;4&lt;/a&gt;. &lt;a href=&quot;http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#configuring-multimap&quot; class=&quot;bare&quot;&gt;http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#configuring-multimap&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnote_5&quot;&gt;
+&lt;a href=&quot;#_footnoteref_5&quot;&gt;5&lt;/a&gt;. &lt;a href=&quot;http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#data-affinity&quot; class=&quot;bare&quot;&gt;http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#data-affinity&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnote_6&quot;&gt;
+&lt;a href=&quot;#_footnoteref_6&quot;&gt;6&lt;/a&gt;. &lt;a href=&quot;https://github.com/hazelcast/hazelcast-nodejs-client#building-and-installing-from-sources&quot; class=&quot;bare&quot;&gt;https://github.com/hazelcast/hazelcast-nodejs-client#building-and-installing-from-sources&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnote_7&quot;&gt;
+&lt;a href=&quot;#_footnoteref_7&quot;&gt;7&lt;/a&gt;. It is a community chat / forum but not a support portal. We can help with answering the questions, and provide pointers but we’re not going to write code for you. We are encouraging people in the community to share the knowledge, please, don’t abuse it. If you’re interested in 24/7 support, we have a dedicated support portal available on commercial terms. Contact &lt;code&gt;sales at Hazelcast dot com&lt;/code&gt; to learn more.
+&lt;/div&gt;
+&lt;/div&gt;
+</content>
+</entry>
+<entry>
 <id>http://next.javaheadbrain.com/posts/2016/04/18/getting-started-with-hazelcast-and-node.html</id>
 <title>Getting Started with Hazelcast and Node.js</title>
-<updated>2016-09-09T15:34:01-04:00</updated>
+<updated>2016-09-09T15:34:10-04:00</updated>
 <published>2016-04-18T06:05:51-06:00</published>
 <link href="http://next.javaheadbrain.com/posts/2016/04/18/getting-started-with-hazelcast-and-node.html" rel="alternate" type="text/html" />
 <author>
@@ -375,7 +1094,7 @@ You have just connected to a Hazelcast cluster and performed basic CRUD operatio
 <entry>
 <id>http://next.javaheadbrain.com/posts/2015/12/31/caching-made-bootiful.html</id>
 <title>Caching Made Bootiful — Hazelcast Way</title>
-<updated>2016-09-09T15:34:01-04:00</updated>
+<updated>2016-09-09T15:34:10-04:00</updated>
 <published>2015-12-31T22:18:23-06:00</published>
 <link href="http://next.javaheadbrain.com/posts/2015/12/31/caching-made-bootiful.html" rel="alternate" type="text/html" />
 <author>
@@ -719,7 +1438,7 @@ Meanwhile, if you have any questions, feel free to post them in the comments sec
 <entry>
 <id>http://next.javaheadbrain.com/posts/2015/12/29/my-year-at-hazelcast-in-review.html</id>
 <title>My Year At Hazelcast In Review</title>
-<updated>2016-09-09T15:34:01-04:00</updated>
+<updated>2016-09-09T15:34:10-04:00</updated>
 <published>2015-12-29T17:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2015/12/29/my-year-at-hazelcast-in-review.html" rel="alternate" type="text/html" />
 <author>
@@ -1068,7 +1787,7 @@ Looking forward to 2016 — Happy New Year &lt;span class=&quot;icon&quot;&g
 <entry>
 <id>http://next.javaheadbrain.com/posts/2015/11/02/hazelcast-for-mongodb-developers.html</id>
 <title>Hazelcast for MongoDB Developers</title>
-<updated>2016-09-09T15:34:01-04:00</updated>
+<updated>2016-09-09T15:34:10-04:00</updated>
 <published>2015-11-02T16:31:53-06:00</published>
 <link href="http://next.javaheadbrain.com/posts/2015/11/02/hazelcast-for-mongodb-developers.html" rel="alternate" type="text/html" />
 <author>
@@ -1383,7 +2102,7 @@ If I didn’t, please, ask me in the comments below.&lt;/p&gt;
 <entry>
 <id>http://next.javaheadbrain.com/posts/2015/01/27/ground-up-introduction-to-in-memory-data.html</id>
 <title>Ground-up Introduction To In-Memory Data</title>
-<updated>2016-09-09T15:34:01-04:00</updated>
+<updated>2016-09-09T15:34:10-04:00</updated>
 <published>2015-01-27T22:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2015/01/27/ground-up-introduction-to-in-memory-data.html" rel="alternate" type="text/html" />
 <author>
@@ -1493,7 +2212,7 @@ This April, &lt;a href=&quot;http://codepalousa.com/blog/2015/code-palousa-2015-
 <entry>
 <id>http://next.javaheadbrain.com/posts/2014/12/13/goodbye-farata-hello-hazelcast.html</id>
 <title>Goodbye, Farata. Hello, Hazelcast!</title>
-<updated>2016-09-09T15:34:01-04:00</updated>
+<updated>2016-09-09T15:34:10-04:00</updated>
 <published>2014-12-13T00:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2014/12/13/goodbye-farata-hello-hazelcast.html" rel="alternate" type="text/html" />
 <author>
@@ -1594,7 +2313,7 @@ Ultimately, I’ll be doing the pretty much same sorts of things I’ve been doi
 <entry>
 <id>http://next.javaheadbrain.com/posts/2013/07/17/getting-started-with-nashorn.html</id>
 <title>Getting Started With Nashorn</title>
-<updated>2016-09-09T15:34:01-04:00</updated>
+<updated>2016-09-09T15:34:10-04:00</updated>
 <published>2013-07-17T23:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2013/07/17/getting-started-with-nashorn.html" rel="alternate" type="text/html" />
 <author>
@@ -1762,7 +2481,7 @@ As you learned from my previous post, I’m going to talk about Nashorn - JavaSc
 <entry>
 <id>http://next.javaheadbrain.com/posts/2013/07/09/im-speaking-at-javaone.html</id>
 <title>I&#8217;m speaking at JavaOne 2013</title>
-<updated>2016-09-09T15:34:01-04:00</updated>
+<updated>2016-09-09T15:34:10-04:00</updated>
 <published>2013-07-09T01:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2013/07/09/im-speaking-at-javaone.html" rel="alternate" type="text/html" />
 <author>
@@ -1814,7 +2533,7 @@ Keep in touch for updates by following me on &lt;a href=&quot;http://twitter.com
 <entry>
 <id>http://next.javaheadbrain.com/posts/2013/01/19/set-jdk-on-osx.html</id>
 <title>Set JDK on OSX</title>
-<updated>2016-09-09T15:34:01-04:00</updated>
+<updated>2016-09-09T15:34:10-04:00</updated>
 <published>2013-01-19T14:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2013/01/19/set-jdk-on-osx.html" rel="alternate" type="text/html" />
 <author>
@@ -1907,7 +2626,7 @@ alias setjdk18=&amp;apos;export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)&amp;a
 <entry>
 <id>http://next.javaheadbrain.com/posts/2012/07/26/websockets-for-java-developers.html</id>
 <title>WebSockets for Java Developers. Princeton JUG talk slides</title>
-<updated>2016-09-09T15:34:01-04:00</updated>
+<updated>2016-09-09T15:34:10-04:00</updated>
 <published>2012-07-26T00:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2012/07/26/websockets-for-java-developers.html" rel="alternate" type="text/html" />
 <summary>
@@ -1943,7 +2662,7 @@ today.&lt;/p&gt;
 <entry>
 <id>http://next.javaheadbrain.com/posts/2012/05/21/alfred-showhide-desktop-icons-on-mac-os.html</id>
 <title>Alfred Extension: Show/Hide desktop icons on Mac OS X</title>
-<updated>2016-09-09T15:34:01-04:00</updated>
+<updated>2016-09-09T15:34:10-04:00</updated>
 <published>2012-05-21T00:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2012/05/21/alfred-showhide-desktop-icons-on-mac-os.html" rel="alternate" type="text/html" />
 <category term="alfred"></category>
@@ -1972,7 +2691,7 @@ Cheers&lt;/p&gt;
 <entry>
 <id>http://next.javaheadbrain.com/posts/2012/05/16/webjars-for-assets-management-in-your.html</id>
 <title>WebJars for assets management in your project</title>
-<updated>2016-09-09T15:34:01-04:00</updated>
+<updated>2016-09-09T15:34:10-04:00</updated>
 <published>2012-05-16T00:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2012/05/16/webjars-for-assets-management-in-your.html" rel="alternate" type="text/html" />
 <category term="java"></category>
@@ -1997,7 +2716,7 @@ But in most common situations, you don’t have lot of options for deployment yo
 <entry>
 <id>http://next.javaheadbrain.com/posts/2012/01/28/how-to-download-videos-from-infoq-for.html</id>
 <title>How to download videos from InfoQ for offline viewing</title>
-<updated>2016-09-09T15:34:01-04:00</updated>
+<updated>2016-09-09T15:34:10-04:00</updated>
 <published>2012-01-28T06:15:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2012/01/28/how-to-download-videos-from-infoq-for.html" rel="alternate" type="text/html" />
 <author>
@@ -2045,7 +2764,7 @@ However, I found very elegant solution how to do that. I did it on my MacOS X wi
 <entry>
 <id>http://next.javaheadbrain.com/posts/2012/01/10/rapid-automation-for-flexjavablazeds.html</id>
 <title>Rapid automation for Flex/Java/BlazeDS projects</title>
-<updated>2016-09-09T15:34:01-04:00</updated>
+<updated>2016-09-09T15:34:10-04:00</updated>
 <published>2012-01-10T00:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2012/01/10/rapid-automation-for-flexjavablazeds.html" rel="alternate" type="text/html" />
 <author>
@@ -2065,7 +2784,7 @@ Feel free to comment!&lt;/p&gt;
 <entry>
 <id>http://next.javaheadbrain.com/posts/2011/09/11/adobe-max.html</id>
 <title>Adobe MAX</title>
-<updated>2016-09-09T15:34:01-04:00</updated>
+<updated>2016-09-09T15:34:10-04:00</updated>
 <published>2011-09-11T23:07:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2011/09/11/adobe-max.html" rel="alternate" type="text/html" />
 <author>
@@ -2099,7 +2818,7 @@ Creative Cloud - another big thing was announced. Sharing and collaboration b/w 
 <entry>
 <id>http://next.javaheadbrain.com/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html</id>
 <title>Eclipse: java.lang.UnsatisfiedLinkError: Cannot load 32-bit SWT libraries on 64-bit JVM</title>
-<updated>2016-09-09T15:34:01-04:00</updated>
+<updated>2016-09-09T15:34:10-04:00</updated>
 <published>2011-07-26T04:22:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html" rel="alternate" type="text/html" />
 <author>
@@ -2240,7 +2959,7 @@ to Eclipse→Preferences→Java→Installed JRE and add default JVM argument *&l
 <entry>
 <id>http://next.javaheadbrain.com/posts/2011/07/10/building-and-testing-with-gradle-my.html</id>
 <title>Building and Testing with Gradle - My Book Review</title>
-<updated>2016-09-09T15:34:01-04:00</updated>
+<updated>2016-09-09T15:34:10-04:00</updated>
 <published>2011-07-10T20:57:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2011/07/10/building-and-testing-with-gradle-my.html" rel="alternate" type="text/html" />
 <author>

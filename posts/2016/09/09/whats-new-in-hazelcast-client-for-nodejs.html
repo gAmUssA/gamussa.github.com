@@ -1,0 +1,688 @@
+<!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><html class="no-js" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>What&#8217;s New in Hazelcast Node.js Client | Java.Head.Brain</title><meta name="author" content="Mustafa Iman &lt;mustafa.iman@hazelcast.com&gt;, Viktor Gamov &lt;viktor@hazelcast.com&gt;"><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@asciidoctor"><meta name="twitter:url" content="http://next.javaheadbrain.com/posts/2016/09/09/whats-new-in-hazelcast-client-for-nodejs.html"><meta name="twitter:title" content="What&#8217;s New in Hazelcast Node.js Client"><meta name="twitter:description" content="TL;DR
+Rejoice, JavaScript people!
+There are many new features in Hazelcast Node.js Client 0.4.1.
+In the 10 minutes, you spend reading this blog I will cover "what&#8217;s new"!
+Also,..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html"><span class="icon"><i class="fa fa-bars"></i></span>&nbspBlog</a></li><li class="divider"></li><li><a href="http://github.com/gamussa">Github&nbsp<span class="icon"><i class="fa fa-github"></i></span></a></li><li class="divider"></li><li><a href="http://twitter.com/gamussa">Twitter&nbsp<span class="icon"><i class="fa fa-twitter"></i></span></a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://next.javaheadbrain.com">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h2 class="header"><a href="/posts/2016/09/09/whats-new-in-hazelcast-client-for-nodejs.html">What&#8217;s New in Hazelcast Node.js Client</a></h2><h5 class="subheader">Written by&nbsp <a href="#">Mustafa Iman &lt;mustafa.iman@hazelcast.com&gt;, Viktor Gamov &lt;viktor@hazelcast.com&gt;</a>&nbsp- <time class="pubdate" datetime="2016-09-09T06:05:51-06:00">Friday, September 9, 2016</time></h5><div class="row"><div class="large-12 columns text-left"><div id="preamble">
+<div class="sectionbody">
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="/images/node.png" alt="node">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">TL;DR</div>
+Rejoice, JavaScript people!
+There are many new features in Hazelcast Node.js Client 0.4.1.
+In the 10 minutes, you spend reading this blog I will cover "what&#8217;s new"!
+Also, if you read this blog post till the end, you will also learn what&#8217;s coming to future releases.
+</td>
+</tr>
+</table>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle" class="title">Table of content</div>
+<ul class="sectlevel1">
+<li><a href="#whats-new-in-0.4">What&#8217;s new</a>
+<ul class="sectlevel2">
+<li><a href="#serialization-support-and-interoperability-of-languages">Serialization and Interoperability with other Hazelcast clients</a></li>
+<li><a href="#predicates">Predicates</a></li>
+<li><a href="#multimap">MultiMap, Set, List</a></li>
+<li><a href="#lock">Distributed Lock</a></li>
+<li><a href="#queue">Messaging with Queue</a></li>
+<li><a href="#data-affinity">Data Affinity</a></li>
+</ul>
+</li>
+<li><a href="#whats-next">Sneak Peek of v0.5 and beyond</a>
+<ul class="sectlevel2">
+<li><a href="#even-more-data-structures">Even more Data Structures!</a></li>
+<li><a href="#fresh-meat">Fresh Meat</a></li>
+</ul>
+</li>
+<li><a href="#resources">Resources</a></li>
+</ul>
+</div>
+<div class="paragraph">
+<p>It has been a while since out first blog post on Hazelcast Node.js Client <sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnote_1" title="View footnote.">1</a>]</sup>.
+Our brave developers have been very busy adding new features and making Hazelcast Node.js Client faster!</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+If you haven&#8217;t read previous Getting Started blog post, it&#8217;s a perfect opportunity to press <kbd>Pause</kbd> button now.
+That "Getting started" post contains all required information to get the Hazelcast Node.js Client gears moving.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="whats-new-in-0.4"><a class="anchor" href="#whats-new-in-0.4"></a>What&#8217;s new</h2>
+<div class="sectionbody">
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The code example in this article were tested under <code>node v6.3.1 (npm v3.10.3)</code> with Hazelcast Client <code>0.4.1</code>.
+Many examples contain modern EcmaScript 6 syntax constructs, like <code>&#8658;</code> aka "far arrow" and etc.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Alright.
+Since our previous announcement of v0.2, we added the most of the frequently used features of Hazelcast to Node.js client. Including:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Distributed Map aka <code>IMap</code> with support of Predicates and Entry Processors</p>
+</li>
+<li>
+<p>MultiMap</p>
+</li>
+<li>
+<p>Set</p>
+</li>
+<li>
+<p>List</p>
+</li>
+<li>
+<p>Distributed Locks aka <code>ILock</code></p>
+</li>
+<li>
+<p>Queue</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Also, we brought full interoperability with other Hazelcast clients <sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnote_2" title="View footnote.">2</a>]</sup>.</p>
+</div>
+<div class="quoteblock">
+<div class="title">Let&#8217;s have a quick look at this first because:</div>
+<blockquote>
+I don&#8217;t know how to put this, but it&#8217;s kind of a big deal.
+</blockquote>
+<div class="attribution">
+&#8212; Ron Burgundy<br>
+<cite>Anchorman: The Legend of Ron Burgundy</cite>
+</div>
+</div>
+<div class="imageblock" style="text-align: left">
+<div class="content">
+<img src="/images/ron.jpg" alt="ron">
+</div>
+</div>
+<div class="sect2">
+<h3 id="serialization-support-and-interoperability-of-languages"><a class="anchor" href="#serialization-support-and-interoperability-of-languages"></a>Serialization and Interoperability with other Hazelcast clients</h3>
+<div class="paragraph">
+<p>Hazelcast Node.js client now supports all native serialization techniques that Hazelcast supports.
+Meaning you can just connect your Node.js client to your working Hazelcast cluster and read what is already there, put new objects and read them from other clients.
+The fact that Node.js client supports Hazelcast native serialization means it is also fully compatible with all available client languages.
+The client serializes string, number, and array data types automatically.
+This makes text-based serialization formats like JSON or XML suitable candidate for a message.
+Developers can provide serializers for custom objects.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>For example, a Java application uses Hazelcast Java Client to store the results of a long-running computation (like Map/Reduce job), and Node.js, <code>.NET</code> or Python applications can consume the results for displaying for the web (Node.js), in Rich Desktop Application (.NET / C#) or for further research and data science with Python math packages.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>To demonstrate this approach, let&#8217;s write <code>Java</code> <code>&#8656;&#8658;</code> <code>Node.js</code> application.
+We will use <code>Person</code> object from the previous blog post.
+It has 3 properties - <code>firstName</code>, <code>lastName</code> and <code>age</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Person.java</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-java" data-lang="java">public class Person implements IdentifiedDataSerializable { <i class="conum" data-value="1"></i><b>(1)</b>
+    String firstName;
+    String lastName;
+    int age;
+
+    public Person() {
+    }
+
+    public Person(String firstName, String lastName, int age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+    }
+
+    @Override
+    public void writeData(ObjectDataOutput out) throws IOException { <i class="conum" data-value="2"></i><b>(2)</b>
+        out.writeUTF(firstName);
+        out.writeUTF(lastName);
+        out.writeInt(age);
+    }
+
+    @Override
+    public void readData(ObjectDataInput in) throws IOException { <i class="conum" data-value="3"></i><b>(3)</b>
+        this.firstName = in.readUTF();
+        this.lastName = in.readUTF();
+        this.age = in.readInt();
+    }
+
+    @Override public int getFactoryId() {
+        return 42;
+    }
+
+    @Override public int getId() {
+        return 42;
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>A <code>Person</code> object implements IdentifiedDataSerializable - fast serialization from Hazelcast.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>A <code>writeData</code> method defines how property values will be written to the binary output.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>A <code>readData</code> method defines how values can be retrieved from binary input.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Make sure you read from input in the same order you as you wrote to the binary output.
+Detailed description of <code>IdentifiedDataSerializable</code> methods can be found «Serialization» <sup class="footnote">[<a id="_footnoteref_3" class="footnote" href="#_footnote_3" title="View footnote.">3</a>]</sup> section of <a href="http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html">Hazelcast Documentation</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Let&#8217;s look what a JavaScript counterpart object looks like.</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-javascript" data-lang="javascript">function Person(firstName, lastName, age) { <i class="conum" data-value="1"></i><b>(1)</b>
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+}
+
+Person.prototype.getFactoryId = function () {
+    return 42;
+};
+
+Person.prototype.getClassId = function () {
+    return 42;
+};
+
+Person.prototype.writeData = function (dataOutput) { <i class="conum" data-value="2"></i><b>(2)</b>
+    dataOutput.writeUTF(this.firstName);
+    dataOutput.writeUTF(this.lastName);
+    dataOutput.writeInt(this.age);
+};
+
+Person.prototype.readData = function (dataInput) { <i class="conum" data-value="3"></i><b>(3)</b>
+    this.firstName = dataInput.readUTF();
+    this.lastName = dataInput.readUTF();
+    this.age = dataInput.readInt();
+};</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>JavaScript doesn&#8217;t have interfaces as Java. So, it&#8217;s just a JavaScript object.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Similarly to Java object, we need to implement <code>writeData</code>&#8230;&#8203;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>&#8230;&#8203; and <code>readData</code> methods.</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Last step - register <code>DataSerializableFactory</code> in client config object</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-javascript" data-lang="javascript">var config = new Config.ClientConfig();
+config.serializationConfig.dataSerializableFactories[42] = {
+    create: (type) =&gt; {
+        if (type === 42) { <i class="conum" data-value="1"></i><b>(1)</b>
+            return new Person();
+        }
+    }
+};</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Based on <code>typeId</code>, Hazelcast will figure out what object will be restored from the binary data.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can checkout
+<a href="http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#serialization">Serialization Section</a> and
+<a href="http://hazelcast.github.io/hazelcast-nodejs-client/api/0.4/docs/modules/_serialization_serializable_.html">Node.js documentation</a> about how to register custom serializers.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="predicates"><a class="anchor" href="#predicates"></a>Predicates</h3>
+<div class="paragraph">
+<p>Hazelcast IMap is an essentially key-value store.
+And usually, a developer uses the keys to retrieve data.
+But in certain cases, a developer doesn&#8217;t know a key.
+Or when a developer needs to find many entries satisfy a condition from a distributed Map.
+In this case, you needed to retrieve all entries from that map and filter them on the client side.
+But this method leads to the substantial amount of network communion.
+If you are looking for a small subset of the entries, it is more efficient to retrieve only the entries you are looking for using newly introduced predicates.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s say you keep ages of people in a Hazelcast map.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-javascript" data-lang="javascript">map.putAll(['Alice', 34], ['Joe', 22], ['George', 27]);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can quickly retrieve entries of people that are older than 25 with following code snippet</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-javascript" data-lang="javascript">var Predicates = require('hazelcast-client').Predicates;
+map.entrySetWithPredicate(Predicates.greaterThan('this', 25)).then((people) =&gt; {
+    people.forEach((person) =&gt; {
+        console.log('Person: ' + person[0] + ', age: ' + person[1]);
+   });
+});</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Above snippet will print names and ages of <code>Alice</code> and <code>George</code>.</p>
+</div>
+<div class="paragraph">
+<p>If you only need their names but not ages,</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-javascript" data-lang="javascript">map.keySetWithPredicate(Predicates.greaterThan('this', 25));</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>will return only names of <code>Alice</code> and <code>George</code>.</p>
+</div>
+<div class="paragraph">
+<p>You can find a full list of available predicates at <a href="http://hazelcast.github.io/hazelcast-nodejs-client/api/0.4/docs/modules/_core_predicate_.html">API docs</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="multimap"><a class="anchor" href="#multimap"></a>MultiMap, Set, List</h3>
+<div class="paragraph">
+<p>MultiMap is a particular version of a Map that supports multiple values associated with a single key.</p>
+</div>
+<div class="listingblock">
+<div class="title">The restaurants MultiMap</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-javascript" data-lang="javascript">var mmap = hazelcastClient.getMultiMap('restaurants'); <i class="conum" data-value="1"></i><b>(1)</b>
+mmap.put("New York", "Red Lobster") <i class="conum" data-value="2"></i><b>(2)</b>
+    .then(() =&gt; {
+        return mmap.put("New York", "Eataly");
+    })
+    .then(() =&gt; {
+        return mmap.get("New York");
+    })
+    .then((list) =&gt; {
+        console.log(list);
+    });
+
+mmap.put("Las Vegas", "Burgr") <i class="conum" data-value="3"></i><b>(3)</b>
+    .then(() =&gt; {
+            return mmap.put("Las Vegas", "Alibi");
+        }
+    ).then(() =&gt; {
+    return mmap.put("Las Vegas", "Pub &amp; Grill");
+
+}).then(() =&gt; {
+    return mmap.get("Las Vegas")
+}).then((list) =&gt; {
+    console.log(list);
+});</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>In this example we have MultiMap of restaurants</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Name of the city used as a key - <code>New York</code> or <code>Las Vegas</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>When we need to get a collection of entries.
+Hazelcast MultiMap supports two types of values - <code>Set</code> (doesn&#8217;t allow duplicates, default) and <code>List</code> (preserves order).
+It can be configured using cluster config object <sup class="footnote">[<a id="_footnoteref_4" class="footnote" href="#_footnote_4" title="View footnote.">4</a>]</sup>.</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Output looks like follows</div>
+<div class="content">
+<pre class="nowrap">[ 'Eataly', 'Red Lobster' ]
+[ 'Pub &amp; Grill', 'Alibi', 'Burgr' ]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can find more info here - <a href="http://hazelcast.github.io/hazelcast-nodejs-client/api/0.4/docs/interfaces/_proxy_multimap_.multimap.html">MultiMap API</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="lock"><a class="anchor" href="#lock"></a>Distributed Lock</h3>
+<div class="paragraph">
+<p>If you need to synchronize your data access through the cluster, Hazelcast&#8217;s distributed lock implementation will come useful.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-javascript" data-lang="javascript">var globalLock = client.getLock('global-lock');
+
+globalLock.lock();
+// you can do some job here which doesn't allow shared access
+globalLock.unlock();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>All supported lock operations are listed in <a href="http://hazelcast.github.io/hazelcast-nodejs-client/api/0.4/docs/interfaces/_proxy_ilock_.ilock.html">ILock API</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="queue"><a class="anchor" href="#queue"></a>Messaging with Queue</h3>
+<div class="paragraph">
+<p>Hazelcast distributed queue enables all cluster members and client to interact with it.
+Using Hazelcast distributed queue, you can add an item from one client and read it from another.
+FIFO ordering will apply to all queue operations across the cluster.</p>
+</div>
+<div class="listingblock">
+<div class="title">Client 1 - Consumer of tasks</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-javascript" data-lang="javascript">var logger = hazelcastClient.loggingService;
+var queue = hazelcastClient.getQueue('tasks');
+
+// slow consumer
+setInterval(() =&gt; {
+    queue.take().then((task) =&gt; {
+        logger.info("Consumer", `executing task: ${task}`);
+    });
+}, 1000);</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Client 2 - Producer of tasks</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-javascript" data-lang="javascript">var logger = hazelcastClient.loggingService;
+var queue = hazelcastClient.getQueue('tasks');
+
+// fast producer
+setInterval(() =&gt; {
+    var task = tasks[Math.floor(Math.random() * tasks.length)];
+    logger.info("Producer", `publishing task: ${task}`);
+    queue.offer(task);
+}, 500);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example, Hazelcast&#8217;s uses a «buffer» to separate a fast producer from a slow consumer and this prevents consumer overloading.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="data-affinity"><a class="anchor" href="#data-affinity"></a>Data Affinity</h3>
+<div class="paragraph">
+<p>One of the things that we brought to <code>v0.4.1</code> is ability increase locality of computations and data access on a cluster.
+Developers will be able to control on which partitions each key is stored.
+It is only a matter of adding a <code>getPartitionKey()</code> function to user objects.</p>
+</div>
+<div class="listingblock">
+<div class="title">A developer needs to implement <code>getPartitionKey</code> method</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-javascript" data-lang="javascript">'use strict';
+let Client = require('hazelcast-client').Client;
+
+function Company(name, address) { <i class="conum" data-value="1"></i><b>(1)</b>
+    this.name = name;
+    this.address = address;
+}
+
+Company.prototype.getName = function () {
+    return this.name;
+};
+
+function Associate(firstName, lastName, companyName) { <i class="conum" data-value="2"></i><b>(2)</b>
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.companyName = companyName;
+}
+
+Associate.prototype.getCompanyName = function () {
+    return this.companyName;
+};
+
+function PartitionAwareKey(key, partitionKey) {
+    this.key = key;
+    this.partitionKey = partitionKey;
+}
+
+PartitionAwareKey.prototype.getPartitionKey = function () { <i class="conum" data-value="3"></i><b>(3)</b>
+    return this.partitionKey;
+};
+
+Client.newHazelcastClient().then((hazelcastClient) =&gt; {
+    let companyMap = hazelcastClient.getMap('companyMap');
+    let associateMap = hazelcastClient.getMap('associateMap');
+    let partitionService = hazelcastClient.getPartitionService();
+
+    let company = new Company("IBM", "Armonk, North Castle, NY");
+    let associate = new Associate("John", "Smith", company.getName());
+
+    let key1 = new PartitionAwareKey("k1", company.getName());  <i class="conum" data-value="4"></i><b>(4)</b>
+    let key2 = new PartitionAwareKey("a1", associate.getCompanyName()); <i class="conum" data-value="4"></i><b>(4)</b>
+
+    console.log(partitionService.getPartitionId(key1)); <i class="conum" data-value="5"></i><b>(5)</b>
+    console.log(partitionService.getPartitionId(key2)); <i class="conum" data-value="5"></i><b>(5)</b>
+
+    companyMap.set(key1, company).then(() =&gt; { <i class="conum" data-value="6"></i><b>(6)</b>
+        associateMap.set(key2, associate);
+    });
+
+});</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>An object <code>Company</code> contains name and address of a company.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>An object <code>Associate</code> contains info about company&#8217;s employee.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td><code>PartitionAwareKey</code> (sort of a composite key) should have <code>getPartitionId</code> method that Hazelcast will use to collocate related data.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>A <code>companyName</code> property used as partition id.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>A <code>partitionId</code> for both keys will be the same&#8230;&#8203;</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>&#8230;&#8203;meaning «John Smith» and «IBM» will be co-located on the same partition.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Having selected key partition explicitly, users can benefit from on the cluster processing of entries using EntryProcessor&#8217;s.
+Entry processor eliminates the cost of transferring entries between cluster and clients back and forth for simple transformations.</p>
+</div>
+<div class="paragraph">
+<p>To learn more about Data Affinity in Hazelcast, check official documentation <sup class="footnote">[<a id="_footnoteref_5" class="footnote" href="#_footnote_5" title="View footnote.">5</a>]</sup>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="whats-next"><a class="anchor" href="#whats-next"></a>Sneak Peek of v0.5 and beyond</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="/images/wonka.jpg" alt="wonka">
+</div>
+</div>
+<div class="sect2">
+<h3 id="even-more-data-structures"><a class="anchor" href="#even-more-data-structures"></a>Even more Data Structures!</h3>
+<div class="paragraph">
+<p>New release of Node.js client will introduce new data structures such as <code>RingBuffer</code> and <code>Topic</code>.
+These data structures are suitable for implementing pub-sub use cases.
+Together with <code>Queue</code>, <code>RB</code> and <code>Topic</code> enable messaging capabilities for your application.
+Check <a href="#queue">Messaging with Queue</a> section for peer-to-peer communication example.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="fresh-meat"><a class="anchor" href="#fresh-meat"></a>Fresh Meat</h3>
+<div class="paragraph">
+<p>Even though v0.5 is not released yet, you don&#8217;t have to wait for to try these new features.
+You can build the client locally <sup class="footnote">[<a id="_footnoteref_6" class="footnote" href="#_footnote_6" title="View footnote.">6</a>]</sup>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Or, thanks to NPM,  install Hazelcast Client from <code>master</code> branch.</div>
+<div class="content">
+<pre class="nowrap">npm install git+https://git@github.com:hazelcast/hazelcast-nodejs-client.git</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The feedback and pull requests are greatly appreciated.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="resources"><a class="anchor" href="#resources"></a>Resources</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As always, please, stay in touch.
+There a bunch of way to provide the feedback:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Hazelcast Node.js Client <a href="http://github.com/hazelcast/hazelcast-nodejs-client/">repository on github</a>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>if you have found a bug, please report</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Chat with the developers</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://gitter.im/hazelcast/hazelcast">Hazelcast Chat</a></p>
+</li>
+<li>
+<p><a href="https://gitter.im/hazelcast/hazelcast-nodejs-client">Hazelcast Node.js client Chat</a> <sup class="footnote">[<a id="_footnoteref_7" class="footnote" href="#_footnote_7" title="View footnote.">7</a>]</sup></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="http://groups.google.com/group/hazelcast">Google Group</a></p>
+</li>
+<li>
+<p><a href="http://stackoverflow.com/questions/tagged/hazelcast">Stackoverflow</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnote_1">
+<a href="#_footnoteref_1">1</a>. <a href="http://blog.hazelcast.com/getting-started-with-hazelcast-and-node-js-2/" class="bare">http://blog.hazelcast.com/getting-started-with-hazelcast-and-node-js-2/</a>
+</div>
+<div class="footnote" id="_footnote_2">
+<a href="#_footnoteref_2">2</a>. <a href="https://hazelcast.org/clients-languages/" class="bare">https://hazelcast.org/clients-languages/</a>
+</div>
+<div class="footnote" id="_footnote_3">
+<a href="#_footnoteref_3">3</a>. <a href="http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#identifieddataserializable" class="bare">http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#identifieddataserializable</a>
+</div>
+<div class="footnote" id="_footnote_4">
+<a href="#_footnoteref_4">4</a>. <a href="http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#configuring-multimap" class="bare">http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#configuring-multimap</a>
+</div>
+<div class="footnote" id="_footnote_5">
+<a href="#_footnoteref_5">5</a>. <a href="http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#data-affinity" class="bare">http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#data-affinity</a>
+</div>
+<div class="footnote" id="_footnote_6">
+<a href="#_footnoteref_6">6</a>. <a href="https://github.com/hazelcast/hazelcast-nodejs-client#building-and-installing-from-sources" class="bare">https://github.com/hazelcast/hazelcast-nodejs-client#building-and-installing-from-sources</a>
+</div>
+<div class="footnote" id="_footnote_7">
+<a href="#_footnoteref_7">7</a>. It is a community chat / forum but not a support portal. We can help with answering the questions, and provide pointers but we&#8217;re not going to write code for you. We are encouraging people in the community to share the knowledge, please, don&#8217;t abuse it. If you&#8217;re interested in 24/7 support, we have a dedicated support portal available on commercial terms. Contact <code>sales at Hazelcast dot com</code> to learn more.
+</div>
+</div></div></div><footer class="entry-footer"><div class="tags"><span class="title">tags: </span><a href="/posts/tags/hazelcast">hazelcast, </a><a href="/posts/tags/nodejs">nodejs </a></div></footer><div id="comments">
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+            var disqus_shortname = 'nextjavaheadbraincom';
+            var disqus_url = "http://next.javaheadbrain.com/posts/2016/09/09/whats-new-in-hazelcast-client-for-nodejs.html";
+            var disqus_developer = null;
+            var disqus_identifier = null;
+            (function() {
+              var dsq = document.createElement("script"); dsq.type = "text/javascript"; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(dsq);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=nextjavaheadbraincom">comments powered by Disqus.</a></noscript>
+          </div></article></div></div></body></html><div id="copyright"><div class="row full-width"><div class="large-4 columns"><p>© Viktor Gamov 2016—2007</p></div><div class="large-8 columns"><ul class="inline-list right"><li><a href="https://github.com/gAmUssA"></a>Github&nbsp<span class="icon"><i class="fa fa-github"></i></span></li><li><a href="http://twitter.com/gAmUssA"></a>Twitter&nbsp<span class="icon"><i class="fa fa-twitter"></i></span></li><li><a href="#"></a></li></ul></div></div></div><script>document.write('<script src=' + ('__proto__' in {} ? '/javascripts/vendor/zepto' : '/javascripts/vendor/jquery') + '.js><\/script>')</script><script src="/javascripts/foundation/foundation.js"><script src="/javascripts/foundation/foundation.topbar.js"></script></script><script>$(document).foundation();</script><script src="/javascripts/vendor/highlight.min.js"></script><script>$(hljs.initHighlighting());</script><script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount','UA-40354726-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+ var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!--End Footer-->
