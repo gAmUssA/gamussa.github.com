@@ -77,7 +77,7 @@ That "Getting started" post contains all required information to get the Hazelca
 </td>
 <td class="content">
 The code example in this article were tested under <code>node v6.3.1 (npm v3.10.3)</code> with Hazelcast Client <code>0.4.1</code>.
-Many examples contain modern EcmaScript 6 syntax constructs, like <code>&#8658;</code> aka «arrow function» <sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnote_2" title="View footnote.">2</a>]</sup>.
+Many examples contain modern EcmaScript 6 syntax constructs, like classes and <code>&#8658;</code> aka «arrow function» <sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnote_2" title="View footnote.">2</a>]</sup>.
 </td>
 </tr>
 </table>
@@ -221,38 +221,40 @@ Detailed description of <code>IdentifiedDataSerializable</code> methods can be f
 <div class="listingblock">
 <div class="title">Let&#8217;s look what a JavaScript counterpart object looks like.</div>
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-javascript" data-lang="javascript">function Person(firstName, lastName, age) { <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight nowrap"><code class="language-javascript" data-lang="javascript">class Person {
+  constructor(firstName, lastName, age) {   <i class="conum" data-value="1"></i><b>(1)</b>
     this.firstName = firstName;
     this.lastName = lastName;
     this.age = age;
-}
+  }
 
-Person.prototype.getFactoryId = function () {
+  getFactoryId() {
     return 42;
-};
+  }
 
-Person.prototype.getClassId = function () {
+  getClassId() {
     return 42;
-};
+  }
 
-Person.prototype.writeData = function (dataOutput) { <i class="conum" data-value="2"></i><b>(2)</b>
+  writeData(dataOutput) {   <i class="conum" data-value="2"></i><b>(2)</b>
     dataOutput.writeUTF(this.firstName);
     dataOutput.writeUTF(this.lastName);
     dataOutput.writeInt(this.age);
-};
+  }
 
-Person.prototype.readData = function (dataInput) { <i class="conum" data-value="3"></i><b>(3)</b>
+  readData(dataInput) {     <i class="conum" data-value="3"></i><b>(3)</b>
     this.firstName = dataInput.readUTF();
     this.lastName = dataInput.readUTF();
     this.age = dataInput.readInt();
-};</code></pre>
+  }
+}</code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>JavaScript doesn&#8217;t have interfaces as Java. So, it&#8217;s just a JavaScript object.</td>
+<td>JavaScript doesn&#8217;t have interfaces as Java. So, it&#8217;s just a JavaScript class.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -269,7 +271,7 @@ Person.prototype.readData = function (dataInput) { <i class="conum" data-value="
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-javascript" data-lang="javascript">var config = new Config.ClientConfig();
 config.serializationConfig.dataSerializableFactories[42] = {
-    create: (type) =&gt; {
+    create (type) {
         if (type === 42) { <i class="conum" data-value="1"></i><b>(1)</b>
             return new Person();
         }
@@ -315,11 +317,11 @@ If you are looking for a small subset of the entries, it is more efficient to re
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-javascript" data-lang="javascript">var Predicates = require('hazelcast-client').Predicates;
+<pre class="highlightjs highlight nowrap"><code class="language-javascript" data-lang="javascript">const Predicates = require('hazelcast-client').Predicates;
 map.entrySetWithPredicate(Predicates.greaterThan('this', 25))
-    .then((people) =&gt; {
-        people.forEach(person =&gt; console.log(`Person: ${person[0]}, age: ${person[1]}`));
-    });</code></pre>
+  .then((people) =&gt; {
+    people.forEach(person =&gt; console.log(`Person: ${person[0]}, age: ${person[1]}`));
+  });</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -348,16 +350,16 @@ map.entrySetWithPredicate(Predicates.greaterThan('this', 25))
 <div class="listingblock">
 <div class="title">The restaurants MultiMap</div>
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-javascript" data-lang="javascript">var mmap = hazelcastClient.getMultiMap('restaurants'); <i class="conum" data-value="1"></i><b>(1)</b>
-mmap.put("New York", "Red Lobster")                     <i class="conum" data-value="2"></i><b>(2)</b>
-    .then(() =&gt; mmap.put("New York", "Eataly"))
-    .then(() =&gt; mmap.get("New York"))
+<pre class="highlightjs highlight nowrap"><code class="language-javascript" data-lang="javascript">let mmap = hazelcastClient.getMultiMap('restaurants');  <i class="conum" data-value="1"></i><b>(1)</b>
+  mmap.put('New York', 'Red Lobster')           <i class="conum" data-value="2"></i><b>(2)</b>
+    .then(() =&gt; mmap.put('New York', 'Eataly'))
+    .then(() =&gt; mmap.get('New York'))
     .then(list =&gt; console.log(list));
 
-mmap.put("Las Vegas", "Burgr")                      <i class="conum" data-value="3"></i><b>(3)</b>
-    .then(() =&gt; mmap.put("Las Vegas", "Alibi"))
-    .then(() =&gt; mmap.put("Las Vegas", "Pub &amp; Grill"))
-    .then(() =&gt; mmap.get("Las Vegas"))
+  mmap.put('Las Vegas', 'Burgr')    <i class="conum" data-value="3"></i><b>(3)</b>
+    .then(() =&gt; mmap.put('Las Vegas', 'Alibi'))
+    .then(() =&gt; mmap.put('Las Vegas', 'Pub &amp; Grill'))
+    .then(() =&gt; mmap.get('Las Vegas'))
     .then(list =&gt; console.log(list));</code></pre>
 </div>
 </div>
@@ -418,8 +420,8 @@ FIFO ordering will apply to all queue operations across the cluster.</p>
 <div class="listingblock">
 <div class="title">Client 1 - Consumer of tasks</div>
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-javascript" data-lang="javascript">var logger = hazelcastClient.loggingService;
-var queue = hazelcastClient.getQueue('tasks');
+<pre class="highlightjs highlight nowrap"><code class="language-javascript" data-lang="javascript">let logger = hazelcastClient.loggingService;
+let queue = hazelcastClient.getQueue('tasks');
 
 // slow consumer
 setInterval(() =&gt; {
@@ -430,8 +432,8 @@ setInterval(() =&gt; {
 <div class="listingblock">
 <div class="title">Client 2 - Producer of tasks</div>
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-javascript" data-lang="javascript">var logger = hazelcastClient.loggingService;
-var queue = hazelcastClient.getQueue('tasks');
+<pre class="highlightjs highlight nowrap"><code class="language-javascript" data-lang="javascript">let logger = hazelcastClient.loggingService;
+let queue = hazelcastClient.getQueue('tasks');
 
 // fast producer
 setInterval(() =&gt; {
@@ -458,51 +460,55 @@ It is only a matter of adding a <code>getPartitionKey()</code> function to user 
 <pre class="highlightjs highlight nowrap"><code class="language-javascript" data-lang="javascript">'use strict';
 let Client = require('hazelcast-client').Client;
 
-function Company(name, address) { <i class="conum" data-value="1"></i><b>(1)</b>
+class Company {  <i class="conum" data-value="1"></i><b>(1)</b>
+  constructor(name, address) {
     this.name = name;
     this.address = address;
+  }
+
+  getName() {
+    return this.name;
+  }
 }
 
-Company.prototype.getName = function () {
-    return this.name;
-};
-
-function Associate(firstName, lastName, companyName) { <i class="conum" data-value="2"></i><b>(2)</b>
+class Associate {   <i class="conum" data-value="2"></i><b>(2)</b>
+  constructor(firstName, lastName, companyName) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.companyName = companyName;
+  }
+
+  getCompanyName() {
+    return this.companyName;
+  }
 }
 
-Associate.prototype.getCompanyName = function () {
-    return this.companyName;
-};
-
-function PartitionAwareKey(key, partitionKey) {
+class PartitionAwareKey {
+  constructor(key, partitionKey) {
     this.key = key;
     this.partitionKey = partitionKey;
+  }
+
+  getPartititionKey() { <i class="conum" data-value="3"></i><b>(3)</b>
+    return this.partitionKey;
+  }
 }
 
-PartitionAwareKey.prototype.getPartitionKey = function () { <i class="conum" data-value="3"></i><b>(3)</b>
-    return this.partitionKey;
-};
-
 Client.newHazelcastClient().then((hazelcastClient) =&gt; {
-    let companyMap = hazelcastClient.getMap('companyMap');
-    let associateMap = hazelcastClient.getMap('associateMap');
-    let partitionService = hazelcastClient.getPartitionService();
+  let companyMap = hazelcastClient.getMap('companyMap');
+  let associateMap = hazelcastClient.getMap('associateMap');
+  let partitionService = hazelcastClient.getPartitionService();
 
-    let company = new Company('IBM', 'Armonk, North Castle, NY');
-    let associate = new Associate('John', 'Smith', company.getName());
+  let company = new Company('IBM', 'Armonk, North Castle, NY');
+  let associate = new Associate('John', 'Smith', company.getName());
 
-    let key1 = new PartitionAwareKey('k1', company.getName());  <i class="conum" data-value="4"></i><b>(4)</b>
-    let key2 = new PartitionAwareKey('a1', associate.getCompanyName()); <i class="conum" data-value="4"></i><b>(4)</b>
+  let key1 = new PartitionAwareKey('k1', company.getName());    <i class="conum" data-value="4"></i><b>(4)</b>
+  let key2 = new PartitionAwareKey('a1', associate.getCompanyName());   <i class="conum" data-value="4"></i><b>(4)</b>
 
-    console.log(partitionService.getPartitionId(key1)); <i class="conum" data-value="5"></i><b>(5)</b>
-    console.log(partitionService.getPartitionId(key2)); <i class="conum" data-value="5"></i><b>(5)</b>
+  console.log(partitionService.getPartitionId(key1));   <i class="conum" data-value="5"></i><b>(5)</b>
+  console.log(partitionService.getPartitionId(key2));   <i class="conum" data-value="5"></i><b>(5)</b>
 
-    companyMap.set(key1, company).then(() =&gt; { <i class="conum" data-value="6"></i><b>(6)</b>
-        associateMap.set(key2, associate);
-    });
+  companyMap.set(key1, company).then(() =&gt; associateMap.set(key2, associate));  <i class="conum" data-value="6"></i><b>(6)</b>
 
 });</code></pre>
 </div>
@@ -511,11 +517,11 @@ Client.newHazelcastClient().then((hazelcastClient) =&gt; {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>An object <code>Company</code> contains name and address of a company.</td>
+<td>A class <code>Company</code> contains name and address of a company.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>An object <code>Associate</code> contains info about company&#8217;s employee.</td>
+<td>A class <code>Associate</code> contains info about company&#8217;s employee.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
