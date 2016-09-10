@@ -77,7 +77,7 @@ That "Getting started" post contains all required information to get the Hazelca
 </td>
 <td class="content">
 The code example in this article were tested under <code>node v6.3.1 (npm v3.10.3)</code> with Hazelcast Client <code>0.4.1</code>.
-Many examples contain modern EcmaScript 6 syntax constructs, like <code>&#8658;</code> aka "far arrow" and etc.
+Many examples contain modern EcmaScript 6 syntax constructs, like <code>&#8658;</code> aka «arrow function» <sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnote_2" title="View footnote.">2</a>]</sup>.
 </td>
 </tr>
 </table>
@@ -109,7 +109,7 @@ Since our previous announcement of v0.2, we added the most of the frequently use
 </ul>
 </div>
 <div class="paragraph">
-<p>Also, we brought full interoperability with other Hazelcast clients <sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnote_2" title="View footnote.">2</a>]</sup>.</p>
+<p>Also, we brought full interoperability with other Hazelcast clients <sup class="footnote">[<a id="_footnoteref_3" class="footnote" href="#_footnote_3" title="View footnote.">3</a>]</sup>.</p>
 </div>
 <div class="quoteblock">
 <div class="title">Let&#8217;s have a quick look at this first because:</div>
@@ -213,7 +213,7 @@ It has 3 properties - <code>firstName</code>, <code>lastName</code> and <code>ag
 </td>
 <td class="content">
 Make sure you read from input in the same order you as you wrote to the binary output.
-Detailed description of <code>IdentifiedDataSerializable</code> methods can be found «Serialization» <sup class="footnote">[<a id="_footnoteref_3" class="footnote" href="#_footnote_3" title="View footnote.">3</a>]</sup> section of <a href="http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html">Hazelcast Documentation</a>.
+Detailed description of <code>IdentifiedDataSerializable</code> methods can be found «Serialization» <sup class="footnote">[<a id="_footnoteref_4" class="footnote" href="#_footnote_4" title="View footnote.">4</a>]</sup> section of <a href="http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html">Hazelcast Documentation</a>.
 </td>
 </tr>
 </table>
@@ -316,11 +316,10 @@ If you are looking for a small subset of the entries, it is more efficient to re
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-javascript" data-lang="javascript">var Predicates = require('hazelcast-client').Predicates;
-map.entrySetWithPredicate(Predicates.greaterThan('this', 25)).then((people) =&gt; {
-    people.forEach((person) =&gt; {
-        console.log('Person: ' + person[0] + ', age: ' + person[1]);
-   });
-});</code></pre>
+map.entrySetWithPredicate(Predicates.greaterThan('this', 25))
+    .then((people) =&gt; {
+        people.forEach(person =&gt; console.log(`Person: ${person[0]}, age: ${person[1]}`));
+    });</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -350,29 +349,16 @@ map.entrySetWithPredicate(Predicates.greaterThan('this', 25)).then((people) =&gt
 <div class="title">The restaurants MultiMap</div>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-javascript" data-lang="javascript">var mmap = hazelcastClient.getMultiMap('restaurants'); <i class="conum" data-value="1"></i><b>(1)</b>
-mmap.put("New York", "Red Lobster") <i class="conum" data-value="2"></i><b>(2)</b>
-    .then(() =&gt; {
-        return mmap.put("New York", "Eataly");
-    })
-    .then(() =&gt; {
-        return mmap.get("New York");
-    })
-    .then((list) =&gt; {
-        console.log(list);
-    });
+mmap.put("New York", "Red Lobster")                     <i class="conum" data-value="2"></i><b>(2)</b>
+    .then(() =&gt; mmap.put("New York", "Eataly"))
+    .then(() =&gt; mmap.get("New York"))
+    .then(list =&gt; console.log(list));
 
-mmap.put("Las Vegas", "Burgr") <i class="conum" data-value="3"></i><b>(3)</b>
-    .then(() =&gt; {
-            return mmap.put("Las Vegas", "Alibi");
-        }
-    ).then(() =&gt; {
-    return mmap.put("Las Vegas", "Pub &amp; Grill");
-
-}).then(() =&gt; {
-    return mmap.get("Las Vegas")
-}).then((list) =&gt; {
-    console.log(list);
-});</code></pre>
+mmap.put("Las Vegas", "Burgr")                      <i class="conum" data-value="3"></i><b>(3)</b>
+    .then(() =&gt; mmap.put("Las Vegas", "Alibi"))
+    .then(() =&gt; mmap.put("Las Vegas", "Pub &amp; Grill"))
+    .then(() =&gt; mmap.get("Las Vegas"))
+    .then(list =&gt; console.log(list));</code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -389,7 +375,7 @@ mmap.put("Las Vegas", "Burgr") <i class="conum" data-value="3"></i><b>(3)</b>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
 <td>When we need to get a collection of entries.
 Hazelcast MultiMap supports two types of values - <code>Set</code> (doesn&#8217;t allow duplicates, default) and <code>List</code> (preserves order).
-It can be configured using cluster config object <sup class="footnote">[<a id="_footnoteref_4" class="footnote" href="#_footnote_4" title="View footnote.">4</a>]</sup>.</td>
+It can be configured using cluster config object <sup class="footnote">[<a id="_footnoteref_5" class="footnote" href="#_footnote_5" title="View footnote.">5</a>]</sup>.</td>
 </tr>
 </table>
 </div>
@@ -437,9 +423,7 @@ var queue = hazelcastClient.getQueue('tasks');
 
 // slow consumer
 setInterval(() =&gt; {
-    queue.take().then((task) =&gt; {
-        logger.info("Consumer", `executing task: ${task}`);
-    });
+    queue.take().then(task =&gt; logger.info("Consumer", `executing task: ${task}`));
 }, 1000);</code></pre>
 </div>
 </div>
@@ -507,11 +491,11 @@ Client.newHazelcastClient().then((hazelcastClient) =&gt; {
     let associateMap = hazelcastClient.getMap('associateMap');
     let partitionService = hazelcastClient.getPartitionService();
 
-    let company = new Company("IBM", "Armonk, North Castle, NY");
-    let associate = new Associate("John", "Smith", company.getName());
+    let company = new Company('IBM', 'Armonk, North Castle, NY');
+    let associate = new Associate('John', 'Smith', company.getName());
 
-    let key1 = new PartitionAwareKey("k1", company.getName());  <i class="conum" data-value="4"></i><b>(4)</b>
-    let key2 = new PartitionAwareKey("a1", associate.getCompanyName()); <i class="conum" data-value="4"></i><b>(4)</b>
+    let key1 = new PartitionAwareKey('k1', company.getName());  <i class="conum" data-value="4"></i><b>(4)</b>
+    let key2 = new PartitionAwareKey('a1', associate.getCompanyName()); <i class="conum" data-value="4"></i><b>(4)</b>
 
     console.log(partitionService.getPartitionId(key1)); <i class="conum" data-value="5"></i><b>(5)</b>
     console.log(partitionService.getPartitionId(key2)); <i class="conum" data-value="5"></i><b>(5)</b>
@@ -556,7 +540,7 @@ Client.newHazelcastClient().then((hazelcastClient) =&gt; {
 Entry processor eliminates the cost of transferring entries between cluster and clients back and forth for simple transformations.</p>
 </div>
 <div class="paragraph">
-<p>To learn more about Data Affinity in Hazelcast, check official documentation <sup class="footnote">[<a id="_footnoteref_5" class="footnote" href="#_footnote_5" title="View footnote.">5</a>]</sup>.</p>
+<p>To learn more about Data Affinity in Hazelcast, check official documentation <sup class="footnote">[<a id="_footnoteref_6" class="footnote" href="#_footnote_6" title="View footnote.">6</a>]</sup>.</p>
 </div>
 </div>
 </div>
@@ -582,7 +566,7 @@ Check <a href="#queue">Messaging with Queue</a> section for peer-to-peer communi
 <h3 id="fresh-meat"><a class="anchor" href="#fresh-meat"></a>Fresh Meat</h3>
 <div class="paragraph">
 <p>Even though v0.5 is not released yet, you don&#8217;t have to wait for to try these new features.
-You can build the client locally <sup class="footnote">[<a id="_footnoteref_6" class="footnote" href="#_footnote_6" title="View footnote.">6</a>]</sup>.</p>
+You can build the client locally <sup class="footnote">[<a id="_footnoteref_7" class="footnote" href="#_footnote_7" title="View footnote.">7</a>]</sup>.</p>
 </div>
 <div class="listingblock">
 <div class="title">Or, thanks to NPM,  install Hazelcast Client from <code>master</code> branch.</div>
@@ -623,7 +607,7 @@ There a bunch of way to provide the feedback:</p>
 <p><a href="https://gitter.im/hazelcast/hazelcast">Hazelcast Chat</a></p>
 </li>
 <li>
-<p><a href="https://gitter.im/hazelcast/hazelcast-nodejs-client">Hazelcast Node.js client Chat</a> <sup class="footnote">[<a id="_footnoteref_7" class="footnote" href="#_footnote_7" title="View footnote.">7</a>]</sup></p>
+<p><a href="https://gitter.im/hazelcast/hazelcast-nodejs-client">Hazelcast Node.js client Chat</a> <sup class="footnote">[<a id="_footnoteref_8" class="footnote" href="#_footnote_8" title="View footnote.">8</a>]</sup></p>
 </li>
 </ul>
 </div>
@@ -644,22 +628,25 @@ There a bunch of way to provide the feedback:</p>
 <a href="#_footnoteref_1">1</a>. <a href="http://blog.hazelcast.com/getting-started-with-hazelcast-and-node-js-2/" class="bare">http://blog.hazelcast.com/getting-started-with-hazelcast-and-node-js-2/</a>
 </div>
 <div class="footnote" id="_footnote_2">
-<a href="#_footnoteref_2">2</a>. <a href="https://hazelcast.org/clients-languages/" class="bare">https://hazelcast.org/clients-languages/</a>
+<a href="#_footnoteref_2">2</a>. <a href="http://wesbos.com/arrow-functions/" class="bare">http://wesbos.com/arrow-functions/</a>
 </div>
 <div class="footnote" id="_footnote_3">
-<a href="#_footnoteref_3">3</a>. <a href="http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#identifieddataserializable" class="bare">http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#identifieddataserializable</a>
+<a href="#_footnoteref_3">3</a>. <a href="https://hazelcast.org/clients-languages/" class="bare">https://hazelcast.org/clients-languages/</a>
 </div>
 <div class="footnote" id="_footnote_4">
-<a href="#_footnoteref_4">4</a>. <a href="http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#configuring-multimap" class="bare">http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#configuring-multimap</a>
+<a href="#_footnoteref_4">4</a>. <a href="http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#identifieddataserializable" class="bare">http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#identifieddataserializable</a>
 </div>
 <div class="footnote" id="_footnote_5">
-<a href="#_footnoteref_5">5</a>. <a href="http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#data-affinity" class="bare">http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#data-affinity</a>
+<a href="#_footnoteref_5">5</a>. <a href="http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#configuring-multimap" class="bare">http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#configuring-multimap</a>
 </div>
 <div class="footnote" id="_footnote_6">
-<a href="#_footnoteref_6">6</a>. <a href="https://github.com/hazelcast/hazelcast-nodejs-client#building-and-installing-from-sources" class="bare">https://github.com/hazelcast/hazelcast-nodejs-client#building-and-installing-from-sources</a>
+<a href="#_footnoteref_6">6</a>. <a href="http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#data-affinity" class="bare">http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#data-affinity</a>
 </div>
 <div class="footnote" id="_footnote_7">
-<a href="#_footnoteref_7">7</a>. It is a community chat / forum but not a support portal. We can help with answering the questions, and provide pointers but we&#8217;re not going to write code for you. We are encouraging people in the community to share the knowledge, please, don&#8217;t abuse it. If you&#8217;re interested in 24/7 support, we have a dedicated support portal available on commercial terms. Contact <code>sales at Hazelcast dot com</code> to learn more.
+<a href="#_footnoteref_7">7</a>. <a href="https://github.com/hazelcast/hazelcast-nodejs-client#building-and-installing-from-sources" class="bare">https://github.com/hazelcast/hazelcast-nodejs-client#building-and-installing-from-sources</a>
+</div>
+<div class="footnote" id="_footnote_8">
+<a href="#_footnoteref_8">8</a>. It is a community chat / forum but not a support portal. We can help with answering the questions, and provide pointers but we&#8217;re not going to write code for you. We are encouraging people in the community to share the knowledge, please, don&#8217;t abuse it. If you&#8217;re interested in 24/7 support, we have a dedicated support portal available on commercial terms. Contact <code>sales at Hazelcast dot com</code> to learn more.
 </div>
 </div></div></div><footer class="entry-footer"><div class="tags"><span class="title">tags: </span><a href="/posts/tags/hazelcast">hazelcast, </a><a href="/posts/tags/nodejs">nodejs </a></div></footer><div id="comments">
             <div id="disqus_thread"></div>
