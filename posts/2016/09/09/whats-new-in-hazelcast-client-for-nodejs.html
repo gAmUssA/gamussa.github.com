@@ -350,17 +350,17 @@ map.entrySetWithPredicate(Predicates.greaterThan('this', 25))
 <div class="listingblock">
 <div class="title">The restaurants MultiMap</div>
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-javascript" data-lang="javascript">let mmap = hazelcastClient.getMultiMap('restaurants');  <i class="conum" data-value="1"></i><b>(1)</b>
-  mmap.put('New York', 'Red Lobster')           <i class="conum" data-value="2"></i><b>(2)</b>
-    .then(() =&gt; mmap.put('New York', 'Eataly'))
-    .then(() =&gt; mmap.get('New York'))
-    .then(list =&gt; console.log(list));
+<pre class="highlightjs highlight nowrap"><code class="language-javascript" data-lang="javascript">let mmap = hazelcastClient.getMultiMap('restaurants');      <i class="conum" data-value="1"></i><b>(1)</b>
+mmap.put('New York', 'Red Lobster')     <i class="conum" data-value="2"></i><b>(2)</b>
+  .then(() =&gt; mmap.put('New York', 'Eataly'))
+  .then(() =&gt; mmap.get('New York'))
+  .then(list =&gt; console.log(list));
 
-  mmap.put('Las Vegas', 'Burgr')    <i class="conum" data-value="3"></i><b>(3)</b>
-    .then(() =&gt; mmap.put('Las Vegas', 'Alibi'))
-    .then(() =&gt; mmap.put('Las Vegas', 'Pub &amp; Grill'))
-    .then(() =&gt; mmap.get('Las Vegas'))
-    .then(list =&gt; console.log(list));</code></pre>
+mmap.put('Las Vegas', 'Burgr')      <i class="conum" data-value="3"></i><b>(3)</b>
+  .then(() =&gt; mmap.put('Las Vegas', 'Alibi'))
+  .then(() =&gt; mmap.put('Las Vegas', 'Pub &amp; Grill'))
+  .then(() =&gt; mmap.get('Las Vegas'))
+  .then(list =&gt; console.log(list));</code></pre>
 </div>
 </div>
 <div class="colist arabic">
