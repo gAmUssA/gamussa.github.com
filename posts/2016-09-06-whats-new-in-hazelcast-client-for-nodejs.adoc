@@ -248,17 +248,17 @@ MultiMap is a particular version of a Map that supports multiple values associat
 [source,javascript]
 .The restaurants MultiMap
 ----
-let mmap = hazelcastClient.getMultiMap('restaurants');  // <1>
-  mmap.put('New York', 'Red Lobster')           // <2>
-    .then(() => mmap.put('New York', 'Eataly'))
-    .then(() => mmap.get('New York'))
-    .then(list => console.log(list));
+let mmap = hazelcastClient.getMultiMap('restaurants');      // <1>
+mmap.put('New York', 'Red Lobster')     // <2>
+  .then(() => mmap.put('New York', 'Eataly'))
+  .then(() => mmap.get('New York'))
+  .then(list => console.log(list));
 
-  mmap.put('Las Vegas', 'Burgr')    // <3>
-    .then(() => mmap.put('Las Vegas', 'Alibi'))
-    .then(() => mmap.put('Las Vegas', 'Pub & Grill'))
-    .then(() => mmap.get('Las Vegas'))
-    .then(list => console.log(list));
+mmap.put('Las Vegas', 'Burgr')      // <3>
+  .then(() => mmap.put('Las Vegas', 'Alibi'))
+  .then(() => mmap.put('Las Vegas', 'Pub & Grill'))
+  .then(() => mmap.get('Las Vegas'))
+  .then(list => console.log(list));
 ----
 <1> In this example we have MultiMap of restaurants
 <2> Name of the city used as a key - `New York` or `Las Vegas`
