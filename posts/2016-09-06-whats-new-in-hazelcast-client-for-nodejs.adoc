@@ -60,7 +60,7 @@ That "Getting started" post contains all required information to get the Hazelca
 == What's new
 
 IMPORTANT: The code example in this article were tested under `node v6.3.1 (npm v3.10.3)` with Hazelcast Client `0.4.1`. 
-Many examples contain modern EcmaScript 6 syntax constructs, like `=>` aka "far arrow" and etc.
+Many examples contain modern EcmaScript 6 syntax constructs, like `=>` aka «arrow function» footnote:[http://wesbos.com/arrow-functions/].
 
 Alright. 
 Since our previous announcement of v0.2, we added the most of the frequently used features of Hazelcast to Node.js client. Including:
@@ -219,11 +219,10 @@ You can quickly retrieve entries of people that are older than 25 with following
 [source,javascript]
 ----
 var Predicates = require('hazelcast-client').Predicates;
-map.entrySetWithPredicate(Predicates.greaterThan('this', 25)).then((people) => {
-    people.forEach((person) => {
-        console.log('Person: ' + person[0] + ', age: ' + person[1]);
-   });
-});
+map.entrySetWithPredicate(Predicates.greaterThan('this', 25))
+    .then((people) => {
+        people.forEach(person => console.log(`Person: ${person[0]}, age: ${person[1]}`));
+    });
 ----
 
 Above snippet will print names and ages of `Alice` and `George`.
@@ -248,29 +247,16 @@ MultiMap is a particular version of a Map that supports multiple values associat
 .The restaurants MultiMap
 ----
 var mmap = hazelcastClient.getMultiMap('restaurants'); // <1>
-mmap.put("New York", "Red Lobster") // <2>
-    .then(() => {
-        return mmap.put("New York", "Eataly");
-    })
-    .then(() => {
-        return mmap.get("New York");
-    })
-    .then((list) => {
-        console.log(list);
-    });
+mmap.put("New York", "Red Lobster")                     // <2>
+    .then(() => mmap.put("New York", "Eataly"))
+    .then(() => mmap.get("New York"))
+    .then(list => console.log(list));
 
-mmap.put("Las Vegas", "Burgr") // <3>
-    .then(() => {
-            return mmap.put("Las Vegas", "Alibi");
-        }
-    ).then(() => {
-    return mmap.put("Las Vegas", "Pub & Grill");
-
-}).then(() => {
-    return mmap.get("Las Vegas")
-}).then((list) => {
-    console.log(list);
-});
+mmap.put("Las Vegas", "Burgr")                      // <3>
+    .then(() => mmap.put("Las Vegas", "Alibi"))
+    .then(() => mmap.put("Las Vegas", "Pub & Grill"))
+    .then(() => mmap.get("Las Vegas"))
+    .then(list => console.log(list));
 ----
 <1> In this example we have MultiMap of restaurants
 <2> Name of the city used as a key - `New York` or `Las Vegas`
@@ -318,9 +304,7 @@ var queue = hazelcastClient.getQueue('tasks');
 
 // slow consumer
 setInterval(() => {
-    queue.take().then((task) => {
-        logger.info("Consumer", `executing task: ${task}`);
-    });
+    queue.take().then(task => logger.info("Consumer", `executing task: ${task}`));
 }, 1000);
 ----
 
@@ -385,11 +369,11 @@ Client.newHazelcastClient().then((hazelcastClient) => {
     let associateMap = hazelcastClient.getMap('associateMap');
     let partitionService = hazelcastClient.getPartitionService();
 
-    let company = new Company("IBM", "Armonk, North Castle, NY");
-    let associate = new Associate("John", "Smith", company.getName());
+    let company = new Company('IBM', 'Armonk, North Castle, NY');
+    let associate = new Associate('John', 'Smith', company.getName());
 
-    let key1 = new PartitionAwareKey("k1", company.getName());  // <4>
-    let key2 = new PartitionAwareKey("a1", associate.getCompanyName()); // <4>
+    let key1 = new PartitionAwareKey('k1', company.getName());  // <4>
+    let key2 = new PartitionAwareKey('a1', associate.getCompanyName()); // <4>
 
     console.log(partitionService.getPartitionId(key1)); // <5>
     console.log(partitionService.getPartitionId(key2)); // <5>
