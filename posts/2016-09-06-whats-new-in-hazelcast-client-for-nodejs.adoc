@@ -60,7 +60,7 @@ That "Getting started" post contains all required information to get the Hazelca
 == What's new
 
 IMPORTANT: The code example in this article were tested under `node v6.3.1 (npm v3.10.3)` with Hazelcast Client `0.4.1`. 
-Many examples contain modern EcmaScript 6 syntax constructs, like `=>` aka «arrow function» footnote:[http://wesbos.com/arrow-functions/].
+Many examples contain modern EcmaScript 6 syntax constructs, like classes and `=>` aka «arrow function» footnote:[http://wesbos.com/arrow-functions/].
 
 Alright. 
 Since our previous announcement of v0.2, we added the most of the frequently used features of Hazelcast to Node.js client. Including:
@@ -148,33 +148,35 @@ Detailed description of `IdentifiedDataSerializable` methods can be found «Seri
 .Let's look what a JavaScript counterpart object looks like.
 [source,javascript]
 ----
-function Person(firstName, lastName, age) { // <1>
+class Person {
+  constructor(firstName, lastName, age) {   // <1>
     this.firstName = firstName;
     this.lastName = lastName;
     this.age = age;
-}
+  }
 
-Person.prototype.getFactoryId = function () {
+  getFactoryId() {
     return 42;
-};
+  }
 
-Person.prototype.getClassId = function () {
+  getClassId() {
     return 42;
-};
+  }
 
-Person.prototype.writeData = function (dataOutput) { // <2>
+  writeData(dataOutput) {   // <2>
     dataOutput.writeUTF(this.firstName);
     dataOutput.writeUTF(this.lastName);
     dataOutput.writeInt(this.age);
-};
+  }
 
-Person.prototype.readData = function (dataInput) { // <3>
+  readData(dataInput) {     // <3>
     this.firstName = dataInput.readUTF();
     this.lastName = dataInput.readUTF();
     this.age = dataInput.readInt();
-};
+  }
+}
 ----
-<1> JavaScript doesn't have interfaces as Java. So, it's just a JavaScript object.
+<1> JavaScript doesn't have interfaces as Java. So, it's just a JavaScript class.
 <2> Similarly to Java object, we need to implement `writeData`...
 <3> ... and `readData` methods.
 
@@ -183,7 +185,7 @@ Person.prototype.readData = function (dataInput) { // <3>
 ----
 var config = new Config.ClientConfig();
 config.serializationConfig.dataSerializableFactories[42] = {
-    create: (type) => {
+    create (type) {
         if (type === 42) { // <1>
             return new Person();
         }
@@ -218,11 +220,11 @@ You can quickly retrieve entries of people that are older than 25 with following
 
 [source,javascript]
 ----
-var Predicates = require('hazelcast-client').Predicates;
+const Predicates = require('hazelcast-client').Predicates;
 map.entrySetWithPredicate(Predicates.greaterThan('this', 25))
-    .then((people) => {
-        people.forEach(person => console.log(`Person: ${person[0]}, age: ${person[1]}`));
-    });
+  .then((people) => {
+    people.forEach(person => console.log(`Person: ${person[0]}, age: ${person[1]}`));
+  });
 ----
 
 Above snippet will print names and ages of `Alice` and `George`.
@@ -246,16 +248,16 @@ MultiMap is a particular version of a Map that supports multiple values associat
 [source,javascript]
 .The restaurants MultiMap
 ----
-var mmap = hazelcastClient.getMultiMap('restaurants'); // <1>
-mmap.put("New York", "Red Lobster")                     // <2>
-    .then(() => mmap.put("New York", "Eataly"))
-    .then(() => mmap.get("New York"))
+let mmap = hazelcastClient.getMultiMap('restaurants');  // <1>
+  mmap.put('New York', 'Red Lobster')           // <2>
+    .then(() => mmap.put('New York', 'Eataly'))
+    .then(() => mmap.get('New York'))
     .then(list => console.log(list));
 
-mmap.put("Las Vegas", "Burgr")                      // <3>
-    .then(() => mmap.put("Las Vegas", "Alibi"))
-    .then(() => mmap.put("Las Vegas", "Pub & Grill"))
-    .then(() => mmap.get("Las Vegas"))
+  mmap.put('Las Vegas', 'Burgr')    // <3>
+    .then(() => mmap.put('Las Vegas', 'Alibi'))
+    .then(() => mmap.put('Las Vegas', 'Pub & Grill'))
+    .then(() => mmap.get('Las Vegas'))
     .then(list => console.log(list));
 ----
 <1> In this example we have MultiMap of restaurants
@@ -299,8 +301,8 @@ FIFO ordering will apply to all queue operations across the cluster.
 .Client 1 - Consumer of tasks
 [source,javascript]
 ----
-var logger = hazelcastClient.loggingService;
-var queue = hazelcastClient.getQueue('tasks');
+let logger = hazelcastClient.loggingService;
+let queue = hazelcastClient.getQueue('tasks');
 
 // slow consumer
 setInterval(() => {
@@ -311,8 +313,8 @@ setInterval(() => {
 .Client 2 - Producer of tasks
 [source,javascript]
 ----
-var logger = hazelcastClient.loggingService;
-var queue = hazelcastClient.getQueue('tasks');
+let logger = hazelcastClient.loggingService;
+let queue = hazelcastClient.getQueue('tasks');
 
 // fast producer
 setInterval(() => {
@@ -336,56 +338,60 @@ It is only a matter of adding a `getPartitionKey()` function to user objects.
 'use strict';
 let Client = require('hazelcast-client').Client;
 
-function Company(name, address) { // <1>
+class Company {  // <1>
+  constructor(name, address) {
     this.name = name;
     this.address = address;
+  }
+
+  getName() {
+    return this.name;
+  }
 }
 
-Company.prototype.getName = function () { 
-    return this.name;
-};
-
-function Associate(firstName, lastName, companyName) { // <2>
+class Associate {   // <2>
+  constructor(firstName, lastName, companyName) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.companyName = companyName;
+  }
+
+  getCompanyName() {
+    return this.companyName;
+  }
 }
 
-Associate.prototype.getCompanyName = function () {
-    return this.companyName;
-};
-
-function PartitionAwareKey(key, partitionKey) {
+class PartitionAwareKey {
+  constructor(key, partitionKey) {
     this.key = key;
     this.partitionKey = partitionKey;
+  }
+
+  getPartititionKey() { // <3>
+    return this.partitionKey;
+  }
 }
 
-PartitionAwareKey.prototype.getPartitionKey = function () { // <3>
-    return this.partitionKey;
-};
-
 Client.newHazelcastClient().then((hazelcastClient) => {
-    let companyMap = hazelcastClient.getMap('companyMap');
-    let associateMap = hazelcastClient.getMap('associateMap');
-    let partitionService = hazelcastClient.getPartitionService();
+  let companyMap = hazelcastClient.getMap('companyMap');
+  let associateMap = hazelcastClient.getMap('associateMap');
+  let partitionService = hazelcastClient.getPartitionService();
 
-    let company = new Company('IBM', 'Armonk, North Castle, NY');
-    let associate = new Associate('John', 'Smith', company.getName());
+  let company = new Company('IBM', 'Armonk, North Castle, NY'); 
+  let associate = new Associate('John', 'Smith', company.getName());
 
-    let key1 = new PartitionAwareKey('k1', company.getName());  // <4>
-    let key2 = new PartitionAwareKey('a1', associate.getCompanyName()); // <4>
+  let key1 = new PartitionAwareKey('k1', company.getName());    // <4>
+  let key2 = new PartitionAwareKey('a1', associate.getCompanyName());   // <4>
 
-    console.log(partitionService.getPartitionId(key1)); // <5>
-    console.log(partitionService.getPartitionId(key2)); // <5>
+  console.log(partitionService.getPartitionId(key1));   // <5>
+  console.log(partitionService.getPartitionId(key2));   // <5>
 
-    companyMap.set(key1, company).then(() => { // <6>
-        associateMap.set(key2, associate);
-    });
+  companyMap.set(key1, company).then(() => associateMap.set(key2, associate));  // <6>
 
 });
 ----
-<1> An object `Company` contains name and address of a company.
-<2> An object `Associate` contains info about company's employee.
+<1> A class `Company` contains name and address of a company.
+<2> A class `Associate` contains info about company's employee.
 <3> `PartitionAwareKey` (sort of a composite key) should have `getPartitionId` method that Hazelcast will use to collocate related data.
 <4> A `companyName` property used as partition id.
 <5> A `partitionId` for both keys will be the same...
