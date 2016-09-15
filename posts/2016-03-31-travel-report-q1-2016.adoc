@@ -1,7 +1,7 @@
 = Travel Report - Q1 2016
 Viktor Gamov
 2016-03-31 20:12
-:awestruct-draft: true
+:awestruct-draft: false
 :imagesdir: ../images
 :icons:
 :keywords:
