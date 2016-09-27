@@ -281,7 +281,7 @@ If you need to synchronize your data access through the cluster, Hazelcast's dis
 
 [source,javascript]
 ----
-var globalLock = client.getLock('global-lock');
+let globalLock = client.getLock('global-lock');
 
 globalLock.lock();
 // you can do some job here which doesn't allow shared access
