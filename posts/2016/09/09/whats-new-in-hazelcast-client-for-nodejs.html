@@ -399,7 +399,7 @@ It can be configured using cluster config object <sup class="footnote">[<a id="_
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-javascript" data-lang="javascript">var globalLock = client.getLock('global-lock');
+<pre class="highlightjs highlight nowrap"><code class="language-javascript" data-lang="javascript">let globalLock = client.getLock('global-lock');
 
 globalLock.lock();
 // you can do some job here which doesn't allow shared access
