@@ -13,6 +13,14 @@ endif::awestruct[]
 
 image::terminal_java.png[]
 
+.Revisions history
+[width="60%",cols="",options="header"]
+|===
+|Version    |Date   | Comments
+|*v1.1*     |11/8/2015 | Added Java 9 command
+|*v1.0*     |01/19/2013 | Initial blog post
+|===
+
 [.panel]
 Apple announced to remove Java Preferences app from Mac OS X. +
 Details could be found here http://support.apple.com/kb/HT5493). Let's try to fix it.
@@ -37,12 +45,20 @@ export JAVA_HOME=$(/usr/libexec/java_home -v 1.6)
  export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 --------------------------------------------------
 
+.To set JDK 9
+[source,shell]
+--------------------------------------------------
+ export JAVA_HOME=$(/usr/libexec/java_home -v 1.9)
+--------------------------------------------------
+
+
 .Created aliases for my zsh shell
 [source,shell]
 ------------------------------------------------------------------
 alias setjdk16='export JAVA_HOME=$(/usr/libexec/java_home -v 1.6)'
 alias setjdk17='export JAVA_HOME=$(/usr/libexec/java_home -v 1.7)'
 alias setjdk18='export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)'
+alias setjdk19='export JAVA_HOME=$(/usr/libexec/java_home -v 9)'
 ------------------------------------------------------------------
 
 For exotic cases, like Netbeans follow instruction https://blogs.oracle.com/bobby/entry/switching_jdks_on_mac[here]
