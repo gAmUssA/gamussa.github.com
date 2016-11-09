@@ -17,6 +17,7 @@ image::terminal_java.png[]
 [width="60%",cols="",options="header"]
 |===
 |Version    |Date   | Comments
+|*v1.2*     |11/9/2016 | Explained `JVMPlatformVersion` for Java 9
 |*v1.1*     |11/8/2016 | Added Java 9 command
 |*v1.0*     |01/19/2013 | Initial blog post
 |===
@@ -50,6 +51,12 @@ export JAVA_HOME=$(/usr/libexec/java_home -v 1.6)
 --------------------------------------------------
  export JAVA_HOME=$(/usr/libexec/java_home -v 9)
 --------------------------------------------------
+
+NOTE: In JDK 9, Oracle changed `JVMPlatformVersion` format. 
+Before JDK 9, the format was `1.x`
+
+.You can check this in `/Library/Java/JavaVirtualMachines/{java version}/Contents/Info.plist`
+image::info.plist_jdk8_9.png[]
 
 
 .Created aliases for my zsh shell
