@@ -17,7 +17,7 @@ image::terminal_java.png[]
 [width="60%",cols="",options="header"]
 |===
 |Version    |Date   | Comments
-|*v1.1*     |11/8/2015 | Added Java 9 command
+|*v1.1*     |11/8/2016 | Added Java 9 command
 |*v1.0*     |01/19/2013 | Initial blog post
 |===
 
@@ -48,7 +48,7 @@ export JAVA_HOME=$(/usr/libexec/java_home -v 1.6)
 .To set JDK 9
 [source,shell]
 --------------------------------------------------
- export JAVA_HOME=$(/usr/libexec/java_home -v 1.9)
+ export JAVA_HOME=$(/usr/libexec/java_home -v 9)
 --------------------------------------------------
 
 
@@ -61,4 +61,4 @@ alias setjdk18='export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)'
 alias setjdk19='export JAVA_HOME=$(/usr/libexec/java_home -v 9)'
 ------------------------------------------------------------------
 
-For exotic cases, like Netbeans follow instruction https://blogs.oracle.com/bobby/entry/switching_jdks_on_mac[here]
+For the exotic cases, like Netbeans follow instruction https://blogs.oracle.com/bobby/entry/switching_jdks_on_mac[here]
