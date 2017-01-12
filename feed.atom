@@ -5,13 +5,13 @@
 <author>
 <name>Viktor Gamov</name>
 </author>
-<updated>2017-01-12T13:57:37-05:00</updated>
+<updated>2017-01-12T15:15:37-05:00</updated>
 <link href="http://next.javaheadbrain.com/feed.atom" rel="self" type="application/atom+xml" />
 <link href="http://next.javaheadbrain.com/" rel="alternate" type="text/html" />
 <entry>
 <id>http://next.javaheadbrain.com/posts/2017/01/12/codemash-2017.html</id>
 <title>Codemash 2017</title>
-<updated>2017-01-12T13:57:37-05:00</updated>
+<updated>2017-01-12T15:15:37-05:00</updated>
 <published>2017-01-12T13:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2017/01/12/codemash-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -22,6 +22,10 @@ Table of Contents
 
 Caching Made Bootiful
 
+Grab the code 
+
+
+
 
 
 
@@ -36,13 +40,43 @@ Caching Made Bootiful
 Caching Made Bootiful
 
 
-Slides, links and code are coming soon!...
+Slides, links and code are coming soon!
+
+
+Grab the code 
+
+You can find code sample is following GH repository
+https://github.com/gAmUssA/bootiful_codemash2017
+
+
+Each branch represents parts of the talk:
+
+
+
+
+00-Inception - starting point of this talk, introduction of a slow service
+
+
+01-EnableCaching - we&#8217;re trying to fix slowness by enabling Spring Caching Abstraction
+
+
+02-EnableEmbeddedDistributedCaching - go distributed with embedded Hazelcast cluster.
+
+
+02-EnableClientClusterDistributedCaching - distributed client-cluster topology
+
+
+03-EnterJCache - with standard API for caching we can remove bunch of code and enable nice features like entry listeners...
 </summary>
 <content type="html">
 &lt;div id=&quot;toc&quot; class=&quot;toc&quot;&gt;
 &lt;div id=&quot;toctitle&quot;&gt;Table of Contents&lt;/div&gt;
 &lt;ul class=&quot;sectlevel1&quot;&gt;
-&lt;li&gt;&lt;a href=&quot;#caching-made-bootiful&quot;&gt;Caching Made Bootiful&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#caching-made-bootiful&quot;&gt;Caching Made Bootiful&lt;/a&gt;
+&lt;ul class=&quot;sectlevel2&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#grab-the-code-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;Grab the code &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div id=&quot;preamble&quot;&gt;
@@ -60,6 +94,35 @@ Slides, links and code are coming soon!...
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;Slides, links and code are coming soon!&lt;/p&gt;
 &lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;grab-the-code-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#grab-the-code-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;/a&gt;Grab the code &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;You can find code sample is following GH repository&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/gAmUssA/bootiful_codemash2017&quot; class=&quot;bare&quot;&gt;https://github.com/gAmUssA/bootiful_codemash2017&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Each branch represents parts of the talk:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;00-Inception&lt;/code&gt; - starting point of this talk, introduction of a &lt;em&gt;slow&lt;/em&gt; service&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;01-EnableCaching&lt;/code&gt; - we’re trying to fix slowness by enabling Spring Caching Abstraction&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;02-EnableEmbeddedDistributedCaching&lt;/code&gt; - go distributed with embedded Hazelcast cluster.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;02-EnableClientClusterDistributedCaching&lt;/code&gt; - distributed client-cluster topology&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;03-EnterJCache&lt;/code&gt; - with standard API for caching we can remove bunch of code and enable nice features like entry listeners&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </content>
@@ -67,7 +130,7 @@ Slides, links and code are coming soon!...
 <entry>
 <id>http://next.javaheadbrain.com/posts/2016/09/09/whats-new-in-hazelcast-client-for-nodejs.html</id>
 <title>What&#8217;s New in Hazelcast Node.js Client</title>
-<updated>2017-01-12T13:57:37-05:00</updated>
+<updated>2017-01-12T13:57:55-05:00</updated>
 <published>2016-09-09T06:05:51-06:00</published>
 <link href="http://next.javaheadbrain.com/posts/2016/09/09/whats-new-in-hazelcast-client-for-nodejs.html" rel="alternate" type="text/html" />
 <author>
@@ -779,7 +842,7 @@ There a bunch of way to provide the feedback:&lt;/p&gt;
 <entry>
 <id>http://next.javaheadbrain.com/posts/2016/04/18/getting-started-with-hazelcast-and-node.html</id>
 <title>Getting Started with Hazelcast and Node.js</title>
-<updated>2017-01-12T13:57:37-05:00</updated>
+<updated>2017-01-12T13:57:55-05:00</updated>
 <published>2016-04-18T06:05:51-06:00</published>
 <link href="http://next.javaheadbrain.com/posts/2016/04/18/getting-started-with-hazelcast-and-node.html" rel="alternate" type="text/html" />
 <author>
@@ -1143,7 +1206,7 @@ You have just connected to a Hazelcast cluster and performed basic CRUD operatio
 <entry>
 <id>http://next.javaheadbrain.com/posts/2016/03/31/travel-report-q1-2016.html</id>
 <title>Travel Report - Q1 2016</title>
-<updated>2017-01-12T13:57:37-05:00</updated>
+<updated>2017-01-12T13:57:55-05:00</updated>
 <published>2016-03-31T20:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2016/03/31/travel-report-q1-2016.html" rel="alternate" type="text/html" />
 <author>
@@ -1512,7 +1575,7 @@ I am really impressed with the flexibility that JUG organizers are developing to
 <entry>
 <id>http://next.javaheadbrain.com/posts/2015/12/31/caching-made-bootiful.html</id>
 <title>Caching Made Bootiful — Hazelcast Way</title>
-<updated>2017-01-12T13:57:37-05:00</updated>
+<updated>2017-01-12T13:57:55-05:00</updated>
 <published>2015-12-31T22:18:23-06:00</published>
 <link href="http://next.javaheadbrain.com/posts/2015/12/31/caching-made-bootiful.html" rel="alternate" type="text/html" />
 <author>
@@ -1856,7 +1919,7 @@ Meanwhile, if you have any questions, feel free to post them in the comments sec
 <entry>
 <id>http://next.javaheadbrain.com/posts/2015/12/29/my-year-at-hazelcast-in-review.html</id>
 <title>My Year At Hazelcast In Review</title>
-<updated>2017-01-12T13:57:37-05:00</updated>
+<updated>2017-01-12T13:57:55-05:00</updated>
 <published>2015-12-29T17:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2015/12/29/my-year-at-hazelcast-in-review.html" rel="alternate" type="text/html" />
 <author>
@@ -2205,7 +2268,7 @@ Looking forward to 2016 — Happy New Year &lt;span class=&quot;icon&quot;&g
 <entry>
 <id>http://next.javaheadbrain.com/posts/2015/11/02/hazelcast-for-mongodb-developers.html</id>
 <title>Hazelcast for MongoDB Developers</title>
-<updated>2017-01-12T13:57:37-05:00</updated>
+<updated>2017-01-12T13:57:55-05:00</updated>
 <published>2015-11-02T16:31:53-06:00</published>
 <link href="http://next.javaheadbrain.com/posts/2015/11/02/hazelcast-for-mongodb-developers.html" rel="alternate" type="text/html" />
 <author>
@@ -2520,7 +2583,7 @@ If I didn’t, please, ask me in the comments below.&lt;/p&gt;
 <entry>
 <id>http://next.javaheadbrain.com/posts/2015/01/27/ground-up-introduction-to-in-memory-data.html</id>
 <title>Ground-up Introduction To In-Memory Data</title>
-<updated>2017-01-12T13:57:37-05:00</updated>
+<updated>2017-01-12T13:57:55-05:00</updated>
 <published>2015-01-27T22:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2015/01/27/ground-up-introduction-to-in-memory-data.html" rel="alternate" type="text/html" />
 <author>
@@ -2630,7 +2693,7 @@ This April, &lt;a href=&quot;http://codepalousa.com/blog/2015/code-palousa-2015-
 <entry>
 <id>http://next.javaheadbrain.com/posts/2014/12/13/goodbye-farata-hello-hazelcast.html</id>
 <title>Goodbye, Farata. Hello, Hazelcast!</title>
-<updated>2017-01-12T13:57:37-05:00</updated>
+<updated>2017-01-12T13:57:55-05:00</updated>
 <published>2014-12-13T00:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2014/12/13/goodbye-farata-hello-hazelcast.html" rel="alternate" type="text/html" />
 <author>
@@ -2731,7 +2794,7 @@ Ultimately, I’ll be doing the pretty much same sorts of things I’ve been doi
 <entry>
 <id>http://next.javaheadbrain.com/posts/2013/07/17/getting-started-with-nashorn.html</id>
 <title>Getting Started With Nashorn</title>
-<updated>2017-01-12T13:57:37-05:00</updated>
+<updated>2017-01-12T13:57:55-05:00</updated>
 <published>2013-07-17T23:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2013/07/17/getting-started-with-nashorn.html" rel="alternate" type="text/html" />
 <author>
@@ -2899,7 +2962,7 @@ As you learned from my previous post, I’m going to talk about Nashorn - JavaSc
 <entry>
 <id>http://next.javaheadbrain.com/posts/2013/07/09/im-speaking-at-javaone.html</id>
 <title>I&#8217;m speaking at JavaOne 2013</title>
-<updated>2017-01-12T13:57:37-05:00</updated>
+<updated>2017-01-12T13:57:55-05:00</updated>
 <published>2013-07-09T01:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2013/07/09/im-speaking-at-javaone.html" rel="alternate" type="text/html" />
 <author>
@@ -2951,7 +3014,7 @@ Keep in touch for updates by following me on &lt;a href=&quot;http://twitter.com
 <entry>
 <id>http://next.javaheadbrain.com/posts/2013/01/19/set-jdk-on-osx.html</id>
 <title>Set JDK on OSX</title>
-<updated>2017-01-12T13:57:37-05:00</updated>
+<updated>2017-01-12T13:57:55-05:00</updated>
 <published>2013-01-19T14:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2013/01/19/set-jdk-on-osx.html" rel="alternate" type="text/html" />
 <author>
@@ -3153,7 +3216,7 @@ alias setjdk19=&amp;apos;export JAVA_HOME=$(/usr/libexec/java_home -v 9)&amp;apo
 <entry>
 <id>http://next.javaheadbrain.com/posts/2012/07/26/websockets-for-java-developers.html</id>
 <title>WebSockets for Java Developers. Princeton JUG talk slides</title>
-<updated>2017-01-12T13:57:37-05:00</updated>
+<updated>2017-01-12T13:57:55-05:00</updated>
 <published>2012-07-26T00:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2012/07/26/websockets-for-java-developers.html" rel="alternate" type="text/html" />
 <summary>
@@ -3189,7 +3252,7 @@ today.&lt;/p&gt;
 <entry>
 <id>http://next.javaheadbrain.com/posts/2012/05/21/alfred-showhide-desktop-icons-on-mac-os.html</id>
 <title>Alfred Extension: Show/Hide desktop icons on Mac OS X</title>
-<updated>2017-01-12T13:57:37-05:00</updated>
+<updated>2017-01-12T13:57:55-05:00</updated>
 <published>2012-05-21T00:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2012/05/21/alfred-showhide-desktop-icons-on-mac-os.html" rel="alternate" type="text/html" />
 <category term="alfred"></category>
@@ -3218,7 +3281,7 @@ Cheers&lt;/p&gt;
 <entry>
 <id>http://next.javaheadbrain.com/posts/2012/05/16/webjars-for-assets-management-in-your.html</id>
 <title>WebJars for assets management in your project</title>
-<updated>2017-01-12T13:57:37-05:00</updated>
+<updated>2017-01-12T13:57:55-05:00</updated>
 <published>2012-05-16T00:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2012/05/16/webjars-for-assets-management-in-your.html" rel="alternate" type="text/html" />
 <category term="java"></category>
@@ -3243,7 +3306,7 @@ But in most common situations, you don’t have lot of options for deployment yo
 <entry>
 <id>http://next.javaheadbrain.com/posts/2012/01/28/how-to-download-videos-from-infoq-for.html</id>
 <title>How to download videos from InfoQ for offline viewing</title>
-<updated>2017-01-12T13:57:37-05:00</updated>
+<updated>2017-01-12T13:57:55-05:00</updated>
 <published>2012-01-28T06:15:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2012/01/28/how-to-download-videos-from-infoq-for.html" rel="alternate" type="text/html" />
 <author>
@@ -3291,7 +3354,7 @@ However, I found very elegant solution how to do that. I did it on my MacOS X wi
 <entry>
 <id>http://next.javaheadbrain.com/posts/2012/01/10/rapid-automation-for-flexjavablazeds.html</id>
 <title>Rapid automation for Flex/Java/BlazeDS projects</title>
-<updated>2017-01-12T13:57:37-05:00</updated>
+<updated>2017-01-12T13:57:55-05:00</updated>
 <published>2012-01-10T00:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2012/01/10/rapid-automation-for-flexjavablazeds.html" rel="alternate" type="text/html" />
 <author>
@@ -3311,7 +3374,7 @@ Feel free to comment!&lt;/p&gt;
 <entry>
 <id>http://next.javaheadbrain.com/posts/2011/09/11/adobe-max.html</id>
 <title>Adobe MAX</title>
-<updated>2017-01-12T13:57:37-05:00</updated>
+<updated>2017-01-12T13:57:55-05:00</updated>
 <published>2011-09-11T23:07:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2011/09/11/adobe-max.html" rel="alternate" type="text/html" />
 <author>
@@ -3345,7 +3408,7 @@ Creative Cloud - another big thing was announced. Sharing and collaboration b/w 
 <entry>
 <id>http://next.javaheadbrain.com/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html</id>
 <title>Eclipse: java.lang.UnsatisfiedLinkError: Cannot load 32-bit SWT libraries on 64-bit JVM</title>
-<updated>2017-01-12T13:57:37-05:00</updated>
+<updated>2017-01-12T13:57:55-05:00</updated>
 <published>2011-07-26T04:22:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html" rel="alternate" type="text/html" />
 <author>
@@ -3486,7 +3549,7 @@ to Eclipse→Preferences→Java→Installed JRE and add default JVM argument *&l
 <entry>
 <id>http://next.javaheadbrain.com/posts/2011/07/10/building-and-testing-with-gradle-my.html</id>
 <title>Building and Testing with Gradle - My Book Review</title>
-<updated>2017-01-12T13:57:37-05:00</updated>
+<updated>2017-01-12T13:57:55-05:00</updated>
 <published>2011-07-10T20:57:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2011/07/10/building-and-testing-with-gradle-my.html" rel="alternate" type="text/html" />
 <author>
