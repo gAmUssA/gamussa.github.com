@@ -17,3 +17,17 @@ image::http://www.codemash.org/wp-content/themes/codemash/images/codemash-icon-f
 == Caching Made Bootiful 
 
 Slides, links and code are coming soon!
+
+=== Grab the code icon:code-fork[]
+
+.You can find code sample is following GH repository
+https://github.com/gAmUssA/bootiful_codemash2017
+
+Each branch represents parts of the talk:
+
+- `00-Inception` - starting point of this talk, introduction of a _slow_ service
+- `01-EnableCaching` - we're trying to fix slowness by enabling Spring Caching Abstraction
+- `02-EnableEmbeddedDistributedCaching` - go distributed with embedded Hazelcast cluster.
+- `02-EnableClientClusterDistributedCaching` - distributed client-cluster topology
+- `03-EnterJCache` - with standard API for caching we can remove bunch of code and enable nice features like entry listeners
+
