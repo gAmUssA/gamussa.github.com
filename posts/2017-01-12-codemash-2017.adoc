@@ -1,0 +1,19 @@
+= Codemash 2017
+Viktor Gamov
+2017-01-12 13:47
+:imagesdir: ../images
+:icons:
+:keywords:
+:toc:
+ifndef::awestruct[]
+:awestruct-layout: post
+:awestruct-tags: []
+:idprefix:
+:idseparator: -
+endif::awestruct[]
+
+image::http://www.codemash.org/wp-content/themes/codemash/images/codemash-icon-featured-box.png[align="center"]
+
+== Caching Made Bootiful 
+
+Slides, links and code are coming soon!
