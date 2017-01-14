@@ -16,8 +16,13 @@ image::http://www.codemash.org/wp-content/themes/codemash/images/codemash-icon-f
 
 == Caching Made Bootiful 
 
+
+[role="text-center"]
+video::QkQfFosZIlo[youtube, width=640, height=480]
+
 === Have you seen it? Do you like it?
 
+[role="text-center"]
 ++++
 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScXPE770oDhESoMlyP_oc35CYh50-lawp8TNN-oONInjB4Y4w/viewform?embedded=true" width="760" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
 ++++
