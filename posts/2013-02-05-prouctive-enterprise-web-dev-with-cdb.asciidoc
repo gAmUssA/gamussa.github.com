@@ -1,36 +1,43 @@
 = Productive Enterprise Web Development with ExtJS and Clear Data Builder =
-Viktor Gamov
+Viktor Gamov<viktor.gamov@faratasystems.com>
 2013-02-05
+:imagesdir: ../images
 :icons: font
 ifndef::awestruct[]
 :awestruct-layout: post
+:awestruct-tags: [java, extjs, sencha, cdb]
+:idprefix:
+:idseparator: -
 endif::awestruct[]
-:toc2:
-:Email:     viktor.gamov@faratasystems.com
+:toc: macro
 
-It's not likely that you'll start developing an enterprise HTML5 applications without using one of the JavaScript frameworks. One of the most feature-complete frameworks is http://www.sencha.com/products/extjs[ExtJS] from Sencha, but its learning curve is a bit steep. Our company, http://faratasystems.com[Farata Systems], has developed an open source software Clear Toolkit for ExtJS. Clear Toolkit includes an Eclipse plugin called Clear Data Builder (CDB). This is a productivity tool - a code generator - that can create a CRUD application for you in no time. This application will have HTML/JavaScript/ExtJS client and Java-based server. In this article you will learn how jump start development of such Web applications.
+
+It will not likely that you will start developing an enterprise HTML5 applications without using one of the JavaScript frameworks. 
+One of the most feature-complete frameworks is http://www.sencha.com/products/extjs[ExtJS] from Sencha, but its learning curve is a bit steep. Our company, http://faratasystems.com[Farata Systems], has developed an open source software Clear Toolkit for ExtJS. 
+Clear Toolkit includes an Eclipse plugin called Clear Data Builder (CDB). 
+It is a productivity tool - a code generator - that can create a CRUD application for you in no time. This application will have HTML/JavaScript/ExtJS client and Java-based server. In this article, you will learn how jumpstart development of such Web applications.
 
 toc::[]
 
 == Part One: ExtJS MVC Application Scaffolding ==
 
-In part one I'll cover the following topics:
+In part one I will cover the following topics:
 
 - What is Clear Toolkit for ExtJS 
 - How to create ExtJS MVC application for Java-based project
-- How deploy and run your first ExtJS+Java application on Apache Tomcat server
+- How to deploy and run your first ExtJS+Java application on Apache Tomcat server
 
 
-Clear Toolkit for ExtJS contains of following parts:
+Clear Toolkit for ExtJS contains following parts:
 
-- Clear Data Builder - Eclipse plugin that supports code generation ExtJS MVC artifacts based on Java code. CDB comes with wizards to start new project with plain Java or with popular frameworks like Hibernate, Spring, MyBatis.
+- Clear Data Builder - Eclipse plugin that supports code generation ExtJS MVC artifacts based on Java code. CDB comes with wizards to start a new project with plain Java or with popular frameworks like Hibernate, Spring, MyBatis.
 - Clear JS - set of JavaScript components that extends ExtJS standard components. E.g. Clear JS contains ChangeObject - a universal way to trace the state changes between old and new versions of the same item in a store. 
-- Clear Runtime - Java components that implements server side part of ChangeObject, DirectOptions and etc.
+- Clear Runtime - Java components implement server side part of `ChangeObject`, `DirectOptions` etc.
 
+The phrase "to be more productive" means to write less code and produce the results faster. 
+This is what CDB for. In this article, you will see how Clear Data Builder helps you to integrate the client side with the back end using the RPC style and how to implements data pagination for your application.
 
-The phrase "to be more productive" means to write less code and produce the results faster. This is what CDB is for. In this article you'll see how Clear Data Builder helps you to integrate the client side with the back end using the RPC style and how to implements data pagination for your application.
-
-CDB distribution available as plug-in for Eclipse IDE. The current update site of CDB is located http://cleartoolkit.com/downloads/plugins/extjs/cleardatabuilder/4.1.4/[here].  The current version is 4.1.4 (don't be surprised - this is a five-year old code generator, and its previous versions were made for generating the UI for Adobe Flex framework). You can install this plug-in via +Install New Software+ menu in Eclipse IDE. The <<FIG-1>> shows how you can validate plug-in installation. If you see "Clear Data Builder for Ext JS feature" in the list of Installed Software in your Eclipse IDE, you're good to go.
+CDB distribution is available as a plug-in for Eclipse IDE. The current update site of CDB located http://cleartoolkit.com/downloads/plugins/extjs/cleardatabuilder/4.1.4/[here].  The current version is 4.1.4 (don't be surprised - this is a five-year-old code generator, and its previous versions were made for generating the UI for Adobe Flex framework). You can install this plug-in via +Install New Software+ menu in Eclipse IDE. The <<FIG-1>> shows how you can validate the plug-in installation. If you see "Clear Data Builder for Ext JS feature" in the list of Installed Software in your Eclipse IDE, you are good to go.
 
 IMPORTANT: You have to have "Eclipse for Java EE Developers" installed, which includes the plugins for automation of the Web applications.
 
@@ -44,17 +51,17 @@ Clear Data Builder comes with a set of prepared examples that demonstrate the in
 .New CDB Project Wizard
 image::fig_02.png[image]
 
-First of all let's call the new project +episode_1_intro+. CDB supports different ways of linking the ExtJS framework to the application. In my case, I already have installed ExtJS libraries under my Web server (Apache Tomcat). We're going to use this local ExtJS URL, but you can just specify any folder in your machine and CDB will copy the ExtJS file inside your project. Lastly, you can use ExtJS from the Sencha's CDN, if you don't want to store these libraries inside your project. Besides, using a common CDN will allow Web browser to reuse the cached version of ExtJS. 
+First of all let's call the new project +episode_1_intro+. CDB supports different ways of linking the ExtJS framework to the application. In my case, I already have installed ExtJS libraries under my Web server (Apache Tomcat). We are going to use this local ExtJS URL, but you can just specify any folder in your machine, and CDB will copy the ExtJS file inside your project. Lastly, you can use ExtJS from the Sencha's CDN, if you do not want to store these libraries inside your project. Besides, using a common CDN allows a Web browser to reuse the cached version of ExtJS. 
 
-For this project we are not going to use any server-side (like MyBatis or Hibernate). Just click the button Finish. First of all, CDB will print some initial messages on the Eclipse console. When CDB runs for the first time it initializes directory structure in the +WebContent+ folder. Inside the WebContent directory CDB creates directory structure which is recommended by Sencha for MVC applications. Also you'll get the HTML wrapper - +index.html+ - for this application, which contains the link to the entry point of our application. 
+For this project, we are not going to use any server-side (like MyBatis or Hibernate). Just click the button Finish. First of all, CDB prints some initial messages on the Eclipse console. When CDB runs for the first time, it initializes directory structure in the +WebContent+ folder. Inside the WebContent directory, CDB creates a directory structure which is recommended by Sencha for MVC applications. Also, you'll get the HTML wrapper - +index.html+ - for this application, which contains the link to the entry point of our application. 
 
-CDB generates an empty project with one sample controller and one view - +Viewport.js+. To run this application, you need to add the newly generated Dynamic Web Project to Tomcat and start the server (write-click on the Tomcat in the Servers view).  
+CDB generates an empty project with one sample controller and one view - +Viewport.js+. To run this application, you need to add the newly generated Dynamic Web Project to Tomcat and start the server (right-click on the Tomcat in the Servers view).  
 
 [[FIG-3]]
 .Adding web project to Tomcat
 image::fig_03.png[image]
 
-Let me switch to web browser to open this application on +http://localhost:8080/episode_1_intro+ . Voila! Just in couple minutes we've setup new Dynamic Web Project with the ExtJS framework support and one fancy button on UI.
+Let me switch to a web browser to open this application on +http://localhost:8080/episode_1_intro+ . Voila! Just in couple minutes we have setup new Dynamic Web Project with the ExtJS framework support and one fancy button on UI.
 
 [[FIG-4]]
 .Running scaffolded application
@@ -286,5 +293,5 @@ Subscribe to our http://youtube.com/trainingAtFarata[youtube channel] to get acc
 * http://docs.sencha.com/ext-js/4-1/#!/api/Ext.toolbar.Paging[Ext.toolbar.Paging]
 * http://www.sencha.com/products/extjs/extdirect[Ext Direct]
 * https://code.google.com/p/directjngine/[DirectJNgine: Direct for Java]
-* https://github.com/Farata/ClearJS/wiki/Change-Object%3A-Synchronization-Keystone[Change Object: Synchronization Keystone]
+* https://github.com/Farata/ClearJS/wiki/Change-Object:-Synchronization-Keystone[Change Object: Synchronization Keystone]
 * https://github.com/Farata/ClearJS/wiki/Data-Pagination[Data Pagination in Clear Toolkit]
