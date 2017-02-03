@@ -1,14 +1,11 @@
-<!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><html class="no-js" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Productive Enterprise Web Development with ExtJS and Clear Data Builder | Java.Head.Brain</title><meta name="author" content="Viktor Gamov&lt;viktor.gamov@faratasystems.com&gt;"><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@asciidoctor"><meta name="twitter:url" content="http://next.javaheadbrain.com/posts/2013/02/05/prouctive-enterprise-web-dev-with-cdb.html"><meta name="twitter:title" content="Productive Enterprise Web Development with ExtJS and Clear Data Builder"><meta name="twitter:description" content="It will not likely that you will start developing an enterprise HTML5 applications without using one of the JavaScript frameworks.
-One of the most feature-complete frameworks..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html"><span class="icon"><i class="fa fa-th-large"></i></span>&nbspBlog</a></li><li class="divider"></li><li><a href="http://github.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-github"></i></span>&nbspGithub</a></li><li class="divider"></li><li><a href="http://twitter.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-twitter"></i></span>&nbspTwitter</a></li><li class="divider"></li><li><a href="https://www.youtube.com/playlist?list=PLaJqps0DAycqu2OV6sjl_Dm_VymB6KDV_" target="_blank"><span class="icon"><i class="fa fa-youtube"></i></span>&nbspMy Talks</a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://next.javaheadbrain.com">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h2 class="header"><a href="/posts/2013/02/05/prouctive-enterprise-web-dev-with-cdb.html">Productive Enterprise Web Development with ExtJS and Clear Data Builder</a></h2><h5 class="subheader">Written by&nbsp <a href="#">Viktor Gamov&lt;viktor.gamov@faratasystems.com&gt;</a>&nbsp- <time class="pubdate" datetime="2013-02-05T00:00:00+00:00">Tuesday, February 5, 2013</time></h5><div class="row"><div class="large-12 columns text-left"><div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>It will not likely that you will start developing an enterprise HTML5 applications without using one of the JavaScript frameworks.
-One of the most feature-complete frameworks is <a href="http://www.sencha.com/products/extjs">ExtJS</a> from Sencha, but its learning curve is a bit steep. Our company, <a href="http://faratasystems.com">Farata Systems</a>, has developed an open source software Clear Toolkit for ExtJS.
-Clear Toolkit includes an Eclipse plugin called Clear Data Builder (CDB).
-It is a productivity tool - a code generator - that can create a CRUD application for you in no time. This application will have HTML/JavaScript/ExtJS client and Java-based server. In this article, you will learn how jumpstart development of such Web applications.</p>
-</div>
-<div id="toc" class="toc">
-<div id="toctitle" class="title">Table of Contents</div>
+<!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><html class="no-js" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Productive Enterprise Web Development with ExtJS and Clear Data Builder | Java.Head.Brain</title><meta name="author" content="Viktor Gamov"><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@asciidoctor"><meta name="twitter:url" content="http://next.javaheadbrain.com/productive_cdb/"><meta name="twitter:title" content="Productive Enterprise Web Development with ExtJS and Clear Data Builder"><meta name="twitter:description" content="Table of Contents
+Part One: ExtJS MVC Application Scaffolding
+Part Two: Generating a CRUD application
+Part Three: Data Pagination
+Conclusion
+Additional Useful Links
+It&#8217;s not likely that you&#8217;ll start developing an..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html"><span class="icon"><i class="fa fa-th-large"></i></span>&nbspBlog</a></li><li class="divider"></li><li><a href="http://github.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-github"></i></span>&nbspGithub</a></li><li class="divider"></li><li><a href="http://twitter.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-twitter"></i></span>&nbspTwitter</a></li><li class="divider"></li><li><a href="https://www.youtube.com/playlist?list=PLaJqps0DAycqu2OV6sjl_Dm_VymB6KDV_" target="_blank"><span class="icon"><i class="fa fa-youtube"></i></span>&nbspMy Talks</a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://next.javaheadbrain.com">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h2 class="header"><a href="/productive_cdb/">Productive Enterprise Web Development with ExtJS and Clear Data Builder</a></h2><h5 class="subheader">Written by&nbsp <a href="#">Viktor Gamov</a>&nbsp- <time class="pubdate" datetime="2013-02-05T00:00:00+00:00">Tuesday, February 5, 2013</time></h5><div class="row"><div class="large-12 columns text-left"><div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#part-one-extjs-mvc-application-scaffolding">Part One: ExtJS MVC Application Scaffolding</a></li>
 <li><a href="#part-two-generating-a-crud-application">Part Two: Generating a CRUD application</a></li>
@@ -20,13 +17,19 @@ It is a productivity tool - a code generator - that can create a CRUD applicatio
 </li>
 </ul>
 </div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>It&#8217;s not likely that you&#8217;ll start developing an enterprise HTML5 applications without using one of the JavaScript frameworks. One of the most feature-complete frameworks is <a href="http://www.sencha.com/products/extjs">ExtJS</a> from Sencha, but its learning curve is a bit steep. Our company, <a href="http://faratasystems.com">Farata Systems</a>, has developed an open source software Clear Toolkit for ExtJS. Clear Toolkit includes an Eclipse plugin called Clear Data Builder (CDB). This is a productivity tool - a code generator - that can create a CRUD application for you in no time. This application will have HTML/JavaScript/ExtJS client and Java-based server. In this article you will learn how jump start development of such Web applications.</p>
+</div>
+<!-- toc disabled -->
 </div>
 </div>
 <div class="sect1">
 <h2 id="part-one-extjs-mvc-application-scaffolding"><a class="anchor" href="#part-one-extjs-mvc-application-scaffolding"></a>Part One: ExtJS MVC Application Scaffolding</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In part one I will cover the following topics:</p>
+<p>In part one I&#8217;ll cover the following topics:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -37,32 +40,31 @@ It is a productivity tool - a code generator - that can create a CRUD applicatio
 <p>How to create ExtJS MVC application for Java-based project</p>
 </li>
 <li>
-<p>How to deploy and run your first ExtJS+Java application on Apache Tomcat server</p>
+<p>How deploy and run your first ExtJS+Java application on Apache Tomcat server</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Clear Toolkit for ExtJS contains following parts:</p>
+<p>Clear Toolkit for ExtJS contains of following parts:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Clear Data Builder - Eclipse plugin that supports code generation ExtJS MVC artifacts based on Java code. CDB comes with wizards to start a new project with plain Java or with popular frameworks like Hibernate, Spring, MyBatis.</p>
+<p>Clear Data Builder - Eclipse plugin that supports code generation ExtJS MVC artifacts based on Java code. CDB comes with wizards to start new project with plain Java or with popular frameworks like Hibernate, Spring, MyBatis.</p>
 </li>
 <li>
 <p>Clear JS - set of JavaScript components that extends ExtJS standard components. E.g. Clear JS contains ChangeObject - a universal way to trace the state changes between old and new versions of the same item in a store.</p>
 </li>
 <li>
-<p>Clear Runtime - Java components implement server side part of <code>ChangeObject</code>, <code>DirectOptions</code> etc.</p>
+<p>Clear Runtime - Java components that implements server side part of ChangeObject, DirectOptions and etc.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The phrase "to be more productive" means to write less code and produce the results faster.
-This is what CDB for. In this article, you will see how Clear Data Builder helps you to integrate the client side with the back end using the RPC style and how to implements data pagination for your application.</p>
+<p>The phrase "to be more productive" means to write less code and produce the results faster. This is what CDB is for. In this article you&#8217;ll see how Clear Data Builder helps you to integrate the client side with the back end using the RPC style and how to implements data pagination for your application.</p>
 </div>
 <div class="paragraph">
-<p>CDB distribution is available as a plug-in for Eclipse IDE. The current update site of CDB located <a href="http://cleartoolkit.com/downloads/plugins/extjs/cleardatabuilder/4.1.4/">here</a>.  The current version is 4.1.4 (don&#8217;t be surprised - this is a five-year-old code generator, and its previous versions were made for generating the UI for Adobe Flex framework). You can install this plug-in via Install New Software menu in Eclipse IDE. The <a href="#FIG-1">Verifying CDB installation</a> shows how you can validate the plug-in installation. If you see "Clear Data Builder for Ext JS feature" in the list of Installed Software in your Eclipse IDE, you are good to go.</p>
+<p>CDB distribution available as plug-in for Eclipse IDE. The current update site of CDB is located <a href="http://cleartoolkit.com/downloads/plugins/extjs/cleardatabuilder/4.1.4/">here</a>.  The current version is 4.1.4 (don&#8217;t be surprised - this is a five-year old code generator, and its previous versions were made for generating the UI for Adobe Flex framework). You can install this plug-in via Install New Software menu in Eclipse IDE. The <a href="#FIG-1">Verifying CDB installation</a> shows how you can validate plug-in installation. If you see "Clear Data Builder for Ext JS feature" in the list of Installed Software in your Eclipse IDE, you&#8217;re good to go.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -92,13 +94,13 @@ You have to have "Eclipse for Java EE Developers" installed, which includes the 
 <div class="title">Figure 2. New CDB Project Wizard</div>
 </div>
 <div class="paragraph">
-<p>First of all let&#8217;s call the new project episode_1_intro. CDB supports different ways of linking the ExtJS framework to the application. In my case, I already have installed ExtJS libraries under my Web server (Apache Tomcat). We are going to use this local ExtJS URL, but you can just specify any folder in your machine, and CDB will copy the ExtJS file inside your project. Lastly, you can use ExtJS from the Sencha&#8217;s CDN, if you do not want to store these libraries inside your project. Besides, using a common CDN allows a Web browser to reuse the cached version of ExtJS.</p>
+<p>First of all let&#8217;s call the new project episode_1_intro. CDB supports different ways of linking the ExtJS framework to the application. In my case, I already have installed ExtJS libraries under my Web server (Apache Tomcat). We&#8217;re going to use this local ExtJS URL, but you can just specify any folder in your machine and CDB will copy the ExtJS file inside your project. Lastly, you can use ExtJS from the Sencha&#8217;s CDN, if you don&#8217;t want to store these libraries inside your project. Besides, using a common CDN will allow Web browser to reuse the cached version of ExtJS.</p>
 </div>
 <div class="paragraph">
-<p>For this project, we are not going to use any server-side (like MyBatis or Hibernate). Just click the button Finish. First of all, CDB prints some initial messages on the Eclipse console. When CDB runs for the first time, it initializes directory structure in the WebContent folder. Inside the WebContent directory, CDB creates a directory structure which is recommended by Sencha for MVC applications. Also, you&#8217;ll get the HTML wrapper - index.html - for this application, which contains the link to the entry point of our application.</p>
+<p>For this project we are not going to use any server-side (like MyBatis or Hibernate). Just click the button Finish. First of all, CDB will print some initial messages on the Eclipse console. When CDB runs for the first time it initializes directory structure in the WebContent folder. Inside the WebContent directory CDB creates directory structure which is recommended by Sencha for MVC applications. Also you&#8217;ll get the HTML wrapper - index.html - for this application, which contains the link to the entry point of our application.</p>
 </div>
 <div class="paragraph">
-<p>CDB generates an empty project with one sample controller and one view - Viewport.js. To run this application, you need to add the newly generated Dynamic Web Project to Tomcat and start the server (right-click on the Tomcat in the Servers view).</p>
+<p>CDB generates an empty project with one sample controller and one view - Viewport.js. To run this application, you need to add the newly generated Dynamic Web Project to Tomcat and start the server (write-click on the Tomcat in the Servers view).</p>
 </div>
 <div id="FIG-3" class="imageblock">
 <div class="content">
@@ -107,7 +109,7 @@ You have to have "Eclipse for Java EE Developers" installed, which includes the 
 <div class="title">Figure 3. Adding web project to Tomcat</div>
 </div>
 <div class="paragraph">
-<p>Let me switch to a web browser to open this application on http://localhost:8080/episode_1_intro . Voila! Just in couple minutes we have setup new Dynamic Web Project with the ExtJS framework support and one fancy button on UI.</p>
+<p>Let me switch to web browser to open this application on http://localhost:8080/episode_1_intro . Voila! Just in couple minutes we&#8217;ve setup new Dynamic Web Project with the ExtJS framework support and one fancy button on UI.</p>
 </div>
 <div id="FIG-4" class="imageblock">
 <div class="content">
@@ -680,7 +682,7 @@ public class PersonServiceImpl extends _PersonServiceImpl {
 <p><a href="https://code.google.com/p/directjngine/">DirectJNgine: Direct for Java</a></p>
 </li>
 <li>
-<p><a href="https://github.com/Farata/ClearJS/wiki/Change-Object:-Synchronization-Keystone">Change Object: Synchronization Keystone</a></p>
+<p><a href="https://github.com/Farata/ClearJS/wiki/Change-Object%3A-Synchronization-Keystone">Change Object: Synchronization Keystone</a></p>
 </li>
 <li>
 <p><a href="https://github.com/Farata/ClearJS/wiki/Data-Pagination">Data Pagination in Clear Toolkit</a></p>
@@ -689,11 +691,11 @@ public class PersonServiceImpl extends _PersonServiceImpl {
 </div>
 </div>
 </div>
-</div></div></div><footer class="entry-footer"><div class="tags"><span class="title">tags: </span><a href="/posts/tags/java">java, </a><a href="/posts/tags/extjs">extjs, </a><a href="/posts/tags/sencha">sencha, </a><a href="/posts/tags/cdb">cdb </a></div></footer><div id="comments">
+</div></div></div><footer class="entry-footer"></footer><div id="comments">
             <div id="disqus_thread"></div>
             <script type="text/javascript">
             var disqus_shortname = 'nextjavaheadbraincom';
-            var disqus_url = "http://next.javaheadbrain.com/posts/2013/02/05/prouctive-enterprise-web-dev-with-cdb.html";
+            var disqus_url = "http://next.javaheadbrain.com/productive_cdb/";
             var disqus_developer = null;
             var disqus_identifier = null;
             (function() {
