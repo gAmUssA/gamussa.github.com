@@ -35,7 +35,7 @@ endif::awestruct[]
 === Grab the code icon:code-fork[]
 
 .You can find code sample is following GH repository
-https://github.com/gAmUssA/jet-streams-presentation
+https://github.com/gAmUssA/jet-streams-presentation/tree/NYJavaSig_Feb2017[https://github.com/gAmUssA/jet-streams-presentation]
 
 Branch for this talk `NYJavaSig_Feb2017`
 
