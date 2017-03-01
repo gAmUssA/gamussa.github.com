@@ -17,6 +17,13 @@ Here are sample usages of distributed data structures.
 
 NOTE: The examples use ES6 syntax
 
+.Revisions history
+[width="60%",cols="",options="header"]
+|===
+|Version    |Date   | Comments
+|*v1.0*     |02/07/2015 | Initial revision
+|===
+
 == Configure Node.js client
 
 .Install Hazelcast Node.js Package
