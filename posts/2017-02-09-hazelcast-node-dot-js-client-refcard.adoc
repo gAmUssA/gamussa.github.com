@@ -1,0 +1,179 @@
+= Hazelcast Node.js Client Refcard
+Viktor Gamov
+2017-02-09 07:49
+:imagesdir: ../images
+:icons:
+:keywords:
+:toc:
+ifndef::awestruct[]
+:awestruct-layout: post
+:awestruct-tags: []
+:idprefix:
+:idseparator: -
+endif::awestruct[]
+
+«Distributed World» of Hazelcast. 
+Here are sample usages of distributed data structures.
+
+NOTE: The examples use ES6 syntax
+
+== Configure Node.js client
+
+.Install Hazelcast Node.js Package
+----
+npm install hazelcast-client --save
+----
+
+[source,javascript]
+----
+const HazelcastClient = require('hazelcast-client').Client;
+const Config = require('hazelcast-client').Config;
+
+let config = new Config.ClientConfig();
+
+HazelcastClient.newHazelcastClient().then((client) => {
+   // use client object
+});
+----
+
+== Distributed Map
+
+[source,javascript]
+----
+HazelcastClient.newHazelcastClient().then((client) => {
+    let map = client.getMap('my-distributed-map');
+    map.put("key", "value")
+        .then(() => map.get("key"))
+        .then(() => map.putIfAbsent("somekey", "somevalue"))
+        .then(() => map.replace("key", "oldvalue", "newvalue"))
+});
+----
+
+== Distributed MultiMap
+
+[source,javascript]
+----
+HazelcastClient.newHazelcastClient().then((client) => {
+    "use strict";
+    let mmap = client.getMultiMap('restaurants');
+
+    mmap.put('New York', 'Red Lobster')
+        .then(() => mmap.put('New York', 'Eataly'))
+        .then(() => mmap.get('New York'))
+        .then(list => console.log(list));
+
+    mmap.put('Las Vegas', 'Burgr')
+        .then(() => mmap.put('Las Vegas', 'Alibi'))
+        .then(() => mmap.put('Las Vegas', 'Pub & Grill'))
+        .then(() => mmap.get('Las Vegas'))
+        .then(list => console.log(list));
+});
+----
+
+== Distributed List
+
+[source,javascript]
+----
+HazelcastClient.newHazelcastClient().then((client) => {
+    "use strict";
+    let list = client.getList('my-distributed-list');
+
+    let element = 'element1';
+    list.add(element).then(() => {
+        list.contains(element).then((result) => {
+            console.log(`contains element1 - ${result}`);
+        });
+    });
+
+    let elements = ['element2', 'element3'];
+    list.addAll(elements).then(() => {
+        list.containsAll(elements).then((result) => {
+            console.log(`contains all element1 - ${result}`);
+        })
+    });
+});
+----
+
+== Distributed Set
+
+NOTE: A set is a data structure that doesn't allow duplicates
+
+[source,javascript]
+----
+HazelcastClient.newHazelcastClient().then((client) => {
+    "use strict";
+    let set = client.getSet('my-distributed-set');
+
+    let elements = ['duplicate', 'duplicate', 'duplicate'];
+    set.addAll(elements).then(() => {
+        set.getAll().then((result) => {
+            //look, ma, no duplicates
+            console.log(result);
+        })
+    });
+});
+----
+
+== Distributed Queue
+
+[source,javascript]
+----
+HazelcastClient.newHazelcastClient().then((client) => {
+    let queue = client.getQueue('my-distributed-queue');
+
+    queue.offer('item');
+    queue.poll().then(item => console.log(item));
+
+    queue.offer('anotheritem', 500);
+    queue.poll(5000).then(item => console.log(item));
+
+    queue.offer('yetanotheritem');
+    queue.take().then(item => console.log(item));
+
+});
+----
+
+== Distributed Lock
+
+[source,javascript]
+----
+HazelcastClient.newHazelcastClient().then((client) => {
+    let lock = client.getLock('my-distributed-lock');
+
+    lock.lock().then(() => {
+        // do something
+    });
+
+    lock.unlock();
+});
+----
+
+== Distributed Topic
+
+[source,javascript]
+----
+HazelcastClient.newHazelcastClient().then((client) => {
+    let topic = client.getReliableTopic('my-distributed-topic');
+    
+    topic.addMessageListener((msg) => {
+        console.log(msg.messageObject);
+    });
+    topic.publish("hello from distributed world");
+});
+----
+
+== About Hazelcast IMDG
+
+Hazelcast is an open-source in-memory data grid providing Java developers with an easy-to-use and powerful solution for creating highly available and scalable applications. 
+Hazelcast can be used in the areas like clustering, in-memory NoSQL, application scaling, database caching.
+
+=== Resources
+
+- Getting Started with Node.js client: http://blog.hazelcast.com/getting-started-with-hazelcast-and-node-js-2/
+- Docs: http://hazelcast.github.io/hazelcast-nodejs-client/api/0.6/docs/
+- Download Hazelcast: hazelcast.org/download
+- Download Node.js client from NPM: 
+- Stack Overflow: stackoverfow.com/questions/tagged/hazelcast
+- Blog: blog.hazelcast.com
+- Use Cases: hazelcast.org/use-cases 
+- Professional Support: hazelcast.com/support
