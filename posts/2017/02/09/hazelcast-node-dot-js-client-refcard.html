@@ -1,0 +1,295 @@
+<!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><html class="no-js" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Hazelcast Node.js Client Refcard | Java.Head.Brain</title><meta name="author" content="Viktor Gamov"><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@asciidoctor"><meta name="twitter:url" content="http://next.javaheadbrain.com/posts/2017/02/09/hazelcast-node-dot-js-client-refcard.html"><meta name="twitter:title" content="Hazelcast Node.js Client Refcard"><meta name="twitter:description" content="Table of Contents
+Configure Node.js client
+Distributed Map
+Distributed MultiMap
+Distributed List
+Distributed Set
+Distributed Queue
+Distributed Lock
+Distributed Topic
+About Hazelcast IMDG
+Resources
+«Distributed World» of Hazelcast.
+Here are sample usages of distributed data structures.
+The examples..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html"><span class="icon"><i class="fa fa-th-large"></i></span>&nbspBlog</a></li><li class="divider"></li><li><a href="http://github.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-github"></i></span>&nbspGithub</a></li><li class="divider"></li><li><a href="http://twitter.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-twitter"></i></span>&nbspTwitter</a></li><li class="divider"></li><li><a href="https://www.youtube.com/playlist?list=PLaJqps0DAycqu2OV6sjl_Dm_VymB6KDV_" target="_blank"><span class="icon"><i class="fa fa-youtube"></i></span>&nbspMy Talks</a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://next.javaheadbrain.com">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h2 class="header"><a href="/posts/2017/02/09/hazelcast-node-dot-js-client-refcard.html">Hazelcast Node.js Client Refcard</a></h2><h5 class="subheader">Written by&nbsp <a href="#">Viktor Gamov</a>&nbsp- <time class="pubdate" datetime="2017-02-09T07:00:00+00:00">Thursday, February 9, 2017</time></h5><div class="row"><div class="large-12 columns text-left"><div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#configure-node-js-client">Configure Node.js client</a></li>
+<li><a href="#distributed-map">Distributed Map</a></li>
+<li><a href="#distributed-multimap">Distributed MultiMap</a></li>
+<li><a href="#distributed-list">Distributed List</a></li>
+<li><a href="#distributed-set">Distributed Set</a></li>
+<li><a href="#distributed-queue">Distributed Queue</a></li>
+<li><a href="#distributed-lock">Distributed Lock</a></li>
+<li><a href="#distributed-topic">Distributed Topic</a></li>
+<li><a href="#about-hazelcast-imdg">About Hazelcast IMDG</a>
+<ul class="sectlevel2">
+<li><a href="#resources">Resources</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>«Distributed World» of Hazelcast.
+Here are sample usages of distributed data structures.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The examples use ES6 syntax
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configure-node-js-client"><a class="anchor" href="#configure-node-js-client"></a>Configure Node.js client</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">Install Hazelcast Node.js Package</div>
+<div class="content">
+<pre class="nowrap">npm install hazelcast-client --save</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-javascript" data-lang="javascript">const HazelcastClient = require('hazelcast-client').Client;
+const Config = require('hazelcast-client').Config;
+
+let config = new Config.ClientConfig();
+
+HazelcastClient.newHazelcastClient().then((client) =&gt; {
+   // use client object
+});</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="distributed-map"><a class="anchor" href="#distributed-map"></a>Distributed Map</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-javascript" data-lang="javascript">HazelcastClient.newHazelcastClient().then((client) =&gt; {
+    let map = client.getMap('my-distributed-map');
+    map.put("key", "value")
+        .then(() =&gt; map.get("key"))
+        .then(() =&gt; map.putIfAbsent("somekey", "somevalue"))
+        .then(() =&gt; map.replace("key", "oldvalue", "newvalue"))
+});</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="distributed-multimap"><a class="anchor" href="#distributed-multimap"></a>Distributed MultiMap</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-javascript" data-lang="javascript">HazelcastClient.newHazelcastClient().then((client) =&gt; {
+    "use strict";
+    let mmap = client.getMultiMap('restaurants');
+
+    mmap.put('New York', 'Red Lobster')
+        .then(() =&gt; mmap.put('New York', 'Eataly'))
+        .then(() =&gt; mmap.get('New York'))
+        .then(list =&gt; console.log(list));
+
+    mmap.put('Las Vegas', 'Burgr')
+        .then(() =&gt; mmap.put('Las Vegas', 'Alibi'))
+        .then(() =&gt; mmap.put('Las Vegas', 'Pub &amp; Grill'))
+        .then(() =&gt; mmap.get('Las Vegas'))
+        .then(list =&gt; console.log(list));
+});</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="distributed-list"><a class="anchor" href="#distributed-list"></a>Distributed List</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-javascript" data-lang="javascript">HazelcastClient.newHazelcastClient().then((client) =&gt; {
+    "use strict";
+    let list = client.getList('my-distributed-list');
+
+    let element = 'element1';
+    list.add(element).then(() =&gt; {
+        list.contains(element).then((result) =&gt; {
+            console.log(`contains element1 - ${result}`);
+        });
+    });
+
+    let elements = ['element2', 'element3'];
+    list.addAll(elements).then(() =&gt; {
+        list.containsAll(elements).then((result) =&gt; {
+            console.log(`contains all element1 - ${result}`);
+        })
+    });
+});</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="distributed-set"><a class="anchor" href="#distributed-set"></a>Distributed Set</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A set is a data structure that doesn&#8217;t allow duplicates
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-javascript" data-lang="javascript">HazelcastClient.newHazelcastClient().then((client) =&gt; {
+    "use strict";
+    let set = client.getSet('my-distributed-set');
+
+    let elements = ['duplicate', 'duplicate', 'duplicate'];
+    set.addAll(elements).then(() =&gt; {
+        set.getAll().then((result) =&gt; {
+            //look, ma, no duplicates
+            console.log(result);
+        })
+    });
+});</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="distributed-queue"><a class="anchor" href="#distributed-queue"></a>Distributed Queue</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-javascript" data-lang="javascript">HazelcastClient.newHazelcastClient().then((client) =&gt; {
+    let queue = client.getQueue('my-distributed-queue');
+
+    queue.offer('item');
+    queue.poll().then(item =&gt; console.log(item));
+
+    queue.offer('anotheritem', 500);
+    queue.poll(5000).then(item =&gt; console.log(item));
+
+    queue.offer('yetanotheritem');
+    queue.take().then(item =&gt; console.log(item));
+
+});</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="distributed-lock"><a class="anchor" href="#distributed-lock"></a>Distributed Lock</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-javascript" data-lang="javascript">HazelcastClient.newHazelcastClient().then((client) =&gt; {
+    let lock = client.getLock('my-distributed-lock');
+
+    lock.lock().then(() =&gt; {
+        // do something
+    });
+
+    lock.unlock();
+});</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="distributed-topic"><a class="anchor" href="#distributed-topic"></a>Distributed Topic</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-javascript" data-lang="javascript">HazelcastClient.newHazelcastClient().then((client) =&gt; {
+    let topic = client.getReliableTopic('my-distributed-topic');
+
+    topic.addMessageListener((msg) =&gt; {
+        console.log(msg.messageObject);
+    });
+    topic.publish("hello from distributed world");
+});</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="about-hazelcast-imdg"><a class="anchor" href="#about-hazelcast-imdg"></a>About Hazelcast IMDG</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Hazelcast is an open-source in-memory data grid providing Java developers with an easy-to-use and powerful solution for creating highly available and scalable applications.
+Hazelcast can be used in the areas like clustering, in-memory NoSQL, application scaling, database caching.</p>
+</div>
+<div class="sect2">
+<h3 id="resources"><a class="anchor" href="#resources"></a>Resources</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Getting Started with Node.js client: <a href="http://blog.hazelcast.com/getting-started-with-hazelcast-and-node-js-2/" class="bare">http://blog.hazelcast.com/getting-started-with-hazelcast-and-node-js-2/</a></p>
+</li>
+<li>
+<p>Docs: <a href="http://hazelcast.github.io/hazelcast-nodejs-client/api/0.6/docs/" class="bare">http://hazelcast.github.io/hazelcast-nodejs-client/api/0.6/docs/</a></p>
+</li>
+<li>
+<p>Download Hazelcast: hazelcast.org/download</p>
+</li>
+<li>
+<p>Download Node.js client from NPM:</p>
+</li>
+<li>
+<p>Stack Overflow: stackoverfow.com/questions/tagged/hazelcast</p>
+</li>
+<li>
+<p>Blog: blog.hazelcast.com</p>
+</li>
+<li>
+<p>Use Cases: hazelcast.org/use-cases</p>
+</li>
+<li>
+<p>Professional Support: hazelcast.com/support</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></div></div><footer class="entry-footer"><div class="tags"><span class="title">tags: </span></div></footer><div id="comments">
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+            var disqus_shortname = 'nextjavaheadbraincom';
+            var disqus_url = "http://next.javaheadbrain.com/posts/2017/02/09/hazelcast-node-dot-js-client-refcard.html";
+            var disqus_developer = null;
+            var disqus_identifier = null;
+            (function() {
+              var dsq = document.createElement("script"); dsq.type = "text/javascript"; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(dsq);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=nextjavaheadbraincom">comments powered by Disqus.</a></noscript>
+          </div></article></div></div></body></html><div id="copyright"><div class="row full-width"><div class="large-4 columns"><p>© Viktor Gamov 2017—2007</p></div><div class="large-8 columns"><ul class="inline-list right"><li><a href="https://github.com/gAmUssA"></a>Github&nbsp<span class="icon"><i class="fa fa-github"></i></span></li><li><a href="http://twitter.com/gAmUssA"></a>Twitter&nbsp<span class="icon"><i class="fa fa-twitter"></i></span></li><li><a href="#"></a></li></ul></div></div></div><script>document.write('<script src=' + ('__proto__' in {} ? '/javascripts/vendor/zepto' : '/javascripts/vendor/jquery') + '.js><\/script>')</script><script src="/javascripts/foundation/foundation.js"><script src="/javascripts/foundation/foundation.topbar.js"></script></script><script>$(document).foundation();</script><script src="/javascripts/vendor/highlight.min.js"></script><script>$(hljs.initHighlighting());</script><script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount','UA-40354726-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+ var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!--End Footer-->
