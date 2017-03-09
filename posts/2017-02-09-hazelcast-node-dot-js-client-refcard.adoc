@@ -12,36 +12,53 @@ ifndef::awestruct[]
 :idseparator: -
 endif::awestruct[]
 
-«Distributed World» of Hazelcast. 
-Here are sample usages of distributed data structures.
+image::IMDG_orange_logo_square.png[align="center"]
+image::node.png[align="center"]
 
-NOTE: The examples use ES6 syntax
+Welcome to «The Distributed World» of Hazelcast. 
+Here are sample usages of distributed data structures using Node.js client.
 
 .Revisions history
 [width="60%",cols="",options="header"]
 |===
 |Version    |Date   | Comments
+|*v1.1*     |03/09/2015 | single quotes in js code, added Before Getting Started section
 |*v1.0*     |02/07/2015 | Initial revision
 |===
 
+NOTE: The JavaScript examples use ES6 syntax
+
+== Before Getting Started
+
+* download latest Hazelcast distribution from https://hazelcast.org/download/ 
+* unzip to any folder
+* start Hazelcast member using startup script `<hazelast_folder>/bin/start.sh`
+
+image::before_nodejs_client.gif[]
+
 == Configure Node.js client
 
-.Install Hazelcast Node.js Package
+.Install Hazelcast Client Node.js Package
 ----
 npm install hazelcast-client --save
 ----
 
 [source,javascript]
 ----
-const HazelcastClient = require('hazelcast-client').Client;
-const Config = require('hazelcast-client').Config;
+const HazelcastClient = require('hazelcast-client').Client; // <1>
+const Config = require('hazelcast-client').Config;  // <2>
 
-let config = new Config.ClientConfig();
+let config = new Config.ClientConfig(); // <3>
 
-HazelcastClient.newHazelcastClient().then((client) => {
-   // use client object
+HazelcastClient.newHazelcastClient(config)
+    .then((client) => {   // <4>
+        // use client object
 });
 ----
+<1> import `HazelcastClient` object
+<2> import `Config` object
+<3> establish connection to local cluster member using default config
+<4>  fully constructed and connected `client` will be passed as parameter 
 
 == Distributed Map
 
@@ -49,10 +66,10 @@ HazelcastClient.newHazelcastClient().then((client) => {
 ----
 HazelcastClient.newHazelcastClient().then((client) => {
     let map = client.getMap('my-distributed-map');
-    map.put("key", "value")
-        .then(() => map.get("key"))
-        .then(() => map.putIfAbsent("somekey", "somevalue"))
-        .then(() => map.replace("key", "oldvalue", "newvalue"))
+    map.put('key', 'value')
+        .then(() => map.get('key'))
+        .then(() => map.putIfAbsent('somekey', 'somevalue'))
+        .then(() => map.replace('key', 'oldvalue', 'newvalue'))
 });
 ----
 
@@ -61,7 +78,7 @@ HazelcastClient.newHazelcastClient().then((client) => {
 [source,javascript]
 ----
 HazelcastClient.newHazelcastClient().then((client) => {
-    "use strict";
+    'use strict';
     let mmap = client.getMultiMap('restaurants');
 
     mmap.put('New York', 'Red Lobster')
@@ -82,7 +99,7 @@ HazelcastClient.newHazelcastClient().then((client) => {
 [source,javascript]
 ----
 HazelcastClient.newHazelcastClient().then((client) => {
-    "use strict";
+    'use strict';
     let list = client.getList('my-distributed-list');
 
     let element = 'element1';
@@ -108,7 +125,7 @@ NOTE: A set is a data structure that doesn't allow duplicates
 [source,javascript]
 ----
 HazelcastClient.newHazelcastClient().then((client) => {
-    "use strict";
+    'use strict';
     let set = client.getSet('my-distributed-set');
 
     let elements = ['duplicate', 'duplicate', 'duplicate'];
@@ -165,7 +182,7 @@ HazelcastClient.newHazelcastClient().then((client) => {
     topic.addMessageListener((msg) => {
         console.log(msg.messageObject);
     });
-    topic.publish("hello from distributed world");
+    topic.publish('hello from distributed world');
 });
 ----
 
@@ -178,9 +195,9 @@ Hazelcast can be used in the areas like clustering, in-memory NoSQL, application
 
 - Getting Started with Node.js client: http://blog.hazelcast.com/getting-started-with-hazelcast-and-node-js-2/
 - Docs: http://hazelcast.github.io/hazelcast-nodejs-client/api/0.6/docs/
-- Download Hazelcast: hazelcast.org/download
-- Download Node.js client from NPM: 
-- Stack Overflow: stackoverfow.com/questions/tagged/hazelcast
-- Blog: blog.hazelcast.com
-- Use Cases: hazelcast.org/use-cases 
-- Professional Support: hazelcast.com/support
+- Download Hazelcast: http://hazelcast.org/download
+- Download Node.js client from NPM: https://www.npmjs.com/package/hazelcast-client 
+- Stack Overflow: http://stackoverfow.com/questions/tagged/hazelcast
+- Blog: http://blog.hazelcast.com
+- Use Cases: http://hazelcast.org/use-cases 
+- Professional Support: http://hazelcast.com/support
