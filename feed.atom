@@ -5,13 +5,13 @@
 <author>
 <name>Viktor Gamov</name>
 </author>
-<updated>2017-03-09T16:41:59-05:00</updated>
+<updated>2017-03-09T17:27:08-05:00</updated>
 <link href="http://next.javaheadbrain.com/feed.atom" rel="self" type="application/atom+xml" />
 <link href="http://next.javaheadbrain.com/" rel="alternate" type="text/html" />
 <entry>
 <id>http://next.javaheadbrain.com/posts/2017/02/09/hazelcast-node-dot-js-client-refcard.html</id>
 <title>Hazelcast Node.js Client Refcard</title>
-<updated>2017-03-09T16:41:59-05:00</updated>
+<updated>2017-03-09T17:27:08-05:00</updated>
 <published>2017-02-09T07:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2017/02/09/hazelcast-node-dot-js-client-refcard.html" rel="alternate" type="text/html" />
 <author>
@@ -20,6 +20,7 @@
 <summary>
 Table of Contents
 
+Before Getting Started
 Configure Node.js client
 Distributed Map
 Distributed MultiMap
@@ -38,8 +39,6 @@ Resources
 
 
 
-«Distributed World» of Hazelcast.
-Here are sample usages of distributed data structures.
 
 
 
@@ -48,10 +47,10 @@ Here are sample usages of distributed data structures.
 
 
 
-The examples use ES6 syntax
 
 
-
+Welcome to «The Distributed World» of Hazelcast.
+Here are sample usages of distributed data structures using Node.js client.
 
 
 Table 1. Revisions history
@@ -69,6 +68,11 @@ Comments
 
 
 
+v1.1
+03/09/2015
+single quotes in js code, added Before Getting Started section
+
+
 v1.0
 02/07/2015
 Initial revision
@@ -78,44 +82,65 @@ Initial revision
 
 
 
+
+
+
+
+The JavaScript examples use ES6 syntax
+
+
+
+
+
+
+
+Before Getting Started
+
+
+
+
+download latest Hazelcast distribution from https://hazelcast.org/download/
+
+
+unzip to any folder
+
+
+start Hazelcast member using startup script &lt;hazelast_folder&gt;/bin/start.sh
+
+
+
+
+
+
+
+
+
+
+
 Configure Node.js client
 
 
-Install Hazelcast Node.js Package
+Install Hazelcast Client Node.js Package
 
 npm install hazelcast-client --save
 
 
 
 
-const HazelcastClient = require('hazelcast-client').Client;
-const Config = require('hazelcast-client').Config;
+const HazelcastClient = require('hazelcast-client').Client; (1)
+const Config = require('hazelcast-client').Config;  (2)
 
-let config = new Config.ClientConfig();
+let config = new Config.ClientConfig(); (3)
 
-HazelcastClient.newHazelcastClient().then((client) =&gt; {
-   // use client object
-});
-
-
-
-
-
-Distributed Map
-
-
-
-HazelcastClient.newHazelcastClient().then((client) =&gt; {
-    let map = client.getMap('my-distributed-map');
-    map.put("key", "value")
-        .then(() =&gt; map.get("key"))
-        .then(() =&gt; map.putIfAbsent("somekey", "somevalue"))
-      ...
+HazelcastClient.newHazelcastClient(config)
+    .then((client) =&gt; {   (4)
+  ...
 </summary>
 <content type="html">
 &lt;div id=&quot;toc&quot; class=&quot;toc&quot;&gt;
 &lt;div id=&quot;toctitle&quot;&gt;Table of Contents&lt;/div&gt;
 &lt;ul class=&quot;sectlevel1&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#before-getting-started&quot;&gt;Before Getting Started&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#configure-node-js-client&quot;&gt;Configure Node.js client&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#distributed-map&quot;&gt;Distributed Map&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#distributed-multimap&quot;&gt;Distributed MultiMap&lt;/a&gt;&lt;/li&gt;
@@ -133,21 +158,19 @@ HazelcastClient.newHazelcastClient().then((client) =&gt; {
 &lt;/div&gt;
 &lt;div id=&quot;preamble&quot;&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
-&lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;«Distributed World» of Hazelcast.
-Here are sample usages of distributed data structures.&lt;/p&gt;
+&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;http://next.javaheadbrain.com/images/IMDG_orange_logo_square.png&quot; alt=&quot;IMDG orange logo square&quot; /&gt;
 &lt;/div&gt;
-&lt;div class=&quot;admonitionblock note&quot;&gt;
-&lt;table&gt;
-&lt;tr&gt;
-&lt;td class=&quot;icon&quot;&gt;
-&lt;i class=&quot;fa icon-note&quot; title=&quot;Note&quot;&gt;&lt;/i&gt;
-&lt;/td&gt;
-&lt;td class=&quot;content&quot;&gt;
-The examples use ES6 syntax
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;http://next.javaheadbrain.com/images/node.png&quot; alt=&quot;node&quot; /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Welcome to «The Distributed World» of Hazelcast.
+Here are sample usages of distributed data structures using Node.js client.&lt;/p&gt;
 &lt;/div&gt;
 &lt;table class=&quot;tableblock frame-all grid-all&quot; style=&quot;width: 60%;&quot;&gt;
 &lt;caption class=&quot;title&quot;&gt;Table 1. Revisions history&lt;/caption&gt;
@@ -165,34 +188,95 @@ The examples use ES6 syntax
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;&lt;strong&gt;v1.1&lt;/strong&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;03/09/2015&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;single quotes in js code, added Before Getting Started section&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
 &lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;&lt;strong&gt;v1.0&lt;/strong&gt;&lt;/p&gt;&lt;/td&gt;
 &lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;02/07/2015&lt;/p&gt;&lt;/td&gt;
 &lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Initial revision&lt;/p&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+&lt;div class=&quot;admonitionblock note&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;fa icon-note&quot; title=&quot;Note&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+The JavaScript examples use ES6 syntax
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;before-getting-started&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#before-getting-started&quot;&gt;&lt;/a&gt;Before Getting Started&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;download latest Hazelcast distribution from &lt;a href=&quot;https://hazelcast.org/download/&quot; class=&quot;bare&quot;&gt;https://hazelcast.org/download/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;unzip to any folder&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;start Hazelcast member using startup script &lt;code&gt;&amp;lt;hazelast_folder&amp;gt;/bin/start.sh&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;http://next.javaheadbrain.com/images/before_nodejs_client.gif&quot; alt=&quot;before nodejs client&quot; /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect1&quot;&gt;
 &lt;h2 id=&quot;configure-node-js-client&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#configure-node-js-client&quot;&gt;&lt;/a&gt;Configure Node.js client&lt;/h2&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;listingblock&quot;&gt;
-&lt;div class=&quot;title&quot;&gt;Install Hazelcast Node.js Package&lt;/div&gt;
+&lt;div class=&quot;title&quot;&gt;Install Hazelcast Client Node.js Package&lt;/div&gt;
 &lt;div class=&quot;content&quot;&gt;
 &lt;pre class=&quot;nowrap&quot;&gt;npm install hazelcast-client --save&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;const HazelcastClient = require(&amp;apos;hazelcast-client&amp;apos;).Client;
-const Config = require(&amp;apos;hazelcast-client&amp;apos;).Config;
+&lt;pre class=&quot;highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;const HazelcastClient = require(&amp;apos;hazelcast-client&amp;apos;).Client; &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+const Config = require(&amp;apos;hazelcast-client&amp;apos;).Config;  &lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
 
-let config = new Config.ClientConfig();
+let config = new Config.ClientConfig(); &lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;
 
-HazelcastClient.newHazelcastClient().then((client) =&amp;gt; {
-   // use client object
+HazelcastClient.newHazelcastClient(config)
+    .then((client) =&amp;gt; {   &lt;i class=&quot;conum&quot; data-value=&quot;4&quot;&gt;&lt;/i&gt;&lt;b&gt;(4)&lt;/b&gt;
+        // use client object
 });&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;import &lt;code&gt;HazelcastClient&lt;/code&gt; object&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;import &lt;code&gt;Config&lt;/code&gt; object&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;establish connection to local cluster member using default config&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;4&quot;&gt;&lt;/i&gt;&lt;b&gt;4&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;fully constructed and connected &lt;code&gt;client&lt;/code&gt; will be passed as parameter&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -203,10 +287,10 @@ HazelcastClient.newHazelcastClient().then((client) =&amp;gt; {
 &lt;div class=&quot;content&quot;&gt;
 &lt;pre class=&quot;highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;HazelcastClient.newHazelcastClient().then((client) =&amp;gt; {
     let map = client.getMap(&amp;apos;my-distributed-map&amp;apos;);
-    map.put(&amp;quot;key&amp;quot;, &amp;quot;value&amp;quot;)
-        .then(() =&amp;gt; map.get(&amp;quot;key&amp;quot;))
-        .then(() =&amp;gt; map.putIfAbsent(&amp;quot;somekey&amp;quot;, &amp;quot;somevalue&amp;quot;))
-        .then(() =&amp;gt; map.replace(&amp;quot;key&amp;quot;, &amp;quot;oldvalue&amp;quot;, &amp;quot;newvalue&amp;quot;))
+    map.put(&amp;apos;key&amp;apos;, &amp;apos;value&amp;apos;)
+        .then(() =&amp;gt; map.get(&amp;apos;key&amp;apos;))
+        .then(() =&amp;gt; map.putIfAbsent(&amp;apos;somekey&amp;apos;, &amp;apos;somevalue&amp;apos;))
+        .then(() =&amp;gt; map.replace(&amp;apos;key&amp;apos;, &amp;apos;oldvalue&amp;apos;, &amp;apos;newvalue&amp;apos;))
 });&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -218,7 +302,7 @@ HazelcastClient.newHazelcastClient().then((client) =&amp;gt; {
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
 &lt;pre class=&quot;highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;HazelcastClient.newHazelcastClient().then((client) =&amp;gt; {
-    &amp;quot;use strict&amp;quot;;
+    &amp;apos;use strict&amp;apos;;
     let mmap = client.getMultiMap(&amp;apos;restaurants&amp;apos;);
 
     mmap.put(&amp;apos;New York&amp;apos;, &amp;apos;Red Lobster&amp;apos;)
@@ -242,7 +326,7 @@ HazelcastClient.newHazelcastClient().then((client) =&amp;gt; {
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
 &lt;pre class=&quot;highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;HazelcastClient.newHazelcastClient().then((client) =&amp;gt; {
-    &amp;quot;use strict&amp;quot;;
+    &amp;apos;use strict&amp;apos;;
     let list = client.getList(&amp;apos;my-distributed-list&amp;apos;);
 
     let element = &amp;apos;element1&amp;apos;;
@@ -281,7 +365,7 @@ A set is a data structure that doesn’t allow duplicates
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
 &lt;pre class=&quot;highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;HazelcastClient.newHazelcastClient().then((client) =&amp;gt; {
-    &amp;quot;use strict&amp;quot;;
+    &amp;apos;use strict&amp;apos;;
     let set = client.getSet(&amp;apos;my-distributed-set&amp;apos;);
 
     let elements = [&amp;apos;duplicate&amp;apos;, &amp;apos;duplicate&amp;apos;, &amp;apos;duplicate&amp;apos;];
@@ -347,7 +431,7 @@ A set is a data structure that doesn’t allow duplicates
     topic.addMessageListener((msg) =&amp;gt; {
         console.log(msg.messageObject);
     });
-    topic.publish(&amp;quot;hello from distributed world&amp;quot;);
+    topic.publish(&amp;apos;hello from distributed world&amp;apos;);
 });&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -371,22 +455,22 @@ Hazelcast can be used in the areas like clustering, in-memory NoSQL, application
 &lt;p&gt;Docs: &lt;a href=&quot;http://hazelcast.github.io/hazelcast-nodejs-client/api/0.6/docs/&quot; class=&quot;bare&quot;&gt;http://hazelcast.github.io/hazelcast-nodejs-client/api/0.6/docs/&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Download Hazelcast: hazelcast.org/download&lt;/p&gt;
+&lt;p&gt;Download Hazelcast: &lt;a href=&quot;http://hazelcast.org/download&quot; class=&quot;bare&quot;&gt;http://hazelcast.org/download&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Download Node.js client from NPM:&lt;/p&gt;
+&lt;p&gt;Download Node.js client from NPM: &lt;a href=&quot;https://www.npmjs.com/package/hazelcast-client&quot; class=&quot;bare&quot;&gt;https://www.npmjs.com/package/hazelcast-client&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Stack Overflow: stackoverfow.com/questions/tagged/hazelcast&lt;/p&gt;
+&lt;p&gt;Stack Overflow: &lt;a href=&quot;http://stackoverfow.com/questions/tagged/hazelcast&quot; class=&quot;bare&quot;&gt;http://stackoverfow.com/questions/tagged/hazelcast&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Blog: blog.hazelcast.com&lt;/p&gt;
+&lt;p&gt;Blog: &lt;a href=&quot;http://blog.hazelcast.com&quot; class=&quot;bare&quot;&gt;http://blog.hazelcast.com&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Use Cases: hazelcast.org/use-cases&lt;/p&gt;
+&lt;p&gt;Use Cases: &lt;a href=&quot;http://hazelcast.org/use-cases&quot; class=&quot;bare&quot;&gt;http://hazelcast.org/use-cases&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Professional Support: hazelcast.com/support&lt;/p&gt;
+&lt;p&gt;Professional Support: &lt;a href=&quot;http://hazelcast.com/support&quot; class=&quot;bare&quot;&gt;http://hazelcast.com/support&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
@@ -398,7 +482,7 @@ Hazelcast can be used in the areas like clustering, in-memory NoSQL, application
 <entry>
 <id>http://next.javaheadbrain.com/posts/2017/02/08/jfokus-2017.html</id>
 <title>Jfokus 2017</title>
-<updated>2017-03-09T16:41:59-05:00</updated>
+<updated>2017-03-09T16:42:21-05:00</updated>
 <published>2017-02-08T09:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2017/02/08/jfokus-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -493,7 +577,7 @@ Branch for this talk JFokus_Feb2017...
 <entry>
 <id>http://next.javaheadbrain.com/posts/2017/02/02/nyjavasig-2017.html</id>
 <title>NYJavaSig, February 2017</title>
-<updated>2017-03-09T16:41:59-05:00</updated>
+<updated>2017-03-09T16:42:21-05:00</updated>
 <published>2017-02-02T20:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2017/02/02/nyjavasig-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -605,7 +689,7 @@ Let&#39;s look...
 <entry>
 <id>http://next.javaheadbrain.com/posts/2017/01/12/codemash-2017.html</id>
 <title>Codemash 2017</title>
-<updated>2017-03-09T16:41:59-05:00</updated>
+<updated>2017-03-09T16:42:21-05:00</updated>
 <published>2017-01-12T13:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2017/01/12/codemash-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -750,7 +834,7 @@ Each branch represents parts of the talk:
 <entry>
 <id>http://next.javaheadbrain.com/posts/2016/09/09/whats-new-in-hazelcast-client-for-nodejs.html</id>
 <title>What&#8217;s New in Hazelcast Node.js Client</title>
-<updated>2017-03-09T16:41:59-05:00</updated>
+<updated>2017-03-09T16:42:21-05:00</updated>
 <published>2016-09-09T06:05:51-06:00</published>
 <link href="http://next.javaheadbrain.com/posts/2016/09/09/whats-new-in-hazelcast-client-for-nodejs.html" rel="alternate" type="text/html" />
 <author>
@@ -1462,7 +1546,7 @@ There a bunch of way to provide the feedback:&lt;/p&gt;
 <entry>
 <id>http://next.javaheadbrain.com/posts/2016/04/18/getting-started-with-hazelcast-and-node.html</id>
 <title>Getting Started with Hazelcast and Node.js</title>
-<updated>2017-03-09T16:41:59-05:00</updated>
+<updated>2017-03-09T16:42:21-05:00</updated>
 <published>2016-04-18T06:05:51-06:00</published>
 <link href="http://next.javaheadbrain.com/posts/2016/04/18/getting-started-with-hazelcast-and-node.html" rel="alternate" type="text/html" />
 <author>
@@ -1826,7 +1910,7 @@ You have just connected to a Hazelcast cluster and performed basic CRUD operatio
 <entry>
 <id>http://next.javaheadbrain.com/posts/2016/03/31/travel-report-q1-2016.html</id>
 <title>Travel Report - Q1 2016</title>
-<updated>2017-03-09T16:41:59-05:00</updated>
+<updated>2017-03-09T16:42:21-05:00</updated>
 <published>2016-03-31T20:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2016/03/31/travel-report-q1-2016.html" rel="alternate" type="text/html" />
 <author>
@@ -2195,7 +2279,7 @@ I am really impressed with the flexibility that JUG organizers are developing to
 <entry>
 <id>http://next.javaheadbrain.com/posts/2015/12/31/caching-made-bootiful.html</id>
 <title>Caching Made Bootiful — Hazelcast Way</title>
-<updated>2017-03-09T16:41:59-05:00</updated>
+<updated>2017-03-09T16:42:21-05:00</updated>
 <published>2015-12-31T22:18:23-06:00</published>
 <link href="http://next.javaheadbrain.com/posts/2015/12/31/caching-made-bootiful.html" rel="alternate" type="text/html" />
 <author>
@@ -2539,7 +2623,7 @@ Meanwhile, if you have any questions, feel free to post them in the comments sec
 <entry>
 <id>http://next.javaheadbrain.com/posts/2015/12/29/my-year-at-hazelcast-in-review.html</id>
 <title>My Year At Hazelcast In Review</title>
-<updated>2017-03-09T16:41:59-05:00</updated>
+<updated>2017-03-09T16:42:21-05:00</updated>
 <published>2015-12-29T17:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2015/12/29/my-year-at-hazelcast-in-review.html" rel="alternate" type="text/html" />
 <author>
@@ -2888,7 +2972,7 @@ Looking forward to 2016 — Happy New Year &lt;span class=&quot;icon&quot;&g
 <entry>
 <id>http://next.javaheadbrain.com/posts/2015/11/02/hazelcast-for-mongodb-developers.html</id>
 <title>Hazelcast for MongoDB Developers</title>
-<updated>2017-03-09T16:41:59-05:00</updated>
+<updated>2017-03-09T16:42:21-05:00</updated>
 <published>2015-11-02T16:31:53-06:00</published>
 <link href="http://next.javaheadbrain.com/posts/2015/11/02/hazelcast-for-mongodb-developers.html" rel="alternate" type="text/html" />
 <author>
@@ -3203,7 +3287,7 @@ If I didn’t, please, ask me in the comments below.&lt;/p&gt;
 <entry>
 <id>http://next.javaheadbrain.com/posts/2015/01/27/ground-up-introduction-to-in-memory-data.html</id>
 <title>Ground-up Introduction To In-Memory Data</title>
-<updated>2017-03-09T16:41:59-05:00</updated>
+<updated>2017-03-09T16:42:21-05:00</updated>
 <published>2015-01-27T22:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2015/01/27/ground-up-introduction-to-in-memory-data.html" rel="alternate" type="text/html" />
 <author>
@@ -3313,7 +3397,7 @@ This April, &lt;a href=&quot;http://codepalousa.com/blog/2015/code-palousa-2015-
 <entry>
 <id>http://next.javaheadbrain.com/posts/2014/12/13/goodbye-farata-hello-hazelcast.html</id>
 <title>Goodbye, Farata. Hello, Hazelcast!</title>
-<updated>2017-03-09T16:41:59-05:00</updated>
+<updated>2017-03-09T16:42:21-05:00</updated>
 <published>2014-12-13T00:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2014/12/13/goodbye-farata-hello-hazelcast.html" rel="alternate" type="text/html" />
 <author>
@@ -3414,7 +3498,7 @@ Ultimately, I’ll be doing the pretty much same sorts of things I’ve been doi
 <entry>
 <id>http://next.javaheadbrain.com/posts/2013/07/17/getting-started-with-nashorn.html</id>
 <title>Getting Started With Nashorn</title>
-<updated>2017-03-09T16:41:59-05:00</updated>
+<updated>2017-03-09T16:42:21-05:00</updated>
 <published>2013-07-17T23:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2013/07/17/getting-started-with-nashorn.html" rel="alternate" type="text/html" />
 <author>
@@ -3582,7 +3666,7 @@ As you learned from my previous post, I’m going to talk about Nashorn - JavaSc
 <entry>
 <id>http://next.javaheadbrain.com/posts/2013/07/09/im-speaking-at-javaone.html</id>
 <title>I&#8217;m speaking at JavaOne 2013</title>
-<updated>2017-03-09T16:41:59-05:00</updated>
+<updated>2017-03-09T16:42:21-05:00</updated>
 <published>2013-07-09T01:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2013/07/09/im-speaking-at-javaone.html" rel="alternate" type="text/html" />
 <author>
@@ -3634,7 +3718,7 @@ Keep in touch for updates by following me on &lt;a href=&quot;http://twitter.com
 <entry>
 <id>http://next.javaheadbrain.com/posts/2013/02/05/prouctive-enterprise-web-dev-with-cdb.html</id>
 <title>Productive Enterprise Web Development with ExtJS and Clear Data Builder</title>
-<updated>2017-03-09T16:41:59-05:00</updated>
+<updated>2017-03-09T16:42:21-05:00</updated>
 <published>2013-02-05T00:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2013/02/05/prouctive-enterprise-web-dev-with-cdb.html" rel="alternate" type="text/html" />
 <author>
@@ -4347,7 +4431,7 @@ public class PersonServiceImpl extends _PersonServiceImpl {
 <entry>
 <id>http://next.javaheadbrain.com/posts/2013/01/19/set-jdk-on-osx.html</id>
 <title>Set JDK on OSX</title>
-<updated>2017-03-09T16:41:59-05:00</updated>
+<updated>2017-03-09T16:42:21-05:00</updated>
 <published>2013-01-19T14:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2013/01/19/set-jdk-on-osx.html" rel="alternate" type="text/html" />
 <author>
@@ -4549,7 +4633,7 @@ alias setjdk19=&amp;apos;export JAVA_HOME=$(/usr/libexec/java_home -v 9)&amp;apo
 <entry>
 <id>http://next.javaheadbrain.com/posts/2012/07/26/websockets-for-java-developers.html</id>
 <title>WebSockets for Java Developers. Princeton JUG talk slides</title>
-<updated>2017-03-09T16:41:59-05:00</updated>
+<updated>2017-03-09T16:42:21-05:00</updated>
 <published>2012-07-26T00:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2012/07/26/websockets-for-java-developers.html" rel="alternate" type="text/html" />
 <summary>
@@ -4585,7 +4669,7 @@ today.&lt;/p&gt;
 <entry>
 <id>http://next.javaheadbrain.com/posts/2012/05/21/alfred-showhide-desktop-icons-on-mac-os.html</id>
 <title>Alfred Extension: Show/Hide desktop icons on Mac OS X</title>
-<updated>2017-03-09T16:41:59-05:00</updated>
+<updated>2017-03-09T16:42:21-05:00</updated>
 <published>2012-05-21T00:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2012/05/21/alfred-showhide-desktop-icons-on-mac-os.html" rel="alternate" type="text/html" />
 <category term="alfred"></category>
@@ -4614,7 +4698,7 @@ Cheers&lt;/p&gt;
 <entry>
 <id>http://next.javaheadbrain.com/posts/2012/05/16/webjars-for-assets-management-in-your.html</id>
 <title>WebJars for assets management in your project</title>
-<updated>2017-03-09T16:41:59-05:00</updated>
+<updated>2017-03-09T16:42:21-05:00</updated>
 <published>2012-05-16T00:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2012/05/16/webjars-for-assets-management-in-your.html" rel="alternate" type="text/html" />
 <category term="java"></category>
@@ -4639,7 +4723,7 @@ But in most common situations, you don’t have lot of options for deployment yo
 <entry>
 <id>http://next.javaheadbrain.com/posts/2012/01/28/how-to-download-videos-from-infoq-for.html</id>
 <title>How to download videos from InfoQ for offline viewing</title>
-<updated>2017-03-09T16:41:59-05:00</updated>
+<updated>2017-03-09T16:42:21-05:00</updated>
 <published>2012-01-28T06:15:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2012/01/28/how-to-download-videos-from-infoq-for.html" rel="alternate" type="text/html" />
 <author>
@@ -4687,7 +4771,7 @@ However, I found very elegant solution how to do that. I did it on my MacOS X wi
 <entry>
 <id>http://next.javaheadbrain.com/posts/2012/01/10/rapid-automation-for-flexjavablazeds.html</id>
 <title>Rapid automation for Flex/Java/BlazeDS projects</title>
-<updated>2017-03-09T16:41:59-05:00</updated>
+<updated>2017-03-09T16:42:21-05:00</updated>
 <published>2012-01-10T00:00:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2012/01/10/rapid-automation-for-flexjavablazeds.html" rel="alternate" type="text/html" />
 <author>
@@ -4707,7 +4791,7 @@ Feel free to comment!&lt;/p&gt;
 <entry>
 <id>http://next.javaheadbrain.com/posts/2011/09/11/adobe-max.html</id>
 <title>Adobe MAX</title>
-<updated>2017-03-09T16:41:59-05:00</updated>
+<updated>2017-03-09T16:42:21-05:00</updated>
 <published>2011-09-11T23:07:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2011/09/11/adobe-max.html" rel="alternate" type="text/html" />
 <author>
@@ -4741,7 +4825,7 @@ Creative Cloud - another big thing was announced. Sharing and collaboration b/w 
 <entry>
 <id>http://next.javaheadbrain.com/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html</id>
 <title>Eclipse: java.lang.UnsatisfiedLinkError: Cannot load 32-bit SWT libraries on 64-bit JVM</title>
-<updated>2017-03-09T16:41:59-05:00</updated>
+<updated>2017-03-09T16:42:21-05:00</updated>
 <published>2011-07-26T04:22:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html" rel="alternate" type="text/html" />
 <author>
@@ -4882,7 +4966,7 @@ to Eclipse→Preferences→Java→Installed JRE and add default JVM argument *&l
 <entry>
 <id>http://next.javaheadbrain.com/posts/2011/07/10/building-and-testing-with-gradle-my.html</id>
 <title>Building and Testing with Gradle - My Book Review</title>
-<updated>2017-03-09T16:41:59-05:00</updated>
+<updated>2017-03-09T16:42:21-05:00</updated>
 <published>2011-07-10T20:57:00+00:00</published>
 <link href="http://next.javaheadbrain.com/posts/2011/07/10/building-and-testing-with-gradle-my.html" rel="alternate" type="text/html" />
 <author>

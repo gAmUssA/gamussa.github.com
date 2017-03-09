@@ -1,4 +1,5 @@
 <!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><html class="no-js" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Hazelcast Node.js Client Refcard | Java.Head.Brain</title><meta name="author" content="Viktor Gamov"><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@asciidoctor"><meta name="twitter:url" content="http://next.javaheadbrain.com/posts/2017/02/09/hazelcast-node-dot-js-client-refcard.html"><meta name="twitter:title" content="Hazelcast Node.js Client Refcard"><meta name="twitter:description" content="Table of Contents
+Before Getting Started
 Configure Node.js client
 Distributed Map
 Distributed MultiMap
@@ -9,11 +10,11 @@ Distributed Lock
 Distributed Topic
 About Hazelcast IMDG
 Resources
-«Distributed World» of Hazelcast.
-Here are sample usages of distributed data structures.
-The examples..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html"><span class="icon"><i class="fa fa-th-large"></i></span>&nbspBlog</a></li><li class="divider"></li><li><a href="http://github.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-github"></i></span>&nbspGithub</a></li><li class="divider"></li><li><a href="http://twitter.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-twitter"></i></span>&nbspTwitter</a></li><li class="divider"></li><li><a href="https://www.youtube.com/playlist?list=PLaJqps0DAycqu2OV6sjl_Dm_VymB6KDV_" target="_blank"><span class="icon"><i class="fa fa-youtube"></i></span>&nbspMy Talks</a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://next.javaheadbrain.com">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h2 class="header"><a href="/posts/2017/02/09/hazelcast-node-dot-js-client-refcard.html">Hazelcast Node.js Client Refcard</a></h2><h5 class="subheader">Written by&nbsp <a href="#">Viktor Gamov</a>&nbsp- <time class="pubdate" datetime="2017-02-09T07:00:00+00:00">Thursday, February 9, 2017</time></h5><div class="row"><div class="large-12 columns text-left"><div id="toc" class="toc">
+Welcome to «The Distributed World» of Hazelcast.
+Here are sample usages..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html"><span class="icon"><i class="fa fa-th-large"></i></span>&nbspBlog</a></li><li class="divider"></li><li><a href="http://github.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-github"></i></span>&nbspGithub</a></li><li class="divider"></li><li><a href="http://twitter.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-twitter"></i></span>&nbspTwitter</a></li><li class="divider"></li><li><a href="https://www.youtube.com/playlist?list=PLaJqps0DAycqu2OV6sjl_Dm_VymB6KDV_" target="_blank"><span class="icon"><i class="fa fa-youtube"></i></span>&nbspMy Talks</a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://next.javaheadbrain.com">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h2 class="header"><a href="/posts/2017/02/09/hazelcast-node-dot-js-client-refcard.html">Hazelcast Node.js Client Refcard</a></h2><h5 class="subheader">Written by&nbsp <a href="#">Viktor Gamov</a>&nbsp- <time class="pubdate" datetime="2017-02-09T07:00:00+00:00">Thursday, February 9, 2017</time></h5><div class="row"><div class="large-12 columns text-left"><div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#before-getting-started">Before Getting Started</a></li>
 <li><a href="#configure-node-js-client">Configure Node.js client</a></li>
 <li><a href="#distributed-map">Distributed Map</a></li>
 <li><a href="#distributed-multimap">Distributed MultiMap</a></li>
@@ -31,21 +32,19 @@ The examples..."><link rel="stylesheet" href="/stylesheets/app.css"><script src=
 </div>
 <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph">
-<p>«Distributed World» of Hazelcast.
-Here are sample usages of distributed data structures.</p>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="/images/IMDG_orange_logo_square.png" alt="IMDG orange logo square">
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-The examples use ES6 syntax
-</td>
-</tr>
-</table>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="/images/node.png" alt="node">
+</div>
+</div>
+<div class="paragraph">
+<p>Welcome to «The Distributed World» of Hazelcast.
+Here are sample usages of distributed data structures using Node.js client.</p>
 </div>
 <table class="tableblock frame-all grid-all" style="width: 60%;">
 <caption class="title">Table 1. Revisions history</caption>
@@ -63,34 +62,95 @@ The examples use ES6 syntax
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>v1.1</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">03/09/2015</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">single quotes in js code, added Before Getting Started section</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>v1.0</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">02/07/2015</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Initial revision</p></td>
 </tr>
 </tbody>
 </table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The JavaScript examples use ES6 syntax
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="before-getting-started"><a class="anchor" href="#before-getting-started"></a>Before Getting Started</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>download latest Hazelcast distribution from <a href="https://hazelcast.org/download/" class="bare">https://hazelcast.org/download/</a></p>
+</li>
+<li>
+<p>unzip to any folder</p>
+</li>
+<li>
+<p>start Hazelcast member using startup script <code>&lt;hazelast_folder&gt;/bin/start.sh</code></p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/before_nodejs_client.gif" alt="before nodejs client">
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="configure-node-js-client"><a class="anchor" href="#configure-node-js-client"></a>Configure Node.js client</h2>
 <div class="sectionbody">
 <div class="listingblock">
-<div class="title">Install Hazelcast Node.js Package</div>
+<div class="title">Install Hazelcast Client Node.js Package</div>
 <div class="content">
 <pre class="nowrap">npm install hazelcast-client --save</pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-javascript" data-lang="javascript">const HazelcastClient = require('hazelcast-client').Client;
-const Config = require('hazelcast-client').Config;
+<pre class="highlight nowrap"><code class="language-javascript" data-lang="javascript">const HazelcastClient = require('hazelcast-client').Client; <i class="conum" data-value="1"></i><b>(1)</b>
+const Config = require('hazelcast-client').Config;  <i class="conum" data-value="2"></i><b>(2)</b>
 
-let config = new Config.ClientConfig();
+let config = new Config.ClientConfig(); <i class="conum" data-value="3"></i><b>(3)</b>
 
-HazelcastClient.newHazelcastClient().then((client) =&gt; {
-   // use client object
+HazelcastClient.newHazelcastClient(config)
+    .then((client) =&gt; {   <i class="conum" data-value="4"></i><b>(4)</b>
+        // use client object
 });</code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>import <code>HazelcastClient</code> object</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>import <code>Config</code> object</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>establish connection to local cluster member using default config</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>fully constructed and connected <code>client</code> will be passed as parameter</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -101,10 +161,10 @@ HazelcastClient.newHazelcastClient().then((client) =&gt; {
 <div class="content">
 <pre class="highlight nowrap"><code class="language-javascript" data-lang="javascript">HazelcastClient.newHazelcastClient().then((client) =&gt; {
     let map = client.getMap('my-distributed-map');
-    map.put("key", "value")
-        .then(() =&gt; map.get("key"))
-        .then(() =&gt; map.putIfAbsent("somekey", "somevalue"))
-        .then(() =&gt; map.replace("key", "oldvalue", "newvalue"))
+    map.put('key', 'value')
+        .then(() =&gt; map.get('key'))
+        .then(() =&gt; map.putIfAbsent('somekey', 'somevalue'))
+        .then(() =&gt; map.replace('key', 'oldvalue', 'newvalue'))
 });</code></pre>
 </div>
 </div>
@@ -116,7 +176,7 @@ HazelcastClient.newHazelcastClient().then((client) =&gt; {
 <div class="listingblock">
 <div class="content">
 <pre class="highlight nowrap"><code class="language-javascript" data-lang="javascript">HazelcastClient.newHazelcastClient().then((client) =&gt; {
-    "use strict";
+    'use strict';
     let mmap = client.getMultiMap('restaurants');
 
     mmap.put('New York', 'Red Lobster')
@@ -140,7 +200,7 @@ HazelcastClient.newHazelcastClient().then((client) =&gt; {
 <div class="listingblock">
 <div class="content">
 <pre class="highlight nowrap"><code class="language-javascript" data-lang="javascript">HazelcastClient.newHazelcastClient().then((client) =&gt; {
-    "use strict";
+    'use strict';
     let list = client.getList('my-distributed-list');
 
     let element = 'element1';
@@ -179,7 +239,7 @@ A set is a data structure that doesn&#8217;t allow duplicates
 <div class="listingblock">
 <div class="content">
 <pre class="highlight nowrap"><code class="language-javascript" data-lang="javascript">HazelcastClient.newHazelcastClient().then((client) =&gt; {
-    "use strict";
+    'use strict';
     let set = client.getSet('my-distributed-set');
 
     let elements = ['duplicate', 'duplicate', 'duplicate'];
@@ -245,7 +305,7 @@ A set is a data structure that doesn&#8217;t allow duplicates
     topic.addMessageListener((msg) =&gt; {
         console.log(msg.messageObject);
     });
-    topic.publish("hello from distributed world");
+    topic.publish('hello from distributed world');
 });</code></pre>
 </div>
 </div>
@@ -269,22 +329,22 @@ Hazelcast can be used in the areas like clustering, in-memory NoSQL, application
 <p>Docs: <a href="http://hazelcast.github.io/hazelcast-nodejs-client/api/0.6/docs/" class="bare">http://hazelcast.github.io/hazelcast-nodejs-client/api/0.6/docs/</a></p>
 </li>
 <li>
-<p>Download Hazelcast: hazelcast.org/download</p>
+<p>Download Hazelcast: <a href="http://hazelcast.org/download" class="bare">http://hazelcast.org/download</a></p>
 </li>
 <li>
-<p>Download Node.js client from NPM:</p>
+<p>Download Node.js client from NPM: <a href="https://www.npmjs.com/package/hazelcast-client" class="bare">https://www.npmjs.com/package/hazelcast-client</a></p>
 </li>
 <li>
-<p>Stack Overflow: stackoverfow.com/questions/tagged/hazelcast</p>
+<p>Stack Overflow: <a href="http://stackoverfow.com/questions/tagged/hazelcast" class="bare">http://stackoverfow.com/questions/tagged/hazelcast</a></p>
 </li>
 <li>
-<p>Blog: blog.hazelcast.com</p>
+<p>Blog: <a href="http://blog.hazelcast.com" class="bare">http://blog.hazelcast.com</a></p>
 </li>
 <li>
-<p>Use Cases: hazelcast.org/use-cases</p>
+<p>Use Cases: <a href="http://hazelcast.org/use-cases" class="bare">http://hazelcast.org/use-cases</a></p>
 </li>
 <li>
-<p>Professional Support: hazelcast.com/support</p>
+<p>Professional Support: <a href="http://hazelcast.com/support" class="bare">http://hazelcast.com/support</a></p>
 </li>
 </ul>
 </div>
