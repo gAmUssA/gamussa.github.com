@@ -22,7 +22,9 @@ endif::awestruct[]
 
 === Video
 
-TBD
+++++
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_VPItjmrX2Y?list=PLaJqps0DAycqu2OV6sjl_Dm_VymB6KDV_" frameborder="0" allowfullscreen></iframe>
+++++
 
 === Slides
 
