@@ -1,0 +1,43 @@
+= JBreak 2017 [RU]
+Viktor Gamov
+2017-04-04 10:29
+:imagesdir: ../images
+:icons:
+:keywords:
+:toc:
+ifndef::awestruct[]
+:awestruct-layout: post
+:awestruct-tags: []
+:idprefix:
+:idseparator: -
+endif::awestruct[]
+
+== Splendors and miseries of the Distributed Stream - Russian Edition
+
+=== Have you seen it? Do you like it? Please, rate
+
+++++
+++++
+
+=== Video
+
+TBD
+
+=== Slides
+
+.Speakerdeck
+++++
+TBD
+++++
+
+.Slideshare
+++++
+TBD
+++++
+
+=== Grab the code icon:code-fork[]
+
+.You can find code sample is following GH repository
+https://github.com/gAmUssA/jet-streams-presentation
+
+Branch for this talk `Jbreak_2017`
