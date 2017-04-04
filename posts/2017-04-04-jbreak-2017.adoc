@@ -12,11 +12,12 @@ ifndef::awestruct[]
 :idseparator: -
 endif::awestruct[]
 
-== Splendors and miseries of the Distributed Stream - Russian Edition
+== Блеск и нищета распределенных стримов - Russian Edition
 
-=== Have you seen it? Do you like it? Please, rate
+=== Видели ли вы этот доклад? как Вам?
 
 ++++
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe7VKXSWOXSLqytSwq_T-OkQVGdEkKPWDEDzHCWwW_h9WfA5g/viewform?embedded=true" width="600" height="400" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
 ++++
 
 === Video
