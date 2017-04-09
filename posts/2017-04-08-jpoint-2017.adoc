@@ -12,6 +12,8 @@ ifndef::awestruct[]
 :idseparator: -
 endif::awestruct[]
 
+image::jpoint.png[align="center", width="20%"]
+
 == Распределяй и властвуй — 2: Потоки данных наносят ответный удар - Russian Edition
 
 === Видели ли вы этот доклад? как Вам?

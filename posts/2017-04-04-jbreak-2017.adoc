@@ -12,6 +12,8 @@ ifndef::awestruct[]
 :idseparator: -
 endif::awestruct[]
 
+image::jbreak.png[align="center", width="20%"]
+
 == Блеск и нищета распределенных стримов - Russian Edition
 
 === Видели ли вы этот доклад? как Вам?
