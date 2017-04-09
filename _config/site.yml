@@ -33,7 +33,7 @@ profiles:
     deploy:
       dummy:
   production:
-    base_url: http://next.javaheadbrain.com
+    base_url: http://gamov.io
     disqus_developer: false
     google_analytics: UA-40354726-1
     compass_output_style: :compressed
