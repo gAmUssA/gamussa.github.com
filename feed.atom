@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
-<id>http://next.javaheadbrain.com/</id>
+<id>http://gamov.io/</id>
 <title>Steeplesoft</title>
 <author>
 <name>Viktor Gamov</name>
 </author>
-<updated>2017-04-09T13:51:11-04:00</updated>
-<link href="http://next.javaheadbrain.com/feed.atom" rel="self" type="application/atom+xml" />
-<link href="http://next.javaheadbrain.com/" rel="alternate" type="text/html" />
+<updated>2017-04-09T16:15:23-04:00</updated>
+<link href="http://gamov.io/feed.atom" rel="self" type="application/atom+xml" />
+<link href="http://gamov.io/" rel="alternate" type="text/html" />
 <entry>
-<id>http://next.javaheadbrain.com/posts/2017/04/08/jpoint-2017.html</id>
+<id>http://gamov.io/posts/2017/04/08/jpoint-2017.html</id>
 <title>JPoint - 2107 [RU]</title>
-<updated>2017-04-09T13:51:11-04:00</updated>
+<updated>2017-04-09T16:15:23-04:00</updated>
 <published>2017-04-08T18:00:00+00:00</published>
-<link href="http://next.javaheadbrain.com/posts/2017/04/08/jpoint-2017.html" rel="alternate" type="text/html" />
+<link href="http://gamov.io/posts/2017/04/08/jpoint-2017.html" rel="alternate" type="text/html" />
 <author>
 <name>Viktor Gamov</name>
 </author>
@@ -90,7 +90,7 @@ https://github.com/hazelcast/hazelcast-jet-code-samples/blob/master/kafka/consum
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/jpoint.png&quot; alt=&quot;jpoint&quot; width=&quot;20%&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/jpoint.png&quot; alt=&quot;jpoint&quot; width=&quot;20%&quot; /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -111,7 +111,7 @@ https://github.com/hazelcast/hazelcast-jet-code-samples/blob/master/kafka/consum
 &lt;div class=&quot;sect2&quot;&gt;
 &lt;h3 id=&quot;Слайды&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#Слайды&quot;&gt;&lt;/a&gt;Слайды&lt;/h3&gt;
 &lt;script async=&quot;&quot; class=&quot;speakerdeck-embed&quot; data-id=&quot;de15b67f6c7c4307aca07082138dcfb8&quot; data-ratio=&quot;1.77777777777778&quot; src=&quot;//speakerdeck.com/assets/embed.js&quot;&gt;&lt;/script&gt;
-&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/mRTibHpOfpibuM&quot; width=&quot;595&quot; height=&quot;485&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;http://next.javaheadbrain.com//www.slideshare.net/VikGamov/2-74767617&quot; title=&quot;Распределяй и властвуй — 2: Потоки данных наносят ответный удар&quot; target=&quot;_blank&quot;&gt;Распределяй и властвуй — 2: Потоки данных наносят ответный удар&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a target=&quot;_blank&quot; href=&quot;http://next.javaheadbrain.com//www.slideshare.net/VikGamov&quot;&gt;Viktor Gamov&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
+&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/mRTibHpOfpibuM&quot; width=&quot;595&quot; height=&quot;485&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;http://gamov.io//www.slideshare.net/VikGamov/2-74767617&quot; title=&quot;Распределяй и властвуй — 2: Потоки данных наносят ответный удар&quot; target=&quot;_blank&quot;&gt;Распределяй и властвуй — 2: Потоки данных наносят ответный удар&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a target=&quot;_blank&quot; href=&quot;http://gamov.io//www.slideshare.net/VikGamov&quot;&gt;Viktor Gamov&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect2&quot;&gt;
 &lt;h3 id=&quot;Код-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#Код-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;/a&gt;Код &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
@@ -134,11 +134,11 @@ https://github.com/hazelcast/hazelcast-jet-code-samples/blob/master/kafka/consum
 </content>
 </entry>
 <entry>
-<id>http://next.javaheadbrain.com/posts/2017/04/04/jbreak-2017.html</id>
+<id>http://gamov.io/posts/2017/04/04/jbreak-2017.html</id>
 <title>JBreak 2017 [RU]</title>
-<updated>2017-04-09T13:51:11-04:00</updated>
+<updated>2017-04-09T16:15:23-04:00</updated>
 <published>2017-04-04T10:00:00+00:00</published>
-<link href="http://next.javaheadbrain.com/posts/2017/04/04/jbreak-2017.html" rel="alternate" type="text/html" />
+<link href="http://gamov.io/posts/2017/04/04/jbreak-2017.html" rel="alternate" type="text/html" />
 <author>
 <name>Viktor Gamov</name>
 </author>
@@ -209,7 +209,7 @@ Branch for this talk Jbreak_2017...
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/jbreak.png&quot; alt=&quot;jbreak&quot; width=&quot;20%&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/jbreak.png&quot; alt=&quot;jbreak&quot; width=&quot;20%&quot; /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -230,7 +230,7 @@ Branch for this talk Jbreak_2017...
 &lt;div class=&quot;sect2&quot;&gt;
 &lt;h3 id=&quot;Слайды&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#Слайды&quot;&gt;&lt;/a&gt;Слайды&lt;/h3&gt;
 &lt;script async=&quot;&quot; class=&quot;speakerdeck-embed&quot; data-id=&quot;106c738a739b4f0f97dd7da9278eedc7&quot; data-ratio=&quot;1.77777777777778&quot; src=&quot;//speakerdeck.com/assets/embed.js&quot;&gt;&lt;/script&gt;
-&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/v0Yc7tRkZX7J2i&quot; width=&quot;595&quot; height=&quot;485&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;http://next.javaheadbrain.com//www.slideshare.net/VikGamov/jbreak-04042017&quot; title=&quot;[JBreak] Блеск И Нищета Распределенных Стримов - 04-04-2017&quot; target=&quot;_blank&quot;&gt;[JBreak] Блеск И Нищета Распределенных Стримов - 04-04-2017&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a target=&quot;_blank&quot; href=&quot;http://next.javaheadbrain.com//www.slideshare.net/VikGamov&quot;&gt;Viktor Gamov&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
+&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/v0Yc7tRkZX7J2i&quot; width=&quot;595&quot; height=&quot;485&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;http://gamov.io//www.slideshare.net/VikGamov/jbreak-04042017&quot; title=&quot;[JBreak] Блеск И Нищета Распределенных Стримов - 04-04-2017&quot; target=&quot;_blank&quot;&gt;[JBreak] Блеск И Нищета Распределенных Стримов - 04-04-2017&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a target=&quot;_blank&quot; href=&quot;http://gamov.io//www.slideshare.net/VikGamov&quot;&gt;Viktor Gamov&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect2&quot;&gt;
 &lt;h3 id=&quot;Код-искать-тут-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#Код-искать-тут-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;/a&gt;Код искать тут &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
@@ -247,11 +247,11 @@ Branch for this talk Jbreak_2017...
 </content>
 </entry>
 <entry>
-<id>http://next.javaheadbrain.com/posts/2017/02/09/hazelcast-node-dot-js-client-refcard.html</id>
+<id>http://gamov.io/posts/2017/02/09/hazelcast-node-dot-js-client-refcard.html</id>
 <title>Hazelcast Node.js Client Refcard</title>
-<updated>2017-04-09T13:51:11-04:00</updated>
+<updated>2017-04-09T16:15:23-04:00</updated>
 <published>2017-02-09T07:00:00+00:00</published>
-<link href="http://next.javaheadbrain.com/posts/2017/02/09/hazelcast-node-dot-js-client-refcard.html" rel="alternate" type="text/html" />
+<link href="http://gamov.io/posts/2017/02/09/hazelcast-node-dot-js-client-refcard.html" rel="alternate" type="text/html" />
 <author>
 <name>Viktor Gamov</name>
 </author>
@@ -401,12 +401,12 @@ HazelcastClient.newHazelcastClient(config)
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/IMDG_orange_logo_square.png&quot; alt=&quot;IMDG orange logo square&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/IMDG_orange_logo_square.png&quot; alt=&quot;IMDG orange logo square&quot; /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/node.png&quot; alt=&quot;node&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/node.png&quot; alt=&quot;node&quot; /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
@@ -472,7 +472,7 @@ The JavaScript examples use ES6 syntax
 &lt;/div&gt;
 &lt;div class=&quot;imageblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/before_nodejs_client.gif&quot; alt=&quot;before nodejs client&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/before_nodejs_client.gif&quot; alt=&quot;before nodejs client&quot; /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -721,11 +721,11 @@ Hazelcast can be used in the areas like clustering, in-memory NoSQL, application
 </content>
 </entry>
 <entry>
-<id>http://next.javaheadbrain.com/posts/2017/02/08/jfokus-2017.html</id>
+<id>http://gamov.io/posts/2017/02/08/jfokus-2017.html</id>
 <title>Jfokus 2017</title>
-<updated>2017-04-09T13:51:11-04:00</updated>
+<updated>2017-04-09T16:15:23-04:00</updated>
 <published>2017-02-08T09:00:00+00:00</published>
-<link href="http://next.javaheadbrain.com/posts/2017/02/08/jfokus-2017.html" rel="alternate" type="text/html" />
+<link href="http://gamov.io/posts/2017/02/08/jfokus-2017.html" rel="alternate" type="text/html" />
 <author>
 <name>Viktor Gamov</name>
 </author>
@@ -797,7 +797,7 @@ Branch for this talk JFokus_Feb2017...
 &lt;div class=&quot;sect2&quot;&gt;
 &lt;h3 id=&quot;slides&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#slides&quot;&gt;&lt;/a&gt;Slides&lt;/h3&gt;
 &lt;script async=&quot;&quot; class=&quot;speakerdeck-embed&quot; data-id=&quot;364d0680d09d483da8760c83df12fa47&quot; data-ratio=&quot;1.77777777777778&quot; src=&quot;//speakerdeck.com/assets/embed.js&quot;&gt;&lt;/script&gt;
-&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/GtUk0TwecrPtjS&quot; width=&quot;595&quot; height=&quot;485&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;http://next.javaheadbrain.com//www.slideshare.net/VikGamov/jfokus-riding-the-jet-streams&quot; title=&quot;[Jfokus] Riding the Jet Streams&quot; target=&quot;_blank&quot;&gt;[Jfokus] Riding the Jet Streams&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a target=&quot;_blank&quot; href=&quot;http://next.javaheadbrain.com//www.slideshare.net/VikGamov&quot;&gt;Viktor Gamov&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
+&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/GtUk0TwecrPtjS&quot; width=&quot;595&quot; height=&quot;485&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;http://gamov.io//www.slideshare.net/VikGamov/jfokus-riding-the-jet-streams&quot; title=&quot;[Jfokus] Riding the Jet Streams&quot; target=&quot;_blank&quot;&gt;[Jfokus] Riding the Jet Streams&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a target=&quot;_blank&quot; href=&quot;http://gamov.io//www.slideshare.net/VikGamov&quot;&gt;Viktor Gamov&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect2&quot;&gt;
 &lt;h3 id=&quot;grab-the-code-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#grab-the-code-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;/a&gt;Grab the code &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
@@ -814,11 +814,11 @@ Branch for this talk JFokus_Feb2017...
 </content>
 </entry>
 <entry>
-<id>http://next.javaheadbrain.com/posts/2017/02/02/nyjavasig-2017.html</id>
+<id>http://gamov.io/posts/2017/02/02/nyjavasig-2017.html</id>
 <title>NYJavaSig, February 2017</title>
-<updated>2017-04-09T13:51:11-04:00</updated>
+<updated>2017-04-09T16:15:23-04:00</updated>
 <published>2017-02-02T20:00:00+00:00</published>
-<link href="http://next.javaheadbrain.com/posts/2017/02/02/nyjavasig-2017.html" rel="alternate" type="text/html" />
+<link href="http://gamov.io/posts/2017/02/02/nyjavasig-2017.html" rel="alternate" type="text/html" />
 <author>
 <name>Viktor Gamov</name>
 </author>
@@ -895,7 +895,7 @@ Let&#39;s look...
 &lt;div class=&quot;sect2&quot;&gt;
 &lt;h3 id=&quot;slides&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#slides&quot;&gt;&lt;/a&gt;Slides&lt;/h3&gt;
 &lt;script async=&quot;&quot; class=&quot;speakerdeck-embed&quot; data-id=&quot;2a44c22661014ab18bde0171507b0200&quot; data-ratio=&quot;1.77777777777778&quot; src=&quot;//speakerdeck.com/assets/embed.js&quot;&gt;&lt;/script&gt;
-&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/1MucyCaur6vT52?startSlide=2&quot; width=&quot;510&quot; height=&quot;420&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;http://next.javaheadbrain.com//www.slideshare.net/VikGamov/nyjavasig-riding-the-distributed-streams-feb-2nd-2017&quot; title=&quot;[NYJavaSig] Riding the Distributed Streams - Feb 2nd, 2017&quot; target=&quot;_blank&quot;&gt;[NYJavaSig] Riding the Distributed Streams - Feb 2nd, 2017&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a target=&quot;_blank&quot; href=&quot;http://next.javaheadbrain.com//www.slideshare.net/VikGamov&quot;&gt;Viktor Gamov&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
+&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/1MucyCaur6vT52?startSlide=2&quot; width=&quot;510&quot; height=&quot;420&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;http://gamov.io//www.slideshare.net/VikGamov/nyjavasig-riding-the-distributed-streams-feb-2nd-2017&quot; title=&quot;[NYJavaSig] Riding the Distributed Streams - Feb 2nd, 2017&quot; target=&quot;_blank&quot;&gt;[NYJavaSig] Riding the Distributed Streams - Feb 2nd, 2017&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a target=&quot;_blank&quot; href=&quot;http://gamov.io//www.slideshare.net/VikGamov&quot;&gt;Viktor Gamov&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect2&quot;&gt;
 &lt;h3 id=&quot;grab-the-code-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#grab-the-code-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;/a&gt;Grab the code &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
@@ -926,11 +926,11 @@ Let&#39;s look...
 </content>
 </entry>
 <entry>
-<id>http://next.javaheadbrain.com/posts/2017/01/12/codemash-2017.html</id>
+<id>http://gamov.io/posts/2017/01/12/codemash-2017.html</id>
 <title>Codemash 2017</title>
-<updated>2017-04-09T13:51:11-04:00</updated>
+<updated>2017-04-09T16:15:23-04:00</updated>
 <published>2017-01-12T13:00:00+00:00</published>
-<link href="http://next.javaheadbrain.com/posts/2017/01/12/codemash-2017.html" rel="alternate" type="text/html" />
+<link href="http://gamov.io/posts/2017/01/12/codemash-2017.html" rel="alternate" type="text/html" />
 <author>
 <name>Viktor Gamov</name>
 </author>
@@ -1035,7 +1035,7 @@ Each branch represents parts of the talk:
 &lt;div class=&quot;sect2&quot;&gt;
 &lt;h3 id=&quot;slides&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#slides&quot;&gt;&lt;/a&gt;Slides&lt;/h3&gt;
 &lt;script async=&quot;&quot; class=&quot;speakerdeck-embed&quot; data-id=&quot;8a942f7501cf4f06b4a803f18ea41b7f&quot; data-ratio=&quot;1.77777777777778&quot; src=&quot;//speakerdeck.com/assets/embed.js&quot;&gt;&lt;/script&gt;
-&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/nlIjtpsiKHQIZx&quot; width=&quot;595&quot; height=&quot;485&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;http://next.javaheadbrain.com//www.slideshare.net/VikGamov/codemash-caching-made-bootiful&quot; title=&quot;[Codemash] Caching Made &amp;quot;Bootiful&amp;quot;!&quot; target=&quot;_blank&quot;&gt;[Codemash] Caching Made &amp;quot;Bootiful&amp;quot;!&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a target=&quot;_blank&quot; href=&quot;http://next.javaheadbrain.com//www.slideshare.net/VikGamov&quot;&gt;Viktor Gamov&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
+&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/nlIjtpsiKHQIZx&quot; width=&quot;595&quot; height=&quot;485&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;http://gamov.io//www.slideshare.net/VikGamov/codemash-caching-made-bootiful&quot; title=&quot;[Codemash] Caching Made &amp;quot;Bootiful&amp;quot;!&quot; target=&quot;_blank&quot;&gt;[Codemash] Caching Made &amp;quot;Bootiful&amp;quot;!&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a target=&quot;_blank&quot; href=&quot;http://gamov.io//www.slideshare.net/VikGamov&quot;&gt;Viktor Gamov&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect2&quot;&gt;
 &lt;h3 id=&quot;grab-the-code-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#grab-the-code-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;/a&gt;Grab the code &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
@@ -1071,11 +1071,11 @@ Each branch represents parts of the talk:
 </content>
 </entry>
 <entry>
-<id>http://next.javaheadbrain.com/posts/2016/09/09/whats-new-in-hazelcast-client-for-nodejs.html</id>
+<id>http://gamov.io/posts/2016/09/09/whats-new-in-hazelcast-client-for-nodejs.html</id>
 <title>What&#8217;s New in Hazelcast Node.js Client</title>
-<updated>2017-04-09T13:51:11-04:00</updated>
+<updated>2017-04-09T16:15:23-04:00</updated>
 <published>2016-09-09T06:05:51-06:00</published>
-<link href="http://next.javaheadbrain.com/posts/2016/09/09/whats-new-in-hazelcast-client-for-nodejs.html" rel="alternate" type="text/html" />
+<link href="http://gamov.io/posts/2016/09/09/whats-new-in-hazelcast-client-for-nodejs.html" rel="alternate" type="text/html" />
 <author>
 <name>Mustafa Iman &lt;mustafa.iman@hazelcast.com&gt;, Viktor Gamov &lt;viktor@hazelcast.com&gt;</name>
 </author>
@@ -1131,7 +1131,7 @@ If you haven&#8217;t read previous...
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/node.png&quot; alt=&quot;node&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/node.png&quot; alt=&quot;node&quot; /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;admonitionblock note&quot;&gt;
@@ -1248,7 +1248,7 @@ I don’t know how to put this, but it’s kind of a big deal.
 &lt;/div&gt;
 &lt;div class=&quot;imageblock&quot; style=&quot;text-align: left&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/ron.jpg&quot; alt=&quot;ron&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/ron.jpg&quot; alt=&quot;ron&quot; /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect2&quot;&gt;
@@ -1681,7 +1681,7 @@ Entry processor eliminates the cost of transferring entries between cluster and 
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;imageblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/wonka.jpg&quot; alt=&quot;wonka&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/wonka.jpg&quot; alt=&quot;wonka&quot; /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect2&quot;&gt;
@@ -1783,11 +1783,11 @@ There a bunch of way to provide the feedback:&lt;/p&gt;
 </content>
 </entry>
 <entry>
-<id>http://next.javaheadbrain.com/posts/2016/04/18/getting-started-with-hazelcast-and-node.html</id>
+<id>http://gamov.io/posts/2016/04/18/getting-started-with-hazelcast-and-node.html</id>
 <title>Getting Started with Hazelcast and Node.js</title>
-<updated>2017-04-09T13:51:11-04:00</updated>
+<updated>2017-04-09T16:15:23-04:00</updated>
 <published>2016-04-18T06:05:51-06:00</published>
-<link href="http://next.javaheadbrain.com/posts/2016/04/18/getting-started-with-hazelcast-and-node.html" rel="alternate" type="text/html" />
+<link href="http://gamov.io/posts/2016/04/18/getting-started-with-hazelcast-and-node.html" rel="alternate" type="text/html" />
 <author>
 <name>Viktor Gamov</name>
 </author>
@@ -1845,7 +1845,7 @@ Since each data partition uses the well known and consistent hashing algorithm, 
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/node.png&quot; alt=&quot;node&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/node.png&quot; alt=&quot;node&quot; /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;admonitionblock note&quot;&gt;
@@ -2147,11 +2147,11 @@ You have just connected to a Hazelcast cluster and performed basic CRUD operatio
 </content>
 </entry>
 <entry>
-<id>http://next.javaheadbrain.com/posts/2016/03/31/travel-report-q1-2016.html</id>
+<id>http://gamov.io/posts/2016/03/31/travel-report-q1-2016.html</id>
 <title>Travel Report - Q1 2016</title>
-<updated>2017-04-09T13:51:11-04:00</updated>
+<updated>2017-04-09T16:15:23-04:00</updated>
 <published>2016-03-31T20:00:00+00:00</published>
-<link href="http://next.javaheadbrain.com/posts/2016/03/31/travel-report-q1-2016.html" rel="alternate" type="text/html" />
+<link href="http://gamov.io/posts/2016/03/31/travel-report-q1-2016.html" rel="alternate" type="text/html" />
 <author>
 <name>Viktor Gamov</name>
 </author>
@@ -2252,7 +2252,7 @@ Major events - Toronto JUG, Central Ohio JUG, DevNexus.
 &lt;/div&gt;
 &lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/luggage.jpeg&quot; alt=&quot;luggage&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/luggage.jpeg&quot; alt=&quot;luggage&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;table class=&quot;tableblock frame-all grid-all&quot; style=&quot;width: 60%;&quot;&gt;
@@ -2301,7 +2301,7 @@ The Java User Group happened right at the bar. It was a first for me!&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/torontojug.jpeg&quot; alt=&quot;torontojug&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/torontojug.jpeg&quot; alt=&quot;torontojug&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
@@ -2325,7 +2325,7 @@ That allows them to make their events work for a larger number of schedules too.
 &lt;/div&gt;
 &lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/cojug.jpeg&quot; alt=&quot;cojug&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/cojug.jpeg&quot; alt=&quot;cojug&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
@@ -2340,7 +2340,7 @@ This year was once again a blast.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/devnexus_2016.jpg&quot; alt=&quot;devnexus 2016&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/devnexus_2016.jpg&quot; alt=&quot;devnexus 2016&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
@@ -2516,11 +2516,11 @@ I am really impressed with the flexibility that JUG organizers are developing to
 </content>
 </entry>
 <entry>
-<id>http://next.javaheadbrain.com/posts/2015/12/31/caching-made-bootiful.html</id>
+<id>http://gamov.io/posts/2015/12/31/caching-made-bootiful.html</id>
 <title>Caching Made Bootiful — Hazelcast Way</title>
-<updated>2017-04-09T13:51:11-04:00</updated>
+<updated>2017-04-09T16:15:23-04:00</updated>
 <published>2015-12-31T22:18:23-06:00</published>
-<link href="http://next.javaheadbrain.com/posts/2015/12/31/caching-made-bootiful.html" rel="alternate" type="text/html" />
+<link href="http://gamov.io/posts/2015/12/31/caching-made-bootiful.html" rel="alternate" type="text/html" />
 <author>
 <name>Viktor Gamov</name>
 </author>
@@ -2548,7 +2548,7 @@ You will see how the Spring Framework caching abstraction plays...
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/hazelcast_boot_1.png&quot; alt=&quot;hazelcast boot 1&quot; width=&quot;40%&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/hazelcast_boot_1.png&quot; alt=&quot;hazelcast boot 1&quot; width=&quot;40%&quot; /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;admonitionblock note&quot;&gt;
@@ -2860,11 +2860,11 @@ Meanwhile, if you have any questions, feel free to post them in the comments sec
 </content>
 </entry>
 <entry>
-<id>http://next.javaheadbrain.com/posts/2015/12/29/my-year-at-hazelcast-in-review.html</id>
+<id>http://gamov.io/posts/2015/12/29/my-year-at-hazelcast-in-review.html</id>
 <title>My Year At Hazelcast In Review</title>
-<updated>2017-04-09T13:51:11-04:00</updated>
+<updated>2017-04-09T16:15:23-04:00</updated>
 <published>2015-12-29T17:00:00+00:00</published>
-<link href="http://next.javaheadbrain.com/posts/2015/12/29/my-year-at-hazelcast-in-review.html" rel="alternate" type="text/html" />
+<link href="http://gamov.io/posts/2015/12/29/my-year-at-hazelcast-in-review.html" rel="alternate" type="text/html" />
 <author>
 <name>Viktor Gamov</name>
 </author>
@@ -2935,7 +2935,7 @@ In addition to travelling...
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/laptop.jpg&quot; alt=&quot;laptop&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/laptop.jpg&quot; alt=&quot;laptop&quot; /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;admonitionblock note&quot;&gt;
@@ -3031,7 +3031,7 @@ I might even be able to provide you with discount!&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/richmond_jcache.jpg&quot; alt=&quot;50%&quot; width=&quot;50%&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/richmond_jcache.jpg&quot; alt=&quot;50%&quot; width=&quot;50%&quot; /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
@@ -3209,11 +3209,11 @@ Looking forward to 2016 — Happy New Year &lt;span class=&quot;icon&quot;&g
 </content>
 </entry>
 <entry>
-<id>http://next.javaheadbrain.com/posts/2015/11/02/hazelcast-for-mongodb-developers.html</id>
+<id>http://gamov.io/posts/2015/11/02/hazelcast-for-mongodb-developers.html</id>
 <title>Hazelcast for MongoDB Developers</title>
-<updated>2017-04-09T13:51:11-04:00</updated>
+<updated>2017-04-09T16:15:23-04:00</updated>
 <published>2015-11-02T16:31:53-06:00</published>
-<link href="http://next.javaheadbrain.com/posts/2015/11/02/hazelcast-for-mongodb-developers.html" rel="alternate" type="text/html" />
+<link href="http://gamov.io/posts/2015/11/02/hazelcast-for-mongodb-developers.html" rel="alternate" type="text/html" />
 <author>
 <name>Viktor Gamov &lt;viktor@hazelcast.com&gt;, © 2015 Hazelcast, Inc.</name>
 </author>
@@ -3258,7 +3258,7 @@ In short, MongoDB is an NOSQL data store, primarily concerned with storing/persi
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;imageblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/hazelcast_mongo.jpg&quot; alt=&quot;hazelcast mongo&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/hazelcast_mongo.jpg&quot; alt=&quot;hazelcast mongo&quot; /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;admonitionblock note&quot;&gt;
@@ -3524,11 +3524,11 @@ If I didn’t, please, ask me in the comments below.&lt;/p&gt;
 </content>
 </entry>
 <entry>
-<id>http://next.javaheadbrain.com/posts/2015/01/27/ground-up-introduction-to-in-memory-data.html</id>
+<id>http://gamov.io/posts/2015/01/27/ground-up-introduction-to-in-memory-data.html</id>
 <title>Ground-up Introduction To In-Memory Data</title>
-<updated>2017-04-09T13:51:11-04:00</updated>
+<updated>2017-04-09T16:15:23-04:00</updated>
 <published>2015-01-27T22:00:00+00:00</published>
-<link href="http://next.javaheadbrain.com/posts/2015/01/27/ground-up-introduction-to-in-memory-data.html" rel="alternate" type="text/html" />
+<link href="http://gamov.io/posts/2015/01/27/ground-up-introduction-to-in-memory-data.html" rel="alternate" type="text/html" />
 <author>
 <name>Viktor Gamov</name>
 </author>
@@ -3634,11 +3634,11 @@ This April, &lt;a href=&quot;http://codepalousa.com/blog/2015/code-palousa-2015-
 </content>
 </entry>
 <entry>
-<id>http://next.javaheadbrain.com/posts/2014/12/13/goodbye-farata-hello-hazelcast.html</id>
+<id>http://gamov.io/posts/2014/12/13/goodbye-farata-hello-hazelcast.html</id>
 <title>Goodbye, Farata. Hello, Hazelcast!</title>
-<updated>2017-04-09T13:51:11-04:00</updated>
+<updated>2017-04-09T16:15:23-04:00</updated>
 <published>2014-12-13T00:00:00+00:00</published>
-<link href="http://next.javaheadbrain.com/posts/2014/12/13/goodbye-farata-hello-hazelcast.html" rel="alternate" type="text/html" />
+<link href="http://gamov.io/posts/2014/12/13/goodbye-farata-hello-hazelcast.html" rel="alternate" type="text/html" />
 <author>
 <name>Viktor Gamov</name>
 </author>
@@ -3690,7 +3690,7 @@ I joined Farata as Senior RIA (who does remember that abbreviation?) Developer i
 &lt;/div&gt;
 &lt;div class=&quot;imageblock&quot; style=&quot;text-align: center;float: right&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/HazelcastLogo-Blue_Dark_1200w.png&quot; alt=&quot;hazelcast&quot; width=&quot;50%&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/HazelcastLogo-Blue_Dark_1200w.png&quot; alt=&quot;hazelcast&quot; width=&quot;50%&quot; /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;admonitionblock note&quot;&gt;
@@ -3735,11 +3735,11 @@ Ultimately, I’ll be doing the pretty much same sorts of things I’ve been doi
 </content>
 </entry>
 <entry>
-<id>http://next.javaheadbrain.com/posts/2013/07/17/getting-started-with-nashorn.html</id>
+<id>http://gamov.io/posts/2013/07/17/getting-started-with-nashorn.html</id>
 <title>Getting Started With Nashorn</title>
-<updated>2017-04-09T13:51:11-04:00</updated>
+<updated>2017-04-09T16:15:23-04:00</updated>
 <published>2013-07-17T23:00:00+00:00</published>
-<link href="http://next.javaheadbrain.com/posts/2013/07/17/getting-started-with-nashorn.html" rel="alternate" type="text/html" />
+<link href="http://gamov.io/posts/2013/07/17/getting-started-with-nashorn.html" rel="alternate" type="text/html" />
 <author>
 <name>Viktor Gamov</name>
 </author>
@@ -3903,11 +3903,11 @@ As you learned from my previous post, I’m going to talk about Nashorn - JavaSc
 </content>
 </entry>
 <entry>
-<id>http://next.javaheadbrain.com/posts/2013/07/09/im-speaking-at-javaone.html</id>
+<id>http://gamov.io/posts/2013/07/09/im-speaking-at-javaone.html</id>
 <title>I&#8217;m speaking at JavaOne 2013</title>
-<updated>2017-04-09T13:51:11-04:00</updated>
+<updated>2017-04-09T16:15:23-04:00</updated>
 <published>2013-07-09T01:00:00+00:00</published>
-<link href="http://next.javaheadbrain.com/posts/2013/07/09/im-speaking-at-javaone.html" rel="alternate" type="text/html" />
+<link href="http://gamov.io/posts/2013/07/09/im-speaking-at-javaone.html" rel="alternate" type="text/html" />
 <author>
 <name>Viktor Gamov</name>
 </author>
@@ -3945,7 +3945,7 @@ This year I will be talking about very demanding and interesting topic for me - 
 &lt;/div&gt;
 &lt;div class=&quot;imageblock radius small-4 small-centered columns&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/javascript.png&quot; alt=&quot;javascript&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/javascript.png&quot; alt=&quot;javascript&quot; /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
@@ -3955,11 +3955,11 @@ Keep in touch for updates by following me on &lt;a href=&quot;http://twitter.com
 </content>
 </entry>
 <entry>
-<id>http://next.javaheadbrain.com/posts/2013/02/05/prouctive-enterprise-web-dev-with-cdb.html</id>
+<id>http://gamov.io/posts/2013/02/05/prouctive-enterprise-web-dev-with-cdb.html</id>
 <title>Productive Enterprise Web Development with ExtJS and Clear Data Builder</title>
-<updated>2017-04-09T13:51:11-04:00</updated>
+<updated>2017-04-09T16:15:23-04:00</updated>
 <published>2013-02-05T00:00:00+00:00</published>
-<link href="http://next.javaheadbrain.com/posts/2013/02/05/prouctive-enterprise-web-dev-with-cdb.html" rel="alternate" type="text/html" />
+<link href="http://gamov.io/posts/2013/02/05/prouctive-enterprise-web-dev-with-cdb.html" rel="alternate" type="text/html" />
 <author>
 <name>Viktor Gamov&lt;viktor.gamov@faratasystems.com&gt;</name>
 </author>
@@ -4053,7 +4053,7 @@ You have to have &amp;quot;Eclipse for Java EE Developers&amp;quot; installed, w
 &lt;/div&gt;
 &lt;div id=&quot;FIG-1&quot; class=&quot;imageblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/fig_01.png&quot; alt=&quot;image&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/fig_01.png&quot; alt=&quot;image&quot; /&gt;
 &lt;/div&gt;
 &lt;div class=&quot;title&quot;&gt;Figure 1. Verifying CDB installation&lt;/div&gt;
 &lt;/div&gt;
@@ -4062,7 +4062,7 @@ You have to have &amp;quot;Eclipse for Java EE Developers&amp;quot; installed, w
 &lt;/div&gt;
 &lt;div id=&quot;FIG-2&quot; class=&quot;imageblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/fig_02.png&quot; alt=&quot;image&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/fig_02.png&quot; alt=&quot;image&quot; /&gt;
 &lt;/div&gt;
 &lt;div class=&quot;title&quot;&gt;Figure 2. New CDB Project Wizard&lt;/div&gt;
 &lt;/div&gt;
@@ -4077,7 +4077,7 @@ You have to have &amp;quot;Eclipse for Java EE Developers&amp;quot; installed, w
 &lt;/div&gt;
 &lt;div id=&quot;FIG-3&quot; class=&quot;imageblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/fig_03.png&quot; alt=&quot;image&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/fig_03.png&quot; alt=&quot;image&quot; /&gt;
 &lt;/div&gt;
 &lt;div class=&quot;title&quot;&gt;Figure 3. Adding web project to Tomcat&lt;/div&gt;
 &lt;/div&gt;
@@ -4086,7 +4086,7 @@ You have to have &amp;quot;Eclipse for Java EE Developers&amp;quot; installed, w
 &lt;/div&gt;
 &lt;div id=&quot;FIG-4&quot; class=&quot;imageblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/fig_04.png&quot; alt=&quot;image&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/fig_04.png&quot; alt=&quot;image&quot; /&gt;
 &lt;/div&gt;
 &lt;div class=&quot;title&quot;&gt;Figure 4. Running scaffolded application&lt;/div&gt;
 &lt;/div&gt;
@@ -4188,7 +4188,7 @@ public class Person {
 &lt;/div&gt;
 &lt;div id=&quot;FIG-5&quot; class=&quot;imageblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/fig_05.png&quot; alt=&quot;image&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/fig_05.png&quot; alt=&quot;image&quot; /&gt;
 &lt;/div&gt;
 &lt;div class=&quot;title&quot;&gt;Figure 5. Generated from Java class ExtJS model&lt;/div&gt;
 &lt;/div&gt;
@@ -4221,7 +4221,7 @@ public interface PersonService {
 &lt;/div&gt;
 &lt;div id=&quot;FIG-6&quot; class=&quot;imageblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/fig_06.png&quot; alt=&quot;image&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/fig_06.png&quot; alt=&quot;image&quot; /&gt;
 &lt;/div&gt;
 &lt;div class=&quot;title&quot;&gt;Figure 6. Structure of store and model folders&lt;/div&gt;
 &lt;/div&gt;
@@ -4233,7 +4233,7 @@ public interface PersonService {
 &lt;/div&gt;
 &lt;div id=&quot;FIG-7&quot; class=&quot;imageblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/fig_07.png&quot; alt=&quot;image&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/fig_07.png&quot; alt=&quot;image&quot; /&gt;
 &lt;/div&gt;
 &lt;div class=&quot;title&quot;&gt;Figure 7. Folder with generated samples&lt;/div&gt;
 &lt;/div&gt;
@@ -4250,7 +4250,7 @@ public interface PersonService {
 &lt;/div&gt;
 &lt;div id=&quot;FIG-8&quot; class=&quot;imageblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/fig_08.png&quot; alt=&quot;image&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/fig_08.png&quot; alt=&quot;image&quot; /&gt;
 &lt;/div&gt;
 &lt;div class=&quot;title&quot;&gt;Figure 8. Scaffolded CRUD application template&lt;/div&gt;
 &lt;/div&gt;
@@ -4545,7 +4545,7 @@ click of Load button &lt;a href=&quot;#LISTING_6&quot;&gt;Controller for sample 
 &lt;/div&gt;
 &lt;div id=&quot;FIG-9&quot; class=&quot;imageblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/fig_09.png&quot; alt=&quot;image&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/fig_09.png&quot; alt=&quot;image&quot; /&gt;
 &lt;/div&gt;
 &lt;div class=&quot;title&quot;&gt;Figure 9. Request payload details&lt;/div&gt;
 &lt;/div&gt;
@@ -4668,11 +4668,11 @@ public class PersonServiceImpl extends _PersonServiceImpl {
 </content>
 </entry>
 <entry>
-<id>http://next.javaheadbrain.com/posts/2013/01/19/set-jdk-on-osx.html</id>
+<id>http://gamov.io/posts/2013/01/19/set-jdk-on-osx.html</id>
 <title>Set JDK on OSX</title>
-<updated>2017-04-09T13:51:11-04:00</updated>
+<updated>2017-04-09T16:15:23-04:00</updated>
 <published>2013-01-19T14:00:00+00:00</published>
-<link href="http://next.javaheadbrain.com/posts/2013/01/19/set-jdk-on-osx.html" rel="alternate" type="text/html" />
+<link href="http://gamov.io/posts/2013/01/19/set-jdk-on-osx.html" rel="alternate" type="text/html" />
 <author>
 <name>Viktor Gamov</name>
 </author>
@@ -4770,7 +4770,7 @@ alias setjdk16='export JAVA_HOME=$(/usr/libexec/java_home...
 <content type="html">
 &lt;div class=&quot;imageblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/terminal_java.png&quot; alt=&quot;terminal java&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/terminal_java.png&quot; alt=&quot;terminal java&quot; /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;table class=&quot;tableblock frame-all grid-all&quot; style=&quot;width: 60%;&quot;&gt;
@@ -4851,7 +4851,7 @@ Before JDK 9, the format was &lt;code&gt;1.x&lt;/code&gt;
 &lt;/div&gt;
 &lt;div class=&quot;imageblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;img src=&quot;http://next.javaheadbrain.com/images/info.plist_jdk8_9.png&quot; alt=&quot;info.plist jdk8 9&quot; /&gt;
+&lt;img src=&quot;http://gamov.io/images/info.plist_jdk8_9.png&quot; alt=&quot;info.plist jdk8 9&quot; /&gt;
 &lt;/div&gt;
 &lt;div class=&quot;title&quot;&gt;Figure 1. You can check this in &lt;code&gt;/Library/Java/JavaVirtualMachines/{java version}/Contents/Info.plist&lt;/code&gt;&lt;/div&gt;
 &lt;/div&gt;
@@ -4870,11 +4870,11 @@ alias setjdk19=&amp;apos;export JAVA_HOME=$(/usr/libexec/java_home -v 9)&amp;apo
 </content>
 </entry>
 <entry>
-<id>http://next.javaheadbrain.com/posts/2012/07/26/websockets-for-java-developers.html</id>
+<id>http://gamov.io/posts/2012/07/26/websockets-for-java-developers.html</id>
 <title>WebSockets for Java Developers. Princeton JUG talk slides</title>
-<updated>2017-04-09T13:51:11-04:00</updated>
+<updated>2017-04-09T16:15:23-04:00</updated>
 <published>2012-07-26T00:00:00+00:00</published>
-<link href="http://next.javaheadbrain.com/posts/2012/07/26/websockets-for-java-developers.html" rel="alternate" type="text/html" />
+<link href="http://gamov.io/posts/2012/07/26/websockets-for-java-developers.html" rel="alternate" type="text/html" />
 <summary>
 Last tuesday I delivered presentation at Princeton JUG «WebSockets: The Current State of the Most Valuable HTML5 API». + HTML5 specification includes WebSockets, a new communication protocol
 for the Web. It&#8217;s becoming the best choice for building real-time Web
@@ -4906,11 +4906,11 @@ today.&lt;/p&gt;
 </content>
 </entry>
 <entry>
-<id>http://next.javaheadbrain.com/posts/2012/05/21/alfred-showhide-desktop-icons-on-mac-os.html</id>
+<id>http://gamov.io/posts/2012/05/21/alfred-showhide-desktop-icons-on-mac-os.html</id>
 <title>Alfred Extension: Show/Hide desktop icons on Mac OS X</title>
-<updated>2017-04-09T13:51:11-04:00</updated>
+<updated>2017-04-09T16:15:23-04:00</updated>
 <published>2012-05-21T00:00:00+00:00</published>
-<link href="http://next.javaheadbrain.com/posts/2012/05/21/alfred-showhide-desktop-icons-on-mac-os.html" rel="alternate" type="text/html" />
+<link href="http://gamov.io/posts/2012/05/21/alfred-showhide-desktop-icons-on-mac-os.html" rel="alternate" type="text/html" />
 <category term="alfred"></category>
 <category term="shell"></category>
 <category term="macos x"></category>
@@ -4924,7 +4924,7 @@ Googled for Mac OS X command and I created simple script what I wrapped after as
 You can download Alfred Extension...
 </summary>
 <content type="html">
-&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;a href=&quot;http://next.javaheadbrain.com/images/blog/2012-05-21-alfred-showhide-desktop-icons-on-mac-os/2012-05-21-alfred-showhide-desktop-icons-on-mac-os_1.png&quot; imageanchor=&quot;1&quot; style=&quot;margin-left: 1em; margin-right: 1em;&quot;&gt;&lt;img border=&quot;0&quot; height=&quot;103&quot; src=&quot;http://next.javaheadbrain.com/images/blog/2012-05-21-alfred-showhide-desktop-icons-on-mac-os/2012-05-21-alfred-showhide-desktop-icons-on-mac-os_1.png&quot; width=&quot;400&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&lt;p&gt;For some reasons, I’m using desktop as temporary storage of files – downloaded from internet, in-progress documents, screenshots and code snippets. Time after time I create screencasts and I need to have clean desktop.&lt;br /&gt;
+&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;a href=&quot;http://gamov.io/images/blog/2012-05-21-alfred-showhide-desktop-icons-on-mac-os/2012-05-21-alfred-showhide-desktop-icons-on-mac-os_1.png&quot; imageanchor=&quot;1&quot; style=&quot;margin-left: 1em; margin-right: 1em;&quot;&gt;&lt;img border=&quot;0&quot; height=&quot;103&quot; src=&quot;http://gamov.io/images/blog/2012-05-21-alfred-showhide-desktop-icons-on-mac-os/2012-05-21-alfred-showhide-desktop-icons-on-mac-os_1.png&quot; width=&quot;400&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&lt;p&gt;For some reasons, I’m using desktop as temporary storage of files – downloaded from internet, in-progress documents, screenshots and code snippets. Time after time I create screencasts and I need to have clean desktop.&lt;br /&gt;
 First, I tried to find available solution and have found &lt;a href=&quot;http://manytricks.com/desktopcurtain/&quot;&gt;Desktop Curtain&lt;/a&gt;. I don’t need all this fanciness (different desktop wallpapers, customization) so $2.99 is overkill for me and for this taks.&lt;br /&gt;
 &lt;a name=&quot;more&quot;&gt;&lt;/a&gt;&lt;br /&gt;
 So, I decide to create my own solution with help of shell and Alfred.&lt;br /&gt;
@@ -4935,11 +4935,11 @@ Cheers&lt;/p&gt;
 </content>
 </entry>
 <entry>
-<id>http://next.javaheadbrain.com/posts/2012/05/16/webjars-for-assets-management-in-your.html</id>
+<id>http://gamov.io/posts/2012/05/16/webjars-for-assets-management-in-your.html</id>
 <title>WebJars for assets management in your project</title>
-<updated>2017-04-09T13:51:11-04:00</updated>
+<updated>2017-04-09T16:15:23-04:00</updated>
 <published>2012-05-16T00:00:00+00:00</published>
-<link href="http://next.javaheadbrain.com/posts/2012/05/16/webjars-for-assets-management-in-your.html" rel="alternate" type="text/html" />
+<link href="http://gamov.io/posts/2012/05/16/webjars-for-assets-management-in-your.html" rel="alternate" type="text/html" />
 <category term="java"></category>
 <category term="ext js"></category>
 <category term="github"></category>
@@ -4952,7 +4952,7 @@ To read the full post, surf on over to the Farata Systems Blog: http://flexblog.
 Thanks everyone...
 </summary>
 <content type="html">
-&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;a href=&quot;http://next.javaheadbrain.com/images/blog/2012-05-16-webjars-for-assets-management-in-your/webJars+app+screen2.png&quot; imageanchor=&quot;1&quot; style=&quot;clear: left; float: left; margin-bottom: 1em; margin-right: 1em;&quot;&gt;&lt;img border=&quot;0&quot; height=&quot;168&quot; src=&quot;http://next.javaheadbrain.com/images/blog/2012-05-16-webjars-for-assets-management-in-your/webJars+app+screen2.png&quot; width=&quot;400&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&lt;p&gt;Usage automatic build tools for dependency management is best practice in Java world and usage of tools such as Maven has been proven by the years.&lt;br /&gt;
+&lt;div class=&quot;separator&quot; style=&quot;clear: both; text-align: center;&quot;&gt;&lt;a href=&quot;http://gamov.io/images/blog/2012-05-16-webjars-for-assets-management-in-your/webJars+app+screen2.png&quot; imageanchor=&quot;1&quot; style=&quot;clear: left; float: left; margin-bottom: 1em; margin-right: 1em;&quot;&gt;&lt;img border=&quot;0&quot; height=&quot;168&quot; src=&quot;http://gamov.io/images/blog/2012-05-16-webjars-for-assets-management-in-your/webJars+app+screen2.png&quot; width=&quot;400&quot; /&gt;&lt;/a&gt;&lt;/div&gt;&lt;p&gt;Usage automatic build tools for dependency management is best practice in Java world and usage of tools such as Maven has been proven by the years.&lt;br /&gt;
 But what if utilize existing Maven knowledge of Java dependencies management for JavaScript projects. Hopefully, some Java and JVM frameworks (like &lt;a href=&quot;http://blog.springsource.org/2011/06/30/countdown-to-grails-2-0-static-resources/&quot;&gt;Grails&lt;/a&gt; or &lt;a href=&quot;http://www.jamesward.com/2012/04/25/introducing-webjars-web-libraries-as-managed-dependencies&quot;&gt;Play2&lt;/a&gt;) provided their own way of dealing with static resources.&lt;br /&gt;
 But in most common situations, you don’t have lot of options for deployment your application.&lt;/p&gt;
 &lt;p&gt;&lt;a name=&quot;more&quot;&gt;&lt;/a&gt;To read the full post, surf on over to the Farata Systems Blog: &lt;a href=&quot;http://flexblog.faratasystems.com/2012/05/16/using-webjars-for-assets-management-in-javascript-projects&quot;&gt;http://flexblog.faratasystems.com/2012/05/16/using-webjars-for-assets-management-in-javascript-projects &lt;/a&gt;&lt;/p&gt;
@@ -4960,11 +4960,11 @@ But in most common situations, you don’t have lot of options for deployment yo
 </content>
 </entry>
 <entry>
-<id>http://next.javaheadbrain.com/posts/2012/01/28/how-to-download-videos-from-infoq-for.html</id>
+<id>http://gamov.io/posts/2012/01/28/how-to-download-videos-from-infoq-for.html</id>
 <title>How to download videos from InfoQ for offline viewing</title>
-<updated>2017-04-09T13:51:11-04:00</updated>
+<updated>2017-04-09T16:15:23-04:00</updated>
 <published>2012-01-28T06:15:00+00:00</published>
-<link href="http://next.javaheadbrain.com/posts/2012/01/28/how-to-download-videos-from-infoq-for.html" rel="alternate" type="text/html" />
+<link href="http://gamov.io/posts/2012/01/28/how-to-download-videos-from-infoq-for.html" rel="alternate" type="text/html" />
 <author>
 <name>Viktor Gamov</name>
 </author>
@@ -5008,11 +5008,11 @@ However, I found very elegant solution how to do that. I did it on my MacOS X wi
 </content>
 </entry>
 <entry>
-<id>http://next.javaheadbrain.com/posts/2012/01/10/rapid-automation-for-flexjavablazeds.html</id>
+<id>http://gamov.io/posts/2012/01/10/rapid-automation-for-flexjavablazeds.html</id>
 <title>Rapid automation for Flex/Java/BlazeDS projects</title>
-<updated>2017-04-09T13:51:11-04:00</updated>
+<updated>2017-04-09T16:15:23-04:00</updated>
 <published>2012-01-10T00:00:00+00:00</published>
-<link href="http://next.javaheadbrain.com/posts/2012/01/10/rapid-automation-for-flexjavablazeds.html" rel="alternate" type="text/html" />
+<link href="http://gamov.io/posts/2012/01/10/rapid-automation-for-flexjavablazeds.html" rel="alternate" type="text/html" />
 <author>
 <name>Viktor Gamov</name>
 </author>
@@ -5028,11 +5028,11 @@ Feel free to comment!&lt;/p&gt;
 </content>
 </entry>
 <entry>
-<id>http://next.javaheadbrain.com/posts/2011/09/11/adobe-max.html</id>
+<id>http://gamov.io/posts/2011/09/11/adobe-max.html</id>
 <title>Adobe MAX</title>
-<updated>2017-04-09T13:51:11-04:00</updated>
+<updated>2017-04-09T16:15:23-04:00</updated>
 <published>2011-09-11T23:07:00+00:00</published>
-<link href="http://next.javaheadbrain.com/posts/2011/09/11/adobe-max.html" rel="alternate" type="text/html" />
+<link href="http://gamov.io/posts/2011/09/11/adobe-max.html" rel="alternate" type="text/html" />
 <author>
 <name>Viktor Gamov</name>
 </author>
@@ -5062,11 +5062,11 @@ Creative Cloud - another big thing was announced. Sharing and collaboration b/w 
 </content>
 </entry>
 <entry>
-<id>http://next.javaheadbrain.com/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html</id>
+<id>http://gamov.io/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html</id>
 <title>Eclipse: java.lang.UnsatisfiedLinkError: Cannot load 32-bit SWT libraries on 64-bit JVM</title>
-<updated>2017-04-09T13:51:11-04:00</updated>
+<updated>2017-04-09T16:15:23-04:00</updated>
 <published>2011-07-26T04:22:00+00:00</published>
-<link href="http://next.javaheadbrain.com/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html" rel="alternate" type="text/html" />
+<link href="http://gamov.io/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html" rel="alternate" type="text/html" />
 <author>
 <name>Viktor Gamov</name>
 </author>
@@ -5203,11 +5203,11 @@ to Eclipse→Preferences→Java→Installed JRE and add default JVM argument *&l
 </content>
 </entry>
 <entry>
-<id>http://next.javaheadbrain.com/posts/2011/07/10/building-and-testing-with-gradle-my.html</id>
+<id>http://gamov.io/posts/2011/07/10/building-and-testing-with-gradle-my.html</id>
 <title>Building and Testing with Gradle - My Book Review</title>
-<updated>2017-04-09T13:51:11-04:00</updated>
+<updated>2017-04-09T16:15:23-04:00</updated>
 <published>2011-07-10T20:57:00+00:00</published>
-<link href="http://next.javaheadbrain.com/posts/2011/07/10/building-and-testing-with-gradle-my.html" rel="alternate" type="text/html" />
+<link href="http://gamov.io/posts/2011/07/10/building-and-testing-with-gradle-my.html" rel="alternate" type="text/html" />
 <author>
 <name>Viktor Gamov</name>
 </author>

@@ -8252,7 +8252,7 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
 /* line 289, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .literalblock > .content > pre,
 .listingblock > .content > pre {
-  background: url('http://next.javaheadbrain.com/http://next.javaheadbrain.com/images/riak/pre-bg.jpg');
+  background: url('http://gamov.io/http://gamov.io/images/riak/pre-bg.jpg');
   color: inherit;
   font-family: monospace, serif;
   border-width: 0 0 1px 0;
@@ -11087,7 +11087,7 @@ p > em {
 
 /* line 76, /Users/vikgamov/projects/gamussa.github.com/stylesheets/riak.scss */
 .sidebarblock {
-  background-image: url('http://next.javaheadbrain.com/http://next.javaheadbrain.com/images/riak/sidebar-bg.jpg');
+  background-image: url('http://gamov.io/http://gamov.io/images/riak/sidebar-bg.jpg');
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
