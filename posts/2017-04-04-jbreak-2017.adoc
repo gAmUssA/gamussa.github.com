@@ -20,11 +20,11 @@ endif::awestruct[]
 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe7VKXSWOXSLqytSwq_T-OkQVGdEkKPWDEDzHCWwW_h9WfA5g/viewform?embedded=true" width="600" height="400" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
 ++++
 
-=== Video
+=== Видео
 
 TBD
 
-=== Slides
+=== Слайды
 
 .Speakerdeck
 ++++
@@ -36,7 +36,7 @@ TBD
 <iframe src="//www.slideshare.net/slideshow/embed_code/key/v0Yc7tRkZX7J2i" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/VikGamov/jbreak-04042017" title="[JBreak] Блеск И Нищета Распределенных Стримов - 04-04-2017" target="_blank">[JBreak] Блеск И Нищета Распределенных Стримов - 04-04-2017</a> </strong> from <strong><a target="_blank" href="//www.slideshare.net/VikGamov">Viktor Gamov</a></strong> </div>
 ++++
 
-=== Grab the code icon:code-fork[]
+=== Код искать тут icon:code-fork[]
 
 .You can find code sample is following GH repository
 https://github.com/gAmUssA/jet-streams-presentation
