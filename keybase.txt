@@ -1,0 +1,54 @@
+==================================================================
+https://keybase.io/gamussa
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://gamov.io
+  * I am gamussa (https://keybase.io/gamussa) on keybase.
+  * I have a public key ASC0aUG6mjcdjv-LKXxtOQgtYZB2vFVePJkMnApad1fYXAo
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "0101ab36421456436cc8012eba3dbde8ca64c68fe2fc733b737c89a921bc6637d9e50a",
+            "host": "keybase.io",
+            "kid": "0120b46941ba9a371d8eff8b297c6d39082d619076bc555e3c990c9c0a5a7757d85c0a",
+            "uid": "0640f2057939f1def133febcb34f0600",
+            "username": "gamussa"
+        },
+        "service": {
+            "hostname": "gamov.io",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "client": {
+        "name": "keybase.io go client",
+        "version": "1.0.20"
+    },
+    "ctime": 1491854189,
+    "expire_in": 504576000,
+    "merkle_root": {
+        "ctime": 1491854111,
+        "hash": "d76a2980e10bafc62552edc3c66d37e06c348feb53a89bc44ae002567ad98cbb244d5475ffbe1d15e891cf02f770269946ac928406a5b311c0b9ed8f16b01a88",
+        "seqno": 1010909
+    },
+    "prev": "aa83569caf7f37e534c360dc12214bb7ef551475e25798d4aac8e2834c5e9184",
+    "seqno": 10,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgtGlBupo3HY7/iyl8bTkILWGQdrxVXjyZDJwKWndX2FwKp3BheWxvYWTFAvB7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTAxYWIzNjQyMTQ1NjQzNmNjODAxMmViYTNkYmRlOGNhNjRjNjhmZTJmYzczM2I3MzdjODlhOTIxYmM2NjM3ZDllNTBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwYjQ2OTQxYmE5YTM3MWQ4ZWZmOGIyOTdjNmQzOTA4MmQ2MTkwNzZiYzU1NWUzYzk5MGM5YzBhNWE3NzU3ZDg1YzBhIiwidWlkIjoiMDY0MGYyMDU3OTM5ZjFkZWYxMzNmZWJjYjM0ZjA2MDAiLCJ1c2VybmFtZSI6ImdhbXVzc2EifSwic2VydmljZSI6eyJob3N0bmFtZSI6ImdhbW92LmlvIiwicHJvdG9jb2wiOiJodHRwOiJ9LCJ0eXBlIjoid2ViX3NlcnZpY2VfYmluZGluZyIsInZlcnNpb24iOjF9LCJjbGllbnQiOnsibmFtZSI6ImtleWJhc2UuaW8gZ28gY2xpZW50IiwidmVyc2lvbiI6IjEuMC4yMCJ9LCJjdGltZSI6MTQ5MTg1NDE4OSwiZXhwaXJlX2luIjo1MDQ1NzYwMDAsIm1lcmtsZV9yb290Ijp7ImN0aW1lIjoxNDkxODU0MTExLCJoYXNoIjoiZDc2YTI5ODBlMTBiYWZjNjI1NTJlZGMzYzY2ZDM3ZTA2YzM0OGZlYjUzYTg5YmM0NGFlMDAyNTY3YWQ5OGNiYjI0NGQ1NDc1ZmZiZTFkMTVlODkxY2YwMmY3NzAyNjk5NDZhYzkyODQwNmE1YjMxMWMwYjllZDhmMTZiMDFhODgiLCJzZXFubyI6MTAxMDkwOX0sInByZXYiOiJhYTgzNTY5Y2FmN2YzN2U1MzRjMzYwZGMxMjIxNGJiN2VmNTUxNDc1ZTI1Nzk4ZDRhYWM4ZTI4MzRjNWU5MTg0Iiwic2Vxbm8iOjEwLCJ0YWciOiJzaWduYXR1cmUifaNzaWfEQNIlwFGgi4c+7iMgZZ1os1n5UWkQvk2BXlRBVOcc/0AiB/vjujh+5exTkKbY2zsA2CHPlhhsS8sjBVa5VvPdiAioc2lnX3R5cGUgpGhhc2iCpHR5cGUIpXZhbHVlxCBTIqom7+T3Au4274lfuczJbPsBABBUBpS60YyPVuan7KN0YWfNAgKndmVyc2lvbgE=
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/gamussa
+
+==================================================================
