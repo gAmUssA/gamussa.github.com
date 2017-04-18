@@ -1,0 +1,32 @@
+= JavaPuzzlers @ PhillyETE 2017
+Viktor Gamov
+2017-04-18 10:57
+:imagesdir: ../images
+:icons:
+:keywords:
+:toc:
+ifndef::awestruct[]
+:awestruct-layout: post
+:awestruct-tags: []
+:idprefix:
+:idseparator: -
+endif::awestruct[]
+
+=== Have you seen it? Do you like it? Please, rate
+
+++++
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdFdfYPhPYF_0ZuJ3ZxoNRWSGrVmrUHR9nghfggmI_ifilLSw/viewform?embedded=true" width="600" height="400" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+++++
+
+
+=== Slides
+
+.Speakerdeck
+++++
+TBD
+++++
+
+.Slideshare
+++++
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/AEqSoxwy4nkZCg?startSlide=2" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/VikGamov/philly-ete-java-puzzlers-ng" title="[Philly ETE] Java Puzzlers NG" target="_blank">[Philly ETE] Java Puzzlers NG</a> </strong> from <strong><a target="_blank" href="//www.slideshare.net/VikGamov">Viktor Gamov</a></strong> </div>
+++++
