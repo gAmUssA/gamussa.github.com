@@ -12,14 +12,13 @@ ifndef::awestruct[]
 :idseparator: -
 endif::awestruct[]
 
-=== Have you seen it? Do you like it? Please, rate
+== Have you seen it? Do you like it? Please, rate
 
 ++++
 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdFdfYPhPYF_0ZuJ3ZxoNRWSGrVmrUHR9nghfggmI_ifilLSw/viewform?embedded=true" width="600" height="400" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
 ++++
 
-
-=== Slides
+== Slides
 
 .Speakerdeck
 ++++
