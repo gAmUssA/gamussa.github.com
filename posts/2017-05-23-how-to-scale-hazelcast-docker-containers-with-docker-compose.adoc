@@ -13,7 +13,10 @@ ifndef::awestruct[]
 :awestruct-draft: true
 endif::awestruct[]
 
+.TL;DR
 Full source code is published in `hazelcast/hazelcast-code-samples` repository footnote:[https://github.com/hazelcast/hazelcast-code-samples/hazelcast-integration/docker-compose]
+
+toc::[]
 
 NOTE: Disclaimer: It's not an introduction to `docker-compose`. 
 To learn basic steps of `docker-compose`, please, refer to official `docker-compose` «getting started guide» footnote:[https://docs.docker.com/compose/gettingstarted/]
@@ -150,3 +153,41 @@ docker-compose -f hazelcast.yml up -d
 The `docker-compose` command will pull the images from Docker Hub and then link them together based on the information inside the `docker-compose.yml` (`hazelcast.yml` in out case) file. 
 This will create ports, links between containers, and configure applications as required. 
 After the command completes we can now view the status of our cluster with command `docker-compose ps`.
+
+== Scaling
+
+The fun part comes with scaling.
+Let's scale out our Hazelcast IMDG cluster to 2 nodes
+
+.docker-compose command for scaling Hazelcast cluster
+----
+docker-compose scale hazelcast=5
+----
+
+With a command `docker-compose ps` you see which containers are running now.
+
+[source,sh]
+----
+❯ docker-compose -f src/main/docker/hazelcast.yml ps
+           Name                         Command               State            Ports
+---------------------------------------------------------------------------------------------
+docker_hazelcast-client_1    /bin/sh -c echo "The appli ...   Exit 0
+docker_hazelcast_1           ./server.sh                      Up       5701/tcp
+docker_hazelcast_2           ./server.sh                      Up       5701/tcp
+docker_hazelcast_3           ./server.sh                      Up       5701/tcp
+docker_hazelcast_4           ./server.sh                      Up       5701/tcp
+docker_hazelcast_5           ./server.sh                      Up       5701/tcp
+docker_management-center_1   /bin/sh -c ./start.sh            Up       0.0.0.0:8080->8080/tcp
+----
+
+If you open Management Center URL footnote:[http://localhost:8080/mancenter] you should see that cluster consists of 5 nodes now.
+
+WARNING: IF at this point you get a message from Management Center to enter the license, you can request a trial key from here footnote:[https://hazelcast.com/hazelcast-enterprise-download/trial/]
+
+Also, I can use `curl` command to get cluster status and the list of members.
+
+.Query cluster status using Management Center
+----
+❯ curl http://localhost:8080/mancenter/rest/clusters/hz-compose/members
+["172.18.0.3:5701","172.18.0.4:5701","172.18.0.5:5701","172.18.0.6:5701","172.18.0.7:5701"]
+----
