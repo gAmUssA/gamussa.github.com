@@ -8,7 +8,7 @@
 /**
  * Correct `block` display not defined in IE 8/9.
  */
-/* line 11, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 11, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 article,
 aside,
 details,
@@ -27,7 +27,7 @@ summary {
 /**
  * Correct `inline-block` display not defined in IE 8/9.
  */
-/* line 30, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 30, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 audio,
 canvas,
 video {
@@ -38,7 +38,7 @@ video {
  * Prevent modern browsers from displaying `audio` without controls.
  * Remove excess height in iOS 5 devices.
  */
-/* line 41, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 41, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 audio:not([controls]) {
   display: none;
   height: 0;
@@ -47,7 +47,7 @@ audio:not([controls]) {
 /**
  * Address styling not present in IE 8/9.
  */
-/* line 50, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 50, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 [hidden] {
   display: none;
 }
@@ -60,7 +60,7 @@ audio:not([controls]) {
  * 2. Prevent iOS text size adjust after orientation change, without disabling
  *    user zoom.
  */
-/* line 64, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 64, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 html {
   font-family: sans-serif;
   /* 1 */
@@ -73,7 +73,7 @@ html {
 /**
  * Remove default margin.
  */
-/* line 74, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 74, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 body {
   margin: 0;
 }
@@ -84,7 +84,7 @@ body {
 /**
  * Address `outline` inconsistency between Chrome and other browsers.
  */
-/* line 86, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 86, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 a:focus {
   outline: thin dotted;
 }
@@ -92,7 +92,7 @@ a:focus {
 /**
  * Improve readability when focused and also mouse hovered in all browsers.
  */
-/* line 94, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 94, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 a:active,
 a:hover {
   outline: 0;
@@ -105,7 +105,7 @@ a:hover {
  * Address variable `h1` font-size and margin within `section` and `article`
  * contexts in Firefox 4+, Safari 5, and Chrome.
  */
-/* line 108, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 108, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 h1 {
   font-size: 2em;
   margin: 0.67em 0;
@@ -114,7 +114,7 @@ h1 {
 /**
  * Address styling not present in IE 8/9, Safari 5, and Chrome.
  */
-/* line 117, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 117, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 abbr[title] {
   border-bottom: 1px dotted;
 }
@@ -122,7 +122,7 @@ abbr[title] {
 /**
  * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
  */
-/* line 125, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 125, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 b,
 strong {
   font-weight: bold;
@@ -131,7 +131,7 @@ strong {
 /**
  * Address styling not present in Safari 5 and Chrome.
  */
-/* line 134, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 134, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 dfn {
   font-style: italic;
 }
@@ -139,7 +139,7 @@ dfn {
 /**
  * Address differences between Firefox and other browsers.
  */
-/* line 142, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 142, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 hr {
   -moz-box-sizing: content-box;
   box-sizing: content-box;
@@ -149,7 +149,7 @@ hr {
 /**
  * Address styling not present in IE 8/9.
  */
-/* line 152, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 152, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 mark {
   background: #ff0;
   color: #000;
@@ -158,7 +158,7 @@ mark {
 /**
  * Correct font family set oddly in Safari 5 and Chrome.
  */
-/* line 161, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 161, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 code, tt,
 kbd,
 pre,
@@ -170,7 +170,7 @@ samp {
 /**
  * Improve readability of pre-formatted text in all browsers.
  */
-/* line 173, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 173, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 pre {
   white-space: pre-wrap;
 }
@@ -178,7 +178,7 @@ pre {
 /**
  * Set consistent quote types.
  */
-/* line 181, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 181, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 q {
   quotes: "\201C" "\201D" "\2018" "\2019";
 }
@@ -186,7 +186,7 @@ q {
 /**
  * Address inconsistent and variable font size in all browsers.
  */
-/* line 189, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 189, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 small {
   font-size: 80%;
 }
@@ -194,7 +194,7 @@ small {
 /**
  * Prevent `sub` and `sup` affecting `line-height` in all browsers.
  */
-/* line 197, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 197, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 sub,
 sup {
   font-size: 75%;
@@ -203,12 +203,12 @@ sup {
   vertical-align: baseline;
 }
 
-/* line 205, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 205, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 sup {
   top: -0.5em;
 }
 
-/* line 209, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 209, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 sub {
   bottom: -0.25em;
 }
@@ -219,7 +219,7 @@ sub {
 /**
  * Remove border when inside `a` element in IE 8/9.
  */
-/* line 221, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 221, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 img {
   border: 0;
 }
@@ -227,7 +227,7 @@ img {
 /**
  * Correct overflow displayed oddly in IE 9.
  */
-/* line 229, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 229, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 svg:not(:root) {
   overflow: hidden;
 }
@@ -238,7 +238,7 @@ svg:not(:root) {
 /**
  * Address margin not present in IE 8/9 and Safari 5.
  */
-/* line 241, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 241, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 figure {
   margin: 0;
 }
@@ -249,7 +249,7 @@ figure {
 /**
  * Define consistent border, margin, and padding.
  */
-/* line 253, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 253, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 fieldset {
   border: 1px solid #c0c0c0;
   margin: 0 2px;
@@ -260,7 +260,7 @@ fieldset {
  * 1. Correct `color` not being inherited in IE 8/9.
  * 2. Remove padding so people aren't caught out if they zero out fieldsets.
  */
-/* line 264, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 264, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 legend {
   border: 0;
   /* 1 */
@@ -273,7 +273,7 @@ legend {
  * 2. Correct font size not being inherited in all browsers.
  * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
  */
-/* line 275, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 275, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 button,
 input,
 select,
@@ -290,7 +290,7 @@ textarea {
  * Address Firefox 4+ setting `line-height` on `input` using `!important` in
  * the UA stylesheet.
  */
-/* line 289, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 289, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 button,
 input {
   line-height: normal;
@@ -302,7 +302,7 @@ input {
  * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
  * Correct `select` style inheritance in Firefox 4+ and Opera.
  */
-/* line 301, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 301, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 button,
 select {
   text-transform: none;
@@ -315,7 +315,7 @@ select {
  * 3. Improve usability and consistency of cursor style between image-type
  *    `input` and others.
  */
-/* line 314, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 314, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 button,
 html input[type="button"],
 input[type="reset"],
@@ -329,7 +329,7 @@ input[type="submit"] {
 /**
  * Re-set default cursor for disabled elements.
  */
-/* line 326, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 326, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 button[disabled],
 html input[disabled] {
   cursor: default;
@@ -339,7 +339,7 @@ html input[disabled] {
  * 1. Address box sizing set to `content-box` in IE 8/9.
  * 2. Remove excess padding in IE 8/9.
  */
-/* line 336, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 336, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 input[type="checkbox"],
 input[type="radio"] {
   box-sizing: border-box;
@@ -353,7 +353,7 @@ input[type="radio"] {
  * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
  *    (include `-moz` to future-proof).
  */
-/* line 348, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 348, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 input[type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
@@ -367,7 +367,7 @@ input[type="search"] {
  * Remove inner padding and search cancel button in Safari 5 and Chrome
  * on OS X.
  */
-/* line 360, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 360, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
@@ -376,7 +376,7 @@ input[type="search"]::-webkit-search-decoration {
 /**
  * Remove inner padding and border in Firefox 4+.
  */
-/* line 369, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 369, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 button::-moz-focus-inner,
 input::-moz-focus-inner {
   border: 0;
@@ -387,7 +387,7 @@ input::-moz-focus-inner {
  * 1. Remove default vertical scrollbar in IE 8/9.
  * 2. Improve readability and alignment in all browsers.
  */
-/* line 380, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 380, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 textarea {
   overflow: auto;
   /* 1 */
@@ -401,7 +401,7 @@ textarea {
 /**
  * Remove most spacing between table cells.
  */
-/* line 393, /Users/vikgamov/projects/gamussa.github.com/stylesheets/normalize.scss */
+/* line 393, /Users/apple/projects/gamussa.github.com/stylesheets/normalize.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -7936,12 +7936,12 @@ table tfoot tr td {
   line-height: 1.5;
 }
 
-/* line 25, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 25, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 pre > code, pre > tt {
   color: #515151;
 }
 
-/* line 31, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 31, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 *:not(pre) > code, *:not(pre) > tt {
   font-size: 0.9em;
   padding: 0 3px;
@@ -7953,7 +7953,7 @@ pre > code, pre > tt {
   text-shadow: none;
 }
 
-/* line 45, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 45, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 tt {
   font-size: 0.9em;
   padding: 0 3px;
@@ -7964,16 +7964,16 @@ tt {
   text-shadow: none;
 }
 
-/* line 58, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 58, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 p a > tt {
   text-decoration: underline;
 }
-/* line 61, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 61, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 p a > tt:hover {
   color: #444444;
 }
 
-/* line 87, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 87, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 #header,
 #content,
 #footnotes,
@@ -8008,11 +8008,11 @@ p a > tt:hover {
   clear: both;
 }
 
-/* line 95, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 95, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 #header {
   margin-bottom: 2.5em;
 }
-/* line 98, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 98, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 #header > h1 {
   color: #616366;
   font-weight: normal;
@@ -8020,71 +8020,71 @@ p a > tt:hover {
   margin-bottom: -28px;
   padding-bottom: 32px;
 }
-/* line 106, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 106, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 #header span {
   color: #616366;
 }
-/* line 110, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 110, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 #header #revnumber {
   text-transform: capitalize;
 }
-/* line 114, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 114, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 #header br {
   display: none;
 }
-/* line 117, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 117, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 #header br + span {
   padding-left: 3px;
 }
-/* line 121, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 121, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 #header br + span:before {
   content: "\2013 \0020";
 }
 
-/* line 127, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 127, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 #toc {
   border-bottom: 1px dashed #ccc;
   padding-bottom: 1.25em;
 }
-/* line 131, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 131, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 #toc > ol {
   margin-left: 0.25em;
 }
-/* line 135, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 135, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 #toc ol {
   list-style-type: none;
 }
 
-/* line 140, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 140, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 #toctitle {
   color: #3c3d3f;
 }
 
-/* line 145, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 145, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 #footer {
   max-width: 100%;
   background-color: #515151;
   padding: 1.25em;
 }
 
-/* line 152, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 152, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 #footer-text {
   color: #aeaeae;
   line-height: 1.35;
 }
 
-/* line 157, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 157, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .sect1 {
   border-bottom: 1px dashed #ccc;
   padding-bottom: 1.25em;
 }
 
-/* line 162, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 162, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .sect1:last-of-type {
   border-bottom: 0;
 }
 
-/* line 183, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 183, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .admonitionblock td.content > .title,
 .exampleblock > .title,
 .imageblock > .title,
@@ -8104,7 +8104,7 @@ p a > tt:hover {
   font-weight: bold;
 }
 
-/* line 190, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 190, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .tableblock > caption {
   text-align: left;
   font-weight: bold;
@@ -8113,44 +8113,44 @@ p a > tt:hover {
   max-width: 0;
 }
 
-/* line 204, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 204, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
   font-size: inherit;
 }
 
-/* line 208, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 208, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .admonitionblock > table {
   border: 0;
   background: none;
   width: 100%;
 }
-/* line 212, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 212, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .admonitionblock > table td.icon {
   text-align: center;
   width: 80px;
 }
-/* line 215, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 215, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .admonitionblock > table td.icon img {
   max-width: none;
 }
-/* line 218, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 218, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .admonitionblock > table td.icon .title {
   font-weight: bold;
   text-transform: uppercase;
 }
-/* line 224, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 224, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .admonitionblock > table td.content {
   padding-left: 1.125em;
   padding-right: 1.25em;
   border-left: 1px solid #ddd;
   color: #616366;
 }
-/* line 230, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 230, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .admonitionblock > table td.content > .paragraph:last-child > p {
   margin-bottom: 0;
 }
 
-/* line 236, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 236, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .exampleblock > .content {
   border-style: solid;
   border-width: 1px;
@@ -8182,26 +8182,26 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
 .exampleblock > .content h1.subheader, .exampleblock > .content h2.subheader, .exampleblock > .content h3.subheader, .exampleblock > .content .subheader#toctitle, .sidebarblock.exampleblock > .content > .subheader.title, .exampleblock > .content h4.subheader, .exampleblock > .content h5.subheader, .exampleblock > .content h6.subheader {
   line-height: 1.4;
 }
-/* line 239, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 239, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .exampleblock > .content > :last-child > :last-child,
 .exampleblock > .content .olist > ol > li:last-child > :last-child,
 .exampleblock > .content .ulist > ul > li:last-child > :last-child {
   margin-bottom: 0;
 }
 
-/* line 247, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 247, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .exampleblock.result > .content {
   -moz-box-shadow: 0 1px 8px #d9d9d9;
   -webkit-box-shadow: 0 1px 8px #d9d9d9;
   box-shadow: 0 1px 8px #d9d9d9;
 }
 
-/* line 251, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 251, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .imageblock {
   margin-bottom: 1.25em;
 }
 
-/* line 255, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 255, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .sidebarblock {
   border-style: solid;
   border-width: 1px;
@@ -8233,23 +8233,23 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
 .sidebarblock h1.subheader, .sidebarblock h2.subheader, .sidebarblock h3.subheader, .sidebarblock .subheader#toctitle, .sidebarblock > .content > .subheader.title, .sidebarblock h4.subheader, .sidebarblock h5.subheader, .sidebarblock h6.subheader {
   line-height: 1.4;
 }
-/* line 260, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 260, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .sidebarblock > .content > .title {
   color: #3c3d3f;
   margin-top: 0;
   line-height: 1.5;
 }
-/* line 273, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 273, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .sidebarblock > .content > .paragraph:last-child p {
   margin-bottom: 0;
 }
 
-/* line 285, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 285, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .literalblock,
 .listingblock {
   margin-bottom: 1.25em;
 }
-/* line 289, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 289, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .literalblock > .content > pre,
 .listingblock > .content > pre {
   background: url('http://gamov.io/http://gamov.io/images/riak/pre-bg.jpg');
@@ -8266,7 +8266,7 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
   overflow-x: auto;
   line-height: 1.6;
 }
-/* line 305, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 305, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .literalblock > .content > pre > code, .literalblock > .content > pre > tt,
 .listingblock > .content > pre > code,
 .listingblock > .content > pre > tt {
@@ -8277,28 +8277,28 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
   font-weight: normal;
 }
 @media only screen {
-  /* line 289, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+  /* line 289, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
   .literalblock > .content > pre,
   .listingblock > .content > pre {
     font-size: 0.64em;
   }
 }
 @media only screen and (min-width: 768px) {
-  /* line 289, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+  /* line 289, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
   .literalblock > .content > pre,
   .listingblock > .content > pre {
     font-size: 0.72em;
   }
 }
 @media only screen and (min-width: 1280px) {
-  /* line 289, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+  /* line 289, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
   .literalblock > .content > pre,
   .listingblock > .content > pre {
     font-size: 0.8em;
   }
 }
 
-/* line 344, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 344, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .listingblock:hover .xml:before {
   content: "xml";
   text-transform: uppercase;
@@ -8306,7 +8306,7 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
   font-size: 0.9em;
   color: #999;
 }
-/* line 344, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 344, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .listingblock:hover .html:before {
   content: "html";
   text-transform: uppercase;
@@ -8314,7 +8314,7 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
   font-size: 0.9em;
   color: #999;
 }
-/* line 344, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 344, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .listingblock:hover .ruby:before {
   content: "ruby";
   text-transform: uppercase;
@@ -8322,7 +8322,7 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
   font-size: 0.9em;
   color: #999;
 }
-/* line 344, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 344, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .listingblock:hover .asciidoc:before {
   content: "asciidoc";
   text-transform: uppercase;
@@ -8330,7 +8330,7 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
   font-size: 0.9em;
   color: #999;
 }
-/* line 344, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 344, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .listingblock:hover .java:before {
   content: "java";
   text-transform: uppercase;
@@ -8338,7 +8338,7 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
   font-size: 0.9em;
   color: #999;
 }
-/* line 344, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 344, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .listingblock:hover .css:before {
   content: "css";
   text-transform: uppercase;
@@ -8346,7 +8346,7 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
   font-size: 0.9em;
   color: #999;
 }
-/* line 344, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 344, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .listingblock:hover .scss:before {
   content: "scss";
   text-transform: uppercase;
@@ -8355,45 +8355,45 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
   color: #999;
 }
 
-/* line 366, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 366, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .quoteblock {
   margin: 0 0 0.9375em;
   padding: 0.5625em 1.25em 0 1.1875em;
   border-left: 1px solid #ddd;
 }
-/* line 371, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 371, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .quoteblock blockquote {
   margin: 0 0 0.9375em 0;
   padding: 0;
   border: 0;
 }
-/* line 376, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 376, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .quoteblock blockquote > .paragraph:last-child p {
   margin-bottom: 0;
 }
-/* line 381, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 381, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .quoteblock .attribution {
   padding-bottom: 0.5625em;
   font-size: inherit;
   color: #484a4c;
 }
-/* line 385, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 385, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .quoteblock .attribution br {
   display: none;
 }
-/* line 388, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 388, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .quoteblock .attribution cite {
   display: block;
   margin-bottom: 0.625em;
 }
 
-/* line 396, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 396, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 table thead th,
 table tfoot th {
   font-weight: bold;
 }
 
-/* line 401, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 401, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 table.tableblock.grid-all {
   border-collapse: separate;
   border-spacing: 1px;
@@ -8403,101 +8403,101 @@ table.tableblock.grid-all {
   border-bottom: 5px solid white;
 }
 
-/* line 409, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 409, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 table.tableblock.frame-topbot,
 table.tableblock.frame-none {
   border-left: 0;
   border-right: 0;
 }
 
-/* line 415, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 415, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 table.tableblock.frame-sides,
 table.tableblock.frame-none {
   border-top: 0;
   border-bottom: 0;
 }
 
-/* line 422, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 422, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 table.tableblock td .paragraph:last-child p,
 table.tableblock td > p:last-child {
   margin-bottom: 0;
 }
 
-/* line 429, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 429, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 th.tableblock.halign-left,
 td.tableblock.halign-left {
   text-align: left;
 }
 
-/* line 429, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 429, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 th.tableblock.halign-right,
 td.tableblock.halign-right {
   text-align: right;
 }
 
-/* line 429, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 429, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 th.tableblock.halign-center,
 td.tableblock.halign-center {
   text-align: center;
 }
 
-/* line 436, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 436, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 th.tableblock.halign-top,
 td.tableblock.halign-top {
   vertical-align: top;
 }
 
-/* line 436, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 436, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 th.tableblock.halign-bottom,
 td.tableblock.halign-bottom {
   vertical-align: bottom;
 }
 
-/* line 436, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 436, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 th.tableblock.halign-middle,
 td.tableblock.halign-middle {
   vertical-align: middle;
 }
 
-/* line 442, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 442, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 p.tableblock.header {
   color: #222;
   font-weight: bold;
 }
 
-/* line 447, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 447, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 td > div.verse {
   white-space: pre;
 }
 
-/* line 453, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 453, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 ul {
   margin-left: 1.75em;
 }
 
-/* line 457, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 457, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 ol {
   margin-left: 1.875em;
 }
 
-/* line 461, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 461, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 dl dd {
   margin-left: 1.125em;
 }
 
-/* line 466, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 466, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 dl dd:last-child,
 dl dd:last-child > :last-child {
   margin-bottom: 0;
 }
 
-/* line 473, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 473, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .unstyled dl dt {
   font-weight: normal;
   font-style: normal;
 }
 
-/* line 478, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 478, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 ol > li p,
 ul > li p,
 ul dd,
@@ -8505,93 +8505,93 @@ ol dd {
   margin-bottom: 0.46875em;
 }
 
-/* line 486, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 486, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 ol.arabic {
   list-style-type: decimal;
 }
 
-/* line 486, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 486, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 ol.loweralpha {
   list-style-type: lower-alpha;
 }
 
-/* line 486, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 486, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 ol.upperalpha {
   list-style-type: upper-alpha;
 }
 
-/* line 486, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 486, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 ol.lowerroman {
   list-style-type: lower-roman;
 }
 
-/* line 486, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 486, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 ol.upperroman {
   list-style-type: upper-roman;
 }
 
-/* line 497, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 497, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .hdlist > table,
 .colist > table {
   border: 0;
   background: none;
 }
-/* line 502, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 502, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .hdlist > table > tbody > tr,
 .colist > table > tbody > tr {
   background: none;
 }
 
-/* line 507, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 507, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .literalblock + .colist,
 .listingblock + .colist {
   margin-top: -0.5em;
 }
 
-/* line 513, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 513, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .colist > table tr > td:first-of-type {
   padding: 0 .8em;
   line-height: 1;
 }
-/* line 518, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 518, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .colist > table tr > td:last-of-type {
   padding: 0.25em 0;
 }
 
-/* line 523, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 523, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 td.hdlist1 {
   vertical-align: top;
   padding-right: .8em;
 }
 
-/* line 528, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 528, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .qanda > ol > li > p:first-child {
   color: #247494;
 }
 
-/* line 533, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 533, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 span.footnote,
 span.footnoteref {
   vertical-align: super;
   font-size: 0.875em;
 }
-/* line 537, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 537, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 span.footnote a,
 span.footnoteref a {
   text-decoration: none;
 }
 
-/* line 542, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 542, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 #footnotes {
   padding: 0.75em 0.375em;
   margin-bottom: 0.9375em;
   border-top: 1px solid #ddd;
 }
-/* line 546, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 546, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 #footnotes hr {
   display: none;
 }
-/* line 549, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 549, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 #footnotes .footnote {
   line-height: 1.3;
   font-size: 0.875em;
@@ -8599,54 +8599,54 @@ span.footnoteref a {
   text-indent: -1.2em;
   margin-bottom: .2em;
 }
-/* line 557, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 557, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 #footnotes .footnote a {
   font-weight: bold;
   text-decoration: none;
 }
-/* line 563, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 563, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 #footnotes .footnote:last-of-type {
   margin-bottom: 0;
 }
 
-/* line 569, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 569, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .gist .file-data > table {
   border: none;
   background: #fff;
   width: 100%;
   margin-bottom: 0;
 }
-/* line 574, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 574, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .gist .file-data > table td.line-data {
   width: 99%;
 }
 
-/* line 580, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 580, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .unbreakable {
   page-break-inside: avoid;
 }
 
-/* line 586, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 586, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 span.big {
   font-size: larger;
 }
 
-/* line 590, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 590, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 span.small {
   font-size: smaller;
 }
 
-/* line 595, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 595, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 span.underline {
   text-decoration: underline;
 }
 
-/* line 595, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 595, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 span.overline {
   text-decoration: overline;
 }
 
-/* line 595, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 595, /Users/apple/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 span.line-through {
   text-decoration: line-through;
 }
@@ -8687,7 +8687,7 @@ span.line-through {
 }
 /* FONT AWESOME CORE
  * -------------------------- */
-/* line 37, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 37, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 [class^="icon-"],
 [class*=" icon-"] {
   font-family: FontAwesome;
@@ -8698,7 +8698,7 @@ span.line-through {
   *margin-right: .3em;
 }
 
-/* line 46, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 46, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
   text-decoration: inherit;
@@ -8707,21 +8707,21 @@ span.line-through {
 }
 
 /* makes the font 33% larger relative to the icon container */
-/* line 53, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 53, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-large:before {
   vertical-align: -10%;
   font-size: 1.3333333333333333em;
 }
 
 /* makes sure icons active on rollover in links */
-/* line 58, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 58, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 a [class^="icon-"],
 a [class*=" icon-"] {
   display: inline;
 }
 
 /* increased font size for icon-large */
-/* line 63, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 63, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 [class^="icon-"].icon-fixed-width,
 [class*=" icon-"].icon-fixed-width {
   display: inline-block;
@@ -8730,24 +8730,24 @@ a [class*=" icon-"] {
   padding-right: 0.2857142857142857em;
 }
 
-/* line 70, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 70, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 [class^="icon-"].icon-fixed-width.icon-large,
 [class*=" icon-"].icon-fixed-width.icon-large {
   width: 1.4285714285714286em;
 }
 
-/* line 74, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 74, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icons-ul {
   margin-left: 2.142857142857143em;
   list-style-type: none;
 }
 
-/* line 78, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 78, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icons-ul > li {
   position: relative;
 }
 
-/* line 81, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 81, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icons-ul .icon-li {
   position: absolute;
   left: -2.142857142857143em;
@@ -8756,28 +8756,28 @@ a [class*=" icon-"] {
   line-height: inherit;
 }
 
-/* line 88, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 88, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 [class^="icon-"].hide,
 [class*=" icon-"].hide {
   display: none;
 }
 
-/* line 92, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 92, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-muted {
   color: #eeeeee;
 }
 
-/* line 95, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 95, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-light {
   color: #ffffff;
 }
 
-/* line 98, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 98, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-dark {
   color: #333333;
 }
 
-/* line 101, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 101, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-border {
   border: solid 1px #eeeeee;
   padding: .2em .25em .15em;
@@ -8786,12 +8786,12 @@ a [class*=" icon-"] {
   border-radius: 3px;
 }
 
-/* line 108, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 108, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-2x {
   font-size: 2em;
 }
 
-/* line 111, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 111, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-2x.icon-border {
   border-width: 2px;
   -webkit-border-radius: 4px;
@@ -8799,12 +8799,12 @@ a [class*=" icon-"] {
   border-radius: 4px;
 }
 
-/* line 117, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 117, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-3x {
   font-size: 3em;
 }
 
-/* line 120, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 120, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-3x.icon-border {
   border-width: 3px;
   -webkit-border-radius: 5px;
@@ -8812,12 +8812,12 @@ a [class*=" icon-"] {
   border-radius: 5px;
 }
 
-/* line 126, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 126, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-4x {
   font-size: 4em;
 }
 
-/* line 129, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 129, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-4x.icon-border {
   border-width: 4px;
   -webkit-border-radius: 6px;
@@ -8825,12 +8825,12 @@ a [class*=" icon-"] {
   border-radius: 6px;
 }
 
-/* line 135, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 135, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-5x {
   font-size: 5em;
 }
 
-/* line 138, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 138, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-5x.icon-border {
   border-width: 5px;
   -webkit-border-radius: 7px;
@@ -8838,23 +8838,23 @@ a [class*=" icon-"] {
   border-radius: 7px;
 }
 
-/* line 144, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 144, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .pull-right {
   float: right;
 }
 
-/* line 147, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 147, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .pull-left {
   float: left;
 }
 
-/* line 150, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 150, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 [class^="icon-"].pull-left,
 [class*=" icon-"].pull-left {
   margin-right: .3em;
 }
 
-/* line 154, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 154, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 [class^="icon-"].pull-right,
 [class*=" icon-"].pull-right {
   margin-left: .3em;
@@ -8863,7 +8863,7 @@ a [class*=" icon-"] {
 /* BOOTSTRAP SPECIFIC CLASSES
  * -------------------------- */
 /* Bootstrap 2.0 sprites.less reset */
-/* line 161, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 161, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 [class^="icon-"],
 [class*=" icon-"] {
   display: inline;
@@ -8878,7 +8878,7 @@ a [class*=" icon-"] {
 }
 
 /* more sprites.less reset */
-/* line 174, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 174, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-white,
 .nav-pills > .active > a > [class^="icon-"],
 .nav-pills > .active > a > [class*=" icon-"],
@@ -8896,7 +8896,7 @@ a [class*=" icon-"] {
 }
 
 /* keeps Bootstrap styles with and without icons the same */
-/* line 190, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 190, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .btn [class^="icon-"].icon-large,
 .nav [class^="icon-"].icon-large,
 .btn [class*=" icon-"].icon-large,
@@ -8904,7 +8904,7 @@ a [class*=" icon-"] {
   line-height: .9em;
 }
 
-/* line 196, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 196, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .btn [class^="icon-"].icon-spin,
 .nav [class^="icon-"].icon-spin,
 .btn [class*=" icon-"].icon-spin,
@@ -8912,7 +8912,7 @@ a [class*=" icon-"] {
   display: inline-block;
 }
 
-/* line 202, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 202, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .nav-tabs [class^="icon-"],
 .nav-pills [class^="icon-"],
 .nav-tabs [class*=" icon-"],
@@ -8924,7 +8924,7 @@ a [class*=" icon-"] {
   line-height: .9em;
 }
 
-/* line 212, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 212, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .btn [class^="icon-"].pull-left.icon-2x,
 .btn [class*=" icon-"].pull-left.icon-2x,
 .btn [class^="icon-"].pull-right.icon-2x,
@@ -8932,13 +8932,13 @@ a [class*=" icon-"] {
   margin-top: .18em;
 }
 
-/* line 218, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 218, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .btn [class^="icon-"].icon-spin.icon-large,
 .btn [class*=" icon-"].icon-spin.icon-large {
   line-height: .8em;
 }
 
-/* line 222, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 222, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .btn.btn-small [class^="icon-"].pull-left.icon-2x,
 .btn.btn-small [class*=" icon-"].pull-left.icon-2x,
 .btn.btn-small [class^="icon-"].pull-right.icon-2x,
@@ -8946,13 +8946,13 @@ a [class*=" icon-"] {
   margin-top: .25em;
 }
 
-/* line 228, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 228, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .btn.btn-large [class^="icon-"],
 .btn.btn-large [class*=" icon-"] {
   margin-top: 0;
 }
 
-/* line 232, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 232, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .btn.btn-large [class^="icon-"].pull-left.icon-2x,
 .btn.btn-large [class*=" icon-"].pull-left.icon-2x,
 .btn.btn-large [class^="icon-"].pull-right.icon-2x,
@@ -8960,20 +8960,20 @@ a [class*=" icon-"] {
   margin-top: .05em;
 }
 
-/* line 238, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 238, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .btn.btn-large [class^="icon-"].pull-left.icon-2x,
 .btn.btn-large [class*=" icon-"].pull-left.icon-2x {
   margin-right: .2em;
 }
 
-/* line 242, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 242, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .btn.btn-large [class^="icon-"].pull-right.icon-2x,
 .btn.btn-large [class*=" icon-"].pull-right.icon-2x {
   margin-left: .2em;
 }
 
 /* Fixes alignment in nav lists */
-/* line 247, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 247, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .nav-list [class^="icon-"],
 .nav-list [class*=" icon-"] {
   line-height: inherit;
@@ -8982,7 +8982,7 @@ a [class*=" icon-"] {
 /* EXTRAS
  * -------------------------- */
 /* Stacked and layered icon */
-/* line 254, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 254, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-stack {
   position: relative;
   display: inline-block;
@@ -8992,7 +8992,7 @@ a [class*=" icon-"] {
   vertical-align: -35%;
 }
 
-/* line 262, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 262, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-stack [class^="icon-"],
 .icon-stack [class*=" icon-"] {
   display: block;
@@ -9005,14 +9005,14 @@ a [class*=" icon-"] {
   *line-height: 2em;
 }
 
-/* line 273, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 273, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-stack .icon-stack-base {
   font-size: 2em;
   *line-height: 1em;
 }
 
 /* Animated rotating icon */
-/* line 278, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 278, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-spin {
   display: inline-block;
   -moz-animation: spin 2s infinite linear;
@@ -9022,7 +9022,7 @@ a [class*=" icon-"] {
 }
 
 /* Prevent stack and spinners from being taken inline when inside a link */
-/* line 286, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 286, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 a .icon-stack,
 a .icon-spin {
   display: inline-block;
@@ -9070,7 +9070,7 @@ a .icon-spin {
   }
 }
 /* Icon rotations and mirroring */
-/* line 332, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 332, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-rotate-90:before {
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
@@ -9080,7 +9080,7 @@ a .icon-spin {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
 }
 
-/* line 340, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 340, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-rotate-180:before {
   -webkit-transform: rotate(180deg);
   -moz-transform: rotate(180deg);
@@ -9090,7 +9090,7 @@ a .icon-spin {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
 }
 
-/* line 348, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 348, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-rotate-270:before {
   -webkit-transform: rotate(270deg);
   -moz-transform: rotate(270deg);
@@ -9100,7 +9100,7 @@ a .icon-spin {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
 
-/* line 356, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 356, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-flip-horizontal:before {
   -webkit-transform: scale(-1, 1);
   -moz-transform: scale(-1, 1);
@@ -9109,7 +9109,7 @@ a .icon-spin {
   transform: scale(-1, 1);
 }
 
-/* line 363, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 363, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-flip-vertical:before {
   -webkit-transform: scale(1, -1);
   -moz-transform: scale(1, -1);
@@ -9119,7 +9119,7 @@ a .icon-spin {
 }
 
 /* ensure rotation occurs inside anchor tags */
-/* line 371, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 371, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 a .icon-rotate-90:before,
 a .icon-rotate-180:before,
 a .icon-rotate-270:before,
@@ -9130,1862 +9130,1862 @@ a .icon-flip-vertical:before {
 
 /* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
    readers do not read off random characters that represent icons */
-/* line 380, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 380, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-glass:before {
   content: "\f000";
 }
 
-/* line 383, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 383, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-music:before {
   content: "\f001";
 }
 
-/* line 386, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 386, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-search:before {
   content: "\f002";
 }
 
-/* line 389, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 389, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-envelope-alt:before {
   content: "\f003";
 }
 
-/* line 392, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 392, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-heart:before {
   content: "\f004";
 }
 
-/* line 395, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 395, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-star:before {
   content: "\f005";
 }
 
-/* line 398, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 398, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-star-empty:before {
   content: "\f006";
 }
 
-/* line 401, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 401, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-user:before {
   content: "\f007";
 }
 
-/* line 404, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 404, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-film:before {
   content: "\f008";
 }
 
-/* line 407, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 407, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-th-large:before {
   content: "\f009";
 }
 
-/* line 410, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 410, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-th:before {
   content: "\f00a";
 }
 
-/* line 413, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 413, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-th-list:before {
   content: "\f00b";
 }
 
-/* line 416, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 416, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-ok:before {
   content: "\f00c";
 }
 
-/* line 419, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 419, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-remove:before {
   content: "\f00d";
 }
 
-/* line 422, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 422, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-zoom-in:before {
   content: "\f00e";
 }
 
-/* line 425, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 425, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-zoom-out:before {
   content: "\f010";
 }
 
-/* line 428, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 428, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-power-off:before,
 .icon-off:before {
   content: "\f011";
 }
 
-/* line 432, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 432, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-signal:before {
   content: "\f012";
 }
 
-/* line 435, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 435, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-gear:before,
 .icon-cog:before {
   content: "\f013";
 }
 
-/* line 439, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 439, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-trash:before {
   content: "\f014";
 }
 
-/* line 442, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 442, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-home:before {
   content: "\f015";
 }
 
-/* line 445, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 445, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-file-alt:before {
   content: "\f016";
 }
 
-/* line 448, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 448, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-time:before {
   content: "\f017";
 }
 
-/* line 451, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 451, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-road:before {
   content: "\f018";
 }
 
-/* line 454, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 454, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-download-alt:before {
   content: "\f019";
 }
 
-/* line 457, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 457, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-download:before {
   content: "\f01a";
 }
 
-/* line 460, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 460, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-upload:before {
   content: "\f01b";
 }
 
-/* line 463, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 463, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-inbox:before {
   content: "\f01c";
 }
 
-/* line 466, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 466, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-play-circle:before {
   content: "\f01d";
 }
 
-/* line 469, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 469, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-rotate-right:before,
 .icon-repeat:before {
   content: "\f01e";
 }
 
-/* line 473, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 473, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-refresh:before {
   content: "\f021";
 }
 
-/* line 476, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 476, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-list-alt:before {
   content: "\f022";
 }
 
-/* line 479, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 479, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-lock:before {
   content: "\f023";
 }
 
-/* line 482, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 482, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-flag:before {
   content: "\f024";
 }
 
-/* line 485, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 485, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-headphones:before {
   content: "\f025";
 }
 
-/* line 488, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 488, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-volume-off:before {
   content: "\f026";
 }
 
-/* line 491, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 491, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-volume-down:before {
   content: "\f027";
 }
 
-/* line 494, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 494, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-volume-up:before {
   content: "\f028";
 }
 
-/* line 497, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 497, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-qrcode:before {
   content: "\f029";
 }
 
-/* line 500, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 500, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-barcode:before {
   content: "\f02a";
 }
 
-/* line 503, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 503, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-tag:before {
   content: "\f02b";
 }
 
-/* line 506, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 506, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-tags:before {
   content: "\f02c";
 }
 
-/* line 509, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 509, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-book:before {
   content: "\f02d";
 }
 
-/* line 512, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 512, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-bookmark:before {
   content: "\f02e";
 }
 
-/* line 515, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 515, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-print:before {
   content: "\f02f";
 }
 
-/* line 518, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 518, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-camera:before {
   content: "\f030";
 }
 
-/* line 521, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 521, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-font:before {
   content: "\f031";
 }
 
-/* line 524, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 524, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-bold:before {
   content: "\f032";
 }
 
-/* line 527, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 527, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-italic:before {
   content: "\f033";
 }
 
-/* line 530, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 530, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-text-height:before {
   content: "\f034";
 }
 
-/* line 533, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 533, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-text-width:before {
   content: "\f035";
 }
 
-/* line 536, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 536, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-align-left:before {
   content: "\f036";
 }
 
-/* line 539, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 539, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-align-center:before {
   content: "\f037";
 }
 
-/* line 542, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 542, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-align-right:before {
   content: "\f038";
 }
 
-/* line 545, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 545, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-align-justify:before {
   content: "\f039";
 }
 
-/* line 548, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 548, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-list:before {
   content: "\f03a";
 }
 
-/* line 551, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 551, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-indent-left:before {
   content: "\f03b";
 }
 
-/* line 554, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 554, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-indent-right:before {
   content: "\f03c";
 }
 
-/* line 557, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 557, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-facetime-video:before {
   content: "\f03d";
 }
 
-/* line 560, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 560, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-picture:before {
   content: "\f03e";
 }
 
-/* line 563, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 563, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-pencil:before {
   content: "\f040";
 }
 
-/* line 566, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 566, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-map-marker:before {
   content: "\f041";
 }
 
-/* line 569, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 569, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-adjust:before {
   content: "\f042";
 }
 
-/* line 572, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 572, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-tint:before {
   content: "\f043";
 }
 
-/* line 575, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 575, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-edit:before {
   content: "\f044";
 }
 
-/* line 578, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 578, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-share:before {
   content: "\f045";
 }
 
-/* line 581, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 581, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-check:before {
   content: "\f046";
 }
 
-/* line 584, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 584, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-move:before {
   content: "\f047";
 }
 
-/* line 587, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 587, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-step-backward:before {
   content: "\f048";
 }
 
-/* line 590, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 590, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-fast-backward:before {
   content: "\f049";
 }
 
-/* line 593, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 593, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-backward:before {
   content: "\f04a";
 }
 
-/* line 596, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 596, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-play:before {
   content: "\f04b";
 }
 
-/* line 599, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 599, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-pause:before {
   content: "\f04c";
 }
 
-/* line 602, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 602, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-stop:before {
   content: "\f04d";
 }
 
-/* line 605, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 605, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-forward:before {
   content: "\f04e";
 }
 
-/* line 608, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 608, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-fast-forward:before {
   content: "\f050";
 }
 
-/* line 611, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 611, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-step-forward:before {
   content: "\f051";
 }
 
-/* line 614, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 614, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-eject:before {
   content: "\f052";
 }
 
-/* line 617, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 617, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-chevron-left:before {
   content: "\f053";
 }
 
-/* line 620, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 620, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-chevron-right:before {
   content: "\f054";
 }
 
-/* line 623, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 623, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-plus-sign:before {
   content: "\f055";
 }
 
-/* line 626, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 626, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-minus-sign:before {
   content: "\f056";
 }
 
-/* line 629, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 629, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-remove-sign:before {
   content: "\f057";
 }
 
-/* line 632, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 632, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-ok-sign:before {
   content: "\f058";
 }
 
-/* line 635, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 635, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-question-sign:before {
   content: "\f059";
 }
 
-/* line 638, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 638, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-info-sign:before {
   content: "\f05a";
 }
 
-/* line 641, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 641, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-screenshot:before {
   content: "\f05b";
 }
 
-/* line 644, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 644, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-remove-circle:before {
   content: "\f05c";
 }
 
-/* line 647, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 647, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-ok-circle:before {
   content: "\f05d";
 }
 
-/* line 650, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 650, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-ban-circle:before {
   content: "\f05e";
 }
 
-/* line 653, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 653, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-arrow-left:before {
   content: "\f060";
 }
 
-/* line 656, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 656, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-arrow-right:before {
   content: "\f061";
 }
 
-/* line 659, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 659, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-arrow-up:before {
   content: "\f062";
 }
 
-/* line 662, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 662, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-arrow-down:before {
   content: "\f063";
 }
 
-/* line 665, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 665, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-mail-forward:before,
 .icon-share-alt:before {
   content: "\f064";
 }
 
-/* line 669, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 669, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-resize-full:before {
   content: "\f065";
 }
 
-/* line 672, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 672, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-resize-small:before {
   content: "\f066";
 }
 
-/* line 675, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 675, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-plus:before {
   content: "\f067";
 }
 
-/* line 678, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 678, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-minus:before {
   content: "\f068";
 }
 
-/* line 681, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 681, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-asterisk:before {
   content: "\f069";
 }
 
-/* line 684, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 684, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-exclamation-sign:before {
   content: "\f06a";
 }
 
-/* line 687, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 687, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-gift:before {
   content: "\f06b";
 }
 
-/* line 690, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 690, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-leaf:before {
   content: "\f06c";
 }
 
-/* line 693, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 693, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-fire:before {
   content: "\f06d";
 }
 
-/* line 696, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 696, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-eye-open:before {
   content: "\f06e";
 }
 
-/* line 699, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 699, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-eye-close:before {
   content: "\f070";
 }
 
-/* line 702, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 702, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-warning-sign:before {
   content: "\f071";
 }
 
-/* line 705, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 705, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-plane:before {
   content: "\f072";
 }
 
-/* line 708, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 708, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-calendar:before {
   content: "\f073";
 }
 
-/* line 711, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 711, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-random:before {
   content: "\f074";
 }
 
-/* line 714, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 714, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-comment:before {
   content: "\f075";
 }
 
-/* line 717, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 717, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-magnet:before {
   content: "\f076";
 }
 
-/* line 720, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 720, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-chevron-up:before {
   content: "\f077";
 }
 
-/* line 723, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 723, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-chevron-down:before {
   content: "\f078";
 }
 
-/* line 726, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 726, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-retweet:before {
   content: "\f079";
 }
 
-/* line 729, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 729, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-shopping-cart:before {
   content: "\f07a";
 }
 
-/* line 732, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 732, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-folder-close:before {
   content: "\f07b";
 }
 
-/* line 735, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 735, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-folder-open:before {
   content: "\f07c";
 }
 
-/* line 738, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 738, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-resize-vertical:before {
   content: "\f07d";
 }
 
-/* line 741, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 741, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-resize-horizontal:before {
   content: "\f07e";
 }
 
-/* line 744, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 744, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-bar-chart:before {
   content: "\f080";
 }
 
-/* line 747, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 747, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-twitter-sign:before {
   content: "\f081";
 }
 
-/* line 750, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 750, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-facebook-sign:before {
   content: "\f082";
 }
 
-/* line 753, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 753, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-camera-retro:before {
   content: "\f083";
 }
 
-/* line 756, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 756, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-key:before {
   content: "\f084";
 }
 
-/* line 759, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 759, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-gears:before,
 .icon-cogs:before {
   content: "\f085";
 }
 
-/* line 763, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 763, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-comments:before {
   content: "\f086";
 }
 
-/* line 766, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 766, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-thumbs-up-alt:before {
   content: "\f087";
 }
 
-/* line 769, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 769, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-thumbs-down-alt:before {
   content: "\f088";
 }
 
-/* line 772, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 772, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-star-half:before {
   content: "\f089";
 }
 
-/* line 775, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 775, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-heart-empty:before {
   content: "\f08a";
 }
 
-/* line 778, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 778, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-signout:before {
   content: "\f08b";
 }
 
-/* line 781, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 781, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-linkedin-sign:before {
   content: "\f08c";
 }
 
-/* line 784, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 784, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-pushpin:before {
   content: "\f08d";
 }
 
-/* line 787, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 787, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-external-link:before {
   content: "\f08e";
 }
 
-/* line 790, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 790, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-signin:before {
   content: "\f090";
 }
 
-/* line 793, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 793, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-trophy:before {
   content: "\f091";
 }
 
-/* line 796, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 796, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-github-sign:before {
   content: "\f092";
 }
 
-/* line 799, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 799, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-upload-alt:before {
   content: "\f093";
 }
 
-/* line 802, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 802, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-lemon:before {
   content: "\f094";
 }
 
-/* line 805, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 805, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-phone:before {
   content: "\f095";
 }
 
-/* line 808, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 808, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-unchecked:before,
 .icon-check-empty:before {
   content: "\f096";
 }
 
-/* line 812, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 812, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-bookmark-empty:before {
   content: "\f097";
 }
 
-/* line 815, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 815, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-phone-sign:before {
   content: "\f098";
 }
 
-/* line 818, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 818, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-twitter:before {
   content: "\f099";
 }
 
-/* line 821, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 821, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-facebook:before {
   content: "\f09a";
 }
 
-/* line 824, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 824, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-github:before {
   content: "\f09b";
 }
 
-/* line 827, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 827, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-unlock:before {
   content: "\f09c";
 }
 
-/* line 830, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 830, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-credit-card:before {
   content: "\f09d";
 }
 
-/* line 833, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 833, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-rss:before {
   content: "\f09e";
 }
 
-/* line 836, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 836, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-hdd:before {
   content: "\f0a0";
 }
 
-/* line 839, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 839, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-bullhorn:before {
   content: "\f0a1";
 }
 
-/* line 842, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 842, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-bell:before {
   content: "\f0a2";
 }
 
-/* line 845, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 845, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-certificate:before {
   content: "\f0a3";
 }
 
-/* line 848, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 848, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-hand-right:before {
   content: "\f0a4";
 }
 
-/* line 851, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 851, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-hand-left:before {
   content: "\f0a5";
 }
 
-/* line 854, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 854, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-hand-up:before {
   content: "\f0a6";
 }
 
-/* line 857, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 857, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-hand-down:before {
   content: "\f0a7";
 }
 
-/* line 860, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 860, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-circle-arrow-left:before {
   content: "\f0a8";
 }
 
-/* line 863, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 863, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-circle-arrow-right:before {
   content: "\f0a9";
 }
 
-/* line 866, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 866, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-circle-arrow-up:before {
   content: "\f0aa";
 }
 
-/* line 869, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 869, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-circle-arrow-down:before {
   content: "\f0ab";
 }
 
-/* line 872, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 872, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-globe:before {
   content: "\f0ac";
 }
 
-/* line 875, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 875, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-wrench:before {
   content: "\f0ad";
 }
 
-/* line 878, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 878, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-tasks:before {
   content: "\f0ae";
 }
 
-/* line 881, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 881, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-filter:before {
   content: "\f0b0";
 }
 
-/* line 884, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 884, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-briefcase:before {
   content: "\f0b1";
 }
 
-/* line 887, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 887, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-fullscreen:before {
   content: "\f0b2";
 }
 
-/* line 890, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 890, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-group:before {
   content: "\f0c0";
 }
 
-/* line 893, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 893, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-link:before {
   content: "\f0c1";
 }
 
-/* line 896, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 896, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-cloud:before {
   content: "\f0c2";
 }
 
-/* line 899, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 899, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-beaker:before {
   content: "\f0c3";
 }
 
-/* line 902, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 902, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-cut:before {
   content: "\f0c4";
 }
 
-/* line 905, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 905, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-copy:before {
   content: "\f0c5";
 }
 
-/* line 908, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 908, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-paperclip:before,
 .icon-paper-clip:before {
   content: "\f0c6";
 }
 
-/* line 912, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 912, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-save:before {
   content: "\f0c7";
 }
 
-/* line 915, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 915, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-sign-blank:before {
   content: "\f0c8";
 }
 
-/* line 918, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 918, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-reorder:before {
   content: "\f0c9";
 }
 
-/* line 921, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 921, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-list-ul:before {
   content: "\f0ca";
 }
 
-/* line 924, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 924, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-list-ol:before {
   content: "\f0cb";
 }
 
-/* line 927, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 927, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-strikethrough:before {
   content: "\f0cc";
 }
 
-/* line 930, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 930, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-underline:before {
   content: "\f0cd";
 }
 
-/* line 933, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 933, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-table:before {
   content: "\f0ce";
 }
 
-/* line 936, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 936, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-magic:before {
   content: "\f0d0";
 }
 
-/* line 939, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 939, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-truck:before {
   content: "\f0d1";
 }
 
-/* line 942, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 942, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-pinterest:before {
   content: "\f0d2";
 }
 
-/* line 945, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 945, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-pinterest-sign:before {
   content: "\f0d3";
 }
 
-/* line 948, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 948, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-google-plus-sign:before {
   content: "\f0d4";
 }
 
-/* line 951, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 951, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-google-plus:before {
   content: "\f0d5";
 }
 
-/* line 954, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 954, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-money:before {
   content: "\f0d6";
 }
 
-/* line 957, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 957, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-caret-down:before {
   content: "\f0d7";
 }
 
-/* line 960, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 960, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-caret-up:before {
   content: "\f0d8";
 }
 
-/* line 963, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 963, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-caret-left:before {
   content: "\f0d9";
 }
 
-/* line 966, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 966, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-caret-right:before {
   content: "\f0da";
 }
 
-/* line 969, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 969, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-columns:before {
   content: "\f0db";
 }
 
-/* line 972, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 972, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-sort:before {
   content: "\f0dc";
 }
 
-/* line 975, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 975, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-sort-down:before {
   content: "\f0dd";
 }
 
-/* line 978, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 978, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-sort-up:before {
   content: "\f0de";
 }
 
-/* line 981, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 981, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-envelope:before {
   content: "\f0e0";
 }
 
-/* line 984, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 984, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-linkedin:before {
   content: "\f0e1";
 }
 
-/* line 987, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 987, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-rotate-left:before,
 .icon-undo:before {
   content: "\f0e2";
 }
 
-/* line 991, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 991, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-legal:before {
   content: "\f0e3";
 }
 
-/* line 994, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 994, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-dashboard:before {
   content: "\f0e4";
 }
 
-/* line 997, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 997, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-comment-alt:before {
   content: "\f0e5";
 }
 
-/* line 1000, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1000, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-comments-alt:before {
   content: "\f0e6";
 }
 
-/* line 1003, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1003, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-bolt:before {
   content: "\f0e7";
 }
 
-/* line 1006, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1006, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-sitemap:before {
   content: "\f0e8";
 }
 
-/* line 1009, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1009, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-umbrella:before {
   content: "\f0e9";
 }
 
-/* line 1012, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1012, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-paste:before {
   content: "\f0ea";
 }
 
-/* line 1015, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1015, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-lightbulb:before {
   content: "\f0eb";
 }
 
-/* line 1018, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1018, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-exchange:before {
   content: "\f0ec";
 }
 
-/* line 1021, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1021, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-cloud-download:before {
   content: "\f0ed";
 }
 
-/* line 1024, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1024, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-cloud-upload:before {
   content: "\f0ee";
 }
 
-/* line 1027, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1027, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-user-md:before {
   content: "\f0f0";
 }
 
-/* line 1030, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1030, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-stethoscope:before {
   content: "\f0f1";
 }
 
-/* line 1033, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1033, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-suitcase:before {
   content: "\f0f2";
 }
 
-/* line 1036, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1036, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-bell-alt:before {
   content: "\f0f3";
 }
 
-/* line 1039, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1039, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-coffee:before {
   content: "\f0f4";
 }
 
-/* line 1042, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1042, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-food:before {
   content: "\f0f5";
 }
 
-/* line 1045, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1045, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-file-text-alt:before {
   content: "\f0f6";
 }
 
-/* line 1048, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1048, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-building:before {
   content: "\f0f7";
 }
 
-/* line 1051, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1051, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-hospital:before {
   content: "\f0f8";
 }
 
-/* line 1054, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1054, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-ambulance:before {
   content: "\f0f9";
 }
 
-/* line 1057, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1057, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-medkit:before {
   content: "\f0fa";
 }
 
-/* line 1060, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1060, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-fighter-jet:before {
   content: "\f0fb";
 }
 
-/* line 1063, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1063, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-beer:before {
   content: "\f0fc";
 }
 
-/* line 1066, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1066, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-h-sign:before {
   content: "\f0fd";
 }
 
-/* line 1069, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1069, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-plus-sign-alt:before {
   content: "\f0fe";
 }
 
-/* line 1072, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1072, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-double-angle-left:before {
   content: "\f100";
 }
 
-/* line 1075, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1075, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-double-angle-right:before {
   content: "\f101";
 }
 
-/* line 1078, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1078, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-double-angle-up:before {
   content: "\f102";
 }
 
-/* line 1081, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1081, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-double-angle-down:before {
   content: "\f103";
 }
 
-/* line 1084, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1084, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-angle-left:before {
   content: "\f104";
 }
 
-/* line 1087, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1087, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-angle-right:before {
   content: "\f105";
 }
 
-/* line 1090, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1090, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-angle-up:before {
   content: "\f106";
 }
 
-/* line 1093, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1093, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-angle-down:before {
   content: "\f107";
 }
 
-/* line 1096, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1096, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-desktop:before {
   content: "\f108";
 }
 
-/* line 1099, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1099, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-laptop:before {
   content: "\f109";
 }
 
-/* line 1102, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1102, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-tablet:before {
   content: "\f10a";
 }
 
-/* line 1105, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1105, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-mobile-phone:before {
   content: "\f10b";
 }
 
-/* line 1108, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1108, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-circle-blank:before {
   content: "\f10c";
 }
 
-/* line 1111, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1111, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-quote-left:before {
   content: "\f10d";
 }
 
-/* line 1114, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1114, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-quote-right:before {
   content: "\f10e";
 }
 
-/* line 1117, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1117, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-spinner:before {
   content: "\f110";
 }
 
-/* line 1120, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1120, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-circle:before {
   content: "\f111";
 }
 
-/* line 1123, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1123, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-mail-reply:before,
 .icon-reply:before {
   content: "\f112";
 }
 
-/* line 1127, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1127, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-github-alt:before {
   content: "\f113";
 }
 
-/* line 1130, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1130, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-folder-close-alt:before {
   content: "\f114";
 }
 
-/* line 1133, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1133, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-folder-open-alt:before {
   content: "\f115";
 }
 
-/* line 1136, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1136, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-expand-alt:before {
   content: "\f116";
 }
 
-/* line 1139, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1139, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-collapse-alt:before {
   content: "\f117";
 }
 
-/* line 1142, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1142, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-smile:before {
   content: "\f118";
 }
 
-/* line 1145, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1145, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-frown:before {
   content: "\f119";
 }
 
-/* line 1148, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1148, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-meh:before {
   content: "\f11a";
 }
 
-/* line 1151, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1151, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-gamepad:before {
   content: "\f11b";
 }
 
-/* line 1154, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1154, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-keyboard:before {
   content: "\f11c";
 }
 
-/* line 1157, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1157, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-flag-alt:before {
   content: "\f11d";
 }
 
-/* line 1160, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1160, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-flag-checkered:before {
   content: "\f11e";
 }
 
-/* line 1163, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1163, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-terminal:before {
   content: "\f120";
 }
 
-/* line 1166, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1166, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-code:before {
   content: "\f121";
 }
 
-/* line 1169, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1169, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-reply-all:before {
   content: "\f122";
 }
 
-/* line 1172, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1172, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-mail-reply-all:before {
   content: "\f122";
 }
 
-/* line 1175, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1175, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-star-half-full:before,
 .icon-star-half-empty:before {
   content: "\f123";
 }
 
-/* line 1179, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1179, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-location-arrow:before {
   content: "\f124";
 }
 
-/* line 1182, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1182, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-crop:before {
   content: "\f125";
 }
 
-/* line 1185, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1185, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-code-fork:before {
   content: "\f126";
 }
 
-/* line 1188, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1188, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-unlink:before {
   content: "\f127";
 }
 
-/* line 1191, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1191, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-question:before {
   content: "\f128";
 }
 
-/* line 1194, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1194, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-info:before {
   content: "\f129";
 }
 
-/* line 1197, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1197, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-exclamation:before {
   content: "\f12a";
 }
 
-/* line 1200, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1200, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-superscript:before {
   content: "\f12b";
 }
 
-/* line 1203, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1203, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-subscript:before {
   content: "\f12c";
 }
 
-/* line 1206, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1206, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-eraser:before {
   content: "\f12d";
 }
 
-/* line 1209, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1209, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-puzzle-piece:before {
   content: "\f12e";
 }
 
-/* line 1212, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1212, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-microphone:before {
   content: "\f130";
 }
 
-/* line 1215, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1215, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-microphone-off:before {
   content: "\f131";
 }
 
-/* line 1218, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1218, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-shield:before {
   content: "\f132";
 }
 
-/* line 1221, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1221, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-calendar-empty:before {
   content: "\f133";
 }
 
-/* line 1224, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1224, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-fire-extinguisher:before {
   content: "\f134";
 }
 
-/* line 1227, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1227, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-rocket:before {
   content: "\f135";
 }
 
-/* line 1230, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1230, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-maxcdn:before {
   content: "\f136";
 }
 
-/* line 1233, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1233, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-chevron-sign-left:before {
   content: "\f137";
 }
 
-/* line 1236, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1236, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-chevron-sign-right:before {
   content: "\f138";
 }
 
-/* line 1239, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1239, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-chevron-sign-up:before {
   content: "\f139";
 }
 
-/* line 1242, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1242, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-chevron-sign-down:before {
   content: "\f13a";
 }
 
-/* line 1245, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1245, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-html5:before {
   content: "\f13b";
 }
 
-/* line 1248, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1248, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-css3:before {
   content: "\f13c";
 }
 
-/* line 1251, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1251, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-anchor:before {
   content: "\f13d";
 }
 
-/* line 1254, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1254, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-unlock-alt:before {
   content: "\f13e";
 }
 
-/* line 1257, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1257, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-bullseye:before {
   content: "\f140";
 }
 
-/* line 1260, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1260, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-ellipsis-horizontal:before {
   content: "\f141";
 }
 
-/* line 1263, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1263, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-ellipsis-vertical:before {
   content: "\f142";
 }
 
-/* line 1266, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1266, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-rss-sign:before {
   content: "\f143";
 }
 
-/* line 1269, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1269, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-play-sign:before {
   content: "\f144";
 }
 
-/* line 1272, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1272, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-ticket:before {
   content: "\f145";
 }
 
-/* line 1275, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1275, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-minus-sign-alt:before {
   content: "\f146";
 }
 
-/* line 1278, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1278, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-check-minus:before {
   content: "\f147";
 }
 
-/* line 1281, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1281, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-level-up:before {
   content: "\f148";
 }
 
-/* line 1284, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1284, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-level-down:before {
   content: "\f149";
 }
 
-/* line 1287, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1287, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-check-sign:before {
   content: "\f14a";
 }
 
-/* line 1290, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1290, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-edit-sign:before {
   content: "\f14b";
 }
 
-/* line 1293, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1293, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-external-link-sign:before {
   content: "\f14c";
 }
 
-/* line 1296, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1296, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-share-sign:before {
   content: "\f14d";
 }
 
-/* line 1299, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1299, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-compass:before {
   content: "\f14e";
 }
 
-/* line 1302, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1302, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-collapse:before {
   content: "\f150";
 }
 
-/* line 1305, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1305, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-collapse-top:before {
   content: "\f151";
 }
 
-/* line 1308, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1308, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-expand:before {
   content: "\f152";
 }
 
-/* line 1311, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1311, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-euro:before,
 .icon-eur:before {
   content: "\f153";
 }
 
-/* line 1315, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1315, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-gbp:before {
   content: "\f154";
 }
 
-/* line 1318, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1318, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-dollar:before,
 .icon-usd:before {
   content: "\f155";
 }
 
-/* line 1322, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1322, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-rupee:before,
 .icon-inr:before {
   content: "\f156";
 }
 
-/* line 1326, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1326, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-yen:before,
 .icon-jpy:before {
   content: "\f157";
 }
 
-/* line 1330, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1330, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-renminbi:before,
 .icon-cny:before {
   content: "\f158";
 }
 
-/* line 1334, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1334, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-won:before,
 .icon-krw:before {
   content: "\f159";
 }
 
-/* line 1338, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1338, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-bitcoin:before,
 .icon-btc:before {
   content: "\f15a";
 }
 
-/* line 1342, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1342, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-file:before {
   content: "\f15b";
 }
 
-/* line 1345, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1345, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-file-text:before {
   content: "\f15c";
 }
 
-/* line 1348, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1348, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-sort-by-alphabet:before {
   content: "\f15d";
 }
 
-/* line 1351, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1351, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-sort-by-alphabet-alt:before {
   content: "\f15e";
 }
 
-/* line 1354, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1354, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-sort-by-attributes:before {
   content: "\f160";
 }
 
-/* line 1357, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1357, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-sort-by-attributes-alt:before {
   content: "\f161";
 }
 
-/* line 1360, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1360, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-sort-by-order:before {
   content: "\f162";
 }
 
-/* line 1363, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1363, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-sort-by-order-alt:before {
   content: "\f163";
 }
 
-/* line 1366, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1366, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-thumbs-up:before {
   content: "\f164";
 }
 
-/* line 1369, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1369, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-thumbs-down:before {
   content: "\f165";
 }
 
-/* line 1372, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1372, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-youtube-sign:before {
   content: "\f166";
 }
 
-/* line 1375, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1375, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-youtube:before {
   content: "\f167";
 }
 
-/* line 1378, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1378, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-xing:before {
   content: "\f168";
 }
 
-/* line 1381, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1381, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-xing-sign:before {
   content: "\f169";
 }
 
-/* line 1384, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1384, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-youtube-play:before {
   content: "\f16a";
 }
 
-/* line 1387, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1387, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-dropbox:before {
   content: "\f16b";
 }
 
-/* line 1390, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1390, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-stackexchange:before {
   content: "\f16c";
 }
 
-/* line 1393, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1393, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-instagram:before {
   content: "\f16d";
 }
 
-/* line 1396, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1396, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-flickr:before {
   content: "\f16e";
 }
 
-/* line 1399, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1399, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-adn:before {
   content: "\f170";
 }
 
-/* line 1402, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1402, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-bitbucket:before {
   content: "\f171";
 }
 
-/* line 1405, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1405, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-bitbucket-sign:before {
   content: "\f172";
 }
 
-/* line 1408, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1408, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-tumblr:before {
   content: "\f173";
 }
 
-/* line 1411, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1411, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-tumblr-sign:before {
   content: "\f174";
 }
 
-/* line 1414, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1414, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-long-arrow-down:before {
   content: "\f175";
 }
 
-/* line 1417, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1417, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-long-arrow-up:before {
   content: "\f176";
 }
 
-/* line 1420, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1420, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-long-arrow-left:before {
   content: "\f177";
 }
 
-/* line 1423, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1423, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-long-arrow-right:before {
   content: "\f178";
 }
 
-/* line 1426, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1426, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-apple:before {
   content: "\f179";
 }
 
-/* line 1429, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1429, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-windows:before {
   content: "\f17a";
 }
 
-/* line 1432, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1432, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-android:before {
   content: "\f17b";
 }
 
-/* line 1435, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1435, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-linux:before {
   content: "\f17c";
 }
 
-/* line 1438, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1438, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-dribbble:before {
   content: "\f17d";
 }
 
-/* line 1441, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1441, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-skype:before {
   content: "\f17e";
 }
 
-/* line 1444, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1444, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-foursquare:before {
   content: "\f180";
 }
 
-/* line 1447, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1447, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-trello:before {
   content: "\f181";
 }
 
-/* line 1450, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1450, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-female:before {
   content: "\f182";
 }
 
-/* line 1453, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1453, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-male:before {
   content: "\f183";
 }
 
-/* line 1456, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1456, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-gittip:before {
   content: "\f184";
 }
 
-/* line 1459, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1459, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-sun:before {
   content: "\f185";
 }
 
-/* line 1462, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1462, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-moon:before {
   content: "\f186";
 }
 
-/* line 1465, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1465, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-archive:before {
   content: "\f187";
 }
 
-/* line 1468, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1468, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-bug:before {
   content: "\f188";
 }
 
-/* line 1471, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1471, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-vk:before {
   content: "\f189";
 }
 
-/* line 1474, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1474, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-weibo:before {
   content: "\f18a";
 }
 
-/* line 1477, /Users/vikgamov/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
+/* line 1477, /Users/apple/projects/gamussa.github.com/stylesheets/fonts/_font-awesome.scss */
 .icon-renren:before {
   content: "\f18b";
 }
 
-/* line 4, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
+/* line 4, /Users/apple/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
 .admonitionblock td.icon [class^="icon-"]:before {
   font-size: 2.5em;
   text-shadow: 0 0 8px #fff, 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
-/* line 9, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
+/* line 9, /Users/apple/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
 .admonitionblock td.icon .icon-note:before {
   content: "\f05a";
   color: #2984A9;
   color: #1f637f;
 }
-/* line 21, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
+/* line 21, /Users/apple/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
 .admonitionblock td.icon .icon-tip:before {
   content: "\f0eb";
   text-shadow: 1px 1px 2px rgba(155, 155, 0, 0.8);
   color: #111;
 }
-/* line 34, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
+/* line 34, /Users/apple/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
 .admonitionblock td.icon .icon-warning:before {
   content: "\f071";
   color: #bf6900;
 }
-/* line 40, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
+/* line 40, /Users/apple/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
 .admonitionblock td.icon .icon-caution:before {
   content: "\f06d";
   color: #bf3400;
 }
-/* line 46, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
+/* line 46, /Users/apple/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
 .admonitionblock td.icon .icon-important:before {
   content: "\f06a";
   color: #bf0000;
 }
 
-/* line 53, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
+/* line 53, /Users/apple/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
 .conum {
   display: inline-block;
   color: white !important;
@@ -11004,32 +11004,32 @@ a .icon-flip-vertical:before {
   position: relative;
   top: -2px;
 }
-/* line 69, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
+/* line 69, /Users/apple/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
 .conum * {
   color: white !important;
 }
-/* line 74, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
+/* line 74, /Users/apple/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
 .conum:empty {
   display: none;
 }
 
-/* line 79, /Users/vikgamov/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
+/* line 79, /Users/apple/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
 pre .comment .conum {
   left: -20px;
 }
 
-/* line 13, /Users/vikgamov/projects/gamussa.github.com/stylesheets/riak.scss */
+/* line 13, /Users/apple/projects/gamussa.github.com/stylesheets/riak.scss */
 ::selection {
   background-color: #fcc07f;
   color: #fff;
 }
 
-/* line 18, /Users/vikgamov/projects/gamussa.github.com/stylesheets/riak.scss */
+/* line 18, /Users/apple/projects/gamussa.github.com/stylesheets/riak.scss */
 #header h1 {
   font-weight: bold;
 }
 
-/* line 24, /Users/vikgamov/projects/gamussa.github.com/stylesheets/riak.scss */
+/* line 24, /Users/apple/projects/gamussa.github.com/stylesheets/riak.scss */
 .literalblock > .content > pre,
 .listingblock > .content > pre {
   -moz-box-shadow: 0 1px 4px #AEB9B6;
@@ -11040,19 +11040,19 @@ pre .comment .conum {
   border-radius: 5px;
 }
 
-/* line 32, /Users/vikgamov/projects/gamussa.github.com/stylesheets/riak.scss */
+/* line 32, /Users/apple/projects/gamussa.github.com/stylesheets/riak.scss */
 ul > li {
   list-style-type: square;
 }
 
-/* line 36, /Users/vikgamov/projects/gamussa.github.com/stylesheets/riak.scss */
+/* line 36, /Users/apple/projects/gamussa.github.com/stylesheets/riak.scss */
 p > em {
   font-family: 'Noticia Text', serif;
   font-weight: 400;
   font-size: 95%;
 }
 
-/* line 43, /Users/vikgamov/projects/gamussa.github.com/stylesheets/riak.scss */
+/* line 43, /Users/apple/projects/gamussa.github.com/stylesheets/riak.scss */
 .admonitionblock > table {
   width: 100%;
   border-collapse: separate;
@@ -11062,15 +11062,15 @@ p > em {
   border-radius: 5px;
   border: 1px solid #9EC6DF;
 }
-/* line 50, /Users/vikgamov/projects/gamussa.github.com/stylesheets/riak.scss */
+/* line 50, /Users/apple/projects/gamussa.github.com/stylesheets/riak.scss */
 .admonitionblock > table td.icon {
   padding: 15px;
 }
-/* line 52, /Users/vikgamov/projects/gamussa.github.com/stylesheets/riak.scss */
+/* line 52, /Users/apple/projects/gamussa.github.com/stylesheets/riak.scss */
 .admonitionblock > table td.icon .icon-tip:before {
   text-shadow: 0 0 20px white, 1px 1px 2px rgba(155, 155, 0, 0.8);
 }
-/* line 56, /Users/vikgamov/projects/gamussa.github.com/stylesheets/riak.scss */
+/* line 56, /Users/apple/projects/gamussa.github.com/stylesheets/riak.scss */
 .admonitionblock > table td.content {
   font-family: 'Noticia Text', italic;
   font-size: 90%;
@@ -11079,55 +11079,55 @@ p > em {
   padding: 15px;
 }
 
-/* line 71, /Users/vikgamov/projects/gamussa.github.com/stylesheets/riak.scss */
+/* line 71, /Users/apple/projects/gamussa.github.com/stylesheets/riak.scss */
 .exampleblock > .content {
   background-color: transparent;
   border-color: #c9c9c9;
 }
 
-/* line 76, /Users/vikgamov/projects/gamussa.github.com/stylesheets/riak.scss */
+/* line 76, /Users/apple/projects/gamussa.github.com/stylesheets/riak.scss */
 .sidebarblock {
   background-image: url('http://gamov.io/http://gamov.io/images/riak/sidebar-bg.jpg');
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
 }
-/* line 81, /Users/vikgamov/projects/gamussa.github.com/stylesheets/riak.scss */
+/* line 81, /Users/apple/projects/gamussa.github.com/stylesheets/riak.scss */
 .sidebarblock > .content > .title {
   color: #f1f1f1;
   text-shadow: 0px 2px 2px black;
   font-size: 1.25em;
   font-weight: bold;
 }
-/* line 87, /Users/vikgamov/projects/gamussa.github.com/stylesheets/riak.scss */
+/* line 87, /Users/apple/projects/gamussa.github.com/stylesheets/riak.scss */
 .sidebarblock > .content ul, .sidebarblock > .content p {
   color: #f1f1f1;
   text-shadow: 0px 1px 1px black;
 }
-/* line 91, /Users/vikgamov/projects/gamussa.github.com/stylesheets/riak.scss */
+/* line 91, /Users/apple/projects/gamussa.github.com/stylesheets/riak.scss */
 .sidebarblock > .content .title {
   color: #dfdfdf;
 }
-/* line 94, /Users/vikgamov/projects/gamussa.github.com/stylesheets/riak.scss */
+/* line 94, /Users/apple/projects/gamussa.github.com/stylesheets/riak.scss */
 .sidebarblock > .content tt {
   color: #333;
 }
-/* line 97, /Users/vikgamov/projects/gamussa.github.com/stylesheets/riak.scss */
+/* line 97, /Users/apple/projects/gamussa.github.com/stylesheets/riak.scss */
 .sidebarblock > .content a {
   color: #60B5D8;
 }
-/* line 100, /Users/vikgamov/projects/gamussa.github.com/stylesheets/riak.scss */
+/* line 100, /Users/apple/projects/gamussa.github.com/stylesheets/riak.scss */
 .sidebarblock > .content a:hover {
   color: #FAA94C;
 }
-/* line 104, /Users/vikgamov/projects/gamussa.github.com/stylesheets/riak.scss */
+/* line 104, /Users/apple/projects/gamussa.github.com/stylesheets/riak.scss */
 .sidebarblock > .content .admonitionblock p,
 .sidebarblock > .content .admonitionblock ul {
   text-shadow: none;
   color: #616366;
 }
 
-/* line 112, /Users/vikgamov/projects/gamussa.github.com/stylesheets/riak.scss */
+/* line 112, /Users/apple/projects/gamussa.github.com/stylesheets/riak.scss */
 table.tableblock.grid-all {
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
@@ -11137,12 +11137,12 @@ table.tableblock.grid-all {
   box-shadow: 0 1px 3px #999;
 }
 
-/* line 117, /Users/vikgamov/projects/gamussa.github.com/stylesheets/riak.scss */
+/* line 117, /Users/apple/projects/gamussa.github.com/stylesheets/riak.scss */
 #footer {
   padding: 25px 0;
 }
 
-/* line 122, /Users/vikgamov/projects/gamussa.github.com/stylesheets/riak.scss */
+/* line 122, /Users/apple/projects/gamussa.github.com/stylesheets/riak.scss */
 #footer-text {
   color: #fff;
   text-shadow: 1px 1px 1px #333;
