@@ -1,4 +1,4 @@
-= acgnj-2017
+= Distributed Java Streams @ ACGNJ 2017
 Viktor Gamov
 2017-05-30 17:25
 :imagesdir: ../images
@@ -15,7 +15,7 @@ endif::awestruct[]
 == Have you seen it? Do you like it? Please, rate
 
 ++++
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeeJN9gLXRTUaCEUmCET5PDdTQTdBfT5HMY1KPNaAnQcc49XQ/viewform?embedded=true" width="500" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeeJN9gLXRTUaCEUmCET5PDdTQTdBfT5HMY1KPNaAnQcc49XQ/viewform?embedded=true" width="600" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
 ++++
 
 == Slides
