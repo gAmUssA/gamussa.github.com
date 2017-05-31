@@ -12,6 +12,11 @@ ifndef::awestruct[]
 :idseparator: -
 endif::awestruct[]
 
+== The Splendors and Miseries of the Distributed Streams
+
+[role="text-center"]
+video::RgTlHELZiZQ[youtube, width=853, height=480]
+
 == Have you seen it? Do you like it? Please, rate
 
 ++++
