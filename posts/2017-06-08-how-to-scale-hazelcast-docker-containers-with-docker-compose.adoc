@@ -19,7 +19,7 @@ image:Compose.png[align="center",width=20%]
 .TL;DR
 During webinar about «Distributed Caching for you next Node.js project» footnote:[https://hazelcast.com/resources/distributed-caching-next-node-js-project/] I was asked if we provide examples of running Hazelcast with Compose or Swarm.
 Now you have it!
-Full source code published in `hazelcast/hazelcast-code-samples` repository footnote:[https://github.com/hazelcast/hazelcast-code-samples/hazelcast-integration/docker-compose]
+Full source code published in `hazelcast/hazelcast-code-samples` repository footnote:[https://github.com/hazelcast/hazelcast-code-samples/tree/master/hazelcast-integration/docker-compose]
 
 toc::[]
 
