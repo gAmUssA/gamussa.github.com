@@ -1,0 +1,397 @@
+<!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><html class="no-js" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>How To Scale Hazelcast Cluster with Docker Compose | gamov.io</title><meta name="author" content="Viktor Gamov"><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@asciidoctor"><meta name="twitter:url" content="http://gamov.io/posts/2017/06/08/how-to-scale-hazelcast-docker-containers-with-docker-compose.html"><meta name="twitter:title" content="How To Scale Hazelcast Cluster with Docker Compose"><meta name="twitter:description" content="Table of Contents
+Into
+Getting Docker images
+Official stuff
+Client app
+Building client app Docker image
+Enter Docker Compose
+Scaling
+What&#8217;s next?
+TL;DR
+During webinar about «Distributed Caching for you next Node.js project» [1] I..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html"><span class="icon"><i class="fa fa-th-large"></i></span>&nbspBlog</a></li><li class="divider"></li><li><a href="http://github.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-github"></i></span>&nbspGithub</a></li><li class="divider"></li><li><a href="http://twitter.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-twitter"></i></span>&nbspTwitter</a></li><li class="divider"></li><li><a href="https://www.youtube.com/playlist?list=PLaJqps0DAycqu2OV6sjl_Dm_VymB6KDV_" target="_blank"><span class="icon"><i class="fa fa-youtube"></i></span>&nbspMy Talks</a></li><li class="divider"></li><li><a href="https://speakerdeck.com/vikgamov" target="_blank"><span class="icon"><i class="fa fa-slideshare"></i></span>&nbspMy Slides</a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://gamov.io">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h2 class="header"><a href="/posts/2017/06/08/how-to-scale-hazelcast-docker-containers-with-docker-compose.html">How To Scale Hazelcast Cluster with Docker Compose</a></h2><h5 class="subheader">Written by&nbsp <a href="#">Viktor Gamov</a>&nbsp- <time class="pubdate" datetime="2017-06-08T13:00:00+00:00">Thursday, June 8, 2017</time></h5><div class="row"><div class="large-12 columns text-left"><div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#into">Into</a></li>
+<li><a href="#getting-docker-images">Getting Docker images</a>
+<ul class="sectlevel2">
+<li><a href="#official-stuff">Official stuff</a></li>
+<li><a href="#client-app">Client app</a></li>
+<li><a href="#building-client-app-docker-image">Building client app Docker image</a></li>
+</ul>
+</li>
+<li><a href="#enter-docker-compose">Enter Docker Compose</a></li>
+<li><a href="#scaling">Scaling</a></li>
+<li><a href="#what-s-next">What&#8217;s next?</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p><span class="image"><img src="/images/IMDG_orange_logo_square.png" alt="IMDG orange logo square"></span>
+<span class="image"><img src="/images/Compose.png" alt="Compose" width="20%"></span></p>
+</div>
+<div class="paragraph">
+<div class="title">TL;DR</div>
+<p>During webinar about «Distributed Caching for you next Node.js project» <sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnote_1" title="View footnote.">1</a>]</sup> I was asked if we provide examples of running Hazelcast with Compose or Swarm.
+Now you have it!
+Full source code published in <code>hazelcast/hazelcast-code-samples</code> repository <sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnote_2" title="View footnote.">2</a>]</sup></p>
+</div>
+<!-- toc disabled -->
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<strong>Disclaimer:</strong> It&#8217;s not an introduction to <code>docker-compose</code>.
+To learn basic steps of <code>docker-compose</code>, please, refer to official <code>docker-compose</code> «getting started guide» <sup class="footnote">[<a id="_footnoteref_3" class="footnote" href="#_footnote_3" title="View footnote.">3</a>]</sup>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="into"><a class="anchor" href="#into"></a>Into</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>From the perspective of containerization and cloud deployment, Hazelcast IMDG is a perfect candidate.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Elastically Scalable</p>
+<div class="paragraph">
+<p>just add more servers, and they form the cluster automatically and contribute their memory to the «shared memory».</p>
+</div>
+</li>
+<li>
+<p>Performs at in-memory transaction speeds</p>
+</li>
+<li>
+<p>Highly Available</p>
+<div class="paragraph">
+<p>can deploy in backup pairs or <a href="https://hazelcast.com/products/wan-replication/">even WAN replicated</a></p>
+</div>
+</li>
+<li>
+<p>Fault Tolerant</p>
+<div class="paragraph">
+<p>no single point of failure</p>
+</div>
+</li>
+<li>
+<p><a href="https://hazelcast.org/plugins/?type=cloud-deployment">Ready for Cloud</a></p>
+</li>
+</ul>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="/images/scale_out_asmith.png" alt="scale out asmith">
+</div>
+<div class="title">Figure 1. Matrix Reloaded, 2003 <sup class="footnote">[<a id="_footnoteref_4" class="footnote" href="#_footnote_4" title="View footnote.">4</a>]</sup></div>
+</div>
+<div class="paragraph">
+<p>I&#8217;ve been working with few clients <sup class="footnote">[<a id="_footnoteref_5" class="footnote" href="#_footnote_5" title="View footnote.">5</a>]</sup> who have embraced containerization of their IMDG deployments.
+And in this blog post, I explore how to use Docker Compose to scale Hazelcast IMDG cluster.
+Additionally, I will use  <a href="https://hazelcast.com/products/management-center/">Management Center</a> monitor IMDG cluster state.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="getting-docker-images"><a class="anchor" href="#getting-docker-images"></a>Getting Docker images</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this demonstration, I will be using official Hazelcast IMDG Docker images.
+My demo application will contain three components:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Hazelcast IMDG cluster</p>
+</li>
+<li>
+<p>Hazelcast Management Center</p>
+</li>
+<li>
+<p>Client Application</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>I will build docker image for my client app that will read and write to the Hazelcast IMDG cluster.</p>
+</div>
+<div class="sect2">
+<h3 id="official-stuff"><a class="anchor" href="#official-stuff"></a>Official stuff</h3>
+<div class="paragraph">
+<p>You can find <a href="https://hub.docker.com/u/hazelcast/">officially supported images</a> in Docker Hub.
+I will be using:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://hub.docker.com/r/hazelcast/hazelcast/">hazelcast/hazelcast</a> - OSS bits of Hazelcast</p>
+</li>
+<li>
+<p><a href="https://hub.docker.com/r/hazelcast/management-center/">hazelcast/management-center</a> - Management Center <code>.war</code> (free with 2 Hazelcast nodes)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="client-app"><a class="anchor" href="#client-app"></a>Client app</h3>
+<div class="paragraph">
+<p>A client app is a simple hazelcast client</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-java" data-lang="java">public class MyClient {
+    public static void main(String[] args) throws InterruptedException {
+
+        ClientConfig clientConfig = new XmlClientConfigBuilder().build();   <i class="conum" data-value="1"></i><b>(1)</b>
+        final HazelcastInstance client = HazelcastClient.newHazelcastClient(clientConfig); <i class="conum" data-value="2"></i><b>(2)</b>
+
+        System.out.println(clientConfig.toString());
+
+        IQueue&lt;String&gt; queue = client.getQueue("queue");
+        queue.put("Hello!");    <i class="conum" data-value="3"></i><b>(3)</b>
+        System.out.println("Message sent by Hazelcast Client!");
+
+        HazelcastClient.shutdownAll();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>configured with <code>hazelcast-client.xml</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>connects to the cluster</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>sends message to the IQueue</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="building-client-app-docker-image"><a class="anchor" href="#building-client-app-docker-image"></a>Building client app Docker image</h3>
+<div class="paragraph">
+<p>In this example, to build docker image from «fat» jar, I use Spotify&#8217;s <code>docker-maven-plugin</code> <sup class="footnote">[<a id="_footnoteref_6" class="footnote" href="#_footnote_6" title="View footnote.">6</a>]</sup>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Maven snippet for generation fat jar and build a Docker image</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-xml" data-lang="xml">&lt;plugins&gt;
+    &lt;plugin&gt;
+        &lt;!-- 1 --&gt;
+        &lt;artifactId&gt;maven-assembly-plugin&lt;/artifactId&gt;
+        &lt;configuration&gt;
+            &lt;archive&gt;
+                &lt;manifest&gt;
+                    &lt;mainClass&gt;MyClient&lt;/mainClass&gt;
+                &lt;/manifest&gt;
+            &lt;/archive&gt;
+            &lt;descriptorRefs&gt;
+                &lt;descriptorRef&gt;jar-with-dependencies&lt;/descriptorRef&gt;
+            &lt;/descriptorRefs&gt;
+        &lt;/configuration&gt;
+        &lt;executions&gt;
+            &lt;execution&gt;
+                &lt;id&gt;make-assembly&lt;/id&gt; &lt;!-- this is used for inheritance merges --&gt;
+                &lt;phase&gt;package&lt;/phase&gt; &lt;!-- bind to the packaging phase --&gt;
+                &lt;goals&gt;
+                    &lt;goal&gt;single&lt;/goal&gt;
+                &lt;/goals&gt;
+            &lt;/execution&gt;
+        &lt;/executions&gt;
+    &lt;/plugin&gt;
+    &lt;plugin&gt;
+        &lt;!-- 2 --&gt;
+        &lt;groupId&gt;com.spotify&lt;/groupId&gt;
+        &lt;artifactId&gt;docker-maven-plugin&lt;/artifactId&gt;
+        &lt;version&gt;${docker-maven-plugin.version}&lt;/version&gt;
+        &lt;configuration&gt;
+            &lt;imageName&gt;hazelcast_client_app&lt;/imageName&gt;
+            &lt;dockerDirectory&gt;src/main/docker&lt;/dockerDirectory&gt;
+            &lt;resources&gt;
+                &lt;resource&gt;
+                    &lt;targetPath&gt;/&lt;/targetPath&gt;
+                    &lt;directory&gt;${project.build.directory}&lt;/directory&gt;
+                    &lt;include&gt;${project.build.finalName}-jar-with-dependencies.jar&lt;/include&gt;
+                &lt;/resource&gt;
+            &lt;/resources&gt;
+        &lt;/configuration&gt;
+    &lt;/plugin&gt;
+&lt;/plugins&gt;</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>builds fat jar to be deployed as docker image</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>builds docker image with Hazelcast client app and dependencies</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="enter-docker-compose"><a class="anchor" href="#enter-docker-compose"></a>Enter Docker Compose</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Docker Compose allows you to define a multi-container application with all of its dependencies in a single file, then spin your application and dependencies up in a single command.
+Navigate to directory <code>hazelcast-code-samples/hazelcast-integration/docker-compose/src/main/docker</code> and run the command.</p>
+</div>
+<div class="listingblock">
+<div class="title">Start the cluster, a client, and management center containers</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">docker-compose -f hazelcast.yml up -d</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>docker-compose</code> command will pull the images from Docker Hub and then link them together based on the information inside the <code>docker-compose.yml</code> (<code>hazelcast.yml</code> in out case) file.
+This will create ports, links between containers, and configure applications as required.
+After the command completes we can now view the status of our cluster with command <code>docker-compose ps</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="scaling"><a class="anchor" href="#scaling"></a>Scaling</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The fun part comes with scaling.
+Let&#8217;s scale out our Hazelcast IMDG cluster to 2 nodes</p>
+</div>
+<div class="listingblock">
+<div class="title">docker-compose command for scaling Hazelcast cluster</div>
+<div class="content">
+<pre class="nowrap">docker-compose scale hazelcast=5</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With a command <code>docker-compose ps</code> you see which containers are running now.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-sh" data-lang="sh">❯ docker-compose -f src/main/docker/hazelcast.yml ps
+           Name                         Command               State            Ports
+---------------------------------------------------------------------------------------------
+docker_hazelcast-client_1    /bin/sh -c echo "The appli ...   Exit 0
+docker_hazelcast_1           ./server.sh                      Up       5701/tcp
+docker_hazelcast_2           ./server.sh                      Up       5701/tcp
+docker_hazelcast_3           ./server.sh                      Up       5701/tcp
+docker_hazelcast_4           ./server.sh                      Up       5701/tcp
+docker_hazelcast_5           ./server.sh                      Up       5701/tcp
+docker_management-center_1   /bin/sh -c ./start.sh            Up       0.0.0.0:8080-&gt;8080/tcp</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you open Management Center URL[<a href="http://localhost:8080/mancenter" class="bare">http://localhost:8080/mancenter</a>] you should see that cluster consists of 5 nodes now.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/mancenter_1.png" alt="mancenter 1">
+</div>
+<div class="title">Figure 2. Management Center web app displays IMDG cluster of 5 nodes</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+If at this point you get a message from Management Center to enter the license, you can request a trial key from here <sup class="footnote">[<a id="_footnoteref_7" class="footnote" href="#_footnote_7" title="View footnote.">7</a>]</sup>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Also, I can use <code>curl</code> command to get cluster status and the list of members.</p>
+</div>
+<div class="listingblock">
+<div class="title">Query cluster status using Management Center</div>
+<div class="content">
+<pre class="nowrap">❯ curl http://localhost:8080/mancenter/rest/clusters/hz-compose/members
+["172.18.0.3:5701","172.18.0.4:5701","172.18.0.5:5701","172.18.0.6:5701","172.18.0.7:5701"]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can shutdown those application stack (IMDG cluster, Management center, Hazelcast client Java application) with single command</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">docker-compose -f src/main/docker/hazelcast.yml down</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="what-s-next"><a class="anchor" href="#what-s-next"></a>What&#8217;s next?</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In my future posts, I will explore other tools that allow you to deploy, scale and orchestrate your Hazelcast IMDG cluster with different tools like Swarm, Kubernetes, Mesos.
+If you have questions or suggestions, feel free to comment below.</p>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnote_1">
+<a href="#_footnoteref_1">1</a>. <a href="https://hazelcast.com/resources/distributed-caching-next-node-js-project/" class="bare">https://hazelcast.com/resources/distributed-caching-next-node-js-project/</a>
+</div>
+<div class="footnote" id="_footnote_2">
+<a href="#_footnoteref_2">2</a>. <a href="https://github.com/hazelcast/hazelcast-code-samples/hazelcast-integration/docker-compose" class="bare">https://github.com/hazelcast/hazelcast-code-samples/hazelcast-integration/docker-compose</a>
+</div>
+<div class="footnote" id="_footnote_3">
+<a href="#_footnoteref_3">3</a>. <a href="https://docs.docker.com/compose/gettingstarted/" class="bare">https://docs.docker.com/compose/gettingstarted/</a>
+</div>
+<div class="footnote" id="_footnote_4">
+<a href="#_footnoteref_4">4</a>. <a href="http://www.imdb.com/title/tt0234215/" class="bare">http://www.imdb.com/title/tt0234215/</a>
+</div>
+<div class="footnote" id="_footnote_5">
+<a href="#_footnoteref_5">5</a>. <a href="https://hazelcast.com/services/consulting/" class="bare">https://hazelcast.com/services/consulting/</a>
+</div>
+<div class="footnote" id="_footnote_6">
+<a href="#_footnoteref_6">6</a>. <a href="https://github.com/spotify/docker-maven-plugin" class="bare">https://github.com/spotify/docker-maven-plugin</a>
+</div>
+<div class="footnote" id="_footnote_7">
+<a href="#_footnoteref_7">7</a>. <a href="https://hazelcast.com/hazelcast-enterprise-download/trial/" class="bare">https://hazelcast.com/hazelcast-enterprise-download/trial/</a>
+</div>
+</div></div></div><footer class="entry-footer"><div class="tags"><span class="title">tags: </span></div></footer><div id="comments">
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+            var disqus_shortname = 'nextjavaheadbraincom';
+            var disqus_url = "http://gamov.io/posts/2017/06/08/how-to-scale-hazelcast-docker-containers-with-docker-compose.html";
+            var disqus_developer = null;
+            var disqus_identifier = null;
+            (function() {
+              var dsq = document.createElement("script"); dsq.type = "text/javascript"; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(dsq);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=nextjavaheadbraincom">comments powered by Disqus.</a></noscript>
+          </div></article></div></div></body></html><div id="copyright"><div class="row full-width"><div class="large-4 columns"><p>© Viktor Gamov 2017—2007</p></div><div class="large-8 columns"><ul class="inline-list right"><li><a href="https://github.com/gAmUssA"></a>Github&nbsp<span class="icon"><i class="fa fa-github"></i></span></li><li><a href="http://twitter.com/gAmUssA"></a>Twitter&nbsp<span class="icon"><i class="fa fa-twitter"></i></span></li><li><a href="#"></a></li></ul></div></div></div><script>document.write('<script src=' + ('__proto__' in {} ? '/javascripts/vendor/zepto' : '/javascripts/vendor/jquery') + '.js><\/script>')</script><script src="/javascripts/foundation/foundation.js"><script src="/javascripts/foundation/foundation.topbar.js"></script></script><script>$(document).foundation();</script><script src="/javascripts/vendor/highlight.min.js"></script><script>$(hljs.initHighlighting());</script><script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount','UA-40354726-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+ var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!--End Footer-->
