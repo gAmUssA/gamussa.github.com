@@ -1,6 +1,6 @@
-= How To Scale Hazelcast Docker Containers with Docker-Compose
+= How To Scale Hazelcast Cluster with Docker Compose
 Viktor Gamov
-2017-05-23 13:11
+2017-06-08 13:11
 :imagesdir: ../images
 :icons:
 :keywords:
@@ -10,27 +10,29 @@ ifndef::awestruct[]
 :awestruct-tags: []
 :idprefix:
 :idseparator: -
-:awestruct-draft: true
+:awestruct-draft: false
 endif::awestruct[]
 
+image:IMDG_orange_logo_square.png[align="center"]  
+image:Compose.png[align="center",width=20%]
+
 .TL;DR
-Full source code is published in `hazelcast/hazelcast-code-samples` repository footnote:[https://github.com/hazelcast/hazelcast-code-samples/hazelcast-integration/docker-compose]
+During webinar about «Distributed Caching for you next Node.js project» footnote:[https://hazelcast.com/resources/distributed-caching-next-node-js-project/] I was asked if we provide examples of running Hazelcast with Compose or Swarm.
+Now you have it!
+Full source code published in `hazelcast/hazelcast-code-samples` repository footnote:[https://github.com/hazelcast/hazelcast-code-samples/hazelcast-integration/docker-compose]
 
 toc::[]
 
-NOTE: Disclaimer: It's not an introduction to `docker-compose`. 
+NOTE: **Disclaimer:** It's not an introduction to `docker-compose`. 
 To learn basic steps of `docker-compose`, please, refer to official `docker-compose` «getting started guide» footnote:[https://docs.docker.com/compose/gettingstarted/]
- 
 
 == Into
 
 From the perspective of containerization and cloud deployment, Hazelcast IMDG is a perfect candidate.
 
-Hazelcast IMDG:
-
 - Elastically Scalable
 +
-just add more servers, and they form the cluster automatically
+just add more servers, and they form the cluster automatically and contribute their memory to the «shared memory».
 - Performs at in-memory transaction speeds
 +
 - Highly Available 
@@ -41,8 +43,12 @@ can deploy in backup pairs or https://hazelcast.com/products/wan-replication/[ev
 no single point of failure
 - https://hazelcast.org/plugins/?type=cloud-deployment[Ready for Cloud]
 
-Recently, I've been working with few client who embraced containerization of their IMDG deployments.
-And in this blog post, I explore how to use Docker-Compose to scale Hazelcast IMDG cluster + monitor it with https://hazelcast.com/products/management-center/[Management Center].
+.Matrix Reloaded, 2003 footnote:[http://www.imdb.com/title/tt0234215/]
+image::scale_out_asmith.png[align="center"]
+
+I've been working with few clients footnote:[https://hazelcast.com/services/consulting/] who have embraced containerization of their IMDG deployments.
+And in this blog post, I explore how to use Docker Compose to scale Hazelcast IMDG cluster. 
+Additionally, I will use  https://hazelcast.com/products/management-center/[Management Center] monitor IMDG cluster state.
 
 == Getting Docker images
 
@@ -61,7 +67,7 @@ You can find https://hub.docker.com/u/hazelcast/[officially supported images] in
 I will be using:
 
 - https://hub.docker.com/r/hazelcast/hazelcast/[hazelcast/hazelcast] - OSS bits of Hazelcast
-- https://hub.docker.com/r/hazelcast/management-center/[hazelcast/management-center] - Management Center war (free with 2 Hazelcast nodes)
+- https://hub.docker.com/r/hazelcast/management-center/[hazelcast/management-center] - Management Center `.war` (free with 2 Hazelcast nodes)
 
 === Client app
 
@@ -98,7 +104,7 @@ In this example, to build docker image from «fat» jar, I use Spotify's `docker
 ----
 <plugins>
     <plugin>
-        <!-- builds fat jar to be deployed as docker image -->
+        <!--1-->
         <artifactId>maven-assembly-plugin</artifactId>
         <configuration>
             <archive>
@@ -121,7 +127,7 @@ In this example, to build docker image from «fat» jar, I use Spotify's `docker
         </executions>
     </plugin>
     <plugin>
-        <!-- builds docker image with hazelcast client app and dependencies -->
+        <!--2-->
         <groupId>com.spotify</groupId>
         <artifactId>docker-maven-plugin</artifactId>
         <version>${docker-maven-plugin.version}</version>
@@ -139,9 +145,12 @@ In this example, to build docker image from «fat» jar, I use Spotify's `docker
     </plugin>
 </plugins>
 ----
+<1> builds fat jar to be deployed as docker image
+<2> builds docker image with Hazelcast client app and dependencies
 
-== Enter Docker-Compose 
+== Enter Docker Compose 
 
+Docker Compose allows you to define a multi-container application with all of its dependencies in a single file, then spin your application and dependencies up in a single command.
 Navigate to directory `hazelcast-code-samples/hazelcast-integration/docker-compose/src/main/docker` and run the command.
 
 .Start the cluster, a client, and management center containers
@@ -180,9 +189,12 @@ docker_hazelcast_5           ./server.sh                      Up       5701/tcp
 docker_management-center_1   /bin/sh -c ./start.sh            Up       0.0.0.0:8080->8080/tcp
 ----
 
-If you open Management Center URL footnote:[http://localhost:8080/mancenter] you should see that cluster consists of 5 nodes now.
+If you open Management Center URL[http://localhost:8080/mancenter] you should see that cluster consists of 5 nodes now.
 
-WARNING: IF at this point you get a message from Management Center to enter the license, you can request a trial key from here footnote:[https://hazelcast.com/hazelcast-enterprise-download/trial/]
+.Management Center web app displays IMDG cluster of 5 nodes
+image::mancenter_1.png[]
+
+WARNING: If at this point you get a message from Management Center to enter the license, you can request a trial key from here footnote:[https://hazelcast.com/hazelcast-enterprise-download/trial/]
 
 Also, I can use `curl` command to get cluster status and the list of members.
 
@@ -191,3 +203,14 @@ Also, I can use `curl` command to get cluster status and the list of members.
 ❯ curl http://localhost:8080/mancenter/rest/clusters/hz-compose/members
 ["172.18.0.3:5701","172.18.0.4:5701","172.18.0.5:5701","172.18.0.6:5701","172.18.0.7:5701"]
 ----
+
+You can shutdown those application stack (IMDG cluster, Management center, Hazelcast client Java application) with single command
+
+----
+docker-compose -f src/main/docker/hazelcast.yml down
+----
+
+== What's next?
+
+In my future posts, I will explore other tools that allow you to deploy, scale and orchestrate your Hazelcast IMDG cluster with different tools like Swarm, Kubernetes, Mesos.
+If you have questions or suggestions, feel free to comment below.
