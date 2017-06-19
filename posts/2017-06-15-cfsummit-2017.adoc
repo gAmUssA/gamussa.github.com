@@ -20,9 +20,8 @@ Full source code published in `hazelcast/cfsummit17-wednesday` repository footno
 
 == Distributed Caching for you new Node.js Project
 
-video TBD
-//[role="text-center"]
-//video::RgTlHELZiZQ[youtube, width=853, height=480]
+[role="text-center"]
+video::hUauzlCDvHQ[youtube, width=853, height=480]
 
 == Have you seen it? Do you like it? Please, rate
 
