@@ -45,3 +45,9 @@ video::hUauzlCDvHQ[youtube, width=853, height=480]
 
 .You can find code sample is following GH repository
 https://github.com/hazelcast/cfsummit17-wednesday
+
+
+=== Small Bonus icon:gift[]
+[role="text-center"]
+.Distribute Caching for your next Node.js project webinar recording
+video::3MspgpV_yuE[youtube, width=853, height=480]
