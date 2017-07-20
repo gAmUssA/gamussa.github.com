@@ -9,7 +9,7 @@ tags: [ java, ext js, github, maven ]
 But what if utilize existing Maven knowledge of Java dependencies management for JavaScript projects. Hopefully, some Java and JVM frameworks (like <a href="http://blog.springsource.org/2011/06/30/countdown-to-grails-2-0-static-resources/">Grails</a> or <a href="http://www.jamesward.com/2012/04/25/introducing-webjars-web-libraries-as-managed-dependencies">Play2</a>) provided their own way of dealing with static resources.
 But in most common situations, you don’t have lot of options for deployment your application.
 
-<a name='more'></a>To read the full post, surf on over to the Farata Systems Blog: <a href="http://flexblog.faratasystems.com/2012/05/16/using-webjars-for-assets-management-in-javascript-projects">http://flexblog.faratasystems.com/2012/05/16/using-webjars-for-assets-management-in-javascript-projects </a>
+<a name='more'></a>To read the full post, surf on over to the Farata Systems Blog: <a href="http://flexblog.faratasystems.com/index.php/using-webjars-for-assets-management-in-javascript-projects/">http://flexblog.faratasystems.com/index.php/using-webjars-for-assets-management-in-javascript-projects/ </a>
 
 
 Thanks everyone
