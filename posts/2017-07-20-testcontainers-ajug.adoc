@@ -18,6 +18,14 @@ In this presentation I talked about how Docker can help with seamless transition
 
 image::ajug.jpg[align="center"]
 
+.Revisions history
+[width="60%",cols="",options="header"]
+|===
+|Version    |Date   | Comments
+|*v1.0*     |07/20/2017 | Initial revision
+|===
+
+
 toc::[]
 
 == A presentation icon:youtube[]
