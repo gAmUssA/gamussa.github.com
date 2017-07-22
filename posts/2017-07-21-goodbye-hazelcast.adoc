@@ -14,7 +14,7 @@ endif::awestruct[]
 
 .TL;DR
 NOTE: July 21th, 2017, was my last day at Hazelcast.
-Here is a email, that I sent to my former co-workers @Hazelcast.
+Here is an email, that I sent to my former co-workers @Hazelcast.
 
 ****
 Hello team,
