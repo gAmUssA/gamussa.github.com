@@ -1,0 +1,43 @@
+= Goodbye, Hazelcast!
+Viktor Gamov
+2017-07-21 17:34
+:imagesdir: ../images
+:icons:
+:keywords:
+:toc:
+ifndef::awestruct[]
+:awestruct-layout: post
+:awestruct-tags: []
+:idprefix:
+:idseparator: -
+endif::awestruct[]
+
+.TL;DR
+NOTE: July 21th, 2017, was my last day at Hazelcast.
+Here is a email, that I sent to my former co-workers @Hazelcast.
+
+****
+Hello team,
+
+Today was my last day with Hazelcast.
+I joined Hazelcast when version 3.4 was about to be released. 
+And now 3.9EA version had been released couple weeks ago.
+Wow! So many things have been done, so many new features, so many new users had been acquired! 
+It was an incredible pleasure to work with such smart and passionate about open source people!
+I learned a lot while working with you, with product, customers, community!
+It was such a fun ride even though sometimes it was bumpy!
+Keep up your passion for open source, live long and prosper! 
+I will try to stay around in the community because for this 2.5 years Hazelcast has become a big part of my life!
+
+Stay in touch!
+I hope I see many of you around.
+
+p.s. Here are some moments of my Hazelcast life. 
+Thank you for being a part of it!
+
+https://photos.app.goo.gl/skCKNcZRaAnaeNz02
+
+****
+
+.A photo that Christoph Engelbert took at JavaOne 2016
+image::https://lh3.googleusercontent.com/dEutZrviwzrduhHUQbtLugOmWoTb49ThxNRNSaamqJo5Y5DpSMaIubWMT4u2_fSUEBRrgABxdytDJ_arc3x2mHy0Mi8FiuwWN9Ucz7VCJhLg9asAmt4eAti7ESbAH_gW9bW4VT_n02VSjCloLyY49bcOUk3hBru4-ZKBjljmItdUvZLyJ1_pq7dP6nt11BixKjSBKO1rn1LhHIEYcwSv_IF2ya_0oRIDlHyVin4mkht7evcEpHPnt5qWd6-UldNCFrhOWJQ7mDqyDkCf2iRh2Ka_TEs-blLSBzd5VyE93WyKCpYX4NFY9FjkP6tnJLvMFQAEutCW7v5pru29UTMwONnp1HZplw3lNPDeUJWMaB32glePD-1w2bVn3UTnD6DcXrVESAzDreYeyp7sBbRsXB-gVFcprxGlDqeSwQhWhEVzMI8hN4NV0pOIrLj06jbM3R_MYxQ4g7OHX0PB3BG9IZDRd8gh5euGFMnnmP9FCGNEVeYwQEkBHNI1vXAfjxIFZxd-iorNV1tCWUBMHRqv0qbe3iKmkjSmbt6ZFAIzIKkK0idKLVUzhbFaLZKnJS0SsI3vf3E1qqdma1dMfU3MoR8GIYmYqhQX7tOZOPUDA2lbxZq16BJmMywohku79XTX5xPbDpgvAt7ZuExMnORHq6caUjCFpZDYcLeDrLEQ8GPsSgU=w1871-h1353-no[align="center",height=40%]
