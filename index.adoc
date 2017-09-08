@@ -4,7 +4,10 @@
 [.panel]
 .*What is this all about?*
 
-Thanks for visiting. My name Viktor Gamov. I'm a Senior Solution Architect at http://hazelcast.com[Hazelcast]. I'm a co-organizer of the http://www.meetup.com/NJFlex/[Princeton JUG and NJ Flex meetup], http://meetup.com/hug-nyc/[Hazelcast User Group New York] and co-author of OReilly's book <<enterprisewebbook,«Enterprise Web Development. Building HTML5 Applications: From Desktop to Mobile»>>. Also, I'm speaking on the http://lanyrd.com/gamussa/[conferences] occasionally.
+Thanks for stopping by. 
+My name Viktor Gamov. 
+I'm a Solution Architect at http://confluent.io[Confluent]. I'm a co-organizer of the http://www.meetup.com/NJFlex/[Princeton JUG and NJ Flex meetup] and co-author of OReilly's book <<enterprisewebbook,«Enterprise Web Development. Building HTML5 Applications: From Desktop to Mobile»>>. 
+Also, I'm speaking on the http://lanyrd.com/gamussa/[conferences] occasionally.
 
 [[enterprisewebbook]]
 == Enterprise Web Development

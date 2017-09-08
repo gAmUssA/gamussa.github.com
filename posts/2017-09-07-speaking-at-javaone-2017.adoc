@@ -1,0 +1,46 @@
+= I'm Speaking At JavaOne 2017
+Viktor Gamov
+2017-09-07 20:33
+:imagesdir: ../images
+:icons:
+:keywords: javaone
+:toc:
+ifndef::awestruct[]
+:awestruct-layout: post
+:awestruct-tags: [javaone, conference]
+:idprefix:
+:idseparator: -
+endif::awestruct[]
+
+.TL;DR
+NOTE: I'm going to speak at https://www.oracle.com/javaone/index.html[JavaOne 2017] in San Francisco, CA October 1st - 5th. 
+My session can be found in the https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=gamov&showEnrolled=false[Session Catalog].
+
+image::goodnews.jpg[align="center", width=50%]
+
+I ♥ JavaOne!
+
+Seriously, if in 2017 you do Java and it pays your bills, this is a conference you don't want to miss.
+And this year this is going to be BIG!
+JavaOne is leaving the hotels and going to the San Francisco Prime location - https://goo.gl/maps/FpCfB5U218E2[Moscone West]!
+And I'm excited to deliver 3 (THREE!) presentations at JavaOne this year.
+Here's what I'm going to talk about this year:
+
+[width="95%",cols="",options="header"]
+|===
+|Session Code   |Title   | When | Where
+|*CON3033*      |_Divide, Distribute, and Conquer: Stream Versus Batch_ | Tuesday, Oct 03, 1:15 p.m. - 2:00 p.m. |Moscone West - Room 2005 
+|*CON3034*  | _Testing Containers with TestContainers: There and Back Again_ | Wednesday, Oct 04, 11:45 a.m. - 12:30 p.m. | Moscone West - Room 2007 
+|*CON3616* | _Amazon Alexa Skills Versus Google Home Actions: The Big Java VUI Face-off_ (together with @jbaruch) | Wednesday, Oct 04, 5:30 p.m. - 6:15 p.m. | Moscone West - Room 2012
+|===
+
+As you can see, this year I'm talking about a wide range of technologies - containers, fast data, voice interfaces!
+Also, Battle or versus format of the talk becomes very popular!
+
+Ping me in http://twitter/gamussa[twitter] if you want to hang out or chat!
+I hope to see you in San Francisco in couple weeks!
+
+p.s. Here's something that no one tell you except yours truly. 
+There are many awesome parties are happening during JavaOne.
+But there is one you don't want to miss — https://www.eventbrite.com/e/partyone-2017-registration-36927289517[PartyOne] - organized by awesome ZT, Hazelcast (even I don't work for them anymore, they still pretty awesome), Tomitribe and Bain Capital.
+
