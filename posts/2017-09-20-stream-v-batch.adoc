@@ -1,0 +1,73 @@
+= Divide, Distribute and Conquer — Stream v. Batch @ Philly JUG 
+Viktor Gamov
+2017-09-20 16:03
+:imagesdir: ../images
+:icons:
+:keywords: kafka, kafka-streams
+:toc:
+ifndef::awestruct[]
+:awestruct-layout: post
+:awestruct-tags: [kafka, kafka-streams]
+:idprefix:
+:idseparator: -
+endif::awestruct[]
+
+.TL;DR
+NOTE: On September 13th 2017 I presented «Divide, Distribute and Conquer: Stream v. Batch» at https://www.meetup.com/PhillyJUG/events/241276258/[Philly JUG]. 
+In this presentation I talked about how developers and data engineers are changing their perception on data processing  using streaming data technologies.
+
+image::phillyjug.png[align="center", width=40%]
+
+.Revisions history
+[width="60%",cols="",options="header"]
+|===
+|Version    |Date   | Comments
+|*v1.0*     |09/20/2017 | Initial revision
+|===
+
+toc::[]
+
+== Tweets icon:twitter[]
+
+++++
+<blockquote class="twitter-tweet" data-partner="tweetdeck"><p lang="en" dir="ltr"><a href="https://twitter.com/ThePhillyJUG">@ThePhillyJUG</a> meetup where <a href="https://twitter.com/gAmUssA">@gamussa</a> talked about stream vs batch, <a href="https://twitter.com/hashtag/kafka?src=hash">#kafka</a> <a href="https://twitter.com/hashtag/kafkastreams?src=hash">#kafkastreams</a> <a href="https://t.co/6KlFwfnCAw">pic.twitter.com/6KlFwfnCAw</a></p>&mdash; Jason Young (@jythejavaguy) <a href="https://twitter.com/jythejavaguy/status/908315453151465472">September 14, 2017</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+++++
+
+++++
+<blockquote class="twitter-tweet" data-partner="tweetdeck"><p lang="en" dir="ltr"><a href="https://twitter.com/gAmUssA">@gamussa</a>: &quot;how many here use Gradle? Maven? Hmm, people have made some poor life choices. (J/K!)&quot; Didn&#39;t say which was the right choice :) <a href="https://t.co/rPAGZNKEoy">pic.twitter.com/rPAGZNKEoy</a></p>&mdash; Jason Young (@jythejavaguy) <a href="https://twitter.com/jythejavaguy/status/908317303514828800">September 14, 2017</a></blockquote>
+++++
+
+== A presentation icon:youtube[]
+
+[role="text-center"]
+video::eC3CZvvfDNg[youtube, width=853, height=480]
+
+=== Have you seen this? Please, rate!
+
+++++
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd8Vg0Mu_ypqM6kfrYHY6c5QpQIA5GYeS0FP184W_Od3y8w2Q/viewform?embedded=true" width="600" height="720" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+++++
+
+=== Slides icon:slideshare[]
+
+.Speakerdeck
+++++
+<script async class="speakerdeck-embed" data-id="a0e8c941d9c4442090a284e07d66f87e" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js"></script>
+++++
+
+.Slideshare
+++++
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/8YeNmzvNcqgd0P" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/VikGamov/philly-jug-divide-distribute-and-conquer-stream-v-batch" title="[Philly JUG] Divide, Distribute and Conquer: Stream v. Batch" target="_blank">[Philly JUG] Divide, Distribute and Conquer: Stream v. Batch</a> </strong> from <strong><a href="https://www.slideshare.net/VikGamov" target="_blank">Viktor Gamov</a></strong> </div>
+++++
+
+=== Useful links icon:link[]
+
+. Kafka Streams footnote:[https://kafka.apache.org/documentation/streams/]
+. Confluent repo of Kafka Streams examples footnote:[https://github.com/confluentinc/kafka-streams-examples]
+
+=== Grab the code icon:code-fork[]
+
+.You can find code sample is following GH repository
+https://github.com/gAmUssA/kstreams-wordcount
+
