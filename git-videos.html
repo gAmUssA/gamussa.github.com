@@ -1,0 +1,360 @@
+<!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><html class="no-js" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Introduction to Git videos | gamov.io</title><meta name="author" content="Viktor Gamov"><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@asciidoctor"><meta name="twitter:url" content="http://gamov.io/git-videos.html"><meta name="twitter:title" content="Introduction to Git videos"><meta name="twitter:description" content="Table of content
+Training videos
+Git
+Basics
+Tooling
+Workflows Cheat Sheet
+Plan A. Working with existing workflow where "master" is a main development branch and feature_101, feature_102 are stable branches
+Tips
+Plan B...."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html"><span class="icon"><i class="fa fa-th-large"></i></span>&nbspBlog</a></li><li class="divider"></li><li><a href="http://github.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-github"></i></span>&nbspGithub</a></li><li class="divider"></li><li><a href="http://twitter.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-twitter"></i></span>&nbspTwitter</a></li><li class="divider"></li><li><a href="https://www.youtube.com/playlist?list=PLaJqps0DAycqu2OV6sjl_Dm_VymB6KDV_" target="_blank"><span class="icon"><i class="fa fa-youtube"></i></span>&nbspMy Talks</a></li><li class="divider"></li><li><a href="https://speakerdeck.com/vikgamov" target="_blank"><span class="icon"><i class="fa fa-slideshare"></i></span>&nbspMy Slides</a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://gamov.io">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h2 class="header"><a href="/git-videos.html">Introduction to Git videos</a></h2><h5 class="subheader">Written by&nbsp <a href="#">Viktor Gamov</a>&nbsp- <time class="pubdate" datetime="2014-03-05T14:43:50-06:00">Wednesday, March 5, 2014</time></h5><div class="row"><div class="large-12 columns text-left"><div id="toc" class="toc">
+<div id="toctitle">Table of content</div>
+<ul class="sectlevel1">
+<li><a href="#training-videos">Training videos</a>
+<ul class="sectlevel2">
+<li><a href="#git">Git</a>
+<ul class="sectlevel3">
+<li><a href="#basics">Basics</a></li>
+<li><a href="#tooling">Tooling</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#workflows-cheat-sheet">Workflows Cheat Sheet</a>
+<ul class="sectlevel2">
+<li><a href="#strong-plan-a-strong-working-with-existing-workflow-where-master-is-a-main-development-branch-and-code-feature_101-code-code-feature_102-code-are-stable-branches"><strong>Plan A</strong>. Working with existing workflow where "master" is a main development branch and <code>feature_101</code>, <code>feature_102</code> are stable branches</a>
+<ul class="sectlevel3">
+<li><a href="#tips">Tips</a></li>
+</ul>
+</li>
+<li><a href="#strong-plan-b-strong-working-with-personal-forks-and-merge-requests"><strong>Plan B</strong>. Working with personal forks and merge requests.</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="training-videos"><a class="anchor" href="#training-videos"></a>Training videos</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="git"><a class="anchor" href="#git"></a>Git</h3>
+<div class="sect3">
+<h4 id="basics"><a class="anchor" href="#basics"></a>Basics</h4>
+<div class="videoblock text-center">
+<div class="title">Git: Basics</div>
+<div class="content">
+<iframe width="640" src="https://player.vimeo.com/video/251353094" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<strong>Recap</strong>. Use a <code>git init</code> command to create new git repository in any folder. Use a <code>git clone &lt;remote_url&gt;</code> command to clone remote repository with full history.
+</td>
+</tr>
+</table>
+</div>
+<div class="videoblock text-center">
+<div class="title">Git: Set up Git</div>
+<div class="content">
+<iframe width="640" src="https://player.vimeo.com/video/251353130" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<strong>Recap</strong> Use <code>git config --global user.email "vasya<a href="https://github.com/example">@example</a>.com"</code>  and <code>git config --global user.name "Vasisualy Lokhankin"</code> to config your git.
+</td>
+</tr>
+</table>
+</div>
+<div class="videoblock text-center">
+<div class="title">Git: Working on Your Files</div>
+<div class="content">
+<iframe width="640" src="https://player.vimeo.com/video/251353101" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<strong>Recap</strong>. A <code>git status</code> command tells you what happened since last commit. A <code>git add &lt;filename&gt;</code> command adds file to «Staging area». A <code>git commit -m "commit message"</code> command wraps up previously staged changes.
+</td>
+</tr>
+</table>
+</div>
+<div class="videoblock text-center">
+<div class="title">Git: File Status by Example</div>
+<div class="content">
+<iframe width="640" src="https://player.vimeo.com/video/251353137" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Add, commit and push in one step: acp.sh file</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash" data-lang="bash">#!/bin/bash
+# acp.sh - add, commit, and push in one step === "svn-style" commit
+git add $@ &amp;&amp; git commit &amp;&amp; git push</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or using git aliases <code>.git/config</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash" data-lang="bash">[alias]
+    ac = !git add -A &amp;&amp; git commit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Usage: <code>git ac -m "commit message"</code></p>
+</div>
+<div class="videoblock text-center">
+<div class="title">Git: Branches</div>
+<div class="content">
+<iframe width="640" src="https://player.vimeo.com/video/251353701" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<strong>Recap</strong>. To see all branches in repository use a <code>git branch</code> command. To create new branch use a <code>git branch &lt;branch_name&gt;</code> command. To switch to new branch use a <code>git checkout &lt;branch_name&gt;</code>. To create new branch and switch to it on one shot use a <code>git checkout -b &lt;branch_name&gt;</code>. To merge one branch to another use a <code>git merge &lt;branch_name&gt;</code>. To remove a branch after we finished to work with it use a <code>git branch -d &lt;branch_name&gt;</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="videoblock text-center">
+<div class="title">Git: Share You Work</div>
+<div class="content">
+<iframe width="640" src="https://player.vimeo.com/video/251353128" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<strong>Recap</strong>. To share you local changes with your teammates use <code>git push origin master</code> command. <code>origin</code> is an alias for remote repository address. <code>master</code> is a branch name. To get list all registered aliases use <code>git remote</code> command. To manually add origin to local repository use <code>git remote add origin <a href="https://remote_repository_address" class="bare">https://remote_repository_address</a></code>. To integrate the changes from remote repository use <code>git pull origin master</code> command. This will update your current <code>HEAD</code> branch with new data from its counterpart branch on the remote. The changes will be directly merged into you local working copy.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="tooling"><a class="anchor" href="#tooling"></a>Tooling</h4>
+<div class="videoblock text-center">
+<div class="title">Eclipse</div>
+<div class="content">
+<iframe width="640" src="https://player.vimeo.com/video/251353129" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<strong>Follow up reading</strong>. <a href="http://eclipse.github.com">Eclipse and Git</a> and <a href="http://www.vogella.com/tutorials/EclipseGit/article.html">EGit tutorial</a>
+</td>
+</tr>
+</table>
+</div>
+<div class="videoblock text-center">
+<div class="title">IntelliJ IDEA</div>
+<div class="content">
+<iframe width="640" src="https://player.vimeo.com/video/251353146" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<a href="http://www.jetbrains.com/idea/features/version_control.html">IntelliJ IDEA VCS overview</a> and <a href="https://www.jetbrains.com/idea/webhelp/version-control-with-intellij-idea.html">Version Control with IntelliJ IDEA</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="workflows-cheat-sheet"><a class="anchor" href="#workflows-cheat-sheet"></a>Workflows Cheat Sheet</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="strong-plan-a-strong-working-with-existing-workflow-where-master-is-a-main-development-branch-and-code-feature_101-code-code-feature_102-code-are-stable-branches"><a class="anchor" href="#strong-plan-a-strong-working-with-existing-workflow-where-master-is-a-main-development-branch-and-code-feature_101-code-code-feature_102-code-are-stable-branches"></a><strong>Plan A</strong>. Working with existing workflow where "master" is a main development branch and <code>feature_101</code>, <code>feature_102</code> are stable branches</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Project checkout</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash" data-lang="bash">git clone &lt;remote_repo&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Adding changes, their review, pull changes from server and committing and pushing in one click.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash" data-lang="bash"># add changes to staging, commit and push to remote repository
+git add .; git commit -m "$1"; git push;
+
+# update changes form remote "master" branch
+git pull --rebase origin master</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Branch switching from master to feature_101 and back.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash" data-lang="bash"># if there are some changes in working branch
+git stash save --include-untracked
+# git checkout &lt;branch&gt;
+# not tracked files will be visible in new branch
+# switch to branch named "feature_101"
+git checkout origin/feature_101</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Merging commits from branches to master with and without conflicts.</p>
+<div class="listingblock">
+<div class="title">Merge conflicts resolution strategies</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash" data-lang="bash"># use incoming changes to resolve merge
+git checkout --theirs -- MyClass.java
+
+# or
+# use local changes to resolve merge
+git checkout --ours -- MyClass.java
+
+# don't forget to stage and commit after merge is done
+git add MyClass.java
+
+# git will open editor with autogenerated merger commit
+git commit</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="tips"><a class="anchor" href="#tips"></a>Tips</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Make more granular commits (no worries if you are not done with the task, you don&#8217;t need to push every single commit).
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Temporarily ignore changes in a certain file</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash" data-lang="bash">git update-index --assume-unchanged &lt;file&gt;
+
+# To track changes again
+git update-index --no-assume-unchanged &lt;file&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Merge specific commit or range of commits</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash" data-lang="bash">git cherry-pick &lt;commit_hash&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="strong-plan-b-strong-working-with-personal-forks-and-merge-requests"><a class="anchor" href="#strong-plan-b-strong-working-with-personal-forks-and-merge-requests"></a><strong>Plan B</strong>. Working with personal forks and merge requests.</h3>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Section is under development
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Creating a fork.</p>
+<div class="paragraph">
+<p>Clone a fork to your local machine</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash" data-lang="bash">git clone &lt;repo&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Creating merge requests.</p>
+</li>
+<li>
+<p>Building merge requests and deploying build artifacts.</p>
+</li>
+<li>
+<p>Applying confirmed merge requests.</p>
+</li>
+<li>
+<p>Receiving updates from clone upstream repository.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div></div></div><footer class="entry-footer"></footer><div id="comments">
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+            var disqus_shortname = 'nextjavaheadbraincom';
+            var disqus_url = "http://gamov.io/git-videos.html";
+            var disqus_developer = null;
+            var disqus_identifier = null;
+            (function() {
+              var dsq = document.createElement("script"); dsq.type = "text/javascript"; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(dsq);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=nextjavaheadbraincom">comments powered by Disqus.</a></noscript>
+          </div></article></div></div></body></html><div id="copyright"><div class="row full-width"><div class="large-4 columns"><p>© Viktor Gamov 2017—2007</p></div><div class="large-8 columns"><ul class="inline-list right"><li><a href="https://github.com/gAmUssA"></a>Github&nbsp<span class="icon"><i class="fa fa-github"></i></span></li><li><a href="http://twitter.com/gAmUssA"></a>Twitter&nbsp<span class="icon"><i class="fa fa-twitter"></i></span></li><li><a href="#"></a></li></ul></div></div></div><script>document.write('<script src=' + ('__proto__' in {} ? '/javascripts/vendor/zepto' : '/javascripts/vendor/jquery') + '.js><\/script>')</script><script src="/javascripts/foundation/foundation.js"><script src="/javascripts/foundation/foundation.topbar.js"></script></script><script>$(document).foundation();</script><script src="/javascripts/vendor/highlight.min.js"></script><script>$(hljs.initHighlighting());</script><script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount','UA-40354726-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+ var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!--End Footer-->
