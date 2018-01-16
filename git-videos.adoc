@@ -32,6 +32,8 @@ endif::awestruct[]
 :mdash: &#8212;
 :language: asciidoc
 
+NOTE: The videos I prepared for internal Farata Git training. If you're looking public or private training, check http://faratasystems.com[Farata Systems] website for more information.
+
 == Training videos
 
 === Git
