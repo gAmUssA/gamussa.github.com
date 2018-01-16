@@ -32,7 +32,8 @@ endif::awestruct[]
 :mdash: &#8212;
 :language: asciidoc
 
-NOTE: The videos I prepared for internal Farata Git training. If you're looking public or private training, check http://faratasystems.com[Farata Systems] website for more information.
+NOTE: The videos I prepared for internal Farata Git training. 
+If you're looking public or private training, check http://faratasystems.com[Farata Systems] website for more information.
 
 == Training videos
 
@@ -44,7 +45,8 @@ NOTE: The videos I prepared for internal Farata Git training. If you're looking 
 [.text-center]
 video::251353094[vimeo,width=640]
 
-NOTE: *Recap*. Use a `git init` command to create new git repository in any folder. Use a `git clone <remote_url>` command to clone remote repository with full history.
+NOTE: *Recap*. Use a `git init` command to create a new git repository in any folder. 
+Use a `git clone <remote_url>` command to clone the remote repository with full history.
 
 .Git: Set up Git
 [.text-center]
@@ -56,7 +58,9 @@ NOTE: *Recap* Use `git config --global user.email "vasya@example.com"`  and `git
 [.text-center]
 video::251353101[vimeo,width=640]
 
-NOTE: *Recap*. A `git status` command tells you what happened since last commit. A `git add <filename>` command adds file to «Staging area». A `git commit -m "commit message"` command wraps up previously staged changes.
+NOTE: *Recap*. A `git status` command tells you what happened since the last commit. 
+A `git add <filename>` command adds the file to «Staging area». 
+A `git commit -m "commit message"` command wraps up previously staged changes.
 
 .Git: File Status by Example
 [.text-center]
@@ -86,13 +90,26 @@ Usage: `git ac -m "commit message"`
 [.text-center]
 video::251353701[vimeo,width=640]
 
-NOTE: *Recap*. To see all branches in repository use a `git branch` command. To create new branch use a `git branch <branch_name>` command. To switch to new branch use a `git checkout <branch_name>`. To create new branch and switch to it on one shot use a `git checkout -b <branch_name>`. To merge one branch to another use a `git merge <branch_name>`. To remove a branch after we finished to work with it use a `git branch -d <branch_name>`.
+NOTE: *Recap*. 
+To see all branches in repository use a `git branch` command. 
+To create new branch use a `git branch <branch_name>` command. 
+To switch to new branch use a `git checkout <branch_name>`. 
+To create a new branch and switch to it on one shot use a `git checkout -b <branch_name>`. 
+To merge one branch to another use a `git merge <branch_name>`. 
+To remove a branch after we finished to work with it use a `git branch -d <branch_name>`.
 
 .Git: Share You Work
 [.text-center]
 video::251353128[vimeo,width=640]
 
-NOTE: *Recap*. To share you local changes with your teammates use `git push origin master` command. `origin` is an alias for remote repository address. `master` is a branch name. To get list all registered aliases use `git remote` command. To manually add origin to local repository use `git remote add origin https://remote_repository_address`. To integrate the changes from remote repository use `git pull origin master` command. This will update your current `HEAD` branch with new data from its counterpart branch on the remote. The changes will be directly merged into you local working copy.
+NOTE: *Recap*. To share your local changes with your teammates use `git push origin master` command. 
+`origin` is an alias for remote repository address. 
+`master` is a branch name. 
+To get the list of all registered aliases, use `git remote` command. 
+To manually add origin to local repository use `git remote add origin https://remote_repository_address`. 
+To integrate the changes from remote repository use `git pull origin master` command. 
+It will update your current `HEAD` branch with new data from its counterpart branch on the remote. 
+The changes will be directly merged into your local working copy.
 
 
 ==== Tooling
@@ -112,7 +129,7 @@ NOTE: http://www.jetbrains.com/idea/features/version_control.html[IntelliJ IDEA 
 
 == Workflows Cheat Sheet
 
-=== *Plan A*. Working with existing workflow where "master" is a main development branch and `feature_101`, `feature_102` are stable branches
+=== *Plan A*. Working with existing workflow where "master" is the main development branch and `feature_101`, `feature_102` are stable branches
 
 1. Project checkout
 +
@@ -122,7 +139,7 @@ NOTE: http://www.jetbrains.com/idea/features/version_control.html[IntelliJ IDEA 
 git clone <remote_repo>
 ----
 
-2. Adding changes, their review, pull changes from server and committing and pushing in one click.
+2. Adding changes, their review, pull changes from the server and committing and pushing in one click.
 +
 
 [source,bash]
