@@ -1,0 +1,205 @@
+= Introduction to Git videos
+Viktor Gamov <viktor.gamov@faratasystems.com> © 2014 Farata Systems LLC.
+2014-03-05
+:revdate: 2014-03-05 14:43:50 -0600
+:linkattrs:
+:author: Viktor Gamov
+:email: viktor.gamov@gmail.com
+:awestruct-layout: post
+ifdef::awestruct[]
+:toc:
+:toc-placement: preamble
+endif::awestruct[]
+ifndef::awestruct[]
+:ast: &ast;
+:y: &#10003;
+:n: &#10008;
+:y: icon:check-sign[role="green"]
+:n: icon:check-minus[role="red"]
+:c: icon:file-text-alt[role="blue"]
+:toc: 
+:toc-position: right
+:toc-title: Table of content
+:toclevels: 3
+:idprefix:
+:idseparator: -
+:sectanchors:
+:icons: font
+:experimental:
+:source-highlighter: highlight.js
+endif::awestruct[]
+:experimental:
+:mdash: &#8212;
+:language: asciidoc
+
+== Training videos
+
+=== Git
+
+==== Basics
+
+.Git: Basics
+[.text-center]
+video::251353094[vimeo,width=640]
+
+NOTE: *Recap*. Use a `git init` command to create new git repository in any folder. Use a `git clone <remote_url>` command to clone remote repository with full history.
+
+.Git: Set up Git
+[.text-center]
+video::251353130[vimeo,width=640]
+
+NOTE: *Recap* Use `git config --global user.email "vasya@example.com"`  and `git config --global user.name "Vasisualy Lokhankin"` to config your git.
+
+.Git: Working on Your Files
+[.text-center]
+video::251353101[vimeo,width=640]
+
+NOTE: *Recap*. A `git status` command tells you what happened since last commit. A `git add <filename>` command adds file to «Staging area». A `git commit -m "commit message"` command wraps up previously staged changes.
+
+.Git: File Status by Example
+[.text-center]
+video::251353137[vimeo,width=640]
+
+[.text-center]
+
+.Add, commit and push in one step: acp.sh file
+[source,bash]
+----
+#!/bin/bash
+# acp.sh - add, commit, and push in one step === "svn-style" commit
+git add $@ && git commit && git push
+----
+
+Or using git aliases `.git/config`
+
+[source,bash]
+----
+[alias]
+    ac = !git add -A && git commit
+----
+
+Usage: `git ac -m "commit message"`
+
+.Git: Branches
+[.text-center]
+video::251353701[vimeo,width=640]
+
+NOTE: *Recap*. To see all branches in repository use a `git branch` command. To create new branch use a `git branch <branch_name>` command. To switch to new branch use a `git checkout <branch_name>`. To create new branch and switch to it on one shot use a `git checkout -b <branch_name>`. To merge one branch to another use a `git merge <branch_name>`. To remove a branch after we finished to work with it use a `git branch -d <branch_name>`.
+
+.Git: Share You Work
+[.text-center]
+video::251353128[vimeo,width=640]
+
+NOTE: *Recap*. To share you local changes with your teammates use `git push origin master` command. `origin` is an alias for remote repository address. `master` is a branch name. To get list all registered aliases use `git remote` command. To manually add origin to local repository use `git remote add origin https://remote_repository_address`. To integrate the changes from remote repository use `git pull origin master` command. This will update your current `HEAD` branch with new data from its counterpart branch on the remote. The changes will be directly merged into you local working copy.
+
+
+==== Tooling
+
+.Eclipse
+[.text-center]
+video::251353129[vimeo,width=640]
+
+NOTE: *Follow up reading*. http://eclipse.github.com[Eclipse and Git] and http://www.vogella.com/tutorials/EclipseGit/article.html[EGit tutorial]
+
+
+.IntelliJ IDEA
+[.text-center]
+video::251353146[vimeo,width=640]
+
+NOTE: http://www.jetbrains.com/idea/features/version_control.html[IntelliJ IDEA VCS overview] and https://www.jetbrains.com/idea/webhelp/version-control-with-intellij-idea.html[Version Control with IntelliJ IDEA].
+
+== Workflows Cheat Sheet
+
+=== *Plan A*. Working with existing workflow where "master" is a main development branch and `feature_101`, `feature_102` are stable branches
+
+1. Project checkout
++
+
+[source,bash]
+----
+git clone <remote_repo>
+----
+
+2. Adding changes, their review, pull changes from server and committing and pushing in one click.
++
+
+[source,bash]
+----
+# add changes to staging, commit and push to remote repository
+git add .; git commit -m "$1"; git push;
+
+# update changes form remote "master" branch
+git pull --rebase origin master
+----
+
+3. Branch switching from master to feature_101 and back.
++
+
+[source,bash]
+----
+# if there are some changes in working branch
+git stash save --include-untracked
+# git checkout <branch>
+# not tracked files will be visible in new branch
+# switch to branch named "feature_101"
+git checkout origin/feature_101
+----
+
+4. Merging commits from branches to master with and without conflicts.
++
+
+.Merge conflicts resolution strategies
+[source,bash]
+----
+# use incoming changes to resolve merge
+git checkout --theirs -- MyClass.java
+
+# or
+# use local changes to resolve merge
+git checkout --ours -- MyClass.java
+
+# don't forget to stage and commit after merge is done
+git add MyClass.java
+
+# git will open editor with autogenerated merger commit
+git commit
+----
+
+==== Tips
+
+NOTE: Make more granular commits (no worries if you are not done with the task, you don't need to push every single commit). 
+
+.Temporarily ignore changes in a certain file
+[source,bash]
+----
+git update-index --assume-unchanged <file>
+
+# To track changes again
+git update-index --no-assume-unchanged <file>
+----
+
+.Merge specific commit or range of commits
+[source,bash]
+----
+git cherry-pick <commit_hash>
+----
+
+=== *Plan B*. Working with personal forks and merge requests.
+
+WARNING: Section is under development
+
+1. Creating a fork.
++
+
+Clone a fork to your local machine
++
+
+[source,bash]
+----
+git clone <repo>
+----
+
+2. Creating merge requests.
+3. Building merge requests and deploying build artifacts.
+4. Applying confirmed merge requests.
+5. Receiving updates from clone upstream repository.
