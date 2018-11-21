@@ -4,10 +4,15 @@
 [.panel]
 .*What is this all about?*
 
-Thanks for stopping by. 
-My name Viktor Gamov. 
-I'm a Solution Architect at http://confluent.io[Confluent]. I'm a co-organizer of the http://www.meetup.com/NJFlex/[Princeton JUG and NJ Flex meetup] and co-author of OReilly's book <<enterprisewebbook,«Enterprise Web Development. Building HTML5 Applications: From Desktop to Mobile»>>. 
-Also, I'm speaking on the http://lanyrd.com/gamussa/[conferences] occasionally.
+👋 Hello!
+Thanks for stopping by.
+My name is Viktor Gamov.
+I'm a Developer Advocate at http://confluent.io[Confluent], the company that makes a streaming platform based on Apache Kafka.
+Back in my consultancy days, I co-authored O'Reilly's book <<enterprisewebbook, «Enterprise Web Development. Building HTML5 Applications: From Desktop to Mobile»>>
+I'm a professional conference speaker on distributed systems, Java, and JavaScript topics, and is regular on events including JavaOne, Devoxx, OSCON, QCon, and https://speaking.gamov.io[others].
+I'm occasionally blogging http://gamov.io/posts.html[here] and produces the podcasts http://razborpoletov.com[Razbor Poletov] (in Russian) and co-hosts http://devrelrad.io[DevRelRad.io].
+You can follow me on Twitter @gamussa, where I post about gym life, food, open source, and, of course, Kafka and Confluent!
+.
 
 [[enterprisewebbook]]
 == Enterprise Web Development
@@ -24,7 +29,7 @@ _How do you make your enterprise applications or sites available on an assortmen
 In the process, you’ll explore options for building a single codebase for both desktop and mobile, using recursive design, or developing two separate codebases. You’ll also compare solutions offered by popular JavaScript frameworks, including jQuery, Ext JS, JQuery Mobile, and Sencha Touch.
 
 [role="large-8 columns"]
-* Learn how develop applications with HTML, JavaScript, CSS, Ajax, and JSON
+* Learn how to develop applications with HTML, JavaScript, CSS, Ajax, and JSON
 * Discover how WebSockets is much more efficient than HTTP for data exchange
 * Select the JavaScript framework that best fits your needs
 * Learn options for moving your application to the mobile space
