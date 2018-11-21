@@ -1,0 +1,205 @@
+= Streaming Movies Ratings with Kafka Streams and KSQL
+Viktor Gamov
+2018-11-20 18:12
+:imagesdir: ../images
+:icons:
+:keywords:
+:toc:
+:experimental:
+:commandkey: &#8984;
+ifndef::awestruct[]
+:awestruct-layout: post
+:awestruct-tags: []
+:idprefix:
+:idseparator: -
+endif::awestruct[]
+
+// https://www.instagram.com/p/BpAC3-fArRO/
+image::kafka_summit.jpg[width="50%"]
+
+.TL;DR
+Sole purpose of this blog post is to draft a _playbook_ for my presentation «Crossing the streams: Rethinking Stream processing with Kafka Streams and KSQL» footnote:[https://www.confluent.io/kafka-summit-sf18/crossing-the-streams] that I recently did on Kafka Summit 2018 in San Francisco.
+A full source code published in `confluetninc/demo-scene` repository footnote:[https://github.com/confluentinc/demo-scene/tree/master/streams-movie-demo]
+
+.Revisions history
+[width="60%",cols="",options="header"]
+|===
+|Version    |Date   | Comments
+|*v1.0*     |11/20/2015 | Initial revision
+|===
+
+toc::[]
+
+NOTE: **Disclaimer:** Another goal is to exercise some ideas around visual representation of posts in this blog.
+And third and the last goal is to brush up my technical writing skills!
+Since I moved to DevX footnote:[] from Professional Services where I did write truck load of customer engagement reports.
+
+== Prerequisites
+
+* Confluent Platform Enterprise 5.x footnote:[https://www.confluent.io/download/]
+** download it
+** unizip to any folder
+** add folder to `PATH` variable
++
+
+[source,shell]
+----
+export CONFLUENT_PLATFORM_VERSION=5.0.1
+export CONFLUENT_HOME=~/projects/confluent/confluent-ent/$CONFLUENT_PLATFORM_VERSION
+export PATH=$CONFLUENT_HOME/bin:$PATH
+alias cnfl="confluent" #<1>
+----
+<1> a neat little alias that can save few symbols to type
+
+* Get example from github
+** If you will follow below steps you should only directory that has source code relevant to this post.
++
+
+[source,bash]
+----
+mkdir ~/temp/demo-scene
+cd ~/temp/demo-scene
+git init .
+git remote add origin -f https://github.com/confluentinc/demo-scene/
+git config core.sparsecheckout true
+echo "streams-movie-demo/*" >> .git/info/sparse-checkout
+git pull --depth=2 origin master
+cd streams-movie-demo
+ls -lh
+----
++
+
+and you should see something like this
++
+
+.The output of `ls -lh streams-movie-demo`
+[role="text-center"]
+image::ls-lh-streams-movie-demo.png[width=75%]
+
+
+== Demo playbook
+
+Let's start Confluent platform, create topics and populate with some data
+
+=== Start Confluent Platform
+
+[source,bash]
+----
+cnfl destroy    #<1>
+cnfl start      #<2>
+echo "auto.offset.reset=earliest" >> $CONFLUENT_HOME/etc/ksql/ksql-server.properties    #<3>
+----
+<1> Make sure that there is no leftovers data
+<2> Start confluent platform. May take up to minute to start all components.
+<3> This will allow KSQL queries to read all data
+
+.In the end you should be able to see following output
+image::cnfl-start.png[width=75%]
+
+=== Populate Movies and Ratings Information
+
+[source,bash]
+----
+cd data/
+cat movies.dat  | kafka-console-producer --broker-list localhost:9092 --topic raw-movies    #<1>
+cat ratings.dat | kafka-console-producer --broker-list localhost:9092 --topic raw-ratings   #<2>
+----
+<1> Source topic for movies - `raw-movies`
+<2> Source topic for ratings - `raw-ratings`
+
+.Output should be similar to the screenshot below
+image::cat_raw_movies.png[]
+image::cat_raw_ratings.png[]
+
+NOTE: The warnings like `WARN [Producer clientId=console-producer] Error while fetching metadata with correlation id 1 : {raw-movies=LEADER_NOT_AVAILABLE} (org.apache.kafka.clients.NetworkClient)` and `WARN [Producer clientId=console-producer] Error while fetching metadata with correlation id 1 : {raw-ratings=LEADER_NOT_AVAILABLE} (org.apache.kafka.clients.NetworkClient)` are absolutely normal.
+Topics `raw-movies` and `raw-ratings` were not created when we started producing messages to it.
+And because by default Apache Kafka allows automatic topic creation (`auto.create.topics.enable` parameter in configuration footnote:[https://kafka.apache.org/documentation/#brokerconfigs] topics were created.
+
+=== Create the destination topics
+
+[source,bash]
+----
+# enable compaction for this topics
+$CONFLUENT_HOME/bin/kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --config cleanup.policy=compact --topic movies
+$CONFLUENT_HOME/bin/kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --config cleanup.policy=compact --topic rating-sums
+$CONFLUENT_HOME/bin/kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --config cleanup.policy=compact --topic rating-counts
+$CONFLUENT_HOME/bin/kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --config cleanup.policy=compact --topic rating-averages
+$CONFLUENT_HOME/bin/kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --config cleanup.policy=compact --topic rated-movies
+----
+
+.Output should match following screenshot
+image::created_topics.png[width=40%]
+
+=== Run Streaming Movie Demo
+
+* Start Kafka Streams application
++
+
+[source,shell]
+----
+./gradlew streams:run
+----
+
+=== Generate test load
+
+* Start raw ratings generator
++
+
+[source,bash]
+----
+./gradlew loader:streamWithRawRatingStreamer
+----
++
+
+.Or if you have groovy installed
+[source,bash]
+----
+./gradlew loader:build  #<1>
+groovy -cp "./loader/build/libs/loader.jar"  \
+loader/src/main/groovy/RawRatingStreamer.groovy "localhost:9092"   #<2>
+----
+<1> build `loader.jar` first. This is «fat jar» that has all required dependencies (Kafka client libraries, serializers, etc)
+<2> run raw ratings generator script
++
+
+NOTE: I recommend to run raw ratings generator in separate terminal window so you can interrupt it with kbd:[Ctrl+C]
+
+=== Consume result with KSQL UI in Control Center
+
+* load page from http://localhost:9021
+* open KSQL panel and switch to «Query Editor»
++
+
+[source,sql]
+----
+CREATE TABLE RATED_MOVIES \
+    (MOVIE_ID BIGINT,\
+     TITLE VARCHAR,\
+     RELEASE_YEAR BIGINT,\
+     RATING DOUBLE)\
+WITH (KAFKA_TOPIC='rated_movies',VALUE_FORMAT='AVRO', KEY = 'userid'); --<1>
+
+select TITLE, RATING  from RATED_MOVIES where MOVIE_ID=362; --<2>
+----
+<1> Create a table with Movie ratings
+<2> Find rating for Lethal Weapon (`movie_id=362`)
+
+.`RATED_MOVIES` table is registered in KSQL
+image::c3_ksql_tables.png[]
+
+.Continuously query `RATED_MOVIES` table for rating of «Lethal Weapon» movie
+image::c3_ksql_query.png[]
+
+.Monitoring how many messages left process
+image::c3_consumer_lag.png[]
+
+=== Wrapping this up!
+
+* kill Gradle task with kbd:[Ctrl+C]
+* stop Confluent Platform and purge all data
++
+
+[source,shell]
+----
+cnfl destroy
+----
