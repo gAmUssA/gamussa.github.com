@@ -18,7 +18,7 @@ endif::awestruct[]
 image::kafka_summit.jpg[width="50%"]
 
 .TL;DR
-Sole purpose of this blog post is to draft a _playbook_ for my presentation «Crossing the streams: Rethinking Stream processing with Kafka Streams and KSQL» footnote:[https://www.confluent.io/kafka-summit-sf18/crossing-the-streams] that I recently did on Kafka Summit 2018 in San Francisco.
+The sole purpose of this blog post is to draft a _playbook_ for my presentation «Crossing the streams: Rethinking Stream processing with Kafka Streams and KSQL» footnote:[https://www.confluent.io/kafka-summit-sf18/crossing-the-streams] that I recently did on Kafka Summit 2018 in San Francisco.
 A full source code published in `confluetninc/demo-scene` repository footnote:[https://github.com/confluentinc/demo-scene/tree/master/streams-movie-demo]
 
 .Revisions history
@@ -30,9 +30,9 @@ A full source code published in `confluetninc/demo-scene` repository footnote:[h
 
 toc::[]
 
-NOTE: **Disclaimer:** Another goal is to exercise some ideas around visual representation of posts in this blog.
+NOTE: **Disclaimer:** Another goal is to exercise some ideas around the visual representation of posts in this blog.
 And third and the last goal is to brush up my technical writing skills!
-Since I moved to DevX footnote:[] from Professional Services where I did write truck load of customer engagement reports.
+Since I moved to DevX footnote:[] from Professional Services where I did write a truckload of customer engagement reports.
 
 == Prerequisites
 
@@ -51,8 +51,8 @@ alias cnfl="confluent" #<1>
 ----
 <1> a neat little alias that can save few symbols to type
 
-* Get example from github
-** If you will follow below steps you should only directory that has source code relevant to this post.
+* Get example from GitHub
+** If you will follow steps below you should checkout only directory that has source code relevant to this post.
 +
 
 [source,bash]
@@ -93,10 +93,10 @@ echo "auto.offset.reset=earliest" >> $CONFLUENT_HOME/etc/ksql/ksql-server.proper
 <2> Start confluent platform. May take up to minute to start all components.
 <3> This will allow KSQL queries to read all data
 
-.In the end you should be able to see following output
+.In the end you should be able to see the following output
 image::cnfl-start.png[width=75%]
 
-=== Populate Movies and Ratings Information
+=== Populate Movies and Rating Information
 
 [source,bash]
 ----
@@ -112,8 +112,8 @@ image::cat_raw_movies.png[]
 image::cat_raw_ratings.png[]
 
 NOTE: The warnings like `WARN [Producer clientId=console-producer] Error while fetching metadata with correlation id 1 : {raw-movies=LEADER_NOT_AVAILABLE} (org.apache.kafka.clients.NetworkClient)` and `WARN [Producer clientId=console-producer] Error while fetching metadata with correlation id 1 : {raw-ratings=LEADER_NOT_AVAILABLE} (org.apache.kafka.clients.NetworkClient)` are absolutely normal.
-Topics `raw-movies` and `raw-ratings` were not created when we started producing messages to it.
-And because by default Apache Kafka allows automatic topic creation (`auto.create.topics.enable` parameter in configuration footnote:[https://kafka.apache.org/documentation/#brokerconfigs] topics were created.
+Topics `raw-movies` and `raw-ratings` not created when we started producing messages to it.
+And because by default Apache Kafka allows automatic topic creation ( The parameter `auto.create.topics.enable`  in configuration footnote:[https://kafka.apache.org/documentation/#brokerconfigs] topics created.
 
 === Create the destination topics
 
@@ -127,7 +127,7 @@ $CONFLUENT_HOME/bin/kafka-topics --create --zookeeper localhost:2181 --replicati
 $CONFLUENT_HOME/bin/kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --config cleanup.policy=compact --topic rated-movies
 ----
 
-.Output should match following screenshot
+.Output should match the following screenshot
 image::created_topics.png[width=40%]
 
 === Run Streaming Movie Demo
@@ -142,7 +142,7 @@ image::created_topics.png[width=40%]
 
 === Generate test load
 
-* Start raw ratings generator
+* Start raw rating generator
 +
 
 [source,bash]
@@ -162,12 +162,12 @@ loader/src/main/groovy/RawRatingStreamer.groovy "localhost:9092"   #<2>
 <2> run raw ratings generator script
 +
 
-NOTE: I recommend to run raw ratings generator in separate terminal window so you can interrupt it with kbd:[Ctrl+C]
+NOTE: I recommend to run the raw rating generator in a separate terminal window so you can interrupt it with kbd:[Ctrl+C]
 
 === Consume result with KSQL UI in Control Center
 
 * load page from http://localhost:9021
-* open KSQL panel and switch to «Query Editor»
+* open KSQL panel and switch to «Query Editor.»
 +
 
 [source,sql]
@@ -187,10 +187,10 @@ select TITLE, RATING  from RATED_MOVIES where MOVIE_ID=362; --<2>
 .`RATED_MOVIES` table is registered in KSQL
 image::c3_ksql_tables.png[]
 
-.Continuously query `RATED_MOVIES` table for rating of «Lethal Weapon» movie
+.Continuously query `RATED_MOVIES` table for the rating of «Lethal Weapon» movie
 image::c3_ksql_query.png[]
 
-.Monitoring how many messages left process
+.Monitoring how many messages left to process
 image::c3_consumer_lag.png[]
 
 === Wrapping this up!
