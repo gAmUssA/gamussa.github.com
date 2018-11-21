@@ -22,17 +22,18 @@ The sole purpose of this blog post is to draft a _playbook_ for my presentation 
 A full source code published in `confluetninc/demo-scene` repository footnote:[https://github.com/confluentinc/demo-scene/tree/master/streams-movie-demo]
 
 .Revisions history
-[width="60%",cols="",options="header"]
+[width="70%",cols="",options="header"]
 |===
 |Version    |Date   | Comments
-|*v1.0*     |11/20/2015 | Initial revision
+|*v1.1*     |11/21/2018 | Fixed links and minor grammar
+|*v1.0*     |11/20/2018 | Initial revision
 |===
 
 toc::[]
 
 NOTE: **Disclaimer:** Another goal is to exercise some ideas around the visual representation of posts in this blog.
 And third and the last goal is to brush up my technical writing skills!
-Since I moved to DevX footnote:[] from Professional Services where I did write a truckload of customer engagement reports.
+Since I moved to DevX footnote:[https://twitter.com/gAmUssA/status/1037496745809330181] from Professional Services where I did write a truckload of customer engagement reports.
 
 == Prerequisites
 
@@ -67,13 +68,14 @@ git pull --depth=2 origin master
 cd streams-movie-demo
 ls -lh
 ----
+// http://scriptedonachip.com/git-sparse-checkout
 +
 
 and you should see something like this
 +
 
-.The output of `ls -lh streams-movie-demo`
 [role="text-center"]
+.The output of `ls -lh streams-movie-demo`
 image::ls-lh-streams-movie-demo.png[width=75%]
 
 
@@ -107,8 +109,9 @@ cat ratings.dat | kafka-console-producer --broker-list localhost:9092 --topic ra
 <1> Source topic for movies - `raw-movies`
 <2> Source topic for ratings - `raw-ratings`
 
-.Output should be similar to the screenshot below
+.Output of cat command
 image::cat_raw_movies.png[]
+
 image::cat_raw_ratings.png[]
 
 NOTE: The warnings like `WARN [Producer clientId=console-producer] Error while fetching metadata with correlation id 1 : {raw-movies=LEADER_NOT_AVAILABLE} (org.apache.kafka.clients.NetworkClient)` and `WARN [Producer clientId=console-producer] Error while fetching metadata with correlation id 1 : {raw-ratings=LEADER_NOT_AVAILABLE} (org.apache.kafka.clients.NetworkClient)` are absolutely normal.
