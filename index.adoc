@@ -8,11 +8,10 @@
 Thanks for stopping by.
 My name is Viktor Gamov.
 I'm a Developer Advocate at http://confluent.io[Confluent], the company that makes a streaming platform based on Apache Kafka.
-Back in my consultancy days, I co-authored O'Reilly's book <<enterprisewebbook, «Enterprise Web Development. Building HTML5 Applications: From Desktop to Mobile»>>
 I'm a professional conference speaker on distributed systems, Java, and JavaScript topics, and is regular on events including JavaOne, Devoxx, OSCON, QCon, and https://speaking.gamov.io[others].
-I'm occasionally blogging http://gamov.io/posts.html[here] and produces the podcasts http://razborpoletov.com[Razbor Poletov] (in Russian) and co-hosts http://devrelrad.io[DevRelRad.io].
-You can follow me on Twitter @gamussa, where I post about gym life, food, open source, and, of course, Kafka and Confluent!
-.
+I'm occasionally blogging http://gamov.io/posts.html[here] and produce a podcast http://razborpoletov.com[Razbor Poletov] (in Russian) and co-hosts http://devrelrad.io[DevRelRad.io].
+Back in my consultancy days, I co-authored O'Reilly's book <<enterprisewebbook, «Enterprise Web Development. Building HTML5 Applications: From Desktop to Mobile.»>>
+You can follow me on Twitter https://twitter.con/gamussa[@gamussa], where I post about gym life, food, open source, and, of course, Kafka and Confluent!
 
 [[enterprisewebbook]]
 == Enterprise Web Development
