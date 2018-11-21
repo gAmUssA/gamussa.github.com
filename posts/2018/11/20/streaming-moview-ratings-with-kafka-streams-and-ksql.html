@@ -2,7 +2,7 @@
 Prerequisites
 Demo playbook
 Start Confluent Platform
-Populate Movies and Ratings Information
+Populate Movies and Rating Information
 Create the destination topics
 Run Streaming Movie Demo
 Generate test load
@@ -14,7 +14,7 @@ Wrapping..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/ja
 <li><a href="#demo-playbook">Demo playbook</a>
 <ul class="sectlevel2">
 <li><a href="#start-confluent-platform">Start Confluent Platform</a></li>
-<li><a href="#populate-movies-and-ratings-information">Populate Movies and Ratings Information</a></li>
+<li><a href="#populate-movies-and-rating-information">Populate Movies and Rating Information</a></li>
 <li><a href="#create-the-destination-topics">Create the destination topics</a></li>
 <li><a href="#run-streaming-movie-demo">Run Streaming Movie Demo</a></li>
 <li><a href="#generate-test-load">Generate test load</a></li>
@@ -33,7 +33,7 @@ Wrapping..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/ja
 </div>
 <div class="paragraph">
 <div class="title">TL;DR</div>
-<p>Sole purpose of this blog post is to draft a <em>playbook</em> for my presentation «Crossing the streams: Rethinking Stream processing with Kafka Streams and KSQL» <sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnote_1" title="View footnote.">1</a>]</sup> that I recently did on Kafka Summit 2018 in San Francisco.
+<p>The sole purpose of this blog post is to draft a <em>playbook</em> for my presentation «Crossing the streams: Rethinking Stream processing with Kafka Streams and KSQL» <sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnote_1" title="View footnote.">1</a>]</sup> that I recently did on Kafka Summit 2018 in San Francisco.
 A full source code published in <code>confluetninc/demo-scene</code> repository <sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnote_2" title="View footnote.">2</a>]</sup></p>
 </div>
 <table class="tableblock frame-all grid-all" style="width: 60%;">
@@ -66,9 +66,9 @@ A full source code published in <code>confluetninc/demo-scene</code> repository 
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<strong>Disclaimer:</strong> Another goal is to exercise some ideas around visual representation of posts in this blog.
+<strong>Disclaimer:</strong> Another goal is to exercise some ideas around the visual representation of posts in this blog.
 And third and the last goal is to brush up my technical writing skills!
-Since I moved to DevX footnote:[] from Professional Services where I did write truck load of customer engagement reports.
+Since I moved to DevX footnote:[] from Professional Services where I did write a truckload of customer engagement reports.
 </td>
 </tr>
 </table>
@@ -113,11 +113,11 @@ alias cnfl="confluent" <i class="conum" data-value="1"></i><b>(1)</b></code></pr
 </div>
 </li>
 <li>
-<p>Get example from github</p>
+<p>Get example from GitHub</p>
 <div class="ulist">
 <ul>
 <li>
-<p>If you will follow below steps you should only directory that has source code relevant to this post.</p>
+<p>If you will follow steps below you should checkout only directory that has source code relevant to this post.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight nowrap"><code class="language-bash" data-lang="bash">mkdir ~/temp/demo-scene
@@ -183,11 +183,11 @@ echo "auto.offset.reset=earliest" &gt;&gt; $CONFLUENT_HOME/etc/ksql/ksql-server.
 <div class="content">
 <img src="/images/cnfl-start.png" alt="cnfl start" width="75%">
 </div>
-<div class="title">Figure 2. In the end you should be able to see following output</div>
+<div class="title">Figure 2. In the end you should be able to see the following output</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="populate-movies-and-ratings-information"><a class="anchor" href="#populate-movies-and-ratings-information"></a>Populate Movies and Ratings Information</h3>
+<h3 id="populate-movies-and-rating-information"><a class="anchor" href="#populate-movies-and-rating-information"></a>Populate Movies and Rating Information</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight nowrap"><code class="language-bash" data-lang="bash">cd data/
@@ -226,8 +226,8 @@ cat ratings.dat | kafka-console-producer --broker-list localhost:9092 --topic ra
 </td>
 <td class="content">
 The warnings like <code>WARN [Producer clientId=console-producer] Error while fetching metadata with correlation id 1 : {raw-movies=LEADER_NOT_AVAILABLE} (org.apache.kafka.clients.NetworkClient)</code> and <code>WARN [Producer clientId=console-producer] Error while fetching metadata with correlation id 1 : {raw-ratings=LEADER_NOT_AVAILABLE} (org.apache.kafka.clients.NetworkClient)</code> are absolutely normal.
-Topics <code>raw-movies</code> and <code>raw-ratings</code> were not created when we started producing messages to it.
-And because by default Apache Kafka allows automatic topic creation (<code>auto.create.topics.enable</code> parameter in configuration <sup class="footnote">[<a id="_footnoteref_4" class="footnote" href="#_footnote_4" title="View footnote.">4</a>]</sup> topics were created.
+Topics <code>raw-movies</code> and <code>raw-ratings</code> not created when we started producing messages to it.
+And because by default Apache Kafka allows automatic topic creation ( The parameter <code>auto.create.topics.enable</code>  in configuration <sup class="footnote">[<a id="_footnoteref_4" class="footnote" href="#_footnote_4" title="View footnote.">4</a>]</sup> topics created.
 </td>
 </tr>
 </table>
@@ -249,7 +249,7 @@ $CONFLUENT_HOME/bin/kafka-topics --create --zookeeper localhost:2181 --replicati
 <div class="content">
 <img src="/images/created_topics.png" alt="created topics" width="40%">
 </div>
-<div class="title">Figure 4. Output should match following screenshot</div>
+<div class="title">Figure 4. Output should match the following screenshot</div>
 </div>
 </div>
 <div class="sect2">
@@ -272,7 +272,7 @@ $CONFLUENT_HOME/bin/kafka-topics --create --zookeeper localhost:2181 --replicati
 <div class="ulist">
 <ul>
 <li>
-<p>Start raw ratings generator</p>
+<p>Start raw rating generator</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight nowrap"><code class="language-bash" data-lang="bash">./gradlew loader:streamWithRawRatingStreamer</code></pre>
@@ -305,7 +305,7 @@ loader/src/main/groovy/RawRatingStreamer.groovy "localhost:9092"   <i class="con
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-I recommend to run raw ratings generator in separate terminal window so you can interrupt it with <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>C</kbd></span>
+I recommend to run the raw rating generator in a separate terminal window so you can interrupt it with <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>C</kbd></span>
 </td>
 </tr>
 </table>
@@ -322,7 +322,7 @@ I recommend to run raw ratings generator in separate terminal window so you can 
 <p>load page from <a href="http://localhost:9021" class="bare">http://localhost:9021</a></p>
 </li>
 <li>
-<p>open KSQL panel and switch to «Query Editor»</p>
+<p>open KSQL panel and switch to «Query Editor.»</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight nowrap"><code class="language-sql" data-lang="sql">CREATE TABLE RATED_MOVIES \
@@ -360,13 +360,13 @@ select TITLE, RATING  from RATED_MOVIES where MOVIE_ID=362; <i class="conum" dat
 <div class="content">
 <img src="/images/c3_ksql_query.png" alt="c3 ksql query">
 </div>
-<div class="title">Figure 6. Continuously query <code>RATED_MOVIES</code> table for rating of «Lethal Weapon» movie</div>
+<div class="title">Figure 6. Continuously query <code>RATED_MOVIES</code> table for the rating of «Lethal Weapon» movie</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="/images/c3_consumer_lag.png" alt="c3 consumer lag">
 </div>
-<div class="title">Figure 7. Monitoring how many messages left process</div>
+<div class="title">Figure 7. Monitoring how many messages left to process</div>
 </div>
 </div>
 <div class="sect2">
