@@ -1,0 +1,84 @@
+= Tips And Trics That I use in my demos and presentation with Docker
+Viktor Gamov
+2018-11-28 18:29
+:imagesdir: ../images
+:icons:
+:keywords:
+:toc:
+ifndef::awestruct[]
+:awestruct-layout: post
+:awestruct-tags: []
+:idprefix:
+:idseparator: -
+endif::awestruct[]
+
+image::me_presenting.jpg[width=50%]
+
+.TLDR
+NOTE: the Sole purpose of this post is to help me to return here time to time if I forget some of the commands.
+If this would be useful for anyone - praise me on twitter - http://twitter.com/gamussa.
+
+Let's start with small but important thing - how to erase everything Docker and start clean.
+
+== Delete every Docker containers
+
+NOTE: Don't do this if you're on the plane.
+Downloading new images using airline's wifi will be the pain.
+Proceed with caution.
+You have been warned.
+
+
+How many time you have found yourself running out of space in your laptop, and you don't know who's eating all the space.
+Usual suspects here are maven or gradle directory jar's directory and  Docker images directory.
+
+[source,sh]
+----
+❯ du -sh ~/.m2
+2.4G    /Users/viktor/.m2 #<1>
+
+❯ du -sh ~/.gradle
+2.8G    /Users/viktor/.gradle #<2>
+
+❯ du -sh ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/Docker.raw
+8.1G    /Users/viktor/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/Docker.raw
+----
+<1> Should I nuke it?
+<2> I definitely use Gradle more
+
+.Must be run first because images are attached to containers
+[source,sh]
+----
+docker rm -f $(docker ps -a -q)
+----
+
+.Delete every Docker image
+[source,sh]
+----
+docker rmi -f $(docker images -q)
+----
+
+== Open shell in running container
+
+If I have a container that already running I can use `docker exec` command to connect to it!
+
+* First, get the name of the existing container using `docker ps`
+* With `docker exec -it <container name> /bin/bash` to get a bash shell in the container
+
+Essentially, use `docker exec -it <container name> <command>` to execute whatever command you specify in the container.
+
+=== Extra carriculum matterial: How to do the same in case of Docker Compose?
+
+[source,bash]
+----
+`docker-compose run <container_name_in_yml_file> <command>`.
+----
+
+E.g. to get a shell into your kafka container, you might run `docker-compose run kafka1 /bin/bash`
+
+.To run a series of commands, you must wrap them in a single command using a shell
+[source,sh]
+----
+`docker-compose run  <name in yml> sh -c '<command 1> && <command 2> && <command 3>'`
+----
+
+The `docker run` command accepts command line options to specify volume mounts, environment variables, the working directory, and more.
