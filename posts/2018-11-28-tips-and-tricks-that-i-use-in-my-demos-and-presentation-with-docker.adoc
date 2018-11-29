@@ -1,4 +1,4 @@
-= Tips And Trics That I use in my demos and presentation with Docker
+= Tips And Tricks That I use in my demos and presentation with Docker
 Viktor Gamov
 2018-11-28 18:29
 :imagesdir: ../images
@@ -12,6 +12,7 @@ ifndef::awestruct[]
 :idseparator: -
 endif::awestruct[]
 
+.A very small tip for you!
 image::me_presenting.jpg[width=50%]
 
 .TLDR
