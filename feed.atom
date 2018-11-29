@@ -5,13 +5,13 @@
 <author>
 <name>Viktor Gamov</name>
 </author>
-<updated>2018-11-28T19:01:58-05:00</updated>
+<updated>2018-11-28T19:02:44-05:00</updated>
 <link href="http://gamov.io/feed.atom" rel="self" type="application/atom+xml" />
 <link href="http://gamov.io/" rel="alternate" type="text/html" />
 <entry>
 <id>http://gamov.io/posts/2018/11/28/tips-and-tricks-that-i-use-in-my-demos-and-presentation-with-docker.html</id>
 <title>Tips And Tricks That I use in my demos and presentation with Docker</title>
-<updated>2018-11-28T19:01:58-05:00</updated>
+<updated>2018-11-28T19:02:44-05:00</updated>
 <published>2018-11-28T18:00:00+00:00</published>
 <link href="http://gamov.io/posts/2018/11/28/tips-and-tricks-that-i-use-in-my-demos-and-presentation-with-docker.html" rel="alternate" type="text/html" />
 <author>
@@ -34,6 +34,7 @@ Extra carriculum matterial: How to do the same in case of Docker Compose?
 
 
 
+Figure 1. A very small tip for you!
 
 
 
@@ -67,13 +68,7 @@ Delete every Docker containers
 Don&#8217;t do this if you&#8217;re on the plane.
 Downloading new images using airline&#8217;s wifi will be the pain.
 Proceed with caution.
-You have been warned.
-
-
-
-
-
-How many time you have...
+You...
 </summary>
 <content type="html">
 &lt;div id=&quot;toc&quot; class=&quot;toc&quot;&gt;
@@ -93,6 +88,7 @@ How many time you have...
 &lt;div class=&quot;content&quot;&gt;
 &lt;img src=&quot;http://gamov.io/images/me_presenting.jpg&quot; alt=&quot;me presenting&quot; width=&quot;50%&quot; /&gt;
 &lt;/div&gt;
+&lt;div class=&quot;title&quot;&gt;Figure 1. A very small tip for you!&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;admonitionblock note&quot;&gt;
 &lt;table&gt;
@@ -219,7 +215,7 @@ Usual suspects here are maven or gradle directory jar’s directory and  Docker 
 <entry>
 <id>http://gamov.io/posts/2018/11/20/streaming-moview-ratings-with-kafka-streams-and-ksql.html</id>
 <title>Streaming Movies Ratings with Kafka Streams and KSQL</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2018-11-20T18:00:00+00:00</published>
 <link href="http://gamov.io/posts/2018/11/20/streaming-moview-ratings-with-kafka-streams-and-ksql.html" rel="alternate" type="text/html" />
 <author>
@@ -703,7 +699,7 @@ select TITLE, RATING  from RATED_MOVIES where MOVIE_ID=362; &lt;i class=&quot;co
 <entry>
 <id>http://gamov.io/posts/2017/09/20/stream-v-batch.html</id>
 <title>Divide, Distribute and Conquer — Stream v. Batch @ Philly JUG</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2017-09-20T16:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/09/20/stream-v-batch.html" rel="alternate" type="text/html" />
 <author>
@@ -900,7 +896,7 @@ In this presentation I talked about how developers and data engineers are changi
 <entry>
 <id>http://gamov.io/posts/2017/09/07/speaking-at-javaone-2017.html</id>
 <title>I&#8217;m Speaking At JavaOne 2017</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2017-09-07T20:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/09/07/speaking-at-javaone-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -1036,7 +1032,7 @@ But there is one you don’t want to miss — &lt;a href=&quot;https://www.event
 <entry>
 <id>http://gamov.io/posts/2017/07/21/goodbye-hazelcast.html</id>
 <title>Goodbye, Hazelcast!</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2017-07-21T17:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/07/21/goodbye-hazelcast.html" rel="alternate" type="text/html" />
 <author>
@@ -1120,7 +1116,7 @@ Thank you for being a part of it!&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2017/07/20/testcontainers-ajug.html</id>
 <title>Testing containers with Testcontainers @ Atlanta JUG</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2017-07-20T08:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/07/20/testcontainers-ajug.html" rel="alternate" type="text/html" />
 <author>
@@ -1353,7 +1349,7 @@ In this presentation I talked about how Docker can help with seamless transition
 <entry>
 <id>http://gamov.io/posts/2017/06/15/cfsummit-2017.html</id>
 <title>Cloud Foundry Summit Silicon Valley 2017</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2017-06-15T14:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/06/15/cfsummit-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -1506,7 +1502,7 @@ Distribute Caching for your next Node.js project webinar recording
 <entry>
 <id>http://gamov.io/posts/2017/06/08/how-to-scale-hazelcast-docker-containers-with-docker-compose.html</id>
 <title>How To Scale Hazelcast Cluster with Docker Compose</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2017-06-08T13:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/06/08/how-to-scale-hazelcast-docker-containers-with-docker-compose.html" rel="alternate" type="text/html" />
 <author>
@@ -1942,7 +1938,7 @@ If you have questions or suggestions, feel free to comment below.&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2017/05/30/acgnj-2017.html</id>
 <title>Distributed Java Streams @ ACGNJ 2017</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2017-05-30T17:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/05/30/acgnj-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -2015,7 +2011,7 @@ TBD
 <entry>
 <id>http://gamov.io/posts/2017/04/18/phillyete-2017.html</id>
 <title>JavaPuzzlers @ PhillyETE 2017</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2017-04-18T10:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/04/18/phillyete-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -2066,7 +2062,7 @@ TBD
 <entry>
 <id>http://gamov.io/posts/2017/04/08/jpoint-2017.html</id>
 <title>JPoint - 2107 [RU]</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2017-04-08T18:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/04/08/jpoint-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -2191,7 +2187,7 @@ https://github.com/hazelcast/hazelcast-jet-code-samples/blob/master/kafka/consum
 <entry>
 <id>http://gamov.io/posts/2017/04/04/jbreak-2017.html</id>
 <title>JBreak 2017 [RU]</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2017-04-04T10:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/04/04/jbreak-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -2304,7 +2300,7 @@ Branch for this talk Jbreak_2017...
 <entry>
 <id>http://gamov.io/posts/2017/02/09/hazelcast-node-dot-js-client-refcard.html</id>
 <title>Hazelcast Node.js Client Refcard</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2017-02-09T07:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/02/09/hazelcast-node-dot-js-client-refcard.html" rel="alternate" type="text/html" />
 <author>
@@ -2778,7 +2774,7 @@ Hazelcast can be used in the areas like clustering, in-memory NoSQL, application
 <entry>
 <id>http://gamov.io/posts/2017/02/08/jfokus-2017.html</id>
 <title>Jfokus 2017</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2017-02-08T09:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/02/08/jfokus-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -2871,7 +2867,7 @@ Branch for this talk JFokus_Feb2017...
 <entry>
 <id>http://gamov.io/posts/2017/02/02/nyjavasig-2017.html</id>
 <title>NYJavaSig, February 2017</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2017-02-02T20:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/02/02/nyjavasig-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -2983,7 +2979,7 @@ Let&#39;s look...
 <entry>
 <id>http://gamov.io/posts/2017/01/12/codemash-2017.html</id>
 <title>Codemash 2017</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2017-01-12T13:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/01/12/codemash-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -3128,7 +3124,7 @@ Each branch represents parts of the talk:
 <entry>
 <id>http://gamov.io/posts/2016/09/09/whats-new-in-hazelcast-client-for-nodejs.html</id>
 <title>What&#8217;s New in Hazelcast Node.js Client</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2016-09-09T06:05:51-06:00</published>
 <link href="http://gamov.io/posts/2016/09/09/whats-new-in-hazelcast-client-for-nodejs.html" rel="alternate" type="text/html" />
 <author>
@@ -3840,7 +3836,7 @@ There a bunch of way to provide the feedback:&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2016/04/18/getting-started-with-hazelcast-and-node.html</id>
 <title>Getting Started with Hazelcast and Node.js</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2016-04-18T06:05:51-06:00</published>
 <link href="http://gamov.io/posts/2016/04/18/getting-started-with-hazelcast-and-node.html" rel="alternate" type="text/html" />
 <author>
@@ -4204,7 +4200,7 @@ You have just connected to a Hazelcast cluster and performed basic CRUD operatio
 <entry>
 <id>http://gamov.io/posts/2016/03/31/travel-report-q1-2016.html</id>
 <title>Travel Report - Q1 2016</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2016-03-31T20:00:00+00:00</published>
 <link href="http://gamov.io/posts/2016/03/31/travel-report-q1-2016.html" rel="alternate" type="text/html" />
 <author>
@@ -4573,7 +4569,7 @@ I am really impressed with the flexibility that JUG organizers are developing to
 <entry>
 <id>http://gamov.io/posts/2015/12/31/caching-made-bootiful.html</id>
 <title>Caching Made Bootiful — Hazelcast Way</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2015-12-31T22:18:23-06:00</published>
 <link href="http://gamov.io/posts/2015/12/31/caching-made-bootiful.html" rel="alternate" type="text/html" />
 <author>
@@ -4917,7 +4913,7 @@ Meanwhile, if you have any questions, feel free to post them in the comments sec
 <entry>
 <id>http://gamov.io/posts/2015/12/29/my-year-at-hazelcast-in-review.html</id>
 <title>My Year At Hazelcast In Review</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2015-12-29T17:00:00+00:00</published>
 <link href="http://gamov.io/posts/2015/12/29/my-year-at-hazelcast-in-review.html" rel="alternate" type="text/html" />
 <author>
@@ -5266,7 +5262,7 @@ Looking forward to 2016 — Happy New Year &lt;span class=&quot;icon&quot;&g
 <entry>
 <id>http://gamov.io/posts/2015/11/02/hazelcast-for-mongodb-developers.html</id>
 <title>Hazelcast for MongoDB Developers</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2015-11-02T16:31:53-06:00</published>
 <link href="http://gamov.io/posts/2015/11/02/hazelcast-for-mongodb-developers.html" rel="alternate" type="text/html" />
 <author>
@@ -5581,7 +5577,7 @@ If I didn’t, please, ask me in the comments below.&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2015/01/27/ground-up-introduction-to-in-memory-data.html</id>
 <title>Ground-up Introduction To In-Memory Data</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2015-01-27T22:00:00+00:00</published>
 <link href="http://gamov.io/posts/2015/01/27/ground-up-introduction-to-in-memory-data.html" rel="alternate" type="text/html" />
 <author>
@@ -5691,7 +5687,7 @@ This April, &lt;a href=&quot;http://codepalousa.com/blog/2015/code-palousa-2015-
 <entry>
 <id>http://gamov.io/posts/2014/12/13/goodbye-farata-hello-hazelcast.html</id>
 <title>Goodbye, Farata. Hello, Hazelcast!</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2014-12-13T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2014/12/13/goodbye-farata-hello-hazelcast.html" rel="alternate" type="text/html" />
 <author>
@@ -5792,7 +5788,7 @@ Ultimately, I’ll be doing the pretty much same sorts of things I’ve been doi
 <entry>
 <id>http://gamov.io/posts/2013/07/17/getting-started-with-nashorn.html</id>
 <title>Getting Started With Nashorn</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2013-07-17T23:00:00+00:00</published>
 <link href="http://gamov.io/posts/2013/07/17/getting-started-with-nashorn.html" rel="alternate" type="text/html" />
 <author>
@@ -5960,7 +5956,7 @@ As you learned from my previous post, I’m going to talk about Nashorn - JavaSc
 <entry>
 <id>http://gamov.io/posts/2013/07/09/im-speaking-at-javaone.html</id>
 <title>I&#8217;m speaking at JavaOne 2013</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2013-07-09T01:00:00+00:00</published>
 <link href="http://gamov.io/posts/2013/07/09/im-speaking-at-javaone.html" rel="alternate" type="text/html" />
 <author>
@@ -6012,7 +6008,7 @@ Keep in touch for updates by following me on &lt;a href=&quot;http://twitter.com
 <entry>
 <id>http://gamov.io/posts/2013/02/05/prouctive-enterprise-web-dev-with-cdb.html</id>
 <title>Productive Enterprise Web Development with ExtJS and Clear Data Builder</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2013-02-05T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2013/02/05/prouctive-enterprise-web-dev-with-cdb.html" rel="alternate" type="text/html" />
 <author>
@@ -6725,7 +6721,7 @@ public class PersonServiceImpl extends _PersonServiceImpl {
 <entry>
 <id>http://gamov.io/posts/2013/01/19/set-jdk-on-osx.html</id>
 <title>Set JDK on OSX</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2013-01-19T14:00:00+00:00</published>
 <link href="http://gamov.io/posts/2013/01/19/set-jdk-on-osx.html" rel="alternate" type="text/html" />
 <author>
@@ -6927,7 +6923,7 @@ alias setjdk19=&amp;apos;export JAVA_HOME=$(/usr/libexec/java_home -v 9)&amp;apo
 <entry>
 <id>http://gamov.io/posts/2012/07/26/websockets-for-java-developers.html</id>
 <title>WebSockets for Java Developers. Princeton JUG talk slides</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2012-07-26T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2012/07/26/websockets-for-java-developers.html" rel="alternate" type="text/html" />
 <summary>
@@ -6963,7 +6959,7 @@ today.&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2012/05/21/alfred-showhide-desktop-icons-on-mac-os.html</id>
 <title>Alfred Extension: Show/Hide desktop icons on Mac OS X</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2012-05-21T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2012/05/21/alfred-showhide-desktop-icons-on-mac-os.html" rel="alternate" type="text/html" />
 <category term="alfred"></category>
@@ -6992,7 +6988,7 @@ Cheers&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2012/05/16/webjars-for-assets-management-in-your.html</id>
 <title>WebJars for assets management in your project</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2012-05-16T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2012/05/16/webjars-for-assets-management-in-your.html" rel="alternate" type="text/html" />
 <category term="java"></category>
@@ -7017,7 +7013,7 @@ But in most common situations, you don’t have lot of options for deployment yo
 <entry>
 <id>http://gamov.io/posts/2012/01/28/how-to-download-videos-from-infoq-for.html</id>
 <title>How to download videos from InfoQ for offline viewing</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2012-01-28T06:15:00+00:00</published>
 <link href="http://gamov.io/posts/2012/01/28/how-to-download-videos-from-infoq-for.html" rel="alternate" type="text/html" />
 <author>
@@ -7065,7 +7061,7 @@ However, I found very elegant solution how to do that. I did it on my MacOS X wi
 <entry>
 <id>http://gamov.io/posts/2012/01/10/rapid-automation-for-flexjavablazeds.html</id>
 <title>Rapid automation for Flex/Java/BlazeDS projects</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2012-01-10T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2012/01/10/rapid-automation-for-flexjavablazeds.html" rel="alternate" type="text/html" />
 <author>
@@ -7085,7 +7081,7 @@ Feel free to comment!&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2011/09/11/adobe-max.html</id>
 <title>Adobe MAX</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2011-09-11T23:07:00+00:00</published>
 <link href="http://gamov.io/posts/2011/09/11/adobe-max.html" rel="alternate" type="text/html" />
 <author>
@@ -7119,7 +7115,7 @@ Creative Cloud - another big thing was announced. Sharing and collaboration b/w 
 <entry>
 <id>http://gamov.io/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html</id>
 <title>Eclipse: java.lang.UnsatisfiedLinkError: Cannot load 32-bit SWT libraries on 64-bit JVM</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2011-07-26T04:22:00+00:00</published>
 <link href="http://gamov.io/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html" rel="alternate" type="text/html" />
 <author>
@@ -7260,7 +7256,7 @@ to Eclipse→Preferences→Java→Installed JRE and add default JVM argument *&l
 <entry>
 <id>http://gamov.io/posts/2011/07/10/building-and-testing-with-gradle-my.html</id>
 <title>Building and Testing with Gradle - My Book Review</title>
-<updated>2018-11-28T19:00:15-05:00</updated>
+<updated>2018-11-28T19:02:36-05:00</updated>
 <published>2011-07-10T20:57:00+00:00</published>
 <link href="http://gamov.io/posts/2011/07/10/building-and-testing-with-gradle-my.html" rel="alternate" type="text/html" />
 <author>
