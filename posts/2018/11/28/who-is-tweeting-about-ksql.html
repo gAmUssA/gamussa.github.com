@@ -1,0 +1,369 @@
+<!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><html class="no-js" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Who is tweeting about hashtag KSQL? | gamov.io</title><meta name="author" content="Viktor Gamov"><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@asciidoctor"><meta name="twitter:url" content="http://gamov.io/posts/2018/11/28/who-is-tweeting-about-ksql.html"><meta name="twitter:title" content="Who is tweeting about hashtag KSQL?"><meta name="twitter:description" content="Table of Contents
+Prerequisites
+Demo Playbook
+Starting the containers
+KSQL Part
+Appendix
+How to test kafka-connect-twitter connector with local CP installation
+find java in debian
+TL;DR
+Another day, another post.
+This time it&#8217;s another playbook..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html"><span class="icon"><i class="fa fa-th-large"></i></span>&nbspBlog</a></li><li class="divider"></li><li><a href="http://github.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-github"></i></span>&nbspGithub</a></li><li class="divider"></li><li><a href="http://twitter.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-twitter"></i></span>&nbspTwitter</a></li><li class="divider"></li><li><a href="https://www.youtube.com/playlist?list=PLaJqps0DAycqu2OV6sjl_Dm_VymB6KDV_" target="_blank"><span class="icon"><i class="fa fa-youtube"></i></span>&nbspMy Talks</a></li><li class="divider"></li><li><a href="https://speakerdeck.com/vikgamov" target="_blank"><span class="icon"><i class="fa fa-slideshare"></i></span>&nbspMy Slides</a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://gamov.io">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h2 class="header"><a href="/posts/2018/11/28/who-is-tweeting-about-ksql.html">Who is tweeting about hashtag KSQL?</a></h2><h5 class="subheader">Written by&nbsp <a href="#">Viktor Gamov</a>&nbsp- <time class="pubdate" datetime="2018-11-28T18:00:00+00:00">Wednesday, November 28, 2018</time></h5><div class="row"><div class="large-12 columns text-left"><div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#demo-playbook">Demo Playbook</a>
+<ul class="sectlevel2">
+<li><a href="#starting-the-containers">Starting the containers</a></li>
+<li><a href="#ksql-part">KSQL Part</a></li>
+</ul>
+</li>
+<li><a href="#appendix">Appendix</a>
+<ul class="sectlevel2">
+<li><a href="#how-to-test-code-kafka-connect-twitter-code-connector-with-local-cp-installation">How to test <code>kafka-connect-twitter</code> connector with local CP installation</a></li>
+</ul>
+</li>
+<li><a href="#find-java-in-debian">find java in debian</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<div class="title">TL;DR</div>
+<p>Another day, another post.
+This time it&#8217;s another <em>playbook</em> for my <a href="http://DataSciCon.tech" class="bare">http://DataSciCon.tech</a> talk «Who&#8217;s tweeting about <code>#datascicon</code>» on November 30th 2018 <sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnote_1" title="View footnote.">1</a>]</sup>
+A full source code published in <code>confluetninc/demo-scene</code> repository <sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnote_2" title="View footnote.">2</a>]</sup></p>
+</div>
+<table class="tableblock frame-all grid-all" style="width: 70%;">
+<caption class="title">Table 1. Revisions history</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Version</th>
+<th class="tableblock halign-left valign-top">Date</th>
+<th class="tableblock halign-left valign-top">Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>v1.0</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11/28/2018</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Initial revision</p></td>
+</tr>
+</tbody>
+</table>
+<!-- toc disabled -->
+</div>
+</div>
+<div class="sect1">
+<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Docker</p>
+</li>
+<li>
+<p>Get example from GitHub</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If you will follow steps below you should checkout only directory that has source code relevant to this post.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">mkdir ~/temp/demo-scene
+cd ~/temp/demo-scene
+git init .
+git remote add origin -f https://github.com/confluentinc/demo-scene/
+git config core.sparsecheckout true
+echo "twitter-streams/*" &gt;&gt; .git/info/sparse-checkout
+git pull --depth=2 origin master
+cd twitter-streams
+ls -lh</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and you should see something like this</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="/images/ls-lh-twitter-streams.png" alt="ls lh twitter streams" width="75%">
+</div>
+<div class="title">Figure 1. The output of <code>ls -lh twitter-streams</code></div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="demo-playbook"><a class="anchor" href="#demo-playbook"></a>Demo Playbook</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="starting-the-containers"><a class="anchor" href="#starting-the-containers"></a>Starting the containers</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-sh" data-lang="sh">./scripts/00-start.sh</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ksql-part"><a class="anchor" href="#ksql-part"></a>KSQL Part</h3>
+<div class="paragraph">
+<p>Let&#8217;s start with few simple commands.</p>
+</div>
+<div class="listingblock">
+<div class="title">Connect to remote KSQL server with KSQL cli</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">ksql http://ksql-demo:9098</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Taking a quick look around</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-sh" data-lang="sh">SET 'auto.offset.reset' = 'earliest'; <i class="conum" data-value="1"></i><b>(1)</b>
+
+&gt; show topics;
+&gt; print 'twitter_json_01' from beginning;
+
+# ask people to tweet to see how messages are floating
+&gt; select * from twitter_json_01 limit 2;</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Configure KSQL consumer offsets</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>make structured stream</p>
+</div>
+<div class="listingblock">
+<div class="title">Create Structured Stream</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-sql" data-lang="sql">CREATE STREAM twitter_raw ( \
+   CreatedAt bigint,Id bigint, Text VARCHAR, SOURCE VARCHAR, Truncated VARCHAR, InReplyToStatusId VARCHAR, InReplyToUserId VARCHAR, InReplyToScreenName VARCHAR, GeoLocation VARCHAR, Place VARCHAR, Favorited VARCHAR, Retweeted VARCHAR, FavoriteCount VARCHAR, User VARCHAR, Retweet VARCHAR, Contributors VARCHAR, RetweetCount VARCHAR, RetweetedByMe VARCHAR, CurrentUserRetweetId VARCHAR, PossiblySensitive VARCHAR, Lang VARCHAR, WithheldInCountries VARCHAR, HashtagEntities VARCHAR, UserMentionEntities VARCHAR, MediaEntities VARCHAR, SymbolEntities VARCHAR, URLEntities VARCHAR) \
+WITH (KAFKA_TOPIC='twitter_json_01',VALUE_FORMAT='JSON');</code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><code>select * from twitter_raw limit 2;</code></p>
+</div>
+</blockquote>
+</div>
+<div class="listingblock">
+<div class="title">All tweets from DataSciCon</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-sql" data-lang="sql">CREATE STREAM twitter_datascicon AS \
+    SELECT TIMESTAMPTOSTRING(CreatedAt, 'yyyy-MM-dd HH:mm:ss.SSS') AS CreatedAt,\
+    EXTRACTJSONFIELD(user,'$.Name') AS user_Name,\
+    EXTRACTJSONFIELD(user,'$.ScreenName') AS user_ScreenName,\
+    EXTRACTJSONFIELD(user,'$.Location') AS user_Location,\
+    EXTRACTJSONFIELD(user,'$.Description') AS  user_Description,\
+    Text, hashtagentities, lang\
+    FROM twitter_raw WHERE LCASE(hashtagentities) LIKE '%datascicon%';</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">All tweets from DataSciCon about Kafka and KSQL</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-sql" data-lang="sql">CREATE STREAM twitter_datascicon_kafka_ksql AS\
+    SELECT TIMESTAMPTOSTRING(CreatedAt, 'yyyy-MM-dd HH:mm:ss.SSS') AS CreatedAt,\
+    EXTRACTJSONFIELD(user,'$.Name') AS user_Name,\
+    EXTRACTJSONFIELD(user,'$.ScreenName') AS user_ScreenName,\
+    EXTRACTJSONFIELD(user,'$.Location') AS user_Location,\
+    EXTRACTJSONFIELD(user,'$.Description') AS  user_Description,\
+    Text,hashtagentities,lang\
+    FROM twitter_raw WHERE LCASE(hashtagentities) LIKE '%datascicon%' AND (LCASE(hashtagentities) LIKE '%ksql%' OR LCASE(hashtagentities) LIKE '%apachekafka%');</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-sql" data-lang="sql">CREATE STREAM twitter AS \
+SELECT TIMESTAMPTOSTRING(CreatedAt, 'yyyy-MM-dd HH:mm:ss.SSS') AS CreatedAt,\
+EXTRACTJSONFIELD(user,'$.Name') AS user_Name, \
+EXTRACTJSONFIELD(user,'$.ScreenName') AS user_ScreenName, \
+EXTRACTJSONFIELD(user,'$.Location') AS user_Location, \
+EXTRACTJSONFIELD(user,'$.Description') AS  user_Description, \
+Text,hashtagentities,lang \
+FROM twitter_raw ;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-sql" data-lang="sql">SELECT USER_NAME, TEXT FROM TWITTER WHERE TEXT LIKE '%ksql%';</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-sql" data-lang="sql">CREATE TABLE user_tweet_count AS \
+  SELECT user_screenname, count(*) AS  tweet_count \
+  FROM twitter WINDOW TUMBLING (SIZE 1 HOUR) \
+  GROUP BY user_screenname ;
+
+# ---------------------
+
+CREATE TABLE USER_TWEET_COUNT_DISPLAY AS\
+    SELECT TIMESTAMPTOSTRING(ROWTIME, 'yyyy-MM-dd HH:mm:ss.SSS') AS WINDOW_START,\
+    USER_SCREENNAME,\
+    TWEET_COUNT FROM user_tweet_count;
+
+create table top_5_datascicon as\
+    SELECT WINDOW_START, USER_SCREENNAME, TWEET_COUNT
+    FROM USER_TWEET_COUNT_DISPLAY
+    WHERE TWEET_COUNT&gt; 5;
+
+select USER_SCREENNAME, TWEET_COUNT from top_5_datascicon;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">SHOW STREAMS;
+DESCRIBE twitter;
+DESCRIBE extended twitter;
+EXPLAIN twitter;</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="appendix"><a class="anchor" href="#appendix"></a>Appendix</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="how-to-test-code-kafka-connect-twitter-code-connector-with-local-cp-installation"><a class="anchor" href="#how-to-test-code-kafka-connect-twitter-code-connector-with-local-cp-installation"></a>How to test <code>kafka-connect-twitter</code> connector with local CP installation</h3>
+<div class="sect3">
+<h4 id="prerequisites-2"><a class="anchor" href="#prerequisites-2"></a>Prerequisites</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Confluent Platform Enterprise 5.x <sup class="footnote">[<a id="_footnoteref_3" class="footnote" href="#_footnote_3" title="View footnote.">3</a>]</sup></p>
+<div class="ulist">
+<ul>
+<li>
+<p>download it</p>
+</li>
+<li>
+<p>unizip to any folder</p>
+</li>
+<li>
+<p>add folder to <code>PATH</code> variable</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-shell" data-lang="shell">export CONFLUENT_PLATFORM_VERSION=5.0.1
+export CONFLUENT_HOME=~/projects/confluent/confluent-ent/$CONFLUENT_PLATFORM_VERSION
+export PATH=$CONFLUENT_HOME/bin:$PATH
+alias cnfl="confluent" <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>a neat little alias that can save few symbols to type</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="install-and-run-the-connector"><a class="anchor" href="#install-and-run-the-connector"></a>Install and Run the connector</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">confluent-hub install jcustenborder/kafka-connect-twitter:0.2.32        <i class="conum" data-value="1"></i><b>(1)</b>
+confluent start connect                                                 <i class="conum" data-value="2"></i><b>(2)</b>
+confluent config twitter_source -d connect_twitter.json                 <i class="conum" data-value="3"></i><b>(3)</b>
+confluent status connectors                                             <i class="conum" data-value="4"></i><b>(4)</b>
+confluent consume twitter_json_01 --max-messages=5 --from-beginning     <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Install the connector from Confluent Hub</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Start Connect Runtime</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Push the connector config</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Display status of the connector</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Grab few messages from source topic</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="find-java-in-debian"><a class="anchor" href="#find-java-in-debian"></a>find java in debian</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")</code></p>
+</div>
+<hr>
+</div>
+</div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnote_1">
+<a href="#_footnoteref_1">1</a>. <a href="http://www.datascicon.tech" class="bare">http://www.datascicon.tech</a>
+</div>
+<div class="footnote" id="_footnote_2">
+<a href="#_footnoteref_2">2</a>. <a href="https://github.com/confluentinc/demo-scene/tree/master/streams-movie-demo" class="bare">https://github.com/confluentinc/demo-scene/tree/master/streams-movie-demo</a>
+</div>
+<div class="footnote" id="_footnote_3">
+<a href="#_footnoteref_3">3</a>. <a href="https://www.confluent.io/download/" class="bare">https://www.confluent.io/download/</a>
+</div>
+</div></div></div><footer class="entry-footer"><div class="tags"><span class="title">tags: </span></div></footer><div id="comments">
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+            var disqus_shortname = 'nextjavaheadbraincom';
+            var disqus_url = "http://gamov.io/posts/2018/11/28/who-is-tweeting-about-ksql.html";
+            var disqus_developer = null;
+            var disqus_identifier = null;
+            (function() {
+              var dsq = document.createElement("script"); dsq.type = "text/javascript"; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(dsq);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=nextjavaheadbraincom">comments powered by Disqus.</a></noscript>
+          </div></article></div></div></body></html><div id="copyright"><div class="row full-width"><div class="large-4 columns"><p>© Viktor Gamov 2018—2007</p></div><div class="large-8 columns"><ul class="inline-list right"><li><a href="https://github.com/gAmUssA"></a>Github&nbsp<span class="icon"><i class="fa fa-github"></i></span></li><li><a href="http://twitter.com/gAmUssA"></a>Twitter&nbsp<span class="icon"><i class="fa fa-twitter"></i></span></li><li><a href="#"></a></li></ul></div></div></div><script>document.write('<script src=' + ('__proto__' in {} ? '/javascripts/vendor/zepto' : '/javascripts/vendor/jquery') + '.js><\/script>')</script><script src="/javascripts/foundation/foundation.js"><script src="/javascripts/foundation/foundation.topbar.js"></script></script><script>$(document).foundation();</script><script src="/javascripts/vendor/highlight.min.js"></script><script>$(hljs.initHighlighting());</script><script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount','UA-40354726-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+ var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!--End Footer-->

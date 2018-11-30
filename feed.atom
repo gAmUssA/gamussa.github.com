@@ -5,13 +5,447 @@
 <author>
 <name>Viktor Gamov</name>
 </author>
-<updated>2018-11-28T19:02:44-05:00</updated>
+<updated>2018-11-30T12:47:57-05:00</updated>
 <link href="http://gamov.io/feed.atom" rel="self" type="application/atom+xml" />
 <link href="http://gamov.io/" rel="alternate" type="text/html" />
 <entry>
+<id>http://gamov.io/posts/2018/11/28/who-is-tweeting-about-ksql.html</id>
+<title>Who is tweeting about hashtag KSQL?</title>
+<updated>2018-11-30T12:47:57-05:00</updated>
+<published>2018-11-28T18:00:00+00:00</published>
+<link href="http://gamov.io/posts/2018/11/28/who-is-tweeting-about-ksql.html" rel="alternate" type="text/html" />
+<author>
+<name>Viktor Gamov</name>
+</author>
+<summary>
+Table of Contents
+
+Prerequisites
+Demo Playbook
+
+Starting the containers
+KSQL Part
+
+
+Appendix
+
+How to test kafka-connect-twitter connector with local CP installation
+
+
+find java in debian
+
+
+
+
+
+TL;DR
+Another day, another post.
+This time it&#8217;s another playbook for my http://DataSciCon.tech talk «Who&#8217;s tweeting about #datascicon» on November 30th 2018 [1]
+A full source code published in confluetninc/demo-scene repository [2]
+
+
+Table 1. Revisions history
+
+
+
+
+
+
+
+Version
+Date
+Comments
+
+
+
+
+v1.0
+11/28/2018
+Initial revision
+
+
+
+
+
+
+
+Prerequisites
+
+
+
+
+Docker
+
+
+Get example from GitHub
+
+
+
+If you will follow steps below you should checkout only directory that has source code relevant to this post.
+
+
+mkdir ~/temp/demo-scene
+cd ~/temp/demo-scene
+git init .
+git remote add origin -f https://github.com/confluentinc/demo-scene/
+git config core.sparsecheckout true
+echo "twitter-streams/*" &gt;&gt; .git/info/sparse-checkout
+git pull --depth=2 origin master
+cd twitter-streams
+ls -lh
+
+
+
+and you should see something like this
+
+
+
+
+
+Figure 1. The...
+</summary>
+<content type="html">
+&lt;div id=&quot;toc&quot; class=&quot;toc&quot;&gt;
+&lt;div id=&quot;toctitle&quot;&gt;Table of Contents&lt;/div&gt;
+&lt;ul class=&quot;sectlevel1&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#prerequisites&quot;&gt;Prerequisites&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#demo-playbook&quot;&gt;Demo Playbook&lt;/a&gt;
+&lt;ul class=&quot;sectlevel2&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#starting-the-containers&quot;&gt;Starting the containers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#ksql-part&quot;&gt;KSQL Part&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#appendix&quot;&gt;Appendix&lt;/a&gt;
+&lt;ul class=&quot;sectlevel2&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#how-to-test-code-kafka-connect-twitter-code-connector-with-local-cp-installation&quot;&gt;How to test &lt;code&gt;kafka-connect-twitter&lt;/code&gt; connector with local CP installation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#find-java-in-debian&quot;&gt;find java in debian&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&quot;preamble&quot;&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;TL;DR&lt;/div&gt;
+&lt;p&gt;Another day, another post.
+This time it’s another &lt;em&gt;playbook&lt;/em&gt; for my &lt;a href=&quot;http://DataSciCon.tech&quot; class=&quot;bare&quot;&gt;http://DataSciCon.tech&lt;/a&gt; talk «Who’s tweeting about &lt;code&gt;#datascicon&lt;/code&gt;» on November 30th 2018 &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_1&quot; class=&quot;footnote&quot; href=&quot;#_footnote_1&quot; title=&quot;View footnote.&quot;&gt;1&lt;/a&gt;]&lt;/sup&gt;
+A full source code published in &lt;code&gt;confluetninc/demo-scene&lt;/code&gt; repository &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_2&quot; class=&quot;footnote&quot; href=&quot;#_footnote_2&quot; title=&quot;View footnote.&quot;&gt;2&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;table class=&quot;tableblock frame-all grid-all&quot; style=&quot;width: 70%;&quot;&gt;
+&lt;caption class=&quot;title&quot;&gt;Table 1. Revisions history&lt;/caption&gt;
+&lt;colgroup&gt;
+&lt;col style=&quot;width: 33.3333%;&quot; /&gt;
+&lt;col style=&quot;width: 33.3333%;&quot; /&gt;
+&lt;col style=&quot;width: 33.3334%;&quot; /&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th class=&quot;tableblock halign-left valign-top&quot;&gt;Version&lt;/th&gt;
+&lt;th class=&quot;tableblock halign-left valign-top&quot;&gt;Date&lt;/th&gt;
+&lt;th class=&quot;tableblock halign-left valign-top&quot;&gt;Comments&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;&lt;strong&gt;v1.0&lt;/strong&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;11/28/2018&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Initial revision&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;!-- toc disabled --&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;prerequisites&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#prerequisites&quot;&gt;&lt;/a&gt;Prerequisites&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Docker&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Get example from GitHub&lt;/p&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;If you will follow steps below you should checkout only directory that has source code relevant to this post.&lt;/p&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlight nowrap&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mkdir ~/temp/demo-scene
+cd ~/temp/demo-scene
+git init .
+git remote add origin -f https://github.com/confluentinc/demo-scene/
+git config core.sparsecheckout true
+echo &amp;quot;twitter-streams/*&amp;quot; &amp;gt;&amp;gt; .git/info/sparse-checkout
+git pull --depth=2 origin master
+cd twitter-streams
+ls -lh&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;and you should see something like this&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;http://gamov.io/images/ls-lh-twitter-streams.png&quot; alt=&quot;ls lh twitter streams&quot; width=&quot;75%&quot; /&gt;
+&lt;/div&gt;
+&lt;div class=&quot;title&quot;&gt;Figure 1. The output of &lt;code&gt;ls -lh twitter-streams&lt;/code&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;demo-playbook&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#demo-playbook&quot;&gt;&lt;/a&gt;Demo Playbook&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;starting-the-containers&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#starting-the-containers&quot;&gt;&lt;/a&gt;Starting the containers&lt;/h3&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlight nowrap&quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;./scripts/00-start.sh&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;ksql-part&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#ksql-part&quot;&gt;&lt;/a&gt;KSQL Part&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Let’s start with few simple commands.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;Connect to remote KSQL server with KSQL cli&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlight nowrap&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;ksql http://ksql-demo:9098&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;Taking a quick look around&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlight nowrap&quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;SET &amp;apos;auto.offset.reset&amp;apos; = &amp;apos;earliest&amp;apos;; &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+
+&amp;gt; show topics;
+&amp;gt; print &amp;apos;twitter_json_01&amp;apos; from beginning;
+
+# ask people to tweet to see how messages are floating
+&amp;gt; select * from twitter_json_01 limit 2;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Configure KSQL consumer offsets&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;make structured stream&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;Create Structured Stream&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlight nowrap&quot;&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;CREATE STREAM twitter_raw ( \
+   CreatedAt bigint,Id bigint, Text VARCHAR, SOURCE VARCHAR, Truncated VARCHAR, InReplyToStatusId VARCHAR, InReplyToUserId VARCHAR, InReplyToScreenName VARCHAR, GeoLocation VARCHAR, Place VARCHAR, Favorited VARCHAR, Retweeted VARCHAR, FavoriteCount VARCHAR, User VARCHAR, Retweet VARCHAR, Contributors VARCHAR, RetweetCount VARCHAR, RetweetedByMe VARCHAR, CurrentUserRetweetId VARCHAR, PossiblySensitive VARCHAR, Lang VARCHAR, WithheldInCountries VARCHAR, HashtagEntities VARCHAR, UserMentionEntities VARCHAR, MediaEntities VARCHAR, SymbolEntities VARCHAR, URLEntities VARCHAR) \
+WITH (KAFKA_TOPIC=&amp;apos;twitter_json_01&amp;apos;,VALUE_FORMAT=&amp;apos;JSON&amp;apos;);&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;quoteblock&quot;&gt;
+&lt;blockquote&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&lt;code&gt;select * from twitter_raw limit 2;&lt;/code&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;All tweets from DataSciCon&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlight nowrap&quot;&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;CREATE STREAM twitter_datascicon AS \
+    SELECT TIMESTAMPTOSTRING(CreatedAt, &amp;apos;yyyy-MM-dd HH:mm:ss.SSS&amp;apos;) AS CreatedAt,\
+    EXTRACTJSONFIELD(user,&amp;apos;$.Name&amp;apos;) AS user_Name,\
+    EXTRACTJSONFIELD(user,&amp;apos;$.ScreenName&amp;apos;) AS user_ScreenName,\
+    EXTRACTJSONFIELD(user,&amp;apos;$.Location&amp;apos;) AS user_Location,\
+    EXTRACTJSONFIELD(user,&amp;apos;$.Description&amp;apos;) AS  user_Description,\
+    Text, hashtagentities, lang\
+    FROM twitter_raw WHERE LCASE(hashtagentities) LIKE &amp;apos;%datascicon%&amp;apos;;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;All tweets from DataSciCon about Kafka and KSQL&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlight nowrap&quot;&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;CREATE STREAM twitter_datascicon_kafka_ksql AS\
+    SELECT TIMESTAMPTOSTRING(CreatedAt, &amp;apos;yyyy-MM-dd HH:mm:ss.SSS&amp;apos;) AS CreatedAt,\
+    EXTRACTJSONFIELD(user,&amp;apos;$.Name&amp;apos;) AS user_Name,\
+    EXTRACTJSONFIELD(user,&amp;apos;$.ScreenName&amp;apos;) AS user_ScreenName,\
+    EXTRACTJSONFIELD(user,&amp;apos;$.Location&amp;apos;) AS user_Location,\
+    EXTRACTJSONFIELD(user,&amp;apos;$.Description&amp;apos;) AS  user_Description,\
+    Text,hashtagentities,lang\
+    FROM twitter_raw WHERE LCASE(hashtagentities) LIKE &amp;apos;%datascicon%&amp;apos; AND (LCASE(hashtagentities) LIKE &amp;apos;%ksql%&amp;apos; OR LCASE(hashtagentities) LIKE &amp;apos;%apachekafka%&amp;apos;);&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlight nowrap&quot;&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;CREATE STREAM twitter AS \
+SELECT TIMESTAMPTOSTRING(CreatedAt, &amp;apos;yyyy-MM-dd HH:mm:ss.SSS&amp;apos;) AS CreatedAt,\
+EXTRACTJSONFIELD(user,&amp;apos;$.Name&amp;apos;) AS user_Name, \
+EXTRACTJSONFIELD(user,&amp;apos;$.ScreenName&amp;apos;) AS user_ScreenName, \
+EXTRACTJSONFIELD(user,&amp;apos;$.Location&amp;apos;) AS user_Location, \
+EXTRACTJSONFIELD(user,&amp;apos;$.Description&amp;apos;) AS  user_Description, \
+Text,hashtagentities,lang \
+FROM twitter_raw ;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlight nowrap&quot;&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;SELECT USER_NAME, TEXT FROM TWITTER WHERE TEXT LIKE &amp;apos;%ksql%&amp;apos;;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlight nowrap&quot;&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;CREATE TABLE user_tweet_count AS \
+  SELECT user_screenname, count(*) AS  tweet_count \
+  FROM twitter WINDOW TUMBLING (SIZE 1 HOUR) \
+  GROUP BY user_screenname ;
+
+# ---------------------
+
+CREATE TABLE USER_TWEET_COUNT_DISPLAY AS\
+    SELECT TIMESTAMPTOSTRING(ROWTIME, &amp;apos;yyyy-MM-dd HH:mm:ss.SSS&amp;apos;) AS WINDOW_START,\
+    USER_SCREENNAME,\
+    TWEET_COUNT FROM user_tweet_count;
+
+create table top_5_datascicon as\
+    SELECT WINDOW_START, USER_SCREENNAME, TWEET_COUNT
+    FROM USER_TWEET_COUNT_DISPLAY
+    WHERE TWEET_COUNT&amp;gt; 5;
+
+select USER_SCREENNAME, TWEET_COUNT from top_5_datascicon;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;nowrap&quot;&gt;SHOW STREAMS;
+DESCRIBE twitter;
+DESCRIBE extended twitter;
+EXPLAIN twitter;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;appendix&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#appendix&quot;&gt;&lt;/a&gt;Appendix&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;how-to-test-code-kafka-connect-twitter-code-connector-with-local-cp-installation&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#how-to-test-code-kafka-connect-twitter-code-connector-with-local-cp-installation&quot;&gt;&lt;/a&gt;How to test &lt;code&gt;kafka-connect-twitter&lt;/code&gt; connector with local CP installation&lt;/h3&gt;
+&lt;div class=&quot;sect3&quot;&gt;
+&lt;h4 id=&quot;prerequisites-2&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#prerequisites-2&quot;&gt;&lt;/a&gt;Prerequisites&lt;/h4&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Confluent Platform Enterprise 5.x &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_3&quot; class=&quot;footnote&quot; href=&quot;#_footnote_3&quot; title=&quot;View footnote.&quot;&gt;3&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;download it&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;unizip to any folder&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;add folder to &lt;code&gt;PATH&lt;/code&gt; variable&lt;/p&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlight nowrap&quot;&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;export CONFLUENT_PLATFORM_VERSION=5.0.1
+export CONFLUENT_HOME=~/projects/confluent/confluent-ent/$CONFLUENT_PLATFORM_VERSION
+export PATH=$CONFLUENT_HOME/bin:$PATH
+alias cnfl=&amp;quot;confluent&amp;quot; &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;a neat little alias that can save few symbols to type&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect3&quot;&gt;
+&lt;h4 id=&quot;install-and-run-the-connector&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#install-and-run-the-connector&quot;&gt;&lt;/a&gt;Install and Run the connector&lt;/h4&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlight nowrap&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;confluent-hub install jcustenborder/kafka-connect-twitter:0.2.32        &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+confluent start connect                                                 &lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
+confluent config twitter_source -d connect_twitter.json                 &lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;
+confluent status connectors                                             &lt;i class=&quot;conum&quot; data-value=&quot;4&quot;&gt;&lt;/i&gt;&lt;b&gt;(4)&lt;/b&gt;
+confluent consume twitter_json_01 --max-messages=5 --from-beginning     &lt;i class=&quot;conum&quot; data-value=&quot;5&quot;&gt;&lt;/i&gt;&lt;b&gt;(5)&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Install the connector from Confluent Hub&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Start Connect Runtime&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Push the connector config&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;4&quot;&gt;&lt;/i&gt;&lt;b&gt;4&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Display status of the connector&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;5&quot;&gt;&lt;/i&gt;&lt;b&gt;5&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Grab few messages from source topic&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;find-java-in-debian&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#find-java-in-debian&quot;&gt;&lt;/a&gt;find java in debian&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;&lt;code&gt;JAVA_HOME=$(readlink -f /usr/bin/java | sed &amp;quot;s:bin/java::&amp;quot;)&lt;/code&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;hr /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;footnotes&quot;&gt;
+&lt;hr /&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnote_1&quot;&gt;
+&lt;a href=&quot;#_footnoteref_1&quot;&gt;1&lt;/a&gt;. &lt;a href=&quot;http://www.datascicon.tech&quot; class=&quot;bare&quot;&gt;http://www.datascicon.tech&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnote_2&quot;&gt;
+&lt;a href=&quot;#_footnoteref_2&quot;&gt;2&lt;/a&gt;. &lt;a href=&quot;https://github.com/confluentinc/demo-scene/tree/master/streams-movie-demo&quot; class=&quot;bare&quot;&gt;https://github.com/confluentinc/demo-scene/tree/master/streams-movie-demo&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnote_3&quot;&gt;
+&lt;a href=&quot;#_footnoteref_3&quot;&gt;3&lt;/a&gt;. &lt;a href=&quot;https://www.confluent.io/download/&quot; class=&quot;bare&quot;&gt;https://www.confluent.io/download/&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content>
+</entry>
+<entry>
 <id>http://gamov.io/posts/2018/11/28/tips-and-tricks-that-i-use-in-my-demos-and-presentation-with-docker.html</id>
 <title>Tips And Tricks That I use in my demos and presentation with Docker</title>
-<updated>2018-11-28T19:02:44-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2018-11-28T18:00:00+00:00</published>
 <link href="http://gamov.io/posts/2018/11/28/tips-and-tricks-that-i-use-in-my-demos-and-presentation-with-docker.html" rel="alternate" type="text/html" />
 <author>
@@ -215,7 +649,7 @@ Usual suspects here are maven or gradle directory jar’s directory and  Docker 
 <entry>
 <id>http://gamov.io/posts/2018/11/20/streaming-moview-ratings-with-kafka-streams-and-ksql.html</id>
 <title>Streaming Movies Ratings with Kafka Streams and KSQL</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2018-11-20T18:00:00+00:00</published>
 <link href="http://gamov.io/posts/2018/11/20/streaming-moview-ratings-with-kafka-streams-and-ksql.html" rel="alternate" type="text/html" />
 <author>
@@ -699,7 +1133,7 @@ select TITLE, RATING  from RATED_MOVIES where MOVIE_ID=362; &lt;i class=&quot;co
 <entry>
 <id>http://gamov.io/posts/2017/09/20/stream-v-batch.html</id>
 <title>Divide, Distribute and Conquer — Stream v. Batch @ Philly JUG</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2017-09-20T16:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/09/20/stream-v-batch.html" rel="alternate" type="text/html" />
 <author>
@@ -896,7 +1330,7 @@ In this presentation I talked about how developers and data engineers are changi
 <entry>
 <id>http://gamov.io/posts/2017/09/07/speaking-at-javaone-2017.html</id>
 <title>I&#8217;m Speaking At JavaOne 2017</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2017-09-07T20:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/09/07/speaking-at-javaone-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -1032,7 +1466,7 @@ But there is one you don’t want to miss — &lt;a href=&quot;https://www.event
 <entry>
 <id>http://gamov.io/posts/2017/07/21/goodbye-hazelcast.html</id>
 <title>Goodbye, Hazelcast!</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2017-07-21T17:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/07/21/goodbye-hazelcast.html" rel="alternate" type="text/html" />
 <author>
@@ -1116,7 +1550,7 @@ Thank you for being a part of it!&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2017/07/20/testcontainers-ajug.html</id>
 <title>Testing containers with Testcontainers @ Atlanta JUG</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2017-07-20T08:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/07/20/testcontainers-ajug.html" rel="alternate" type="text/html" />
 <author>
@@ -1349,7 +1783,7 @@ In this presentation I talked about how Docker can help with seamless transition
 <entry>
 <id>http://gamov.io/posts/2017/06/15/cfsummit-2017.html</id>
 <title>Cloud Foundry Summit Silicon Valley 2017</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2017-06-15T14:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/06/15/cfsummit-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -1502,7 +1936,7 @@ Distribute Caching for your next Node.js project webinar recording
 <entry>
 <id>http://gamov.io/posts/2017/06/08/how-to-scale-hazelcast-docker-containers-with-docker-compose.html</id>
 <title>How To Scale Hazelcast Cluster with Docker Compose</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2017-06-08T13:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/06/08/how-to-scale-hazelcast-docker-containers-with-docker-compose.html" rel="alternate" type="text/html" />
 <author>
@@ -1938,7 +2372,7 @@ If you have questions or suggestions, feel free to comment below.&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2017/05/30/acgnj-2017.html</id>
 <title>Distributed Java Streams @ ACGNJ 2017</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2017-05-30T17:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/05/30/acgnj-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -2011,7 +2445,7 @@ TBD
 <entry>
 <id>http://gamov.io/posts/2017/04/18/phillyete-2017.html</id>
 <title>JavaPuzzlers @ PhillyETE 2017</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2017-04-18T10:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/04/18/phillyete-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -2062,7 +2496,7 @@ TBD
 <entry>
 <id>http://gamov.io/posts/2017/04/08/jpoint-2017.html</id>
 <title>JPoint - 2107 [RU]</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2017-04-08T18:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/04/08/jpoint-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -2187,7 +2621,7 @@ https://github.com/hazelcast/hazelcast-jet-code-samples/blob/master/kafka/consum
 <entry>
 <id>http://gamov.io/posts/2017/04/04/jbreak-2017.html</id>
 <title>JBreak 2017 [RU]</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2017-04-04T10:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/04/04/jbreak-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -2300,7 +2734,7 @@ Branch for this talk Jbreak_2017...
 <entry>
 <id>http://gamov.io/posts/2017/02/09/hazelcast-node-dot-js-client-refcard.html</id>
 <title>Hazelcast Node.js Client Refcard</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2017-02-09T07:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/02/09/hazelcast-node-dot-js-client-refcard.html" rel="alternate" type="text/html" />
 <author>
@@ -2774,7 +3208,7 @@ Hazelcast can be used in the areas like clustering, in-memory NoSQL, application
 <entry>
 <id>http://gamov.io/posts/2017/02/08/jfokus-2017.html</id>
 <title>Jfokus 2017</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2017-02-08T09:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/02/08/jfokus-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -2867,7 +3301,7 @@ Branch for this talk JFokus_Feb2017...
 <entry>
 <id>http://gamov.io/posts/2017/02/02/nyjavasig-2017.html</id>
 <title>NYJavaSig, February 2017</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2017-02-02T20:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/02/02/nyjavasig-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -2979,7 +3413,7 @@ Let&#39;s look...
 <entry>
 <id>http://gamov.io/posts/2017/01/12/codemash-2017.html</id>
 <title>Codemash 2017</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2017-01-12T13:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/01/12/codemash-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -3124,7 +3558,7 @@ Each branch represents parts of the talk:
 <entry>
 <id>http://gamov.io/posts/2016/09/09/whats-new-in-hazelcast-client-for-nodejs.html</id>
 <title>What&#8217;s New in Hazelcast Node.js Client</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2016-09-09T06:05:51-06:00</published>
 <link href="http://gamov.io/posts/2016/09/09/whats-new-in-hazelcast-client-for-nodejs.html" rel="alternate" type="text/html" />
 <author>
@@ -3836,7 +4270,7 @@ There a bunch of way to provide the feedback:&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2016/04/18/getting-started-with-hazelcast-and-node.html</id>
 <title>Getting Started with Hazelcast and Node.js</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2016-04-18T06:05:51-06:00</published>
 <link href="http://gamov.io/posts/2016/04/18/getting-started-with-hazelcast-and-node.html" rel="alternate" type="text/html" />
 <author>
@@ -4200,7 +4634,7 @@ You have just connected to a Hazelcast cluster and performed basic CRUD operatio
 <entry>
 <id>http://gamov.io/posts/2016/03/31/travel-report-q1-2016.html</id>
 <title>Travel Report - Q1 2016</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2016-03-31T20:00:00+00:00</published>
 <link href="http://gamov.io/posts/2016/03/31/travel-report-q1-2016.html" rel="alternate" type="text/html" />
 <author>
@@ -4569,7 +5003,7 @@ I am really impressed with the flexibility that JUG organizers are developing to
 <entry>
 <id>http://gamov.io/posts/2015/12/31/caching-made-bootiful.html</id>
 <title>Caching Made Bootiful — Hazelcast Way</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2015-12-31T22:18:23-06:00</published>
 <link href="http://gamov.io/posts/2015/12/31/caching-made-bootiful.html" rel="alternate" type="text/html" />
 <author>
@@ -4913,7 +5347,7 @@ Meanwhile, if you have any questions, feel free to post them in the comments sec
 <entry>
 <id>http://gamov.io/posts/2015/12/29/my-year-at-hazelcast-in-review.html</id>
 <title>My Year At Hazelcast In Review</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2015-12-29T17:00:00+00:00</published>
 <link href="http://gamov.io/posts/2015/12/29/my-year-at-hazelcast-in-review.html" rel="alternate" type="text/html" />
 <author>
@@ -5262,7 +5696,7 @@ Looking forward to 2016 — Happy New Year &lt;span class=&quot;icon&quot;&g
 <entry>
 <id>http://gamov.io/posts/2015/11/02/hazelcast-for-mongodb-developers.html</id>
 <title>Hazelcast for MongoDB Developers</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2015-11-02T16:31:53-06:00</published>
 <link href="http://gamov.io/posts/2015/11/02/hazelcast-for-mongodb-developers.html" rel="alternate" type="text/html" />
 <author>
@@ -5577,7 +6011,7 @@ If I didn’t, please, ask me in the comments below.&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2015/01/27/ground-up-introduction-to-in-memory-data.html</id>
 <title>Ground-up Introduction To In-Memory Data</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2015-01-27T22:00:00+00:00</published>
 <link href="http://gamov.io/posts/2015/01/27/ground-up-introduction-to-in-memory-data.html" rel="alternate" type="text/html" />
 <author>
@@ -5687,7 +6121,7 @@ This April, &lt;a href=&quot;http://codepalousa.com/blog/2015/code-palousa-2015-
 <entry>
 <id>http://gamov.io/posts/2014/12/13/goodbye-farata-hello-hazelcast.html</id>
 <title>Goodbye, Farata. Hello, Hazelcast!</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2014-12-13T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2014/12/13/goodbye-farata-hello-hazelcast.html" rel="alternate" type="text/html" />
 <author>
@@ -5788,7 +6222,7 @@ Ultimately, I’ll be doing the pretty much same sorts of things I’ve been doi
 <entry>
 <id>http://gamov.io/posts/2013/07/17/getting-started-with-nashorn.html</id>
 <title>Getting Started With Nashorn</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2013-07-17T23:00:00+00:00</published>
 <link href="http://gamov.io/posts/2013/07/17/getting-started-with-nashorn.html" rel="alternate" type="text/html" />
 <author>
@@ -5956,7 +6390,7 @@ As you learned from my previous post, I’m going to talk about Nashorn - JavaSc
 <entry>
 <id>http://gamov.io/posts/2013/07/09/im-speaking-at-javaone.html</id>
 <title>I&#8217;m speaking at JavaOne 2013</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2013-07-09T01:00:00+00:00</published>
 <link href="http://gamov.io/posts/2013/07/09/im-speaking-at-javaone.html" rel="alternate" type="text/html" />
 <author>
@@ -6008,7 +6442,7 @@ Keep in touch for updates by following me on &lt;a href=&quot;http://twitter.com
 <entry>
 <id>http://gamov.io/posts/2013/02/05/prouctive-enterprise-web-dev-with-cdb.html</id>
 <title>Productive Enterprise Web Development with ExtJS and Clear Data Builder</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2013-02-05T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2013/02/05/prouctive-enterprise-web-dev-with-cdb.html" rel="alternate" type="text/html" />
 <author>
@@ -6721,7 +7155,7 @@ public class PersonServiceImpl extends _PersonServiceImpl {
 <entry>
 <id>http://gamov.io/posts/2013/01/19/set-jdk-on-osx.html</id>
 <title>Set JDK on OSX</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2013-01-19T14:00:00+00:00</published>
 <link href="http://gamov.io/posts/2013/01/19/set-jdk-on-osx.html" rel="alternate" type="text/html" />
 <author>
@@ -6923,7 +7357,7 @@ alias setjdk19=&amp;apos;export JAVA_HOME=$(/usr/libexec/java_home -v 9)&amp;apo
 <entry>
 <id>http://gamov.io/posts/2012/07/26/websockets-for-java-developers.html</id>
 <title>WebSockets for Java Developers. Princeton JUG talk slides</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2012-07-26T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2012/07/26/websockets-for-java-developers.html" rel="alternate" type="text/html" />
 <summary>
@@ -6959,7 +7393,7 @@ today.&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2012/05/21/alfred-showhide-desktop-icons-on-mac-os.html</id>
 <title>Alfred Extension: Show/Hide desktop icons on Mac OS X</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2012-05-21T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2012/05/21/alfred-showhide-desktop-icons-on-mac-os.html" rel="alternate" type="text/html" />
 <category term="alfred"></category>
@@ -6988,7 +7422,7 @@ Cheers&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2012/05/16/webjars-for-assets-management-in-your.html</id>
 <title>WebJars for assets management in your project</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2012-05-16T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2012/05/16/webjars-for-assets-management-in-your.html" rel="alternate" type="text/html" />
 <category term="java"></category>
@@ -7013,7 +7447,7 @@ But in most common situations, you don’t have lot of options for deployment yo
 <entry>
 <id>http://gamov.io/posts/2012/01/28/how-to-download-videos-from-infoq-for.html</id>
 <title>How to download videos from InfoQ for offline viewing</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2012-01-28T06:15:00+00:00</published>
 <link href="http://gamov.io/posts/2012/01/28/how-to-download-videos-from-infoq-for.html" rel="alternate" type="text/html" />
 <author>
@@ -7061,7 +7495,7 @@ However, I found very elegant solution how to do that. I did it on my MacOS X wi
 <entry>
 <id>http://gamov.io/posts/2012/01/10/rapid-automation-for-flexjavablazeds.html</id>
 <title>Rapid automation for Flex/Java/BlazeDS projects</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2012-01-10T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2012/01/10/rapid-automation-for-flexjavablazeds.html" rel="alternate" type="text/html" />
 <author>
@@ -7081,7 +7515,7 @@ Feel free to comment!&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2011/09/11/adobe-max.html</id>
 <title>Adobe MAX</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2011-09-11T23:07:00+00:00</published>
 <link href="http://gamov.io/posts/2011/09/11/adobe-max.html" rel="alternate" type="text/html" />
 <author>
@@ -7115,7 +7549,7 @@ Creative Cloud - another big thing was announced. Sharing and collaboration b/w 
 <entry>
 <id>http://gamov.io/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html</id>
 <title>Eclipse: java.lang.UnsatisfiedLinkError: Cannot load 32-bit SWT libraries on 64-bit JVM</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2011-07-26T04:22:00+00:00</published>
 <link href="http://gamov.io/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html" rel="alternate" type="text/html" />
 <author>
@@ -7256,7 +7690,7 @@ to Eclipse→Preferences→Java→Installed JRE and add default JVM argument *&l
 <entry>
 <id>http://gamov.io/posts/2011/07/10/building-and-testing-with-gradle-my.html</id>
 <title>Building and Testing with Gradle - My Book Review</title>
-<updated>2018-11-28T19:02:36-05:00</updated>
+<updated>2018-11-28T19:03:21-05:00</updated>
 <published>2011-07-10T20:57:00+00:00</published>
 <link href="http://gamov.io/posts/2011/07/10/building-and-testing-with-gradle-my.html" rel="alternate" type="text/html" />
 <author>
