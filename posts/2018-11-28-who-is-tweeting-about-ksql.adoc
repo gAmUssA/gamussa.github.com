@@ -1,0 +1,219 @@
+= Who is tweeting about hashtag KSQL?
+Viktor Gamov
+2018-11-28 18:01
+:imagesdir: ../images
+:icons:
+:keywords:
+:toc:
+ifndef::awestruct[]
+:awestruct-layout: post
+:awestruct-tags: []
+:idprefix:
+:idseparator: -
+endif::awestruct[]
+
+
+.TL;DR
+Another day, another post.
+This time it's another _playbook_ for my http://DataSciCon.tech talk «Who's tweeting about `#datascicon`» on November 30th 2018 footnote:[http://www.datascicon.tech]
+A full source code published in `confluetninc/demo-scene` repository footnote:[https://github.com/confluentinc/demo-scene/tree/master/streams-movie-demo]
+
+.Revisions history
+[width="70%",cols="",options="header"]
+|===
+|Version    |Date   | Comments
+|*v1.0*     |11/28/2018 | Initial revision
+|===
+
+toc::[]
+
+
+== Prerequisites
+
+* Docker
+* Get example from GitHub
+** If you will follow steps below you should checkout only directory that has source code relevant to this post.
++
+
+[source,bash]
+----
+mkdir ~/temp/demo-scene
+cd ~/temp/demo-scene
+git init .
+git remote add origin -f https://github.com/confluentinc/demo-scene/
+git config core.sparsecheckout true
+echo "twitter-streams/*" >> .git/info/sparse-checkout
+git pull --depth=2 origin master
+cd twitter-streams
+ls -lh
+----
+// http://scriptedonachip.com/git-sparse-checkout
++
+
+and you should see something like this
++
+
+[role="text-center"]
+.The output of `ls -lh twitter-streams`
+image::ls-lh-twitter-streams.png[width=75%]
+
+== Demo Playbook
+
+=== Starting the containers
+
+[source,sh]
+----
+./scripts/00-start.sh
+----
+
+=== KSQL Part
+
+Let's start with few simple commands.
+
+.Connect to remote KSQL server with KSQL cli
+[source,bash]
+----
+ksql http://ksql-demo:9098
+----
+
+.Taking a quick look around
+[source,sh]
+----
+SET 'auto.offset.reset' = 'earliest'; #<1>
+
+> show topics;
+> print 'twitter_json_01' from beginning;
+
+# ask people to tweet to see how messages are floating
+> select * from twitter_json_01 limit 2;
+----
+<1> Configure KSQL consumer offsets
+
+make structured stream
+
+.Create Structured Stream
+[source,sql]
+----
+CREATE STREAM twitter_raw ( \
+   CreatedAt bigint,Id bigint, Text VARCHAR, SOURCE VARCHAR, Truncated VARCHAR, InReplyToStatusId VARCHAR, InReplyToUserId VARCHAR, InReplyToScreenName VARCHAR, GeoLocation VARCHAR, Place VARCHAR, Favorited VARCHAR, Retweeted VARCHAR, FavoriteCount VARCHAR, User VARCHAR, Retweet VARCHAR, Contributors VARCHAR, RetweetCount VARCHAR, RetweetedByMe VARCHAR, CurrentUserRetweetId VARCHAR, PossiblySensitive VARCHAR, Lang VARCHAR, WithheldInCountries VARCHAR, HashtagEntities VARCHAR, UserMentionEntities VARCHAR, MediaEntities VARCHAR, SymbolEntities VARCHAR, URLEntities VARCHAR) \
+WITH (KAFKA_TOPIC='twitter_json_01',VALUE_FORMAT='JSON');
+----
+
+> `select * from twitter_raw limit 2;`
+
+.All tweets from DataSciCon
+[source,sql]
+----
+CREATE STREAM twitter_datascicon AS \
+    SELECT TIMESTAMPTOSTRING(CreatedAt, 'yyyy-MM-dd HH:mm:ss.SSS') AS CreatedAt,\
+    EXTRACTJSONFIELD(user,'$.Name') AS user_Name,\
+    EXTRACTJSONFIELD(user,'$.ScreenName') AS user_ScreenName,\
+    EXTRACTJSONFIELD(user,'$.Location') AS user_Location,\
+    EXTRACTJSONFIELD(user,'$.Description') AS  user_Description,\
+    Text, hashtagentities, lang\
+    FROM twitter_raw WHERE LCASE(hashtagentities) LIKE '%datascicon%';
+----
+
+.All tweets from DataSciCon about Kafka and KSQL
+[source,sql]
+----
+CREATE STREAM twitter_datascicon_kafka_ksql AS\
+    SELECT TIMESTAMPTOSTRING(CreatedAt, 'yyyy-MM-dd HH:mm:ss.SSS') AS CreatedAt,\
+    EXTRACTJSONFIELD(user,'$.Name') AS user_Name,\
+    EXTRACTJSONFIELD(user,'$.ScreenName') AS user_ScreenName,\
+    EXTRACTJSONFIELD(user,'$.Location') AS user_Location,\
+    EXTRACTJSONFIELD(user,'$.Description') AS  user_Description,\
+    Text,hashtagentities,lang\
+    FROM twitter_raw WHERE LCASE(hashtagentities) LIKE '%datascicon%' AND (LCASE(hashtagentities) LIKE '%ksql%' OR LCASE(hashtagentities) LIKE '%apachekafka%');
+----
+
+
+[source,sql]
+----
+CREATE STREAM twitter AS \
+SELECT TIMESTAMPTOSTRING(CreatedAt, 'yyyy-MM-dd HH:mm:ss.SSS') AS CreatedAt,\
+EXTRACTJSONFIELD(user,'$.Name') AS user_Name, \
+EXTRACTJSONFIELD(user,'$.ScreenName') AS user_ScreenName, \
+EXTRACTJSONFIELD(user,'$.Location') AS user_Location, \
+EXTRACTJSONFIELD(user,'$.Description') AS  user_Description, \
+Text,hashtagentities,lang \
+FROM twitter_raw ;
+----
+
+[source,sql]
+----
+SELECT USER_NAME, TEXT FROM TWITTER WHERE TEXT LIKE '%ksql%';
+----
+
+[source,sql]
+----
+CREATE TABLE user_tweet_count AS \
+  SELECT user_screenname, count(*) AS  tweet_count \
+  FROM twitter WINDOW TUMBLING (SIZE 1 HOUR) \
+  GROUP BY user_screenname ;
+
+# ---------------------
+
+CREATE TABLE USER_TWEET_COUNT_DISPLAY AS\
+    SELECT TIMESTAMPTOSTRING(ROWTIME, 'yyyy-MM-dd HH:mm:ss.SSS') AS WINDOW_START,\
+    USER_SCREENNAME,\
+    TWEET_COUNT FROM user_tweet_count;
+
+create table top_5_datascicon as\
+    SELECT WINDOW_START, USER_SCREENNAME, TWEET_COUNT
+    FROM USER_TWEET_COUNT_DISPLAY
+    WHERE TWEET_COUNT> 5;
+
+select USER_SCREENNAME, TWEET_COUNT from top_5_datascicon;
+----
+
+
+----
+SHOW STREAMS;
+DESCRIBE twitter;
+DESCRIBE extended twitter;
+EXPLAIN twitter;
+----
+
+== Appendix
+
+=== How to test `kafka-connect-twitter` connector with local CP installation
+
+==== Prerequisites
+
+* Confluent Platform Enterprise 5.x footnote:[https://www.confluent.io/download/]
+** download it
+** unizip to any folder
+** add folder to `PATH` variable
++
+
+[source,shell]
+----
+export CONFLUENT_PLATFORM_VERSION=5.0.1
+export CONFLUENT_HOME=~/projects/confluent/confluent-ent/$CONFLUENT_PLATFORM_VERSION
+export PATH=$CONFLUENT_HOME/bin:$PATH
+alias cnfl="confluent" #<1>
+----
+<1> a neat little alias that can save few symbols to type
+
+==== Install and Run the connector
+
+[source,bash]
+----
+confluent-hub install jcustenborder/kafka-connect-twitter:0.2.32        #<1>
+confluent start connect                                                 #<2>
+confluent config twitter_source -d connect_twitter.json                 #<3>
+confluent status connectors                                             #<4>
+confluent consume twitter_json_01 --max-messages=5 --from-beginning     #<5>
+----
+<1> Install the connector from Confluent Hub
+<2> Start Connect Runtime
+<3> Push the connector config
+<4> Display status of the connector
+<5> Grab few messages from source topic
+
+== find java in debian
+
+`JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")`
+
+'''
