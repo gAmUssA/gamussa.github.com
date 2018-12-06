@@ -21,7 +21,8 @@ A full source code published in `confluetninc/demo-scene` repository footnote:[h
 .Revisions history
 [width="70%",cols="",options="header"]
 |===
-|Version    |Date   | Comments
+|Version    |Date       | Comments
+|*v1.1*     |12/02/2018 | Small fixes in codes, screenshots, images
 |*v1.0*     |11/28/2018 | Initial revision
 |===
 
@@ -31,6 +32,7 @@ toc::[]
 == Prerequisites
 
 * Docker
+* Docker Compose
 * Get example from GitHub
 ** If you will follow steps below you should checkout only directory that has source code relevant to this post.
 +
@@ -59,6 +61,14 @@ image::ls-lh-twitter-streams.png[width=75%]
 
 == Demo Playbook
 
+=== Download dependencies
+
+.This command downloads monitoring-interceptors and installs it local folder
+[source,bash]
+----
+make
+----
+
 === Starting the containers
 
 [source,sh]
@@ -69,6 +79,7 @@ image::ls-lh-twitter-streams.png[width=75%]
 === KSQL Part
 
 Let's start with few simple commands.
+
 
 .Connect to remote KSQL server with KSQL cli
 [source,bash]
