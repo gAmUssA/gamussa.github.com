@@ -335,7 +335,7 @@ I recommend to run the raw rating generator in a separate terminal window so you
      TITLE VARCHAR,\
      RELEASE_YEAR BIGINT,\
      RATING DOUBLE)\
-WITH (KAFKA_TOPIC='rated_movies',VALUE_FORMAT='AVRO', KEY = 'userid'); <i class="conum" data-value="1"></i><b>(1)</b>
+WITH (KAFKA_TOPIC='rated-movies',VALUE_FORMAT='AVRO', KEY = 'movie_id'); <i class="conum" data-value="1"></i><b>(1)</b>
 
 select TITLE, RATING  from RATED_MOVIES where MOVIE_ID=362; <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
