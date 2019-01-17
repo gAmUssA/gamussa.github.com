@@ -180,7 +180,7 @@ CREATE TABLE RATED_MOVIES \
      TITLE VARCHAR,\
      RELEASE_YEAR BIGINT,\
      RATING DOUBLE)\
-WITH (KAFKA_TOPIC='rated_movies',VALUE_FORMAT='AVRO', KEY = 'userid'); --<1>
+WITH (KAFKA_TOPIC='rated-movies',VALUE_FORMAT='AVRO', KEY = 'movie_id'); --<1>
 
 select TITLE, RATING  from RATED_MOVIES where MOVIE_ID=362; --<2>
 ----
