@@ -25,6 +25,7 @@ A full source code published in `confluetninc/demo-scene` repository footnote:[h
 [width="70%",cols="",options="header"]
 |===
 |Version    |Date   | Comments
+|*v1.2*     |01/17/2019 | use CP 5.1.0, updated Control Center screenshots 
 |*v1.1*     |11/21/2018 | Fixed links and minor grammar
 |*v1.0*     |11/20/2018 | Initial revision
 |===
@@ -45,7 +46,7 @@ Since I moved to DevX footnote:[https://twitter.com/gAmUssA/status/1037496745809
 
 [source,shell]
 ----
-export CONFLUENT_PLATFORM_VERSION=5.0.1
+export CONFLUENT_PLATFORM_VERSION=5.1.0
 export CONFLUENT_HOME=~/projects/confluent/confluent-ent/$CONFLUENT_PLATFORM_VERSION
 export PATH=$CONFLUENT_HOME/bin:$PATH
 alias cnfl="confluent" #<1>
