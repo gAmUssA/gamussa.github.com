@@ -1,0 +1,172 @@
+= Quick Tips on Designing Your Kafka Summit Presentation
+Viktor Gamov
+2019-03-15 16:39
+:imagesdir: ../images
+:icons:
+:keywords:
+:toc:
+ifndef::awestruct[]
+:awestruct-layout: post
+:awestruct-tags: []
+:idprefix:
+:idseparator: -
+endif::awestruct[]
+
+image::presenting.jpg[width=70%]
+
+.TL;DR
+Do yourself a favor and grab a copy of https://amzn.to/2O7Kq46[«Presentation Patterns»] book by Neal Ford, Matthew McCullough, Nathaniel Schutta and should be good to go and crush your next tech presentation.
+
+.Revisions history
+[width="70%",cols="",options="header"]
+|===
+|Version    |Date       | Comments
+|*v1.0*     |103/15/2019 | Initial revision
+|===
+
+toc::[]
+
+== Preface
+
+Kafka Summit 2019 events are in full throttle. 
+https://www.youtube.com/watch?v=B3tizXMYxhk[New York event] is happening in a couple weeks. 
+London event is happening shortly after that in May.
+And San Francisco Kafka Summit is open for https://myeventi.events/kafka19/na/cfp/[speaker's proposals].
+My DevX team at Confluent assisted with reviewing proposals.
+And now we're helping many speakers with their decks.
+
+NOTE: If you're a speaker at Kafka Summit and looking for the feedback on your slides we're running office hours in https://slackpass.io/confluentcommunity[Confluent Confluent Community slack] (`#summit-office-hours` channel).
+To take part, join the channel in our Slack community at one of these two times: *March 26, 2019, at 11:00 a.m. PST* and *March 28, 2019, at 2:00 p.m. GMT*
+
+My friend and colleague http://twitter.com/rmoff[Robin Moffat] asked if we can come up with a list of recommended reading and example to help our speaker to improve their slide decks.
+And since "I ❤ blogging," I decided to take a stab of creating a list of «opinionated» (since Robin asked my opinion) recommendation!
+
+NOTE: By all means, this is not «presenting 101» or «powerpoint 101» post.
+I assume that you know things. 
+
+So here we go!
+
+== Working on slides
+
+First of all, your slides are your little helper.
+Slides should help you to visually communicate ideas that you verbally will be presenting.
+Your presentations is a story and the slides just a tool to convey your story.
+
+Let me start by recommended a more or less universal structure that I learned a year ago from the book «The Art of the Start.»
+
+=== 10/20/30
+
+.If you don't know where to start with 10/20/30 rule by Guy Kawasaki.
+[quote, Kawasaki, Guy. The Art of the Start 2.0 (p. 142). Penguin Publishing Group. Kindle Edition.]
+The 10/20/30 Rule of Presentations is that you should use ten slides (10) in twenty minutes (20) with a minimum of thirty-point text (it better if it's bigger).
+
+But you can say, Vik, ten slides and twenty minutes would be not enough for your 45 minute Kafka Summit talk!
+For tech talk, you can probably have more slides.
+But remember, you should be able to deliver your idea using only 10 slides in 20 minutes (if needed).
+
+NOTE: Personally, I don't create more slides than minutes allowed me to speak (there are some exceptions like slides as transitions, slides with some funny gifs and such)
+
+You shouldn't use small fonts. 
+Guy Kawasaki also have a formula for optimal font size - `Age of the Oldest person in the room divided by 2`. 
+Handy formula and easy to remember.
+
+=== Presentation Patterns
+
+«Presentation Patterns: Techniques for Crafting Better Presentations» is one of the most impactful books in my https://speaking.gamov.io[professional career as a speaker].
+Written but master presenters and well-respected technologists Neil Ford, Nate Schutta, Matthew McCullough.
+It was set or patterns and anti-patterns footnote:[we techies ❤️ patterns, just google for Design Patterns by Gang of four].
+
+Apart from covering all aspects of your presentations (from idea to a delivery), this book has a full chapter on our subject - __Slide design patterns__ (well, mostly anti-patterns.).
+
+My favorite - __Bullet-Riddled Corpse aka Death by Bullet points__.
+Many presentations from my http://confluent.io[Confluent] colleagues (yes, https://www.slideshare.net/ConfluentInc/atm-fraud-detection-with-apache-kafka-and-ksql[Robin] and http://www.benstopford.com/category/talks/[Ben] and https://www.slideshare.net/ConfluentInc/ksql-open-source-streaming-for-apache-kafka[Tim], I'm looking at you) use _Analog Noise_ pattern.
+
+image::pp_ch3.png[width=50%]
+
+I can't recommend this book more.
+Then I'm doubt or looking for inspiration. 
+I always have this book within reach on my desk.
+
+image::pp_photo.jpg[]
+
+=== Presenting the code
+
+If you're doing a technical presentation (e.g., you're presenting at «Core Kafka,» «Stream Processing») you must have some code to show.
+It can be configs, Java/Scala/name your language code, XML, JSON.
+
+The codeware presentation is absolute must see!
+
+.Codeware: how to present code
+++++
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/C5eivguSlMl2t0" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/LookAtMySlides/codeware" title="Codeware" target="_blank">Codeware</a> </strong> from <strong><a href="https://www.slideshare.net/LookAtMySlides" target="_blank">Uri Nativ</a></strong> </div>
+++++
+
+Few critical takeaways from that presentation
+
+* Slides are not your IDE
+* Use monospaced font for displaying your code in the slides
+* Use BIG SIZE FONT
+* Use syntax highlighting 
++
+
+NOTE: Let's have a short detour here. I use IntelliJ IDEA for a very long time. And, apart from being The best IDEA ever, it also has some awesome plugins that may help you with your presentations.
++
+
+. Built-in capability to copy the code in your IDE with the same style as you see it in your Editor window.
++
+
+image::intellij_rich_copy.png[]
++
+
+. Awesome Plugin turned to build-in capability by https://twitter.com/https://twitter.com/tagir_valeev[Tagir Valeev] 
++
+
+image::intellij_copy_as_image.png[]
+
+* use ellipsis and screen annotation (because laser pointers suck!!!!)
++
+
+By the way, the same author has two other presentations that you may find useful.
+
+.«Dodging bullets» about avoiding death by bullet points
+++++
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/xr3nVkyKJw7L6Z" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/LookAtMySlides/dodging-bullets-50749941" title="Dodging Bullets" target="_blank">Dodging Bullets</a> </strong> from <strong><a href="https://www.slideshare.net/LookAtMySlides" target="_blank">Uri Nativ</a></strong> </div>
+++++
+
+.5 Tips on presentation style
+++++
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/vEXgh59LjFJHQV" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/LookAtMySlides/5-slides-design-tips" title="5 Slides Design Tips" target="_blank">5 Slides Design Tips</a> </strong> from <strong><a href="https://www.slideshare.net/LookAtMySlides" target="_blank">Uri Nativ</a></strong> </div>
+++++
+
+If you want to use pointer during your presentation https://amzn.to/2HC5LBE[get yourself] a https://www.youtube.com/watch?v=BPrKQx1wcXQ[Logitech Spotlight] presenter remote.
+
+If you want to have some inspiration, I would recommend checking slides of my another friend - Developer Advocate at JetBrains https://twitter.com/antonarhipov[Anton Arhipov].
+
+Here are a few notable examples of his presentations with code.
+
+.Something about Golang
+++++
+<script async class="speakerdeck-embed" data-slide="19" data-id="403a6ac470b34b99a345f5c86834ec72" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+++++
+
+
+Another useful tool worth to mention is https://carbon.now.sh/[Carbon Now].
+It's a web app that allows you to produce beautiful screens that look like a terminal window.
+You can see an example in my post https://gamov.io/posts/2018/11/20/streaming-moview-ratings-with-kafka-streams-and-ksql.html#start-confluent-platform[here].
+Carbon Now also has plugins for the various IDEs and https://github.com/dawnlabs/carbon#editor-plugins[editors] (including one for https://plugins.jetbrains.com/plugin/10469-carbon-now-sh[IntelliJ IDEA]).
+
+NOTE: Robin himself wrote a https://rmoff.github.io/2018/06/20/syntax-highlighting-code-for-presentation-slides/[blog] about using Pygments library to create highlighted snippets!
+
+== Conclusion
+
+Your slides are not your presentation.
+The slides deck is the only helper.
+They exist only to amplify the idea that you trying to share.
+
+I tried to make a quick brain dump here.
+Most likely, this post will be updating if I will remember things (or my twitter-people will recommend me something).
+
+Let me know if it was somehow useful.
+I may also share some of the delivering or presenting tips.
+
+As always, you can leave all your comments below or reach out in http://twitter.com/gamussa[Twitter]!
