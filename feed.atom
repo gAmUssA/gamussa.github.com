@@ -5,13 +5,378 @@
 <author>
 <name>Viktor Gamov</name>
 </author>
-<updated>2019-01-17T17:52:56-05:00</updated>
+<updated>2019-03-15T23:53:46-04:00</updated>
 <link href="http://gamov.io/feed.atom" rel="self" type="application/atom+xml" />
 <link href="http://gamov.io/" rel="alternate" type="text/html" />
 <entry>
+<id>http://gamov.io/posts/2019/03/15/quick-tips-on-designing-your-next-presentation.html</id>
+<title>Quick Tips on Designing Your Kafka Summit Presentation</title>
+<updated>2019-03-15T23:53:46-04:00</updated>
+<published>2019-03-15T16:00:00+00:00</published>
+<link href="http://gamov.io/posts/2019/03/15/quick-tips-on-designing-your-next-presentation.html" rel="alternate" type="text/html" />
+<author>
+<name>Viktor Gamov</name>
+</author>
+<summary>
+Table of Contents
+
+Preface
+Working on slides
+
+10/20/30
+Presentation Patterns
+
+
+Presenting the code
+Conclusion
+
+
+
+
+
+TL;DR
+Get yourself a favor and grab a copy of «Presentation Patterns» book by Neal Ford, Matthew McCullough, Nathaniel Schutta and should be good to go and crush your next tech presentation.
+
+
+Table 1. Revisions history
+
+
+
+
+
+
+
+Version
+Date
+Comments
+
+
+
+
+v1.0
+103/15/2019
+Initial revision
+
+
+
+
+
+
+
+Preface
+
+
+Kafka Summit 2019 events are in full throttle.
+New York event is happening in a couple weeks.
+London event is happening shortly after that in May.
+And San Francisco Kafka Summit is open for speaker&#8217;s proposals.
+My DevX team at Confluent assisted with reviewing proposals.
+And now we&#8217;re helping many speakers with their decks.
+
+
+
+
+
+
+
+
+If you&#8217;re a speaker at Kafka Summit and looking for the...
+</summary>
+<content type="html">
+&lt;div id=&quot;toc&quot; class=&quot;toc&quot;&gt;
+&lt;div id=&quot;toctitle&quot;&gt;Table of Contents&lt;/div&gt;
+&lt;ul class=&quot;sectlevel1&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#preface&quot;&gt;Preface&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#working-on-slides&quot;&gt;Working on slides&lt;/a&gt;
+&lt;ul class=&quot;sectlevel2&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#10-20-30&quot;&gt;10/20/30&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#presentation-patterns&quot;&gt;Presentation Patterns&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#presenting-the-code&quot;&gt;Presenting the code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#conclusion&quot;&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&quot;preamble&quot;&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;TL;DR&lt;/div&gt;
+&lt;p&gt;Get yourself a favor and grab a copy of &lt;a href=&quot;https://amzn.to/2O7Kq46&quot;&gt;«Presentation Patterns»&lt;/a&gt; book by Neal Ford, Matthew McCullough, Nathaniel Schutta and should be good to go and crush your next tech presentation.&lt;/p&gt;
+&lt;/div&gt;
+&lt;table class=&quot;tableblock frame-all grid-all&quot; style=&quot;width: 70%;&quot;&gt;
+&lt;caption class=&quot;title&quot;&gt;Table 1. Revisions history&lt;/caption&gt;
+&lt;colgroup&gt;
+&lt;col style=&quot;width: 33.3333%;&quot; /&gt;
+&lt;col style=&quot;width: 33.3333%;&quot; /&gt;
+&lt;col style=&quot;width: 33.3334%;&quot; /&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th class=&quot;tableblock halign-left valign-top&quot;&gt;Version&lt;/th&gt;
+&lt;th class=&quot;tableblock halign-left valign-top&quot;&gt;Date&lt;/th&gt;
+&lt;th class=&quot;tableblock halign-left valign-top&quot;&gt;Comments&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;&lt;strong&gt;v1.0&lt;/strong&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;103/15/2019&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Initial revision&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;!-- toc disabled --&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;preface&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#preface&quot;&gt;&lt;/a&gt;Preface&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Kafka Summit 2019 events are in full throttle.
+&lt;a href=&quot;https://www.youtube.com/watch?v=B3tizXMYxhk&quot;&gt;New York event&lt;/a&gt; is happening in a couple weeks.
+London event is happening shortly after that in May.
+And San Francisco Kafka Summit is open for &lt;a href=&quot;https://myeventi.events/kafka19/na/cfp/&quot;&gt;speaker’s proposals&lt;/a&gt;.
+My DevX team at Confluent assisted with reviewing proposals.
+And now we’re helping many speakers with their decks.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock note&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;fa icon-note&quot; title=&quot;Note&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+If you’re a speaker at Kafka Summit and looking for the feedback on your slides we’re running office hours in &lt;a href=&quot;https://slackpass.io/confluentcommunity&quot;&gt;Confluent Confluent Community slack&lt;/a&gt; (&lt;code&gt;#summit-office-hours&lt;/code&gt; channel).
+To take part, join the channel in our Slack community at one of these two times: &lt;strong&gt;March 26, 2019, at 11:00 a.m. PST&lt;/strong&gt; and &lt;strong&gt;March 28, 2019, at 2:00 p.m. GMT&lt;/strong&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;My friend and colleague &lt;a href=&quot;http://twitter.com/rmoff&quot;&gt;Robin Moffat&lt;/a&gt; asked if we can come up with a list of recommended reading and example to help our speaker to improve their slide decks.
+And since &amp;quot;I ❤ blogging,&amp;quot; I decided to take a stab of creating a list of «opinionated» (since Robin asked my opinion) recommendation!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock note&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;fa icon-note&quot; title=&quot;Note&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+By all means, this is not «presenting 101» or «powerpoint 101» post.
+I assume that you know things.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;So here we go!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;working-on-slides&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#working-on-slides&quot;&gt;&lt;/a&gt;Working on slides&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;First of all, your slides are your little helper.
+Slides should help you to visually communicate ideas that you verbally will be presenting.
+Your presentations is a story and the slides just a tool to convey your story.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Let me start by recommended a more or less universal structure that I learned a year ago from the book «The Art of the Start.»&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;10-20-30&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#10-20-30&quot;&gt;&lt;/a&gt;10/20/30&lt;/h3&gt;
+&lt;div class=&quot;quoteblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;If you don’t know where to start with 10/20/30 rule by Guy Kawasaki.&lt;/div&gt;
+&lt;blockquote&gt;
+The 10/20/30 Rule of Presentations is that you should use ten slides (10) in twenty minutes (20) with a minimum of thirty-point text (it better if it’s bigger).
+&lt;/blockquote&gt;
+&lt;div class=&quot;attribution&quot;&gt;
+— Kawasaki&lt;br /&gt;
+&lt;cite&gt;Guy. The Art of the Start 2.0 (p. 142). Penguin Publishing Group. Kindle Edition.&lt;/cite&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;But you can say, Vik, ten slides and twenty minutes would be not enough for your 45 minute Kafka Summit talk!
+For tech talk, you can probably have more slides.
+But remember, you should be able to deliver your idea using only 10 slides in 20 minutes (if needed).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock note&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;fa icon-note&quot; title=&quot;Note&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+Personally, I don’t create more slides than minutes allowed me to speak (there are some exceptions like slides as transitions, slides with some funny gifs and such)
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You shouldn’t use small fonts.
+Guy Kawasaki also have a formula for optimal font size - &lt;code&gt;Age of the Oldest person in the room divided by 2&lt;/code&gt;.
+Handy formula and easy to remember.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;presentation-patterns&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#presentation-patterns&quot;&gt;&lt;/a&gt;Presentation Patterns&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;«Presentation Patterns: Techniques for Crafting Better Presentations» is one of the most impactful books in my &lt;a href=&quot;https://speaking.gamov.io&quot;&gt;professional career as a speaker&lt;/a&gt;.
+Written but master presenters and well-respected technologists Neil Ford, Nate Schutta, Matthew McCullough.
+It was set or patterns and anti-patterns &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_1&quot; class=&quot;footnote&quot; href=&quot;#_footnote_1&quot; title=&quot;View footnote.&quot;&gt;1&lt;/a&gt;]&lt;/sup&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Apart from covering all aspects of your presentations (from idea to a delivery), this book has a full chapter on our subject - &lt;em&gt;Slide design patterns&lt;/em&gt; (well, mostly anti-patterns.).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;My favorite - &lt;em&gt;Bullet-Riddled Corpse aka Death by Bullet points&lt;/em&gt;.
+Many presentations from my &lt;a href=&quot;http://confluent.io&quot;&gt;Confluent&lt;/a&gt; colleagues (yes, &lt;a href=&quot;https://www.slideshare.net/ConfluentInc/atm-fraud-detection-with-apache-kafka-and-ksql&quot;&gt;Robin&lt;/a&gt; and &lt;a href=&quot;http://www.benstopford.com/category/talks/&quot;&gt;Ben&lt;/a&gt; and &lt;a href=&quot;https://www.slideshare.net/ConfluentInc/ksql-open-source-streaming-for-apache-kafka&quot;&gt;Tim&lt;/a&gt;, I’m looking at you) use &lt;em&gt;Analog Noise&lt;/em&gt; pattern.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;http://gamov.io/images/pp_ch3.png&quot; alt=&quot;pp ch3&quot; /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;I can’t recommend this book more.
+Then I’m doubt or looking for inspiration.
+I always have this book within reach on my desk.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;http://gamov.io/images/pp_photo.jpg&quot; alt=&quot;pp photo&quot; /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;presenting-the-code&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#presenting-the-code&quot;&gt;&lt;/a&gt;Presenting the code&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If you’re doing a technical presentation (e.g., you’re presenting at «Core Kafka,» «Stream Processing») you must have some code to show.
+It can be configs, Java/Scala/name your language code, XML, JSON.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;The codeware presentation is absolute must see!&lt;/p&gt;
+&lt;/div&gt;
+&lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/C5eivguSlMl2t0&quot; width=&quot;595&quot; height=&quot;485&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;http://gamov.io//www.slideshare.net/LookAtMySlides/codeware&quot; title=&quot;Codeware&quot; target=&quot;_blank&quot;&gt;Codeware&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href=&quot;https://www.slideshare.net/LookAtMySlides&quot; target=&quot;_blank&quot;&gt;Uri Nativ&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Few critical takeaways from that presentation&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Slides are not your IDE&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Use monospaced font for displaying your code in the slides&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Use BIG SIZE FONT&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Use syntax highlighting&lt;/p&gt;
+&lt;div class=&quot;admonitionblock note&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;fa icon-note&quot; title=&quot;Note&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+Let’s have a short detour here. I use IntelliJ IDEA for a very long time. And, apart from being The best IDEA ever, it also has some awesome plugins that may help you with your presentations.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;olist arabic&quot;&gt;
+&lt;ol class=&quot;arabic&quot;&gt;
+&lt;li&gt;
+&lt;p&gt;Built-in capability to copy the code in your IDE with the same style as you see it in your Editor window.&lt;/p&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;http://gamov.io/images/intellij_rich_copy.png&quot; alt=&quot;intellij rich copy&quot; /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Awesome Plugin turned to build-in capability by &lt;a href=&quot;https://twitter.com/tagit&quot;&gt;Tagir Valeev&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;http://gamov.io/images/intellij_copy_as_image.png&quot; alt=&quot;intellij copy as image&quot; /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;use ellipsis and screen annotation (because laser pointers suck!!!!)&lt;/p&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;By the way, the same author has two other presentations that you may find useful.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.slideshare.net/LookAtMySlides/dodging-bullets-50749941&quot;&gt;Dodging bullets&lt;/a&gt; about avoiding death by bullet points&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.slideshare.net/LookAtMySlides/5-slides-design-tips&quot;&gt;Tip on presentation style&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If you want to use pointer during your presentation &lt;a href=&quot;https://amzn.to/2HC5LBE&quot;&gt;get yourself&lt;/a&gt; a &lt;a href=&quot;https://www.youtube.com/watch?v=BPrKQx1wcXQ&quot;&gt;Logitech Spotlight&lt;/a&gt; presenter remote.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;If you want to have some inspiration, I would recommend checking slides of my another friend and Developer Advocate at JetBrains &lt;a href=&quot;http://twitter.com/&quot;&gt;Anton Arhipov&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Here are a few notable examples of his presentations with code.&lt;/p&gt;
+&lt;/div&gt;
+&lt;script async=&quot;&quot; class=&quot;speakerdeck-embed&quot; data-slide=&quot;19&quot; data-id=&quot;403a6ac470b34b99a345f5c86834ec72&quot; data-ratio=&quot;1.33333333333333&quot; src=&quot;//speakerdeck.com/assets/embed.js&quot;&gt;&lt;/script&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Another useful tool worth to mention is &lt;a href=&quot;https://carbon.now.sh/&quot;&gt;Carbon Now&lt;/a&gt;.
+It’s a web app that allows you to produce beautiful screens that look like a terminal window.
+You can see an example in my post &lt;a href=&quot;https://gamov.io/posts/2018/11/20/streaming-moview-ratings-with-kafka-streams-and-ksql.html#start-confluent-platform&quot;&gt;here&lt;/a&gt;.
+Carbon Now also has plugins for the various IDEs and &lt;a href=&quot;https://github.com/dawnlabs/carbon#editor-plugins&quot;&gt;editors&lt;/a&gt; (including one for &lt;a href=&quot;https://plugins.jetbrains.com/plugin/10469-carbon-now-sh&quot;&gt;IntelliJ IDEA&lt;/a&gt;).&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#conclusion&quot;&gt;&lt;/a&gt;Conclusion&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Your slides are not your presentation.
+The slides deck is the only helper.
+They exist only to amplify the idea that you trying to share.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;I tried to make a quick brain dump here.
+Most likely, this post will be updating if I will remember things (or my twitter-people will recommend me something).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Let me know if it was somehow useful.
+I may also share some of the delivering or presenting tips.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;As always, you can leave all your comments below or reach out in &lt;a href=&quot;http://twitter.com/gamussa&quot;&gt;Twitter&lt;/a&gt;!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;footnotes&quot;&gt;
+&lt;hr /&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnote_1&quot;&gt;
+&lt;a href=&quot;#_footnoteref_1&quot;&gt;1&lt;/a&gt;. we techies ❤️ patterns, just google for Design Patterns by Gang of four
+&lt;/div&gt;
+&lt;/div&gt;
+</content>
+</entry>
+<entry>
 <id>http://gamov.io/posts/2018/11/28/who-is-tweeting-about-ksql.html</id>
 <title>Who is tweeting about hashtag KSQL?</title>
-<updated>2019-01-17T17:52:56-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2018-11-28T18:00:00+00:00</published>
 <link href="http://gamov.io/posts/2018/11/28/who-is-tweeting-about-ksql.html" rel="alternate" type="text/html" />
 <author>
@@ -466,7 +831,7 @@ confluent consume twitter_json_01 --max-messages=5 --from-beginning     &lt;i cl
 <entry>
 <id>http://gamov.io/posts/2018/11/28/tips-and-tricks-that-i-use-in-my-demos-and-presentation-with-docker.html</id>
 <title>Tips And Tricks That I use in my demos and presentation with Docker</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2018-11-28T18:00:00+00:00</published>
 <link href="http://gamov.io/posts/2018/11/28/tips-and-tricks-that-i-use-in-my-demos-and-presentation-with-docker.html" rel="alternate" type="text/html" />
 <author>
@@ -670,7 +1035,7 @@ Usual suspects here are maven or gradle directory jar’s directory and  Docker 
 <entry>
 <id>http://gamov.io/posts/2018/11/20/streaming-moview-ratings-with-kafka-streams-and-ksql.html</id>
 <title>Streaming Movies Ratings with Kafka Streams and KSQL</title>
-<updated>2019-01-18T12:11:46-05:00</updated>
+<updated>2019-03-15T16:38:34-04:00</updated>
 <published>2018-11-20T18:00:00+00:00</published>
 <link href="http://gamov.io/posts/2018/11/20/streaming-moview-ratings-with-kafka-streams-and-ksql.html" rel="alternate" type="text/html" />
 <author>
@@ -1163,7 +1528,7 @@ select TITLE, RATING  from RATED_MOVIES where MOVIE_ID=362; &lt;i class=&quot;co
 <entry>
 <id>http://gamov.io/posts/2017/09/20/stream-v-batch.html</id>
 <title>Divide, Distribute and Conquer — Stream v. Batch @ Philly JUG</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2017-09-20T16:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/09/20/stream-v-batch.html" rel="alternate" type="text/html" />
 <author>
@@ -1360,7 +1725,7 @@ In this presentation I talked about how developers and data engineers are changi
 <entry>
 <id>http://gamov.io/posts/2017/09/07/speaking-at-javaone-2017.html</id>
 <title>I&#8217;m Speaking At JavaOne 2017</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2017-09-07T20:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/09/07/speaking-at-javaone-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -1496,7 +1861,7 @@ But there is one you don’t want to miss — &lt;a href=&quot;https://www.event
 <entry>
 <id>http://gamov.io/posts/2017/07/21/goodbye-hazelcast.html</id>
 <title>Goodbye, Hazelcast!</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2017-07-21T17:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/07/21/goodbye-hazelcast.html" rel="alternate" type="text/html" />
 <author>
@@ -1580,7 +1945,7 @@ Thank you for being a part of it!&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2017/07/20/testcontainers-ajug.html</id>
 <title>Testing containers with Testcontainers @ Atlanta JUG</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2017-07-20T08:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/07/20/testcontainers-ajug.html" rel="alternate" type="text/html" />
 <author>
@@ -1813,7 +2178,7 @@ In this presentation I talked about how Docker can help with seamless transition
 <entry>
 <id>http://gamov.io/posts/2017/06/15/cfsummit-2017.html</id>
 <title>Cloud Foundry Summit Silicon Valley 2017</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2017-06-15T14:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/06/15/cfsummit-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -1966,7 +2331,7 @@ Distribute Caching for your next Node.js project webinar recording
 <entry>
 <id>http://gamov.io/posts/2017/06/08/how-to-scale-hazelcast-docker-containers-with-docker-compose.html</id>
 <title>How To Scale Hazelcast Cluster with Docker Compose</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2017-06-08T13:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/06/08/how-to-scale-hazelcast-docker-containers-with-docker-compose.html" rel="alternate" type="text/html" />
 <author>
@@ -2402,7 +2767,7 @@ If you have questions or suggestions, feel free to comment below.&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2017/05/30/acgnj-2017.html</id>
 <title>Distributed Java Streams @ ACGNJ 2017</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2017-05-30T17:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/05/30/acgnj-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -2475,7 +2840,7 @@ TBD
 <entry>
 <id>http://gamov.io/posts/2017/04/18/phillyete-2017.html</id>
 <title>JavaPuzzlers @ PhillyETE 2017</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2017-04-18T10:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/04/18/phillyete-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -2526,7 +2891,7 @@ TBD
 <entry>
 <id>http://gamov.io/posts/2017/04/08/jpoint-2017.html</id>
 <title>JPoint - 2107 [RU]</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2017-04-08T18:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/04/08/jpoint-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -2651,7 +3016,7 @@ https://github.com/hazelcast/hazelcast-jet-code-samples/blob/master/kafka/consum
 <entry>
 <id>http://gamov.io/posts/2017/04/04/jbreak-2017.html</id>
 <title>JBreak 2017 [RU]</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2017-04-04T10:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/04/04/jbreak-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -2764,7 +3129,7 @@ Branch for this talk Jbreak_2017...
 <entry>
 <id>http://gamov.io/posts/2017/02/09/hazelcast-node-dot-js-client-refcard.html</id>
 <title>Hazelcast Node.js Client Refcard</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2017-02-09T07:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/02/09/hazelcast-node-dot-js-client-refcard.html" rel="alternate" type="text/html" />
 <author>
@@ -3238,7 +3603,7 @@ Hazelcast can be used in the areas like clustering, in-memory NoSQL, application
 <entry>
 <id>http://gamov.io/posts/2017/02/08/jfokus-2017.html</id>
 <title>Jfokus 2017</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2017-02-08T09:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/02/08/jfokus-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -3331,7 +3696,7 @@ Branch for this talk JFokus_Feb2017...
 <entry>
 <id>http://gamov.io/posts/2017/02/02/nyjavasig-2017.html</id>
 <title>NYJavaSig, February 2017</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2017-02-02T20:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/02/02/nyjavasig-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -3443,7 +3808,7 @@ Let&#39;s look...
 <entry>
 <id>http://gamov.io/posts/2017/01/12/codemash-2017.html</id>
 <title>Codemash 2017</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2017-01-12T13:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/01/12/codemash-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -3588,7 +3953,7 @@ Each branch represents parts of the talk:
 <entry>
 <id>http://gamov.io/posts/2016/09/09/whats-new-in-hazelcast-client-for-nodejs.html</id>
 <title>What&#8217;s New in Hazelcast Node.js Client</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2016-09-09T06:05:51-06:00</published>
 <link href="http://gamov.io/posts/2016/09/09/whats-new-in-hazelcast-client-for-nodejs.html" rel="alternate" type="text/html" />
 <author>
@@ -4300,7 +4665,7 @@ There a bunch of way to provide the feedback:&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2016/04/18/getting-started-with-hazelcast-and-node.html</id>
 <title>Getting Started with Hazelcast and Node.js</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2016-04-18T06:05:51-06:00</published>
 <link href="http://gamov.io/posts/2016/04/18/getting-started-with-hazelcast-and-node.html" rel="alternate" type="text/html" />
 <author>
@@ -4664,7 +5029,7 @@ You have just connected to a Hazelcast cluster and performed basic CRUD operatio
 <entry>
 <id>http://gamov.io/posts/2016/03/31/travel-report-q1-2016.html</id>
 <title>Travel Report - Q1 2016</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2016-03-31T20:00:00+00:00</published>
 <link href="http://gamov.io/posts/2016/03/31/travel-report-q1-2016.html" rel="alternate" type="text/html" />
 <author>
@@ -5033,7 +5398,7 @@ I am really impressed with the flexibility that JUG organizers are developing to
 <entry>
 <id>http://gamov.io/posts/2015/12/31/caching-made-bootiful.html</id>
 <title>Caching Made Bootiful — Hazelcast Way</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2015-12-31T22:18:23-06:00</published>
 <link href="http://gamov.io/posts/2015/12/31/caching-made-bootiful.html" rel="alternate" type="text/html" />
 <author>
@@ -5377,7 +5742,7 @@ Meanwhile, if you have any questions, feel free to post them in the comments sec
 <entry>
 <id>http://gamov.io/posts/2015/12/29/my-year-at-hazelcast-in-review.html</id>
 <title>My Year At Hazelcast In Review</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2015-12-29T17:00:00+00:00</published>
 <link href="http://gamov.io/posts/2015/12/29/my-year-at-hazelcast-in-review.html" rel="alternate" type="text/html" />
 <author>
@@ -5726,7 +6091,7 @@ Looking forward to 2016 — Happy New Year &lt;span class=&quot;icon&quot;&g
 <entry>
 <id>http://gamov.io/posts/2015/11/02/hazelcast-for-mongodb-developers.html</id>
 <title>Hazelcast for MongoDB Developers</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2015-11-02T16:31:53-06:00</published>
 <link href="http://gamov.io/posts/2015/11/02/hazelcast-for-mongodb-developers.html" rel="alternate" type="text/html" />
 <author>
@@ -6041,7 +6406,7 @@ If I didn’t, please, ask me in the comments below.&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2015/01/27/ground-up-introduction-to-in-memory-data.html</id>
 <title>Ground-up Introduction To In-Memory Data</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2015-01-27T22:00:00+00:00</published>
 <link href="http://gamov.io/posts/2015/01/27/ground-up-introduction-to-in-memory-data.html" rel="alternate" type="text/html" />
 <author>
@@ -6151,7 +6516,7 @@ This April, &lt;a href=&quot;http://codepalousa.com/blog/2015/code-palousa-2015-
 <entry>
 <id>http://gamov.io/posts/2014/12/13/goodbye-farata-hello-hazelcast.html</id>
 <title>Goodbye, Farata. Hello, Hazelcast!</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2014-12-13T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2014/12/13/goodbye-farata-hello-hazelcast.html" rel="alternate" type="text/html" />
 <author>
@@ -6252,7 +6617,7 @@ Ultimately, I’ll be doing the pretty much same sorts of things I’ve been doi
 <entry>
 <id>http://gamov.io/posts/2013/07/17/getting-started-with-nashorn.html</id>
 <title>Getting Started With Nashorn</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2013-07-17T23:00:00+00:00</published>
 <link href="http://gamov.io/posts/2013/07/17/getting-started-with-nashorn.html" rel="alternate" type="text/html" />
 <author>
@@ -6420,7 +6785,7 @@ As you learned from my previous post, I’m going to talk about Nashorn - JavaSc
 <entry>
 <id>http://gamov.io/posts/2013/07/09/im-speaking-at-javaone.html</id>
 <title>I&#8217;m speaking at JavaOne 2013</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2013-07-09T01:00:00+00:00</published>
 <link href="http://gamov.io/posts/2013/07/09/im-speaking-at-javaone.html" rel="alternate" type="text/html" />
 <author>
@@ -6472,7 +6837,7 @@ Keep in touch for updates by following me on &lt;a href=&quot;http://twitter.com
 <entry>
 <id>http://gamov.io/posts/2013/02/05/prouctive-enterprise-web-dev-with-cdb.html</id>
 <title>Productive Enterprise Web Development with ExtJS and Clear Data Builder</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2013-02-05T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2013/02/05/prouctive-enterprise-web-dev-with-cdb.html" rel="alternate" type="text/html" />
 <author>
@@ -7185,7 +7550,7 @@ public class PersonServiceImpl extends _PersonServiceImpl {
 <entry>
 <id>http://gamov.io/posts/2013/01/19/set-jdk-on-osx.html</id>
 <title>Set JDK on OSX</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2013-01-19T14:00:00+00:00</published>
 <link href="http://gamov.io/posts/2013/01/19/set-jdk-on-osx.html" rel="alternate" type="text/html" />
 <author>
@@ -7387,7 +7752,7 @@ alias setjdk19=&amp;apos;export JAVA_HOME=$(/usr/libexec/java_home -v 9)&amp;apo
 <entry>
 <id>http://gamov.io/posts/2012/07/26/websockets-for-java-developers.html</id>
 <title>WebSockets for Java Developers. Princeton JUG talk slides</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2012-07-26T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2012/07/26/websockets-for-java-developers.html" rel="alternate" type="text/html" />
 <summary>
@@ -7423,7 +7788,7 @@ today.&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2012/05/21/alfred-showhide-desktop-icons-on-mac-os.html</id>
 <title>Alfred Extension: Show/Hide desktop icons on Mac OS X</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2012-05-21T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2012/05/21/alfred-showhide-desktop-icons-on-mac-os.html" rel="alternate" type="text/html" />
 <category term="alfred"></category>
@@ -7452,7 +7817,7 @@ Cheers&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2012/05/16/webjars-for-assets-management-in-your.html</id>
 <title>WebJars for assets management in your project</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2012-05-16T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2012/05/16/webjars-for-assets-management-in-your.html" rel="alternate" type="text/html" />
 <category term="java"></category>
@@ -7477,7 +7842,7 @@ But in most common situations, you don’t have lot of options for deployment yo
 <entry>
 <id>http://gamov.io/posts/2012/01/28/how-to-download-videos-from-infoq-for.html</id>
 <title>How to download videos from InfoQ for offline viewing</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2012-01-28T06:15:00+00:00</published>
 <link href="http://gamov.io/posts/2012/01/28/how-to-download-videos-from-infoq-for.html" rel="alternate" type="text/html" />
 <author>
@@ -7525,7 +7890,7 @@ However, I found very elegant solution how to do that. I did it on my MacOS X wi
 <entry>
 <id>http://gamov.io/posts/2012/01/10/rapid-automation-for-flexjavablazeds.html</id>
 <title>Rapid automation for Flex/Java/BlazeDS projects</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2012-01-10T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2012/01/10/rapid-automation-for-flexjavablazeds.html" rel="alternate" type="text/html" />
 <author>
@@ -7545,7 +7910,7 @@ Feel free to comment!&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2011/09/11/adobe-max.html</id>
 <title>Adobe MAX</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2011-09-11T23:07:00+00:00</published>
 <link href="http://gamov.io/posts/2011/09/11/adobe-max.html" rel="alternate" type="text/html" />
 <author>
@@ -7579,7 +7944,7 @@ Creative Cloud - another big thing was announced. Sharing and collaboration b/w 
 <entry>
 <id>http://gamov.io/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html</id>
 <title>Eclipse: java.lang.UnsatisfiedLinkError: Cannot load 32-bit SWT libraries on 64-bit JVM</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2011-07-26T04:22:00+00:00</published>
 <link href="http://gamov.io/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html" rel="alternate" type="text/html" />
 <author>
@@ -7720,7 +8085,7 @@ to Eclipse→Preferences→Java→Installed JRE and add default JVM argument *&l
 <entry>
 <id>http://gamov.io/posts/2011/07/10/building-and-testing-with-gradle-my.html</id>
 <title>Building and Testing with Gradle - My Book Review</title>
-<updated>2019-01-17T17:52:52-05:00</updated>
+<updated>2019-01-18T12:12:42-05:00</updated>
 <published>2011-07-10T20:57:00+00:00</published>
 <link href="http://gamov.io/posts/2011/07/10/building-and-testing-with-gradle-my.html" rel="alternate" type="text/html" />
 <author>
