@@ -1,0 +1,132 @@
+= How to Work with Confluent Schema Registry and Apache Avro in Spring Boot Application
+Viktor Gamov <viktor@confluent.io>, © 2019 Confluent, Inc.
+2019-07-22 19:44
+:imagesdir: ../images
+:icons: font
+:keywords:
+:source-highlighter: highlight.js
+:highlightjs-theme: idea
+:experimental:
+:y: icon:check-sign[role="green"]
+:n: icon:check-minus[role="red"]
+:c: icon:file-text-alt[role="blue"]
+:toc: auto
+:toc-placement: auto
+:toc-position: auto
+:toc-title: Table of content
+:toclevels: 3
+:sectanchors:
+ifndef::awestruct[]
+:awestruct-draft: true
+:awestruct-layout: post
+:awestruct-tags: []
+:idprefix:
+:idseparator: -
+endif::awestruct[]
+:springboot_101_blog: https://www.confluent.io/blog/apache-kafka-spring-boot-application
+:start_spring: http://start.spring.io
+
+.TL;DR
+
+NOTE: Following on from {springboot_101_blog}[How to Work with Apache Kafka in Your Spring Boot Application], which shows how to get started with Spring Boot and Apache Kafka®, here I will go and demonstrate how to enable usage of Confluent Schema Registry and Apache Avro® serialization format in your Spring Boot Application 
+
+toc::[]
+
+== Prerequisites
+
+* Java
+* Confluent Platform 5.2
+* `ccloud`
+
+== Let's start writing 
+
+As always we start at {start_spring} I generate a project starter.
+In this started, I enabled «Spring for Apache Kafka» and «Spring Web Starter».
+
+.Generate new project with Spring Initializer
+image::springboot_avro.png[]
+ 
+Next, we need update your `pom.xml` to add support for Schema Registry and Avro. 
+
+[source,xml]
+----
+<dependencies>
+        <!-- other dependencies -->
+        <dependency>
+            <groupId>io.confluent</groupId>
+            <artifactId>kafka-schema-registry-client</artifactId>   <!--<1>-->
+            <version>5.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro</artifactId>   <!--<2>-->
+            <version>1.8.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.confluent</groupId>
+            <artifactId>kafka-avro-serializer</artifactId>  <!--<3>-->
+            <version>5.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>io.confluent</groupId>
+            <artifactId>kafka-streams-avro-serde</artifactId>   
+            <version>5.2.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+    <repositories>
+        <!-- other maven repositories the project -->
+        <repository>
+            <id>confluent</id>      <!--<4>-->
+            <url>https://packages.confluent.io/maven/</url>
+        </repository>
+    </repositories>
+    <plugins>
+        <!-- other maven plugins in the project -->
+        <plugin>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro-maven-plugin</artifactId>
+            <version>1.8.2</version>
+            <executions>
+                <execution>
+                    <phase>generate-sources</phase>
+                    <goals>
+                        <goal>schema</goal>
+                    </goals>
+                    <configuration>
+                        <sourceDirectory>src/main/resources/avro</sourceDirectory> <!--<5>-->
+                        <outputDirectory>${project.build.directory}/generated-sources</outputDirectory>
+                        <stringType>String</stringType>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+----
+<1> Confluent Schema Registry client
+<2> Apache Avro dependency 
+<3> Avro Serdes
+<4> Confluent Maven repository
+<5> Source directory where you put your Avro files
+
+== Test Producer / consumer
+
+[source,bash]
+----
+curl -X POST -d 'name=vik&age=33' http://localhost:9080/user/publish
+----
+
+
+[source]
+----
+2019-06-06 22:52:59.485  INFO 28910 --- [nio-9080-exec-1] Producer Logger                          : Produced user -> {"name": "vik", "age": 33}
+2019-06-06 22:52:59.559  INFO 28910 --- [ntainer#0-0-C-1] Consumer Logger                          : Consumed message -> {"name": "vik", "age": 33}
+----
+
+
+== Add cloud example 
