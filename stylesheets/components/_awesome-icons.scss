@@ -50,30 +50,42 @@
   }
 }
 
-.conum {
+.conum[data-value] {
   display: inline-block;
-  color: white !important;
-  background-color: $body-font-color;
-  @include border-radius(100px);
+  color: #fff !important;
+  background-color: rgba(0, 0, 0, 0.8);
+  -webkit-border-radius: 100px;
+  border-radius: 100px;
   text-align: center;
-  width: 20px;
-  height: 20px;
-  font-size: 12px;
-  font-weight: bold;
-  line-height: 20px;
-  font-family: Arial, sans-serif;
+  font-size: .75em;
+  width: 1.67em;
+  height: 1.67em;
+  line-height: 1.67em;
+  font-family: "Open Sans","DejaVu Sans",sans-serif;
   font-style: normal;
-  position: relative;
-  top: -2px;
-
-  & * {
-    color: white !important;
+  font-weight: bold;
+  * {
+    color: #fff !important;
   }
-
-  // hack for when highlight.js adds a bogus element into DOM
-  &:empty {
+  + b {
     display: none;
   }
+  &:after {
+    content: attr(data-value);
+  }
+}
+
+pre .conum[data-value] {
+  position: relative;
+  top: -.125em;
+}
+
+b.conum * {
+  color: inherit !important;
+}
+
+.conum:not([data-value]):empty {
+  display: none;
 }
 
 pre .comment .conum {

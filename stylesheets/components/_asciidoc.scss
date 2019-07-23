@@ -233,6 +233,35 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
   }
 }
 
+.admonitionblock td.icon {
+  [class^="fa icon-"] {
+    font-size: 2.5em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    cursor: default;
+  }
+  .icon-note:before {
+    content: "\f05a";
+    color: #19407c;
+  }
+  .icon-tip:before {
+    content: "\f0eb";
+    text-shadow: 1px 1px 2px rgba(155, 155, 0, 0.8);
+    color: #111;
+  }
+  .icon-warning:before {
+    content: "\f071";
+    color: #bf6900;
+  }
+  .icon-caution:before {
+    content: "\f06d";
+    color: #bf3400;
+  }
+  .icon-important:before {
+    content: "\f06a";
+    color: #bf0000;
+  }
+}
+
 .exampleblock > .content {
   @include panel($body-bg);
   @include radius;
