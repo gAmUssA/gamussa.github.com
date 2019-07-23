@@ -8582,7 +8582,40 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
   margin-bottom: 0;
 }
 
-/* line 236, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 237, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+.admonitionblock td.icon [class^="fa icon-"] {
+  font-size: 2.5em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  cursor: default;
+}
+/* line 242, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+.admonitionblock td.icon .icon-note:before {
+  content: "\f05a";
+  color: #19407c;
+}
+/* line 246, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+.admonitionblock td.icon .icon-tip:before {
+  content: "\f0eb";
+  text-shadow: 1px 1px 2px rgba(155, 155, 0, 0.8);
+  color: #111;
+}
+/* line 251, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+.admonitionblock td.icon .icon-warning:before {
+  content: "\f071";
+  color: #bf6900;
+}
+/* line 255, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+.admonitionblock td.icon .icon-caution:before {
+  content: "\f06d";
+  color: #bf3400;
+}
+/* line 259, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+.admonitionblock td.icon .icon-important:before {
+  content: "\f06a";
+  color: #bf0000;
+}
+
+/* line 265, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .exampleblock > .content {
   border-style: solid;
   border-width: 1px;
@@ -8614,26 +8647,26 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
 .exampleblock > .content h1.subheader, .exampleblock > .content h2.subheader, .exampleblock > .content h3.subheader, .exampleblock > .content .subheader#toctitle, .sidebarblock.exampleblock > .content > .subheader.title, .exampleblock > .content h4.subheader, .exampleblock > .content h5.subheader, .exampleblock > .content h6.subheader {
   line-height: 1.4;
 }
-/* line 239, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 268, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .exampleblock > .content > :last-child > :last-child,
 .exampleblock > .content .olist > ol > li:last-child > :last-child,
 .exampleblock > .content .ulist > ul > li:last-child > :last-child {
   margin-bottom: 0;
 }
 
-/* line 247, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 276, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .exampleblock.result > .content {
   -moz-box-shadow: 0 1px 8px #bfbfbf;
   -webkit-box-shadow: 0 1px 8px #bfbfbf;
   box-shadow: 0 1px 8px #bfbfbf;
 }
 
-/* line 251, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 280, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .imageblock {
   margin-bottom: 1.25em;
 }
 
-/* line 255, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 284, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .sidebarblock {
   border-style: solid;
   border-width: 1px;
@@ -8665,7 +8698,7 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
 .sidebarblock h1.subheader, .sidebarblock h2.subheader, .sidebarblock h3.subheader, .sidebarblock .subheader#toctitle, .sidebarblock > .content > .subheader.title, .sidebarblock h4.subheader, .sidebarblock h5.subheader, .sidebarblock h6.subheader {
   line-height: 1.4;
 }
-/* line 260, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 289, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .sidebarblock > .content > .title {
   color: #191919;
   margin-top: 0;
@@ -8674,17 +8707,17 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
   border-style: solid;
   border-color: #bfbfbf;
 }
-/* line 273, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 302, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .sidebarblock > .content > .paragraph:last-child p {
   margin-bottom: 0;
 }
 
-/* line 285, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 314, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .literalblock,
 .listingblock {
   margin-bottom: 1.25em;
 }
-/* line 289, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 318, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .literalblock > .content > pre,
 .listingblock > .content > pre {
   background: #ffffee;
@@ -8701,7 +8734,7 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
   overflow-x: auto;
   line-height: 1.6;
 }
-/* line 305, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 334, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .literalblock > .content > pre > code, .literalblock > .content > pre > tt,
 .listingblock > .content > pre > code,
 .listingblock > .content > pre > tt {
@@ -8712,28 +8745,28 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
   font-weight: normal;
 }
 @media only screen {
-  /* line 289, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+  /* line 318, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
   .literalblock > .content > pre,
   .listingblock > .content > pre {
     font-size: 0.72em;
   }
 }
 @media only screen and (min-width: 768px) {
-  /* line 289, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+  /* line 318, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
   .literalblock > .content > pre,
   .listingblock > .content > pre {
     font-size: 0.81em;
   }
 }
 @media only screen and (min-width: 1280px) {
-  /* line 289, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+  /* line 318, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
   .literalblock > .content > pre,
   .listingblock > .content > pre {
     font-size: 0.9em;
   }
 }
 
-/* line 344, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 373, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .listingblock:hover .xml:before {
   content: "xml";
   text-transform: uppercase;
@@ -8741,7 +8774,7 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
   font-size: 0.9em;
   color: #999;
 }
-/* line 344, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 373, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .listingblock:hover .html:before {
   content: "html";
   text-transform: uppercase;
@@ -8749,7 +8782,7 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
   font-size: 0.9em;
   color: #999;
 }
-/* line 344, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 373, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .listingblock:hover .ruby:before {
   content: "ruby";
   text-transform: uppercase;
@@ -8757,7 +8790,7 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
   font-size: 0.9em;
   color: #999;
 }
-/* line 344, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 373, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .listingblock:hover .asciidoc:before {
   content: "asciidoc";
   text-transform: uppercase;
@@ -8765,7 +8798,7 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
   font-size: 0.9em;
   color: #999;
 }
-/* line 344, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 373, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .listingblock:hover .java:before {
   content: "java";
   text-transform: uppercase;
@@ -8773,7 +8806,7 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
   font-size: 0.9em;
   color: #999;
 }
-/* line 344, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 373, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .listingblock:hover .css:before {
   content: "css";
   text-transform: uppercase;
@@ -8781,7 +8814,7 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
   font-size: 0.9em;
   color: #999;
 }
-/* line 344, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 373, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .listingblock:hover .scss:before {
   content: "scss";
   text-transform: uppercase;
@@ -8790,45 +8823,45 @@ table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
   color: #999;
 }
 
-/* line 366, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 395, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .quoteblock {
   margin: 0 0 1.25em;
   padding: 0.5625em 1.25em 0 1.1875em;
   border-left: 1px solid #ddd;
 }
-/* line 371, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 400, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .quoteblock blockquote {
   margin: 0 0 1.25em 0;
   padding: 0;
   border: 0;
 }
-/* line 376, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 405, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .quoteblock blockquote > .paragraph:last-child p {
   margin-bottom: 0;
 }
-/* line 381, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 410, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .quoteblock .attribution {
   padding-bottom: 0.5625em;
   font-size: 0.8125em;
   color: #555555;
 }
-/* line 385, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 414, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .quoteblock .attribution br {
   display: none;
 }
-/* line 388, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 417, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .quoteblock .attribution cite {
   display: block;
   margin-bottom: 0.625em;
 }
 
-/* line 396, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 425, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 table thead th,
 table tfoot th {
   font-weight: normal;
 }
 
-/* line 401, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 430, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 table.tableblock.grid-all {
   border-collapse: separate;
   border-spacing: 1px;
@@ -8838,101 +8871,101 @@ table.tableblock.grid-all {
   border-bottom: 1px solid #ddd;
 }
 
-/* line 409, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 438, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 table.tableblock.frame-topbot,
 table.tableblock.frame-none {
   border-left: 0;
   border-right: 0;
 }
 
-/* line 415, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 444, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 table.tableblock.frame-sides,
 table.tableblock.frame-none {
   border-top: 0;
   border-bottom: 0;
 }
 
-/* line 422, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 451, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 table.tableblock td .paragraph:last-child p,
 table.tableblock td > p:last-child {
   margin-bottom: 0;
 }
 
-/* line 429, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 458, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 th.tableblock.halign-left,
 td.tableblock.halign-left {
   text-align: left;
 }
 
-/* line 429, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 458, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 th.tableblock.halign-right,
 td.tableblock.halign-right {
   text-align: right;
 }
 
-/* line 429, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 458, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 th.tableblock.halign-center,
 td.tableblock.halign-center {
   text-align: center;
 }
 
-/* line 436, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 465, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 th.tableblock.halign-top,
 td.tableblock.halign-top {
   vertical-align: top;
 }
 
-/* line 436, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 465, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 th.tableblock.halign-bottom,
 td.tableblock.halign-bottom {
   vertical-align: bottom;
 }
 
-/* line 436, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 465, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 th.tableblock.halign-middle,
 td.tableblock.halign-middle {
   vertical-align: middle;
 }
 
-/* line 442, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 471, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 p.tableblock.header {
   color: #191919;
   font-weight: normal;
 }
 
-/* line 447, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 476, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 td > div.verse {
   white-space: pre;
 }
 
-/* line 453, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 482, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 ul {
   margin-left: 1.75em;
 }
 
-/* line 457, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 486, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 ol {
   margin-left: 1.875em;
 }
 
-/* line 461, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 490, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 dl dd {
   margin-left: 2.5em;
 }
 
-/* line 466, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 495, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 dl dd:last-child,
 dl dd:last-child > :last-child {
   margin-bottom: 0;
 }
 
-/* line 473, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 502, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .unstyled dl dt {
   font-weight: normal;
   font-style: normal;
 }
 
-/* line 478, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 507, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 ol > li p,
 ul > li p,
 ul dd,
@@ -8940,93 +8973,93 @@ ol dd {
   margin-bottom: 0.625em;
 }
 
-/* line 486, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 515, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 ol.arabic {
   list-style-type: decimal;
 }
 
-/* line 486, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 515, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 ol.loweralpha {
   list-style-type: lower-alpha;
 }
 
-/* line 486, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 515, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 ol.upperalpha {
   list-style-type: upper-alpha;
 }
 
-/* line 486, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 515, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 ol.lowerroman {
   list-style-type: lower-roman;
 }
 
-/* line 486, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 515, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 ol.upperroman {
   list-style-type: upper-roman;
 }
 
-/* line 497, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 526, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .hdlist > table,
 .colist > table {
   border: 0;
   background: none;
 }
-/* line 502, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 531, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .hdlist > table > tbody > tr,
 .colist > table > tbody > tr {
   background: none;
 }
 
-/* line 507, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 536, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .literalblock + .colist,
 .listingblock + .colist {
   margin-top: -0.5em;
 }
 
-/* line 513, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 542, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .colist > table tr > td:first-of-type {
   padding: 0 .8em;
   line-height: 1;
 }
-/* line 518, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 547, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .colist > table tr > td:last-of-type {
   padding: 0.25em 0;
 }
 
-/* line 523, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 552, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 td.hdlist1 {
   vertical-align: top;
   padding-right: .8em;
 }
 
-/* line 528, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 557, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .qanda > ol > li > p:first-child {
   color: #1b3484;
 }
 
-/* line 533, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 562, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 span.footnote,
 span.footnoteref {
   vertical-align: super;
   font-size: 0.875em;
 }
-/* line 537, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 566, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 span.footnote a,
 span.footnoteref a {
   text-decoration: none;
 }
 
-/* line 542, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 571, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 #footnotes {
   padding: 0.75em 0.375em;
   margin-bottom: 1.25em;
   border-top: 1px solid #ddd;
 }
-/* line 546, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 575, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 #footnotes hr {
   display: none;
 }
-/* line 549, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 578, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 #footnotes .footnote {
   line-height: 1.3;
   font-size: 0.875em;
@@ -9034,54 +9067,54 @@ span.footnoteref a {
   text-indent: -1.2em;
   margin-bottom: .2em;
 }
-/* line 557, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 586, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 #footnotes .footnote a {
   font-weight: bold;
   text-decoration: none;
 }
-/* line 563, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 592, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 #footnotes .footnote:last-of-type {
   margin-bottom: 0;
 }
 
-/* line 569, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 598, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .gist .file-data > table {
   border: none;
   background: #fff;
   width: 100%;
   margin-bottom: 0;
 }
-/* line 574, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 603, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .gist .file-data > table td.line-data {
   width: 99%;
 }
 
-/* line 580, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 609, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 .unbreakable {
   page-break-inside: avoid;
 }
 
-/* line 586, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 615, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 span.big {
   font-size: larger;
 }
 
-/* line 590, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 619, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 span.small {
   font-size: smaller;
 }
 
-/* line 595, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 624, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 span.underline {
   text-decoration: underline;
 }
 
-/* line 595, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 624, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 span.overline {
   text-decoration: overline;
 }
 
-/* line 595, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
+/* line 624, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_asciidoc.scss */
 span.line-through {
   text-decoration: line-through;
 }
@@ -11421,34 +11454,51 @@ a .icon-flip-vertical:before {
 }
 
 /* line 53, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
-.conum {
+.conum[data-value] {
   display: inline-block;
-  color: white !important;
-  background-color: #191919;
-  -moz-border-radius: 100px;
+  color: #fff !important;
+  background-color: rgba(0, 0, 0, 0.8);
   -webkit-border-radius: 100px;
   border-radius: 100px;
   text-align: center;
-  width: 20px;
-  height: 20px;
-  font-size: 12px;
-  font-weight: bold;
-  line-height: 20px;
-  font-family: Arial, sans-serif;
+  font-size: .75em;
+  width: 1.67em;
+  height: 1.67em;
+  line-height: 1.67em;
+  font-family: "Open Sans","DejaVu Sans",sans-serif;
   font-style: normal;
+  font-weight: bold;
+}
+/* line 67, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
+.conum[data-value] * {
+  color: #fff !important;
+}
+/* line 70, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
+.conum[data-value] + b {
+  display: none;
+}
+/* line 73, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
+.conum[data-value]:after {
+  content: attr(data-value);
+}
+
+/* line 78, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
+pre .conum[data-value] {
   position: relative;
-  top: -2px;
+  top: -.125em;
 }
-/* line 69, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
-.conum * {
-  color: white !important;
+
+/* line 83, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
+b.conum * {
+  color: inherit !important;
 }
-/* line 74, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
-.conum:empty {
+
+/* line 87, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
+.conum:not([data-value]):empty {
   display: none;
 }
 
-/* line 79, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
+/* line 91, /Users/viktor/projects/gamussa.github.com/stylesheets/components/_awesome-icons.scss */
 pre .comment .conum {
   left: -20px;
 }
