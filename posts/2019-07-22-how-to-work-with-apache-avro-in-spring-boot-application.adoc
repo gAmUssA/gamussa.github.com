@@ -65,17 +65,17 @@ Confluent provides Avro serializers that integrating with Schema Registry.
         <!-- other dependencies -->
         <dependency>
             <groupId>io.confluent</groupId>
-            <artifactId>kafka-schema-registry-client</artifactId>   <!--<1>-->
+            <artifactId>kafka-schema-registry-client</artifactId>   <!--1-->
             <version>5.2.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.avro</groupId>
-            <artifactId>avro</artifactId>   <!--<2>-->
+            <artifactId>avro</artifactId>   <!--2-->
             <version>1.8.2</version>
         </dependency>
         <dependency>
             <groupId>io.confluent</groupId>
-            <artifactId>kafka-avro-serializer</artifactId>  <!--<3>-->
+            <artifactId>kafka-avro-serializer</artifactId>  <!--3-->
             <version>5.2.1</version>
         </dependency>
         <dependency>
@@ -93,7 +93,7 @@ Confluent provides Avro serializers that integrating with Schema Registry.
     <repositories>
         <!-- other maven repositories the project -->
         <repository>
-            <id>confluent</id>      <!--<4>-->
+            <id>confluent</id>      <!--4-->
             <url>https://packages.confluent.io/maven/</url>
         </repository>
     </repositories>
@@ -110,7 +110,7 @@ Confluent provides Avro serializers that integrating with Schema Registry.
                         <goal>schema</goal>
                     </goals>
                     <configuration>
-                        <sourceDirectory>src/main/resources/avro</sourceDirectory> <!--<5>-->
+                        <sourceDirectory>src/main/resources/avro</sourceDirectory> <!--5-->
                         <outputDirectory>${project.build.directory}/generated-sources</outputDirectory>
                         <stringType>String</stringType>
                     </configuration>
