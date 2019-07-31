@@ -118,17 +118,17 @@ Confluent provides Avro serializers that integrating with Schema Registry.</p>
         &lt;!-- other dependencies --&gt;
         &lt;dependency&gt;
             &lt;groupId&gt;io.confluent&lt;/groupId&gt;
-            &lt;artifactId&gt;kafka-schema-registry-client&lt;/artifactId&gt;   &lt;!--&lt;1&gt;--&gt;
+            &lt;artifactId&gt;kafka-schema-registry-client&lt;/artifactId&gt;   <i class="conum" data-value="1"></i><b>(1)</b>
             &lt;version&gt;5.2.1&lt;/version&gt;
         &lt;/dependency&gt;
         &lt;dependency&gt;
             &lt;groupId&gt;org.apache.avro&lt;/groupId&gt;
-            &lt;artifactId&gt;avro&lt;/artifactId&gt;   &lt;!--&lt;2&gt;--&gt;
+            &lt;artifactId&gt;avro&lt;/artifactId&gt;   <i class="conum" data-value="2"></i><b>(2)</b>
             &lt;version&gt;1.8.2&lt;/version&gt;
         &lt;/dependency&gt;
         &lt;dependency&gt;
             &lt;groupId&gt;io.confluent&lt;/groupId&gt;
-            &lt;artifactId&gt;kafka-avro-serializer&lt;/artifactId&gt;  &lt;!--&lt;3&gt;--&gt;
+            &lt;artifactId&gt;kafka-avro-serializer&lt;/artifactId&gt;  <i class="conum" data-value="3"></i><b>(3)</b>
             &lt;version&gt;5.2.1&lt;/version&gt;
         &lt;/dependency&gt;
         &lt;dependency&gt;
@@ -146,7 +146,7 @@ Confluent provides Avro serializers that integrating with Schema Registry.</p>
     &lt;repositories&gt;
         &lt;!-- other maven repositories the project --&gt;
         &lt;repository&gt;
-            &lt;id&gt;confluent&lt;/id&gt;      &lt;!--&lt;4&gt;--&gt;
+            &lt;id&gt;confluent&lt;/id&gt;      <i class="conum" data-value="4"></i><b>(4)</b>
             &lt;url&gt;https://packages.confluent.io/maven/&lt;/url&gt;
         &lt;/repository&gt;
     &lt;/repositories&gt;
@@ -163,7 +163,7 @@ Confluent provides Avro serializers that integrating with Schema Registry.</p>
                         &lt;goal&gt;schema&lt;/goal&gt;
                     &lt;/goals&gt;
                     &lt;configuration&gt;
-                        &lt;sourceDirectory&gt;src/main/resources/avro&lt;/sourceDirectory&gt; &lt;!--&lt;5&gt;--&gt;
+                        &lt;sourceDirectory&gt;src/main/resources/avro&lt;/sourceDirectory&gt; <i class="conum" data-value="5"></i><b>(5)</b>
                         &lt;outputDirectory&gt;${project.build.directory}/generated-sources&lt;/outputDirectory&gt;
                         &lt;stringType&gt;String&lt;/stringType&gt;
                     &lt;/configuration&gt;
