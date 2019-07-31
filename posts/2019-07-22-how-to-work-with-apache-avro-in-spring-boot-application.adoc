@@ -17,7 +17,7 @@ Viktor Gamov <viktor@confluent.io>, © 2019 Confluent, Inc.
 :toclevels: 3
 :sectanchors:
 ifndef::awestruct[]
-:awestruct-draft: true
+:awestruct-draft: false
 :awestruct-layout: post
 :awestruct-tags: []
 :idprefix:
@@ -25,18 +25,27 @@ ifndef::awestruct[]
 endif::awestruct[]
 :springboot_101_blog: https://www.confluent.io/blog/apache-kafka-spring-boot-application
 :start_spring: http://start.spring.io
+:cp_quickstart: https://docs.confluent.io/current/quickstart/ce-quickstart.html#ce-quickstart
 
 .TL;DR
 
-NOTE: Following on from {springboot_101_blog}[How to Work with Apache Kafka in Your Spring Boot Application], which shows how to get started with Spring Boot and Apache Kafka®, here I will go and demonstrate how to enable usage of Confluent Schema Registry and Apache Avro® serialization format in your Spring Boot Application 
+NOTE: Following on from {springboot_101_blog}[How to Work with Apache Kafka in Your Spring Boot Application], which shows how to get started with Spring Boot and Apache Kafka®, here I will go and demonstrate how to enable usage of Confluent Schema Registry and Apache Avro® serialization format in your Spring Boot Applications.
+You can download full source code from Github footnote:[http://github.com/gamussa]
+
+.Revisions history
+[width="70%",cols="",options="header"]
+|===
+|Version    |Date       | Comments
+|*v1.0*     |7/31/2019 | Initial revision
+|===
 
 toc::[]
 
 == Prerequisites
 
-* Java
-* Confluent Platform 5.2
-* `ccloud`
+* Java 8+
+* Confluent Platform 5.3
+* _Optional_ Confluent Cloud account
 
 == Let's start writing 
 
@@ -45,12 +54,14 @@ In this started, I enabled «Spring for Apache Kafka» and «Spring Web Starter�
 
 .Generate new project with Spring Initializer
 image::springboot_avro.png[]
- 
-Next, we need update your `pom.xml` to add support for Schema Registry and Avro. 
+
+We need to update your `pom.xml` to add support for Schema Registry and Avro.
+Confluent provides Avro serializers that integrating with Schema Registry.
 
 [source,xml]
 ----
-<dependencies>
+<project>
+    <dependencies>
         <!-- other dependencies -->
         <dependency>
             <groupId>io.confluent</groupId>
@@ -107,26 +118,282 @@ Next, we need update your `pom.xml` to add support for Schema Registry and Avro.
             </executions>
         </plugin>
     </plugins>
+</project>
 ----
 <1> Confluent Schema Registry client
-<2> Apache Avro dependency 
+<2> Apache Avro dependency
 <3> Avro Serdes
 <4> Confluent Maven repository
-<5> Source directory where you put your Avro files
+<5> Source directory where you put your Avro files and when to store generated Java POJOs
 
-== Test Producer / consumer
+== Spring Boot application
+
+My application will include the following components:
+
+. `use.avsc` - an Avro file.
+. `SpringAvroApplication.java` - a starting point of our application.
+This class also includes configuration for the new topic that my application is using.
+. `Producer.java` - a component that encapsulates Kafka Producer.
+. `Consumer.java` - a listener of messages from Kafka topic
+. `KafkaController.java` -  RESTful controller that accepting HTTP commands to publish a message in Kafka topic.
+
+=== User Avro file
+
+[source,json]
+.user.avsc
+----
+{
+  "namespace": "io.confluent.developer",  // <1>
+  "type": "record",
+  "name": "User",
+  "fields": [
+    {
+      "name": "name",
+      "type": "string",
+      "avro.java.string": "String"
+    },
+    {
+      "name": "age",
+      "type": "int"
+    }
+  ]
+}
+----
+<1> An `avro-maven-plugin` will generate `User` pojo in `io.confluent.developer` package.
+This POJO have `name` and `age` properties.
+
+=== Spring Boot Application
+
+[source,java]
+.SpringBootApplication.java
+----
+@SpringBootApplication
+public class SpringAvroApplication {
+  
+  // <1>
+  @Value("${topic.name}")
+  private String topicName;
+
+  @Value("${topic.partitions-num}")
+  private Integer partitions;
+
+  @Value("${topic.replication-factor}")
+  private short replicationFactor;
+
+  // <2>
+  @Bean
+  NewTopic moviesTopic() {
+    return new NewTopic(topicName, partitions, replicationFactor);
+  }
+  
+  // <3>
+  public static void main(String[] args) {
+    SpringApplication.run(SpringAvroApplication.class, args);
+  }
+
+}
+----
+<1> The topic parameters injected by Spring from `application.yaml` file.
+<2> Spring Boot creates new Kafka topic based on provided configurations.
+As an application developer, you're responsible for creating your topic and not rely on _auto topic creation` which should be `false` in production environments.
+<3> The application entry-point.
+
+=== Producer component
+
+[source,java]
+.Producer.java
+----
+@Service
+@CommonsLog(topic = "Producer Logger")
+public class Producer {
+
+  @Value("${topic.name}") // <1>
+  private String TOPIC;
+
+  private final KafkaTemplate<String, User> kafkaTemplate;
+
+  @Autowired
+  public Producer(KafkaTemplate<String, User> kafkaTemplate) {  // <2>
+    this.kafkaTemplate = kafkaTemplate;
+  }
+
+  void sendMessage(User user) {
+    this.kafkaTemplate.send(this.TOPIC, user.getName(), user);    // <3>
+    log.info(String.format("Produced user -> %s", user));
+  }
+}
+----
+<1> A topic name will be injected from `application.yaml`
+<2> Spring will initialize `KafkaTemplate` with properties provided in `application.yaml`
+<3> We will send message to topic using name of User as key.
+
+During application startup, Spring instantiates all those component, and the application ready to receive messages via REST endpoint.
+Default HTTP port is `9080` and can be changed in `application.yaml` configuration file.
+
+=== Consumer component
+
+[source,java]
+.Consumer.java
+----
+@Service
+@CommonsLog(topic = "Consumer Logger")
+public class Consumer {
+
+  // <1>
+  @Value("${topic.name}")
+  private String topicName;
+
+  @KafkaListener(topics = "users", groupId = "group_id")  // <2>
+  public void consume(ConsumerRecord<String, User> record) {
+    log.info(String.format("Consumed message -> %s", record.value()));
+  }
+}
+----
+<1> a topic name will be injected from `application.yaml`
+<2> With `@KafkaListener` annotation, a new consumer will be instantiated by `spring-kafka` framework.
+
+=== KafkaController component
+
+[source,java]
+.KafkaController.java
+----
+@RestController
+@RequestMapping(value = "/user")  // <1>
+public class KafkaController {
+
+  private final Producer producer;
+
+  @Autowired
+  KafkaController(Producer producer) {  // <2>
+    this.producer = producer;
+  }
+
+  @PostMapping(value = "/publish")
+  public void sendMessageToKafkaTopic(@RequestParam("name") String name, @RequestParam("age") Integer age) {
+    this.producer.sendMessage(new User(name, age)); // <3>
+  }
+}
+----
+<1> KafkaController  mapped to `/user` http endpoint
+<2> Producer component injectted by Spring
+<3> When new requies comes to `/user/publish` endpoint, the producer sends it to Kafka.
+
+== Running the example
+
+=== Prerequisites - Confluent Platform
+
+WARNING: In this guide, I assume that you have the Java Development Kit (JDK) installed.
+If you don't, I highly recommend using https://sdkman.io/[sdkman] to install it.
+
+You need to have Confluent Platform (CP) 5.3 installed locally.
+If you don't have it, please, follow the steps in {cp_quickstart}[Confluent Platform Quick Start].
+
+NOTE: To improve your productivity while developing Kafka applications, I recommend to install Confluent CLI as well (step 4 in {cp_quickstart}[quick start guide].
+
+=== Start Kafka and Schema Registry
+
+[source,bash]
+.startSr.sh
+----
+confluent local start schema-registry #<1>
+----
+<1> Confluent CLI provides `local` mode that can manage your local CP installation.
+Confluent CLI starts each component in the proper order (`schema-registry` depends on `Kafka`, `Kafka` depends on `zookeeper`)
+
+.You should see the similar output in your terminal 
+image::sb_start_sr.png[]
+
+=== Build and run Spring Boot application
+
+In the examples directory, you need to run `./mvnw clean package` to compile and produce a runnable jar.
+After that, you can run the following command:
+
+[source,bash]
+.runSpringBoot.sh
+----
+java -jar target/kafka-avro-0.0.1-SNAPSHOT.jar
+----
+
+=== Test Producer / consumer
+
+For simplicity, I use using `curl` command, but you can use any REST client (like Postman or REST client in IntelliJ IDEA)
 
 [source,bash]
 ----
 curl -X POST -d 'name=vik&age=33' http://localhost:9080/user/publish
 ----
 
+image::sb_rest_client.png[]
 
-[source]
+[source,shell]
 ----
 2019-06-06 22:52:59.485  INFO 28910 --- [nio-9080-exec-1] Producer Logger                          : Produced user -> {"name": "vik", "age": 33}
 2019-06-06 22:52:59.559  INFO 28910 --- [ntainer#0-0-C-1] Consumer Logger                          : Consumed message -> {"name": "vik", "age": 33}
 ----
 
+== Confluent Cloud
 
-== Add cloud example 
+To use this demo application with https://www.confluent.io/confluent-cloud/[Confluent Cloud], you are going to need the endpoint of your managed Schema Registry and an API Key/Secret.
+Both can be easily retrieved from the Confluent Cloud UI once you select an environment:
+
+image::Locating_Managed_Schema_Registry.png[]
+
+NOTE: you need to have at least one Apache Kafka cluster created to be able to access your managed Schema Registry.
+Once you select the Schema Registry option, you can retrieve the endpoint and create a new API/Secret:
+
+image::Getting_Endpoint_and_APIKeys.png[]
+
+Example Confluent Cloud config can find in `application-cloud.yaml`
+
+[source,yaml]
+----
+topic:
+  name: users
+  partitions-num: 6
+  replication-factor: 3
+server:
+  port: 9080
+spring:
+  kafka:
+    bootstrap-servers:
+      - mybootstrap.confluent.cloud:9092  # <1>
+    properties:
+      # CCloud broker connection parameters 
+      ssl.endpoint.identification.algorithm: https
+      sasl.mechanism: PLAIN
+      request.timeout.ms: 20000
+      retry.backoff.ms: 500
+      sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username="ccloud_key" password="ccloud_secret";  # <2>
+      security.protocol: SASL_SSL
+      
+      # CCloud Schema Registry Connection parameter
+      schema.registry.url: https://schema-registry.aws.confluent.cloud  # <3>
+      basic.auth.credentials.source: USER_INFO  # <4>
+      schema.registry.basic.auth.user.info: sr_ccloud_key:sr_ccloud_key # <5>
+    consumer:
+      group-id: group_id
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+    template:
+      default-topic:
+logging:
+  level:
+    root: info
+----
+<1> Cloud bootstrap server
+<2> Broker Key and Secret
+<3> Cloud Schema Registry URL
+<4> Schema Registry Authentication configuration
+<5> Cloud Schema Registry Key and Secret
+
+To run this application in `cloud` mode, you need to activate the `cloud` Spring profile.
+
+[source,bash]
+.runCloud.sh
+----
+java -jar -Dspring.profiles.active=cloud target/kafka-avro-0.0.1-SNAPSHOT.jar
+----
