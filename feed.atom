@@ -5,13 +5,743 @@
 <author>
 <name>Viktor Gamov</name>
 </author>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-31T13:47:44-04:00</updated>
 <link href="http://gamov.io/feed.atom" rel="self" type="application/atom+xml" />
 <link href="http://gamov.io/" rel="alternate" type="text/html" />
 <entry>
+<id>http://gamov.io/posts/2019/07/22/how-to-work-with-apache-avro-in-spring-boot-application.html</id>
+<title>How to Work with Confluent Schema Registry and Apache Avro in Spring Boot Application</title>
+<updated>2019-07-31T13:47:44-04:00</updated>
+<published>2019-07-22T19:00:00+00:00</published>
+<link href="http://gamov.io/posts/2019/07/22/how-to-work-with-apache-avro-in-spring-boot-application.html" rel="alternate" type="text/html" />
+<author>
+<name>Viktor Gamov &lt;viktor@confluent.io&gt;, © 2019 Confluent, Inc.</name>
+</author>
+<summary>
+Table of content
+
+Prerequisites
+Let&#8217;s start writing
+Spring Boot application
+
+User Avro file
+Spring Boot Application
+Producer component
+Consumer component
+KafkaController component
+
+
+Running the example
+
+Prerequisites - Confluent Platform
+Start Kafka and Schema Registry
+Build and run Spring Boot application
+Test Producer / consumer
+
+
+Confluent Cloud
+
+
+
+
+
+
+
+
+
+
+
+TL;DR
+Following on from How to Work with Apache Kafka in Your Spring Boot Application, which shows how to get started with Spring Boot and Apache Kafka®, here I will go and demonstrate how to enable usage of Confluent Schema Registry and Apache Avro® serialization format in your Spring Boot Applications.
+You can download full source code from Github [1]
+
+
+
+
+
+Table 1. Revisions history
+
+
+
+
+
+
+
+Version
+Date
+Comments
+
+
+
+
+v1.0
+7/31/2019
+Initial revision
+
+
+
+
+
+
+
+Prerequisites
+
+
+
+
+Java 8+
+
+
+Confluent Platform 5.3
+
+
+Optional Confluent Cloud account
+
+
+
+
+
+
+Let&#8217;s start...
+</summary>
+<content type="html">
+&lt;div id=&quot;toc&quot; class=&quot;toc&quot;&gt;
+&lt;div id=&quot;toctitle&quot;&gt;Table of content&lt;/div&gt;
+&lt;ul class=&quot;sectlevel1&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#prerequisites&quot;&gt;Prerequisites&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#let-s-start-writing&quot;&gt;Let’s start writing&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#spring-boot-application&quot;&gt;Spring Boot application&lt;/a&gt;
+&lt;ul class=&quot;sectlevel2&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#user-avro-file&quot;&gt;User Avro file&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#spring-boot-application-2&quot;&gt;Spring Boot Application&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#producer-component&quot;&gt;Producer component&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#consumer-component&quot;&gt;Consumer component&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#kafkacontroller-component&quot;&gt;KafkaController component&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#running-the-example&quot;&gt;Running the example&lt;/a&gt;
+&lt;ul class=&quot;sectlevel2&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#prerequisites-confluent-platform&quot;&gt;Prerequisites - Confluent Platform&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#start-kafka-and-schema-registry&quot;&gt;Start Kafka and Schema Registry&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#build-and-run-spring-boot-application&quot;&gt;Build and run Spring Boot application&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#test-producer-consumer&quot;&gt;Test Producer / consumer&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#confluent-cloud&quot;&gt;Confluent Cloud&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&quot;preamble&quot;&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;admonitionblock note&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;fa icon-note&quot; title=&quot;Note&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;TL;DR&lt;/div&gt;
+Following on from &lt;a href=&quot;https://www.confluent.io/blog/apache-kafka-spring-boot-application&quot;&gt;How to Work with Apache Kafka in Your Spring Boot Application&lt;/a&gt;, which shows how to get started with Spring Boot and Apache Kafka®, here I will go and demonstrate how to enable usage of Confluent Schema Registry and Apache Avro® serialization format in your Spring Boot Applications.
+You can download full source code from Github &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_1&quot; class=&quot;footnote&quot; href=&quot;#_footnote_1&quot; title=&quot;View footnote.&quot;&gt;1&lt;/a&gt;]&lt;/sup&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;table class=&quot;tableblock frame-all grid-all&quot; style=&quot;width: 70%;&quot;&gt;
+&lt;caption class=&quot;title&quot;&gt;Table 1. Revisions history&lt;/caption&gt;
+&lt;colgroup&gt;
+&lt;col style=&quot;width: 33.3333%;&quot; /&gt;
+&lt;col style=&quot;width: 33.3333%;&quot; /&gt;
+&lt;col style=&quot;width: 33.3334%;&quot; /&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th class=&quot;tableblock halign-left valign-top&quot;&gt;Version&lt;/th&gt;
+&lt;th class=&quot;tableblock halign-left valign-top&quot;&gt;Date&lt;/th&gt;
+&lt;th class=&quot;tableblock halign-left valign-top&quot;&gt;Comments&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;&lt;strong&gt;v1.0&lt;/strong&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;7/31/2019&lt;/p&gt;&lt;/td&gt;
+&lt;td class=&quot;tableblock halign-left valign-top&quot;&gt;&lt;p class=&quot;tableblock&quot;&gt;Initial revision&lt;/p&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;!-- toc disabled --&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;prerequisites&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#prerequisites&quot;&gt;&lt;/a&gt;Prerequisites&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;ulist&quot;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Java 8+&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Confluent Platform 5.3&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;Optional&lt;/em&gt; Confluent Cloud account&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;let-s-start-writing&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#let-s-start-writing&quot;&gt;&lt;/a&gt;Let’s start writing&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;As always we start at &lt;a href=&quot;http://start.spring.io&quot; class=&quot;bare&quot;&gt;http://start.spring.io&lt;/a&gt; I generate a project starter.
+In this started, I enabled «Spring for Apache Kafka» and «Spring Web Starter».&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;http://gamov.io/images/springboot_avro.png&quot; alt=&quot;springboot avro&quot; /&gt;
+&lt;/div&gt;
+&lt;div class=&quot;title&quot;&gt;Figure 1. Generate new project with Spring Initializer&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;We need to update your &lt;code&gt;pom.xml&lt;/code&gt; to add support for Schema Registry and Avro.
+Confluent provides Avro serializers that integrating with Schema Registry.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&amp;lt;project&amp;gt;
+    &amp;lt;dependencies&amp;gt;
+        &amp;lt;!-- other dependencies --&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;io.confluent&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;kafka-schema-registry-client&amp;lt;/artifactId&amp;gt;   &amp;lt;!--&amp;lt;1&amp;gt;--&amp;gt;
+            &amp;lt;version&amp;gt;5.2.1&amp;lt;/version&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;org.apache.avro&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;avro&amp;lt;/artifactId&amp;gt;   &amp;lt;!--&amp;lt;2&amp;gt;--&amp;gt;
+            &amp;lt;version&amp;gt;1.8.2&amp;lt;/version&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;io.confluent&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;kafka-avro-serializer&amp;lt;/artifactId&amp;gt;  &amp;lt;!--&amp;lt;3&amp;gt;--&amp;gt;
+            &amp;lt;version&amp;gt;5.2.1&amp;lt;/version&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+        &amp;lt;dependency&amp;gt;
+            &amp;lt;groupId&amp;gt;io.confluent&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;kafka-streams-avro-serde&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;5.2.1&amp;lt;/version&amp;gt;
+            &amp;lt;exclusions&amp;gt;
+                &amp;lt;exclusion&amp;gt;
+                    &amp;lt;groupId&amp;gt;org.slf4j&amp;lt;/groupId&amp;gt;
+                    &amp;lt;artifactId&amp;gt;slf4j-log4j12&amp;lt;/artifactId&amp;gt;
+                &amp;lt;/exclusion&amp;gt;
+            &amp;lt;/exclusions&amp;gt;
+        &amp;lt;/dependency&amp;gt;
+    &amp;lt;/dependencies&amp;gt;
+    &amp;lt;repositories&amp;gt;
+        &amp;lt;!-- other maven repositories the project --&amp;gt;
+        &amp;lt;repository&amp;gt;
+            &amp;lt;id&amp;gt;confluent&amp;lt;/id&amp;gt;      &amp;lt;!--&amp;lt;4&amp;gt;--&amp;gt;
+            &amp;lt;url&amp;gt;https://packages.confluent.io/maven/&amp;lt;/url&amp;gt;
+        &amp;lt;/repository&amp;gt;
+    &amp;lt;/repositories&amp;gt;
+    &amp;lt;plugins&amp;gt;
+        &amp;lt;!-- other maven plugins in the project --&amp;gt;
+        &amp;lt;plugin&amp;gt;
+            &amp;lt;groupId&amp;gt;org.apache.avro&amp;lt;/groupId&amp;gt;
+            &amp;lt;artifactId&amp;gt;avro-maven-plugin&amp;lt;/artifactId&amp;gt;
+            &amp;lt;version&amp;gt;1.8.2&amp;lt;/version&amp;gt;
+            &amp;lt;executions&amp;gt;
+                &amp;lt;execution&amp;gt;
+                    &amp;lt;phase&amp;gt;generate-sources&amp;lt;/phase&amp;gt;
+                    &amp;lt;goals&amp;gt;
+                        &amp;lt;goal&amp;gt;schema&amp;lt;/goal&amp;gt;
+                    &amp;lt;/goals&amp;gt;
+                    &amp;lt;configuration&amp;gt;
+                        &amp;lt;sourceDirectory&amp;gt;src/main/resources/avro&amp;lt;/sourceDirectory&amp;gt; &amp;lt;!--&amp;lt;5&amp;gt;--&amp;gt;
+                        &amp;lt;outputDirectory&amp;gt;${project.build.directory}/generated-sources&amp;lt;/outputDirectory&amp;gt;
+                        &amp;lt;stringType&amp;gt;String&amp;lt;/stringType&amp;gt;
+                    &amp;lt;/configuration&amp;gt;
+                &amp;lt;/execution&amp;gt;
+            &amp;lt;/executions&amp;gt;
+        &amp;lt;/plugin&amp;gt;
+    &amp;lt;/plugins&amp;gt;
+&amp;lt;/project&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Confluent Schema Registry client&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Apache Avro dependency&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Avro Serdes&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;4&quot;&gt;&lt;/i&gt;&lt;b&gt;4&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Confluent Maven repository&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;5&quot;&gt;&lt;/i&gt;&lt;b&gt;5&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Source directory where you put your Avro files and when to store generated Java POJOs&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;spring-boot-application&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#spring-boot-application&quot;&gt;&lt;/a&gt;Spring Boot application&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;My application will include the following components:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;olist arabic&quot;&gt;
+&lt;ol class=&quot;arabic&quot;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;use.avsc&lt;/code&gt; - an Avro file.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;SpringAvroApplication.java&lt;/code&gt; - a starting point of our application.
+This class also includes configuration for the new topic that my application is using.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Producer.java&lt;/code&gt; - a component that encapsulates Kafka Producer.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Consumer.java&lt;/code&gt; - a listener of messages from Kafka topic&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;KafkaController.java&lt;/code&gt; -  RESTful controller that accepting HTTP commands to publish a message in Kafka topic.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;user-avro-file&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#user-avro-file&quot;&gt;&lt;/a&gt;User Avro file&lt;/h3&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;user.avsc&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;{
+  &amp;quot;namespace&amp;quot;: &amp;quot;io.confluent.developer&amp;quot;,  &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+  &amp;quot;type&amp;quot;: &amp;quot;record&amp;quot;,
+  &amp;quot;name&amp;quot;: &amp;quot;User&amp;quot;,
+  &amp;quot;fields&amp;quot;: [
+    {
+      &amp;quot;name&amp;quot;: &amp;quot;name&amp;quot;,
+      &amp;quot;type&amp;quot;: &amp;quot;string&amp;quot;,
+      &amp;quot;avro.java.string&amp;quot;: &amp;quot;String&amp;quot;
+    },
+    {
+      &amp;quot;name&amp;quot;: &amp;quot;age&amp;quot;,
+      &amp;quot;type&amp;quot;: &amp;quot;int&amp;quot;
+    }
+  ]
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;An &lt;code&gt;avro-maven-plugin&lt;/code&gt; will generate &lt;code&gt;User&lt;/code&gt; pojo in &lt;code&gt;io.confluent.developer&lt;/code&gt; package.
+This POJO have &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;age&lt;/code&gt; properties.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;spring-boot-application-2&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#spring-boot-application-2&quot;&gt;&lt;/a&gt;Spring Boot Application&lt;/h3&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;SpringBootApplication.java&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;@SpringBootApplication
+public class SpringAvroApplication {
+
+  &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+  @Value(&amp;quot;${topic.name}&amp;quot;)
+  private String topicName;
+
+  @Value(&amp;quot;${topic.partitions-num}&amp;quot;)
+  private Integer partitions;
+
+  @Value(&amp;quot;${topic.replication-factor}&amp;quot;)
+  private short replicationFactor;
+
+  &lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
+  @Bean
+  NewTopic moviesTopic() {
+    return new NewTopic(topicName, partitions, replicationFactor);
+  }
+
+  &lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;
+  public static void main(String[] args) {
+    SpringApplication.run(SpringAvroApplication.class, args);
+  }
+
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;The topic parameters injected by Spring from &lt;code&gt;application.yaml&lt;/code&gt; file.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Spring Boot creates new Kafka topic based on provided configurations.
+As an application developer, you’re responsible for creating your topic and not rely on _auto topic creation` which should be &lt;code&gt;false&lt;/code&gt; in production environments.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;The application entry-point.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;producer-component&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#producer-component&quot;&gt;&lt;/a&gt;Producer component&lt;/h3&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;Producer.java&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;@Service
+@CommonsLog(topic = &amp;quot;Producer Logger&amp;quot;)
+public class Producer {
+
+  @Value(&amp;quot;${topic.name}&amp;quot;) &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+  private String TOPIC;
+
+  private final KafkaTemplate&amp;lt;String, User&amp;gt; kafkaTemplate;
+
+  @Autowired
+  public Producer(KafkaTemplate&amp;lt;String, User&amp;gt; kafkaTemplate) {  &lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
+    this.kafkaTemplate = kafkaTemplate;
+  }
+
+  void sendMessage(User user) {
+    this.kafkaTemplate.send(this.TOPIC, user.getName(), user);    &lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;
+    log.info(String.format(&amp;quot;Produced user -&amp;gt; %s&amp;quot;, user));
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;A topic name will be injected from &lt;code&gt;application.yaml&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Spring will initialize &lt;code&gt;KafkaTemplate&lt;/code&gt; with properties provided in &lt;code&gt;application.yaml&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;We will send message to topic using name of User as key.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;During application startup, Spring instantiates all those component, and the application ready to receive messages via REST endpoint.
+Default HTTP port is &lt;code&gt;9080&lt;/code&gt; and can be changed in &lt;code&gt;application.yaml&lt;/code&gt; configuration file.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;consumer-component&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#consumer-component&quot;&gt;&lt;/a&gt;Consumer component&lt;/h3&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;Consumer.java&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;@Service
+@CommonsLog(topic = &amp;quot;Consumer Logger&amp;quot;)
+public class Consumer {
+
+  &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+  @Value(&amp;quot;${topic.name}&amp;quot;)
+  private String topicName;
+
+  @KafkaListener(topics = &amp;quot;users&amp;quot;, groupId = &amp;quot;group_id&amp;quot;)  &lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
+  public void consume(ConsumerRecord&amp;lt;String, User&amp;gt; record) {
+    log.info(String.format(&amp;quot;Consumed message -&amp;gt; %s&amp;quot;, record.value()));
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;a topic name will be injected from &lt;code&gt;application.yaml&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;With &lt;code&gt;&lt;a href=&quot;https://github.com/KafkaListener&quot;&gt;@KafkaListener&lt;/a&gt;&lt;/code&gt; annotation, a new consumer will be instantiated by &lt;code&gt;spring-kafka&lt;/code&gt; framework.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;kafkacontroller-component&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#kafkacontroller-component&quot;&gt;&lt;/a&gt;KafkaController component&lt;/h3&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;KafkaController.java&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;@RestController
+@RequestMapping(value = &amp;quot;/user&amp;quot;)  &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+public class KafkaController {
+
+  private final Producer producer;
+
+  @Autowired
+  KafkaController(Producer producer) {  &lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
+    this.producer = producer;
+  }
+
+  @PostMapping(value = &amp;quot;/publish&amp;quot;)
+  public void sendMessageToKafkaTopic(@RequestParam(&amp;quot;name&amp;quot;) String name, @RequestParam(&amp;quot;age&amp;quot;) Integer age) {
+    this.producer.sendMessage(new User(name, age)); &lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;
+  }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;KafkaController  mapped to &lt;code&gt;/user&lt;/code&gt; http endpoint&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Producer component injectted by Spring&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;When new requies comes to &lt;code&gt;/user/publish&lt;/code&gt; endpoint, the producer sends it to Kafka.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;running-the-example&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#running-the-example&quot;&gt;&lt;/a&gt;Running the example&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;prerequisites-confluent-platform&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#prerequisites-confluent-platform&quot;&gt;&lt;/a&gt;Prerequisites - Confluent Platform&lt;/h3&gt;
+&lt;div class=&quot;admonitionblock warning&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;fa icon-warning&quot; title=&quot;Warning&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+In this guide, I assume that you have the Java Development Kit (JDK) installed.
+If you don’t, I highly recommend using &lt;a href=&quot;https://sdkman.io/&quot;&gt;sdkman&lt;/a&gt; to install it.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;You need to have Confluent Platform (CP) 5.3 installed locally.
+If you don’t have it, please, follow the steps in &lt;a href=&quot;https://docs.confluent.io/current/quickstart/ce-quickstart.html#ce-quickstart&quot;&gt;Confluent Platform Quick Start&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock note&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;fa icon-note&quot; title=&quot;Note&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+To improve your productivity while developing Kafka applications, I recommend to install Confluent CLI as well (step 4 in &lt;a href=&quot;https://docs.confluent.io/current/quickstart/ce-quickstart.html#ce-quickstart&quot;&gt;quick start guide&lt;/a&gt;.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;start-kafka-and-schema-registry&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#start-kafka-and-schema-registry&quot;&gt;&lt;/a&gt;Start Kafka and Schema Registry&lt;/h3&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;startSr.sh&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;confluent local start schema-registry &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Confluent CLI provides &lt;code&gt;local&lt;/code&gt; mode that can manage your local CP installation.
+Confluent CLI starts each component in the proper order (&lt;code&gt;schema-registry&lt;/code&gt; depends on &lt;code&gt;Kafka&lt;/code&gt;, &lt;code&gt;Kafka&lt;/code&gt; depends on &lt;code&gt;zookeeper&lt;/code&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;http://gamov.io/images/sb_start_sr.png&quot; alt=&quot;sb start sr&quot; /&gt;
+&lt;/div&gt;
+&lt;div class=&quot;title&quot;&gt;Figure 2. You should see the similar output in your terminal&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;build-and-run-spring-boot-application&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#build-and-run-spring-boot-application&quot;&gt;&lt;/a&gt;Build and run Spring Boot application&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;In the examples directory, you need to run &lt;code&gt;./mvnw clean package&lt;/code&gt; to compile and produce a runnable jar.
+After that, you can run the following command:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;runSpringBoot.sh&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;java -jar target/kafka-avro-0.0.1-SNAPSHOT.jar&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect2&quot;&gt;
+&lt;h3 id=&quot;test-producer-consumer&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#test-producer-consumer&quot;&gt;&lt;/a&gt;Test Producer / consumer&lt;/h3&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;For simplicity, I use using &lt;code&gt;curl&lt;/code&gt; command, but you can use any REST client (like Postman or REST client in IntelliJ IDEA)&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;curl -X POST -d &amp;apos;name=vik&amp;amp;age=33&amp;apos; http://localhost:9080/user/publish&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;http://gamov.io/images/sb_rest_client.png&quot; alt=&quot;sb rest client&quot; /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-shell&quot; data-lang=&quot;shell&quot;&gt;2019-06-06 22:52:59.485  INFO 28910 --- [nio-9080-exec-1] Producer Logger                          : Produced user -&amp;gt; {&amp;quot;name&amp;quot;: &amp;quot;vik&amp;quot;, &amp;quot;age&amp;quot;: 33}
+2019-06-06 22:52:59.559  INFO 28910 --- [ntainer#0-0-C-1] Consumer Logger                          : Consumed message -&amp;gt; {&amp;quot;name&amp;quot;: &amp;quot;vik&amp;quot;, &amp;quot;age&amp;quot;: 33}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;sect1&quot;&gt;
+&lt;h2 id=&quot;confluent-cloud&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#confluent-cloud&quot;&gt;&lt;/a&gt;Confluent Cloud&lt;/h2&gt;
+&lt;div class=&quot;sectionbody&quot;&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;To use this demo application with &lt;a href=&quot;https://www.confluent.io/confluent-cloud/&quot;&gt;Confluent Cloud&lt;/a&gt;, you are going to need the endpoint of your managed Schema Registry and an API Key/Secret.
+Both can be easily retrieved from the Confluent Cloud UI once you select an environment:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;http://gamov.io/images/Locating_Managed_Schema_Registry.png&quot; alt=&quot;Locating Managed Schema Registry&quot; /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;admonitionblock note&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class=&quot;icon&quot;&gt;
+&lt;i class=&quot;fa icon-note&quot; title=&quot;Note&quot;&gt;&lt;/i&gt;
+&lt;/td&gt;
+&lt;td class=&quot;content&quot;&gt;
+you need to have at least one Apache Kafka cluster created to be able to access your managed Schema Registry.
+Once you select the Schema Registry option, you can retrieve the endpoint and create a new API/Secret:
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;imageblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;img src=&quot;http://gamov.io/images/Getting_Endpoint_and_APIKeys.png&quot; alt=&quot;Getting Endpoint and APIKeys&quot; /&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;Example Confluent Cloud config can find in &lt;code&gt;application-cloud.yaml&lt;/code&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;topic:
+  name: users
+  partitions-num: 6
+  replication-factor: 3
+server:
+  port: 9080
+spring:
+  kafka:
+    bootstrap-servers:
+      - mybootstrap.confluent.cloud:9092  &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+    properties:
+      # CCloud broker connection parameters
+      ssl.endpoint.identification.algorithm: https
+      sasl.mechanism: PLAIN
+      request.timeout.ms: 20000
+      retry.backoff.ms: 500
+      sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username=&amp;quot;ccloud_key&amp;quot; password=&amp;quot;ccloud_secret&amp;quot;;  &lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
+      security.protocol: SASL_SSL
+
+      # CCloud Schema Registry Connection parameter
+      schema.registry.url: https://schema-registry.aws.confluent.cloud  &lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;
+      basic.auth.credentials.source: USER_INFO  &lt;i class=&quot;conum&quot; data-value=&quot;4&quot;&gt;&lt;/i&gt;&lt;b&gt;(4)&lt;/b&gt;
+      schema.registry.basic.auth.user.info: sr_ccloud_key:sr_ccloud_key &lt;i class=&quot;conum&quot; data-value=&quot;5&quot;&gt;&lt;/i&gt;&lt;b&gt;(5)&lt;/b&gt;
+    consumer:
+      group-id: group_id
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+    template:
+      default-topic:
+logging:
+  level:
+    root: info&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;colist arabic&quot;&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Cloud bootstrap server&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;2&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Broker Key and Secret&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Cloud Schema Registry URL&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;4&quot;&gt;&lt;/i&gt;&lt;b&gt;4&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Schema Registry Authentication configuration&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;5&quot;&gt;&lt;/i&gt;&lt;b&gt;5&lt;/b&gt;&lt;/td&gt;
+&lt;td&gt;Cloud Schema Registry Key and Secret&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class=&quot;paragraph&quot;&gt;
+&lt;p&gt;To run this application in &lt;code&gt;cloud&lt;/code&gt; mode, you need to activate the &lt;code&gt;cloud&lt;/code&gt; Spring profile.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;listingblock&quot;&gt;
+&lt;div class=&quot;title&quot;&gt;runCloud.sh&lt;/div&gt;
+&lt;div class=&quot;content&quot;&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;java -jar -Dspring.profiles.active=cloud target/kafka-avro-0.0.1-SNAPSHOT.jar&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;footnotes&quot;&gt;
+&lt;hr /&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnote_1&quot;&gt;
+&lt;a href=&quot;#_footnoteref_1&quot;&gt;1&lt;/a&gt;. &lt;a href=&quot;http://github.com/gamussa&quot; class=&quot;bare&quot;&gt;http://github.com/gamussa&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content>
+</entry>
+<entry>
 <id>http://gamov.io/posts/2019/03/15/quick-tips-on-designing-your-next-presentation.html</id>
 <title>Quick Tips on Designing Your Kafka Summit Presentation</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2019-03-15T16:00:00+00:00</published>
 <link href="http://gamov.io/posts/2019/03/15/quick-tips-on-designing-your-next-presentation.html" rel="alternate" type="text/html" />
 <author>
@@ -392,7 +1122,7 @@ I may also share some of the delivering or presenting tips.&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2018/11/28/who-is-tweeting-about-ksql.html</id>
 <title>Who is tweeting about hashtag KSQL?</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2018-11-28T18:00:00+00:00</published>
 <link href="http://gamov.io/posts/2018/11/28/who-is-tweeting-about-ksql.html" rel="alternate" type="text/html" />
 <author>
@@ -847,7 +1577,7 @@ confluent consume twitter_json_01 --max-messages=5 --from-beginning     &lt;i cl
 <entry>
 <id>http://gamov.io/posts/2018/11/28/tips-and-tricks-that-i-use-in-my-demos-and-presentation-with-docker.html</id>
 <title>Tips And Tricks That I use in my demos and presentation with Docker</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2018-11-28T18:00:00+00:00</published>
 <link href="http://gamov.io/posts/2018/11/28/tips-and-tricks-that-i-use-in-my-demos-and-presentation-with-docker.html" rel="alternate" type="text/html" />
 <author>
@@ -1051,7 +1781,7 @@ Usual suspects here are maven or gradle directory jar’s directory and  Docker 
 <entry>
 <id>http://gamov.io/posts/2018/11/20/streaming-moview-ratings-with-kafka-streams-and-ksql.html</id>
 <title>Streaming Movies Ratings with Kafka Streams and KSQL</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2018-11-20T18:00:00+00:00</published>
 <link href="http://gamov.io/posts/2018/11/20/streaming-moview-ratings-with-kafka-streams-and-ksql.html" rel="alternate" type="text/html" />
 <author>
@@ -1544,7 +2274,7 @@ select TITLE, RATING  from RATED_MOVIES where MOVIE_ID=362; &lt;i class=&quot;co
 <entry>
 <id>http://gamov.io/posts/2017/09/20/stream-v-batch.html</id>
 <title>Divide, Distribute and Conquer — Stream v. Batch @ Philly JUG</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2017-09-20T16:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/09/20/stream-v-batch.html" rel="alternate" type="text/html" />
 <author>
@@ -1741,7 +2471,7 @@ In this presentation I talked about how developers and data engineers are changi
 <entry>
 <id>http://gamov.io/posts/2017/09/07/speaking-at-javaone-2017.html</id>
 <title>I&#8217;m Speaking At JavaOne 2017</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2017-09-07T20:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/09/07/speaking-at-javaone-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -1877,7 +2607,7 @@ But there is one you don’t want to miss — &lt;a href=&quot;https://www.event
 <entry>
 <id>http://gamov.io/posts/2017/07/21/goodbye-hazelcast.html</id>
 <title>Goodbye, Hazelcast!</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2017-07-21T17:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/07/21/goodbye-hazelcast.html" rel="alternate" type="text/html" />
 <author>
@@ -1961,7 +2691,7 @@ Thank you for being a part of it!&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2017/07/20/testcontainers-ajug.html</id>
 <title>Testing containers with Testcontainers @ Atlanta JUG</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2017-07-20T08:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/07/20/testcontainers-ajug.html" rel="alternate" type="text/html" />
 <author>
@@ -2194,7 +2924,7 @@ In this presentation I talked about how Docker can help with seamless transition
 <entry>
 <id>http://gamov.io/posts/2017/06/15/cfsummit-2017.html</id>
 <title>Cloud Foundry Summit Silicon Valley 2017</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2017-06-15T14:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/06/15/cfsummit-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -2347,7 +3077,7 @@ Distribute Caching for your next Node.js project webinar recording
 <entry>
 <id>http://gamov.io/posts/2017/06/08/how-to-scale-hazelcast-docker-containers-with-docker-compose.html</id>
 <title>How To Scale Hazelcast Cluster with Docker Compose</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2017-06-08T13:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/06/08/how-to-scale-hazelcast-docker-containers-with-docker-compose.html" rel="alternate" type="text/html" />
 <author>
@@ -2783,7 +3513,7 @@ If you have questions or suggestions, feel free to comment below.&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2017/05/30/acgnj-2017.html</id>
 <title>Distributed Java Streams @ ACGNJ 2017</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2017-05-30T17:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/05/30/acgnj-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -2856,7 +3586,7 @@ TBD
 <entry>
 <id>http://gamov.io/posts/2017/04/18/phillyete-2017.html</id>
 <title>JavaPuzzlers @ PhillyETE 2017</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2017-04-18T10:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/04/18/phillyete-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -2907,7 +3637,7 @@ TBD
 <entry>
 <id>http://gamov.io/posts/2017/04/08/jpoint-2017.html</id>
 <title>JPoint - 2107 [RU]</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2017-04-08T18:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/04/08/jpoint-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -3032,7 +3762,7 @@ https://github.com/hazelcast/hazelcast-jet-code-samples/blob/master/kafka/consum
 <entry>
 <id>http://gamov.io/posts/2017/04/04/jbreak-2017.html</id>
 <title>JBreak 2017 [RU]</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2017-04-04T10:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/04/04/jbreak-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -3145,7 +3875,7 @@ Branch for this talk Jbreak_2017...
 <entry>
 <id>http://gamov.io/posts/2017/02/09/hazelcast-node-dot-js-client-refcard.html</id>
 <title>Hazelcast Node.js Client Refcard</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2017-02-09T07:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/02/09/hazelcast-node-dot-js-client-refcard.html" rel="alternate" type="text/html" />
 <author>
@@ -3619,7 +4349,7 @@ Hazelcast can be used in the areas like clustering, in-memory NoSQL, application
 <entry>
 <id>http://gamov.io/posts/2017/02/08/jfokus-2017.html</id>
 <title>Jfokus 2017</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2017-02-08T09:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/02/08/jfokus-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -3712,7 +4442,7 @@ Branch for this talk JFokus_Feb2017...
 <entry>
 <id>http://gamov.io/posts/2017/02/02/nyjavasig-2017.html</id>
 <title>NYJavaSig, February 2017</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2017-02-02T20:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/02/02/nyjavasig-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -3824,7 +4554,7 @@ Let&#39;s look...
 <entry>
 <id>http://gamov.io/posts/2017/01/12/codemash-2017.html</id>
 <title>Codemash 2017</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2017-01-12T13:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/01/12/codemash-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -3969,7 +4699,7 @@ Each branch represents parts of the talk:
 <entry>
 <id>http://gamov.io/posts/2016/09/09/whats-new-in-hazelcast-client-for-nodejs.html</id>
 <title>What&#8217;s New in Hazelcast Node.js Client</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2016-09-09T06:05:51-06:00</published>
 <link href="http://gamov.io/posts/2016/09/09/whats-new-in-hazelcast-client-for-nodejs.html" rel="alternate" type="text/html" />
 <author>
@@ -4681,7 +5411,7 @@ There a bunch of way to provide the feedback:&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2016/04/18/getting-started-with-hazelcast-and-node.html</id>
 <title>Getting Started with Hazelcast and Node.js</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2016-04-18T06:05:51-06:00</published>
 <link href="http://gamov.io/posts/2016/04/18/getting-started-with-hazelcast-and-node.html" rel="alternate" type="text/html" />
 <author>
@@ -5045,7 +5775,7 @@ You have just connected to a Hazelcast cluster and performed basic CRUD operatio
 <entry>
 <id>http://gamov.io/posts/2016/03/31/travel-report-q1-2016.html</id>
 <title>Travel Report - Q1 2016</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2016-03-31T20:00:00+00:00</published>
 <link href="http://gamov.io/posts/2016/03/31/travel-report-q1-2016.html" rel="alternate" type="text/html" />
 <author>
@@ -5414,7 +6144,7 @@ I am really impressed with the flexibility that JUG organizers are developing to
 <entry>
 <id>http://gamov.io/posts/2015/12/31/caching-made-bootiful.html</id>
 <title>Caching Made Bootiful — Hazelcast Way</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2015-12-31T22:18:23-06:00</published>
 <link href="http://gamov.io/posts/2015/12/31/caching-made-bootiful.html" rel="alternate" type="text/html" />
 <author>
@@ -5758,7 +6488,7 @@ Meanwhile, if you have any questions, feel free to post them in the comments sec
 <entry>
 <id>http://gamov.io/posts/2015/12/29/my-year-at-hazelcast-in-review.html</id>
 <title>My Year At Hazelcast In Review</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2015-12-29T17:00:00+00:00</published>
 <link href="http://gamov.io/posts/2015/12/29/my-year-at-hazelcast-in-review.html" rel="alternate" type="text/html" />
 <author>
@@ -6107,7 +6837,7 @@ Looking forward to 2016 — Happy New Year &lt;span class=&quot;icon&quot;&g
 <entry>
 <id>http://gamov.io/posts/2015/11/02/hazelcast-for-mongodb-developers.html</id>
 <title>Hazelcast for MongoDB Developers</title>
-<updated>2019-03-16T10:17:25-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2015-11-02T16:31:53-06:00</published>
 <link href="http://gamov.io/posts/2015/11/02/hazelcast-for-mongodb-developers.html" rel="alternate" type="text/html" />
 <author>
@@ -6422,7 +7152,7 @@ If I didn’t, please, ask me in the comments below.&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2015/01/27/ground-up-introduction-to-in-memory-data.html</id>
 <title>Ground-up Introduction To In-Memory Data</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2015-01-27T22:00:00+00:00</published>
 <link href="http://gamov.io/posts/2015/01/27/ground-up-introduction-to-in-memory-data.html" rel="alternate" type="text/html" />
 <author>
@@ -6532,7 +7262,7 @@ This April, &lt;a href=&quot;http://codepalousa.com/blog/2015/code-palousa-2015-
 <entry>
 <id>http://gamov.io/posts/2014/12/13/goodbye-farata-hello-hazelcast.html</id>
 <title>Goodbye, Farata. Hello, Hazelcast!</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2014-12-13T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2014/12/13/goodbye-farata-hello-hazelcast.html" rel="alternate" type="text/html" />
 <author>
@@ -6633,7 +7363,7 @@ Ultimately, I’ll be doing the pretty much same sorts of things I’ve been doi
 <entry>
 <id>http://gamov.io/posts/2013/07/17/getting-started-with-nashorn.html</id>
 <title>Getting Started With Nashorn</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2013-07-17T23:00:00+00:00</published>
 <link href="http://gamov.io/posts/2013/07/17/getting-started-with-nashorn.html" rel="alternate" type="text/html" />
 <author>
@@ -6801,7 +7531,7 @@ As you learned from my previous post, I’m going to talk about Nashorn - JavaSc
 <entry>
 <id>http://gamov.io/posts/2013/07/09/im-speaking-at-javaone.html</id>
 <title>I&#8217;m speaking at JavaOne 2013</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2013-07-09T01:00:00+00:00</published>
 <link href="http://gamov.io/posts/2013/07/09/im-speaking-at-javaone.html" rel="alternate" type="text/html" />
 <author>
@@ -6853,7 +7583,7 @@ Keep in touch for updates by following me on &lt;a href=&quot;http://twitter.com
 <entry>
 <id>http://gamov.io/posts/2013/02/05/prouctive-enterprise-web-dev-with-cdb.html</id>
 <title>Productive Enterprise Web Development with ExtJS and Clear Data Builder</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2013-02-05T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2013/02/05/prouctive-enterprise-web-dev-with-cdb.html" rel="alternate" type="text/html" />
 <author>
@@ -7566,7 +8296,7 @@ public class PersonServiceImpl extends _PersonServiceImpl {
 <entry>
 <id>http://gamov.io/posts/2013/01/19/set-jdk-on-osx.html</id>
 <title>Set JDK on OSX</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2013-01-19T14:00:00+00:00</published>
 <link href="http://gamov.io/posts/2013/01/19/set-jdk-on-osx.html" rel="alternate" type="text/html" />
 <author>
@@ -7768,7 +8498,7 @@ alias setjdk19=&amp;apos;export JAVA_HOME=$(/usr/libexec/java_home -v 9)&amp;apo
 <entry>
 <id>http://gamov.io/posts/2012/07/26/websockets-for-java-developers.html</id>
 <title>WebSockets for Java Developers. Princeton JUG talk slides</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2012-07-26T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2012/07/26/websockets-for-java-developers.html" rel="alternate" type="text/html" />
 <summary>
@@ -7804,7 +8534,7 @@ today.&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2012/05/21/alfred-showhide-desktop-icons-on-mac-os.html</id>
 <title>Alfred Extension: Show/Hide desktop icons on Mac OS X</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2012-05-21T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2012/05/21/alfred-showhide-desktop-icons-on-mac-os.html" rel="alternate" type="text/html" />
 <category term="alfred"></category>
@@ -7833,7 +8563,7 @@ Cheers&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2012/05/16/webjars-for-assets-management-in-your.html</id>
 <title>WebJars for assets management in your project</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2012-05-16T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2012/05/16/webjars-for-assets-management-in-your.html" rel="alternate" type="text/html" />
 <category term="java"></category>
@@ -7858,7 +8588,7 @@ But in most common situations, you don’t have lot of options for deployment yo
 <entry>
 <id>http://gamov.io/posts/2012/01/28/how-to-download-videos-from-infoq-for.html</id>
 <title>How to download videos from InfoQ for offline viewing</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2012-01-28T06:15:00+00:00</published>
 <link href="http://gamov.io/posts/2012/01/28/how-to-download-videos-from-infoq-for.html" rel="alternate" type="text/html" />
 <author>
@@ -7906,7 +8636,7 @@ However, I found very elegant solution how to do that. I did it on my MacOS X wi
 <entry>
 <id>http://gamov.io/posts/2012/01/10/rapid-automation-for-flexjavablazeds.html</id>
 <title>Rapid automation for Flex/Java/BlazeDS projects</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2012-01-10T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2012/01/10/rapid-automation-for-flexjavablazeds.html" rel="alternate" type="text/html" />
 <author>
@@ -7926,7 +8656,7 @@ Feel free to comment!&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2011/09/11/adobe-max.html</id>
 <title>Adobe MAX</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2011-09-11T23:07:00+00:00</published>
 <link href="http://gamov.io/posts/2011/09/11/adobe-max.html" rel="alternate" type="text/html" />
 <author>
@@ -7960,7 +8690,7 @@ Creative Cloud - another big thing was announced. Sharing and collaboration b/w 
 <entry>
 <id>http://gamov.io/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html</id>
 <title>Eclipse: java.lang.UnsatisfiedLinkError: Cannot load 32-bit SWT libraries on 64-bit JVM</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2011-07-26T04:22:00+00:00</published>
 <link href="http://gamov.io/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html" rel="alternate" type="text/html" />
 <author>
@@ -8101,7 +8831,7 @@ to Eclipse→Preferences→Java→Installed JRE and add default JVM argument *&l
 <entry>
 <id>http://gamov.io/posts/2011/07/10/building-and-testing-with-gradle-my.html</id>
 <title>Building and Testing with Gradle - My Book Review</title>
-<updated>2019-07-23T17:06:55-04:00</updated>
+<updated>2019-07-23T17:24:40-04:00</updated>
 <published>2011-07-10T20:57:00+00:00</published>
 <link href="http://gamov.io/posts/2011/07/10/building-and-testing-with-gradle-my.html" rel="alternate" type="text/html" />
 <author>
