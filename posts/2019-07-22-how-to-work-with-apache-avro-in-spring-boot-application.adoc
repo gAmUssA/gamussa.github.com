@@ -17,7 +17,7 @@ Viktor Gamov <viktor@confluent.io>, © 2019 Confluent, Inc.
 :toclevels: 3
 :sectanchors:
 ifndef::awestruct[]
-:awestruct-draft: false
+:awestruct-draft: true
 :awestruct-layout: post
 :awestruct-tags: []
 :idprefix:
