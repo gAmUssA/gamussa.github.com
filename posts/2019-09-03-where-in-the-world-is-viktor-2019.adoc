@@ -1,0 +1,114 @@
+= Where in the world is Viktor in second half of 2019
+Viktor Gamov 
+2019-09-03 13:53
+:imagesdir: ../images
+:icons: font
+:keywords:
+:toc: auto
+:toc-placement: auto
+:toc-position: auto
+:toc-title: Table of content
+:toclevels: 3
+:experimental:
+ifndef::awestruct[]
+:awestruct-layout: post
+:awestruct-tags: [conferences, meetups]
+:idprefix:
+:idseparator: -
+endif::awestruct[]
+
+.TL;DR
+
+NOTE: This blog post inspired by similar posts of my colleagues' @rmoff footnote:[https://rmoff.net/2019/09/02/where-ill-be-on-the-road-for-the-remainder-of-2019/] and @riferrei footnote:[https://riferrei.net/speaking-calendar/].
+You can find all my speaking appearances until the end of 2019.
+
+.Revisions history
+[width="70%",cols="",options="header"]
+|===
+|Version    |Date       | Comments
+|*v1.0*     |9/05/2019  | Initial revision
+|===
+
+toc::[]
+
+== September
+
+* 🇺🇸 *5th of September: Washington, DC* — https://www.meetup.com/DC-Spring-Framework/events/263679369/[DC Spring Framework]
++
+I will be talking about integration between Kafka and SpringFramework.
+And I will try to live code!
+
+* 🗽 *10th of September: New York, NY* — https://www.lightbend.com/streaming-data-roadshow-2019/new-york[Building Smarter Applications with Streaming Data Pipelines]
++
+
+I will be there but not going to speak there.
+
+* 🌉 *17th-19th of September: San Francisco, CA* — https://www.oracle.com/code-one/[OracleCode One 2019]
++
+
+I will have https://events.rainfocus.com/widget/oracle/oow19/catalogcodeone19?search=gamov[three sessions] around things Kafka and DevOps
+
+** _Bringing Observability to Your Stream Processing_ [DEV4980]
+** _Monitor Kafka Like a Pro_ [DEV4981]
+** _DevOps Theory Versus Practice: A Song of Ice and Tire Fire_ [DEV5710] (together with @jbaruch)
++
+
+I will spend the rest of that week at https://goo.gl/maps/xqWHEkSjgDNbuvWi8[Confluent HQ]
+
+* 🗽 *24th and 26th of September: New York, NY* - https://conferences.oreilly.com/strata/strata-ny[Strata]
++
+
+https://conferences.oreilly.com/strata/strata-ny/public/schedule/speaker/294050[I will] be teaching some stream processing with KSQL:
+
+** https://conferences.oreilly.com/strata/strata-ny/public/schedule/detail/76489[Real-time SQL stream processing at scale with Apache Kafka and KSQL]
+
+Also, I will be demo some cool stuff with GCP and Confluent Operator at Google Cloud Platform booth!
+Stop by and say hi!
+
+== October
+
+NOTE: October starts strong with the probably only of the most significant event of Kafka Community - Kafka Summit San Francisco!
+Tickets still on sale.
+If you didn't get your ticket use code *Gamov30* on check out to get 30% off your conference pass.
+
+* 🌉 *30th of September - 1st of October: San Francisco, CA* — https://kafka-summit.org/events/kafka-summit-san-francisco-2019/[Kafka Summit San Franciso]
++
+
+I will be speaking about running Kafka on Kubernetes.
+
+** https://kafka-summit.org/sessions/kafka-kubernetes-really-hard-way-2/[Kafka on Kubernetes: Does it Really Have to Be “The Hard Way”?]
+
+* ⚾️ *3rd of October: Louisville, KY*  — https://www.meetup.com/Kubernetes-and-Cloud-Native-Computing-Louisville/events/260882346/[Kubernetes and Cloud Native Computing meetup]
+
+* 🍃 *6th-9th of October: Austin, TX* — https://springoneplatform.io[SpringOne Platform]
++
+
+I will be teaching https://springoneplatform.io/2019/speakers/viktor-gamov[a workshop and will have two talks]
+
+** https://springoneplatform.io/2019/workshops/confluent[Using Apache Kafka® and Spring Platform to Build Event-Driven Microservices]
+** https://springoneplatform.io/2019/sessions/apache-kafka-event-streaming-platform-for-net-developers[Apache Kafka Event-Streaming Platform for .NET Developers]
+** https://springoneplatform.io/2019/sessions/event-driven-architectures-for-spring-developers[Event-Driven Architectures for Spring Developers]
+
+* 🇦🇺 *13th-16th of October: Meetups in Melbourne* — Stay tuned for the details
+There will be more events in Australia - meetups and public appearances.
+I will update this page as soon as I start getting configurations.
+
+* 🦘 *16th-17 of October: Sydney, NSW*  — NDC Sydney https://ndcsydney.com/talk/apache-kafka-event-streaming-platform-for-net-developers/[Apache Kafka Event-Streaming Platform for .NET Developers]
+* 🗽 *22nd of October: New York, NY* — NYC Open Data Meetup https://www.meetup.com/NYC-Open-Data/events/263390404/[Kafka on Kubernetes: Just because you can, doesn't mean you should!]
+* 🇷🇺 *29th-30th of October: St. Petersburg* — https://devoops.ru/[Devoops!]
+* 🇳🇱 *31st of October: Amsterdam, Netherlands* — Customer visit
+
+== November
+
+* 🗽 *6th or 8th of November: New York, NY* — Kafka meetup - _stay tuned for details_
+
+== December
+
+* 🇩🇰 *4th-6th of December: Copenhagen, Denmark* — https://kotlinconf.com/speakers/[KotlinConf 2019]
+
+
+Alright, this is pretty much it for now!
+
+WARNING: As always, while I travel, I will be posting my `#gotogym💪.`
+If you're interested in it, follow me on http://instagram.com/gamussa/[Instagram] and http://twitter.com/gamussa[Twitter]
+*p.s.* ping me if you want to go and lift with me!  
