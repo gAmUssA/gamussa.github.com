@@ -1,0 +1,110 @@
+= The Oracle Code One 2019 Guide for seekers of Kafka wisdom
+Viktor Gamov
+2019-09-16 12:45
+:imagesdir: ../images
+:icons:
+:keywords:
+:toc:
+ifndef::awestruct[]
+:awestruct-layout: post
+:awestruct-tags: []
+:idprefix:
+:idseparator: -
+endif::awestruct[]
+
+image::https://www.instagram.com/p/BYcQ90AjsW4/[width=70%]
+
+.TL;DR
+
+NOTE: Oracle Code One 2019 is upon us!
+Read this post to find all sessions where you can learn things Apache Kafka® and stream processing!
+Also, I will be listing very subjective personal recommendations.
+Don't hesitate to reach-out if you would like me to add any details!
+
+.Revisions history
+[width="70%",cols="",options="header"]
+|===
+|Version    |Date       | Comments
+|*v1.0*     |9/16/2019  | Initial revision
+|===
+
+toc::[]
+
+== Monday
+
+* *Apache Kafka Versus Integration Middleware (MQ, ETL, ESB): Friends or Enemies? [DEV1187]* by Kai Waehner 09:00 AM - 09:45 AM | Moscone South - Room 302
+* *Getting Started with Kafka [DEV2417]* Nikhil Nanivadekar 12:30 PM - 01:15 PM | Moscone South - Room 207/208
+* *Building Event-Driven Applications with Oracle's Fn Project and Apache Kafka [DEV1917]* 01:30 PM - 02:15 PM | Moscone South - Room 304
+* *Building Reactive Pipelines: How to Go from Scalable Apps to Scalable Systems [DEV1256]* by Mark Heckler 12:30 PM - 01:15 PM | Moscone South - Room 207/208
+* *Streaming Machine Learning with Python, Jupyter, TensorFlow, Apache Kafka, and KSQL [DEV1185]* 04:00 PM - 04:45 PM | Moscone South - Room 201
+* *Query and Analyze Kafka Streams with Oracle SQL [DEV4292]* 05:00 PM - 05:45 PM | Moscone South - Room 204
+
+NOTE: If you're still puzzling how Kafka fits in overall enterprise middleware landscape, come and see Kai's talk (disclaimer: Kai is my colleague from Confluent, and I also have seen the previous iteration of this talk).
+If you're new to Apache Kafka®, don't miss Nikhil's talk. Nikhil is  https://www.confluent.io/nominate/[Confluent Community Catalyst]
+If you can't be wrong if you attend any of https://spring.io/team/hecklerm[Mark's] talk.
+
+
+== Tuesday 
+
+* *Event-Driven Tutorial for CQRS, Event Sourcing, JMS, Kafka, and Streaming [TUT3683]* by Edson Yanaga 08:45 AM - 10:45 AM | Moscone South - Room 205
+* *Bust the Burglars: Machine Learning with TensorFlow and Apache Kafka [DEV1155]* by Erik-Berndt Scheper 11:30 AM - 12:15 PM | Moscone South - Room 307
+* *Stream Processing of Live Traffic Data with Kafka Streams - BYOL [HOL4164]* by Tom Van den Bulck, Tim Ysewyn, and Glenn Van De Putte, 12:30 PM - 02:30 PM | Moscone West - Room 3011B
+* *Bringing Observability to Your Stream Processing [DEV4980]*, by your's truly 12:30 PM - 01:15 PM | Moscone South - Room 203
+* *Modern Data Streaming and Processing with Apache Kafka and NoSQL - BYOL [HOL4394]* by Leo Lima and Otavio Santana. Your's truly will be there to do Apache Kafka® intro 05:00 PM - 07:00 PM | Moscone West - Room 3024B
+
+NOTE: If you want to learn how to put stream processing in practice - don't miss Erik-Berndt's talk. I was lucky to see the previous iteration of his presentation.
+Leonard and Otravio are cooking a fantastic workshop. You also will learn bits of Confluent Cloud! I will be there to do the intro to Apache Kafka® streaming platform.
+I will step on the stage to talk about distributed tracing in the context of stream processing pipelines!
+
+
+== Wednesday 
+
+* *Drink from the Stream: How to Use Messaging Platforms for Scalability and Performance [DEV1257]* by Mark Heckler, 11:30 AM - 12:15 PM | Moscone South - Room 202
+* *How I Automated My Barn with Raspberry Pi, Kafka, Kubernetes, and Autonomous DB [DEV1307]* by Todd Sharp 01:30 PM - 02:15 PM | Moscone South - Room 201
+* * Don't Worry! How to Build a Data Lake in Oracle Big Data Service - BYOL [HOL2225]* by Sascha Hagedorn 02:45 PM - 04:45 PM | Moscone West - Room 3011B
+* *Monitor Kafka Like a Pro [DEV4981]*, by your's truly 04:00 PM - 04:45 PM | Moscone South - Room 204
+* *Keeping Your Caches Hot with Apache Kafka and the Connector API [DEV1346]* by Ricardo Ferreira 05:00 PM - 05:45 PM | Moscone South - Room 202
+* *Living Without REST: Event-Driven Architecture [DEV3807]* by Edson Yanaga 05:00 PM - 05:45 PM | Moscone South - Room 308
+
+NOTE: My friend and colleague Ricardo Ferreira will talk about another practical aspect of event-streaming data pipelines - keeping your distributed cache data consistent and fresh.
+Don't miss Edson's talk on learning how to reduce point to point connection of the services and design event-driven (or how at Confluent like to call it - event-streaming) applications.
+And I will be talking about another operations aspect of Kafka - monitoring!
+
+== Thursday
+
+* *Unleashing Apache Kafka and TensorFlow in Public Cloud and Hybrid Architectures [DEV1184]* by Kai Waehner 09:00 AM - 09:45 AM | Moscone South - Room 205
+* * Don't Worry! How to Build a Data Lake in Oracle Big Data Service - BYOL [HOL2225]* by Sascha Hagedorn Thursday, September 19, 09:00 AM - 11:00 AM | Moscone West - Room 3024B
+* *Making Sense of Event-Driven Data Flows: Tracing for Kafka-Based Applications [DEV2144]* by Jorge Quilcate 10:00 AM - 10:45 AM | Moscone South - Room 310/311
+* *Reactive Microservices in Action [DEV4322]* by Emily Jiang, Clement Escoffier 10:00 AM - 10:45 AM | Moscone South - Room 301
+* *Modern Data Streaming and Processing with Apache Kafka and NoSQL - BYOL [HOL4394]* by Leo Lima and Otavio Santana. Your's truly will be there to do Apache Kafka® intro, 12:00 PM - 02:00 PM | Moscone West - Room 3024C
+
+
+NOTE: If you're interested in how streaming data will help with your Machine Learning projects seriously consider to attend Kai's talk. He's an expert in building solutions based on Kafka and will share practical tips on using TensorFlow.
+Jorge is another Confluent Community Catalyst and will share his view on the distributed tracing of streaming apps.
+If you missed the Kafka workshop by Leonardo on Tuesday, you still can come on Thursday and gain practical experience in building event-streaming apps!
+
+
+== Conclusion 
+
+I will be available on Tuesday, Wednesday, and Thursday at the conference.
+You may ask - _Viktor, how I can find you?_
+The answer is easy - 6'5" guy in red pants is difficult to miss - stop by and say hi and https://twitter.com/gAmUssA/status/1173365680143511552[ask me any Apache Kafka® question]!
+
+As always, follow me on http://instagram.com/gamussa/[Instagram] and http://twitter.com/gamussa[Twitter] and
+
+[quote]
+Have a nice day ©
+
+
+
+
+
+
+
+
+
+
+
+
+
+
