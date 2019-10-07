@@ -26,6 +26,7 @@ You can find all my speaking appearances until the end of 2019.
 [width="70%",cols="",options="header"]
 |===
 |Version    |Date       | Comments
+|*v1.1*     |10/03/2019 | Added New York events
 |*v1.0*     |9/05/2019  | Initial revision
 |===
 
@@ -100,7 +101,8 @@ I will update this page as soon as I start getting configurations.
 
 == November
 
-* 🗽 *6th or 8th of November: New York, NY* — Kafka meetup - _stay tuned for details_
+* 🗽 *5th of November: New York, NY — Cloud Native New York* - https://www.meetup.com/Cloud-Native-New-York/events/265343986/[Stream Processing with the Spring Framework (Like You've Never Seen It Before)]
+* 🗽 *6th of November: New York, NY — Cloud Native New York* - https://www.meetup.com/Apache-Kafka-NYC/events/[Apache Kafka® NYC]
 
 == December
 
