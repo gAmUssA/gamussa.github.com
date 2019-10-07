@@ -42,9 +42,7 @@ toc::[]
 == Let’s start building the app
 
 As always, we’ll begin by http://start.spring.io/[generating a project starter]. 
-In this starter, you should enable "Spring for Apache Kafka" and "Spring Web Starter."
-
-_Figure 1. Generate a new project with Spring Initializer._ +
+In this starter, you should enable "Spring for Apache Kafka", "Spring for Apache Kafka Streams", "Cloud Stream" and "Spring Web Starter."
 
 Next, update your `pom.xml` to add support for Schema Registry and Avro.
 Confluent provides https://docs.confluent.io/current/app-development/index.html#native-clients-with-serializers[Avro serializers] that integrate with Schema Registry. 
@@ -56,17 +54,17 @@ Confluent provides https://docs.confluent.io/current/app-development/index.html#
         <!-- other dependencies -->
         <dependency>
             <groupId>io.confluent</groupId>
-            <artifactId>kafka-schema-registry-client</artifactId>   
+            <artifactId>kafka-schema-registry-client</artifactId>   <!-- 1-->
             <version>5.3.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.avro</groupId>
-            <artifactId>avro</artifactId>   
+            <artifactId>avro</artifactId>   <!-- 2-->
             <version>1.8.2</version>
         </dependency>
         <dependency>
             <groupId>io.confluent</groupId>
-            <artifactId>kafka-avro-serializer</artifactId>  
+            <artifactId>kafka-avro-serializer</artifactId>  <!-- 3-->
             <version>5.2.1</version>
         </dependency>
         <dependency>
@@ -85,7 +83,7 @@ Confluent provides https://docs.confluent.io/current/app-development/index.html#
         <!-- other maven repositories the project -->
         <repository>
             <id>confluent</id>      
-            <url>https://packages.confluent.io/maven/</url>
+            <url>https://packages.confluent.io/maven/</url> <!-- 4-->
         </repository>
     </repositories>
     <plugins>
@@ -101,7 +99,7 @@ Confluent provides https://docs.confluent.io/current/app-development/index.html#
                         <goal>schema</goal>
                     </goals>
                     <configuration>
-                        <sourceDirectory>src/main/resources/avro</sourceDirectory> 
+                        <sourceDirectory>src/main/resources/avro</sourceDirectory> <!-- 5-->
                         <outputDirectory>${project.build.directory}/generated-sources</outputDirectory>
                         <stringType>String</stringType>
                     </configuration>
@@ -114,8 +112,8 @@ Confluent provides https://docs.confluent.io/current/app-development/index.html#
 <1> Confluent Schema Registry client
 <2> Avro dependency
 <3> Avro SerDes
-<3> Confluent Maven repository
-<4> Source directory where you put your Avro files and store generated Java POJOs
+<4> Confluent Maven repository
+<5> Source directory where you put your Avro files and store generated Java POJOs
 
 === The architecture of a Spring Boot application
 
@@ -170,7 +168,7 @@ public class SpringAvroApplication {
   private short replicationFactor;
   
   @Bean
-  NewTopic moviesTopic() { // <2>
+  NewTopic newTopic() { // <2>
     return new NewTopic(topicName, partitions, replicationFactor);
   }
 
@@ -179,7 +177,7 @@ public class SpringAvroApplication {
   }
 }
 ----
-<1> These are the topic parameters injected by Spring from application.yaml file.
+<1> These are the topic parameters injected by Spring from `application.yaml` file.
 <2> Spring Boot creates a new Kafka topic based on the provided configurations.
 As an application developer, you’re responsible for creating your topic instead of relying on auto-topic creation, which should be false in production environments.
 
@@ -207,12 +205,12 @@ public class Producer {
   }
 }
 ----
-<1> A topic name will be injected from application.yaml.
-<2> Spring will initialize KafkaTemplate with properties provided in application.yaml.
-<3> We will send messages to the topic using User as the key.
+<1> A topic name will be injected from `application.yaml`.
+<2> Spring will initialize `KafkaTemplate` with properties provided in `application.yaml`.
+<3> We will send messages to the topic using user's `name` as the key.
 
 Spring instantiates all these components during the application startup, and the application becomes ready to receive messages via the REST endpoint.
-The default HTTP port is 9080 and can be changed in the `application.yaml` configuration file.
+The default HTTP port is `9080` and can be changed in the `application.yaml` configuration file.
 
 ==== Creating a consumer component
 
@@ -266,13 +264,13 @@ public class KafkaController {
 TIP: In this guide, I assume that you have the Java Development Kit (JDK) installed.
 If you don’t, I highly recommend using https://sdkman.io/[SDKMAN!] to install it.
 
-
 * You’ll also need Confluent Platform  5.3 or newer installed locally.
 If you don’t already have it, follow the https://docs.confluent.io/current/quickstart/ce-quickstart.html#ce-quickstart[Confluent Platform Quick Start]. 
 Be sure to install the Confluent CLI as well (see step 4 in this section of the https://docs.confluent.io/current/quickstart/ce-quickstart.html#step-1-download-and-start-cp[quick start]).
 
 ==== Start Kafka and Schema Registry
 
+[source,shell]
 ----
 confluent local start schema-registry
 ----
@@ -280,11 +278,11 @@ confluent local start schema-registry
 The Confluent CLI provides _local_ mode for managing your local Confluent Platform installation.
 The Confluent CLI starts each component in the correct order.
 
-You should see similar output in your terminal.
+__TBD sample output__ 
 
 ==== Building and running your Spring Boot application
 
-In the examples directory, run `./mvnw clean package` to compile and produce a runnable JAR.
+In the examples directory, run `./mvnw clean install -DskipTests=true` to compile and produce a runnable JAR.
 After that, you can run the following command: 
 
 [source,java]
@@ -294,7 +292,7 @@ java -jar target/kafka-avro-0.0.1-SNAPSHOT.jar
 
 ==== Testing the producer/consumer REST service
 
-For simplicity, I like to use the curl command, but you can use any REST client (like Postman or the REST client in IntelliJ IDEA to): +
+For simplicity, I like to use the curl command, but you can use any REST client (like Postman or the REST client in IntelliJ IDEA to): 
 
 [source,shell]
 ----
@@ -308,7 +306,6 @@ curl -X POST -d 'name=vik&age=33' http://localhost:9080/user/publish
 
 To use this demo application with https://www.confluent.io/confluent-cloud/[Confluent Cloud], you are going to need the endpoint of your managed Schema Registry and an API key/secret.
 Both can be easily retrieved from the Confluent Cloud UI once you select an environment.
-
 
 NOTE: At least one Kafka cluster must be created to access your managed Schema Registry.
 Once you select the Schema Registry option, you can retrieve the endpoint and create a new API/secret.
@@ -326,20 +323,20 @@ server:
 spring:
   kafka:
     bootstrap-servers:
-      - mybootstrap.confluent.cloud:9092  
+      - mybootstrap.confluent.cloud:9092  # <1>
     properties:
       # CCloud broker connection parameters
       ssl.endpoint.identification.algorithm: https
       sasl.mechanism: PLAIN
       request.timeout.ms: 20000
       retry.backoff.ms: 500
-      sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username="ccloud_key" password="ccloud_secret";  
+      sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username="ccloud_key" password="ccloud_secret";  # <2>
       security.protocol: SASL_SSL
 
       # CCloud Schema Registry Connection parameter
-      schema.registry.url: https://schema-registry.aws.confluent.cloud  
-      basic.auth.credentials.source: USER_INFO  
-      schema.registry.basic.auth.user.info: sr_ccloud_key:sr_ccloud_key 
+      schema.registry.url: https://schema-registry.aws.confluent.cloud  # <3>
+      basic.auth.credentials.source: USER_INFO    # <4>
+      schema.registry.basic.auth.user.info: sr_ccloud_key:sr_ccloud_key # <5>
     consumer:
       group-id: group_id
       auto-offset-reset: earliest
@@ -365,21 +362,77 @@ In this case, Spring Boot will pick up `application-cloud.yaml` configuration fi
 
 `java -jar -Dspring.profiles.active=cloud target/kafka-avro-0.0.1-SNAPSHOT.jar`
 
+== Processing with Kafka Streams and Spring Cloud Streams
+
+Let's create a new application in `io.confluet.developer.spring.streams`.
+
+[source,java]
+----
+@EnableBinding(Bindings.class)  // <1>
+@SpringBootApplication
+public class KafkaStreamsApp {
+
+  // topic parameters injection
+
+  public static void main(String[] args) {
+    final SpringApplication application = new SpringApplication(KafkaStreamsApp.class);
+    application.setWebApplicationType(WebApplicationType.NONE); // <2>
+    application.run(args);
+  }
+
+  @Bean
+  NewTopic filteredTopic() {    // <3>
+    return new NewTopic(topicName, partitions, replicationFactor);
+  }
+}
+----
+<1> With annotation `@EnableBinding` we're activating Spring Cloud Streams integration.
+<2> We don't need web/rest interface in this app 
+<3> Create topic for filtered stream
+
+The `Bindings` interface defines input and output channels for Kafka Streams application.
+
+[source,java]
+----
+interface Bindings {
+
+  String USERS_FILTERED = "users-filtered";
+  String USERS = "users";
+
+  @Input(USERS)     // <1>
+  KStream<String, User> usersI();
+
+  @Output(USERS_FILTERED)   // <2>
+  KStream<String, User> filteredUsers();
+}
+----
+<1> The `@Input` annotation defines input stream.
+<2> The `@output` annotation defines output stream.
 
 
+[source,java]
+----
+@Component  // <1>
+class UserProcessor {
 
-
-
-
-
-
-
-
-
-
-
-
-
+  @StreamListener // <2>
+  @SendTo(USERS_FILTERED) // <3>
+  KStream<String, User> processUsers(@Input(USERS) KStream<String, User> inputStream) { // <4>
+    return inputStream
+        .filter((key, user) -> user.getAge() < 40)  // <5>
+        .mapValues(user -> new User(user.getName().toUpperCase(), user.getAge())) // <6>
+        .peek((key, user) -> log.info("New entry in filtered stream => Key = " + key + " Value = " + user)); // <7>
+  }
+}
+----
+<1> Spring-managed component.
+<2> This annotation used by Spring Cloud stream to identify managed methods.
+<3> A result `KStream<String, User>` will be send to `users-filtered` topic.
+<4> Using `@Input` annotation, Spring framework will inject instantiated input stream as a parameter.
+<5> A `filter` method receives a predicate that defines if we should pass message to the downstream. 
+<6> A `mapValues` method allows to transform a value. In this case, we changing change user's name to upper case.
+<7> A `peek` method doesn't do anything with the stream, rather allows us to peek inside the stream. 
+This technique is very useful for logging / debugging.
 
 == How to Run Apache Kafka with Spring Boot on Pivotal Application Service (PAS)
 
