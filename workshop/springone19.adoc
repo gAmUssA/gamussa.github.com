@@ -447,7 +447,7 @@ If you’d like more background on working with Kafka from Spring Boot, you can 
 Starting with the requirements, this tutorial will then go through the specific tasks required to connect PAS applications to Kafka.
 The sample Spring Boot app is pre-configured to make the setup steps as streamlined as possible.  
 
-You’ll review the configuration settings that streamline the deployment, so you know what to change for your environment.
+You'll review the configuration settings that streamline the deployment, so you know what to change for your environment.
 Afterward, the tutorial will run through some ways to verify your PAS app to Kafka in your PKS setup.
 
 ==== Requirements
