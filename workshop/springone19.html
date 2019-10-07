@@ -31,6 +31,7 @@ Creating..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/ja
 <li><a href="#running-the-application-using-confluent-cloud">Running the application using Confluent Cloud</a></li>
 </ul>
 </li>
+<li><a href="#processing-with-kafka-streams-and-spring-cloud-streams">Processing with Kafka Streams and Spring Cloud Streams</a></li>
 <li><a href="#how-to-run-apache-kafka-with-spring-boot-on-pivotal-application-service-pas">How to Run Apache Kafka with Spring Boot on Pivotal Application Service (PAS)</a>
 <ul class="sectlevel2">
 <li><a href="#methodology">Methodology</a>
@@ -81,10 +82,7 @@ Creating..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/ja
 <div class="sectionbody">
 <div class="paragraph">
 <p>As always, we’ll begin by <a href="http://start.spring.io/">generating a project starter</a>.
-In this starter, you should enable "Spring for Apache Kafka" and "Spring Web Starter."</p>
-</div>
-<div class="paragraph">
-<p><em>Figure 1. Generate a new project with Spring Initializer.</em><br></p>
+In this starter, you should enable "Spring for Apache Kafka", "Spring for Apache Kafka Streams", "Cloud Stream" and "Spring Web Starter."</p>
 </div>
 <div class="paragraph">
 <p>Next, update your <code>pom.xml</code> to add support for Schema Registry and Avro.
@@ -97,17 +95,17 @@ Confluent provides <a href="https://docs.confluent.io/current/app-development/in
         &lt;!-- other dependencies --&gt;
         &lt;dependency&gt;
             &lt;groupId&gt;io.confluent&lt;/groupId&gt;
-            &lt;artifactId&gt;kafka-schema-registry-client&lt;/artifactId&gt;
+            &lt;artifactId&gt;kafka-schema-registry-client&lt;/artifactId&gt;   &lt;!-- 1--&gt;
             &lt;version&gt;5.3.0&lt;/version&gt;
         &lt;/dependency&gt;
         &lt;dependency&gt;
             &lt;groupId&gt;org.apache.avro&lt;/groupId&gt;
-            &lt;artifactId&gt;avro&lt;/artifactId&gt;
+            &lt;artifactId&gt;avro&lt;/artifactId&gt;   &lt;!-- 2--&gt;
             &lt;version&gt;1.8.2&lt;/version&gt;
         &lt;/dependency&gt;
         &lt;dependency&gt;
             &lt;groupId&gt;io.confluent&lt;/groupId&gt;
-            &lt;artifactId&gt;kafka-avro-serializer&lt;/artifactId&gt;
+            &lt;artifactId&gt;kafka-avro-serializer&lt;/artifactId&gt;  &lt;!-- 3--&gt;
             &lt;version&gt;5.2.1&lt;/version&gt;
         &lt;/dependency&gt;
         &lt;dependency&gt;
@@ -126,7 +124,7 @@ Confluent provides <a href="https://docs.confluent.io/current/app-development/in
         &lt;!-- other maven repositories the project --&gt;
         &lt;repository&gt;
             &lt;id&gt;confluent&lt;/id&gt;
-            &lt;url&gt;https://packages.confluent.io/maven/&lt;/url&gt;
+            &lt;url&gt;https://packages.confluent.io/maven/&lt;/url&gt; &lt;!-- 4--&gt;
         &lt;/repository&gt;
     &lt;/repositories&gt;
     &lt;plugins&gt;
@@ -142,7 +140,7 @@ Confluent provides <a href="https://docs.confluent.io/current/app-development/in
                         &lt;goal&gt;schema&lt;/goal&gt;
                     &lt;/goals&gt;
                     &lt;configuration&gt;
-                        &lt;sourceDirectory&gt;src/main/resources/avro&lt;/sourceDirectory&gt;
+                        &lt;sourceDirectory&gt;src/main/resources/avro&lt;/sourceDirectory&gt; &lt;!-- 5--&gt;
                         &lt;outputDirectory&gt;${project.build.directory}/generated-sources&lt;/outputDirectory&gt;
                         &lt;stringType&gt;String&lt;/stringType&gt;
                     &lt;/configuration&gt;
@@ -255,7 +253,7 @@ public class SpringAvroApplication {
   private short replicationFactor;
 
   @Bean
-  NewTopic moviesTopic() { <i class="conum" data-value="2"></i><b>(2)</b>
+  NewTopic newTopic() { <i class="conum" data-value="2"></i><b>(2)</b>
     return new NewTopic(topicName, partitions, replicationFactor);
   }
 
@@ -269,7 +267,7 @@ public class SpringAvroApplication {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>These are the topic parameters injected by Spring from application.yaml file.</td>
+<td>These are the topic parameters injected by Spring from <code>application.yaml</code> file.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -308,21 +306,21 @@ public class Producer {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>A topic name will be injected from application.yaml.</td>
+<td>A topic name will be injected from <code>application.yaml</code>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Spring will initialize KafkaTemplate with properties provided in application.yaml.</td>
+<td>Spring will initialize <code>KafkaTemplate</code> with properties provided in <code>application.yaml</code>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>We will send messages to the topic using User as the key.</td>
+<td>We will send messages to the topic using user&#8217;s <code>name</code> as the key.</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
 <p>Spring instantiates all these components during the application startup, and the application becomes ready to receive messages via the REST endpoint.
-The default HTTP port is 9080 and can be changed in the <code>application.yaml</code> configuration file.</p>
+The default HTTP port is <code>9080</code> and can be changed in the <code>application.yaml</code> configuration file.</p>
 </div>
 </div>
 <div class="sect3">
@@ -424,7 +422,7 @@ Be sure to install the Confluent CLI as well (see step 4 in this section of the 
 <h4 id="start-kafka-and-schema-registry"><a class="anchor" href="#start-kafka-and-schema-registry"></a>Start Kafka and Schema Registry</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="nowrap">confluent local start schema-registry</pre>
+<pre class="highlightjs highlight nowrap"><code class="language-shell" data-lang="shell">confluent local start schema-registry</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -432,13 +430,13 @@ Be sure to install the Confluent CLI as well (see step 4 in this section of the 
 The Confluent CLI starts each component in the correct order.</p>
 </div>
 <div class="paragraph">
-<p>You should see similar output in your terminal.</p>
+<p><em>TBD sample output</em></p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="building-and-running-your-spring-boot-application"><a class="anchor" href="#building-and-running-your-spring-boot-application"></a>Building and running your Spring Boot application</h4>
 <div class="paragraph">
-<p>In the examples directory, run <code>./mvnw clean package</code> to compile and produce a runnable JAR.
+<p>In the examples directory, run <code>./mvnw clean install -DskipTests=true</code> to compile and produce a runnable JAR.
 After that, you can run the following command:</p>
 </div>
 <div class="listingblock">
@@ -450,7 +448,7 @@ After that, you can run the following command:</p>
 <div class="sect3">
 <h4 id="testing-the-producer-consumer-rest-service"><a class="anchor" href="#testing-the-producer-consumer-rest-service"></a>Testing the producer/consumer REST service</h4>
 <div class="paragraph">
-<p>For simplicity, I like to use the curl command, but you can use any REST client (like Postman or the REST client in IntelliJ IDEA to):<br></p>
+<p>For simplicity, I like to use the curl command, but you can use any REST client (like Postman or the REST client in IntelliJ IDEA to):</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -495,20 +493,20 @@ server:
 spring:
   kafka:
     bootstrap-servers:
-      - mybootstrap.confluent.cloud:9092
+      - mybootstrap.confluent.cloud:9092  <i class="conum" data-value="1"></i><b>(1)</b>
     properties:
       # CCloud broker connection parameters
       ssl.endpoint.identification.algorithm: https
       sasl.mechanism: PLAIN
       request.timeout.ms: 20000
       retry.backoff.ms: 500
-      sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username="ccloud_key" password="ccloud_secret";
+      sasl.jaas.config: org.apache.kafka.common.security.plain.PlainLoginModule required username="ccloud_key" password="ccloud_secret";  <i class="conum" data-value="2"></i><b>(2)</b>
       security.protocol: SASL_SSL
 
       # CCloud Schema Registry Connection parameter
-      schema.registry.url: https://schema-registry.aws.confluent.cloud
-      basic.auth.credentials.source: USER_INFO
-      schema.registry.basic.auth.user.info: sr_ccloud_key:sr_ccloud_key
+      schema.registry.url: https://schema-registry.aws.confluent.cloud  <i class="conum" data-value="3"></i><b>(3)</b>
+      basic.auth.credentials.source: USER_INFO    <i class="conum" data-value="4"></i><b>(4)</b>
+      schema.registry.basic.auth.user.info: sr_ccloud_key:sr_ccloud_key <i class="conum" data-value="5"></i><b>(5)</b>
     consumer:
       group-id: group_id
       auto-offset-reset: earliest
@@ -555,6 +553,130 @@ In this case, Spring Boot will pick up <code>application-cloud.yaml</code> confi
 <div class="paragraph">
 <p><code>java -jar -Dspring.profiles.active=cloud target/kafka-avro-0.0.1-SNAPSHOT.jar</code></p>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="processing-with-kafka-streams-and-spring-cloud-streams"><a class="anchor" href="#processing-with-kafka-streams-and-spring-cloud-streams"></a>Processing with Kafka Streams and Spring Cloud Streams</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Let&#8217;s create a new application in <code>io.confluet.developer.spring.streams</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-java" data-lang="java">@EnableBinding(Bindings.class)  <i class="conum" data-value="1"></i><b>(1)</b>
+@SpringBootApplication
+public class KafkaStreamsApp {
+
+  // topic parameters injection
+
+  public static void main(String[] args) {
+    final SpringApplication application = new SpringApplication(KafkaStreamsApp.class);
+    application.setWebApplicationType(WebApplicationType.NONE); <i class="conum" data-value="2"></i><b>(2)</b>
+    application.run(args);
+  }
+
+  @Bean
+  NewTopic filteredTopic() {    <i class="conum" data-value="3"></i><b>(3)</b>
+    return new NewTopic(topicName, partitions, replicationFactor);
+  }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>With annotation <code><a href="https://github.com/EnableBinding">@EnableBinding</a></code> we&#8217;re activating Spring Cloud Streams integration.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>We don&#8217;t need web/rest interface in this app</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Create topic for filtered stream</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>Bindings</code> interface defines input and output channels for Kafka Streams application.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-java" data-lang="java">interface Bindings {
+
+  String USERS_FILTERED = "users-filtered";
+  String USERS = "users";
+
+  @Input(USERS)     <i class="conum" data-value="1"></i><b>(1)</b>
+  KStream&lt;String, User&gt; usersI();
+
+  @Output(USERS_FILTERED)   <i class="conum" data-value="2"></i><b>(2)</b>
+  KStream&lt;String, User&gt; filteredUsers();
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The <code><a href="https://github.com/Input">@Input</a></code> annotation defines input stream.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <code><a href="https://github.com/output">@output</a></code> annotation defines output stream.</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-java" data-lang="java">@Component  <i class="conum" data-value="1"></i><b>(1)</b>
+class UserProcessor {
+
+  @StreamListener <i class="conum" data-value="2"></i><b>(2)</b>
+  @SendTo(USERS_FILTERED) <i class="conum" data-value="3"></i><b>(3)</b>
+  KStream&lt;String, User&gt; processUsers(@Input(USERS) KStream&lt;String, User&gt; inputStream) { <i class="conum" data-value="4"></i><b>(4)</b>
+    return inputStream
+        .filter((key, user) -&gt; user.getAge() &lt; 40)  <i class="conum" data-value="5"></i><b>(5)</b>
+        .mapValues(user -&gt; new User(user.getName().toUpperCase(), user.getAge())) <i class="conum" data-value="6"></i><b>(6)</b>
+        .peek((key, user) -&gt; log.info("New entry in filtered stream =&gt; Key = " + key + " Value = " + user)); <i class="conum" data-value="7"></i><b>(7)</b>
+  }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Spring-managed component.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>This annotation used by Spring Cloud stream to identify managed methods.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>A result <code>KStream&lt;String, User&gt;</code> will be send to <code>users-filtered</code> topic.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Using <code><a href="https://github.com/Input">@Input</a></code> annotation, Spring framework will inject instantiated input stream as a parameter.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>A <code>filter</code> method receives a predicate that defines if we should pass message to the downstream.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>A <code>mapValues</code> method allows to transform a value. In this case, we changing change user&#8217;s name to upper case.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>A <code>peek</code> method doesn&#8217;t do anything with the stream, rather allows us to peek inside the stream.
+This technique is very useful for logging / debugging.</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
