@@ -55,17 +55,17 @@ Confluent provides https://docs.confluent.io/current/app-development/index.html#
         <!-- other dependencies -->
         <dependency>
             <groupId>io.confluent</groupId>
-            <artifactId>kafka-schema-registry-client</artifactId>   <!-- 1-->
+            <artifactId>kafka-schema-registry-client</artifactId>   <!--1-->
             <version>5.3.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.avro</groupId>
-            <artifactId>avro</artifactId>   <!-- 2-->
+            <artifactId>avro</artifactId>   <!--2-->
             <version>1.8.2</version>
         </dependency>
         <dependency>
             <groupId>io.confluent</groupId>
-            <artifactId>kafka-avro-serializer</artifactId>  <!-- 3-->
+            <artifactId>kafka-avro-serializer</artifactId>  <!--3-->
             <version>5.2.1</version>
         </dependency>
         <dependency>
@@ -84,7 +84,7 @@ Confluent provides https://docs.confluent.io/current/app-development/index.html#
         <!-- other maven repositories the project -->
         <repository>
             <id>confluent</id>      
-            <url>https://packages.confluent.io/maven/</url> <!-- 4-->
+            <url>https://packages.confluent.io/maven/</url> <!--4-->
         </repository>
     </repositories>
     <plugins>
@@ -100,7 +100,7 @@ Confluent provides https://docs.confluent.io/current/app-development/index.html#
                         <goal>schema</goal>
                     </goals>
                     <configuration>
-                        <sourceDirectory>src/main/resources/avro</sourceDirectory> <!-- 5-->
+                        <sourceDirectory>src/main/resources/avro</sourceDirectory> <!--5-->
                         <outputDirectory>${project.build.directory}/generated-sources</outputDirectory>
                         <stringType>String</stringType>
                     </configuration>
@@ -132,10 +132,10 @@ This class also includes configuration for the new topic that your application i
 [source,json]
 ----
 {
-  "namespace": "io.confluent.developer",  
+  "namespace": "io.confluent.developer",    // <1>
   "type": "record",
   "name": "User",
-  "fields": [
+  "fields": [   // <2>
     {
       "name": "name",
       "type": "string",
