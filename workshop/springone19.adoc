@@ -30,6 +30,7 @@ ifndef::awestruct[]
 endif::awestruct[]
 
 This is a playbook of https://springoneplatform.io/2019/workshops/confluent[the workshop] delivered at SpringOne Platform 2019 in Austin, TX.
+The code of the example application is available on https://github.com/gAmUssA/springboot-kafka-avro[Github].
 
 toc::[]
 
