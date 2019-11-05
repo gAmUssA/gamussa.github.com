@@ -6,7 +6,7 @@ Viktor Gamov
 :keywords:
 :toc:
 ifndef::awestruct[]
-:awestruct-draft: true
+:awestruct-draft: false
 :awestruct-layout: post
 :awestruct-tags: []
 :idprefix:
@@ -14,6 +14,20 @@ ifndef::awestruct[]
 endif::awestruct[]
 
 toc::[]
+
+.TL;DR
+
+NOTE: This is playbook for «Stream Processing like you have never seen before» talk
+Full source code is https://github.com/gAmUssA/stream-processing-with-spring[available]
+
+
+.Revisions history
+[width="70%",cols="",options="header"]
+|===
+|Version    |Date       | Comments
+|*v1.1*     |11/05/2019 | Updated version, presented at https://www.meetup.com/Cloud-Native-New-York/events/265343986/[NYC Cloud Native meetup]
+|*v1.0*     |09/05/2019  | Initial revision, presented at https://www.meetup.com/DC-Spring-Framework/events/263679369/[DC Spring Meetup]
+|===
 
 
 == Spring Kafka Application 
@@ -55,6 +69,8 @@ apply plugin: 'idea'
 ----
 
 === Add Avro schemas
+
+Place avro schema files in `src/main/avro`
 
 [source,json]
 .movie.avsc
@@ -288,6 +304,84 @@ confluent local consume ratings -- --value-format avro
 [source,java]
 .Bindings.java
 ----
+interface Bindings {
 
+  String RATINGS = "ratings";
+  String AVG_RATINGS = "avg-ratings";
+  String MOVIES = "movies";
+  String AVG_TABLE = "avg-table";
+  String RATED_MOVIES = "rated-movies";
+
+  //
+  // this is the for the HTTP endpoint
+  String RATED_MOVIES_STORE = "rated-movies-store";
+
+  @Input(RATINGS)
+  KStream<Long, Rating> ratingsIn();
+
+  @Output(AVG_RATINGS)
+  KStream<Long, Double> averageRatingsOut();
+
+  @Input(MOVIES)
+  KTable<Long, Movie> moviesIn();
+
+  @Input(AVG_TABLE)
+  KTable<Long, Double> averageRatingsIn();
+
+  @Output(RATED_MOVIES)
+  KStream<Long, RatedMovie> ratedMoviesOut();
+}
 ----
 
+
+=== processors
+
+[source,java]
+RatingsAverager.java
+----
+@Component
+class RatingsAverager {
+
+  @StreamListener
+  @SendTo(Bindings.AVG_RATINGS)
+  KStream<Long, Double> averageRatingsFor(@Input(Bindings.RATINGS) KStream<Long, Rating> ratings) {
+    KGroupedStream<Long, Double> ratingsGrouped =
+        ratings
+            .mapValues(Rating::getRating)
+            .groupByKey();
+    KTable<Long, Long> count = ratingsGrouped.count();
+    KTable<Long, Double>
+        reduce = ratingsGrouped.reduce(Double::sum, Materialized.with(Serdes.Long(), Serdes.Double()));
+    KTable<Long, Double>
+        join = reduce.join(count, (sum, count1) -> sum / count1, Materialized.with(Serdes.Long(), Serdes.Double()));
+    return join.toStream();
+  }
+}
+----
+
+
+[source,java]
+MovieProcessor.java
+----
+
+@Component
+class MovieProcessor {
+
+  @StreamListener
+  @SendTo(Bindings.RATED_MOVIES)
+  KStream<Long, RatedMovie> rateMoviesFor(@Input(Bindings.AVG_TABLE) KTable<Long, Double> ratings,
+                                          @Input(Bindings.MOVIES) KTable<Long, Movie> movies) {
+
+    ValueJoiner<Movie, Double, RatedMovie> joiner = (movie, rating) ->
+        new RatedMovie(movie.getMovieId(), movie.getReleaseYear(), movie.getTitle(), rating);
+
+    movies
+        .join(ratings, joiner, Materialized
+            .<Long, RatedMovie, KeyValueStore<Bytes, byte[]>>as(Bindings.RATED_MOVIES_STORE)
+            .withKeySerde(Serdes.Long())
+            .withValueSerde(new JsonSerde<>(RatedMovie.class)));
+
+    return movies.join(ratings, joiner).toStream();
+  }
+}
+----
