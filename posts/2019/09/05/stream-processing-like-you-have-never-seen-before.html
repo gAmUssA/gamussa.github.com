@@ -402,16 +402,12 @@ confluent local consume ratings -- --value-format avro</code></pre>
 <div class="sect2">
 <h3 id="processors"><a class="anchor" href="#processors"></a>processors</h3>
 <div class="listingblock">
+<div class="title">RatingsAverager.java</div>
 <div class="content">
-<pre class="highlight nowrap"><code class="language-java" data-lang="java">RatingsAverager.java
-----
-@Component
-class RatingsAverager {</code></pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre class="nowrap">  @StreamListener
+<pre class="highlight nowrap"><code class="language-java" data-lang="java">@Component
+class RatingsAverager {
+
+  @StreamListener
   @SendTo(Bindings.AVG_RATINGS)
   KStream&lt;Long, Double&gt; averageRatingsFor(@Input(Bindings.RATINGS) KStream&lt;Long, Rating&gt; ratings) {
     KGroupedStream&lt;Long, Double&gt; ratingsGrouped =
@@ -425,52 +421,32 @@ class RatingsAverager {</code></pre>
         join = reduce.join(count, (sum, count1) -&gt; sum / count1, Materialized.with(Serdes.Long(), Serdes.Double()));
     return join.toStream();
   }
-}</pre>
+}</code></pre>
 </div>
 </div>
 <div class="listingblock">
+<div class="title">MovieProcessor.java</div>
 <div class="content">
-<pre class="nowrap">[source,java]
-MovieProcessor.java</pre>
-</div>
-</div>
-<div class="paragraph">
-<p><a href="https://github.com/Component">@Component</a>
-class MovieProcessor {</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre class="nowrap">@StreamListener
-@SendTo(Bindings.RATED_MOVIES)
-KStream&lt;Long, RatedMovie&gt; rateMoviesFor(@Input(Bindings.AVG_TABLE) KTable&lt;Long, Double&gt; ratings,
-                                        @Input(Bindings.MOVIES) KTable&lt;Long, Movie&gt; movies) {</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre class="nowrap">ValueJoiner&lt;Movie, Double, RatedMovie&gt; joiner = (movie, rating) -&gt;
-    new RatedMovie(movie.getMovieId(), movie.getReleaseYear(), movie.getTitle(), rating);</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre class="nowrap">movies
-    .join(ratings, joiner, Materialized
-        .&lt;Long, RatedMovie, KeyValueStore&lt;Bytes, byte[]&gt;&gt;as(Bindings.RATED_MOVIES_STORE)
-        .withKeySerde(Serdes.Long())
-        .withValueSerde(new JsonSerde&lt;&gt;(RatedMovie.class)));</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre class="nowrap">    return movies.join(ratings, joiner).toStream();
+<pre class="highlight nowrap"><code class="language-java" data-lang="java">@Component
+class MovieProcessor {
+
+  @StreamListener
+  @SendTo(Bindings.RATED_MOVIES)
+  KStream&lt;Long, RatedMovie&gt; rateMoviesFor(@Input(Bindings.AVG_TABLE) KTable&lt;Long, Double&gt; ratings,
+                                          @Input(Bindings.MOVIES) KTable&lt;Long, Movie&gt; movies) {
+
+    ValueJoiner&lt;Movie, Double, RatedMovie&gt; joiner = (movie, rating) -&gt;
+        new RatedMovie(movie.getMovieId(), movie.getReleaseYear(), movie.getTitle(), rating);
+
+    movies
+        .join(ratings, joiner, Materialized
+            .&lt;Long, RatedMovie, KeyValueStore&lt;Bytes, byte[]&gt;&gt;as(Bindings.RATED_MOVIES_STORE)
+            .withKeySerde(Serdes.Long())
+            .withValueSerde(new JsonSerde&lt;&gt;(RatedMovie.class)));
+
+    return movies.join(ratings, joiner).toStream();
   }
-}</pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="nowrap"></pre>
+}</code></pre>
 </div>
 </div>
 </div>
