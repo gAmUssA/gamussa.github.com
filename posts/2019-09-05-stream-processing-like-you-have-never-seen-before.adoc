@@ -38,8 +38,8 @@ Go to https://start.spring.io and generate project using «Spring for Apache Kaf
 
 === Add dependencies
 
-[source,groovy]
 .build.gradle
+[source,groovy]
 ----
 buildscript {
   repositories {
@@ -72,8 +72,8 @@ apply plugin: 'idea'
 
 Place avro schema files in `src/main/avro`
 
-[source,json]
 .movie.avsc
+[source,json]
 ----
 {
   "namespace": "io.confluent.demo",
@@ -148,8 +148,8 @@ Place avro schema files in `src/main/avro`
 
 === Add ratings schema
 
-[source,json]
 .rating.avsc
+[source,json]
 ----
 {
   "namespace": "io.confluent.demo",
@@ -170,8 +170,8 @@ Place avro schema files in `src/main/avro`
 
 === Add Parser
 
-[source, java]
 .KafkaApplication
+[source, java]
 ----
 class Parser {
 
@@ -259,8 +259,8 @@ class Producer {
 
 === Create topics 
 
-[source,java]
 .KafkaApplication.java
+[source,java]
 ----
 @SpringBootApplication
 public class KafkaApplication {
@@ -301,8 +301,8 @@ confluent local consume ratings -- --value-format avro
 
 === Bindings
 
-[source,java]
 .Bindings.java
+[source,java]
 ----
 interface Bindings {
 
@@ -336,8 +336,8 @@ interface Bindings {
 
 === processors
 
+.RatingsAverager.java
 [source,java]
-RatingsAverager.java
 ----
 @Component
 class RatingsAverager {
@@ -360,10 +360,9 @@ class RatingsAverager {
 ----
 
 
+.MovieProcessor.java
 [source,java]
-MovieProcessor.java
 ----
-
 @Component
 class MovieProcessor {
 
