@@ -1,7 +1,7 @@
 = Using Apache Kafka® and Spring Platform to Build Event-Driven Microservices
 Todd McGrath, Viktor Gamov <viktor@confluent.io>, Shawn Sherwood, © 2020 Confluent, Inc. 
-2019-10-06
-:revdate: 2019-10-06 20:40:50 -0600
+2020-02-11
+:revdate: 2020-02-11 16:45:50 -0600
 :linkattrs:
 :ast: &ast;
 :y: &#10003;
@@ -37,8 +37,8 @@ The code of the example application is available on https://github.com/gAmUssA/s
 [width="70%",cols="",options="header"]
 |===
 |Version    |Date       | Comments
+|*v1.1*     |02/11/2020 | Confluent + Pivotal Workshop in NYC 2020
 |*v1.0*     |10/7/2019  | Initial revision for Spring One Platform 2019
-|*v1.1*     |02/11/2020 | Confluent + Pivotal Workshow in NYC 2020 
 |===
 
 toc::[]
