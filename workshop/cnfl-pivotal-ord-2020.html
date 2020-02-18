@@ -1,16 +1,16 @@
-<!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><html class="no-js" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Using Apache Kafka® and Spring Platform to Build Event-Driven Microservices | gamov.io</title><meta name="author" content="Todd McGrath, Viktor Gamov &lt;viktor@confluent.io&gt;, Shawn Sherwood, © 2020 Confluent, Inc."><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@asciidoctor"><meta name="twitter:url" content="http://gamov.io/workshop/cnfl-pivotal-nyc-2020.html"><meta name="twitter:title" content="Using Apache Kafka® and Spring Platform to Build Event-Driven Microservices"><meta name="twitter:description" content="Table of content
+<!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><html class="no-js" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Using Apache Kafka® and Spring Platform to Build Event-Driven Microservices | gamov.io</title><meta name="author" content="Todd McGrath, Viktor Gamov &lt;viktor@confluent.io&gt;, Shawn Sherwood, © 2020 Confluent, Inc."><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@asciidoctor"><meta name="twitter:url" content="http://gamov.io/workshop/cnfl-pivotal-ord-2020.html"><meta name="twitter:title" content="Using Apache Kafka® and Spring Platform to Build Event-Driven Microservices"><meta name="twitter:description" content="Table of content
 Prerequisites
 Let’s start building the app
+Adding Avro and Confluent Schema Registry dependencies
 The architecture of a Spring Boot application
 Creating a user Avro file
-Creating a Spring Boot application class
-Creating a producer component
-Creating..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html"><span class="icon"><i class="fa fa-th-large"></i></span>&nbspBlog</a></li><li class="divider"></li><li><a href="http://github.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-github"></i></span>&nbspGithub</a></li><li class="divider"></li><li><a href="http://twitter.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-twitter"></i></span>&nbspTwitter</a></li><li class="divider"></li><li><a href="https://www.youtube.com/playlist?list=PLaJqps0DAycqu2OV6sjl_Dm_VymB6KDV_" target="_blank"><span class="icon"><i class="fa fa-youtube"></i></span>&nbspMy Talks</a></li><li class="divider"></li><li><a href="https://speakerdeck.com/vikgamov" target="_blank"><span class="icon"><i class="fa fa-slideshare"></i></span>&nbspMy Slides</a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://gamov.io">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h2 class="header"><a href="/workshop/cnfl-pivotal-nyc-2020.html">Using Apache Kafka® and Spring Platform to Build Event-Driven Microservices</a></h2><h5 class="subheader">Written by&nbsp <a href="#">Todd McGrath, Viktor Gamov &lt;viktor@confluent.io&gt;, Shawn Sherwood, © 2020 Confluent, Inc.</a>&nbsp- <time class="pubdate" datetime="2020-02-11T16:45:50-06:00">Tuesday, February 11, 2020</time></h5><div class="row"><div class="large-12 columns text-left"><div id="toc" class="toc">
+Creating a Spring..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html"><span class="icon"><i class="fa fa-th-large"></i></span>&nbspBlog</a></li><li class="divider"></li><li><a href="http://github.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-github"></i></span>&nbspGithub</a></li><li class="divider"></li><li><a href="http://twitter.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-twitter"></i></span>&nbspTwitter</a></li><li class="divider"></li><li><a href="https://www.youtube.com/playlist?list=PLaJqps0DAycqu2OV6sjl_Dm_VymB6KDV_" target="_blank"><span class="icon"><i class="fa fa-youtube"></i></span>&nbspMy Talks</a></li><li class="divider"></li><li><a href="https://speakerdeck.com/vikgamov" target="_blank"><span class="icon"><i class="fa fa-slideshare"></i></span>&nbspMy Slides</a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://gamov.io">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h2 class="header"><a href="/workshop/cnfl-pivotal-ord-2020.html">Using Apache Kafka® and Spring Platform to Build Event-Driven Microservices</a></h2><h5 class="subheader">Written by&nbsp <a href="#">Todd McGrath, Viktor Gamov &lt;viktor@confluent.io&gt;, Shawn Sherwood, © 2020 Confluent, Inc.</a>&nbsp- <time class="pubdate" datetime="2020-02-18T09:45:50-06:00">Tuesday, February 18, 2020</time></h5><div class="row"><div class="large-12 columns text-left"><div id="toc" class="toc">
 <div id="toctitle">Table of content</div>
 <ul class="sectlevel1">
 <li><a href="#prerequisites">Prerequisites</a></li>
 <li><a href="#let-s-start-building-the-app">Let’s start building the app</a>
 <ul class="sectlevel2">
+<li><a href="#adding-avro-and-confluent-schema-registry-dependencies">Adding Avro and Confluent Schema Registry dependencies</a></li>
 <li><a href="#the-architecture-of-a-spring-boot-application">The architecture of a Spring Boot application</a>
 <ul class="sectlevel3">
 <li><a href="#creating-a-user-avro-file">Creating a user Avro file</a></li>
@@ -47,7 +47,7 @@ Creating..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/ja
 <li><a href="#noteworthy-configuration-and-source-code">Noteworthy configuration and source code</a></li>
 </ul>
 </li>
-<li><a href="#tutorial-completed">Tutorial completed ✅</a></li>
+<li><a href="#tutorial-completed">🏁 Tutorial completed</a></li>
 </ul>
 </li>
 </ul>
@@ -74,9 +74,14 @@ The code of the example application is available on <a href="https://github.com/
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>v1.2</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">02/18/2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Confluent + Pivotal Workshop in Chicago 2020</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>v1.1</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">02/11/2020</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Confluent + Pivotal Workshop in NYC 2020</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Confluent + Pivotal Workshop in New York 2020</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>v1.0</strong></p></td>
@@ -100,7 +105,17 @@ The code of the example application is available on <a href="https://github.com/
 <p><a href="http://confluent.io/download/">Confluent Platform 5.4 or newer</a></p>
 </li>
 <li>
-<p>Optional: <a href="http://confluent.io/cloud">Confluent Cloud account</a></p>
+<p><em>Optional componenrs</em>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.confluent.io/current/cli/installing.html">Confluent CLI</a> for local testing.</p>
+</li>
+<li>
+<p><a href="http://confluent.io/cloud">Confluent Cloud account</a> for cloud testing</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -128,7 +143,7 @@ In this starter, you should enable</p>
 <p><strong><em>"Lombok"</em></strong></p>
 </li>
 <li>
-<p><strong><em>"Spring Web Starter."</em></strong></p>
+<p><strong><em>"Spring Web Starter"</em></strong></p>
 </li>
 </ul>
 </div>
@@ -142,8 +157,11 @@ Artifact ID: <code>kafka-workshop</code></p>
 <img src="/images/start_spring_io_deps.jpg" alt="start spring io deps">
 </div>
 </div>
+<div class="sect2">
+<h3 id="adding-avro-and-confluent-schema-registry-dependencies"><a class="anchor" href="#adding-avro-and-confluent-schema-registry-dependencies"></a>Adding Avro and Confluent Schema Registry dependencies</h3>
 <div class="paragraph">
-<p>Next, update your <code>pom.xml</code> to add support for Schema Registry and Avro.
+<p>Download and unzip generated project.
+Next, update your <code>pom.xml</code> to add support for Schema Registry and Avro.
 Confluent provides <a href="https://docs.confluent.io/current/app-development/index.html#native-clients-with-serializers">Avro serializers</a> that integrate with Schema Registry.</p>
 </div>
 <div class="listingblock">
@@ -227,7 +245,7 @@ Confluent provides <a href="https://docs.confluent.io/current/app-development/in
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Avro SerDes</td>
+<td>Avro serializers and deserializers</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
@@ -238,6 +256,7 @@ Confluent provides <a href="https://docs.confluent.io/current/app-development/in
 <td>Source directory where you put your Avro files and store generated Java POJOs</td>
 </tr>
 </table>
+</div>
 </div>
 <div class="sect2">
 <h3 id="the-architecture-of-a-spring-boot-application"><a class="anchor" href="#the-architecture-of-a-spring-boot-application"></a>The architecture of a Spring Boot application</h3>
@@ -293,7 +312,7 @@ This class also includes configuration for the new topic that your application i
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>An <code>avro-maven-plugin</code> will generate the User POJO in the <code>io.confluent.developer package</code>.</td>
+<td>An <code>avro-maven-plugin</code> will generate the User POJO in the <code>io.confluent.developer</code> package.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
@@ -309,7 +328,7 @@ This class also includes configuration for the new topic that your application i
 <pre class="highlightjs highlight nowrap"><code class="language-java" data-lang="java">@SpringBootApplication
 public class SpringAvroApplication {
 
-  @Value("${topic.name}") <i class="conum" data-value="1"></i><b>(1)</b>
+  @Value("${topic.name}")  <i class="conum" data-value="1"></i><b>(1)</b>
   private String topicName;
 
   @Value("${topic.partitions-num}")
@@ -319,7 +338,7 @@ public class SpringAvroApplication {
   private short replicationFactor;
 
   @Bean
-  NewTopic newTopic() { <i class="conum" data-value="2"></i><b>(2)</b>
+  NewTopic newTopic() {  <i class="conum" data-value="2"></i><b>(2)</b>
     return new NewTopic(topicName, partitions, replicationFactor);
   }
 
@@ -349,6 +368,7 @@ As an application developer, you’re responsible for creating your topic instea
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-java" data-lang="java">@Service
 @CommonsLog(topic = "Producer Logger")
+@RequiredArgsConstructor
 public class Producer {
 
   @Value("${topic.name}") <i class="conum" data-value="1"></i><b>(1)</b>
@@ -356,13 +376,8 @@ public class Producer {
 
   private final KafkaTemplate&lt;String, User&gt; kafkaTemplate;
 
-  @Autowired
-  public Producer(KafkaTemplate&lt;String, User&gt; kafkaTemplate) { <i class="conum" data-value="2"></i><b>(2)</b>
-    this.kafkaTemplate = kafkaTemplate;
-  }
-
   void sendMessage(User user) {
-    this.kafkaTemplate.send(this.TOPIC, user.getName(), user);    <i class="conum" data-value="3"></i><b>(3)</b>
+    this.kafkaTemplate.send(this.TOPIC, user.getName(), user);    <i class="conum" data-value="2"></i><b>(2)</b>
     log.info(String.format("Produced user -&gt; %s", user));
   }
 }</code></pre>
@@ -376,10 +391,6 @@ public class Producer {
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Spring will initialize <code>KafkaTemplate</code> with properties provided in <code>application.yaml</code>.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
 <td>We will send messages to the topic using user&#8217;s <code>name</code> as the key.</td>
 </tr>
 </table>
@@ -397,12 +408,12 @@ The default HTTP port is <code>9080</code> and can be changed in the <code>appli
 @CommonsLog(topic = "Consumer Logger")
 public class Consumer {
 
-  @Value("${topic.name}") <i class="conum" data-value="1"></i><b>(1)</b>
-  private String topicName;
-
-  @KafkaListener(topics = "users", groupId = "group_id")  <i class="conum" data-value="2"></i><b>(2)</b>
-  public void consume(ConsumerRecord&lt;String, User&gt; record) {
-    log.info(String.format("Consumed message -&gt; %s", record.value()));
+  @KafkaListener(   <i class="conum" data-value="1"></i><b>(1)</b>
+      topics = "#{'${topic.name}'}", <i class="conum" data-value="2"></i><b>(2)</b>
+      groupId = "simple-consumer"
+  )
+  public void consume(User record) {
+    log.info(String.format("Consumed message -&gt; %s", record));
   }
 }</code></pre>
 </div>
@@ -411,11 +422,11 @@ public class Consumer {
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The topic name will be injected from the application.yaml.</td>
+<td>With the <code><a href="https://github.com/KafkaListener">@KafkaListener</a></code> annotation, a new consumer will be instantiated by the spring-kafka framework.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>With the <code><a href="https://github.com/KafkaListener">@KafkaListener</a></code> annotation, a new consumer will be instantiated by the spring-kafka framework.</td>
+<td>The topic name will be injected from the <code>application.yaml</code>.</td>
 </tr>
 </table>
 </div>
@@ -426,18 +437,15 @@ public class Consumer {
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-java" data-lang="java">@RestController
 @RequestMapping(value = "/user")  <i class="conum" data-value="1"></i><b>(1)</b>
+@RequiredArgsConstructor
 public class KafkaController {
 
-  private final Producer producer;
+  private final Producer producer;  <i class="conum" data-value="2"></i><b>(2)</b>
 
-  @Autowired
-  KafkaController(Producer producer) {  <i class="conum" data-value="2"></i><b>(2)</b>
-    this.producer = producer;
-  }
-
-  @PostMapping(value = "/publish")
-  public void sendMessageToKafkaTopic(@RequestParam("name") String name, @RequestParam("age") Integer age) {
-    this.producer.sendMessage(new User(name, age));  <i class="conum" data-value="3"></i><b>(3)</b>
+  @PostMapping(value = "/publish") <i class="conum" data-value="3"></i><b>(3)</b>
+  public void sendMessageToKafkaTopic(@RequestParam("name") String name,
+                                      @RequestParam("age") Integer age) {
+    this.producer.sendMessage(new User(name, age));
   }
 }</code></pre>
 </div>
@@ -450,7 +458,7 @@ public class KafkaController {
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Spring injects the producer component.</td>
+<td>Spring injects the producer component. We use constructor injection, and Lombok will generated a constructor.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
@@ -601,6 +609,19 @@ Once you select the Schema Registry option, you can retrieve the endpoint and cr
 </tr>
 </table>
 </div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Don&#8217;t share your API keys and secrets!
+Always rotate the keys if they were exposed to the public (during presentation and etc.)
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>An example Confluent Cloud configuration can find in <code>application-cloud.yaml</code>:</p>
 </div>
@@ -693,12 +714,11 @@ public class KafkaStreamsApp {
 
   public static void main(String[] args) {
     final SpringApplication application = new SpringApplication(KafkaStreamsApp.class);
-    application.setWebApplicationType(WebApplicationType.NONE); <i class="conum" data-value="2"></i><b>(2)</b>
     application.run(args);
   }
 
   @Bean
-  NewTopic filteredTopic() {    <i class="conum" data-value="3"></i><b>(3)</b>
+  NewTopic filteredTopic() {    <i class="conum" data-value="2"></i><b>(2)</b>
     return new NewTopic(topicName, partitions, replicationFactor);
   }
 }</code></pre>
@@ -712,10 +732,6 @@ public class KafkaStreamsApp {
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>We don&#8217;t need web/rest interface in this app</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
 <td>Create topic for filtered stream</td>
 </tr>
 </table>
@@ -836,7 +852,7 @@ Afterward, the tutorial will run through some ways to verify your PAS app to Kaf
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Run a Kafka cluster in Enterprise PKS.
+<p>Run a Kafka cluster in Enterprise PKS. This cluster will be provided.
 To set up Kafka in PKS via Confluent Operator and expose external endpoints, you can refer to <a href="https://www.confluent.io/blog/deploy-kafka-on-pivotal-container-service-with-confluent-operator">part 1</a>.</p>
 </li>
 <li>
@@ -846,7 +862,7 @@ To set up Kafka in PKS via Confluent Operator and expose external endpoints, you
 <p>Install the <a href="https://docs.cloudfoundry.org/cf-cli/install-go-cli.html">Cloud Foundry (<code>cf</code>) CLI.</a></p>
 </li>
 <li>
-<p>Your PAS environment username, password, and fully qualified domain name (FQDN).
+<p>Your PAS environment username, password, and fully qualified domain name (<code>FQDN</code>).
 At the time of this writing, you can obtain a PAS environment if you sign up for a free Pivotal Web Services account.</p>
 </li>
 </ol>
@@ -877,14 +893,19 @@ For example, based on my Pivotal Web Services account setup, I used api.run.pivo
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-shell" data-lang="shell">cf create-org confluent
-cf target -o confluent <i class="conum" data-value="2"></i><b>(2)</b>
+cf target -o confluent <i class="conum" data-value="1"></i><b>(1)</b>
 cf create-space dev
 cf target -s dev</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>The commands in step 2 are optional, depending on you how to like to keep things organized.
-In any case, you should be all set at this point with a <code>~/.cf/config.json</code> file and may proceed to set up the sample PAS app with Kafka in PKS.</p>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The commands in step 2 are optional, depending on you how to like to keep things organized.
+In any case, you should be all set at this point with a <code>~/.cf/config.json</code> file and may proceed to set up the sample PAS app with Kafka in PKS.</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>For more details on the <code>cf</code> CLI, see the <a href="https://docs.cloudfoundry.org/cf-cli/getting-started.html">documentation</a>.</p>
@@ -938,7 +959,7 @@ These settings might depend on your environment, so adjust accordingly.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The <code>brokers</code> and sr variable settings and their related brokers and sr variable values in the <code>src/main/resources/application-pas.yaml</code> file.
+The <code>brokers</code> and Schema Registry variable settings and their related brokers and SR variable values in the <code>src/main/resources/application-cloud.yaml</code> file.
 </td>
 </tr>
 </table>
@@ -965,22 +986,83 @@ Notice how the <code>--no-start</code> option is sent, as the previously created
 </table>
 </div>
 <div class="paragraph">
-<p>You should see something similar to the following.
-Pay attention to the <code>routes</code> output, which you’ll need in later steps.
-In the following example, my routes output was <code>spring-kafka-avro-fluent-hyrax.cfapps.io</code>, but yours will be different.</p>
+<p>You should see something similar to the following.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Next, as you probably already guessed, perform the binding: <code>cf bind-service spring-kafka-avro cp</code>.
-This command binds the <code>cp</code> service to the <code>spring-kafka-avro</code> app that was deployed earlier.
-You should see something similar to the following in the Pivotal console under your cp service settings:</p>
-</li>
-<li>
-<p>Perform <code>cf start spring-kafka-avro</code>.
-After about 30 seconds, the spring-kafka-avro state should be running.</p>
-</li>
-</ol>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-shell" data-lang="shell">Creating app spring-kafka-avro...
+Mapping routes...
+Binding services...
+Comparing local files to remote cache...
+Packaging files to upload...
+Uploading files...
+ 536.38 KiB / 536.38 KiB [================================================================================================================] 100.00% 8s
+
+Waiting for API to complete processing files...
+
+name:              spring-kafka-avro
+requested state:   stopped
+routes:            spring-kafka-avro-noisy-dingo-pq.apps.richmond.cf-app.com    <i class="conum" data-value="1"></i><b>(1)</b>
+last uploaded:
+stack:
+buildpacks:
+
+type:           web
+instances:      0/1
+memory usage:   1024M
+     state   since                  cpu    memory   disk     details
+#0   down    2020-02-18T16:17:50Z   0.0%   0 of 0   0 of 0
+
+Creating app spring-kafka-streams...
+Binding services...
+Comparing local files to remote cache...
+Packaging files to upload...
+Uploading files...
+ 536.38 KiB / 536.38 KiB [================================================================================================================] 100.00% 4s
+
+Waiting for API to complete processing files...
+
+name:              spring-kafka-streams
+requested state:   stopped
+routes: <i class="conum" data-value="2"></i><b>(2)</b>
+last uploaded:
+stack:
+buildpacks:
+
+type:           web
+instances:      0/1
+memory usage:   1024M
+     state   since                  cpu    memory   disk     details
+#0   down    2020-02-18T16:18:04Z   0.0%   0 of 0   0 of 0</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Pay attention to the <code>routes</code> output, which you’ll need in later steps.
+In the following example, my routes output was <code>spring-kafka-avro-noisy-dingo-pq.apps.richmond.cf-app.com</code>, but yours will be different.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Second application - SCS Kafka Streams application - doesn&#8217;t have UI and it doesn&#8217;t require router.
+Think about this app as background process that «just works» and receives data over Kafka.</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-shell" data-lang="shell">cf bind-service spring-kafka-avro cp    <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>This command binds the <code>cp</code> service to the <code>spring-kafka-avro</code> app that was deployed earlier.
+You should see something similar to the following in the Pivotal console under your cp service settings:</td>
+</tr>
+</table>
 </div>
 <div class="sect3">
 <h4 id="verification"><a class="anchor" href="#verification"></a>Verification</h4>
@@ -988,7 +1070,7 @@ After about 30 seconds, the spring-kafka-avro state should be running.</p>
 <ol class="arabic">
 <li>
 <p>Determine the external URL of your newly deployed app with <code>cf apps</code>. Look to the urls column.
-As previously noted, mine is <code>spring-kafka-avro-fluent-hyrax.cfapps.io</code>.</p>
+As previously noted, mine is <code>spring-kafka-avro-noisy-dingo-pq.apps.richmond.cf-app.com</code>.</p>
 </li>
 <li>
 <p>The sample app code shows one available REST endpoint in <code>KafkaController.java</code>.
@@ -997,30 +1079,30 @@ You can post to this endpoint with different age and name parameters such as:</p
 </ol>
 </div>
 <div class="paragraph">
-<p><code>curl -X POST -d 'name=vik&amp;age=33' spring-kafka-avro-fluent-hyrax.cfapps.io/user/publish</code></p>
+<p><code>curl -X POST -d 'name=vik&amp;age=33' spring-kafka-avro-noisy-dingo-pq.apps.richmond.cf-app.com/user/publish</code></p>
 </div>
 <div class="paragraph">
 <p>Or, change up the name and age values:</p>
 </div>
 <div class="paragraph">
-<p><code>curl -X POST -d 'name=todd&amp;age=22' spring-kafka-avro-fluent-hyrax.cfapps.io/user/publish</code></p>
+<p><code>curl -X POST -d 'name=todd&amp;age=22' spring-kafka-avro-noisy-dingo-pq.apps.richmond.cf-app.com/user/publish</code></p>
 </div>
 <div class="paragraph">
 <p>Or, to flex your Schema Registry integration, notice what happens when you attempt to send values that are not appropriate for the user schema (see <code>src/main/avro/user.avsc</code>):</p>
 </div>
 <div class="paragraph">
-<p><code>curl -X POST -d 'name=todd&amp;age=much_younger_than_vik_gotogym' spring-kafka-avro-fluent-hyrax.cfapps.io/user/publish</code></p>
+<p><code>curl -X POST -d 'name=todd&amp;age=much_younger_than_vik_gotogym' spring-kafka-avro-noisy-dingo-pq.apps.richmond.cf-app.com/user/publish</code></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Check out any topics created by the sample app with `</p>
+<p>Check out any topics created by the sample app with</p>
 </li>
 </ol>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-shell" data-lang="shell">bin/kafka-topics --list --command-config kafka.properties --bootstrap-server kafka.santamaria.cf-app.com:9092</code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-shell" data-lang="shell">$ kafka-topics --list --command-config kafka.properties --bootstrap-server kafka.santamaria.cf-app.com:9092</code></pre>
 </div>
 </div>
 <div class="olist arabic">
@@ -1035,10 +1117,18 @@ You can post to this endpoint with different age and name parameters such as:</p
 <pre class="highlightjs highlight nowrap"><code class="language-shell" data-lang="shell">kafka-avro-console-consumer \
 --bootstrap-server kafka.santamaria.cf-app.com:9092/ \
 --consumer.config kafka.properties \
---topic users \
+--topic users \     <i class="conum" data-value="1"></i><b>(1)</b>
 --from-beginning \
 --property schema.registry.url=http://schemaregistry.santamaria.cf-app.com/</code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>You need to customize topic name with the prefix</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
@@ -1077,7 +1167,7 @@ For more information on Schema Registry, check out <a href="https://www.confluen
 </div>
 </div>
 <div class="sect2">
-<h3 id="tutorial-completed"><a class="anchor" href="#tutorial-completed"></a>Tutorial completed ✅</h3>
+<h3 id="tutorial-completed"><a class="anchor" href="#tutorial-completed"></a>🏁 Tutorial completed</h3>
 <div class="paragraph">
 <p>This tutorial covered how to deploy a Spring Boot microservice app to PAS that produces and consumes from a Kafka cluster running in Pivotal PKS.</p>
 </div>
@@ -1087,7 +1177,7 @@ For more information on Schema Registry, check out <a href="https://www.confluen
             <div id="disqus_thread"></div>
             <script type="text/javascript">
             var disqus_shortname = 'nextjavaheadbraincom';
-            var disqus_url = "http://gamov.io/workshop/cnfl-pivotal-nyc-2020.html";
+            var disqus_url = "http://gamov.io/workshop/cnfl-pivotal-ord-2020.html";
             var disqus_developer = null;
             var disqus_identifier = null;
             (function() {
