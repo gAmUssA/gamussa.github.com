@@ -1,7 +1,7 @@
 = Using Apache Kafka® and Spring Platform to Build Event-Driven Microservices
 Todd McGrath, Viktor Gamov <viktor@confluent.io>, Shawn Sherwood, © 2020 Confluent, Inc. 
-2020-02-11
-:revdate: 2020-02-11 16:45:50 -0600
+2020-02-18
+:revdate: 2020-02-18 9:45:50 -0600
 :linkattrs:
 :ast: &ast;
 :y: &#10003;
@@ -37,7 +37,8 @@ The code of the example application is available on https://github.com/gAmUssA/s
 [width="70%",cols="",options="header"]
 |===
 |Version    |Date       | Comments
-|*v1.1*     |02/11/2020 | Confluent + Pivotal Workshop in NYC 2020
+|*v1.2*     |02/18/2020 | Confluent + Pivotal Workshop in Chicago 2020
+|*v1.1*     |02/11/2020 | Confluent + Pivotal Workshop in New York 2020
 |*v1.0*     |10/7/2019  | Initial revision for Spring One Platform 2019
 |===
 
@@ -47,7 +48,9 @@ toc::[]
 
 * Java 8+
 * http://confluent.io/download/[Confluent Platform 5.4 or newer]
-* Optional: http://confluent.io/cloud[Confluent Cloud account] 
+* _Optional componenrs_: 
+** https://docs.confluent.io/current/cli/installing.html[Confluent CLI] for local testing.
+** http://confluent.io/cloud[Confluent Cloud account] for cloud testing
 
 == Let’s start building the app
 
@@ -58,7 +61,7 @@ In this starter, you should enable
 * *_"Spring for Apache Kafka Streams"_*
 * *_"Cloud Stream"_* 
 * *_"Lombok"_*
-* *_"Spring Web Starter."_*
+* *_"Spring Web Starter"_*
 
 We're going to use Maven and Java 8.
 Group ID: `io.confluent.developer`
@@ -66,6 +69,9 @@ Artifact ID: `kafka-workshop`
 
 image::start_spring_io_deps.jpg[]
 
+=== Adding Avro and Confluent Schema Registry dependencies
+
+Download and unzip generated project.
 Next, update your `pom.xml` to add support for Schema Registry and Avro.
 Confluent provides https://docs.confluent.io/current/app-development/index.html#native-clients-with-serializers[Avro serializers] that integrate with Schema Registry. 
 
@@ -139,7 +145,7 @@ Confluent provides https://docs.confluent.io/current/app-development/index.html#
 ----
 <1> Confluent Schema Registry client
 <2> Avro dependency
-<3> Avro SerDes
+<3> Avro serializers and deserializers
 <4> Confluent Maven repository
 <5> Source directory where you put your Avro files and store generated Java POJOs
 
@@ -176,7 +182,7 @@ This class also includes configuration for the new topic that your application i
   ]
 }
 ----
-<1> An `avro-maven-plugin` will generate the User POJO in the `io.confluent.developer package`.
+<1> An `avro-maven-plugin` will generate the User POJO in the `io.confluent.developer` package.
 <2> This POJO has name and age properties.
 
 ==== Creating a Spring Boot application class
@@ -186,7 +192,7 @@ This class also includes configuration for the new topic that your application i
 @SpringBootApplication
 public class SpringAvroApplication {
   
-  @Value("${topic.name}") // <1>
+  @Value("${topic.name}")  //<1>
   private String topicName;
 
   @Value("${topic.partitions-num}")
@@ -196,7 +202,7 @@ public class SpringAvroApplication {
   private short replicationFactor;
   
   @Bean
-  NewTopic newTopic() { // <2>
+  NewTopic newTopic() {  //<2>
     return new NewTopic(topicName, partitions, replicationFactor);
   }
 
@@ -215,27 +221,22 @@ As an application developer, you’re responsible for creating your topic instea
 ----
 @Service
 @CommonsLog(topic = "Producer Logger")
+@RequiredArgsConstructor
 public class Producer {
 
   @Value("${topic.name}") //<1>
   private String TOPIC;
 
   private final KafkaTemplate<String, User> kafkaTemplate;
-
-  @Autowired
-  public Producer(KafkaTemplate<String, User> kafkaTemplate) { //<2>
-    this.kafkaTemplate = kafkaTemplate;
-  }
-
+  
   void sendMessage(User user) {
-    this.kafkaTemplate.send(this.TOPIC, user.getName(), user);    //<3>
+    this.kafkaTemplate.send(this.TOPIC, user.getName(), user);    //<2>
     log.info(String.format("Produced user -> %s", user));
   }
 }
 ----
 <1> A topic name will be injected from `application.yaml`.
-<2> Spring will initialize `KafkaTemplate` with properties provided in `application.yaml`.
-<3> We will send messages to the topic using user's `name` as the key.
+<2> We will send messages to the topic using user's `name` as the key.
 
 Spring instantiates all these components during the application startup, and the application becomes ready to receive messages via the REST endpoint.
 The default HTTP port is `9080` and can be changed in the `application.yaml` configuration file.
@@ -248,17 +249,17 @@ The default HTTP port is `9080` and can be changed in the `application.yaml` con
 @CommonsLog(topic = "Consumer Logger")
 public class Consumer {
 
-  @Value("${topic.name}") // <1>
-  private String topicName;
-
-  @KafkaListener(topics = "users", groupId = "group_id")  // <2>
-  public void consume(ConsumerRecord<String, User> record) {
-    log.info(String.format("Consumed message -> %s", record.value()));
+  @KafkaListener(   // <1>
+      topics = "#{'${topic.name}'}", // <2>
+      groupId = "simple-consumer"
+  )
+  public void consume(User record) {
+    log.info(String.format("Consumed message -> %s", record));
   }
 }
 ----
-<1> The topic name will be injected from the application.yaml.
-<2> With the `@KafkaListener` annotation, a new consumer will be instantiated by the spring-kafka framework.
+<1> With the `@KafkaListener` annotation, a new consumer will be instantiated by the spring-kafka framework.
+<2> The topic name will be injected from the `application.yaml`.
 
 ==== Creating the KafkaController component
 
@@ -266,23 +267,20 @@ public class Consumer {
 ----
 @RestController
 @RequestMapping(value = "/user")  // <1>
+@RequiredArgsConstructor
 public class KafkaController {
 
-  private final Producer producer;
+  private final Producer producer;  // <2>
 
-  @Autowired
-  KafkaController(Producer producer) {  // <2>
-    this.producer = producer;
-  }
-
-  @PostMapping(value = "/publish")
-  public void sendMessageToKafkaTopic(@RequestParam("name") String name, @RequestParam("age") Integer age) {
-    this.producer.sendMessage(new User(name, age));  // <3>
+  @PostMapping(value = "/publish") // <3>
+  public void sendMessageToKafkaTopic(@RequestParam("name") String name,
+                                      @RequestParam("age") Integer age) {
+    this.producer.sendMessage(new User(name, age));
   }
 }
 ----
 <1> `KafkaController` is mapped to the `/user` HTTP endpoint.
-<2> Spring injects the producer component.
+<2> Spring injects the producer component. We use constructor injection, and Lombok will generated a constructor.
 <3> When a new request comes to the `/user/publish` endpoint, the producer sends it to Kafka.
 
 ==== Creating Spring Boot config file
@@ -382,6 +380,9 @@ Both can be easily retrieved from the Confluent Cloud UI once you select an envi
 NOTE: At least one Kafka cluster must be created to access your managed Schema Registry.
 Once you select the Schema Registry option, you can retrieve the endpoint and create a new API/secret.
 
+WARNING: Don't share your API keys and secrets! 
+Always rotate the keys if they were exposed to the public (during presentation and etc.) 
+
 An example Confluent Cloud configuration can find in `application-cloud.yaml`: 
 
 [source,yaml]
@@ -447,19 +448,17 @@ public class KafkaStreamsApp {
 
   public static void main(String[] args) {
     final SpringApplication application = new SpringApplication(KafkaStreamsApp.class);
-    application.setWebApplicationType(WebApplicationType.NONE); // <2>
     application.run(args);
   }
 
   @Bean
-  NewTopic filteredTopic() {    // <3>
+  NewTopic filteredTopic() {    // <2>
     return new NewTopic(topicName, partitions, replicationFactor);
   }
 }
 ----
 <1> With annotation `@EnableBinding` we're activating Spring Cloud Streams integration.
-<2> We don't need web/rest interface in this app 
-<3> Create topic for filtered stream
+<2> Create topic for filtered stream
 
 The `Bindings` interface defines input and output channels for Kafka Streams application.
 
@@ -523,12 +522,12 @@ Afterward, the tutorial will run through some ways to verify your PAS app to Kaf
 
 ==== Requirements
 
-. Run a Kafka cluster in Enterprise PKS.
+. Run a Kafka cluster in Enterprise PKS. This cluster will be provided.
 To set up Kafka in PKS via Confluent Operator and expose external endpoints, you can refer to https://www.confluent.io/blog/deploy-kafka-on-pivotal-container-service-with-confluent-operator[part 1].  
 . Access the https://github.com/confluentinc/springboot-kafka-avro[springboot-kafka-avro] repo.
 . Install the https://docs.cloudfoundry.org/cf-cli/install-go-cli.html[Cloud Foundry (`cf`) CLI.] 
-. Your PAS environment username, password, and fully qualified domain name (FQDN). 
-At the time of this writing, you can obtain a PAS environment if you sign up for a free Pivotal Web Services account. 
+. Your PAS environment username, password, and fully qualified domain name (`FQDN`). 
+At the time of this writing, you can obtain a PAS environment if you sign up for a free Pivotal Web Services account.
 
 ==== Cloud Foundry (`cf`) CLI prerequisites
 
@@ -543,12 +542,11 @@ For example, based on my Pivotal Web Services account setup, I used api.run.pivo
 [source,shell]
 ----
 cf create-org confluent
-cf target -o confluent # <2>
+cf target -o confluent #<1>
 cf create-space dev
 cf target -s dev
 ----
-
-The commands in step 2 are optional, depending on you how to like to keep things organized.
+<1> The commands in step 2 are optional, depending on you how to like to keep things organized.
 In any case, you should be all set at this point with a `~/.cf/config.json` file and may proceed to set up the sample PAS app with Kafka in PKS.  
 
 For more details on the `cf` CLI, see the https://docs.cloudfoundry.org/cf-cli/getting-started.html[documentation].
@@ -585,7 +583,7 @@ The username and password values of `test` and `test123` used above were the def
 These settings might depend on your environment, so adjust accordingly.  
 +
 
-NOTE: The `brokers` and sr variable settings and their related brokers and sr variable values in the `src/main/resources/application-pas.yaml` file.
+NOTE: The `brokers` and Schema Registry variable settings and their related brokers and SR variable values in the `src/main/resources/application-cloud.yaml` file.
 
 . Push the sample Spring Boot microservice app to PAS with:
 
@@ -594,38 +592,94 @@ NOTE: The `brokers` and sr variable settings and their related brokers and sr va
 NOTE: Notice how the `--no-start` option is sent, as the previously created USPI service has not yet been bound, and attempting to start the application would result in failure.  
 
 You should see something similar to the following.
-Pay attention to the `routes` output, which you’ll need in later steps.
-In the following example, my routes output was `spring-kafka-avro-fluent-hyrax.cfapps.io`, but yours will be different.
 
-. Next, as you probably already guessed, perform the binding: `cf bind-service spring-kafka-avro cp`.
-This command binds the `cp` service to the `spring-kafka-avro` app that was deployed earlier.
+[source, shell]
+----
+Creating app spring-kafka-avro...
+Mapping routes...
+Binding services...
+Comparing local files to remote cache...
+Packaging files to upload...
+Uploading files...
+ 536.38 KiB / 536.38 KiB [================================================================================================================] 100.00% 8s
+
+Waiting for API to complete processing files...
+
+name:              spring-kafka-avro
+requested state:   stopped
+routes:            spring-kafka-avro-noisy-dingo-pq.apps.richmond.cf-app.com    #<1>
+last uploaded:
+stack:
+buildpacks:
+
+type:           web
+instances:      0/1
+memory usage:   1024M
+     state   since                  cpu    memory   disk     details
+#0   down    2020-02-18T16:17:50Z   0.0%   0 of 0   0 of 0
+
+Creating app spring-kafka-streams...
+Binding services...
+Comparing local files to remote cache...
+Packaging files to upload...
+Uploading files...
+ 536.38 KiB / 536.38 KiB [================================================================================================================] 100.00% 4s
+
+Waiting for API to complete processing files...
+
+name:              spring-kafka-streams
+requested state:   stopped
+routes: # <2>
+last uploaded:
+stack:
+buildpacks:
+
+type:           web
+instances:      0/1
+memory usage:   1024M
+     state   since                  cpu    memory   disk     details
+#0   down    2020-02-18T16:18:04Z   0.0%   0 of 0   0 of 0
+----
+<1>  Pay attention to the `routes` output, which you’ll need in later steps.
+In the following example, my routes output was `spring-kafka-avro-noisy-dingo-pq.apps.richmond.cf-app.com`, but yours will be different.
+<2> Second application - SCS Kafka Streams application - doesn't have UI and it doesn't require router.
+Think about this app as background process that «just works» and receives data over Kafka.
++
+
+Next, to perform the binding run
+
+[source,shell]
+----
+cf bind-service spring-kafka-avro cp    # <1>
+----
+<1> This command binds the `cp` service to the `spring-kafka-avro` app that was deployed earlier.
 You should see something similar to the following in the Pivotal console under your cp service settings:
 
 . Perform `cf start spring-kafka-avro`.
-After about 30 seconds, the spring-kafka-avro state should be running.  
+After about 30 seconds, the `spring-kafka-avro` state should be running.  
 
 ==== Verification
 
 . Determine the external URL of your newly deployed app with `cf apps`. Look to the urls column.
-As previously noted, mine is `spring-kafka-avro-fluent-hyrax.cfapps.io`.
+As previously noted, mine is `spring-kafka-avro-noisy-dingo-pq.apps.richmond.cf-app.com`.
 . The sample app code shows one available REST endpoint in `KafkaController.java`.
 You can post to this endpoint with different age and name parameters such as:
 
-`curl -X POST -d 'name=vik&age=33' spring-kafka-avro-fluent-hyrax.cfapps.io/user/publish`
+`curl -X POST -d 'name=vik&age=33' spring-kafka-avro-noisy-dingo-pq.apps.richmond.cf-app.com/user/publish`
 
 Or, change up the name and age values: 
 
-`curl -X POST -d 'name=todd&age=22' spring-kafka-avro-fluent-hyrax.cfapps.io/user/publish`
+`curl -X POST -d 'name=todd&age=22' spring-kafka-avro-noisy-dingo-pq.apps.richmond.cf-app.com/user/publish`
 
 Or, to flex your Schema Registry integration, notice what happens when you attempt to send values that are not appropriate for the user schema (see `src/main/avro/user.avsc`):
 
-`curl -X POST -d 'name=todd&age=much_younger_than_vik_gotogym' spring-kafka-avro-fluent-hyrax.cfapps.io/user/publish`
+`curl -X POST -d 'name=todd&age=much_younger_than_vik_gotogym' spring-kafka-avro-noisy-dingo-pq.apps.richmond.cf-app.com/user/publish`
 
-. Check out any topics created by the sample app with `
+. Check out any topics created by the sample app with 
 
 [source,shell]
 ----
-bin/kafka-topics --list --command-config kafka.properties --bootstrap-server kafka.santamaria.cf-app.com:9092
+$ kafka-topics --list --command-config kafka.properties --bootstrap-server kafka.santamaria.cf-app.com:9092
 ----
 
 . You can consume the users topic via a command: 
@@ -635,10 +689,11 @@ bin/kafka-topics --list --command-config kafka.properties --bootstrap-server kaf
 kafka-avro-console-consumer \ 
 --bootstrap-server kafka.santamaria.cf-app.com:9092/ \ 
 --consumer.config kafka.properties \
---topic users \ 
+--topic users \     # <1>
 --from-beginning \ 
 --property schema.registry.url=http://schemaregistry.santamaria.cf-app.com/
 ----
+<1> You need to customize topic name with the prefix
 
 ==== Noteworthy configuration and source code
 
@@ -659,6 +714,6 @@ How/where this set in the Java code is not visible.
 This is due to the `schema.registry.url` property setting in `application-cloud.yaml`.
 For more information on Schema Registry, check out https://www.confluent.io/blog/schema-registry-avro-in-spring-boot-application-tutorial[How to Use Schema Registry and Avro in Spring Boot Applications].
 
-=== Tutorial completed ✅
+=== 🏁 Tutorial completed
 
 This tutorial covered how to deploy a Spring Boot microservice app to PAS that produces and consumes from a Kafka cluster running in Pivotal PKS. 
