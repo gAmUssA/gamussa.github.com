@@ -5,13 +5,13 @@
 <author>
 <name>Viktor Gamov</name>
 </author>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <link href="http://gamov.io/feed.atom" rel="self" type="application/atom+xml" />
 <link href="http://gamov.io/" rel="alternate" type="text/html" />
 <entry>
 <id>http://gamov.io/posts/2019/09/16/the-oracle-code-one-2019-guide-for-seekers-of-kafka-wisdom.html</id>
 <title>The Ultimate Oracle Code One 2019 Guide for Kafka and Stream Processing wisdom seekers</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2019-09-16T12:00:00+00:00</published>
 <link href="http://gamov.io/posts/2019/09/16/the-oracle-code-one-2019-guide-for-seekers-of-kafka-wisdom.html" rel="alternate" type="text/html" />
 <author>
@@ -102,7 +102,7 @@ Building Event-Driven Applications with Oracle&#8217;s Fn Project and Apache Kaf
 &lt;/div&gt;
 &lt;div id=&quot;preamble&quot;&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
-&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
 &lt;img src=&quot;http://gamov.io/images/sf_fall.jpg&quot; alt=&quot;sf fall&quot; width=&quot;50%&quot; /&gt;
 &lt;/div&gt;
@@ -329,7 +329,7 @@ Have a nice day ©
 <entry>
 <id>http://gamov.io/posts/2019/09/05/stream-processing-like-you-have-never-seen-before.html</id>
 <title>Stream Processing Like You Have Never Seen Before</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2019-09-05T13:00:00+00:00</published>
 <link href="http://gamov.io/posts/2019/09/05/stream-processing-like-you-have-never-seen-before.html" rel="alternate" type="text/html" />
 <author>
@@ -878,7 +878,7 @@ class MovieProcessor {
 <entry>
 <id>http://gamov.io/posts/2019/09/03/where-in-the-world-is-viktor-2019.html</id>
 <title>Where in the world is Viktor in second half of 2019</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2019-09-03T13:00:00+00:00</published>
 <link href="http://gamov.io/posts/2019/09/03/where-in-the-world-is-viktor-2019.html" rel="alternate" type="text/html" />
 <author>
@@ -984,7 +984,7 @@ I will have three sessions around things Kafka and...
 &lt;/td&gt;
 &lt;td class=&quot;content&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;TL;DR&lt;/div&gt;
-This blog post inspired by similar posts of my colleagues&amp;apos; &lt;a href=&quot;https://github.com/rmoff&quot;&gt;@rmoff&lt;/a&gt; &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_1&quot; class=&quot;footnote&quot; href=&quot;#_footnote_1&quot; title=&quot;View footnote.&quot;&gt;1&lt;/a&gt;]&lt;/sup&gt; and &lt;a href=&quot;https://github.com/riferrei&quot;&gt;@riferrei&lt;/a&gt; &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_2&quot; class=&quot;footnote&quot; href=&quot;#_footnote_2&quot; title=&quot;View footnote.&quot;&gt;2&lt;/a&gt;]&lt;/sup&gt;.
+This blog post inspired by similar posts of my colleagues&amp;apos; &lt;a href=&quot;https://github.com/rmoff&quot;&gt;@rmoff&lt;/a&gt; &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_1&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_1&quot; title=&quot;View footnote.&quot;&gt;1&lt;/a&gt;]&lt;/sup&gt; and &lt;a href=&quot;https://github.com/riferrei&quot;&gt;@riferrei&lt;/a&gt; &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_2&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_2&quot; title=&quot;View footnote.&quot;&gt;2&lt;/a&gt;]&lt;/sup&gt;.
 You can find all my speaking appearances until the end of 2019.
 &lt;/td&gt;
 &lt;/tr&gt;
@@ -1202,10 +1202,10 @@ If you’re interested in it, follow me on &lt;a href=&quot;http://instagram.com
 &lt;/div&gt;
 &lt;div id=&quot;footnotes&quot;&gt;
 &lt;hr /&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_1&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_1&quot;&gt;
 &lt;a href=&quot;#_footnoteref_1&quot;&gt;1&lt;/a&gt;. &lt;a href=&quot;https://rmoff.net/2019/09/02/where-ill-be-on-the-road-for-the-remainder-of-2019/&quot; class=&quot;bare&quot;&gt;https://rmoff.net/2019/09/02/where-ill-be-on-the-road-for-the-remainder-of-2019/&lt;/a&gt;
 &lt;/div&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_2&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_2&quot;&gt;
 &lt;a href=&quot;#_footnoteref_2&quot;&gt;2&lt;/a&gt;. &lt;a href=&quot;https://riferrei.net/speaking-calendar/&quot; class=&quot;bare&quot;&gt;https://riferrei.net/speaking-calendar/&lt;/a&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1214,7 +1214,7 @@ If you’re interested in it, follow me on &lt;a href=&quot;http://instagram.com
 <entry>
 <id>http://gamov.io/posts/2019/03/15/quick-tips-on-designing-your-next-presentation.html</id>
 <title>Quick Tips on Designing Your Kafka Summit Presentation</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2019-03-15T16:00:00+00:00</published>
 <link href="http://gamov.io/posts/2019/03/15/quick-tips-on-designing-your-next-presentation.html" rel="alternate" type="text/html" />
 <author>
@@ -1297,7 +1297,7 @@ If you&#8217;re a speaker at Kafka Summit and looking for the...
 &lt;li&gt;&lt;a href=&quot;#preface&quot;&gt;Preface&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#working-on-slides&quot;&gt;Working on slides&lt;/a&gt;
 &lt;ul class=&quot;sectlevel2&quot;&gt;
-&lt;li&gt;&lt;a href=&quot;#10-20-30&quot;&gt;10/20/30&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#102030&quot;&gt;10/20/30&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#presentation-patterns&quot;&gt;Presentation Patterns&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#presenting-the-code&quot;&gt;Presenting the code&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -1399,7 +1399,7 @@ Your presentations is a story and the slides just a tool to convey your story.&l
 &lt;p&gt;Let me start by recommended a more or less universal structure that I learned a year ago from the book «The Art of the Start.»&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;10-20-30&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#10-20-30&quot;&gt;&lt;/a&gt;10/20/30&lt;/h3&gt;
+&lt;h3 id=&quot;102030&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#102030&quot;&gt;&lt;/a&gt;10/20/30&lt;/h3&gt;
 &lt;div class=&quot;quoteblock&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;If you don’t know where to start with 10/20/30 rule by Guy Kawasaki.&lt;/div&gt;
 &lt;blockquote&gt;
@@ -1438,7 +1438,7 @@ Handy formula and easy to remember.&lt;/p&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;«Presentation Patterns: Techniques for Crafting Better Presentations» is one of the most impactful books in my &lt;a href=&quot;https://speaking.gamov.io&quot;&gt;professional career as a speaker&lt;/a&gt;.
 Written but master presenters and well-respected technologists Neil Ford, Nate Schutta, Matthew McCullough.
-It was set or patterns and anti-patterns &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_1&quot; class=&quot;footnote&quot; href=&quot;#_footnote_1&quot; title=&quot;View footnote.&quot;&gt;1&lt;/a&gt;]&lt;/sup&gt;.&lt;/p&gt;
+It was set or patterns and anti-patterns &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_1&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_1&quot; title=&quot;View footnote.&quot;&gt;1&lt;/a&gt;]&lt;/sup&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;Apart from covering all aspects of your presentations (from idea to a delivery), this book has a full chapter on our subject - &lt;em&gt;Slide design patterns&lt;/em&gt; (well, mostly anti-patterns.).&lt;/p&gt;
@@ -1586,7 +1586,7 @@ I may also share some of the delivering or presenting tips.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&quot;footnotes&quot;&gt;
 &lt;hr /&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_1&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_1&quot;&gt;
 &lt;a href=&quot;#_footnoteref_1&quot;&gt;1&lt;/a&gt;. we techies ❤️ patterns, just google for Design Patterns by Gang of four
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1595,7 +1595,7 @@ I may also share some of the delivering or presenting tips.&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2018/11/28/who-is-tweeting-about-ksql.html</id>
 <title>Who is tweeting about hashtag KSQL?</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2018-11-28T18:00:00+00:00</published>
 <link href="http://gamov.io/posts/2018/11/28/who-is-tweeting-about-ksql.html" rel="alternate" type="text/html" />
 <author>
@@ -1705,7 +1705,7 @@ and you...
 &lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#appendix&quot;&gt;Appendix&lt;/a&gt;
 &lt;ul class=&quot;sectlevel2&quot;&gt;
-&lt;li&gt;&lt;a href=&quot;#how-to-test-code-kafka-connect-twitter-code-connector-with-local-cp-installation&quot;&gt;How to test &lt;code&gt;kafka-connect-twitter&lt;/code&gt; connector with local CP installation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#how-to-test-kafka-connect-twitter-connector-with-local-cp-installation&quot;&gt;How to test &lt;code&gt;kafka-connect-twitter&lt;/code&gt; connector with local CP installation&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#find-java-in-debian&quot;&gt;find java in debian&lt;/a&gt;&lt;/li&gt;
@@ -1716,8 +1716,8 @@ and you...
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;TL;DR&lt;/div&gt;
 &lt;p&gt;Another day, another post.
-This time it’s another &lt;em&gt;playbook&lt;/em&gt; for my &lt;a href=&quot;http://DataSciCon.tech&quot; class=&quot;bare&quot;&gt;http://DataSciCon.tech&lt;/a&gt; talk «Who’s tweeting about &lt;code&gt;#datascicon&lt;/code&gt;» on November 30th 2018 &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_1&quot; class=&quot;footnote&quot; href=&quot;#_footnote_1&quot; title=&quot;View footnote.&quot;&gt;1&lt;/a&gt;]&lt;/sup&gt;
-A full source code published in &lt;code&gt;confluetninc/demo-scene&lt;/code&gt; repository &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_2&quot; class=&quot;footnote&quot; href=&quot;#_footnote_2&quot; title=&quot;View footnote.&quot;&gt;2&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
+This time it’s another &lt;em&gt;playbook&lt;/em&gt; for my &lt;a href=&quot;http://DataSciCon.tech&quot; class=&quot;bare&quot;&gt;http://DataSciCon.tech&lt;/a&gt; talk «Who’s tweeting about &lt;code&gt;#datascicon&lt;/code&gt;» on November 30th 2018 &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_1&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_1&quot; title=&quot;View footnote.&quot;&gt;1&lt;/a&gt;]&lt;/sup&gt;
+A full source code published in &lt;code&gt;confluetninc/demo-scene&lt;/code&gt; repository &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_2&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_2&quot; title=&quot;View footnote.&quot;&gt;2&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;table class=&quot;tableblock frame-all grid-all&quot; style=&quot;width: 70%;&quot;&gt;
 &lt;caption class=&quot;title&quot;&gt;Table 1. Revisions history&lt;/caption&gt;
@@ -1945,13 +1945,13 @@ EXPLAIN twitter;&lt;/pre&gt;
 &lt;h2 id=&quot;appendix&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#appendix&quot;&gt;&lt;/a&gt;Appendix&lt;/h2&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;how-to-test-code-kafka-connect-twitter-code-connector-with-local-cp-installation&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#how-to-test-code-kafka-connect-twitter-code-connector-with-local-cp-installation&quot;&gt;&lt;/a&gt;How to test &lt;code&gt;kafka-connect-twitter&lt;/code&gt; connector with local CP installation&lt;/h3&gt;
+&lt;h3 id=&quot;how-to-test-kafka-connect-twitter-connector-with-local-cp-installation&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#how-to-test-kafka-connect-twitter-connector-with-local-cp-installation&quot;&gt;&lt;/a&gt;How to test &lt;code&gt;kafka-connect-twitter&lt;/code&gt; connector with local CP installation&lt;/h3&gt;
 &lt;div class=&quot;sect3&quot;&gt;
 &lt;h4 id=&quot;prerequisites-2&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#prerequisites-2&quot;&gt;&lt;/a&gt;Prerequisites&lt;/h4&gt;
 &lt;div class=&quot;ulist&quot;&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;Confluent Platform Enterprise 5.x &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_3&quot; class=&quot;footnote&quot; href=&quot;#_footnote_3&quot; title=&quot;View footnote.&quot;&gt;3&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;Confluent Platform Enterprise 5.x &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_3&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_3&quot; title=&quot;View footnote.&quot;&gt;3&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
 &lt;div class=&quot;ulist&quot;&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -2035,13 +2035,13 @@ confluent consume twitter_json_01 --max-messages=5 --from-beginning     &lt;i cl
 &lt;/div&gt;
 &lt;div id=&quot;footnotes&quot;&gt;
 &lt;hr /&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_1&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_1&quot;&gt;
 &lt;a href=&quot;#_footnoteref_1&quot;&gt;1&lt;/a&gt;. &lt;a href=&quot;http://www.datascicon.tech&quot; class=&quot;bare&quot;&gt;http://www.datascicon.tech&lt;/a&gt;
 &lt;/div&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_2&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_2&quot;&gt;
 &lt;a href=&quot;#_footnoteref_2&quot;&gt;2&lt;/a&gt;. &lt;a href=&quot;https://github.com/confluentinc/demo-scene/tree/master/streams-movie-demo&quot; class=&quot;bare&quot;&gt;https://github.com/confluentinc/demo-scene/tree/master/streams-movie-demo&lt;/a&gt;
 &lt;/div&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_3&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_3&quot;&gt;
 &lt;a href=&quot;#_footnoteref_3&quot;&gt;3&lt;/a&gt;. &lt;a href=&quot;https://www.confluent.io/download/&quot; class=&quot;bare&quot;&gt;https://www.confluent.io/download/&lt;/a&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -2050,7 +2050,7 @@ confluent consume twitter_json_01 --max-messages=5 --from-beginning     &lt;i cl
 <entry>
 <id>http://gamov.io/posts/2018/11/28/tips-and-tricks-that-i-use-in-my-demos-and-presentation-with-docker.html</id>
 <title>Tips And Tricks That I use in my demos and presentation with Docker</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2018-11-28T18:00:00+00:00</published>
 <link href="http://gamov.io/posts/2018/11/28/tips-and-tricks-that-i-use-in-my-demos-and-presentation-with-docker.html" rel="alternate" type="text/html" />
 <author>
@@ -2254,7 +2254,7 @@ Usual suspects here are maven or gradle directory jar’s directory and  Docker 
 <entry>
 <id>http://gamov.io/posts/2018/11/20/streaming-moview-ratings-with-kafka-streams-and-ksql.html</id>
 <title>Streaming Movies Ratings with Kafka Streams and KSQL</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2018-11-20T18:00:00+00:00</published>
 <link href="http://gamov.io/posts/2018/11/20/streaming-moview-ratings-with-kafka-streams-and-ksql.html" rel="alternate" type="text/html" />
 <author>
@@ -2358,8 +2358,8 @@ Disclaimer: Another goal is to exercise some ideas around the visual representat
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;TL;DR&lt;/div&gt;
-&lt;p&gt;The sole purpose of this blog post is to draft a &lt;em&gt;playbook&lt;/em&gt; for my presentation «Crossing the streams: Rethinking Stream processing with Kafka Streams and KSQL» &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_1&quot; class=&quot;footnote&quot; href=&quot;#_footnote_1&quot; title=&quot;View footnote.&quot;&gt;1&lt;/a&gt;]&lt;/sup&gt; that I recently did on Kafka Summit 2018 in San Francisco.
-A full source code published in &lt;code&gt;confluetninc/demo-scene&lt;/code&gt; repository &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_2&quot; class=&quot;footnote&quot; href=&quot;#_footnote_2&quot; title=&quot;View footnote.&quot;&gt;2&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;The sole purpose of this blog post is to draft a &lt;em&gt;playbook&lt;/em&gt; for my presentation «Crossing the streams: Rethinking Stream processing with Kafka Streams and KSQL» &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_1&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_1&quot; title=&quot;View footnote.&quot;&gt;1&lt;/a&gt;]&lt;/sup&gt; that I recently did on Kafka Summit 2018 in San Francisco.
+A full source code published in &lt;code&gt;confluetninc/demo-scene&lt;/code&gt; repository &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_2&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_2&quot; title=&quot;View footnote.&quot;&gt;2&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;table class=&quot;tableblock frame-all grid-all&quot; style=&quot;width: 70%;&quot;&gt;
 &lt;caption class=&quot;title&quot;&gt;Table 1. Revisions history&lt;/caption&gt;
@@ -2403,7 +2403,7 @@ A full source code published in &lt;code&gt;confluetninc/demo-scene&lt;/code&gt;
 &lt;td class=&quot;content&quot;&gt;
 &lt;strong&gt;Disclaimer:&lt;/strong&gt; Another goal is to exercise some ideas around the visual representation of posts in this blog.
 And third and the last goal is to brush up my technical writing skills!
-Since I moved to DevX &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_3&quot; class=&quot;footnote&quot; href=&quot;#_footnote_3&quot; title=&quot;View footnote.&quot;&gt;3&lt;/a&gt;]&lt;/sup&gt; from Professional Services where I did write a truckload of customer engagement reports.
+Since I moved to DevX &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_3&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_3&quot; title=&quot;View footnote.&quot;&gt;3&lt;/a&gt;]&lt;/sup&gt; from Professional Services where I did write a truckload of customer engagement reports.
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
@@ -2416,7 +2416,7 @@ Since I moved to DevX &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_foo
 &lt;div class=&quot;ulist&quot;&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;Confluent Platform Enterprise 5.x &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_4&quot; class=&quot;footnote&quot; href=&quot;#_footnote_4&quot; title=&quot;View footnote.&quot;&gt;4&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;Confluent Platform Enterprise 5.x &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_4&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_4&quot; title=&quot;View footnote.&quot;&gt;4&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
 &lt;div class=&quot;ulist&quot;&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -2562,7 +2562,7 @@ cat ratings.dat | kafka-console-producer --broker-list localhost:9092 --topic ra
 &lt;td class=&quot;content&quot;&gt;
 The warnings like &lt;code&gt;WARN [Producer clientId=console-producer] Error while fetching metadata with correlation id 1 : {raw-movies=LEADER_NOT_AVAILABLE} (org.apache.kafka.clients.NetworkClient)&lt;/code&gt; and &lt;code&gt;WARN [Producer clientId=console-producer] Error while fetching metadata with correlation id 1 : {raw-ratings=LEADER_NOT_AVAILABLE} (org.apache.kafka.clients.NetworkClient)&lt;/code&gt; are absolutely normal.
 Topics &lt;code&gt;raw-movies&lt;/code&gt; and &lt;code&gt;raw-ratings&lt;/code&gt; not created when we started producing messages to it.
-And because by default Apache Kafka allows automatic topic creation ( The parameter &lt;code&gt;auto.create.topics.enable&lt;/code&gt;  in configuration &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_5&quot; class=&quot;footnote&quot; href=&quot;#_footnote_5&quot; title=&quot;View footnote.&quot;&gt;5&lt;/a&gt;]&lt;/sup&gt; topics created.
+And because by default Apache Kafka allows automatic topic creation ( The parameter &lt;code&gt;auto.create.topics.enable&lt;/code&gt;  in configuration &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_5&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_5&quot; title=&quot;View footnote.&quot;&gt;5&lt;/a&gt;]&lt;/sup&gt; topics created.
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
@@ -2726,19 +2726,19 @@ select TITLE, RATING  from RATED_MOVIES where MOVIE_ID=362; &lt;i class=&quot;co
 &lt;/div&gt;
 &lt;div id=&quot;footnotes&quot;&gt;
 &lt;hr /&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_1&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_1&quot;&gt;
 &lt;a href=&quot;#_footnoteref_1&quot;&gt;1&lt;/a&gt;. &lt;a href=&quot;https://www.confluent.io/kafka-summit-sf18/crossing-the-streams&quot; class=&quot;bare&quot;&gt;https://www.confluent.io/kafka-summit-sf18/crossing-the-streams&lt;/a&gt;
 &lt;/div&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_2&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_2&quot;&gt;
 &lt;a href=&quot;#_footnoteref_2&quot;&gt;2&lt;/a&gt;. &lt;a href=&quot;https://github.com/confluentinc/demo-scene/tree/master/streams-movie-demo&quot; class=&quot;bare&quot;&gt;https://github.com/confluentinc/demo-scene/tree/master/streams-movie-demo&lt;/a&gt;
 &lt;/div&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_3&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_3&quot;&gt;
 &lt;a href=&quot;#_footnoteref_3&quot;&gt;3&lt;/a&gt;. &lt;a href=&quot;https://twitter.com/gAmUssA/status/1037496745809330181&quot; class=&quot;bare&quot;&gt;https://twitter.com/gAmUssA/status/1037496745809330181&lt;/a&gt;
 &lt;/div&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_4&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_4&quot;&gt;
 &lt;a href=&quot;#_footnoteref_4&quot;&gt;4&lt;/a&gt;. &lt;a href=&quot;https://www.confluent.io/download/&quot; class=&quot;bare&quot;&gt;https://www.confluent.io/download/&lt;/a&gt;
 &lt;/div&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_5&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_5&quot;&gt;
 &lt;a href=&quot;#_footnoteref_5&quot;&gt;5&lt;/a&gt;. &lt;a href=&quot;https://kafka.apache.org/documentation/#brokerconfigs&quot; class=&quot;bare&quot;&gt;https://kafka.apache.org/documentation/#brokerconfigs&lt;/a&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -2747,7 +2747,7 @@ select TITLE, RATING  from RATED_MOVIES where MOVIE_ID=362; &lt;i class=&quot;co
 <entry>
 <id>http://gamov.io/posts/2017/09/20/stream-v-batch.html</id>
 <title>Divide, Distribute and Conquer — Stream v. Batch @ Philly JUG</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2017-09-20T16:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/09/20/stream-v-batch.html" rel="alternate" type="text/html" />
 <author>
@@ -2826,13 +2826,13 @@ Tweets
 &lt;div id=&quot;toc&quot; class=&quot;toc&quot;&gt;
 &lt;div id=&quot;toctitle&quot;&gt;Table of Contents&lt;/div&gt;
 &lt;ul class=&quot;sectlevel1&quot;&gt;
-&lt;li&gt;&lt;a href=&quot;#tweets-span-class-icon-i-class-fa-fa-twitter-i-span&quot;&gt;Tweets &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-twitter&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#a-presentation-span-class-icon-i-class-fa-fa-youtube-i-span&quot;&gt;A presentation &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-youtube&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;
+&lt;li&gt;&lt;a href=&quot;#tweets&quot;&gt;Tweets &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-twitter&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#a-presentation&quot;&gt;A presentation &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-youtube&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;
 &lt;ul class=&quot;sectlevel2&quot;&gt;
 &lt;li&gt;&lt;a href=&quot;#have-you-seen-this-please-rate&quot;&gt;Have you seen this? Please, rate!&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#slides-span-class-icon-i-class-fa-fa-slideshare-i-span&quot;&gt;Slides &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-slideshare&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#useful-links-span-class-icon-i-class-fa-fa-link-i-span&quot;&gt;Useful links &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-link&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#grab-the-code-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;Grab the code &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#slides&quot;&gt;Slides &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-slideshare&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#useful-links&quot;&gt;Useful links &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-link&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#grab-the-code&quot;&gt;Grab the code &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -2853,7 +2853,7 @@ In this presentation I talked about how developers and data engineers are changi
 &lt;/tr&gt;
 &lt;/table&gt;
 &lt;/div&gt;
-&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
 &lt;img src=&quot;http://gamov.io/images/phillyjug.png&quot; alt=&quot;phillyjug&quot; width=&quot;40%&quot; /&gt;
 &lt;/div&gt;
@@ -2884,7 +2884,7 @@ In this presentation I talked about how developers and data engineers are changi
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;tweets-span-class-icon-i-class-fa-fa-twitter-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#tweets-span-class-icon-i-class-fa-fa-twitter-i-span&quot;&gt;&lt;/a&gt;Tweets &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-twitter&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;tweets&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#tweets&quot;&gt;&lt;/a&gt;Tweets &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-twitter&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h2&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;blockquote class=&quot;twitter-tweet&quot; data-partner=&quot;tweetdeck&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;&lt;a href=&quot;https://twitter.com/ThePhillyJUG&quot;&gt;@ThePhillyJUG&lt;/a&gt; meetup where &lt;a href=&quot;https://twitter.com/gAmUssA&quot;&gt;@gamussa&lt;/a&gt; talked about stream vs batch, &lt;a href=&quot;https://twitter.com/hashtag/kafka?src=hash&quot;&gt;#kafka&lt;/a&gt; &lt;a href=&quot;https://twitter.com/hashtag/kafkastreams?src=hash&quot;&gt;#kafkastreams&lt;/a&gt; &lt;a href=&quot;https://t.co/6KlFwfnCAw&quot;&gt;pic.twitter.com/6KlFwfnCAw&lt;/a&gt;&lt;/p&gt;— Jason Young (@jythejavaguy) &lt;a href=&quot;https://twitter.com/jythejavaguy/status/908315453151465472&quot;&gt;September 14, 2017&lt;/a&gt;&lt;/blockquote&gt;
 &lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
@@ -2892,7 +2892,7 @@ In this presentation I talked about how developers and data engineers are changi
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;a-presentation-span-class-icon-i-class-fa-fa-youtube-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#a-presentation-span-class-icon-i-class-fa-fa-youtube-i-span&quot;&gt;&lt;/a&gt;A presentation &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-youtube&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;a-presentation&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#a-presentation&quot;&gt;&lt;/a&gt;A presentation &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-youtube&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h2&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;videoblock text-center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
@@ -2904,25 +2904,25 @@ In this presentation I talked about how developers and data engineers are changi
 &lt;iframe src=&quot;https://docs.google.com/forms/d/e/1FAIpQLSd8Vg0Mu_ypqM6kfrYHY6c5QpQIA5GYeS0FP184W_Od3y8w2Q/viewform?embedded=true&quot; width=&quot;600&quot; height=&quot;720&quot; frameborder=&quot;0&quot; marginheight=&quot;0&quot; marginwidth=&quot;0&quot;&gt;Loading...&lt;/iframe&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;slides-span-class-icon-i-class-fa-fa-slideshare-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#slides-span-class-icon-i-class-fa-fa-slideshare-i-span&quot;&gt;&lt;/a&gt;Slides &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-slideshare&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;slides&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#slides&quot;&gt;&lt;/a&gt;Slides &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-slideshare&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
 &lt;script async=&quot;&quot; class=&quot;speakerdeck-embed&quot; data-id=&quot;a0e8c941d9c4442090a284e07d66f87e&quot; data-ratio=&quot;1.77777777777778&quot; src=&quot;//speakerdeck.com/assets/embed.js&quot;&gt;&lt;/script&gt;
 &lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/8YeNmzvNcqgd0P&quot; width=&quot;595&quot; height=&quot;485&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;http://gamov.io//www.slideshare.net/VikGamov/philly-jug-divide-distribute-and-conquer-stream-v-batch&quot; title=&quot;[Philly JUG] Divide, Distribute and Conquer: Stream v. Batch&quot; target=&quot;_blank&quot;&gt;[Philly JUG] Divide, Distribute and Conquer: Stream v. Batch&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a href=&quot;https://www.slideshare.net/VikGamov&quot; target=&quot;_blank&quot;&gt;Viktor Gamov&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;useful-links-span-class-icon-i-class-fa-fa-link-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#useful-links-span-class-icon-i-class-fa-fa-link-i-span&quot;&gt;&lt;/a&gt;Useful links &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-link&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;useful-links&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#useful-links&quot;&gt;&lt;/a&gt;Useful links &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-link&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
 &lt;div class=&quot;olist arabic&quot;&gt;
 &lt;ol class=&quot;arabic&quot;&gt;
 &lt;li&gt;
-&lt;p&gt;Kafka Streams &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_1&quot; class=&quot;footnote&quot; href=&quot;#_footnote_1&quot; title=&quot;View footnote.&quot;&gt;1&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;Kafka Streams &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_1&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_1&quot; title=&quot;View footnote.&quot;&gt;1&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Confluent repo of Kafka Streams examples &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_2&quot; class=&quot;footnote&quot; href=&quot;#_footnote_2&quot; title=&quot;View footnote.&quot;&gt;2&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;Confluent repo of Kafka Streams examples &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_2&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_2&quot; title=&quot;View footnote.&quot;&gt;2&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;grab-the-code-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#grab-the-code-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;/a&gt;Grab the code &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;grab-the-code&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#grab-the-code&quot;&gt;&lt;/a&gt;Grab the code &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;You can find code sample is following GH repository&lt;/div&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/gAmUssA/kstreams-wordcount&quot; class=&quot;bare&quot;&gt;https://github.com/gAmUssA/kstreams-wordcount&lt;/a&gt;&lt;/p&gt;
@@ -2932,10 +2932,10 @@ In this presentation I talked about how developers and data engineers are changi
 &lt;/div&gt;
 &lt;div id=&quot;footnotes&quot;&gt;
 &lt;hr /&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_1&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_1&quot;&gt;
 &lt;a href=&quot;#_footnoteref_1&quot;&gt;1&lt;/a&gt;. &lt;a href=&quot;https://kafka.apache.org/documentation/streams/&quot; class=&quot;bare&quot;&gt;https://kafka.apache.org/documentation/streams/&lt;/a&gt;
 &lt;/div&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_2&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_2&quot;&gt;
 &lt;a href=&quot;#_footnoteref_2&quot;&gt;2&lt;/a&gt;. &lt;a href=&quot;https://github.com/confluentinc/kafka-streams-examples&quot; class=&quot;bare&quot;&gt;https://github.com/confluentinc/kafka-streams-examples&lt;/a&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -2944,7 +2944,7 @@ In this presentation I talked about how developers and data engineers are changi
 <entry>
 <id>http://gamov.io/posts/2017/09/07/speaking-at-javaone-2017.html</id>
 <title>I&#8217;m Speaking At JavaOne 2017</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2017-09-07T20:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/09/07/speaking-at-javaone-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -3011,7 +3011,7 @@ My session can be found in the &lt;a href=&quot;https://events.rainfocus.com/cat
 &lt;/tr&gt;
 &lt;/table&gt;
 &lt;/div&gt;
-&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
 &lt;img src=&quot;http://gamov.io/images/goodnews.jpg&quot; alt=&quot;goodnews&quot; width=&quot;50%&quot; /&gt;
 &lt;/div&gt;
@@ -3080,7 +3080,7 @@ But there is one you don’t want to miss — &lt;a href=&quot;https://www.event
 <entry>
 <id>http://gamov.io/posts/2017/07/21/goodbye-hazelcast.html</id>
 <title>Goodbye, Hazelcast!</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2017-07-21T17:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/07/21/goodbye-hazelcast.html" rel="alternate" type="text/html" />
 <author>
@@ -3153,7 +3153,7 @@ Thank you for being a part of it!&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
 &lt;img src=&quot;https://lh3.googleusercontent.com/dEutZrviwzrduhHUQbtLugOmWoTb49ThxNRNSaamqJo5Y5DpSMaIubWMT4u2_fSUEBRrgABxdytDJ_arc3x2mHy0Mi8FiuwWN9Ucz7VCJhLg9asAmt4eAti7ESbAH_gW9bW4VT_n02VSjCloLyY49bcOUk3hBru4-ZKBjljmItdUvZLyJ1_pq7dP6nt11BixKjSBKO1rn1LhHIEYcwSv_IF2ya_0oRIDlHyVin4mkht7evcEpHPnt5qWd6-UldNCFrhOWJQ7mDqyDkCf2iRh2Ka_TEs-blLSBzd5VyE93WyKCpYX4NFY9FjkP6tnJLvMFQAEutCW7v5pru29UTMwONnp1HZplw3lNPDeUJWMaB32glePD-1w2bVn3UTnD6DcXrVESAzDreYeyp7sBbRsXB-gVFcprxGlDqeSwQhWhEVzMI8hN4NV0pOIrLj06jbM3R_MYxQ4g7OHX0PB3BG9IZDRd8gh5euGFMnnmP9FCGNEVeYwQEkBHNI1vXAfjxIFZxd-iorNV1tCWUBMHRqv0qbe3iKmkjSmbt6ZFAIzIKkK0idKLVUzhbFaLZKnJS0SsI3vf3E1qqdma1dMfU3MoR8GIYmYqhQX7tOZOPUDA2lbxZq16BJmMywohku79XTX5xPbDpgvAt7ZuExMnORHq6caUjCFpZDYcLeDrLEQ8GPsSgU=w1871-h1353-no&quot; alt=&quot;dEutZrviwzrduhHUQbtLugOmWoTb49ThxNRNSaamqJo5Y5DpSMaIubWMT4u2 fSUEBRrgABxdytDJ arc3x2mHy0Mi8FiuwWN9Ucz7VCJhLg9asAmt4eAti7ESbAH gW9bW4VT n02VSjCloLyY49bcOUk3hBru4 ZKBjljmItdUvZLyJ1 pq7dP6nt11BixKjSBKO1rn1LhHIEYcwSv IF2ya 0oRIDlHyVin4mkht7evcEpHPnt5qWd6 UldNCFrhOWJQ7mDqyDkCf2iRh2Ka TEs blLSBzd5VyE93WyKCpYX4NFY9FjkP6tnJLvMFQAEutCW7v5pru29UTMwONnp1HZplw3lNPDeUJWMaB32glePD 1w2bVn3UTnD6DcXrVESAzDreYeyp7sBbRsXB gVFcprxGlDqeSwQhWhEVzMI8hN4NV0pOIrLj06jbM3R MYxQ4g7OHX0PB3BG9IZDRd8gh5euGFMnnmP9FCGNEVeYwQEkBHNI1vXAfjxIFZxd iorNV1tCWUBMHRqv0qbe3iKmkjSmbt6ZFAIzIKkK0idKLVUzhbFaLZKnJS0SsI3vf3E1qqdma1dMfU3MoR8GIYmYqhQX7tOZOPUDA2lbxZq16BJmMywohku79XTX5xPbDpgvAt7ZuExMnORHq6caUjCFpZDYcLeDrLEQ8GPsSgU=w1871 h1353 no&quot; height=&quot;40%&quot; /&gt;
 &lt;/div&gt;
@@ -3164,7 +3164,7 @@ Thank you for being a part of it!&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2017/07/20/testcontainers-ajug.html</id>
 <title>Testing containers with Testcontainers @ Atlanta JUG</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2017-07-20T08:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/07/20/testcontainers-ajug.html" rel="alternate" type="text/html" />
 <author>
@@ -3277,11 +3277,11 @@ You can find code sample is...
 &lt;div id=&quot;toc&quot; class=&quot;toc&quot;&gt;
 &lt;div id=&quot;toctitle&quot;&gt;Table of Contents&lt;/div&gt;
 &lt;ul class=&quot;sectlevel1&quot;&gt;
-&lt;li&gt;&lt;a href=&quot;#a-presentation-span-class-icon-i-class-fa-fa-youtube-i-span&quot;&gt;A presentation &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-youtube&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;
+&lt;li&gt;&lt;a href=&quot;#a-presentation&quot;&gt;A presentation &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-youtube&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;
 &lt;ul class=&quot;sectlevel2&quot;&gt;
-&lt;li&gt;&lt;a href=&quot;#slides-span-class-icon-i-class-fa-fa-slideshare-i-span&quot;&gt;Slides &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-slideshare&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#useful-links-span-class-icon-i-class-fa-fa-link-i-span&quot;&gt;Useful links &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-link&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#grab-the-code-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;Grab the code &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#slides&quot;&gt;Slides &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-slideshare&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#useful-links&quot;&gt;Useful links &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-link&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#grab-the-code&quot;&gt;Grab the code &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -3302,7 +3302,7 @@ In this presentation I talked about how Docker can help with seamless transition
 &lt;/tr&gt;
 &lt;/table&gt;
 &lt;/div&gt;
-&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
 &lt;img src=&quot;http://gamov.io/images/ajug.jpg&quot; alt=&quot;ajug&quot; /&gt;
 &lt;/div&gt;
@@ -3333,7 +3333,7 @@ In this presentation I talked about how Docker can help with seamless transition
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;a-presentation-span-class-icon-i-class-fa-fa-youtube-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#a-presentation-span-class-icon-i-class-fa-fa-youtube-i-span&quot;&gt;&lt;/a&gt;A presentation &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-youtube&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;a-presentation&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#a-presentation&quot;&gt;&lt;/a&gt;A presentation &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-youtube&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h2&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;videoblock text-center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
@@ -3341,35 +3341,35 @@ In this presentation I talked about how Docker can help with seamless transition
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;slides-span-class-icon-i-class-fa-fa-slideshare-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#slides-span-class-icon-i-class-fa-fa-slideshare-i-span&quot;&gt;&lt;/a&gt;Slides &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-slideshare&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;slides&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#slides&quot;&gt;&lt;/a&gt;Slides &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-slideshare&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
 &lt;script async=&quot;&quot; class=&quot;speakerdeck-embed&quot; data-id=&quot;e481d719ea0f40da9d873ee46c4eb5e0&quot; data-ratio=&quot;1.77777777777778&quot; src=&quot;//speakerdeck.com/assets/embed.js&quot;&gt;&lt;/script&gt;
 &lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/mp6UfCADbvpAYO&quot; width=&quot;595&quot; height=&quot;485&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;http://gamov.io//www.slideshare.net/VikGamov/testing-containers-with-testcontainers-ajug-7182017&quot; title=&quot;Testing containers with TestContainers @ AJUG 7/18/2017&quot; target=&quot;_blank&quot;&gt;Testing containers with TestContainers @ AJUG 7/18/2017&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a target=&quot;_blank&quot; href=&quot;https://www.slideshare.net/VikGamov&quot;&gt;Viktor Gamov&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;useful-links-span-class-icon-i-class-fa-fa-link-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#useful-links-span-class-icon-i-class-fa-fa-link-i-span&quot;&gt;&lt;/a&gt;Useful links &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-link&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;useful-links&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#useful-links&quot;&gt;&lt;/a&gt;Useful links &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-link&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
 &lt;div class=&quot;olist arabic&quot;&gt;
 &lt;ol class=&quot;arabic&quot;&gt;
 &lt;li&gt;
-&lt;p&gt;Official website of TestContainers &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_1&quot; class=&quot;footnote&quot; href=&quot;#_footnote_1&quot; title=&quot;View footnote.&quot;&gt;1&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;Official website of TestContainers &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_1&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_1&quot; title=&quot;View footnote.&quot;&gt;1&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
 &lt;div class=&quot;olist loweralpha&quot;&gt;
 &lt;ol class=&quot;loweralpha&quot; type=&quot;a&quot;&gt;
 &lt;li&gt;
-&lt;p&gt;TestContainers Java Examples &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_2&quot; class=&quot;footnote&quot; href=&quot;#_footnote_2&quot; title=&quot;View footnote.&quot;&gt;2&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;TestContainers Java Examples &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_2&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_2&quot; title=&quot;View footnote.&quot;&gt;2&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;OpenJDK Docker images &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_3&quot; class=&quot;footnote&quot; href=&quot;#_footnote_3&quot; title=&quot;View footnote.&quot;&gt;3&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;OpenJDK Docker images &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_3&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_3&quot; title=&quot;View footnote.&quot;&gt;3&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Pumba - Chaos testing tool for Docker &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_4&quot; class=&quot;footnote&quot; href=&quot;#_footnote_4&quot; title=&quot;View footnote.&quot;&gt;4&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;Pumba - Chaos testing tool for Docker &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_4&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_4&quot; title=&quot;View footnote.&quot;&gt;4&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;grab-the-code-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#grab-the-code-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;/a&gt;Grab the code &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;grab-the-code&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#grab-the-code&quot;&gt;&lt;/a&gt;Grab the code &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;You can find code sample is following GH repository&lt;/div&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/gAmUssA/testcontainers-hazelcast&quot; class=&quot;bare&quot;&gt;https://github.com/gAmUssA/testcontainers-hazelcast&lt;/a&gt;&lt;/p&gt;
@@ -3379,16 +3379,16 @@ In this presentation I talked about how Docker can help with seamless transition
 &lt;/div&gt;
 &lt;div id=&quot;footnotes&quot;&gt;
 &lt;hr /&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_1&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_1&quot;&gt;
 &lt;a href=&quot;#_footnoteref_1&quot;&gt;1&lt;/a&gt;. &lt;a href=&quot;https://www.testcontainers.org&quot; class=&quot;bare&quot;&gt;https://www.testcontainers.org&lt;/a&gt;
 &lt;/div&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_2&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_2&quot;&gt;
 &lt;a href=&quot;#_footnoteref_2&quot;&gt;2&lt;/a&gt;. &lt;a href=&quot;https://github.com/testcontainers/testcontainers-java-examples&quot; class=&quot;bare&quot;&gt;https://github.com/testcontainers/testcontainers-java-examples&lt;/a&gt;
 &lt;/div&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_3&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_3&quot;&gt;
 &lt;a href=&quot;#_footnoteref_3&quot;&gt;3&lt;/a&gt;. &lt;a href=&quot;https://hub.docker.com/_/openjdk/&quot; class=&quot;bare&quot;&gt;https://hub.docker.com/_/openjdk/&lt;/a&gt;
 &lt;/div&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_4&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_4&quot;&gt;
 &lt;a href=&quot;#_footnoteref_4&quot;&gt;4&lt;/a&gt;. &lt;a href=&quot;https://github.com/gaia-adm/pumba&quot; class=&quot;bare&quot;&gt;https://github.com/gaia-adm/pumba&lt;/a&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -3397,7 +3397,7 @@ In this presentation I talked about how Docker can help with seamless transition
 <entry>
 <id>http://gamov.io/posts/2017/06/15/cfsummit-2017.html</id>
 <title>Cloud Foundry Summit Silicon Valley 2017</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2017-06-15T14:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/06/15/cfsummit-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -3481,22 +3481,22 @@ Distribute Caching for your next Node.js project webinar recording
 &lt;li&gt;&lt;a href=&quot;#have-you-seen-it-do-you-like-it-please-rate&quot;&gt;Have you seen it? Do you like it? Please, rate&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#slides&quot;&gt;Slides&lt;/a&gt;
 &lt;ul class=&quot;sectlevel2&quot;&gt;
-&lt;li&gt;&lt;a href=&quot;#grab-the-code-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;Grab the code &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#small-bonus-span-class-icon-i-class-fa-fa-gift-i-span&quot;&gt;Small Bonus &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-gift&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#grab-the-code&quot;&gt;Grab the code &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#small-bonus&quot;&gt;Small Bonus &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-gift&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div id=&quot;preamble&quot;&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
-&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
 &lt;img src=&quot;http://gamov.io/images/cf_logo.png&quot; alt=&quot;cf logo&quot; width=&quot;50%&quot; /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;TL;DR&lt;/div&gt;
-&lt;p&gt;Full source code published in &lt;code&gt;hazelcast/cfsummit17-wednesday&lt;/code&gt; repository &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_1&quot; class=&quot;footnote&quot; href=&quot;#_footnote_1&quot; title=&quot;View footnote.&quot;&gt;1&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;Full source code published in &lt;code&gt;hazelcast/cfsummit17-wednesday&lt;/code&gt; repository &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_1&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_1&quot; title=&quot;View footnote.&quot;&gt;1&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -3522,14 +3522,14 @@ Distribute Caching for your next Node.js project webinar recording
 &lt;script async=&quot;&quot; class=&quot;speakerdeck-embed&quot; data-id=&quot;d665a9bf34bb433bb2bed5bace477685&quot; data-ratio=&quot;1.77777777777778&quot; src=&quot;//speakerdeck.com/assets/embed.js&quot;&gt;&lt;/script&gt;
 &lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/3ANXOqvM3j6ak2&quot; width=&quot;595&quot; height=&quot;485&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;http://gamov.io//www.slideshare.net/VikGamov/distributed-caching-for-your-next-nodejs-project-cf-summit-06152017&quot; title=&quot;Distributed caching for your next node.js project cf summit - 06-15-2017&quot; target=&quot;_blank&quot;&gt;Distributed caching for your next node.js project cf summit - 06-15-2017&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a target=&quot;_blank&quot; href=&quot;https://www.slideshare.net/VikGamov&quot;&gt;Viktor Gamov&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
 &lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;grab-the-code-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#grab-the-code-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;/a&gt;Grab the code &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;grab-the-code&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#grab-the-code&quot;&gt;&lt;/a&gt;Grab the code &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;You can find code sample is following GH repository&lt;/div&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/hazelcast/cfsummit17-wednesday&quot; class=&quot;bare&quot;&gt;https://github.com/hazelcast/cfsummit17-wednesday&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;small-bonus-span-class-icon-i-class-fa-fa-gift-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#small-bonus-span-class-icon-i-class-fa-fa-gift-i-span&quot;&gt;&lt;/a&gt;Small Bonus &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-gift&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;small-bonus&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#small-bonus&quot;&gt;&lt;/a&gt;Small Bonus &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-gift&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
 &lt;div class=&quot;videoblock text-center&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;Distribute Caching for your next Node.js project webinar recording&lt;/div&gt;
 &lt;div class=&quot;content&quot;&gt;
@@ -3541,7 +3541,7 @@ Distribute Caching for your next Node.js project webinar recording
 &lt;/div&gt;
 &lt;div id=&quot;footnotes&quot;&gt;
 &lt;hr /&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_1&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_1&quot;&gt;
 &lt;a href=&quot;#_footnoteref_1&quot;&gt;1&lt;/a&gt;. &lt;a href=&quot;https://github.com/hazelcast/cfsummit17-wednesday&quot; class=&quot;bare&quot;&gt;https://github.com/hazelcast/cfsummit17-wednesday&lt;/a&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -3550,7 +3550,7 @@ Distribute Caching for your next Node.js project webinar recording
 <entry>
 <id>http://gamov.io/posts/2017/06/08/how-to-scale-hazelcast-docker-containers-with-docker-compose.html</id>
 <title>How To Scale Hazelcast Cluster with Docker Compose</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2017-06-08T13:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/06/08/how-to-scale-hazelcast-docker-containers-with-docker-compose.html" rel="alternate" type="text/html" />
 <author>
@@ -3631,7 +3631,7 @@ Performs at...
 &lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#enter-docker-compose&quot;&gt;Enter Docker Compose&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#scaling&quot;&gt;Scaling&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#what-s-next&quot;&gt;What’s next?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#whats-next&quot;&gt;What’s next?&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div id=&quot;preamble&quot;&gt;
@@ -3642,9 +3642,9 @@ Performs at...
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;TL;DR&lt;/div&gt;
-&lt;p&gt;During webinar about «Distributed Caching for you next Node.js project» &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_1&quot; class=&quot;footnote&quot; href=&quot;#_footnote_1&quot; title=&quot;View footnote.&quot;&gt;1&lt;/a&gt;]&lt;/sup&gt; I was asked if we provide examples of running Hazelcast with Compose or Swarm.
+&lt;p&gt;During webinar about «Distributed Caching for you next Node.js project» &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_1&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_1&quot; title=&quot;View footnote.&quot;&gt;1&lt;/a&gt;]&lt;/sup&gt; I was asked if we provide examples of running Hazelcast with Compose or Swarm.
 Now you have it!
-Full source code published in &lt;code&gt;hazelcast/hazelcast-code-samples&lt;/code&gt; repository &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_2&quot; class=&quot;footnote&quot; href=&quot;#_footnote_2&quot; title=&quot;View footnote.&quot;&gt;2&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
+Full source code published in &lt;code&gt;hazelcast/hazelcast-code-samples&lt;/code&gt; repository &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_2&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_2&quot; title=&quot;View footnote.&quot;&gt;2&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;!-- toc disabled --&gt;
 &lt;div class=&quot;admonitionblock note&quot;&gt;
@@ -3655,7 +3655,7 @@ Full source code published in &lt;code&gt;hazelcast/hazelcast-code-samples&lt;/c
 &lt;/td&gt;
 &lt;td class=&quot;content&quot;&gt;
 &lt;strong&gt;Disclaimer:&lt;/strong&gt; It’s not an introduction to &lt;code&gt;docker-compose&lt;/code&gt;.
-To learn basic steps of &lt;code&gt;docker-compose&lt;/code&gt;, please, refer to official &lt;code&gt;docker-compose&lt;/code&gt; «getting started guide» &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_3&quot; class=&quot;footnote&quot; href=&quot;#_footnote_3&quot; title=&quot;View footnote.&quot;&gt;3&lt;/a&gt;]&lt;/sup&gt;
+To learn basic steps of &lt;code&gt;docker-compose&lt;/code&gt;, please, refer to official &lt;code&gt;docker-compose&lt;/code&gt; «getting started guide» &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_3&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_3&quot; title=&quot;View footnote.&quot;&gt;3&lt;/a&gt;]&lt;/sup&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
@@ -3696,14 +3696,14 @@ To learn basic steps of &lt;code&gt;docker-compose&lt;/code&gt;, please, refer t
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
 &lt;img src=&quot;http://gamov.io/images/scale_out_asmith.png&quot; alt=&quot;scale out asmith&quot; /&gt;
 &lt;/div&gt;
-&lt;div class=&quot;title&quot;&gt;Figure 1. Matrix Reloaded, 2003 &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_4&quot; class=&quot;footnote&quot; href=&quot;#_footnote_4&quot; title=&quot;View footnote.&quot;&gt;4&lt;/a&gt;]&lt;/sup&gt;&lt;/div&gt;
+&lt;div class=&quot;title&quot;&gt;Figure 1. Matrix Reloaded, 2003 &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_4&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_4&quot; title=&quot;View footnote.&quot;&gt;4&lt;/a&gt;]&lt;/sup&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;I’ve been working with few clients &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_5&quot; class=&quot;footnote&quot; href=&quot;#_footnote_5&quot; title=&quot;View footnote.&quot;&gt;5&lt;/a&gt;]&lt;/sup&gt; who have embraced containerization of their IMDG deployments.
+&lt;p&gt;I’ve been working with few clients &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_5&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_5&quot; title=&quot;View footnote.&quot;&gt;5&lt;/a&gt;]&lt;/sup&gt; who have embraced containerization of their IMDG deployments.
 And in this blog post, I explore how to use Docker Compose to scale Hazelcast IMDG cluster.
 Additionally, I will use  &lt;a href=&quot;https://hazelcast.com/products/management-center/&quot;&gt;Management Center&lt;/a&gt; monitor IMDG cluster state.&lt;/p&gt;
 &lt;/div&gt;
@@ -3793,7 +3793,7 @@ I will be using:&lt;/p&gt;
 &lt;div class=&quot;sect2&quot;&gt;
 &lt;h3 id=&quot;building-client-app-docker-image&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#building-client-app-docker-image&quot;&gt;&lt;/a&gt;Building client app Docker image&lt;/h3&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;In this example, to build docker image from «fat» jar, I use Spotify’s &lt;code&gt;docker-maven-plugin&lt;/code&gt; &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_6&quot; class=&quot;footnote&quot; href=&quot;#_footnote_6&quot; title=&quot;View footnote.&quot;&gt;6&lt;/a&gt;]&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;In this example, to build docker image from «fat» jar, I use Spotify’s &lt;code&gt;docker-maven-plugin&lt;/code&gt; &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_6&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_6&quot; title=&quot;View footnote.&quot;&gt;6&lt;/a&gt;]&lt;/sup&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;Maven snippet for generation fat jar and build a Docker image&lt;/div&gt;
@@ -3923,7 +3923,7 @@ docker_management-center_1   /bin/sh -c ./start.sh            Up       0.0.0.0:8
 &lt;i class=&quot;fa icon-warning&quot; title=&quot;Warning&quot;&gt;&lt;/i&gt;
 &lt;/td&gt;
 &lt;td class=&quot;content&quot;&gt;
-If at this point you get a message from Management Center to enter the license, you can request a trial key from here &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_7&quot; class=&quot;footnote&quot; href=&quot;#_footnote_7&quot; title=&quot;View footnote.&quot;&gt;7&lt;/a&gt;]&lt;/sup&gt;
+If at this point you get a message from Management Center to enter the license, you can request a trial key from here &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_7&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_7&quot; title=&quot;View footnote.&quot;&gt;7&lt;/a&gt;]&lt;/sup&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
@@ -3949,7 +3949,7 @@ If at this point you get a message from Management Center to enter the license, 
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;what-s-next&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#what-s-next&quot;&gt;&lt;/a&gt;What’s next?&lt;/h2&gt;
+&lt;h2 id=&quot;whats-next&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#whats-next&quot;&gt;&lt;/a&gt;What’s next?&lt;/h2&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;In my future posts, I will explore other tools that allow you to deploy, scale and orchestrate your Hazelcast IMDG cluster with different tools like Swarm, Kubernetes, Mesos.
@@ -3959,25 +3959,25 @@ If you have questions or suggestions, feel free to comment below.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&quot;footnotes&quot;&gt;
 &lt;hr /&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_1&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_1&quot;&gt;
 &lt;a href=&quot;#_footnoteref_1&quot;&gt;1&lt;/a&gt;. &lt;a href=&quot;https://hazelcast.com/resources/distributed-caching-next-node-js-project/&quot; class=&quot;bare&quot;&gt;https://hazelcast.com/resources/distributed-caching-next-node-js-project/&lt;/a&gt;
 &lt;/div&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_2&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_2&quot;&gt;
 &lt;a href=&quot;#_footnoteref_2&quot;&gt;2&lt;/a&gt;. &lt;a href=&quot;https://github.com/hazelcast/hazelcast-code-samples/tree/master/hazelcast-integration/docker-compose&quot; class=&quot;bare&quot;&gt;https://github.com/hazelcast/hazelcast-code-samples/tree/master/hazelcast-integration/docker-compose&lt;/a&gt;
 &lt;/div&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_3&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_3&quot;&gt;
 &lt;a href=&quot;#_footnoteref_3&quot;&gt;3&lt;/a&gt;. &lt;a href=&quot;https://docs.docker.com/compose/gettingstarted/&quot; class=&quot;bare&quot;&gt;https://docs.docker.com/compose/gettingstarted/&lt;/a&gt;
 &lt;/div&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_4&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_4&quot;&gt;
 &lt;a href=&quot;#_footnoteref_4&quot;&gt;4&lt;/a&gt;. &lt;a href=&quot;http://www.imdb.com/title/tt0234215/&quot; class=&quot;bare&quot;&gt;http://www.imdb.com/title/tt0234215/&lt;/a&gt;
 &lt;/div&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_5&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_5&quot;&gt;
 &lt;a href=&quot;#_footnoteref_5&quot;&gt;5&lt;/a&gt;. &lt;a href=&quot;https://hazelcast.com/services/consulting/&quot; class=&quot;bare&quot;&gt;https://hazelcast.com/services/consulting/&lt;/a&gt;
 &lt;/div&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_6&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_6&quot;&gt;
 &lt;a href=&quot;#_footnoteref_6&quot;&gt;6&lt;/a&gt;. &lt;a href=&quot;https://github.com/spotify/docker-maven-plugin&quot; class=&quot;bare&quot;&gt;https://github.com/spotify/docker-maven-plugin&lt;/a&gt;
 &lt;/div&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_7&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_7&quot;&gt;
 &lt;a href=&quot;#_footnoteref_7&quot;&gt;7&lt;/a&gt;. &lt;a href=&quot;https://hazelcast.com/hazelcast-enterprise-download/trial/&quot; class=&quot;bare&quot;&gt;https://hazelcast.com/hazelcast-enterprise-download/trial/&lt;/a&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -3986,7 +3986,7 @@ If you have questions or suggestions, feel free to comment below.&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2017/05/30/acgnj-2017.html</id>
 <title>Distributed Java Streams @ ACGNJ 2017</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2017-05-30T17:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/05/30/acgnj-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -4059,7 +4059,7 @@ TBD
 <entry>
 <id>http://gamov.io/posts/2017/04/18/phillyete-2017.html</id>
 <title>JavaPuzzlers @ PhillyETE 2017</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2017-04-18T10:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/04/18/phillyete-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -4110,7 +4110,7 @@ TBD
 <entry>
 <id>http://gamov.io/posts/2017/04/08/jpoint-2017.html</id>
 <title>JPoint - 2107 [RU]</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2017-04-08T18:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/04/08/jpoint-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -4175,19 +4175,19 @@ https://github.com/hazelcast/hazelcast-jet-code-samples/blob/master/kafka/consum
 &lt;div id=&quot;toc&quot; class=&quot;toc&quot;&gt;
 &lt;div id=&quot;toctitle&quot;&gt;Table of Contents&lt;/div&gt;
 &lt;ul class=&quot;sectlevel1&quot;&gt;
-&lt;li&gt;&lt;a href=&quot;#Распределяй-и-властвуй-2-Потоки-данных-наносят-ответный-удар-russian-edition&quot;&gt;Распределяй и властвуй — 2: Потоки данных наносят ответный удар - Russian Edition&lt;/a&gt;
+&lt;li&gt;&lt;a href=&quot;#распределяй-и-властвуй-2-потоки-данных-наносят-ответный-удар-russian-edition&quot;&gt;Распределяй и властвуй — 2: Потоки данных наносят ответный удар - Russian Edition&lt;/a&gt;
 &lt;ul class=&quot;sectlevel2&quot;&gt;
-&lt;li&gt;&lt;a href=&quot;#Видели-ли-вы-этот-доклад-как-Вам&quot;&gt;Видели ли вы этот доклад? как Вам?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#Видео&quot;&gt;Видео&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#Слайды&quot;&gt;Слайды&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#Код-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;Код &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#видели-ли-вы-этот-доклад-как-вам&quot;&gt;Видели ли вы этот доклад? как Вам?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#видео&quot;&gt;Видео&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#слайды&quot;&gt;Слайды&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#код&quot;&gt;Код &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div id=&quot;preamble&quot;&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
-&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
 &lt;img src=&quot;http://gamov.io/images/jpoint.png&quot; alt=&quot;jpoint&quot; width=&quot;20%&quot; /&gt;
 &lt;/div&gt;
@@ -4195,25 +4195,25 @@ https://github.com/hazelcast/hazelcast-jet-code-samples/blob/master/kafka/consum
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;Распределяй-и-властвуй-2-Потоки-данных-наносят-ответный-удар-russian-edition&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#Распределяй-и-властвуй-2-Потоки-данных-наносят-ответный-удар-russian-edition&quot;&gt;&lt;/a&gt;Распределяй и властвуй — 2: Потоки данных наносят ответный удар - Russian Edition&lt;/h2&gt;
+&lt;h2 id=&quot;распределяй-и-властвуй-2-потоки-данных-наносят-ответный-удар-russian-edition&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#распределяй-и-властвуй-2-потоки-данных-наносят-ответный-удар-russian-edition&quot;&gt;&lt;/a&gt;Распределяй и властвуй — 2: Потоки данных наносят ответный удар - Russian Edition&lt;/h2&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;Видели-ли-вы-этот-доклад-как-Вам&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#Видели-ли-вы-этот-доклад-как-Вам&quot;&gt;&lt;/a&gt;Видели ли вы этот доклад? как Вам?&lt;/h3&gt;
+&lt;h3 id=&quot;видели-ли-вы-этот-доклад-как-вам&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#видели-ли-вы-этот-доклад-как-вам&quot;&gt;&lt;/a&gt;Видели ли вы этот доклад? как Вам?&lt;/h3&gt;
 &lt;iframe src=&quot;https://docs.google.com/forms/d/e/1FAIpQLSdud9s_UOYM4lMkSWSG3QeDuwnI2wjk_5JhuB04JVq5pzBh9A/viewform?embedded=true&quot; width=&quot;600&quot; height=&quot;400&quot; frameborder=&quot;0&quot; marginheight=&quot;0&quot; marginwidth=&quot;0&quot;&gt;Гружу...&lt;/iframe&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;Видео&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#Видео&quot;&gt;&lt;/a&gt;Видео&lt;/h3&gt;
+&lt;h3 id=&quot;видео&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#видео&quot;&gt;&lt;/a&gt;Видео&lt;/h3&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;TBD&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;Слайды&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#Слайды&quot;&gt;&lt;/a&gt;Слайды&lt;/h3&gt;
+&lt;h3 id=&quot;слайды&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#слайды&quot;&gt;&lt;/a&gt;Слайды&lt;/h3&gt;
 &lt;script async=&quot;&quot; class=&quot;speakerdeck-embed&quot; data-id=&quot;de15b67f6c7c4307aca07082138dcfb8&quot; data-ratio=&quot;1.77777777777778&quot; src=&quot;//speakerdeck.com/assets/embed.js&quot;&gt;&lt;/script&gt;
 &lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/mRTibHpOfpibuM&quot; width=&quot;595&quot; height=&quot;485&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;http://gamov.io//www.slideshare.net/VikGamov/2-74767617&quot; title=&quot;Распределяй и властвуй — 2: Потоки данных наносят ответный удар&quot; target=&quot;_blank&quot;&gt;Распределяй и властвуй — 2: Потоки данных наносят ответный удар&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a target=&quot;_blank&quot; href=&quot;http://gamov.io//www.slideshare.net/VikGamov&quot;&gt;Viktor Gamov&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;Код-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#Код-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;/a&gt;Код &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;код&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#код&quot;&gt;&lt;/a&gt;Код &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
 &lt;script src=&quot;https://gist.github.com/gAmUssA/691009924e70b3ed7bd60e9ae998e898.js&quot;&gt;&lt;/script&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;Примеры кода вы найдете здесь&lt;/div&gt;
@@ -4235,7 +4235,7 @@ https://github.com/hazelcast/hazelcast-jet-code-samples/blob/master/kafka/consum
 <entry>
 <id>http://gamov.io/posts/2017/04/04/jbreak-2017.html</id>
 <title>JBreak 2017 [RU]</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2017-04-04T10:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/04/04/jbreak-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -4294,19 +4294,19 @@ Branch for this talk Jbreak_2017...
 &lt;div id=&quot;toc&quot; class=&quot;toc&quot;&gt;
 &lt;div id=&quot;toctitle&quot;&gt;Table of Contents&lt;/div&gt;
 &lt;ul class=&quot;sectlevel1&quot;&gt;
-&lt;li&gt;&lt;a href=&quot;#Блеск-и-нищета-распределенных-стримов-russian-edition&quot;&gt;Блеск и нищета распределенных стримов - Russian Edition&lt;/a&gt;
+&lt;li&gt;&lt;a href=&quot;#блеск-и-нищета-распределенных-стримов-russian-edition&quot;&gt;Блеск и нищета распределенных стримов - Russian Edition&lt;/a&gt;
 &lt;ul class=&quot;sectlevel2&quot;&gt;
-&lt;li&gt;&lt;a href=&quot;#Видели-ли-вы-этот-доклад-как-Вам&quot;&gt;Видели ли вы этот доклад? как Вам?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#Видео&quot;&gt;Видео&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#Слайды&quot;&gt;Слайды&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#Код-искать-тут-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;Код искать тут &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#видели-ли-вы-этот-доклад-как-вам&quot;&gt;Видели ли вы этот доклад? как Вам?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#видео&quot;&gt;Видео&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#слайды&quot;&gt;Слайды&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#код-искать-тут&quot;&gt;Код искать тут &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div id=&quot;preamble&quot;&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
-&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
 &lt;img src=&quot;http://gamov.io/images/jbreak.png&quot; alt=&quot;jbreak&quot; width=&quot;20%&quot; /&gt;
 &lt;/div&gt;
@@ -4314,25 +4314,25 @@ Branch for this talk Jbreak_2017...
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;Блеск-и-нищета-распределенных-стримов-russian-edition&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#Блеск-и-нищета-распределенных-стримов-russian-edition&quot;&gt;&lt;/a&gt;Блеск и нищета распределенных стримов - Russian Edition&lt;/h2&gt;
+&lt;h2 id=&quot;блеск-и-нищета-распределенных-стримов-russian-edition&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#блеск-и-нищета-распределенных-стримов-russian-edition&quot;&gt;&lt;/a&gt;Блеск и нищета распределенных стримов - Russian Edition&lt;/h2&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;Видели-ли-вы-этот-доклад-как-Вам&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#Видели-ли-вы-этот-доклад-как-Вам&quot;&gt;&lt;/a&gt;Видели ли вы этот доклад? как Вам?&lt;/h3&gt;
+&lt;h3 id=&quot;видели-ли-вы-этот-доклад-как-вам&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#видели-ли-вы-этот-доклад-как-вам&quot;&gt;&lt;/a&gt;Видели ли вы этот доклад? как Вам?&lt;/h3&gt;
 &lt;iframe src=&quot;https://docs.google.com/forms/d/e/1FAIpQLSe7VKXSWOXSLqytSwq_T-OkQVGdEkKPWDEDzHCWwW_h9WfA5g/viewform?embedded=true&quot; width=&quot;600&quot; height=&quot;400&quot; frameborder=&quot;0&quot; marginheight=&quot;0&quot; marginwidth=&quot;0&quot;&gt;Loading...&lt;/iframe&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;Видео&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#Видео&quot;&gt;&lt;/a&gt;Видео&lt;/h3&gt;
+&lt;h3 id=&quot;видео&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#видео&quot;&gt;&lt;/a&gt;Видео&lt;/h3&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;TBD&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;Слайды&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#Слайды&quot;&gt;&lt;/a&gt;Слайды&lt;/h3&gt;
+&lt;h3 id=&quot;слайды&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#слайды&quot;&gt;&lt;/a&gt;Слайды&lt;/h3&gt;
 &lt;script async=&quot;&quot; class=&quot;speakerdeck-embed&quot; data-id=&quot;106c738a739b4f0f97dd7da9278eedc7&quot; data-ratio=&quot;1.77777777777778&quot; src=&quot;//speakerdeck.com/assets/embed.js&quot;&gt;&lt;/script&gt;
 &lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/v0Yc7tRkZX7J2i&quot; width=&quot;595&quot; height=&quot;485&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;http://gamov.io//www.slideshare.net/VikGamov/jbreak-04042017&quot; title=&quot;[JBreak] Блеск И Нищета Распределенных Стримов - 04-04-2017&quot; target=&quot;_blank&quot;&gt;[JBreak] Блеск И Нищета Распределенных Стримов - 04-04-2017&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a target=&quot;_blank&quot; href=&quot;http://gamov.io//www.slideshare.net/VikGamov&quot;&gt;Viktor Gamov&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;Код-искать-тут-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#Код-искать-тут-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;/a&gt;Код искать тут &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;код-искать-тут&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#код-искать-тут&quot;&gt;&lt;/a&gt;Код искать тут &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;You can find code sample is following GH repository&lt;/div&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/gAmUssA/jet-streams-presentation&quot; class=&quot;bare&quot;&gt;https://github.com/gAmUssA/jet-streams-presentation&lt;/a&gt;&lt;/p&gt;
@@ -4348,7 +4348,7 @@ Branch for this talk Jbreak_2017...
 <entry>
 <id>http://gamov.io/posts/2017/02/09/hazelcast-node-dot-js-client-refcard.html</id>
 <title>Hazelcast Node.js Client Refcard</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2017-02-09T07:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/02/09/hazelcast-node-dot-js-client-refcard.html" rel="alternate" type="text/html" />
 <author>
@@ -4498,12 +4498,12 @@ HazelcastClient.newHazelcastClient(config)
 &lt;/div&gt;
 &lt;div id=&quot;preamble&quot;&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
-&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
 &lt;img src=&quot;http://gamov.io/images/IMDG_orange_logo_square.png&quot; alt=&quot;IMDG orange logo square&quot; /&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
 &lt;img src=&quot;http://gamov.io/images/node.png&quot; alt=&quot;node&quot; /&gt;
 &lt;/div&gt;
@@ -4822,7 +4822,7 @@ Hazelcast can be used in the areas like clustering, in-memory NoSQL, application
 <entry>
 <id>http://gamov.io/posts/2017/02/08/jfokus-2017.html</id>
 <title>Jfokus 2017</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2017-02-08T09:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/02/08/jfokus-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -4877,7 +4877,7 @@ Branch for this talk JFokus_Feb2017...
 &lt;li&gt;&lt;a href=&quot;#have-you-seen-it-do-you-like-it-please-rate&quot;&gt;Have you seen it? Do you like it? Please, rate&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#video&quot;&gt;Video&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#slides&quot;&gt;Slides&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#grab-the-code-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;Grab the code &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#grab-the-code&quot;&gt;Grab the code &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -4899,7 +4899,7 @@ Branch for this talk JFokus_Feb2017...
 &lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/GtUk0TwecrPtjS&quot; width=&quot;595&quot; height=&quot;485&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;http://gamov.io//www.slideshare.net/VikGamov/jfokus-riding-the-jet-streams&quot; title=&quot;[Jfokus] Riding the Jet Streams&quot; target=&quot;_blank&quot;&gt;[Jfokus] Riding the Jet Streams&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a target=&quot;_blank&quot; href=&quot;http://gamov.io//www.slideshare.net/VikGamov&quot;&gt;Viktor Gamov&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;grab-the-code-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#grab-the-code-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;/a&gt;Grab the code &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;grab-the-code&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#grab-the-code&quot;&gt;&lt;/a&gt;Grab the code &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;You can find code sample is following GH repository&lt;/div&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/gAmUssA/jet-streams-presentation&quot; class=&quot;bare&quot;&gt;https://github.com/gAmUssA/jet-streams-presentation&lt;/a&gt;&lt;/p&gt;
@@ -4915,7 +4915,7 @@ Branch for this talk JFokus_Feb2017...
 <entry>
 <id>http://gamov.io/posts/2017/02/02/nyjavasig-2017.html</id>
 <title>NYJavaSig, February 2017</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2017-02-02T20:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/02/02/nyjavasig-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -4978,10 +4978,10 @@ Let&#39;s look...
 &lt;ul class=&quot;sectlevel2&quot;&gt;
 &lt;li&gt;&lt;a href=&quot;#have-you-seen-it-do-you-like-it-please-rate&quot;&gt;Have you seen it? Do you like it? Please, rate&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#slides&quot;&gt;Slides&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#grab-the-code-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;Grab the code &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#grab-the-code&quot;&gt;Grab the code &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#tweets-span-class-icon-i-class-fa-fa-twitter-i-span&quot;&gt;Tweets &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-twitter&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#tweets&quot;&gt;Tweets &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-twitter&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect1&quot;&gt;
@@ -4997,7 +4997,7 @@ Let&#39;s look...
 &lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/1MucyCaur6vT52?startSlide=2&quot; width=&quot;510&quot; height=&quot;420&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;http://gamov.io//www.slideshare.net/VikGamov/nyjavasig-riding-the-distributed-streams-feb-2nd-2017&quot; title=&quot;[NYJavaSig] Riding the Distributed Streams - Feb 2nd, 2017&quot; target=&quot;_blank&quot;&gt;[NYJavaSig] Riding the Distributed Streams - Feb 2nd, 2017&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a target=&quot;_blank&quot; href=&quot;http://gamov.io//www.slideshare.net/VikGamov&quot;&gt;Viktor Gamov&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;grab-the-code-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#grab-the-code-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;/a&gt;Grab the code &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;grab-the-code&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#grab-the-code&quot;&gt;&lt;/a&gt;Grab the code &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;You can find code sample is following GH repository&lt;/div&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/gAmUssA/jet-streams-presentation/tree/NYJavaSig_Feb2017&quot;&gt;https://github.com/gAmUssA/jet-streams-presentation&lt;/a&gt;&lt;/p&gt;
@@ -5009,7 +5009,7 @@ Let&#39;s look...
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;tweets-span-class-icon-i-class-fa-fa-twitter-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#tweets-span-class-icon-i-class-fa-fa-twitter-i-span&quot;&gt;&lt;/a&gt;Tweets &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-twitter&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;tweets&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#tweets&quot;&gt;&lt;/a&gt;Tweets &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-twitter&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h2&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;blockquote class=&quot;twitter-tweet&quot; data-lang=&quot;en&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Large crowd building for &lt;a href=&quot;https://twitter.com/gAmUssA&quot;&gt;@gAmUssA&lt;/a&gt; and distributed streams at &lt;a href=&quot;https://twitter.com/hashtag/nyjavasig?src=hash&quot;&gt;#nyjavasig&lt;/a&gt; meeting. &lt;a href=&quot;https://twitter.com/java&quot;&gt;@java&lt;/a&gt; &lt;a href=&quot;https://t.co/9AzXZHjcL8&quot;&gt;pic.twitter.com/9AzXZHjcL8&lt;/a&gt;&lt;/p&gt;— Frank Greco (@frankgreco) &lt;a href=&quot;https://twitter.com/frankgreco/status/827301892850122752&quot;&gt;February 2, 2017&lt;/a&gt;&lt;/blockquote&gt; &lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
 
@@ -5027,7 +5027,7 @@ Let&#39;s look...
 <entry>
 <id>http://gamov.io/posts/2017/01/12/codemash-2017.html</id>
 <title>Codemash 2017</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2017-01-12T13:00:00+00:00</published>
 <link href="http://gamov.io/posts/2017/01/12/codemash-2017.html" rel="alternate" type="text/html" />
 <author>
@@ -5105,14 +5105,14 @@ Each branch represents parts of the talk:
 &lt;ul class=&quot;sectlevel2&quot;&gt;
 &lt;li&gt;&lt;a href=&quot;#have-you-seen-it-do-you-like-it&quot;&gt;Have you seen it? Do you like it?&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#slides&quot;&gt;Slides&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#grab-the-code-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;Grab the code &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#grab-the-code&quot;&gt;Grab the code &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div id=&quot;preamble&quot;&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
-&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
 &lt;img src=&quot;http://www.codemash.org/wp-content/themes/codemash/images/codemash-icon-featured-box.png&quot; alt=&quot;codemash icon featured box&quot; /&gt;
 &lt;/div&gt;
@@ -5137,7 +5137,7 @@ Each branch represents parts of the talk:
 &lt;iframe src=&quot;//www.slideshare.net/slideshow/embed_code/key/nlIjtpsiKHQIZx&quot; width=&quot;595&quot; height=&quot;485&quot; frameborder=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; scrolling=&quot;no&quot; style=&quot;border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;&quot; allowfullscreen=&quot;&quot;&gt; &lt;/iframe&gt; &lt;div style=&quot;margin-bottom:5px&quot;&gt; &lt;strong&gt; &lt;a href=&quot;http://gamov.io//www.slideshare.net/VikGamov/codemash-caching-made-bootiful&quot; title=&quot;[Codemash] Caching Made &amp;quot;Bootiful&amp;quot;!&quot; target=&quot;_blank&quot;&gt;[Codemash] Caching Made &amp;quot;Bootiful&amp;quot;!&lt;/a&gt; &lt;/strong&gt; from &lt;strong&gt;&lt;a target=&quot;_blank&quot; href=&quot;http://gamov.io//www.slideshare.net/VikGamov&quot;&gt;Viktor Gamov&lt;/a&gt;&lt;/strong&gt; &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect2&quot;&gt;
-&lt;h3 id=&quot;grab-the-code-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#grab-the-code-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;/a&gt;Grab the code &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;grab-the-code&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#grab-the-code&quot;&gt;&lt;/a&gt;Grab the code &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h3&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;You can find code sample is following GH repository&lt;/div&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/gAmUssA/bootiful_codemash2017&quot; class=&quot;bare&quot;&gt;https://github.com/gAmUssA/bootiful_codemash2017&lt;/a&gt;&lt;/p&gt;
@@ -5172,7 +5172,7 @@ Each branch represents parts of the talk:
 <entry>
 <id>http://gamov.io/posts/2016/09/09/whats-new-in-hazelcast-client-for-nodejs.html</id>
 <title>What&#8217;s New in Hazelcast Node.js Client</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2016-09-09T06:05:51-06:00</published>
 <link href="http://gamov.io/posts/2016/09/09/whats-new-in-hazelcast-client-for-nodejs.html" rel="alternate" type="text/html" />
 <author>
@@ -5228,7 +5228,7 @@ If you haven&#8217;t read previous...
 <content type="html">
 &lt;div id=&quot;preamble&quot;&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
-&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
 &lt;img src=&quot;http://gamov.io/images/node.png&quot; alt=&quot;node&quot; /&gt;
 &lt;/div&gt;
@@ -5272,7 +5272,7 @@ Also, if you read this blog post till the end, you will also learn what’s comi
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;It has been a while since out first blog post on Hazelcast Node.js Client &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_1&quot; class=&quot;footnote&quot; href=&quot;#_footnote_1&quot; title=&quot;View footnote.&quot;&gt;1&lt;/a&gt;]&lt;/sup&gt;.
+&lt;p&gt;It has been a while since out first blog post on Hazelcast Node.js Client &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_1&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_1&quot; title=&quot;View footnote.&quot;&gt;1&lt;/a&gt;]&lt;/sup&gt;.
 Our brave developers have been very busy adding new features and making Hazelcast Node.js Client faster!&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;admonitionblock warning&quot;&gt;
@@ -5301,7 +5301,7 @@ That &amp;quot;Getting started&amp;quot; post contains all required information 
 &lt;/td&gt;
 &lt;td class=&quot;content&quot;&gt;
 The code example in this article were tested under &lt;code&gt;node v6.3.1 (npm v3.10.3)&lt;/code&gt; with Hazelcast Client &lt;code&gt;0.4.1&lt;/code&gt;.
-Many examples contain modern EcmaScript 6 syntax constructs, like classes and &lt;code&gt;⇒&lt;/code&gt; aka «arrow function» &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_2&quot; class=&quot;footnote&quot; href=&quot;#_footnote_2&quot; title=&quot;View footnote.&quot;&gt;2&lt;/a&gt;]&lt;/sup&gt;.
+Many examples contain modern EcmaScript 6 syntax constructs, like classes and &lt;code&gt;⇒&lt;/code&gt; aka «arrow function» &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_2&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_2&quot; title=&quot;View footnote.&quot;&gt;2&lt;/a&gt;]&lt;/sup&gt;.
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
@@ -5333,7 +5333,7 @@ Since our previous announcement of v0.2, we added the most of the frequently use
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Also, we brought full interoperability with other Hazelcast clients &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_3&quot; class=&quot;footnote&quot; href=&quot;#_footnote_3&quot; title=&quot;View footnote.&quot;&gt;3&lt;/a&gt;]&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;Also, we brought full interoperability with other Hazelcast clients &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_3&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_3&quot; title=&quot;View footnote.&quot;&gt;3&lt;/a&gt;]&lt;/sup&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;quoteblock&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;Let’s have a quick look at this first because:&lt;/div&gt;
@@ -5345,7 +5345,7 @@ I don’t know how to put this, but it’s kind of a big deal.
 &lt;cite&gt;Anchorman: The Legend of Ron Burgundy&lt;/cite&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&quot;imageblock&quot; style=&quot;text-align: left&quot;&gt;
+&lt;div class=&quot;imageblock text-left&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
 &lt;img src=&quot;http://gamov.io/images/ron.jpg&quot; alt=&quot;ron&quot; /&gt;
 &lt;/div&gt;
@@ -5375,7 +5375,7 @@ It has 3 properties - &lt;code&gt;firstName&lt;/code&gt;, &lt;code&gt;lastName&l
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;Person.java&lt;/div&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;public class Person implements IdentifiedDataSerializable { &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-java hljs&quot; data-lang=&quot;java&quot;&gt;public class Person implements IdentifiedDataSerializable { &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
     String firstName;
     String lastName;
     int age;
@@ -5437,7 +5437,7 @@ It has 3 properties - &lt;code&gt;firstName&lt;/code&gt;, &lt;code&gt;lastName&l
 &lt;/td&gt;
 &lt;td class=&quot;content&quot;&gt;
 Make sure you read from input in the same order you as you wrote to the binary output.
-Detailed description of &lt;code&gt;IdentifiedDataSerializable&lt;/code&gt; methods can be found «Serialization» &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_4&quot; class=&quot;footnote&quot; href=&quot;#_footnote_4&quot; title=&quot;View footnote.&quot;&gt;4&lt;/a&gt;]&lt;/sup&gt; section of &lt;a href=&quot;http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html&quot;&gt;Hazelcast Documentation&lt;/a&gt;.
+Detailed description of &lt;code&gt;IdentifiedDataSerializable&lt;/code&gt; methods can be found «Serialization» &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_4&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_4&quot; title=&quot;View footnote.&quot;&gt;4&lt;/a&gt;]&lt;/sup&gt; section of &lt;a href=&quot;http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html&quot;&gt;Hazelcast Documentation&lt;/a&gt;.
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
@@ -5445,7 +5445,7 @@ Detailed description of &lt;code&gt;IdentifiedDataSerializable&lt;/code&gt; meth
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;Let’s look what a JavaScript counterpart object looks like.&lt;/div&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;class Person {
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript hljs&quot; data-lang=&quot;javascript&quot;&gt;class Person {
   constructor(firstName, lastName, age) {   &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -5493,7 +5493,7 @@ Detailed description of &lt;code&gt;IdentifiedDataSerializable&lt;/code&gt; meth
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;Last step - register &lt;code&gt;DataSerializableFactory&lt;/code&gt; in client config object&lt;/div&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;var config = new Config.ClientConfig();
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript hljs&quot; data-lang=&quot;javascript&quot;&gt;var config = new Config.ClientConfig();
 config.serializationConfig.dataSerializableFactories[42] = {
     create (type) {
         if (type === 42) { &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
@@ -5533,7 +5533,7 @@ If you are looking for a small subset of the entries, it is more efficient to re
 &lt;/div&gt;
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;map.putAll([&amp;apos;Alice&amp;apos;, 34], [&amp;apos;Joe&amp;apos;, 22], [&amp;apos;George&amp;apos;, 27]);&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript hljs&quot; data-lang=&quot;javascript&quot;&gt;map.putAll([&amp;apos;Alice&amp;apos;, 34], [&amp;apos;Joe&amp;apos;, 22], [&amp;apos;George&amp;apos;, 27]);&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
@@ -5541,7 +5541,7 @@ If you are looking for a small subset of the entries, it is more efficient to re
 &lt;/div&gt;
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;const Predicates = require(&amp;apos;hazelcast-client&amp;apos;).Predicates;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript hljs&quot; data-lang=&quot;javascript&quot;&gt;const Predicates = require(&amp;apos;hazelcast-client&amp;apos;).Predicates;
 map.entrySetWithPredicate(Predicates.greaterThan(&amp;apos;this&amp;apos;, 25))
   .then((people) =&amp;gt; {
     people.forEach(person =&amp;gt; console.log(`Person: ${person[0]}, age: ${person[1]}`));
@@ -5556,7 +5556,7 @@ map.entrySetWithPredicate(Predicates.greaterThan(&amp;apos;this&amp;apos;, 25))
 &lt;/div&gt;
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;map.keySetWithPredicate(Predicates.greaterThan(&amp;apos;this&amp;apos;, 25));&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript hljs&quot; data-lang=&quot;javascript&quot;&gt;map.keySetWithPredicate(Predicates.greaterThan(&amp;apos;this&amp;apos;, 25));&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
@@ -5574,7 +5574,7 @@ map.entrySetWithPredicate(Predicates.greaterThan(&amp;apos;this&amp;apos;, 25))
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;The restaurants MultiMap&lt;/div&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;let mmap = hazelcastClient.getMultiMap(&amp;apos;restaurants&amp;apos;);      &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript hljs&quot; data-lang=&quot;javascript&quot;&gt;let mmap = hazelcastClient.getMultiMap(&amp;apos;restaurants&amp;apos;);      &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
 mmap.put(&amp;apos;New York&amp;apos;, &amp;apos;Red Lobster&amp;apos;)     &lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
   .then(() =&amp;gt; mmap.put(&amp;apos;New York&amp;apos;, &amp;apos;Eataly&amp;apos;))
   .then(() =&amp;gt; mmap.get(&amp;apos;New York&amp;apos;))
@@ -5601,7 +5601,7 @@ mmap.put(&amp;apos;Las Vegas&amp;apos;, &amp;apos;Burgr&amp;apos;)      &lt;i cl
 &lt;td&gt;&lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;3&lt;/b&gt;&lt;/td&gt;
 &lt;td&gt;When we need to get a collection of entries.
 Hazelcast MultiMap supports two types of values - &lt;code&gt;Set&lt;/code&gt; (doesn’t allow duplicates, default) and &lt;code&gt;List&lt;/code&gt; (preserves order).
-It can be configured using cluster config object &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_5&quot; class=&quot;footnote&quot; href=&quot;#_footnote_5&quot; title=&quot;View footnote.&quot;&gt;5&lt;/a&gt;]&lt;/sup&gt;.&lt;/td&gt;
+It can be configured using cluster config object &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_5&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_5&quot; title=&quot;View footnote.&quot;&gt;5&lt;/a&gt;]&lt;/sup&gt;.&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
 &lt;/div&gt;
@@ -5623,7 +5623,7 @@ It can be configured using cluster config object &lt;sup class=&quot;footnote&qu
 &lt;/div&gt;
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;let globalLock = client.getLock(&amp;apos;global-lock&amp;apos;);
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript hljs&quot; data-lang=&quot;javascript&quot;&gt;let globalLock = client.getLock(&amp;apos;global-lock&amp;apos;);
 
 globalLock.lock();
 // you can do some job here which doesn&amp;apos;t allow shared access
@@ -5644,7 +5644,7 @@ FIFO ordering will apply to all queue operations across the cluster.&lt;/p&gt;
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;Client 1 - Consumer of tasks&lt;/div&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;let logger = hazelcastClient.loggingService;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript hljs&quot; data-lang=&quot;javascript&quot;&gt;let logger = hazelcastClient.loggingService;
 let queue = hazelcastClient.getQueue(&amp;apos;tasks&amp;apos;);
 
 // slow consumer
@@ -5656,7 +5656,7 @@ setInterval(() =&amp;gt; {
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;Client 2 - Producer of tasks&lt;/div&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;let logger = hazelcastClient.loggingService;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript hljs&quot; data-lang=&quot;javascript&quot;&gt;let logger = hazelcastClient.loggingService;
 let queue = hazelcastClient.getQueue(&amp;apos;tasks&amp;apos;);
 
 // fast producer
@@ -5681,7 +5681,7 @@ It is only a matter of adding a &lt;code&gt;getPartitionKey()&lt;/code&gt; funct
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;A developer needs to implement &lt;code&gt;getPartitionKey&lt;/code&gt; method&lt;/div&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&amp;apos;use strict&amp;apos;;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript hljs&quot; data-lang=&quot;javascript&quot;&gt;&amp;apos;use strict&amp;apos;;
 let Client = require(&amp;apos;hazelcast-client&amp;apos;).Client;
 
 class Company {  &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
@@ -5770,7 +5770,7 @@ Client.newHazelcastClient().then((hazelcastClient) =&amp;gt; {
 Entry processor eliminates the cost of transferring entries between cluster and clients back and forth for simple transformations.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;To learn more about Data Affinity in Hazelcast, check official documentation &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_6&quot; class=&quot;footnote&quot; href=&quot;#_footnote_6&quot; title=&quot;View footnote.&quot;&gt;6&lt;/a&gt;]&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;To learn more about Data Affinity in Hazelcast, check official documentation &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_6&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_6&quot; title=&quot;View footnote.&quot;&gt;6&lt;/a&gt;]&lt;/sup&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -5796,7 +5796,7 @@ Check &lt;a href=&quot;#queue&quot;&gt;Messaging with Queue&lt;/a&gt; section fo
 &lt;h3 id=&quot;fresh-meat&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#fresh-meat&quot;&gt;&lt;/a&gt;Fresh Meat&lt;/h3&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;Even though v0.5 is not released yet, you don’t have to wait for to try these new features.
-You can build the client locally &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_7&quot; class=&quot;footnote&quot; href=&quot;#_footnote_7&quot; title=&quot;View footnote.&quot;&gt;7&lt;/a&gt;]&lt;/sup&gt;.&lt;/p&gt;
+You can build the client locally &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_7&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_7&quot; title=&quot;View footnote.&quot;&gt;7&lt;/a&gt;]&lt;/sup&gt;.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;Or, thanks to NPM,  install Hazelcast Client from &lt;code&gt;master&lt;/code&gt; branch.&lt;/div&gt;
@@ -5837,7 +5837,7 @@ There a bunch of way to provide the feedback:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://gitter.im/hazelcast/hazelcast&quot;&gt;Hazelcast Chat&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;a href=&quot;https://gitter.im/hazelcast/hazelcast-nodejs-client&quot;&gt;Hazelcast Node.js client Chat&lt;/a&gt; &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_8&quot; class=&quot;footnote&quot; href=&quot;#_footnote_8&quot; title=&quot;View footnote.&quot;&gt;8&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://gitter.im/hazelcast/hazelcast-nodejs-client&quot;&gt;Hazelcast Node.js client Chat&lt;/a&gt; &lt;sup class=&quot;footnote&quot;&gt;[&lt;a id=&quot;_footnoteref_8&quot; class=&quot;footnote&quot; href=&quot;#_footnotedef_8&quot; title=&quot;View footnote.&quot;&gt;8&lt;/a&gt;]&lt;/sup&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
@@ -5854,28 +5854,28 @@ There a bunch of way to provide the feedback:&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&quot;footnotes&quot;&gt;
 &lt;hr /&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_1&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_1&quot;&gt;
 &lt;a href=&quot;#_footnoteref_1&quot;&gt;1&lt;/a&gt;. &lt;a href=&quot;http://blog.hazelcast.com/getting-started-with-hazelcast-and-node-js-2/&quot; class=&quot;bare&quot;&gt;http://blog.hazelcast.com/getting-started-with-hazelcast-and-node-js-2/&lt;/a&gt;
 &lt;/div&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_2&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_2&quot;&gt;
 &lt;a href=&quot;#_footnoteref_2&quot;&gt;2&lt;/a&gt;. &lt;a href=&quot;http://wesbos.com/arrow-functions/&quot; class=&quot;bare&quot;&gt;http://wesbos.com/arrow-functions/&lt;/a&gt;
 &lt;/div&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_3&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_3&quot;&gt;
 &lt;a href=&quot;#_footnoteref_3&quot;&gt;3&lt;/a&gt;. &lt;a href=&quot;https://hazelcast.org/clients-languages/&quot; class=&quot;bare&quot;&gt;https://hazelcast.org/clients-languages/&lt;/a&gt;
 &lt;/div&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_4&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_4&quot;&gt;
 &lt;a href=&quot;#_footnoteref_4&quot;&gt;4&lt;/a&gt;. &lt;a href=&quot;http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#identifieddataserializable&quot; class=&quot;bare&quot;&gt;http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#identifieddataserializable&lt;/a&gt;
 &lt;/div&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_5&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_5&quot;&gt;
 &lt;a href=&quot;#_footnoteref_5&quot;&gt;5&lt;/a&gt;. &lt;a href=&quot;http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#configuring-multimap&quot; class=&quot;bare&quot;&gt;http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#configuring-multimap&lt;/a&gt;
 &lt;/div&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_6&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_6&quot;&gt;
 &lt;a href=&quot;#_footnoteref_6&quot;&gt;6&lt;/a&gt;. &lt;a href=&quot;http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#data-affinity&quot; class=&quot;bare&quot;&gt;http://docs.hazelcast.org/docs/3.6/manual/html-single/index.html#data-affinity&lt;/a&gt;
 &lt;/div&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_7&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_7&quot;&gt;
 &lt;a href=&quot;#_footnoteref_7&quot;&gt;7&lt;/a&gt;. &lt;a href=&quot;https://github.com/hazelcast/hazelcast-nodejs-client#building-and-installing-from-sources&quot; class=&quot;bare&quot;&gt;https://github.com/hazelcast/hazelcast-nodejs-client#building-and-installing-from-sources&lt;/a&gt;
 &lt;/div&gt;
-&lt;div class=&quot;footnote&quot; id=&quot;_footnote_8&quot;&gt;
+&lt;div class=&quot;footnote&quot; id=&quot;_footnotedef_8&quot;&gt;
 &lt;a href=&quot;#_footnoteref_8&quot;&gt;8&lt;/a&gt;. It is a community chat / forum but not a support portal. We can help with answering the questions, and provide pointers but we’re not going to write code for you. We are encouraging people in the community to share the knowledge, please, don’t abuse it. If you’re interested in 24/7 support, we have a dedicated support portal available on commercial terms. Contact &lt;code&gt;sales at Hazelcast dot com&lt;/code&gt; to learn more.
 &lt;/div&gt;
 &lt;/div&gt;
@@ -5884,7 +5884,7 @@ There a bunch of way to provide the feedback:&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2016/04/18/getting-started-with-hazelcast-and-node.html</id>
 <title>Getting Started with Hazelcast and Node.js</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2016-04-18T06:05:51-06:00</published>
 <link href="http://gamov.io/posts/2016/04/18/getting-started-with-hazelcast-and-node.html" rel="alternate" type="text/html" />
 <author>
@@ -5942,7 +5942,7 @@ Since each data partition uses the well known and consistent hashing algorithm, 
 <content type="html">
 &lt;div id=&quot;preamble&quot;&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
-&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
 &lt;img src=&quot;http://gamov.io/images/node.png&quot; alt=&quot;node&quot; /&gt;
 &lt;/div&gt;
@@ -5965,7 +5965,7 @@ Time To «Hello World!» less than 5 min.
 &lt;div id=&quot;toctitle&quot; class=&quot;title&quot;&gt;Table of content&lt;/div&gt;
 &lt;ul class=&quot;sectlevel1&quot;&gt;
 &lt;li&gt;&lt;a href=&quot;#intro&quot;&gt;Intro&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#let-s-write-your-first-node-js-app-with-hazelcast&quot;&gt;Let’s Write Your First Node.js App with Hazelcast&lt;/a&gt;
+&lt;li&gt;&lt;a href=&quot;#lets-write-your-first-node-js-app-with-hazelcast&quot;&gt;Let’s Write Your First Node.js App with Hazelcast&lt;/a&gt;
 &lt;ul class=&quot;sectlevel2&quot;&gt;
 &lt;li&gt;&lt;a href=&quot;#before-you-start&quot;&gt;Before you start&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#install-the-hazelcast-client-package-from-npm&quot;&gt;Install The Hazelcast Client Package from NPM&lt;/a&gt;&lt;/li&gt;
@@ -6018,7 +6018,7 @@ API documentation available on &lt;a href=&quot;http://hazelcast.github.io/hazel
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;let-s-write-your-first-node-js-app-with-hazelcast&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#let-s-write-your-first-node-js-app-with-hazelcast&quot;&gt;&lt;/a&gt;Let’s Write Your First Node.js App with Hazelcast&lt;/h2&gt;
+&lt;h2 id=&quot;lets-write-your-first-node-js-app-with-hazelcast&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#lets-write-your-first-node-js-app-with-hazelcast&quot;&gt;&lt;/a&gt;Let’s Write Your First Node.js App with Hazelcast&lt;/h2&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;sect2&quot;&gt;
 &lt;h3 id=&quot;before-you-start&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#before-you-start&quot;&gt;&lt;/a&gt;Before you start&lt;/h3&gt;
@@ -6040,7 +6040,7 @@ API documentation available on &lt;a href=&quot;http://hazelcast.github.io/hazel
 &lt;/div&gt;
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;npm install hazelcast-client&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-bash hljs&quot; data-lang=&quot;bash&quot;&gt;npm install hazelcast-client&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -6053,7 +6053,7 @@ To begin, we need to connect to our cluster and retrieve the «persons» map.&lt
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;Connect to local Hazelcast cluster&lt;/div&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;var HazelcastClient = require(&amp;apos;hazelcast-client&amp;apos;).Client; &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript hljs&quot; data-lang=&quot;javascript&quot;&gt;var HazelcastClient = require(&amp;apos;hazelcast-client&amp;apos;).Client; &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
 var Config = require(&amp;apos;hazelcast-client&amp;apos;).Config; &lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
 
 var config = new Config.ClientConfig();
@@ -6097,7 +6097,7 @@ It uses the default config with local addresses.&lt;/td&gt;
 &lt;/div&gt;
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;var insertPerson = function (map) {
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript hljs&quot; data-lang=&quot;javascript&quot;&gt;var insertPerson = function (map) {
     var person = {     &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
         firstName: &amp;quot;John&amp;quot;,
         lastName: &amp;quot;Doe&amp;quot;,
@@ -6126,7 +6126,7 @@ It uses the default config with local addresses.&lt;/td&gt;
 &lt;/div&gt;
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;var readPerson = function (map) {
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript hljs&quot; data-lang=&quot;javascript&quot;&gt;var readPerson = function (map) {
     map.get(1).then(function (value) {
         // do object stuff here
     })
@@ -6142,7 +6142,7 @@ var deletePerson = function (map) {
 &lt;div id=&quot;fullapp&quot; class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;Full source of the simple CRUD application&lt;/div&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;var HazelcastClient = require(&amp;apos;hazelcast-client&amp;apos;).Client;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-javascript hljs&quot; data-lang=&quot;javascript&quot;&gt;var HazelcastClient = require(&amp;apos;hazelcast-client&amp;apos;).Client;
 var Config = require(&amp;apos;hazelcast-client&amp;apos;).Config;
 
 var config = new Config.ClientConfig();
@@ -6192,7 +6192,7 @@ var deletePerson = function (map) {
 &lt;/div&gt;
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;[DefaultLogger] INFO at ClusterService: Members received.
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-bash hljs&quot; data-lang=&quot;bash&quot;&gt;[DefaultLogger] INFO at ClusterService: Members received.
 [ Member {
     address: Address { host: &amp;apos;10.10.26.22&amp;apos;, port: 5701 },
     uuid: &amp;apos;25fd2aae-a0e6-4293-94db-8f5d6af62ca8&amp;apos;,
@@ -6248,7 +6248,7 @@ You have just connected to a Hazelcast cluster and performed basic CRUD operatio
 <entry>
 <id>http://gamov.io/posts/2016/03/31/travel-report-q1-2016.html</id>
 <title>Travel Report - Q1 2016</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2016-03-31T20:00:00+00:00</published>
 <link href="http://gamov.io/posts/2016/03/31/travel-report-q1-2016.html" rel="alternate" type="text/html" />
 <author>
@@ -6345,11 +6345,11 @@ Major events - Toronto JUG, Central Ohio JUG, DevNexus.
 &lt;li&gt;&lt;a href=&quot;#chattanooga-developers-meetup-chattanooga-tn&quot;&gt;Chattanooga Developers Meetup, Chattanooga, TN&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#the-plans-for-q2-span-class-icon-i-class-fa-fa-plane-i-span&quot;&gt;The Plans For Q2 &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-plane&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#the-plans-for-q2&quot;&gt;The Plans For Q2 &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-plane&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#stay-in-touch&quot;&gt;Stay In Touch&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
 &lt;img src=&quot;http://gamov.io/images/luggage.jpeg&quot; alt=&quot;luggage&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt;
 &lt;/div&gt;
@@ -6398,7 +6398,7 @@ I spent the entire day of working with the clients and prospects in Toronto.
 Then I was off to speak at Toronto JUG.
 The Java User Group happened right at the bar. It was a first for me!&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
 &lt;img src=&quot;http://gamov.io/images/torontojug.jpeg&quot; alt=&quot;torontojug&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt;
 &lt;/div&gt;
@@ -6422,7 +6422,7 @@ The COJUG folks have found this format is more flexible for many of the members.
 Of course, they have a traditional &amp;quot;after work&amp;quot; format they use too.
 That allows them to make their events work for a larger number of schedules too.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
 &lt;img src=&quot;http://gamov.io/images/cojug.jpeg&quot; alt=&quot;cojug&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt;
 &lt;/div&gt;
@@ -6437,7 +6437,7 @@ That allows them to make their events work for a larger number of schedules too.
 &lt;p&gt;Next was DevNexus, sponsored by the AJUG.
 This year was once again a blast.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
 &lt;img src=&quot;http://gamov.io/images/devnexus_2016.jpg&quot; alt=&quot;devnexus 2016&quot; width=&quot;50%&quot; height=&quot;50%&quot; /&gt;
 &lt;/div&gt;
@@ -6518,9 +6518,9 @@ I am really impressed with the flexibility that JUG organizers are developing to
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;the-plans-for-q2-span-class-icon-i-class-fa-fa-plane-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#the-plans-for-q2-span-class-icon-i-class-fa-fa-plane-i-span&quot;&gt;&lt;/a&gt;The Plans For Q2 &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-plane&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;the-plans-for-q2&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#the-plans-for-q2&quot;&gt;&lt;/a&gt;The Plans For Q2 &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-plane&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h2&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
-&lt;table class=&quot;tableblock frame-all grid-all spread&quot;&gt;
+&lt;table class=&quot;tableblock frame-all grid-all stretch&quot;&gt;
 &lt;caption class=&quot;title&quot;&gt;Table 2. As you will see the plan for Q2 is even bigger and broader!&lt;/caption&gt;
 &lt;colgroup&gt;
 &lt;col style=&quot;width: 25%;&quot; /&gt;
@@ -6617,7 +6617,7 @@ I am really impressed with the flexibility that JUG organizers are developing to
 <entry>
 <id>http://gamov.io/posts/2015/12/31/caching-made-bootiful.html</id>
 <title>Caching Made Bootiful — Hazelcast Way</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2015-12-31T22:18:23-06:00</published>
 <link href="http://gamov.io/posts/2015/12/31/caching-made-bootiful.html" rel="alternate" type="text/html" />
 <author>
@@ -6645,7 +6645,7 @@ You will see how the Spring Framework caching abstraction plays...
 <content type="html">
 &lt;div id=&quot;preamble&quot;&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
-&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
 &lt;img src=&quot;http://gamov.io/images/hazelcast_boot_1.png&quot; alt=&quot;hazelcast boot 1&quot; width=&quot;40%&quot; /&gt;
 &lt;/div&gt;
@@ -6679,7 +6679,7 @@ You will see how the Spring Framework caching abstraction plays nicely with Haze
 &lt;li&gt;&lt;a href=&quot;#intro&quot;&gt;Intro&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#slow-service&quot;&gt;Slow service&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#enable-caching&quot;&gt;Enable Caching&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#it-s-a-wrap&quot;&gt;It’s a wrap!&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#its-a-wrap&quot;&gt;It’s a wrap!&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
@@ -6714,7 +6714,7 @@ I know that retrieving a city might take some time, so I will use &lt;a href=&qu
 &lt;/div&gt;
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;import org.springframework.cache.annotation.CachePut;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-java hljs&quot; data-lang=&quot;java&quot;&gt;import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 
 public interface IDummyBean {
@@ -6747,7 +6747,7 @@ For simplicity in this example, I will use a naive implementation that simulates
 &lt;/div&gt;
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;public class DummyBean implements IDummyBean {
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-java hljs&quot; data-lang=&quot;java&quot;&gt;public class DummyBean implements IDummyBean {
     @Override
     public String getCity() {
         try {
@@ -6808,7 +6808,7 @@ During application startup, Spring Boot scans the classpath for &lt;code&gt;haze
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;BootifulMember class&lt;/div&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;@SpringBootApplication
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-java hljs&quot; data-lang=&quot;java&quot;&gt;@SpringBootApplication
 @EnableCaching  &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
 public class BootifulMember {
     public static void main(String[] args) {
@@ -6832,7 +6832,7 @@ But in this case, it scans Spring Configuration for a &lt;code&gt;CacheManager&l
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;Bootiful client application&lt;/div&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;@SpringBootApplication
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-java hljs&quot; data-lang=&quot;java&quot;&gt;@SpringBootApplication
 @EnableCaching
 public class BootifulClient {
     public static void main(String[] args) {
@@ -6943,7 +6943,7 @@ This is a tip for production deployment of your «bootiful» application. By run
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;it-s-a-wrap&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#it-s-a-wrap&quot;&gt;&lt;/a&gt;It’s a wrap!&lt;/h2&gt;
+&lt;h2 id=&quot;its-a-wrap&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#its-a-wrap&quot;&gt;&lt;/a&gt;It’s a wrap!&lt;/h2&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;Congrats!
@@ -6961,7 +6961,7 @@ Meanwhile, if you have any questions, feel free to post them in the comments sec
 <entry>
 <id>http://gamov.io/posts/2015/12/29/my-year-at-hazelcast-in-review.html</id>
 <title>My Year At Hazelcast In Review</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2015-12-29T17:00:00+00:00</published>
 <link href="http://gamov.io/posts/2015/12/29/my-year-at-hazelcast-in-review.html" rel="alternate" type="text/html" />
 <author>
@@ -7032,7 +7032,7 @@ In addition to travelling...
 <content type="html">
 &lt;div id=&quot;preamble&quot;&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
-&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
 &lt;img src=&quot;http://gamov.io/images/laptop.jpg&quot; alt=&quot;laptop&quot; /&gt;
 &lt;/div&gt;
@@ -7055,10 +7055,10 @@ While I am already looking forward to 2016, here is a quick recap of my 2015 wit
 &lt;div id=&quot;toctitle&quot; class=&quot;title&quot;&gt;Table of Contents&lt;/div&gt;
 &lt;ul class=&quot;sectlevel1&quot;&gt;
 &lt;li&gt;&lt;a href=&quot;#into&quot;&gt;Into&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#hazelcast-trainings-span-class-icon-i-class-fa-fa-graduation-cap-i-span&quot;&gt;Hazelcast Trainings &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-graduation-cap&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#hazelcast-trainings&quot;&gt;Hazelcast Trainings &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-graduation-cap&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#events&quot;&gt;Conferences and Events &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-calendar&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#contributions-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;Contributions &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#plans-for-2016-span-class-icon-i-class-fa-fa-expand-i-span&quot;&gt;Plans for 2016 &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-expand&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#contributions&quot;&gt;Contributions &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#plans-for-2016&quot;&gt;Plans for 2016 &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-expand&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;table class=&quot;tableblock frame-all grid-all&quot; style=&quot;width: 60%;&quot;&gt;
@@ -7106,7 +7106,7 @@ I enjoyed the conference talks, &lt;a href=&quot;http://blog.hazelcast.com/autho
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;hazelcast-trainings-span-class-icon-i-class-fa-fa-graduation-cap-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#hazelcast-trainings-span-class-icon-i-class-fa-fa-graduation-cap-i-span&quot;&gt;&lt;/a&gt;Hazelcast Trainings &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-graduation-cap&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;hazelcast-trainings&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#hazelcast-trainings&quot;&gt;&lt;/a&gt;Hazelcast Trainings &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-graduation-cap&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h2&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;As a part of &lt;a href=&quot;https://hazelcast.com/services/solutions-team/&quot;&gt;the solutions team at Hazelcast&lt;/a&gt;, I lead numerous training engagements for clients and open public classes in many places across the country, including Tampa, FL, Richmond, VA, New York, NY, Jersey City, NJ, Rockville, MD and Cary, NC.
@@ -7128,7 +7128,7 @@ I might even be able to provide you with discount!&lt;/p&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;One of my favorite activities in 2015 was getting to speak at many JUGs and conferences.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center&quot;&gt;
+&lt;div class=&quot;imageblock text-center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
 &lt;img src=&quot;http://gamov.io/images/richmond_jcache.jpg&quot; alt=&quot;50%&quot; width=&quot;50%&quot; /&gt;
 &lt;/div&gt;
@@ -7136,7 +7136,7 @@ I might even be able to provide you with discount!&lt;/p&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;Here is a sampling of some of the places and topics where I presented this year.&lt;/p&gt;
 &lt;/div&gt;
-&lt;table class=&quot;tableblock frame-all grid-all spread&quot;&gt;
+&lt;table class=&quot;tableblock frame-all grid-all stretch&quot;&gt;
 &lt;colgroup&gt;
 &lt;col style=&quot;width: 25%;&quot; /&gt;
 &lt;col style=&quot;width: 25%;&quot; /&gt;
@@ -7241,7 +7241,7 @@ Keep an eye on this &lt;a href=&quot;http://www.infoq.com/springone-2gx-2015/&qu
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;contributions-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#contributions-span-class-icon-i-class-fa-fa-code-fork-i-span&quot;&gt;&lt;/a&gt;Contributions &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;contributions&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#contributions&quot;&gt;&lt;/a&gt;Contributions &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-code-fork&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h2&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;When people ask me how one can contribute to an open source project, I suggest starting with something small but valuable like the documentation.
@@ -7278,7 +7278,7 @@ Jump in!&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;plans-for-2016-span-class-icon-i-class-fa-fa-expand-i-span&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#plans-for-2016-span-class-icon-i-class-fa-fa-expand-i-span&quot;&gt;&lt;/a&gt;Plans for 2016 &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-expand&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;plans-for-2016&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#plans-for-2016&quot;&gt;&lt;/a&gt;Plans for 2016 &lt;span class=&quot;icon&quot;&gt;&lt;i class=&quot;fa fa-expand&quot;&gt;&lt;/i&gt;&lt;/span&gt;&lt;/h2&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;I’m looking forward to expanding the geography of my talks on Distributed Systems and Hazelcast  - We have confirmed the inaugural Hazelcast User Group meet-up for Toronto in February:&lt;/p&gt;
@@ -7310,7 +7310,7 @@ Looking forward to 2016 — Happy New Year &lt;span class=&quot;icon&quot;&g
 <entry>
 <id>http://gamov.io/posts/2015/11/02/hazelcast-for-mongodb-developers.html</id>
 <title>Hazelcast for MongoDB Developers</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2015-11-02T16:31:53-06:00</published>
 <link href="http://gamov.io/posts/2015/11/02/hazelcast-for-mongodb-developers.html" rel="alternate" type="text/html" />
 <author>
@@ -7385,7 +7385,7 @@ In this blog post, I will try to answer this question once and for all.
 &lt;li&gt;&lt;a href=&quot;#distributed-computing&quot;&gt;Distributed  Computing&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#persistence&quot;&gt;Persistence&lt;/a&gt;
 &lt;ul class=&quot;sectlevel3&quot;&gt;
-&lt;li&gt;&lt;a href=&quot;#code-imap-code-and-code-mapstore-code&quot;&gt;&lt;code&gt;IMap&lt;/code&gt; and &lt;code&gt;MapStore&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#imap-and-mapstore&quot;&gt;&lt;code&gt;IMap&lt;/code&gt; and &lt;code&gt;MapStore&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -7429,7 +7429,7 @@ For example, on my mac I can install MongoDВ with command using &lt;strong&gt;&
 &lt;/div&gt;
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;brew mongo install&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-sh hljs&quot; data-lang=&quot;sh&quot;&gt;brew mongo install&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
@@ -7485,14 +7485,14 @@ It has its issues with persistence (e.g., it can be a bit fragile since it write
 &lt;p&gt;Let’s take a look how we can benefit from MongoDB persistence with Hazelcast.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect3&quot;&gt;
-&lt;h4 id=&quot;code-imap-code-and-code-mapstore-code&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#code-imap-code-and-code-mapstore-code&quot;&gt;&lt;/a&gt;&lt;code&gt;IMap&lt;/code&gt; and &lt;code&gt;MapStore&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;imap-and-mapstore&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#imap-and-mapstore&quot;&gt;&lt;/a&gt;&lt;code&gt;IMap&lt;/code&gt; and &lt;code&gt;MapStore&lt;/code&gt;&lt;/h4&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
 &lt;p&gt;A corner store of Hazelcast’s read-through / write-thought capabilities are two interfaces &lt;code&gt;MapLoader&lt;/code&gt; and &lt;code&gt;MapStore&lt;/code&gt;. A developer needs to implement &lt;code&gt;MapLoader&lt;/code&gt; interface if only reads from database are required.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;MapLoader inteface&lt;/div&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;public interface MapLoader&amp;lt;K, V&amp;gt; {
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-java hljs&quot; data-lang=&quot;java&quot;&gt;public interface MapLoader&amp;lt;K, V&amp;gt; {
 
     V load(K key); &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
 
@@ -7524,7 +7524,7 @@ It has its issues with persistence (e.g., it can be a bit fragile since it write
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;MapStore Interface&lt;/div&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;public interface MapStore&amp;lt;K, V&amp;gt; extends MapLoader&amp;lt;K, V&amp;gt; {
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-java hljs&quot; data-lang=&quot;java&quot;&gt;public interface MapStore&amp;lt;K, V&amp;gt; extends MapLoader&amp;lt;K, V&amp;gt; {
 
     void store(K key, V value); &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
 
@@ -7565,7 +7565,7 @@ It has its issues with persistence (e.g., it can be a bit fragile since it write
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;Mongo Java Driver dependency&lt;/div&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&amp;lt;dependency&amp;gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-xml hljs&quot; data-lang=&quot;xml&quot;&gt;&amp;lt;dependency&amp;gt;
    &amp;lt;groupId&amp;gt;org.mongodb&amp;lt;/groupId&amp;gt;
    &amp;lt;artifactId&amp;gt;mongo-java-driver&amp;lt;/artifactId&amp;gt;
    &amp;lt;version&amp;gt;${mongo-java-driver.version}&amp;lt;/version&amp;gt;
@@ -7574,7 +7574,7 @@ It has its issues with persistence (e.g., it can be a bit fragile since it write
 &lt;/div&gt;
 &lt;div class=&quot;listingblock&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
-&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;MongoClient mongoClient = new MongoClient(new MongoClientURI(mongoUrl)); &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
+&lt;pre class=&quot;highlightjs highlight nowrap&quot;&gt;&lt;code class=&quot;language-java hljs&quot; data-lang=&quot;java&quot;&gt;MongoClient mongoClient = new MongoClient(new MongoClientURI(mongoUrl)); &lt;i class=&quot;conum&quot; data-value=&quot;1&quot;&gt;&lt;/i&gt;&lt;b&gt;(1)&lt;/b&gt;
 MongoCollection collection = mongoClient.getDatabase(dbName).getCollection(collectionName); &lt;i class=&quot;conum&quot; data-value=&quot;2&quot;&gt;&lt;/i&gt;&lt;b&gt;(2)&lt;/b&gt;
 final Document document = (Document) collection.find(eq(&amp;quot;_id&amp;quot;, key)).first(); &lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;
 collection.insertOne(document); &lt;i class=&quot;conum&quot; data-value=&quot;3&quot;&gt;&lt;/i&gt;&lt;b&gt;(3)&lt;/b&gt;&lt;/code&gt;&lt;/pre&gt;
@@ -7625,7 +7625,7 @@ If I didn’t, please, ask me in the comments below.&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2015/01/27/ground-up-introduction-to-in-memory-data.html</id>
 <title>Ground-up Introduction To In-Memory Data</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2015-01-27T22:00:00+00:00</published>
 <link href="http://gamov.io/posts/2015/01/27/ground-up-introduction-to-in-memory-data.html" rel="alternate" type="text/html" />
 <author>
@@ -7735,7 +7735,7 @@ This April, &lt;a href=&quot;http://codepalousa.com/blog/2015/code-palousa-2015-
 <entry>
 <id>http://gamov.io/posts/2014/12/13/goodbye-farata-hello-hazelcast.html</id>
 <title>Goodbye, Farata. Hello, Hazelcast!</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2014-12-13T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2014/12/13/goodbye-farata-hello-hazelcast.html" rel="alternate" type="text/html" />
 <author>
@@ -7787,7 +7787,7 @@ I joined Farata as Senior RIA (who does remember that abbreviation?) Developer i
 — Wayne Dyer
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&quot;imageblock&quot; style=&quot;text-align: center;float: right&quot;&gt;
+&lt;div class=&quot;imageblock right text-center&quot;&gt;
 &lt;div class=&quot;content&quot;&gt;
 &lt;img src=&quot;http://gamov.io/images/HazelcastLogo-Blue_Dark_1200w.png&quot; alt=&quot;hazelcast&quot; width=&quot;50%&quot; /&gt;
 &lt;/div&gt;
@@ -7836,7 +7836,7 @@ Ultimately, I’ll be doing the pretty much same sorts of things I’ve been doi
 <entry>
 <id>http://gamov.io/posts/2013/07/17/getting-started-with-nashorn.html</id>
 <title>Getting Started With Nashorn</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2013-07-17T23:00:00+00:00</published>
 <link href="http://gamov.io/posts/2013/07/17/getting-started-with-nashorn.html" rel="alternate" type="text/html" />
 <author>
@@ -7914,7 +7914,7 @@ THIS IS A DRAFT!
 &lt;div id=&quot;toc&quot; class=&quot;toc&quot;&gt;
 &lt;div id=&quot;toctitle&quot; class=&quot;title&quot;&gt;Table of Contents&lt;/div&gt;
 &lt;ul class=&quot;sectlevel1&quot;&gt;
-&lt;li&gt;&lt;a href=&quot;#getting-nashorn-s-sources&quot;&gt;Getting Nashorn’s sources&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#getting-nashorns-sources&quot;&gt;Getting Nashorn’s sources&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#build-nashorn-for-jdk-8&quot;&gt;Build Nashorn For JDK 8&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#running&quot;&gt;Running&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#using-nashorn-with-jdk7&quot;&gt;Using Nashorn with JDK7&lt;/a&gt;&lt;/li&gt;
@@ -7927,7 +7927,7 @@ As you learned from my previous post, I’m going to talk about Nashorn - JavaSc
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect1&quot;&gt;
-&lt;h2 id=&quot;getting-nashorn-s-sources&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#getting-nashorn-s-sources&quot;&gt;&lt;/a&gt;Getting Nashorn’s sources&lt;/h2&gt;
+&lt;h2 id=&quot;getting-nashorns-sources&quot;&gt;&lt;a class=&quot;anchor&quot; href=&quot;#getting-nashorns-sources&quot;&gt;&lt;/a&gt;Getting Nashorn’s sources&lt;/h2&gt;
 &lt;div class=&quot;sectionbody&quot;&gt;
 &lt;div class=&quot;ulist&quot;&gt;
 &lt;div class=&quot;title&quot;&gt;Prerequisities&lt;/div&gt;
@@ -8004,7 +8004,7 @@ As you learned from my previous post, I’m going to talk about Nashorn - JavaSc
 <entry>
 <id>http://gamov.io/posts/2013/07/09/im-speaking-at-javaone.html</id>
 <title>I&#8217;m speaking at JavaOne 2013</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2013-07-09T01:00:00+00:00</published>
 <link href="http://gamov.io/posts/2013/07/09/im-speaking-at-javaone.html" rel="alternate" type="text/html" />
 <author>
@@ -8056,7 +8056,7 @@ Keep in touch for updates by following me on &lt;a href=&quot;http://twitter.com
 <entry>
 <id>http://gamov.io/posts/2013/02/05/prouctive-enterprise-web-dev-with-cdb.html</id>
 <title>Productive Enterprise Web Development with ExtJS and Clear Data Builder</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2013-02-05T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2013/02/05/prouctive-enterprise-web-dev-with-cdb.html" rel="alternate" type="text/html" />
 <author>
@@ -8719,7 +8719,7 @@ public class PersonServiceImpl extends _PersonServiceImpl {
 &lt;p&gt;The development of enterprise web application involves many steps that need to be done by developer. But with the right set of tools the repetitive steps can be automated. Remember the DRY principle - don’t repeat yourself. Try to do more with less efforts. I hope this article will help your to get started start with Clear Data Builder, which should make any ExtJS enterprise software developer more productive.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class=&quot;paragraph&quot;&gt;
-&lt;p&gt;Subscribe to our &lt;a href=&quot;http://youtube.com/trainingAtFarata&quot;&gt;youtube channel&lt;/a&gt; to get access to the latest videos, screencasts and learning materials. You are invited to read our upcoming book &lt;a href=&quot;http://enterprisewebbook.com/&quot;&gt;Enterprise Web Development&lt;/a&gt; (work in progress) that include coverage of ExtJS.&lt;/p&gt;
+&lt;p&gt;Subscribe to our &lt;a href=&quot;http://youtube.com/trainingAtFarata&quot;&gt;youtube channel&lt;/a&gt; to get access to the latest videos, screencasts and learning materials. You are invited to read our upcoming book &lt;a href=&quot;http://enterprisewebbook.com/&quot;&gt;&amp;quot;Enterprise Web Development&amp;quot;&lt;/a&gt; (work in progress) that include coverage of ExtJS.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&quot;sect2&quot;&gt;
@@ -8769,7 +8769,7 @@ public class PersonServiceImpl extends _PersonServiceImpl {
 <entry>
 <id>http://gamov.io/posts/2013/01/19/set-jdk-on-osx.html</id>
 <title>Set JDK on OSX</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2013-01-19T14:00:00+00:00</published>
 <link href="http://gamov.io/posts/2013/01/19/set-jdk-on-osx.html" rel="alternate" type="text/html" />
 <author>
@@ -8971,7 +8971,7 @@ alias setjdk19=&amp;apos;export JAVA_HOME=$(/usr/libexec/java_home -v 9)&amp;apo
 <entry>
 <id>http://gamov.io/posts/2012/07/26/websockets-for-java-developers.html</id>
 <title>WebSockets for Java Developers. Princeton JUG talk slides</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2012-07-26T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2012/07/26/websockets-for-java-developers.html" rel="alternate" type="text/html" />
 <summary>
@@ -9007,7 +9007,7 @@ today.&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2012/05/21/alfred-showhide-desktop-icons-on-mac-os.html</id>
 <title>Alfred Extension: Show/Hide desktop icons on Mac OS X</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2012-05-21T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2012/05/21/alfred-showhide-desktop-icons-on-mac-os.html" rel="alternate" type="text/html" />
 <category term="alfred"></category>
@@ -9036,7 +9036,7 @@ Cheers&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2012/05/16/webjars-for-assets-management-in-your.html</id>
 <title>WebJars for assets management in your project</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2012-05-16T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2012/05/16/webjars-for-assets-management-in-your.html" rel="alternate" type="text/html" />
 <category term="java"></category>
@@ -9061,7 +9061,7 @@ But in most common situations, you don’t have lot of options for deployment yo
 <entry>
 <id>http://gamov.io/posts/2012/01/28/how-to-download-videos-from-infoq-for.html</id>
 <title>How to download videos from InfoQ for offline viewing</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2012-01-28T06:15:00+00:00</published>
 <link href="http://gamov.io/posts/2012/01/28/how-to-download-videos-from-infoq-for.html" rel="alternate" type="text/html" />
 <author>
@@ -9109,7 +9109,7 @@ However, I found very elegant solution how to do that. I did it on my MacOS X wi
 <entry>
 <id>http://gamov.io/posts/2012/01/10/rapid-automation-for-flexjavablazeds.html</id>
 <title>Rapid automation for Flex/Java/BlazeDS projects</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2012-01-10T00:00:00+00:00</published>
 <link href="http://gamov.io/posts/2012/01/10/rapid-automation-for-flexjavablazeds.html" rel="alternate" type="text/html" />
 <author>
@@ -9129,7 +9129,7 @@ Feel free to comment!&lt;/p&gt;
 <entry>
 <id>http://gamov.io/posts/2011/09/11/adobe-max.html</id>
 <title>Adobe MAX</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2011-09-11T23:07:00+00:00</published>
 <link href="http://gamov.io/posts/2011/09/11/adobe-max.html" rel="alternate" type="text/html" />
 <author>
@@ -9163,7 +9163,7 @@ Creative Cloud - another big thing was announced. Sharing and collaboration b/w 
 <entry>
 <id>http://gamov.io/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html</id>
 <title>Eclipse: java.lang.UnsatisfiedLinkError: Cannot load 32-bit SWT libraries on 64-bit JVM</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2011-07-26T04:22:00+00:00</published>
 <link href="http://gamov.io/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html" rel="alternate" type="text/html" />
 <author>
@@ -9304,7 +9304,7 @@ to Eclipse→Preferences→Java→Installed JRE and add default JVM argument *&l
 <entry>
 <id>http://gamov.io/posts/2011/07/10/building-and-testing-with-gradle-my.html</id>
 <title>Building and Testing with Gradle - My Book Review</title>
-<updated>2020-02-10T15:45:56-06:00</updated>
+<updated>2020-02-18T11:27:20-05:00</updated>
 <published>2011-07-10T20:57:00+00:00</published>
 <link href="http://gamov.io/posts/2011/07/10/building-and-testing-with-gradle-my.html" rel="alternate" type="text/html" />
 <author>

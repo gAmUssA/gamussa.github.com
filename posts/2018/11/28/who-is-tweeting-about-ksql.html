@@ -22,7 +22,7 @@ This time it&#8217;s another..."><link rel="stylesheet" href="/stylesheets/app.c
 </li>
 <li><a href="#appendix">Appendix</a>
 <ul class="sectlevel2">
-<li><a href="#how-to-test-code-kafka-connect-twitter-code-connector-with-local-cp-installation">How to test <code>kafka-connect-twitter</code> connector with local CP installation</a></li>
+<li><a href="#how-to-test-kafka-connect-twitter-connector-with-local-cp-installation">How to test <code>kafka-connect-twitter</code> connector with local CP installation</a></li>
 </ul>
 </li>
 <li><a href="#find-java-in-debian">find java in debian</a></li>
@@ -33,8 +33,8 @@ This time it&#8217;s another..."><link rel="stylesheet" href="/stylesheets/app.c
 <div class="paragraph">
 <div class="title">TL;DR</div>
 <p>Another day, another post.
-This time it&#8217;s another <em>playbook</em> for my <a href="http://DataSciCon.tech" class="bare">http://DataSciCon.tech</a> talk «Who&#8217;s tweeting about <code>#datascicon</code>» on November 30th 2018 <sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnote_1" title="View footnote.">1</a>]</sup>
-A full source code published in <code>confluetninc/demo-scene</code> repository <sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnote_2" title="View footnote.">2</a>]</sup></p>
+This time it&#8217;s another <em>playbook</em> for my <a href="http://DataSciCon.tech" class="bare">http://DataSciCon.tech</a> talk «Who&#8217;s tweeting about <code>#datascicon</code>» on November 30th 2018 <sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup>
+A full source code published in <code>confluetninc/demo-scene</code> repository <sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnotedef_2" title="View footnote.">2</a>]</sup></p>
 </div>
 <table class="tableblock frame-all grid-all" style="width: 70%;">
 <caption class="title">Table 1. Revisions history</caption>
@@ -262,13 +262,13 @@ EXPLAIN twitter;</pre>
 <h2 id="appendix"><a class="anchor" href="#appendix"></a>Appendix</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="how-to-test-code-kafka-connect-twitter-code-connector-with-local-cp-installation"><a class="anchor" href="#how-to-test-code-kafka-connect-twitter-code-connector-with-local-cp-installation"></a>How to test <code>kafka-connect-twitter</code> connector with local CP installation</h3>
+<h3 id="how-to-test-kafka-connect-twitter-connector-with-local-cp-installation"><a class="anchor" href="#how-to-test-kafka-connect-twitter-connector-with-local-cp-installation"></a>How to test <code>kafka-connect-twitter</code> connector with local CP installation</h3>
 <div class="sect3">
 <h4 id="prerequisites-2"><a class="anchor" href="#prerequisites-2"></a>Prerequisites</h4>
 <div class="ulist">
 <ul>
 <li>
-<p>Confluent Platform Enterprise 5.x <sup class="footnote">[<a id="_footnoteref_3" class="footnote" href="#_footnote_3" title="View footnote.">3</a>]</sup></p>
+<p>Confluent Platform Enterprise 5.x <sup class="footnote">[<a id="_footnoteref_3" class="footnote" href="#_footnotedef_3" title="View footnote.">3</a>]</sup></p>
 <div class="ulist">
 <ul>
 <li>
@@ -352,13 +352,13 @@ confluent consume twitter_json_01 --max-messages=5 --from-beginning     <i class
 </div>
 <div id="footnotes">
 <hr>
-<div class="footnote" id="_footnote_1">
+<div class="footnote" id="_footnotedef_1">
 <a href="#_footnoteref_1">1</a>. <a href="http://www.datascicon.tech" class="bare">http://www.datascicon.tech</a>
 </div>
-<div class="footnote" id="_footnote_2">
+<div class="footnote" id="_footnotedef_2">
 <a href="#_footnoteref_2">2</a>. <a href="https://github.com/confluentinc/demo-scene/tree/master/streams-movie-demo" class="bare">https://github.com/confluentinc/demo-scene/tree/master/streams-movie-demo</a>
 </div>
-<div class="footnote" id="_footnote_3">
+<div class="footnote" id="_footnotedef_3">
 <a href="#_footnoteref_3">3</a>. <a href="https://www.confluent.io/download/" class="bare">https://www.confluent.io/download/</a>
 </div>
 </div></div></div><footer class="entry-footer"><div class="tags"><span class="title">tags: </span></div></footer><div id="comments">

@@ -2,7 +2,7 @@
 Source code from this blog is posted on the Hazelcast Code Examples repository on Github.
 The folks at OpenCredo recently published a blog post entitled «Running..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html"><span class="icon"><i class="fa fa-th-large"></i></span>&nbspBlog</a></li><li class="divider"></li><li><a href="http://github.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-github"></i></span>&nbspGithub</a></li><li class="divider"></li><li><a href="http://twitter.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-twitter"></i></span>&nbspTwitter</a></li><li class="divider"></li><li><a href="https://www.youtube.com/playlist?list=PLaJqps0DAycqu2OV6sjl_Dm_VymB6KDV_" target="_blank"><span class="icon"><i class="fa fa-youtube"></i></span>&nbspMy Talks</a></li><li class="divider"></li><li><a href="https://speakerdeck.com/vikgamov" target="_blank"><span class="icon"><i class="fa fa-slideshare"></i></span>&nbspMy Slides</a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://gamov.io">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h2 class="header"><a href="/posts/2015/12/31/caching-made-bootiful.html">Caching Made Bootiful — Hazelcast Way</a></h2><h5 class="subheader">Written by&nbsp <a href="#">Viktor Gamov</a>&nbsp- <time class="pubdate" datetime="2015-12-31T22:18:23-06:00">Thursday, December 31, 2015</time></h5><div class="row"><div class="large-12 columns text-left"><div id="preamble">
 <div class="sectionbody">
-<div class="imageblock" style="text-align: center">
+<div class="imageblock text-center">
 <div class="content">
 <img src="/images/hazelcast_boot_1.png" alt="hazelcast boot 1" width="40%">
 </div>
@@ -36,7 +36,7 @@ You will see how the Spring Framework caching abstraction plays nicely with Haze
 <li><a href="#intro">Intro</a></li>
 <li><a href="#slow-service">Slow service</a></li>
 <li><a href="#enable-caching">Enable Caching</a></li>
-<li><a href="#it-s-a-wrap">It&#8217;s a wrap!</a></li>
+<li><a href="#its-a-wrap">It&#8217;s a wrap!</a></li>
 </ul>
 </div>
 <div class="paragraph">
@@ -71,7 +71,7 @@ I know that retrieving a city might take some time, so I will use <a href="http:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-java" data-lang="java">import org.springframework.cache.annotation.CachePut;
+<pre class="highlightjs highlight nowrap"><code class="language-java hljs" data-lang="java">import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 
 public interface IDummyBean {
@@ -104,7 +104,7 @@ For simplicity in this example, I will use a naive implementation that simulates
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-java" data-lang="java">public class DummyBean implements IDummyBean {
+<pre class="highlightjs highlight nowrap"><code class="language-java hljs" data-lang="java">public class DummyBean implements IDummyBean {
     @Override
     public String getCity() {
         try {
@@ -165,7 +165,7 @@ During application startup, Spring Boot scans the classpath for <code>hazelcast.
 <div class="listingblock">
 <div class="title">BootifulMember class</div>
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-java" data-lang="java">@SpringBootApplication
+<pre class="highlightjs highlight nowrap"><code class="language-java hljs" data-lang="java">@SpringBootApplication
 @EnableCaching  <i class="conum" data-value="1"></i><b>(1)</b>
 public class BootifulMember {
     public static void main(String[] args) {
@@ -189,7 +189,7 @@ But in this case, it scans Spring Configuration for a <code>CacheManager</code> 
 <div class="listingblock">
 <div class="title">Bootiful client application</div>
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-java" data-lang="java">@SpringBootApplication
+<pre class="highlightjs highlight nowrap"><code class="language-java hljs" data-lang="java">@SpringBootApplication
 @EnableCaching
 public class BootifulClient {
     public static void main(String[] args) {
@@ -300,7 +300,7 @@ This is a tip for production deployment of your «bootiful» application. By run
 </div>
 </div>
 <div class="sect1">
-<h2 id="it-s-a-wrap"><a class="anchor" href="#it-s-a-wrap"></a>It&#8217;s a wrap!</h2>
+<h2 id="its-a-wrap"><a class="anchor" href="#its-a-wrap"></a>It&#8217;s a wrap!</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Congrats!

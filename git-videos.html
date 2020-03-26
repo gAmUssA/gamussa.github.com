@@ -21,12 +21,12 @@ Plan B...."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/jav
 </li>
 <li><a href="#workflows-cheat-sheet">Workflows Cheat Sheet</a>
 <ul class="sectlevel2">
-<li><a href="#strong-plan-a-strong-working-with-existing-workflow-where-master-is-the-main-development-branch-and-code-feature_101-code-code-feature_102-code-are-stable-branches"><strong>Plan A</strong>. Working with existing workflow where "master" is the main development branch and <code>feature_101</code>, <code>feature_102</code> are stable branches</a>
+<li><a href="#plan-a-working-with-existing-workflow-where-master-is-the-main-development-branch-and-feature_101-feature_102-are-stable-branches"><strong>Plan A</strong>. Working with existing workflow where "master" is the main development branch and <code>feature_101</code>, <code>feature_102</code> are stable branches</a>
 <ul class="sectlevel3">
 <li><a href="#tips">Tips</a></li>
 </ul>
 </li>
-<li><a href="#strong-plan-b-strong-working-with-personal-forks-and-merge-requests"><strong>Plan B</strong>. Working with personal forks and merge requests.</a></li>
+<li><a href="#plan-b-working-with-personal-forks-and-merge-requests"><strong>Plan B</strong>. Working with personal forks and merge requests.</a></li>
 </ul>
 </li>
 </ul>
@@ -118,10 +118,10 @@ A <code>git commit -m "commit message"</code> command wraps up previously staged
 <iframe width="640" src="https://player.vimeo.com/video/251353137" frameborder="0" allowfullscreen></iframe>
 </div>
 </div>
-<div class="listingblock">
+<div class="listingblock text-center">
 <div class="title">Add, commit and push in one step: acp.sh file</div>
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash" data-lang="bash">#!/bin/bash
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">#!/bin/bash
 # acp.sh - add, commit, and push in one step === "svn-style" commit
 git add $@ &amp;&amp; git commit &amp;&amp; git push</code></pre>
 </div>
@@ -131,7 +131,7 @@ git add $@ &amp;&amp; git commit &amp;&amp; git push</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash" data-lang="bash">[alias]
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">[alias]
     ac = !git add -A &amp;&amp; git commit</code></pre>
 </div>
 </div>
@@ -234,14 +234,14 @@ The changes will be directly merged into your local working copy.
 <h2 id="workflows-cheat-sheet"><a class="anchor" href="#workflows-cheat-sheet"></a>Workflows Cheat Sheet</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="strong-plan-a-strong-working-with-existing-workflow-where-master-is-the-main-development-branch-and-code-feature_101-code-code-feature_102-code-are-stable-branches"><a class="anchor" href="#strong-plan-a-strong-working-with-existing-workflow-where-master-is-the-main-development-branch-and-code-feature_101-code-code-feature_102-code-are-stable-branches"></a><strong>Plan A</strong>. Working with existing workflow where "master" is the main development branch and <code>feature_101</code>, <code>feature_102</code> are stable branches</h3>
+<h3 id="plan-a-working-with-existing-workflow-where-master-is-the-main-development-branch-and-feature_101-feature_102-are-stable-branches"><a class="anchor" href="#plan-a-working-with-existing-workflow-where-master-is-the-main-development-branch-and-feature_101-feature_102-are-stable-branches"></a><strong>Plan A</strong>. Working with existing workflow where "master" is the main development branch and <code>feature_101</code>, <code>feature_102</code> are stable branches</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
 <p>Project checkout</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash" data-lang="bash">git clone &lt;remote_repo&gt;</code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">git clone &lt;remote_repo&gt;</code></pre>
 </div>
 </div>
 </li>
@@ -249,7 +249,7 @@ The changes will be directly merged into your local working copy.
 <p>Adding changes, their review, pull changes from the server and committing and pushing in one click.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash" data-lang="bash"># add changes to staging, commit and push to remote repository
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash"># add changes to staging, commit and push to remote repository
 git add .; git commit -m "$1"; git push;
 
 # update changes form remote "master" branch
@@ -261,7 +261,7 @@ git pull --rebase origin master</code></pre>
 <p>Branch switching from master to feature_101 and back.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash" data-lang="bash"># if there are some changes in working branch
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash"># if there are some changes in working branch
 git stash save --include-untracked
 # git checkout &lt;branch&gt;
 # not tracked files will be visible in new branch
@@ -275,7 +275,7 @@ git checkout origin/feature_101</code></pre>
 <div class="listingblock">
 <div class="title">Merge conflicts resolution strategies</div>
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash" data-lang="bash"># use incoming changes to resolve merge
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash"># use incoming changes to resolve merge
 git checkout --theirs -- MyClass.java
 
 # or
@@ -309,7 +309,7 @@ Make more granular commits (no worries if you are not done with the task, you do
 <div class="listingblock">
 <div class="title">Temporarily ignore changes in a certain file</div>
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash" data-lang="bash">git update-index --assume-unchanged &lt;file&gt;
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">git update-index --assume-unchanged &lt;file&gt;
 
 # To track changes again
 git update-index --no-assume-unchanged &lt;file&gt;</code></pre>
@@ -318,13 +318,13 @@ git update-index --no-assume-unchanged &lt;file&gt;</code></pre>
 <div class="listingblock">
 <div class="title">Merge specific commit or range of commits</div>
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash" data-lang="bash">git cherry-pick &lt;commit_hash&gt;</code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">git cherry-pick &lt;commit_hash&gt;</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="strong-plan-b-strong-working-with-personal-forks-and-merge-requests"><a class="anchor" href="#strong-plan-b-strong-working-with-personal-forks-and-merge-requests"></a><strong>Plan B</strong>. Working with personal forks and merge requests.</h3>
+<h3 id="plan-b-working-with-personal-forks-and-merge-requests"><a class="anchor" href="#plan-b-working-with-personal-forks-and-merge-requests"></a><strong>Plan B</strong>. Working with personal forks and merge requests.</h3>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -346,7 +346,7 @@ Section is under development
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash" data-lang="bash">git clone &lt;repo&gt;</code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">git clone &lt;repo&gt;</code></pre>
 </div>
 </div>
 </li>

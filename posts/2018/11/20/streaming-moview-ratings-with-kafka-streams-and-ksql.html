@@ -33,8 +33,8 @@ Wrapping..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/ja
 </div>
 <div class="paragraph">
 <div class="title">TL;DR</div>
-<p>The sole purpose of this blog post is to draft a <em>playbook</em> for my presentation «Crossing the streams: Rethinking Stream processing with Kafka Streams and KSQL» <sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnote_1" title="View footnote.">1</a>]</sup> that I recently did on Kafka Summit 2018 in San Francisco.
-A full source code published in <code>confluetninc/demo-scene</code> repository <sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnote_2" title="View footnote.">2</a>]</sup></p>
+<p>The sole purpose of this blog post is to draft a <em>playbook</em> for my presentation «Crossing the streams: Rethinking Stream processing with Kafka Streams and KSQL» <sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup> that I recently did on Kafka Summit 2018 in San Francisco.
+A full source code published in <code>confluetninc/demo-scene</code> repository <sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnotedef_2" title="View footnote.">2</a>]</sup></p>
 </div>
 <table class="tableblock frame-all grid-all" style="width: 70%;">
 <caption class="title">Table 1. Revisions history</caption>
@@ -78,7 +78,7 @@ A full source code published in <code>confluetninc/demo-scene</code> repository 
 <td class="content">
 <strong>Disclaimer:</strong> Another goal is to exercise some ideas around the visual representation of posts in this blog.
 And third and the last goal is to brush up my technical writing skills!
-Since I moved to DevX <sup class="footnote">[<a id="_footnoteref_3" class="footnote" href="#_footnote_3" title="View footnote.">3</a>]</sup> from Professional Services where I did write a truckload of customer engagement reports.
+Since I moved to DevX <sup class="footnote">[<a id="_footnoteref_3" class="footnote" href="#_footnotedef_3" title="View footnote.">3</a>]</sup> from Professional Services where I did write a truckload of customer engagement reports.
 </td>
 </tr>
 </table>
@@ -91,7 +91,7 @@ Since I moved to DevX <sup class="footnote">[<a id="_footnoteref_3" class="footn
 <div class="ulist">
 <ul>
 <li>
-<p>Confluent Platform Enterprise 5.x <sup class="footnote">[<a id="_footnoteref_4" class="footnote" href="#_footnote_4" title="View footnote.">4</a>]</sup></p>
+<p>Confluent Platform Enterprise 5.x <sup class="footnote">[<a id="_footnoteref_4" class="footnote" href="#_footnotedef_4" title="View footnote.">4</a>]</sup></p>
 <div class="ulist">
 <ul>
 <li>
@@ -237,7 +237,7 @@ cat ratings.dat | kafka-console-producer --broker-list localhost:9092 --topic ra
 <td class="content">
 The warnings like <code>WARN [Producer clientId=console-producer] Error while fetching metadata with correlation id 1 : {raw-movies=LEADER_NOT_AVAILABLE} (org.apache.kafka.clients.NetworkClient)</code> and <code>WARN [Producer clientId=console-producer] Error while fetching metadata with correlation id 1 : {raw-ratings=LEADER_NOT_AVAILABLE} (org.apache.kafka.clients.NetworkClient)</code> are absolutely normal.
 Topics <code>raw-movies</code> and <code>raw-ratings</code> not created when we started producing messages to it.
-And because by default Apache Kafka allows automatic topic creation ( The parameter <code>auto.create.topics.enable</code>  in configuration <sup class="footnote">[<a id="_footnoteref_5" class="footnote" href="#_footnote_5" title="View footnote.">5</a>]</sup> topics created.
+And because by default Apache Kafka allows automatic topic creation ( The parameter <code>auto.create.topics.enable</code>  in configuration <sup class="footnote">[<a id="_footnoteref_5" class="footnote" href="#_footnotedef_5" title="View footnote.">5</a>]</sup> topics created.
 </td>
 </tr>
 </table>
@@ -401,19 +401,19 @@ select TITLE, RATING  from RATED_MOVIES where MOVIE_ID=362; <i class="conum" dat
 </div>
 <div id="footnotes">
 <hr>
-<div class="footnote" id="_footnote_1">
+<div class="footnote" id="_footnotedef_1">
 <a href="#_footnoteref_1">1</a>. <a href="https://www.confluent.io/kafka-summit-sf18/crossing-the-streams" class="bare">https://www.confluent.io/kafka-summit-sf18/crossing-the-streams</a>
 </div>
-<div class="footnote" id="_footnote_2">
+<div class="footnote" id="_footnotedef_2">
 <a href="#_footnoteref_2">2</a>. <a href="https://github.com/confluentinc/demo-scene/tree/master/streams-movie-demo" class="bare">https://github.com/confluentinc/demo-scene/tree/master/streams-movie-demo</a>
 </div>
-<div class="footnote" id="_footnote_3">
+<div class="footnote" id="_footnotedef_3">
 <a href="#_footnoteref_3">3</a>. <a href="https://twitter.com/gAmUssA/status/1037496745809330181" class="bare">https://twitter.com/gAmUssA/status/1037496745809330181</a>
 </div>
-<div class="footnote" id="_footnote_4">
+<div class="footnote" id="_footnotedef_4">
 <a href="#_footnoteref_4">4</a>. <a href="https://www.confluent.io/download/" class="bare">https://www.confluent.io/download/</a>
 </div>
-<div class="footnote" id="_footnote_5">
+<div class="footnote" id="_footnotedef_5">
 <a href="#_footnoteref_5">5</a>. <a href="https://kafka.apache.org/documentation/#brokerconfigs" class="bare">https://kafka.apache.org/documentation/#brokerconfigs</a>
 </div>
 </div></div></div><footer class="entry-footer"><div class="tags"><span class="title">tags: </span></div></footer><div id="comments">

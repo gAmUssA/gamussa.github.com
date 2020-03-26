@@ -21,7 +21,7 @@ During webinar about «Distributed Caching for you next Node.js project» [1] I.
 </li>
 <li><a href="#enter-docker-compose">Enter Docker Compose</a></li>
 <li><a href="#scaling">Scaling</a></li>
-<li><a href="#what-s-next">What&#8217;s next?</a></li>
+<li><a href="#whats-next">What&#8217;s next?</a></li>
 </ul>
 </div>
 <div id="preamble">
@@ -32,9 +32,9 @@ During webinar about «Distributed Caching for you next Node.js project» [1] I.
 </div>
 <div class="paragraph">
 <div class="title">TL;DR</div>
-<p>During webinar about «Distributed Caching for you next Node.js project» <sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnote_1" title="View footnote.">1</a>]</sup> I was asked if we provide examples of running Hazelcast with Compose or Swarm.
+<p>During webinar about «Distributed Caching for you next Node.js project» <sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup> I was asked if we provide examples of running Hazelcast with Compose or Swarm.
 Now you have it!
-Full source code published in <code>hazelcast/hazelcast-code-samples</code> repository <sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnote_2" title="View footnote.">2</a>]</sup></p>
+Full source code published in <code>hazelcast/hazelcast-code-samples</code> repository <sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnotedef_2" title="View footnote.">2</a>]</sup></p>
 </div>
 <!-- toc disabled -->
 <div class="admonitionblock note">
@@ -45,7 +45,7 @@ Full source code published in <code>hazelcast/hazelcast-code-samples</code> repo
 </td>
 <td class="content">
 <strong>Disclaimer:</strong> It&#8217;s not an introduction to <code>docker-compose</code>.
-To learn basic steps of <code>docker-compose</code>, please, refer to official <code>docker-compose</code> «getting started guide» <sup class="footnote">[<a id="_footnoteref_3" class="footnote" href="#_footnote_3" title="View footnote.">3</a>]</sup>
+To learn basic steps of <code>docker-compose</code>, please, refer to official <code>docker-compose</code> «getting started guide» <sup class="footnote">[<a id="_footnoteref_3" class="footnote" href="#_footnotedef_3" title="View footnote.">3</a>]</sup>
 </td>
 </tr>
 </table>
@@ -86,14 +86,14 @@ To learn basic steps of <code>docker-compose</code>, please, refer to official <
 </li>
 </ul>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock text-center">
 <div class="content">
 <img src="/images/scale_out_asmith.png" alt="scale out asmith">
 </div>
-<div class="title">Figure 1. Matrix Reloaded, 2003 <sup class="footnote">[<a id="_footnoteref_4" class="footnote" href="#_footnote_4" title="View footnote.">4</a>]</sup></div>
+<div class="title">Figure 1. Matrix Reloaded, 2003 <sup class="footnote">[<a id="_footnoteref_4" class="footnote" href="#_footnotedef_4" title="View footnote.">4</a>]</sup></div>
 </div>
 <div class="paragraph">
-<p>I&#8217;ve been working with few clients <sup class="footnote">[<a id="_footnoteref_5" class="footnote" href="#_footnote_5" title="View footnote.">5</a>]</sup> who have embraced containerization of their IMDG deployments.
+<p>I&#8217;ve been working with few clients <sup class="footnote">[<a id="_footnoteref_5" class="footnote" href="#_footnotedef_5" title="View footnote.">5</a>]</sup> who have embraced containerization of their IMDG deployments.
 And in this blog post, I explore how to use Docker Compose to scale Hazelcast IMDG cluster.
 Additionally, I will use  <a href="https://hazelcast.com/products/management-center/">Management Center</a> monitor IMDG cluster state.</p>
 </div>
@@ -183,7 +183,7 @@ I will be using:</p>
 <div class="sect2">
 <h3 id="building-client-app-docker-image"><a class="anchor" href="#building-client-app-docker-image"></a>Building client app Docker image</h3>
 <div class="paragraph">
-<p>In this example, to build docker image from «fat» jar, I use Spotify&#8217;s <code>docker-maven-plugin</code> <sup class="footnote">[<a id="_footnoteref_6" class="footnote" href="#_footnote_6" title="View footnote.">6</a>]</sup>.</p>
+<p>In this example, to build docker image from «fat» jar, I use Spotify&#8217;s <code>docker-maven-plugin</code> <sup class="footnote">[<a id="_footnoteref_6" class="footnote" href="#_footnotedef_6" title="View footnote.">6</a>]</sup>.</p>
 </div>
 <div class="listingblock">
 <div class="title">Maven snippet for generation fat jar and build a Docker image</div>
@@ -313,7 +313,7 @@ docker_management-center_1   /bin/sh -c ./start.sh            Up       0.0.0.0:8
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-If at this point you get a message from Management Center to enter the license, you can request a trial key from here <sup class="footnote">[<a id="_footnoteref_7" class="footnote" href="#_footnote_7" title="View footnote.">7</a>]</sup>
+If at this point you get a message from Management Center to enter the license, you can request a trial key from here <sup class="footnote">[<a id="_footnoteref_7" class="footnote" href="#_footnotedef_7" title="View footnote.">7</a>]</sup>
 </td>
 </tr>
 </table>
@@ -339,7 +339,7 @@ If at this point you get a message from Management Center to enter the license, 
 </div>
 </div>
 <div class="sect1">
-<h2 id="what-s-next"><a class="anchor" href="#what-s-next"></a>What&#8217;s next?</h2>
+<h2 id="whats-next"><a class="anchor" href="#whats-next"></a>What&#8217;s next?</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>In my future posts, I will explore other tools that allow you to deploy, scale and orchestrate your Hazelcast IMDG cluster with different tools like Swarm, Kubernetes, Mesos.
@@ -349,25 +349,25 @@ If you have questions or suggestions, feel free to comment below.</p>
 </div>
 <div id="footnotes">
 <hr>
-<div class="footnote" id="_footnote_1">
+<div class="footnote" id="_footnotedef_1">
 <a href="#_footnoteref_1">1</a>. <a href="https://hazelcast.com/resources/distributed-caching-next-node-js-project/" class="bare">https://hazelcast.com/resources/distributed-caching-next-node-js-project/</a>
 </div>
-<div class="footnote" id="_footnote_2">
+<div class="footnote" id="_footnotedef_2">
 <a href="#_footnoteref_2">2</a>. <a href="https://github.com/hazelcast/hazelcast-code-samples/tree/master/hazelcast-integration/docker-compose" class="bare">https://github.com/hazelcast/hazelcast-code-samples/tree/master/hazelcast-integration/docker-compose</a>
 </div>
-<div class="footnote" id="_footnote_3">
+<div class="footnote" id="_footnotedef_3">
 <a href="#_footnoteref_3">3</a>. <a href="https://docs.docker.com/compose/gettingstarted/" class="bare">https://docs.docker.com/compose/gettingstarted/</a>
 </div>
-<div class="footnote" id="_footnote_4">
+<div class="footnote" id="_footnotedef_4">
 <a href="#_footnoteref_4">4</a>. <a href="http://www.imdb.com/title/tt0234215/" class="bare">http://www.imdb.com/title/tt0234215/</a>
 </div>
-<div class="footnote" id="_footnote_5">
+<div class="footnote" id="_footnotedef_5">
 <a href="#_footnoteref_5">5</a>. <a href="https://hazelcast.com/services/consulting/" class="bare">https://hazelcast.com/services/consulting/</a>
 </div>
-<div class="footnote" id="_footnote_6">
+<div class="footnote" id="_footnotedef_6">
 <a href="#_footnoteref_6">6</a>. <a href="https://github.com/spotify/docker-maven-plugin" class="bare">https://github.com/spotify/docker-maven-plugin</a>
 </div>
-<div class="footnote" id="_footnote_7">
+<div class="footnote" id="_footnotedef_7">
 <a href="#_footnoteref_7">7</a>. <a href="https://hazelcast.com/hazelcast-enterprise-download/trial/" class="bare">https://hazelcast.com/hazelcast-enterprise-download/trial/</a>
 </div>
 </div></div></div><footer class="entry-footer"><div class="tags"><span class="title">tags: </span></div></footer><div id="comments">

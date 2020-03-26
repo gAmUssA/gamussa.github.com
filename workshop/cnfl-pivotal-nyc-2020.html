@@ -9,7 +9,7 @@ Creating..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/ja
 <div id="toctitle">Table of content</div>
 <ul class="sectlevel1">
 <li><a href="#prerequisites">Prerequisites</a></li>
-<li><a href="#let-s-start-building-the-app">Let’s start building the app</a>
+<li><a href="#lets-start-building-the-app">Let’s start building the app</a>
 <ul class="sectlevel2">
 <li><a href="#the-architecture-of-a-spring-boot-application">The architecture of a Spring Boot application</a>
 <ul class="sectlevel3">
@@ -26,10 +26,10 @@ Creating..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/ja
 <li><a href="#prerequisites-2">Prerequisites</a></li>
 <li><a href="#start-kafka-and-schema-registry">Start Kafka and Schema Registry</a></li>
 <li><a href="#building-and-running-your-spring-boot-application">Building and running your Spring Boot application</a></li>
-<li><a href="#testing-the-producer-consumer-rest-service">Testing the producer/consumer REST service</a></li>
+<li><a href="#testing-the-producerconsumer-rest-service">Testing the producer/consumer REST service</a></li>
 </ul>
 </li>
-<li><a href="#strong-optional-strong-running-the-application-using-confluent-cloud"><strong>Optional:</strong> Running the application using Confluent Cloud</a></li>
+<li><a href="#optional-running-the-application-using-confluent-cloud"><strong>Optional:</strong> Running the application using Confluent Cloud</a></li>
 </ul>
 </li>
 <li><a href="#processing-with-kafka-streams-and-spring-cloud-streams">Processing with Kafka Streams and Spring Cloud Streams</a></li>
@@ -38,7 +38,7 @@ Creating..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/ja
 <li><a href="#methodology">Methodology</a>
 <ul class="sectlevel3">
 <li><a href="#requirements">Requirements</a></li>
-<li><a href="#cloud-foundry-code-cf-code-cli-prerequisites">Cloud Foundry (<code>cf</code>) CLI prerequisites</a></li>
+<li><a href="#cloud-foundry-cf-cli-prerequisites">Cloud Foundry (<code>cf</code>) CLI prerequisites</a></li>
 </ul>
 </li>
 <li><a href="#deploy-a-sample-spring-boot-microservice-app-with-kafka-to-pivotal-application-service-pas">Deploy a Sample Spring Boot Microservice App with Kafka to Pivotal Application Service (PAS)</a>
@@ -107,7 +107,7 @@ The code of the example application is available on <a href="https://github.com/
 </div>
 </div>
 <div class="sect1">
-<h2 id="let-s-start-building-the-app"><a class="anchor" href="#let-s-start-building-the-app"></a>Let’s start building the app</h2>
+<h2 id="lets-start-building-the-app"><a class="anchor" href="#lets-start-building-the-app"></a>Let’s start building the app</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>As always, we’ll begin by <a href="http://start.spring.io/">generating a project starter</a>.
@@ -148,7 +148,7 @@ Confluent provides <a href="https://docs.confluent.io/current/app-development/in
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-xml" data-lang="xml">&lt;project&gt;
+<pre class="highlightjs highlight nowrap"><code class="language-xml hljs" data-lang="xml">&lt;project&gt;
     &lt;dependencies&gt;
         &lt;!-- other dependencies --&gt;
         &lt;dependency&gt;
@@ -271,7 +271,7 @@ This class also includes configuration for the new topic that your application i
 <h4 id="creating-a-user-avro-file"><a class="anchor" href="#creating-a-user-avro-file"></a>Creating a user Avro file</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-json" data-lang="json">{
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
   "namespace": "io.confluent.developer",    <i class="conum" data-value="1"></i><b>(1)</b>
   "type": "record",
   "name": "User",
@@ -306,7 +306,7 @@ This class also includes configuration for the new topic that your application i
 <h4 id="creating-a-spring-boot-application-class"><a class="anchor" href="#creating-a-spring-boot-application-class"></a>Creating a Spring Boot application class</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-java" data-lang="java">@SpringBootApplication
+<pre class="highlightjs highlight nowrap"><code class="language-java hljs" data-lang="java">@SpringBootApplication
 public class SpringAvroApplication {
 
   @Value("${topic.name}") <i class="conum" data-value="1"></i><b>(1)</b>
@@ -347,7 +347,7 @@ As an application developer, you’re responsible for creating your topic instea
 <h4 id="creating-a-producer-component"><a class="anchor" href="#creating-a-producer-component"></a>Creating a producer component</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-java" data-lang="java">@Service
+<pre class="highlightjs highlight nowrap"><code class="language-java hljs" data-lang="java">@Service
 @CommonsLog(topic = "Producer Logger")
 public class Producer {
 
@@ -393,7 +393,7 @@ The default HTTP port is <code>9080</code> and can be changed in the <code>appli
 <h4 id="creating-a-consumer-component"><a class="anchor" href="#creating-a-consumer-component"></a>Creating a consumer component</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-java" data-lang="java">@Service
+<pre class="highlightjs highlight nowrap"><code class="language-java hljs" data-lang="java">@Service
 @CommonsLog(topic = "Consumer Logger")
 public class Consumer {
 
@@ -424,7 +424,7 @@ public class Consumer {
 <h4 id="creating-the-kafkacontroller-component"><a class="anchor" href="#creating-the-kafkacontroller-component"></a>Creating the KafkaController component</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-java" data-lang="java">@RestController
+<pre class="highlightjs highlight nowrap"><code class="language-java hljs" data-lang="java">@RestController
 @RequestMapping(value = "/user")  <i class="conum" data-value="1"></i><b>(1)</b>
 public class KafkaController {
 
@@ -464,7 +464,7 @@ public class KafkaController {
 <div class="listingblock">
 <div class="title">application.yaml</div>
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-yaml" data-lang="yaml">topic:
+<pre class="highlightjs highlight nowrap"><code class="language-yaml hljs" data-lang="yaml">topic:
   name: users
   partitions-num: 3
   replication-factor: 1
@@ -528,7 +528,7 @@ Be sure to install the Confluent CLI as well (see step 4 in this section of the 
 <h4 id="start-kafka-and-schema-registry"><a class="anchor" href="#start-kafka-and-schema-registry"></a>Start Kafka and Schema Registry</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-shell" data-lang="shell">❯ confluent local start schema-registry     <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight nowrap"><code class="language-shell hljs" data-lang="shell">❯ confluent local start schema-registry     <i class="conum" data-value="1"></i><b>(1)</b>
 
     The local commands are intended for a single-node development environment
     only, NOT for production usage. https://docs.confluent.io/current/cli/index.html
@@ -563,18 +563,18 @@ After that, you can run the following command:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-java" data-lang="java">java -jar target/kafka-workshop-0.0.1-SNAPSHOT.jar</code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-java hljs" data-lang="java">java -jar target/kafka-workshop-0.0.1-SNAPSHOT.jar</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="testing-the-producer-consumer-rest-service"><a class="anchor" href="#testing-the-producer-consumer-rest-service"></a>Testing the producer/consumer REST service</h4>
+<h4 id="testing-the-producerconsumer-rest-service"><a class="anchor" href="#testing-the-producerconsumer-rest-service"></a>Testing the producer/consumer REST service</h4>
 <div class="paragraph">
 <p>For simplicity, I like to use the curl command, but you can use any REST client (like Postman or the REST client in IntelliJ IDEA to):</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-shell" data-lang="shell">curl -X POST -d 'name=vik&amp;age=33' http://localhost:9080/user/publish
+<pre class="highlightjs highlight nowrap"><code class="language-shell hljs" data-lang="shell">curl -X POST -d 'name=vik&amp;age=33' http://localhost:9080/user/publish
 
 2019-06-06 22:52:59.485  INFO 28910 --- [nio-9080-exec-1] Producer Logger                          : Produced user -&gt; {"name": "vik", "age": 33}
 2019-06-06 22:52:59.559  INFO 28910 --- [ntainer#0-0-C-1] Consumer Logger                          : Consumed message -&gt; {"name": "vik", "age": 33}</code></pre>
@@ -583,7 +583,7 @@ After that, you can run the following command:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="strong-optional-strong-running-the-application-using-confluent-cloud"><a class="anchor" href="#strong-optional-strong-running-the-application-using-confluent-cloud"></a><strong>Optional:</strong> Running the application using Confluent Cloud</h3>
+<h3 id="optional-running-the-application-using-confluent-cloud"><a class="anchor" href="#optional-running-the-application-using-confluent-cloud"></a><strong>Optional:</strong> Running the application using Confluent Cloud</h3>
 <div class="paragraph">
 <p>To use this demo application with <a href="https://www.confluent.io/confluent-cloud/">Confluent Cloud</a>, you are going to need the endpoint of your managed Schema Registry and an API key/secret.
 Both can be easily retrieved from the Confluent Cloud UI once you select an environment.</p>
@@ -606,7 +606,7 @@ Once you select the Schema Registry option, you can retrieve the endpoint and cr
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-yaml" data-lang="yaml">topic:
+<pre class="highlightjs highlight nowrap"><code class="language-yaml hljs" data-lang="yaml">topic:
   name: users
   partitions-num: 6
   replication-factor: 3
@@ -685,7 +685,7 @@ In this case, Spring Boot will pick up <code>application-cloud.yaml</code> confi
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-java" data-lang="java">@EnableBinding(Bindings.class)  <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight nowrap"><code class="language-java hljs" data-lang="java">@EnableBinding(Bindings.class)  <i class="conum" data-value="1"></i><b>(1)</b>
 @SpringBootApplication
 public class KafkaStreamsApp {
 
@@ -725,7 +725,7 @@ public class KafkaStreamsApp {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-java" data-lang="java">interface Bindings {
+<pre class="highlightjs highlight nowrap"><code class="language-java hljs" data-lang="java">interface Bindings {
 
   String USERS_FILTERED = "users-filtered";
   String USERS = "users";
@@ -752,7 +752,7 @@ public class KafkaStreamsApp {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-java" data-lang="java">@Component  <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="highlightjs highlight nowrap"><code class="language-java hljs" data-lang="java">@Component  <i class="conum" data-value="1"></i><b>(1)</b>
 class UserProcessor {
 
   @StreamListener <i class="conum" data-value="2"></i><b>(2)</b>
@@ -853,7 +853,7 @@ At the time of this writing, you can obtain a PAS environment if you sign up for
 </div>
 </div>
 <div class="sect3">
-<h4 id="cloud-foundry-code-cf-code-cli-prerequisites"><a class="anchor" href="#cloud-foundry-code-cf-code-cli-prerequisites"></a>Cloud Foundry (<code>cf</code>) CLI prerequisites</h4>
+<h4 id="cloud-foundry-cf-cli-prerequisites"><a class="anchor" href="#cloud-foundry-cf-cli-prerequisites"></a>Cloud Foundry (<code>cf</code>) CLI prerequisites</h4>
 <div class="paragraph">
 <p>If this is your first time deploying an application to PAS, you’ll need to do the following in order to perform the later steps.
 If you have already set up your PAS environment, or are familiar with PAS, feel free to adjust accordingly.
@@ -876,7 +876,7 @@ For example, based on my Pivotal Web Services account setup, I used api.run.pivo
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-shell" data-lang="shell">cf create-org confluent
+<pre class="highlightjs highlight nowrap"><code class="language-shell hljs" data-lang="shell">cf create-org confluent
 cf target -o confluent <i class="conum" data-value="2"></i><b>(2)</b>
 cf create-space dev
 cf target -s dev</code></pre>
@@ -912,13 +912,13 @@ In any case, you should be all set at this point with a <code>~/.cf/config.json<
 <p>Create a Pivotal <a href="https://docs.pivotal.io/platform/2-7/devguide/services/user-provided.html">user-provider service instance (USPI)</a> with the following command:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-shell" data-lang="shell">cf create-user-provided-service cp -p kafka.json</code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-shell hljs" data-lang="shell">cf create-user-provided-service cp -p kafka.json</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">kafka.json</div>
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-json" data-lang="json">{
+<pre class="highlightjs highlight nowrap"><code class="language-json hljs" data-lang="json">{
   "brokers": "kafka.santamaria.cf-app.com:9092",
   "jaasconfig": "org.apache.kafka.common.security.plain.PlainLoginModule required username='test' password='test123';",
   "sr": "http://schemaregistry.santamaria.cf-app.com/"
@@ -1020,7 +1020,7 @@ You can post to this endpoint with different age and name parameters such as:</p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-shell" data-lang="shell">bin/kafka-topics --list --command-config kafka.properties --bootstrap-server kafka.santamaria.cf-app.com:9092</code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-shell hljs" data-lang="shell">bin/kafka-topics --list --command-config kafka.properties --bootstrap-server kafka.santamaria.cf-app.com:9092</code></pre>
 </div>
 </div>
 <div class="olist arabic">
@@ -1032,7 +1032,7 @@ You can post to this endpoint with different age and name parameters such as:</p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-shell" data-lang="shell">kafka-avro-console-consumer \
+<pre class="highlightjs highlight nowrap"><code class="language-shell hljs" data-lang="shell">kafka-avro-console-consumer \
 --bootstrap-server kafka.santamaria.cf-app.com:9092/ \
 --consumer.config kafka.properties \
 --topic users \
