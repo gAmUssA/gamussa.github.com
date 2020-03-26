@@ -38,7 +38,9 @@ And today, I'm going to be talking about five Kubernetes tools that I use in my 
 
 So, let's get to it - it's going to be fun!
 
-== Setting terminal prompt with `kube-ps1`
+== Put your prompt to work 
+
+NOTE: *Name:* `kube-ps1` *Github:* https://github.com/jonmosco/kube-ps1
 
 OK, I do demos.
 Many demos.
@@ -46,16 +48,20 @@ OK, not like a whole of demos but still, substantial number of demos.
 And things that I'm usually demoing very technical.
 So technical some things I demo don't even have GUI.
 The only thing that I have to interact with those things is the command line interface, aka terminal.
+
 As the theatre starts with a coat, a proper terminal starts with a prompt.
 Because during those technical demos, there are many things going in on the screen.
-So, having an excellent terminal prompt that will allow me and my audience always to know where we are?
+
+So, having an excellent terminal prompt that will allow the audience and yours truly always to know where we are?
 That's why I appreciate `kube-ps1` that displays information about the current Kubernetes cluster context as part of a terminal prompt.
 Also, it adds two a helper commands `kubeon` and `kubeoff` that allow for turning this prompt on and off on demand.
+
+NOTE: It does work great in `bash` and `zsh`.
 
 .Current Kubernetes cluster in your command line
 image::kubeon.jpg[]
 
-== Switching cluster contexts and namespaces with `kubectx` and `kubens.`
+== Cluster context and namespaces switching on your fingertips
 
 NOTE: *Name:* `kubectx` and `kubens` *Github:* https://github.com/ahmetb/kubectx
 
@@ -89,7 +95,7 @@ It also integrates with command pager utility, and allows you to have some text 
 As a bonus, there is another tool that comes from the same author called `kubens` that I allow to switch namespaces withing the same cluster context.
 Same with namespace switching - not rocket science, but you need to remember or google those commands all the time.
 
-== Monitoring cluster health and Kubernetes resources with `k9s`
+== Monitoring cluster health and Kubernetes Resources Right From Your Terminal
 
 NOTE: *Name:* `k9s`
 *Github:* https://github.com/derailed/k9s
@@ -99,36 +105,63 @@ The next tool can be a bit useful because it provides a GUI (terminal UI) tool t
 
 You can see:
 
-- Standard Kubernetes resources and well as custom resources and `KafkaCluster` or `PhysicalStatefulCluster`
-- You can drill down to pods and see logs from the individual containers.
-- You monitor health and vitals of your Kubernetes cluster and your applications.
+* Standard Kubernetes resources and well as custom resources and `KafkaCluster` or `PhysicalStatefulCluster`
+* You can drill down to pods and see logs from the individual containers.
+* You monitor health and vitals of your Kubernetes cluster and your applications.
 
 Also, this tool has many customization hooks!
 
-== Web UI to remote Kubernetes cluster using `octant.`
+== Web UI to remote Kubernetes without installation!
 
 Have you ever used https://github.com/kubernetes/dashboard[Kubernetes Dashboard]?
 Yes, you probably have because it's a standard monitoring dashboard for Kubernetes.
 But there is one slight problem - it requires installation on your cluster.
-If you don't have enough rights or your operations folks don has extra crap installed in your Kubernetes cluster, this may be a challenge to get you GUI.
+If you don't have enough rights, or your operations folks don't want to have extra crap installed in your Kubernetes cluster, this may be a challenge to get you GUI.
 
-https://github.com/vmware-tanzu/octant[VMWare Octant] is not just another dashboard.
+Enter https://github.com/vmware-tanzu/octant[VMWare Octant].
 It's a web-based Kubernetes resource visualizer.
-
-.Killer feature is a resource dependency graph
-image::octant.jpg[]
 
 And it doesn't require installation on your Kubernetes cluster.
 Octant runs locally on your machine and talks to Kubernetes via standard API calls.
 
-== Checking what the _Helm_ is happening using `helm-cabin`
+.Killer feature is a resource dependency graph
+image::octant.jpg[]
 
+.Apart from understanding standard Kubernetes resource, `octant` shows some custom resources
+image::octant_crds.png[width=60%]
+
+Another very cool feature of octant is «Port Forwarding».
+It works like this:
+
+* Navigate to the resource, e.g. `controlcenter` `StatefulSet`
+* Scroll to the container that want to forward ports from.
+* And you can click «Start Port Forward».
+* Octant UI will display localhost and port to the pod.
+
+.Octant port-forwarding Control Center on localhost
+image::octant_c3.png[width=50%]
+
+.You can get a list of all port forwards 
+image::octant_port.png[]
+
+== Checking what the _Helm_ is happening
+
+NOTE: *Name:* Helm Cabin *Github:*
+https://github.com/Nick-Triller/helm-cabin
+
+Our last small nifty tool for today is Helm Cabin - your dashboard for helm releases.
 image::helm-cabin.jpg[]
 
-https://github.com/Nick-Triller/helm-cabin
+You will be able to see all your helm releases deployed to given Kubernetes cluster.
+Once you click on one of the release names, we drill down to some helm release info - NOTES from chart, templates and values, and «effective» chart.
+
+.Chart details
+image::cabin_chart_details.png[width=50%]
+
+In my opinion, this is pretty useful tool for housekeeping and audit purposes. 
 
 == Conclusion  
 
-If you have found this video useful or entertaining, hit that like button and consider to subscribe to this channel.
+If you have found this video useful or entertaining, hit that like button and consider subscribing to this channel.
 Stay tuned for the next one.
 And as always, have a nice day!
