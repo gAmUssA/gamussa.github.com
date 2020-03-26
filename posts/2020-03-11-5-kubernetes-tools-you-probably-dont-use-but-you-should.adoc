@@ -1,0 +1,133 @@
+= 5 Kubernetes Tools You Probably Don't Use (But You Should)
+Viktor Gamov
+2020-03-11 10:45
+:imagesdir: ../images
+:icons:
+:keywords:
+:toc:
+ifndef::awestruct[]
+:awestruct-layout: post
+:awestruct-tags: []
+:idprefix:
+:idseparator: -
+endif::awestruct[]
+
+//image::sf_fall.jpg[width=50%, align="center"]
+
+.TL;DR
+
+NOTE: In this post, I'm going to talk about few tools that I found very useful during my Kubernetes development and presentations.
+//Av video recording of this presentation is on youtube. 
+
+.Revisions history
+[width="70%",cols="",options="header"]
+|===
+|Version    |Date        | Comments
+|*v1.0*     |03/11/2019  | Initial revision
+|===
+
+toc::[]
+
+Hi
+It's Viktor Gamov.
+You probably remember me from that three-episode series, «Streaming on Kubernetes: It doesn't have to be the hard way.»
+In that series, I showed some demos of the Confluent Operator on Kubernetes.
+Many people reached out after and asked - «What kind of terminal do you use,» «What kind of plugins do you use» and so far and so on.
+And today, I'm going to be talking about five Kubernetes tools that I use in my demos (of during preparations to it) that you're probably don't use but defiantly should.
+
+So, let's get to it - it's going to be fun!
+
+== Setting terminal prompt with `kube-ps1`
+
+OK, I do demos.
+Many demos.
+OK, not like a whole of demos but still, substantial number of demos.
+And things that I'm usually demoing very technical.
+So technical some things I demo don't even have GUI.
+The only thing that I have to interact with those things is the command line interface, aka terminal.
+As the theatre starts with a coat, a proper terminal starts with a prompt.
+Because during those technical demos, there are many things going in on the screen.
+So, having an excellent terminal prompt that will allow me and my audience always to know where we are?
+That's why I appreciate `kube-ps1` that displays information about the current Kubernetes cluster context as part of a terminal prompt.
+Also, it adds two a helper commands `kubeon` and `kubeoff` that allow for turning this prompt on and off on demand.
+
+.Current Kubernetes cluster in your command line
+image::kubeon.jpg[]
+
+== Switching cluster contexts and namespaces with `kubectx` and `kubens.`
+
+NOTE: *Name:* `kubectx` and `kubens` *Github:* https://github.com/ahmetb/kubectx
+
+Next, I do create and use many Kubernetes clusters on a daily basis.
+Some days I may create a few Kubernetes clusters
+Saying this, I need to switch between those quite often.
+It may require to type a few commands if you don't know what full name of a cluster (and I can be a quire long)
+See yourself!
+
+[source,bash]
+.kubectx
+----
+kubectl config get-contexts # <1>
+kubectl config current-context #<2>
+kubectl config use-context <NAME OF CONTEXT> # <3>
+----
+<1> Get list of all Kubernetes clusters configured in your system
+<2> Get a current cluster context
+<3> Set desired cluster context
+
+Not so useful, right?
+However, there is a better way!
+
+Enter `kubectx.`
+
+image::https://github.com/ahmetb/kubectx/raw/master/img/kubectx-demo.gif[]
+
+`kubectx` allows switching between Kubernetes clusters few quickly.
+It also integrates with command pager utility, and allows you to have some text menu where you can choose a specific cluster!
+
+As a bonus, there is another tool that comes from the same author called `kubens` that I allow to switch namespaces withing the same cluster context.
+Same with namespace switching - not rocket science, but you need to remember or google those commands all the time.
+
+== Monitoring cluster health and Kubernetes resources with `k9s`
+
+NOTE: *Name:* `k9s`
+*Github:* https://github.com/derailed/k9s
+
+OK, good, now you learned to switch between Kubernetes clusters and namespaces in those clusters.
+The next tool can be a bit useful because it provides a GUI (terminal UI) tool that allows you to interact with your Kubernetes cluster.
+
+You can see:
+
+- Standard Kubernetes resources and well as custom resources and `KafkaCluster` or `PhysicalStatefulCluster`
+- You can drill down to pods and see logs from the individual containers.
+- You monitor health and vitals of your Kubernetes cluster and your applications.
+
+Also, this tool has many customization hooks!
+
+== Web UI to remote Kubernetes cluster using `octant.`
+
+Have you ever used https://github.com/kubernetes/dashboard[Kubernetes Dashboard]?
+Yes, you probably have because it's a standard monitoring dashboard for Kubernetes.
+But there is one slight problem - it requires installation on your cluster.
+If you don't have enough rights or your operations folks don has extra crap installed in your Kubernetes cluster, this may be a challenge to get you GUI.
+
+https://github.com/vmware-tanzu/octant[VMWare Octant] is not just another dashboard.
+It's a web-based Kubernetes resource visualizer.
+
+.Killer feature is a resource dependency graph
+image::octant.jpg[]
+
+And it doesn't require installation on your Kubernetes cluster.
+Octant runs locally on your machine and talks to Kubernetes via standard API calls.
+
+== Checking what the _Helm_ is happening using `helm-cabin`
+
+image::helm-cabin.jpg[]
+
+https://github.com/Nick-Triller/helm-cabin
+
+== Conclusion  
+
+If you have found this video useful or entertaining, hit that like button and consider to subscribe to this channel.
+Stay tuned for the next one.
+And as always, have a nice day!
