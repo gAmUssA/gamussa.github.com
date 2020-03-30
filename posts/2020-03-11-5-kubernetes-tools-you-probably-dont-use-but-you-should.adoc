@@ -1,19 +1,19 @@
 = 5 Kubernetes Tools You Probably Don't Use (But You Should)
 Viktor Gamov
-2020-03-11 10:45
+2020-03-26 10:45
 :imagesdir: ../images
 :icons:
 :keywords:
 :toc:
 ifndef::awestruct[]
 :awestruct-layout: post
-:awestruct-draft: true
+:awestruct-draft: false
 :awestruct-tags: []
 :idprefix:
 :idseparator: -
 endif::awestruct[]
 
-//image::sf_fall.jpg[width=50%, align="center"]
+image::k9s_ksql.jpg[width=50%, align="center"]
 
 .TL;DR
 
@@ -24,15 +24,14 @@ NOTE: In this post, I'm going to talk about few tools that I found very useful d
 [width="70%",cols="",options="header"]
 |===
 |Version    |Date        | Comments
-|*v1.0*     |03/11/2019  | Initial revision
+|*v1.1*     |03/26/2019  | Finished draft
+|*v1.0*     |03/11/2019  | Initial draft
 |===
 
 toc::[]
 
-Hi
-It's Viktor Gamov.
-You probably remember me from that three-episode series, «Streaming on Kubernetes: It doesn't have to be the hard way.»
-In that series, I showed some demos of the Confluent Operator on Kubernetes.
+Earlier this year, I recorded a three-episode series, https://youtu.be/JiDiC5MI7hw[«Streaming on Kubernetes:] https://youtu.be/9HaKP6HBz3s[It doesn't have] https://youtu.be/lzFuEuqOSNM[to be the hard way.»]
+There I showed some demos of the Confluent Operator on Kubernetes.
 Many people reached out after and asked - «What kind of terminal do you use,» «What kind of plugins do you use» and so far and so on.
 And today, I'm going to be talking about five Kubernetes tools that I use in my demos (of during preparations to it) that you're probably don't use but defiantly should.
 
@@ -40,11 +39,14 @@ So, let's get to it - it's going to be fun!
 
 == Put your prompt to work 
 
-NOTE: *Name:* `kube-ps1` *Github:* https://github.com/jonmosco/kube-ps1
+****
+* *Name:* `kube-ps1` 
+* *Github:* https://github.com/jonmosco/kube-ps1
+****
 
 OK, I do demos.
 Many demos.
-OK, not like a whole of demos but still, substantial number of demos.
+OK, not like a lot of demos but still, a large number of demos.
 And things that I'm usually demoing very technical.
 So technical some things I demo don't even have GUI.
 The only thing that I have to interact with those things is the command line interface, aka terminal.
@@ -63,12 +65,15 @@ image::kubeon.jpg[]
 
 == Cluster context and namespaces switching on your fingertips
 
-NOTE: *Name:* `kubectx` and `kubens` *Github:* https://github.com/ahmetb/kubectx
+****
+* *Name:* `kubectx` and `kubens` 
+* *Github:* https://github.com/ahmetb/kubectx
+****
 
 Next, I do create and use many Kubernetes clusters on a daily basis.
 Some days I may create a few Kubernetes clusters
 Saying this, I need to switch between those quite often.
-It may require to type a few commands if you don't know what full name of a cluster (and I can be a quire long)
+It may need to type a few commands if you don't know what full name of a cluster (and I can be a quire long)
 See yourself!
 
 [source,bash]
@@ -83,7 +88,7 @@ kubectl config use-context <NAME OF CONTEXT> # <3>
 <3> Set desired cluster context
 
 Not so useful, right?
-However, there is a better way!
+Yet, there is a better way!
 
 Enter `kubectx.`
 
@@ -97,8 +102,10 @@ Same with namespace switching - not rocket science, but you need to remember or 
 
 == Monitoring cluster health and Kubernetes Resources Right From Your Terminal
 
-NOTE: *Name:* `k9s`
-*Github:* https://github.com/derailed/k9s
+****
+* *Name:* `k9s`
+* *Github:* https://github.com/derailed/k9s
+****
 
 OK, good, now you learned to switch between Kubernetes clusters and namespaces in those clusters.
 The next tool can be a bit useful because it provides a GUI (terminal UI) tool that allows you to interact with your Kubernetes cluster.
@@ -107,18 +114,25 @@ You can see:
 
 * Standard Kubernetes resources and well as custom resources and `KafkaCluster` or `PhysicalStatefulCluster`
 * You can drill down to pods and see logs from the individual containers.
-* You monitor health and vitals of your Kubernetes cluster and your applications.
+* You watch health and vitals of your Kubernetes cluster and your applications.
+
+image::k9s_ksql.jpg[]
 
 Also, this tool has many customization hooks!
 
 == Web UI to remote Kubernetes without installation!
 
+****
+* *Name:* `octant`
+* *Github:* https://github.com/vmware-tanzu/octant
+****
+
 Have you ever used https://github.com/kubernetes/dashboard[Kubernetes Dashboard]?
-Yes, you probably have because it's a standard monitoring dashboard for Kubernetes.
+Yes, you have because it's a standard monitoring dashboard for Kubernetes.
 But there is one slight problem - it requires installation on your cluster.
 If you don't have enough rights, or your operations folks don't want to have extra crap installed in your Kubernetes cluster, this may be a challenge to get you GUI.
 
-Enter https://github.com/vmware-tanzu/octant[VMWare Octant].
+Enter Octant.
 It's a web-based Kubernetes resource visualizer.
 
 And it doesn't require installation on your Kubernetes cluster.
@@ -141,13 +155,15 @@ It works like this:
 .Octant port-forwarding Control Center on localhost
 image::octant_c3.png[width=50%]
 
-.You can get a list of all port forwards 
+.You can get a list of all port forwards
 image::octant_port.png[]
 
 == Checking what the _Helm_ is happening
 
-NOTE: *Name:* Helm Cabin *Github:*
-https://github.com/Nick-Triller/helm-cabin
+****
+* *Name:* Helm Cabin 
+* *Github:* https://github.com/Nick-Triller/helm-cabin
+****
 
 Our last small nifty tool for today is Helm Cabin - your dashboard for helm releases.
 image::helm-cabin.jpg[]
@@ -158,7 +174,7 @@ Once you click on one of the release names, we drill down to some helm release i
 .Chart details
 image::cabin_chart_details.png[width=50%]
 
-In my opinion, this is pretty useful tool for housekeeping and audit purposes. 
+In my opinion, this is pretty useful tool for housekeeping and audit purposes.
 
 == Conclusion  
 
