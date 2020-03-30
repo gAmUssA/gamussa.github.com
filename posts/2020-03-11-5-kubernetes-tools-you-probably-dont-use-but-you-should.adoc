@@ -19,7 +19,7 @@ image::k9s_ksql.jpg[width=50%, align="center"]
 
 NOTE: In this post, I'm going to talk about few tools that I found very useful during my Kubernetes development and presentations.
 
-video:HgyoBrFsJdg[youtube]
+video::HgyoBrFsJdg[youtube]
 
 .Revisions history
 [width="70%",cols="",options="header"]
