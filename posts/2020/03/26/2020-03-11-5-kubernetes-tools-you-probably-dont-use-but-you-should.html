@@ -1,0 +1,392 @@
+<!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><html class="no-js" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>5 Kubernetes Tools You Probably Don&#8217;t Use (But You Should) | gamov.io</title><meta name="author" content="Viktor Gamov"><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@asciidoctor"><meta name="twitter:url" content="http://gamov.io/posts/2020/03/26/2020-03-11-5-kubernetes-tools-you-probably-dont-use-but-you-should.html"><meta name="twitter:title" content="5 Kubernetes Tools You Probably Don&#8217;t Use (But You Should)"><meta name="twitter:description" content="Table of Contents
+Put your prompt to work
+Cluster context and namespaces switching on your fingertips
+Monitoring cluster health and Kubernetes Resources Right From Your Terminal
+Web UI to..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html"><span class="icon"><i class="fa fa-th-large"></i></span>&nbspBlog</a></li><li class="divider"></li><li><a href="http://github.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-github"></i></span>&nbspGithub</a></li><li class="divider"></li><li><a href="http://twitter.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-twitter"></i></span>&nbspTwitter</a></li><li class="divider"></li><li><a href="https://www.youtube.com/playlist?list=PLaJqps0DAycqu2OV6sjl_Dm_VymB6KDV_" target="_blank"><span class="icon"><i class="fa fa-youtube"></i></span>&nbspMy Talks</a></li><li class="divider"></li><li><a href="https://speakerdeck.com/vikgamov" target="_blank"><span class="icon"><i class="fa fa-slideshare"></i></span>&nbspMy Slides</a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://gamov.io">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h2 class="header"><a href="/posts/2020/03/26/2020-03-11-5-kubernetes-tools-you-probably-dont-use-but-you-should.html">5 Kubernetes Tools You Probably Don&#8217;t Use (But You Should)</a></h2><h5 class="subheader">Written by&nbsp <a href="#">Viktor Gamov</a>&nbsp- <time class="pubdate" datetime="2020-03-26T10:00:00+00:00">Thursday, March 26, 2020</time></h5><div class="row"><div class="large-12 columns text-left"><div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#put-your-prompt-to-work">Put your prompt to work</a></li>
+<li><a href="#cluster-context-and-namespaces-switching-on-your-fingertips">Cluster context and namespaces switching on your fingertips</a></li>
+<li><a href="#monitoring-cluster-health-and-kubernetes-resources-right-from-your-terminal">Monitoring cluster health and Kubernetes Resources Right From Your Terminal</a></li>
+<li><a href="#web-ui-to-remote-kubernetes-without-installation">Web UI to remote Kubernetes without installation!</a></li>
+<li><a href="#checking-what-the-helm-is-happening">Checking what the <em>Helm</em> is happening</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="imageblock text-center">
+<div class="content">
+<img src="/images/k9s_ksql.jpg" alt="k9s ksql" width="50%">
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">TL;DR</div>
+In this post, I&#8217;m going to talk about few tools that I found very useful during my Kubernetes development and presentations.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all" style="width: 70%;">
+<caption class="title">Table 1. Revisions history</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Version</th>
+<th class="tableblock halign-left valign-top">Date</th>
+<th class="tableblock halign-left valign-top">Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>v1.1</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">03/26/2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Finished draft</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>v1.0</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">03/11/2019</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Initial draft</p></td>
+</tr>
+</tbody>
+</table>
+<!-- toc disabled -->
+<div class="paragraph">
+<p>Earlier this year, I recorded a three-episode series, <a href="https://youtu.be/JiDiC5MI7hw">«Streaming on Kubernetes:</a> <a href="https://youtu.be/9HaKP6HBz3s">It doesn&#8217;t have</a> <a href="https://youtu.be/lzFuEuqOSNM">to be the hard way.»</a>
+There I showed some demos of the Confluent Operator on Kubernetes.
+Many people reached out after and asked - «What kind of terminal do you use,» «What kind of plugins do you use» and so far and so on.
+And today, I&#8217;m going to be talking about five Kubernetes tools that I use in my demos (of during preparations to it) that you&#8217;re probably don&#8217;t use but defiantly should.</p>
+</div>
+<div class="paragraph">
+<p>So, let&#8217;s get to it - it&#8217;s going to be fun!</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="put-your-prompt-to-work"><a class="anchor" href="#put-your-prompt-to-work"></a>Put your prompt to work</h2>
+<div class="sectionbody">
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Name:</strong> <code>kube-ps1</code></p>
+</li>
+<li>
+<p><strong>Github:</strong> <a href="https://github.com/jonmosco/kube-ps1" class="bare">https://github.com/jonmosco/kube-ps1</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>OK, I do demos.
+Many demos.
+OK, not like a lot of demos but still, a large number of demos.
+And things that I&#8217;m usually demoing very technical.
+So technical some things I demo don&#8217;t even have GUI.
+The only thing that I have to interact with those things is the command line interface, aka terminal.</p>
+</div>
+<div class="paragraph">
+<p>As the theatre starts with a coat, a proper terminal starts with a prompt.
+Because during those technical demos, there are many things going in on the screen.</p>
+</div>
+<div class="paragraph">
+<p>So, having an excellent terminal prompt that will allow the audience and yours truly always to know where we are?
+That&#8217;s why I appreciate <code>kube-ps1</code> that displays information about the current Kubernetes cluster context as part of a terminal prompt.
+Also, it adds two a helper commands <code>kubeon</code> and <code>kubeoff</code> that allow for turning this prompt on and off on demand.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It does work great in <code>bash</code> and <code>zsh</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/kubeon.jpg" alt="kubeon">
+</div>
+<div class="title">Figure 1. Current Kubernetes cluster in your command line</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cluster-context-and-namespaces-switching-on-your-fingertips"><a class="anchor" href="#cluster-context-and-namespaces-switching-on-your-fingertips"></a>Cluster context and namespaces switching on your fingertips</h2>
+<div class="sectionbody">
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Name:</strong> <code>kubectx</code> and <code>kubens</code></p>
+</li>
+<li>
+<p><strong>Github:</strong> <a href="https://github.com/ahmetb/kubectx" class="bare">https://github.com/ahmetb/kubectx</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Next, I do create and use many Kubernetes clusters on a daily basis.
+Some days I may create a few Kubernetes clusters
+Saying this, I need to switch between those quite often.
+It may need to type a few commands if you don&#8217;t know what full name of a cluster (and I can be a quire long)
+See yourself!</p>
+</div>
+<div class="listingblock">
+<div class="title">kubectx</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-bash" data-lang="bash">kubectl config get-contexts <i class="conum" data-value="1"></i><b>(1)</b>
+kubectl config current-context <i class="conum" data-value="2"></i><b>(2)</b>
+kubectl config use-context &lt;NAME OF CONTEXT&gt; <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Get list of all Kubernetes clusters configured in your system</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Get a current cluster context</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Set desired cluster context</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Not so useful, right?
+Yet, there is a better way!</p>
+</div>
+<div class="paragraph">
+<p>Enter <code>kubectx.</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://github.com/ahmetb/kubectx/raw/master/img/kubectx-demo.gif" alt="kubectx demo">
+</div>
+</div>
+<div class="paragraph">
+<p><code>kubectx</code> allows switching between Kubernetes clusters few quickly.
+It also integrates with command pager utility, and allows you to have some text menu where you can choose a specific cluster!</p>
+</div>
+<div class="paragraph">
+<p>As a bonus, there is another tool that comes from the same author called <code>kubens</code> that I allow to switch namespaces withing the same cluster context.
+Same with namespace switching - not rocket science, but you need to remember or google those commands all the time.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="monitoring-cluster-health-and-kubernetes-resources-right-from-your-terminal"><a class="anchor" href="#monitoring-cluster-health-and-kubernetes-resources-right-from-your-terminal"></a>Monitoring cluster health and Kubernetes Resources Right From Your Terminal</h2>
+<div class="sectionbody">
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Name:</strong> <code>k9s</code></p>
+</li>
+<li>
+<p><strong>Github:</strong> <a href="https://github.com/derailed/k9s" class="bare">https://github.com/derailed/k9s</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>OK, good, now you learned to switch between Kubernetes clusters and namespaces in those clusters.
+The next tool can be a bit useful because it provides a GUI (terminal UI) tool that allows you to interact with your Kubernetes cluster.</p>
+</div>
+<div class="paragraph">
+<p>You can see:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Standard Kubernetes resources and well as custom resources and <code>KafkaCluster</code> or <code>PhysicalStatefulCluster</code></p>
+</li>
+<li>
+<p>You can drill down to pods and see logs from the individual containers.</p>
+</li>
+<li>
+<p>You watch health and vitals of your Kubernetes cluster and your applications.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/k9s_ksql.jpg" alt="k9s ksql">
+</div>
+</div>
+<div class="paragraph">
+<p>Also, this tool has many customization hooks!</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="web-ui-to-remote-kubernetes-without-installation"><a class="anchor" href="#web-ui-to-remote-kubernetes-without-installation"></a>Web UI to remote Kubernetes without installation!</h2>
+<div class="sectionbody">
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Name:</strong> <code>octant</code></p>
+</li>
+<li>
+<p><strong>Github:</strong> <a href="https://github.com/vmware-tanzu/octant" class="bare">https://github.com/vmware-tanzu/octant</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Have you ever used <a href="https://github.com/kubernetes/dashboard">Kubernetes Dashboard</a>?
+Yes, you have because it&#8217;s a standard monitoring dashboard for Kubernetes.
+But there is one slight problem - it requires installation on your cluster.
+If you don&#8217;t have enough rights, or your operations folks don&#8217;t want to have extra crap installed in your Kubernetes cluster, this may be a challenge to get you GUI.</p>
+</div>
+<div class="paragraph">
+<p>Enter Octant.
+It&#8217;s a web-based Kubernetes resource visualizer.</p>
+</div>
+<div class="paragraph">
+<p>And it doesn&#8217;t require installation on your Kubernetes cluster.
+Octant runs locally on your machine and talks to Kubernetes via standard API calls.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/octant.jpg" alt="octant">
+</div>
+<div class="title">Figure 2. Killer feature is a resource dependency graph</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/octant_crds.png" alt="octant crds" width="60%">
+</div>
+<div class="title">Figure 3. Apart from understanding standard Kubernetes resource, <code>octant</code> shows some custom resources</div>
+</div>
+<div class="paragraph">
+<p>Another very cool feature of octant is «Port Forwarding».
+It works like this:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Navigate to the resource, e.g. <code>controlcenter</code> <code>StatefulSet</code></p>
+</li>
+<li>
+<p>Scroll to the container that want to forward ports from.</p>
+</li>
+<li>
+<p>And you can click «Start Port Forward».</p>
+</li>
+<li>
+<p>Octant UI will display localhost and port to the pod.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/octant_c3.png" alt="octant c3" width="50%">
+</div>
+<div class="title">Figure 4. Octant port-forwarding Control Center on localhost</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/octant_port.png" alt="octant port">
+</div>
+<div class="title">Figure 5. You can get a list of all port forwards</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="checking-what-the-helm-is-happening"><a class="anchor" href="#checking-what-the-helm-is-happening"></a>Checking what the <em>Helm</em> is happening</h2>
+<div class="sectionbody">
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Name:</strong> Helm Cabin</p>
+</li>
+<li>
+<p><strong>Github:</strong> <a href="https://github.com/Nick-Triller/helm-cabin" class="bare">https://github.com/Nick-Triller/helm-cabin</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Our last small nifty tool for today is Helm Cabin - your dashboard for helm releases.
+image::helm-cabin.jpg[]</p>
+</div>
+<div class="paragraph">
+<p>You will be able to see all your helm releases deployed to given Kubernetes cluster.
+Once you click on one of the release names, we drill down to some helm release info - NOTES from chart, templates and values, and «effective» chart.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/cabin_chart_details.png" alt="cabin chart details" width="50%">
+</div>
+<div class="title">Figure 6. Chart details</div>
+</div>
+<div class="paragraph">
+<p>In my opinion, this is pretty useful tool for housekeeping and audit purposes.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="conclusion"><a class="anchor" href="#conclusion"></a>Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you have found this video useful or entertaining, hit that like button and consider subscribing to this channel.
+Stay tuned for the next one.
+And as always, have a nice day!</p>
+</div>
+</div>
+</div></div></div><footer class="entry-footer"><div class="tags"><span class="title">tags: </span></div></footer><div id="comments">
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+            var disqus_shortname = 'nextjavaheadbraincom';
+            var disqus_url = "http://gamov.io/posts/2020/03/26/2020-03-11-5-kubernetes-tools-you-probably-dont-use-but-you-should.html";
+            var disqus_developer = null;
+            var disqus_identifier = null;
+            (function() {
+              var dsq = document.createElement("script"); dsq.type = "text/javascript"; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(dsq);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=nextjavaheadbraincom">comments powered by Disqus.</a></noscript>
+          </div></article></div></div></body></html><div id="copyright"><div class="row full-width"><div class="large-4 columns"><p>© Viktor Gamov 2019—2007</p></div><div class="large-8 columns"><ul class="inline-list right"><li><a href="https://github.com/gAmUssA"></a>Github&nbsp<span class="icon"><i class="fa fa-github"></i></span></li><li><a href="http://twitter.com/gAmUssA"></a>Twitter&nbsp<span class="icon"><i class="fa fa-twitter"></i></span></li><li><a href="#"></a></li></ul></div></div></div><script>document.write('<script src=' + ('__proto__' in {} ? '/javascripts/vendor/zepto' : '/javascripts/vendor/jquery') + '.js><\/script>')</script><script src="/javascripts/foundation/foundation.js"><script src="/javascripts/foundation/foundation.topbar.js"></script></script><script>$(document).foundation();</script><script src="/javascripts/vendor/highlight.min.js"></script><script>$(hljs.initHighlighting());</script><script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount','UA-40354726-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+ var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!--End Footer-->
