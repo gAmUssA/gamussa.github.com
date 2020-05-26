@@ -1,4 +1,4 @@
-= Streaming on Kubernetes: Does it have to be The Hard Way
+= Streaming on Kubernetes. Does it have to be The Hard Way
 Viktor Gamov
 2019-10-03 11:54
 :imagesdir: ../images
