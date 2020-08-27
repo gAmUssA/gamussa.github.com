@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.8">
+<meta name="author" content="Viktor Gamov &lt;viktor@confluent.io&gt;, © 2020 Confluent, Inc.">
+<title>Workshop: Building Event-driven microservices using Spring Boot, Kafka Streams and ksqlDB</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
+/* Uncomment @import statement below to use as custom stylesheet */
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
+audio,canvas,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+script{display:none!important}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+a{background:transparent}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+abbr[title]{border-bottom:1px dotted}
+b,strong{font-weight:bold}
+dfn{font-style:italic}
+hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,*::before,*::after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto;tab-size:4;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:none}
+p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+abbr,acronym{text-transform:uppercase;font-size:90%;color:rgba(0,0,0,.8);border-bottom:1px dotted #ddd;cursor:help}
+abbr{text-transform:none}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote cite{display:block;font-size:.9375em;color:rgba(0,0,0,.6)}
+blockquote cite::before{content:"\2014 \0020"}
+blockquote cite a,blockquote cite a:visited{color:rgba(0,0,0,.6)}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt,table tr:nth-of-type(even){background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+*:not(pre)>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background-color:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed;word-wrap:break-word}
+*:not(pre)>code.nobreak{word-wrap:normal}
+*:not(pre)>code.nowrap{white-space:nowrap}
+pre,pre>code{line-height:1.45;color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;text-rendering:optimizeSpeed}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background-color:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background-color:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:100%;background-color:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:rgba(255,255,255,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class="paragraph"]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+table.tableblock #preamble>.sectionbody>[class="paragraph"]:first-of-type p{font-size:inherit}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock pre:not(.highlight),.listingblock pre[class="highlight"],.listingblock pre[class^="highlight "],.listingblock pre.CodeRay,.listingblock pre.prettyprint{background:#f7f7f8}
+.sidebarblock .literalblock pre,.sidebarblock .listingblock pre:not(.highlight),.sidebarblock .listingblock pre[class="highlight"],.sidebarblock .listingblock pre[class^="highlight "],.sidebarblock .listingblock pre.CodeRay,.sidebarblock .listingblock pre.prettyprint{background:#f2f1f1}
+.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:1em}}
+.literalblock pre.nowrap,.literalblock pre.nowrap pre,.listingblock pre.nowrap,.listingblock pre.nowrap pre{white-space:pre;word-wrap:normal}
+.literalblock.output pre{color:#f7f7f8;background-color:rgba(0,0,0,.9)}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:#999}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:#999}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+table.pyhltable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.pyhltable td{vertical-align:top;padding-top:0;padding-bottom:0;line-height:1.45}
+table.pyhltable td.code{padding-left:.75em;padding-right:0}
+pre.pygments .lineno,table.pyhltable td:not(.code){color:#999;padding-left:0;padding-right:.5em;border-right:1px solid #dddddf}
+pre.pygments .lineno{display:inline-block;margin-right:.25em}
+table.pyhltable .linenodiv{background:none!important;padding-right:0!important}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin:0 0 1.25em;padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;text-align:left;margin-right:0}
+table.tableblock{max-width:100%;border-collapse:separate}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>thead>tr>.tableblock,table.grid-all>tbody>tr>.tableblock{border-width:0 1px 1px 0}
+table.grid-all>tfoot>tr>.tableblock{border-width:1px 1px 0 0}
+table.grid-cols>*>tr>.tableblock{border-width:0 1px 0 0}
+table.grid-rows>thead>tr>.tableblock,table.grid-rows>tbody>tr>.tableblock{border-width:0 0 1px}
+table.grid-rows>tfoot>tr>.tableblock{border-width:1px 0 0}
+table.grid-all>*>tr>.tableblock:last-child,table.grid-cols>*>tr>.tableblock:last-child{border-right-width:0}
+table.grid-all>tbody>tr:last-child>.tableblock,table.grid-all>thead:last-child>tr>.tableblock,table.grid-rows>tbody>tr:last-child>.tableblock,table.grid-rows>thead:last-child>tr>.tableblock{border-bottom-width:0}
+table.frame-all{border-width:1px}
+table.frame-sides{border-width:0 1px}
+table.frame-topbot,table.frame-ends{border-width:1px 0}
+table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd){background:#f8f8f7}
+table.stripes-none tr,table.stripes-odd tr:nth-of-type(even){background:none}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+td>div.verse{white-space:pre}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+ul.checklist{margin-left:.625em}
+ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist li>p:first-child>input[type="checkbox"]:first-child{margin-right:.25em}
+ul.inline{display:-ms-flexbox;display:-webkit-box;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background-color:#00fafa}
+.black{color:#000}
+.black-background{background-color:#000}
+.blue{color:#0000bf}
+.blue-background{background-color:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background-color:#fa00fa}
+.gray{color:#606060}
+.gray-background{background-color:#7d7d7d}
+.green{color:#006000}
+.green-background{background-color:#007d00}
+.lime{color:#00bf00}
+.lime-background{background-color:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background-color:#7d0000}
+.navy{color:#000060}
+.navy-background{background-color:#00007d}
+.olive{color:#606000}
+.olive-background{background-color:#7d7d00}
+.purple{color:#600060}
+.purple-background{background-color:#7d007d}
+.red{color:#bf0000}
+.red-background{background-color:#fa0000}
+.silver{color:#909090}
+.silver-background{background-color:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background-color:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background-color:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background-color:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background-color:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background-color:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media print,amzn-kf8{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Workshop: Building Event-driven microservices using Spring Boot, Kafka Streams and ksqlDB</h1>
+<div class="details">
+<span id="author" class="author">Viktor Gamov &lt;viktor@confluent.io&gt;, © 2020 Confluent, Inc.</span><br>
+<span id="revdate">2020-08-25 19:22:48 -0600</span>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle">Table of contents</div>
+<ul class="sectlevel1">
+<li><a href="#workshop-pre-requisites-and-preparation">Workshop pre-requisites and preparation</a></li>
+<li><a href="#0️⃣-provisioning-confluent-cloud-cluster">0️⃣ Provisioning Confluent Cloud cluster</a></li>
+<li><a href="#1️⃣-loading-referential-data-with-kafka-connect">1️⃣ Loading referential data with Kafka Connect</a>
+<ul class="sectlevel2">
+<li><a href="#start-jdbc-connector-in-docker">Start JDBC connector in Docker</a>
+<ul class="sectlevel3">
+<li><a href="#start-the-data-generator-application">Start the Data Generator application</a></li>
+</ul>
+</li>
+<li><a href="#start-the-connector">Start the connector</a></li>
+<li><a href="#monitor-the-account-data-flowing-in-kafka-from-confluent-cloud-ui">Monitor the account data flowing in Kafka from Confluent Cloud UI</a></li>
+</ul>
+</li>
+<li><a href="#2️⃣-implementing-a-stream-processor-with-kafka-streams">2️⃣ Implementing a Stream Processor with Kafka Streams</a>
+<ul class="sectlevel2">
+<li><a href="#atomic-transaction-processing-with-kafka-streams">Atomic transaction processing with Kafka Streams</a>
+<ul class="sectlevel3">
+<li><a href="#implement-the-transaction-transformer">Implement the Transaction Transformer</a></li>
+<li><a href="#implement-the-streaming-topology">Implement the Streaming Topology</a></li>
+<li><a href="#create-a-kstream-from-the-source-topic">Create a KStream from the source topic.</a></li>
+<li><a href="#leverage-the-transformer-to-process-our-requests">Leverage the Transformer to process our requests</a></li>
+<li><a href="#redirect-the-transaction-result-to-the-appropriate-topic">Redirect the transaction result to the appropriate topic.</a></li>
+<li><a href="#the-implemented-definestreams-method">The implemented defineStreams method</a></li>
+</ul>
+</li>
+<li><a href="#running-the-kafka-streams-application">Running the Kafka Streams application</a></li>
+<li><a href="#generate-some-transactions-using-the-data-generator-endpoint">Generate some transactions using the Data Generator endpoint</a></li>
+<li><a href="#monitor-the-successful-transaction-results">Monitor the successful transaction results</a></li>
+<li><a href="#monitor-the-failed-transaction-results-from-control-center">Monitor the failed transaction results from Control Center</a></li>
+</ul>
+</li>
+<li><a href="#3️⃣-enrich-transaction-results-with-ksqldb">3️⃣ Enrich transaction results with ksqlDB</a>
+<ul class="sectlevel2">
+<li><a href="#create-the-account-table">Create the account table</a></li>
+<li><a href="#create-the-transaction-success-stream">Create the transaction-success stream</a></li>
+<li><a href="#create-the-transaction-statement-stream">Create the transaction statement stream</a></li>
+<li><a href="#monitor-the-transaction-statements-in-cloud-ui">Monitor the Transaction Statements in Cloud UI</a></li>
+</ul>
+</li>
+<li><a href="#its-a-wrap">✅ It&#8217;s a wrap!</a></li>
+<li><a href="#special-thanks">Special Thanks!</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Developing Event-driven Microservices with Spring Boot, Confluent Cloud, Kotlin, and Java.</p>
+</div>
+<!-- toc disabled -->
+</div>
+</div>
+<div class="sect1">
+<h2 id="workshop-pre-requisites-and-preparation"><a class="anchor" href="#workshop-pre-requisites-and-preparation"></a>Workshop pre-requisites and preparation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Before you proceed, make sure you have the following toolset installed on your computer:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Sign up for <a href="https://confluent.cloud">Confluent Cloud</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>you should have your login and password handy after you sign up for Confluent Cloud.</p>
+<div class="paragraph">
+<p>The <code>ccloud</code> init script will ask login.</p>
+</div>
+</li>
+<li>
+<p>Install <a href="https://docs.confluent.io/current/cloud/cli/install.html">Confluent Cloud CLI</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Docker</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.docker.com/docker-for-mac/install/">MacOS</a></p>
+</li>
+<li>
+<p>Docker Compose (installed with Docker Desktop and Docker Toolbox)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>git</p>
+</li>
+<li>
+<p>Java</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jdk.dev">Java 8 (or later)</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Your favorite Java IDE</p>
+<div class="ulist">
+<ul>
+<li>
+<p>I recommend <a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>As another prerequisite, clone following repo</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-shell script hljs" data-lang="shell script">$ git clone https://github.com/gAmUssA/springone2020-workshop    <i class="conum" data-value="1"></i><b>(1)</b>
+$ cd springone2020-workshop                                      <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Clone the repository</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Change directory of the workshop folder</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="0️⃣-provisioning-confluent-cloud-cluster"><a class="anchor" href="#0️⃣-provisioning-confluent-cloud-cluster"></a>0️⃣ Provisioning Confluent Cloud cluster</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-shell script hljs" data-lang="shell script">$ cd scripts/ccloud
+$ ccloud login --save       <i class="conum" data-value="1"></i><b>(1)</b>
+$ ./ccloud_stack_create.sh  <i class="conum" data-value="2"></i><b>(2)</b>
+
+This demo uses real Confluent Cloud resources.
+To avoid unexpected charges, carefully evaluate the cost of resources before launching the script and ensure all resources are destroyed after you are done running it.
+Do you still want to run this script? [y/n] y
+Do you also want to create a Confluent Cloud ksqlDB app (hourly charges may apply)? [y/n] y
+
+Creating Confluent Cloud stack for service account demo-app-3067, ID: 103469.
+Set Kafka cluster "lkc-oz98y" as the active cluster for environment "env-nx57d".
+
+Waiting up to 720 seconds for Confluent Cloud cluster to be ready and for credentials to propagate
+.....
+Sleeping an additional 80 seconds to ensure propagation of all metadata
+
+$ source delta_configs/env.delta  <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Login to your Confluent Cloud account.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The CCloud Stack script will ask you to login to your CCloud account.
+It will automatically provision Kafka and ksqlDB cluster.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>export Kafka connection information as environment variables.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Among other things, this script generates a config that we need to pass to docker-compose start command in order to connector container connect to cloud Kafka cluster.</p>
+</div>
+<div class="paragraph">
+<p>When ready, move to the next section where you will generate some referential data.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="1️⃣-loading-referential-data-with-kafka-connect"><a class="anchor" href="#1️⃣-loading-referential-data-with-kafka-connect"></a>1️⃣ Loading referential data with Kafka Connect</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To leverage the full power of stream processing, it is a good practice to pre-load the required data in topics.
+Kafka Streams and ksqlDB will allow you to join and lookup data from your events with any other topic.</p>
+</div>
+<div class="paragraph">
+<p>In this section of the workshop, we will set up a <a href="https://www.confluent.io/hub/confluentinc/kafka-connect-jdbc">Kafka Connect JDBC Source connector</a> instance that will synchronize any data from a PostgreSQL instance to an <code>account</code> topic in Kafka.</p>
+</div>
+<div class="paragraph">
+<p>This exercise simulates a <a href="https://en.wikipedia.org/wiki/Change_data_capture">Change Data Capture pattern</a> where we bridge an existing data source to Kafka in realtime.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/jdbc-source-connector.png" alt="JDBC Source Connector">
+</div>
+</div>
+<div class="sect2">
+<h3 id="start-jdbc-connector-in-docker"><a class="anchor" href="#start-jdbc-connector-in-docker"></a>Start JDBC connector in Docker</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-shell script hljs" data-lang="shell script">./start.sh stack-configs/java-service-account-103523.config <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Replace with actual service account ID</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="start-the-data-generator-application"><a class="anchor" href="#start-the-data-generator-application"></a>Start the Data Generator application</h4>
+<div class="paragraph">
+<p>Within the workshop project, you will find a <code>data-generator</code> folder containing an application designed to generate some random accounts in our PostgreSQL <code>Account DB</code>.
+This utility application will generate around <code>1000</code> test accounts.
+The Data Generator also contains a REST Endpoint to help us submit transaction requests to Kafka later on during the workshop.</p>
+</div>
+<div class="paragraph">
+<p>The data generator can be launched by running the following command from the root of the workshop project folder:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/data-generator.png" alt="Data Generator">
+</div>
+</div>
+<div class="paragraph">
+<p>To run the Data Generator application, you can use your Java IDE to launch the main method from <code>src/main/java/io/confluent/developer/ccloud/demo/kstream/DataGeneratorApplication.java</code>.</p>
+</div>
+<div class="paragraph">
+<p>You can also start the application from CLI by building it and running it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-shell script hljs" data-lang="shell script">$ source ./scripts/cclou/delta_configs/env.delta
+$ cd ../..
+$ ./gradlew :data-generator:build                        <i class="conum" data-value="1"></i><b>(1)</b>
+$ java -jar data-generator/build/libs/data-generator-0.0.1-SNAPSHOT.jar      <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>To build</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>To run after build</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>After the data set completely generated, you should observe an output mentioning that 1000 accounts created:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">2020-08-26 22:58:44.507  INFO 15959 --- [unt-Generator-1] Account Service                          : Generated account number 1000.</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="start-the-connector"><a class="anchor" href="#start-the-connector"></a>Start the connector</h3>
+<div class="paragraph">
+<p>Run the following command from the root of the workshop project folder:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-shell script hljs" data-lang="shell script">$ ./scrips/connect/deploy-jdbc-connector.sh <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>This command will start a connector instance.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="monitor-the-account-data-flowing-in-kafka-from-confluent-cloud-ui"><a class="anchor" href="#monitor-the-account-data-flowing-in-kafka-from-confluent-cloud-ui"></a>Monitor the account data flowing in Kafka from Confluent Cloud UI</h3>
+<div class="paragraph">
+<p>Access Confluent Cloud UI from <a href="https://confluent.cloud" class="bare">https://confluent.cloud</a></p>
+</div>
+<div class="paragraph">
+<p>From the main screen, navigate to environment that looks like <code>demo-env-&lt;some-number&gt;</code>.
+Inside of this environment you should see cluster that looks like <code>demo-kafka-cluster-&lt;some-number&gt;</code>.
+On the left side click on <code>Topics</code>.</p>
+</div>
+<div class="paragraph">
+<p>Click on the <code>account</code> topic and access the <code>messages</code> tab.
+Click on the <code>offset</code> textbox and type <code>0</code> and press enter to the UI to load all messages from partition <code>0</code> starting from <em>offset</em> <code>0</code>.</p>
+</div>
+<div class="paragraph">
+<p>With the connector running, you should observe <code>account</code> events in the UI.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/cloud-ui-messages.jpg" alt="c3-messages">
+</div>
+<div class="title">Figure 1. Messages explorer in Confluent Cloud UI</div>
+</div>
+<div class="paragraph">
+<p>In the next section, we will implement a highly scalable stream processing application using Kafka Stream.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2️⃣-implementing-a-stream-processor-with-kafka-streams"><a class="anchor" href="#2️⃣-implementing-a-stream-processor-with-kafka-streams"></a>2️⃣ Implementing a Stream Processor with Kafka Streams</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now is the time to get into the heart of the action.
+We will implement a Kafka Streams topology to process atomic transactions to any request submitted to the <code>transaction-request</code> topic.</p>
+</div>
+<div class="paragraph">
+<p>Within the workshop project folder, you will find a <code>kstreams-demo</code> subfolder that represents a Kafka Streams application.
+All of the boilerplate code required to connect to Kafka is already taken care of (thank you, Spring Boot).
+This workshop will focus on writing a Kafka Streams topology with the function processing for our use case.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="title">"Help me! I can&#8217;t figure out what code to modify!"</div>
+<div class="paragraph">
+<p>If during the exercise you are lost, you can at any point reset your codebase and switch to the <code>solution</code> to run the Stream Processor without coding the solution yourself.</p>
+</div>
+<div class="paragraph">
+<p>Be careful before running the next command as you will lose any uncommitted changes in your local git repository:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">git reset --hard origin/master &amp;&amp; git checkout solution</pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="atomic-transaction-processing-with-kafka-streams"><a class="anchor" href="#atomic-transaction-processing-with-kafka-streams"></a>Atomic transaction processing with Kafka Streams</h3>
+<div class="paragraph">
+<p>Our business requirement states that for every request we receive, we check if the funds are sufficient before updating the balance of the account being processed.
+We should never have two transactions being processed at the same time for the same account.
+This would create a race condition for which we have no guarantee that we can enforce the balance check before withdrawing funds.</p>
+</div>
+<div class="paragraph">
+<p>The Data Generator writes transaction requests to the Kafka topic with a key equals to the account number of the transaction.
+As such, we have the guarantee that all messages of an account will be proccessed by a single thread for our Transaction Service no matter how many instances of it are concurrently running.</p>
+</div>
+<div class="paragraph">
+<p>Kafka Streams will not commit any message offset until it completes our business logic of managing a transaction request.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/transaction-service.png" alt="Transaction Service">
+</div>
+</div>
+<div class="sect3">
+<h4 id="implement-the-transaction-transformer"><a class="anchor" href="#implement-the-transaction-transformer"></a>Implement the Transaction Transformer</h4>
+<div class="paragraph">
+<p>Because of the transaction nature of our stream processor, we require a specific component from Kafka Streams named a <code>Transformer</code>.
+This utility allows us to process events one by one while interacting with a <code>State Store</code>, another component of Kafka Streams that allows us to persist our account balance.</p>
+</div>
+<div class="paragraph">
+<p>Open the <code>io.confluent.developer.ccloud.demo.kstream.TransactionTransformer</code> Java class and implement the <code>transform</code> function to return a <code>TransactionResult</code> based on the validity of the transaction request.
+The <code>TransactionResult</code> contains a <code>success</code> flag that should be set to <code>true</code> if the funds were successfully updated.</p>
+</div>
+<div class="paragraph">
+<p>The <code>transform</code> method also has the responsibility of updating the <code>store</code> State Store.
+The class already contains utility functions to help you execute our business logic.</p>
+</div>
+<div class="paragraph">
+<p>If you are stuck on this exercise, you can switch to the <code>solution-transformer</code> branch:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">git reset --hard origin/master &amp;&amp; git checkout solution-transformer</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implement-the-streaming-topology"><a class="anchor" href="#implement-the-streaming-topology"></a>Implement the Streaming Topology</h4>
+<div class="paragraph">
+<p>In Kafka Streams, a <code>Topology</code> is the definition of your data flow.
+It&#8217;s a manifest for all operations and transformations to be applied to your data.</p>
+</div>
+<div class="paragraph">
+<p>To start a stream processor, Kafka Streams only requires us to build a <code>Topology</code> and to hand it over.
+Kafka Streams will take care of managing the underlying consumers and producers.</p>
+</div>
+<div class="paragraph">
+<p>The <code>io.confluent.developer.ccloud.demo.kstream.KStreamConfig</code> Java class already contains all the boilerplate code required by Kafka Streams to start our processor.
+In this exercise, we will leverage a <code>StreamsBuilder</code> to define and instantiate a <code>Topology</code> that will handle our transaction processing.</p>
+</div>
+<div class="paragraph">
+<p>Open the <code>io.confluent.developer.ccloud.demo.kstream.KStreamConfig.defineStreams</code> method and get ready to write your first Kafka Streams Topology.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="create-a-kstream-from-the-source-topic"><a class="anchor" href="#create-a-kstream-from-the-source-topic"></a>Create a KStream from the source topic.</h4>
+<div class="paragraph">
+<p>Use the <code>stream</code> method of <code>streamsBuilder</code> to turn a topic into a <code>KStream</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-java hljs" data-lang="java">KStream&lt;String, Transaction&gt; transactionStream =
+  streamsBuilder.stream("transaction-request");</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="leverage-the-transformer-to-process-our-requests"><a class="anchor" href="#leverage-the-transformer-to-process-our-requests"></a>Leverage the Transformer to process our requests</h4>
+<div class="paragraph">
+<p>To inform Kafka Streams that we want to update the <code>funds</code> State Store for all incoming requests atomically, we can leverage the <code>transformValues</code> operator to plugin our <code>TransactionTransformer</code>.
+This operator requires us to specify the name of the <code>funds</code> State Store that will be used by the <code>Transformer</code>.
+This also instructs Kafka Streams to keep track of events from our <code>transaction-request</code> since they will result in a change of state for our store.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-java hljs" data-lang="java">KStream&lt;String, TransactionResult&gt; resultStream = transactionStream
+  .transformValues(this::transactionTransformer, "funds");</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="redirect-the-transaction-result-to-the-appropriate-topic"><a class="anchor" href="#redirect-the-transaction-result-to-the-appropriate-topic"></a>Redirect the transaction result to the appropriate topic.</h4>
+<div class="paragraph">
+<p>With a new derived stream containing <code>TransactionResult</code>, we can now use the information contained in the payload to feed a success or failure topic.</p>
+</div>
+<div class="paragraph">
+<p>We will achieve by deriving two streams from our <code>resultStream</code>.
+Each will be built by applying a <code>filter</code> and <code>filterNot</code> operator with a predicate on the <code>success</code> flag from our <code>TransactionResult</code> payload.
+With the two derived streams, we can explicitly call the <code>to</code> operator to instruct Kafka Streams to write the mutated events to their respective topics.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-java hljs" data-lang="java">resultStream
+  .filter(this::success)
+  .to("transaction-successs");
+
+resultStream
+  .filterNot(this::success)
+  .to("transaction-failed");</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="the-implemented-definestreams-method"><a class="anchor" href="#the-implemented-definestreams-method"></a>The implemented defineStreams method</h4>
+<div class="paragraph">
+<p>Use this reference implementation to validate that you have the right stream definition.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-java hljs" data-lang="java">private void defineStreams(StreamsBuilder streamsBuilder) {
+  KStream&lt;String, Transaction&gt; transactionStream =
+    streamsBuilder.stream("transaction-request");
+
+
+  KStream&lt;String, TransactionResult&gt; resultStream = transactionStream
+    .transformValues(
+      this::transactionTransformer, "funds"
+    );
+
+  resultStream
+    .filter(this::success)
+    .to("transaction-successs");
+
+  resultStream
+    .filterNot(this::success)
+    .to("transaction-failed");
+  }</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="running-the-kafka-streams-application"><a class="anchor" href="#running-the-kafka-streams-application"></a>Running the Kafka Streams application</h3>
+<div class="paragraph">
+<p>If you are running the application from your Java IDE.
+Just launch the main method from <code>io.confluent.developer.ccloud.demo.kstream.KStreamDemoApplication</code>.</p>
+</div>
+<div class="paragraph">
+<p>If you want to run with the CLI, you will need to build the application before launching it.</p>
+</div>
+<div class="paragraph">
+<p>To build:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">./mvnw -f kstreams-demo/pom.xml clean package</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">java -jar kstreams-demo/target/kstreams-demo.jar</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="generate-some-transactions-using-the-data-generator-endpoint"><a class="anchor" href="#generate-some-transactions-using-the-data-generator-endpoint"></a>Generate some transactions using the Data Generator endpoint</h3>
+<div class="paragraph">
+<p>Ensure that you Data Generator application is still running from <a href="../connector/connector-linux.md#start-the-data-generator-application">the previous section</a>.</p>
+</div>
+<div class="paragraph">
+<p>The utility script <code>scripts/generate-transaction.sh</code> will let you generate transactions.
+Generate a couple of transaction with the following commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">scripts/generate-transaction.sh 1 DEPOSIT 100 CAD
+scripts/generate-transaction.sh 1 DEPOSIT 200 CAD
+scripts/generate-transaction.sh 1 DEPOSIT 300 CAD
+scripts/generate-transaction.sh 1 WITHDRAW 300 CAD
+scripts/generate-transaction.sh 1 WITHDRAW 10000 CAD
+
+scripts/generate-transaction.sh 2 DEPOSIT 100 CAD
+scripts/generate-transaction.sh 2 DEPOSIT 50 CAD
+scripts/generate-transaction.sh 2 DEPOSIT 300 CAD
+scripts/generate-transaction.sh 2 WITHDRAW 300 CAD</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The script takes in argument the account number, the amount, the type of operation (<code>DEPOSIT</code> or <code>WITHDRAW</code>) and the currency.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="monitor-the-successful-transaction-results"><a class="anchor" href="#monitor-the-successful-transaction-results"></a>Monitor the successful transaction results</h3>
+<div class="paragraph">
+<p>Access Confluent Cloud UI from <a href="https://confluent.cloud" class="bare">https://confluent.cloud</a></p>
+</div>
+<div class="paragraph">
+<p>From the main screen, navigate to environment that looks like <code>demo-env-&lt;some-number&gt;</code>.
+Inside of this environment you should see cluster that looks like <code>demo-kafka-cluster-&lt;some-number&gt;</code>.
+On the left side click on <code>Topics</code>.</p>
+</div>
+<div class="paragraph">
+<p>Click on the <code>transaction-success</code> topic and access the <code>messages</code> tab.
+Click on the <code>offset</code> textbox and type <code>0</code> and press enter to load all messages from partition 0 starting from offset 0.</p>
+</div>
+<div class="paragraph">
+<p>You should observe <code>transaction-success</code> events in the UI.
+If you can&#8217;t see any message, try your lock with partition 1 starting from offset 0.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="monitor-the-failed-transaction-results-from-control-center"><a class="anchor" href="#monitor-the-failed-transaction-results-from-control-center"></a>Monitor the failed transaction results from Control Center</h3>
+<div class="paragraph">
+<p>Click on the <code>topic</code> tab from the cluster navigation menu.
+Select the <code>transaction-failed</code> topic and access the <code>messages</code> tab.
+Click on the <code>offset</code> textbox and type <code>0</code> and press enter to load all messages from partition 0 starting from offset 0.</p>
+</div>
+<div class="paragraph">
+<p>You should observe <code>transaction-failed</code> events in the UI.
+If you can&#8217;t see any message, try your lock with partition 1 starting from offset 0.</p>
+</div>
+<div class="paragraph">
+<p>In the next section, we will explore how writing Stream Processor can even be more simplified with <code>ksqlDB</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="3️⃣-enrich-transaction-results-with-ksqldb"><a class="anchor" href="#3️⃣-enrich-transaction-results-with-ksqldb"></a>3️⃣ Enrich transaction results with ksqlDB</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you recall, in the first section of this workshop, we configured a JDBC Source Connector to load all account details into an <code>account</code> topic.
+In this next exercise, we will write a second Stream Processor to generate a detailed transaction statement enriched with account details.</p>
+</div>
+<div class="paragraph">
+<p>Rather than within this new service as another Kafka Streams application, we will leverage ksqlDB to declare a stream processor who will enrich our transaction data in real-time with our referential data coming from the <code>account</code> topic.
+The objective of this section is to showcase how an SQL-like query language be used to generate streams processors just like Kafka Streams without having to compile and run any custom piece of software.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/transaction-statement-overview.png" alt="Transaction Statements">
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Connect to ksqlDB with CLI</div>
+<div class="paragraph">
+<p>In this excersise, we&#8217;re going to use ksqlDB Cloud UI.
+But you also can run cli using docker.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">docker run -it confluentinc/ksqldb-cli:0.11.0 ksql -u $KSQL_API_KEY -p $KSQL_API_SECRET $KSQLDB_ENDPOINT</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-the-account-table"><a class="anchor" href="#create-the-account-table"></a>Create the account table</h3>
+<div class="paragraph">
+<p>ksqlDB is built on top of Kafka Streams.
+As such, the <code>KStream</code> and <code>KTable</code> are both key constructs for defining stream processors.</p>
+</div>
+<div class="paragraph">
+<p>The first step requires us to instruct ksqlDB that we wish to turn the <code>account</code> topic into a <code>Table</code>. This table will allow us to join each <code>transaction-success</code> event with the latest <code>account</code> event of the underlying topic.
+Run the following command in your ksqlDB CLI terminal:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-sql hljs" data-lang="sql">CREATE TABLE ACCOUNT (
+  numkey string PRIMARY KEY,
+  number INT,
+  cityAddress STRING,
+  countryAddress STRING,
+  creationDate BIGINT,
+  firstName STRING,
+  lastName STRING,
+  numberAddress STRING,
+  streetAddress STRING,
+  updateDate BIGINT
+) WITH (
+  KAFKA_TOPIC = 'account',
+  VALUE_FORMAT='JSON'
+);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-the-transaction-success-stream"><a class="anchor" href="#create-the-transaction-success-stream"></a>Create the transaction-success stream</h3>
+<div class="paragraph">
+<p>Before we create the <code>Transaction Statement</code> stream processor, we also need to inform ksqlDB that we wish to turn the <code>transaction-success</code> into a <code>Stream</code>.
+Run the following command in your ksqlDB CLI terminal:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-sql hljs" data-lang="sql">CREATE STREAM TRANSACTION_SUCCESS (
+  transaction STRUCT&lt;guid STRING, account STRING, amount DOUBLE, type STRING, currency STRING, country STRING&gt;,
+  funds STRUCT&lt;account STRING, balance DOUBLE&gt;,
+  success boolean,
+  errorType STRING
+) WITH (
+  kafka_topic='transaction-success',
+  value_format='json'
+);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-the-transaction-statement-stream"><a class="anchor" href="#create-the-transaction-statement-stream"></a>Create the transaction statement stream</h3>
+<div class="paragraph">
+<p>Now that we have all the ingredients of our <code>Transaction Statement</code> stream processor, we can now create a new stream derived from our <code>transaction-success</code> events paired with the latest data from the <code>account</code> topic.
+We will instruct ksqlDB to create a new stream as a Query.
+By default, ksqlDB will publish any output to a new <code>TRANSACTION_STATEMENT</code> topic.
+The select query provides the details about with events to subscribe as well as which table to join each notification.
+The output of this new stream processor will be a mix of the transaction details coupled with all the details of the matching account.
+The key from <code>transaction-success</code> and <code>account</code> will be used as matching criteria for the <code>LEFT JOIN</code> command. <code>EMIT CHANGES</code> informs ksqlDB that this query is long-running and should continuously be kept alive.
+Just as if it was a Kafka Streams application to be 100% available to process all events.
+Run the following command in your ksqlDB CLI terminal:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-sql hljs" data-lang="sql">CREATE STREAM TRANSACTION_STATEMENT AS
+  SELECT *
+  FROM TRANSACTION_SUCCESS
+  LEFT JOIN ACCOUNT ON TRANSACTION_SUCCESS.rowkey = ACCOUNT.rowkey
+  EMIT CHANGES;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="monitor-the-transaction-statements-in-cloud-ui"><a class="anchor" href="#monitor-the-transaction-statements-in-cloud-ui"></a>Monitor the Transaction Statements in Cloud UI</h3>
+<div class="paragraph">
+<p>Access Confluent Cloud UI from <a href="https://confluent.cloud" class="bare">https://confluent.cloud</a></p>
+</div>
+<div class="paragraph">
+<p>From the main screen, navigate to environment that looks like <code>demo-env-&lt;some-number&gt;</code>.
+Inside of this environment you should see cluster that looks like <code>demo-kafka-cluster-&lt;some-number&gt;</code>.
+On the left side click on <code>Topics</code>.</p>
+</div>
+<div class="paragraph">
+<p>Click on the <code>TRANSACTION_STATEMENT</code> topic and access the <code>messages</code> tab.
+Click on the <code>offset</code> textbox and type <code>0</code> and press enter to instruct C3 to load all messages from partition 0 starting from offset 0.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/transaction-statements.png" alt="c3-transaction-statements">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="its-a-wrap"><a class="anchor" href="#its-a-wrap"></a>✅ It&#8217;s a wrap!</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Congratulations! Now you know how to build event-driven microservices using Spring Boot, Kafka Streams and ksqlDB.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Don&#8217;t forget to clean up</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-shell script hljs" data-lang="shell script">$ cd scripts/ccloud
+$ docker-compose down -v    <i class="conum" data-value="1"></i><b>(1)</b>
+$ ./ccloud_stack_destroy.sh  stack-configs/java-service-account-103523.config <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Stop a connector and database</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Destroy ccloud stack to avoid unexpected charges.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="special-thanks"><a class="anchor" href="#special-thanks"></a>Special Thanks!</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This workshop based on work of <a href="https://github.com/daniellavoie">Daniel Lavoie</a>.
+Much ♥️!</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2020-08-27 14:18:42 EDT
+</div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/idea.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+</body>
+</html>
