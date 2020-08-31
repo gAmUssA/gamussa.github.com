@@ -22,6 +22,15 @@ Viktor Gamov <viktor@confluent.io>, © 2020 Confluent, Inc.
 :highlightjs-theme: idea
 :experimental:
 :imagesdir: ./images
+:imagesdir: ../images
+ifndef::awestruct[]
+:awestruct-draft: false
+:awestruct-layout: post
+:awestruct-tags: []
+:idprefix:
+:idseparator: -
+endif::awestruct[]
+:imagesdir: ./images
 
 
 // T.M. General note: Not sure the style guide for this one, but I'd recommend going through and removing passive voice instances - if possible.
