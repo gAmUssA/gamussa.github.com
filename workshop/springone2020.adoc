@@ -1,4 +1,4 @@
-= Workshop: Building Event-driven microservices using Spring Boot, Kafka Streams and ksqlDB
+= Workshop - Building Event-driven microservices using Spring Boot, Kafka Streams and ksqlDB
 Viktor Gamov <viktor@confluent.io>, © 2020 Confluent, Inc.
 2020-08-25
 :revdate: 2020-08-25 19:22:48 -0600
