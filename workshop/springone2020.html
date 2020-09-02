@@ -1,4 +1,4 @@
-<!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><html class="no-js" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Workshop - Building Event-driven microservices using Spring Boot, Kafka Streams and ksqlDB | gamov.io</title><meta name="author" content="Viktor Gamov &lt;viktor@confluent.io&gt;, © 2020 Confluent, Inc."><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@asciidoctor"><meta name="twitter:url" content="http://gamov.io/workshop/springone2020.html"><meta name="twitter:title" content="Workshop - Building Event-driven microservices using Spring Boot, Kafka Streams and ksqlDB"><meta name="twitter:description" content="Table of contents
+<!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><html class="no-js" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Workshop — Developing Event-driven Microservices with Spring Boot, Confluent Cloud, Kotlin, and Java. | gamov.io</title><meta name="author" content="Viktor Gamov &lt;viktor@confluent.io&gt;, © 2020 Confluent, Inc."><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@asciidoctor"><meta name="twitter:url" content="http://gamov.io/workshop/springone2020.html"><meta name="twitter:title" content="Workshop — Developing Event-driven Microservices with Spring Boot, Confluent Cloud, Kotlin, and Java."><meta name="twitter:description" content="Table of contents
 Workshop prerequisites and setup
 Prerequisites
 Setup
@@ -6,7 +6,7 @@ Setup
 1️⃣ Loading referential data with Kafka Connect
 Start JDBC connector in Docker
 Start the Data Generator application
-Start the..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html"><span class="icon"><i class="fa fa-th-large"></i></span>&nbspBlog</a></li><li class="divider"></li><li><a href="http://github.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-github"></i></span>&nbspGithub</a></li><li class="divider"></li><li><a href="http://twitter.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-twitter"></i></span>&nbspTwitter</a></li><li class="divider"></li><li><a href="https://www.youtube.com/playlist?list=PLaJqps0DAycqu2OV6sjl_Dm_VymB6KDV_" target="_blank"><span class="icon"><i class="fa fa-youtube"></i></span>&nbspMy Talks</a></li><li class="divider"></li><li><a href="https://speakerdeck.com/vikgamov" target="_blank"><span class="icon"><i class="fa fa-slideshare"></i></span>&nbspMy Slides</a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://gamov.io">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h2 class="header"><a href="/workshop/springone2020.html">Workshop - Building Event-driven microservices using Spring Boot, Kafka Streams and ksqlDB</a></h2><h5 class="subheader">Written by&nbsp <a href="#">Viktor Gamov &lt;viktor@confluent.io&gt;, © 2020 Confluent, Inc.</a>&nbsp- <time class="pubdate" datetime="2020-08-25T19:22:48-06:00">Tuesday, August 25, 2020</time></h5><div class="row"><div class="large-12 columns text-left"><div id="toc" class="toc">
+Start the..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html"><span class="icon"><i class="fa fa-th-large"></i></span>&nbspBlog</a></li><li class="divider"></li><li><a href="http://github.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-github"></i></span>&nbspGithub</a></li><li class="divider"></li><li><a href="http://twitter.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-twitter"></i></span>&nbspTwitter</a></li><li class="divider"></li><li><a href="https://www.youtube.com/playlist?list=PLaJqps0DAycqu2OV6sjl_Dm_VymB6KDV_" target="_blank"><span class="icon"><i class="fa fa-youtube"></i></span>&nbspMy Talks</a></li><li class="divider"></li><li><a href="https://speakerdeck.com/vikgamov" target="_blank"><span class="icon"><i class="fa fa-slideshare"></i></span>&nbspMy Slides</a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://gamov.io">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h2 class="header"><a href="/workshop/springone2020.html">Workshop — Developing Event-driven Microservices with Spring Boot, Confluent Cloud, Kotlin, and Java.</a></h2><h5 class="subheader">Written by&nbsp <a href="#">Viktor Gamov &lt;viktor@confluent.io&gt;, © 2020 Confluent, Inc.</a>&nbsp- <time class="pubdate" datetime="2020-08-25T19:22:48-06:00">Tuesday, August 25, 2020</time></h5><div class="row"><div class="large-12 columns text-left"><div id="toc" class="toc">
 <div id="toctitle">Table of contents</div>
 <ul class="sectlevel1">
 <li><a href="#workshop-prerequisites-and-setup">Workshop prerequisites and setup</a>
@@ -36,7 +36,7 @@ Start the..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/j
 <li><a href="#create-a-kstream-from-the-source-topic">Create a KStream from the source topic.</a></li>
 <li><a href="#leverage-the-transformer-to-process-our-requests">Leverage the Transformer to process our requests</a></li>
 <li><a href="#redirect-the-transaction-result-to-the-appropriate-topic">Redirect the transaction result to the appropriate topic.</a></li>
-<li><a href="#the-implemented-definestreams-method">The implemented defineStreams method</a></li>
+<li><a href="#the-implemented-definestreams-method">The implemented <code>defineStreams</code> method</a></li>
 </ul>
 </li>
 <li><a href="#running-the-kafka-streams-application">Running the Kafka Streams application</a></li>
@@ -76,9 +76,20 @@ Start the..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/j
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://confluent.cloud">Confluent Cloud</a>
-TIP: You should have your login and password information handy after you sign up for Confluent Cloud.
-The <code>ccloud</code> init script will ask you for your login information.</p>
+<p><a href="https://confluent.cloud">Confluent Cloud</a></p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You should have your login and password information handy after you sign up for Confluent Cloud.
+The <code>ccloud</code> init script will ask you for your login information.
+</td>
+</tr>
+</table>
+</div>
 </li>
 <li>
 <p><a href="https://docs.confluent.io/current/cloud/cli/install.html">Confluent Cloud CLI</a></p>
@@ -88,10 +99,10 @@ The <code>ccloud</code> init script will ask you for your login information.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://docs.docker.com/docker-for-mac/install/">MacOS</a></p>
+<p><a href="https://docs.docker.com/docker-for-mac/install/">install Docker Desktop for MacOS</a></p>
 </li>
 <li>
-<p>Docker Compose (installed with Docker Desktop and Docker Toolbox)</p>
+<p>Docker Compose (installed with Docker Desktop)</p>
 </li>
 </ul>
 </div>
@@ -100,10 +111,17 @@ The <code>ccloud</code> init script will ask you for your login information.</p>
 <p>Git</p>
 </li>
 <li>
-<p><a href="https://jdk.dev">Java 8 (or later)</a></p>
+<p><a href="https://jdk.dev">Java 11 (or later)</a></p>
 </li>
 <li>
-<p>Your favorite Java IDE (I recommend <a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a>)</p>
+<p>Your favorite Java IDE or even text editor</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Personally, I recommend <a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a>.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -113,28 +131,11 @@ The <code>ccloud</code> init script will ask you for your login information.</p>
 <div class="paragraph">
 <p>Before you proceed, be sure to complete the following steps:</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Clone the following repository:</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
+<div class="title">Getting code</div>
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-shell script hljs" data-lang="shell script">$ git clone https://github.com/gAmUssA/springone2020-workshop    <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
-</div>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Change the directory of the workshop folder:</p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-shell script hljs" data-lang="shell script">$ cd springone2020-workshop                                      <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-shell script hljs" data-lang="shell script">git clone https://github.com/gAmUssA/springone2020-workshop    <i class="conum" data-value="1"></i><b>(1)</b>
+cd springone2020-workshop                                      <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -161,7 +162,7 @@ The <code>ccloud</code> init script will ask you for your login information.</p>
 $ ccloud login --save       <i class="conum" data-value="1"></i><b>(1)</b>
 $ ./ccloud_stack_create.sh  <i class="conum" data-value="2"></i><b>(2)</b>
 
-This demo uses real Confluent Cloud resources.
+This demo uses real, Confluent Cloud resources.
 To avoid unexpected charges, carefully evaluate the cost of resources before launching the script and ensure all resources are destroyed after you are done running it.
 Do you still want to run this script? [y/n] y
 Do you also want to create a Confluent Cloud ksqlDB app (hourly charges may apply)? [y/n] y
@@ -190,13 +191,10 @@ Sleeping an additional 80 seconds to ensure propagation of all metadata</code></
 <p>It will automatically provision Kafka and ksqlDB cluster.</p>
 </div>
 <div class="paragraph">
-<p>Among other things, this script generates a config that we need to pass to
-docker-compose start command in order to connector container connect to cloud
-Kafka cluster.</p>
+<p>Among other things, this script generates a config that we need to pass to the <code>docker-compose</code> start command to connector container connect to the cloud Kafka cluster.</p>
 </div>
 <div class="paragraph">
-<p>When ready, move to the next section where you will generate some referential
-data.</p>
+<p>When ready, move to the next section, where you will generate some referential data.</p>
 </div>
 </div>
 </div>
@@ -204,20 +202,14 @@ data.</p>
 <h2 id="1️⃣-loading-referential-data-with-kafka-connect"><a class="anchor" href="#1️⃣-loading-referential-data-with-kafka-connect"></a>1️⃣ Loading referential data with Kafka Connect</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To leverage the full power of stream processing, it is a good practice to
-preload the required data in topics. Kafka Streams and ksqlDB will allow you to
-join and lookup data from your events with any other topic.</p>
+<p>To leverage the full power of stream processing, it is best to preload the required data in topics.
+Kafka Streams and ksqlDB will allow you to join and lookup data from your events with any other topic.</p>
 </div>
 <div class="paragraph">
-<p>In this section of the workshop, we will set up a
-<a href="https://www.confluent.io/hub/confluentinc/kafka-connect-jdbc">Kafka Connect JDBC
-Source connector</a> instance that will synchronize any data from a PostgreSQL
-instance to an <code>account</code> topic in Kafka.</p>
+<p>This section of the workshop will set up a <a href="https://www.confluent.io/hub/confluentinc/kafka-connect-jdbc">Kafka Connect JDBC Source connector</a> instance that will synchronize any data from a PostgreSQL instance to an <code>account</code> topic in Kafka.</p>
 </div>
 <div class="paragraph">
-<p>This exercise simulates a
-<a href="https://en.wikipedia.org/wiki/Change_data_capture">Change Data Capture pattern</a>
-where we bridge an existing data source to Kafka in real time.</p>
+<p>This exercise simulates a <a href="https://en.wikipedia.org/wiki/Change_data_capture">Change Data Capture pattern</a> where we bridge an existing data source to Kafka real-time.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -228,47 +220,45 @@ where we bridge an existing data source to Kafka in real time.</p>
 <h3 id="start-jdbc-connector-in-docker"><a class="anchor" href="#start-jdbc-connector-in-docker"></a>Start JDBC connector in Docker</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-shell script hljs" data-lang="shell script">./start.sh stack-configs/java-service-account-103523.config <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-shell script hljs" data-lang="shell script">./start_connect.sh stack-configs/java-service-account-103523.config <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Replace with actual service account ID</td>
+<td>Replace with actual service account ID you did get during «Provisioning Confluent Cloud cluster» step.</td>
 </tr>
 </table>
 </div>
 <div class="sect3">
 <h4 id="start-the-data-generator-application"><a class="anchor" href="#start-the-data-generator-application"></a>Start the Data Generator application</h4>
 <div class="paragraph">
-<p>Within the workshop project, you will find a <code>data-generator</code> folder containing
-an application designed to generate some random accounts in our PostgreSQL
-<code>Account DB</code>. This utility application will generate about <code>1000</code> test accounts.
-The Data Generator also contains a REST endpoint to help us submit transaction
-requests to Kafka later during the workshop.</p>
-</div>
-<div class="paragraph">
-<p>The data generator can be launched by running the following command from the
-root of the workshop project folder:</p>
+<p>Within the workshop project, you will find a <code>data-generator</code> folder containing an application designed to generate some random accounts in our PostgreSQL <code>Account</code> DB.
+This utility application will generate about <code>1000</code> test accounts.
+The Data Generator also contains a REST endpoint to help us submit transaction requests to Kafka later during the workshop.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="/images/data-generator.png" alt="Data Generator">
 </div>
 </div>
-<div class="paragraph">
-<p>To run the Data Generator application, you can use your Java IDE to launch the
-main method from
-<code>src/main/java/io/confluent/developer/ccloud/demo/kstream/DataGeneratorApplication.java</code>.</p>
-</div>
-<div class="paragraph">
-<p>You can also start the application from CLI by building it and running it:</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Open a new terminal window in the workshop project folder.
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock">
+<div class="title">The data generator can be launched by running the following commands:</div>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-shell script hljs" data-lang="shell script">$ source ./scripts/cclou/delta_configs/env.delta
-$ cd ../..
 $ ./gradlew :data-generator:build                        <i class="conum" data-value="1"></i><b>(1)</b>
 $ java -jar data-generator/build/libs/data-generator-0.0.1-SNAPSHOT.jar      <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
@@ -277,16 +267,30 @@ $ java -jar data-generator/build/libs/data-generator-0.0.1-SNAPSHOT.jar      <i 
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>To build</td>
+<td>To build.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>To run after build</td>
+<td>To run after build.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To run the Data Generator application in your IDE launch the  main method from
+<code>src/main/java/io/confluent/developer/ccloud/demo/kstream/DataGeneratorApplication.java.</code>
+Make sure you have environment variables set according to the <code>delta_configs/env.delta</code> file.
+</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>After the data set is generated, you should see the following output:</p>
+<p>After the dataset generated, you should see the following output:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -298,11 +302,11 @@ $ java -jar data-generator/build/libs/data-generator-0.0.1-SNAPSHOT.jar      <i 
 <div class="sect2">
 <h3 id="start-the-connector"><a class="anchor" href="#start-the-connector"></a>Start the connector</h3>
 <div class="paragraph">
-<p>Run the following command from the root of the workshop project folder:</p>
+<p>Open a new terminal window and run the following command from the root of the workshop project folder:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-shell script hljs" data-lang="shell script">$ ./scrips/connect/deploy-jdbc-connector.sh <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-shell script hljs" data-lang="shell script">./scrips/connect/deploy-jdbc-connector.sh   <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -310,6 +314,25 @@ $ java -jar data-generator/build/libs/data-generator-0.0.1-SNAPSHOT.jar      <i 
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
 <td>This command will start a connector instance.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>To validate the status of the connector, you can run</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-shell script hljs" data-lang="shell script">./scripts/connect/connector-status.sh</code></pre>
+</div>
+</div>
+</td>
 </tr>
 </table>
 </div>
@@ -322,20 +345,17 @@ $ java -jar data-generator/build/libs/data-generator-0.0.1-SNAPSHOT.jar      <i 
 <p>Access Confluent Cloud user interface from <a href="https://confluent.cloud" class="bare">https://confluent.cloud</a>.</p>
 </li>
 <li>
-<p>From the main screen, navigate to environment that looks like
-<code>demo-env-&lt;some-number&gt;</code>.</p>
+<p>From the main screen, navigate to an environment that looks like`demo-env-&lt;some-number&gt;.`</p>
 </li>
 <li>
-<p>Inside of this environment you should see cluster that looks like
-<code>demo-kafka-cluster-&lt;some-number&gt;</code>. On the left side click on
-<code>Topics</code>.</p>
+<p>Inside of this environment, you should see a cluster that looks like`demo-kafka-cluster-&lt;some-number&gt;.`
+On the left side, click on 'Topics.`</p>
 </li>
 <li>
 <p>Click on the <code>account</code> topic and access the <code>messages</code> tab.</p>
 </li>
 <li>
-<p>Click on the <code>offset</code> textbox and type <code>0</code> and press enter to the user
-interface to load all messages from partition <code>0</code> starting from <em>offset</em> <code>0</code>.</p>
+<p>Click on the <code>offset</code> textbox and type <code>0</code> and press Enter the user interface to load all messages from partition <code>0</code> starting from <code>0</code>.</p>
 </li>
 </ol>
 </div>
@@ -349,8 +369,7 @@ interface to load all messages from partition <code>0</code> starting from <em>o
 <div class="title">Figure 1. Messages explorer in Confluent Cloud user interface</div>
 </div>
 <div class="paragraph">
-<p>In the next section, we will implement a highly scalable stream processing
-application using Kafka Streams.</p>
+<p>In the next section, we will implement a highly scalable stream processing application using Kafka Streams.</p>
 </div>
 </div>
 </div>
@@ -359,16 +378,69 @@ application using Kafka Streams.</p>
 <h2 id="2️⃣-implementing-a-stream-processor-with-kafka-streams"><a class="anchor" href="#2️⃣-implementing-a-stream-processor-with-kafka-streams"></a>2️⃣ Implementing a Stream Processor with Kafka Streams</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Now is the time to get into the heart of the action. We will implement a Kafka
-Streams topology to process atomic transactions to any request submitted to the
-<code>transaction-request</code> topic.</p>
+<p>Now is the time to get into the heart of the action. We will implement a Kafka Streams topology to process atomic transactions to any request submitted to the <code>transaction-request</code> topic.</p>
 </div>
 <div class="paragraph">
-<p>Within the <strong>workshop</strong> project folder, you will find a <code>kstreams-demo</code> subfolder
-represeting a Kafka Streams application. All of the boilerplate code required to
-connect to Kafka is already taken care of (thank you, Spring Boot!). This
-workshop will focus on writing a Kafka Streams topology with the function
-processing for our use case.</p>
+<p>Within the <strong>workshop</strong> project folder, you will find a <code>kstreams-demo</code> subfolder representing a Kafka Streams application.
+Spring Boot and the <code>spring-kafka</code> project handled the boilerplate code required to connect to Kafka.
+This workshop will focus on writing a <code>Kafka Streams</code> topology with the function processing for our use case.</p>
+</div>
+<div class="olist WARNING">
+<ol class="WARNING">
+<li>
+<p>"Help me! I can&#8217;t figure out what code to modify!"</p>
+</li>
+</ol>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>If you are lost during the exercise, you can reset your codebase and switch to the <code>solution</code> to run the Stream Processor without coding the solution yourself.</p>
+</div>
+<div class="paragraph">
+<p>Be careful before running the next command as you will lose any uncommitted changes in your local git repository:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">git reset --hard origin/master &amp;&amp; git checkout solution</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="atomic-transaction-processing-with-kafka-streams"><a class="anchor" href="#atomic-transaction-processing-with-kafka-streams"></a>Atomic transaction processing with Kafka Streams</h3>
+<div class="paragraph">
+<p>Our business requirement states that we must check whether the funds are sufficient for every request received before updating the balance of the account being processed.
+We should never have two transactions being processed at the same time for the same account.
+This would create a race condition for which we have no guarantee we can enforce the balance check before withdrawing funds.</p>
+</div>
+<div class="paragraph">
+<p><em>The Data Generator</em> writes transaction requests to the Kafka topic with a key equal to the transaction&#8217;s account number.
+Therefore, we can be sure all messages of an account will be processed by a single thread for our Transaction Service no matter how many instances are concurrently running.</p>
+</div>
+<div class="paragraph">
+<p>Kafka Streams won&#8217;t commit any message offset until it completes our business logic of managing a transaction request.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/transaction-service.png" alt="Transaction Service">
+</div>
+</div>
+<div class="sect3">
+<h4 id="implement-the-transaction-transformer"><a class="anchor" href="#implement-the-transaction-transformer"></a>Implement the Transaction Transformer</h4>
+<div class="paragraph">
+<p>Because of our stream processor&#8217;s transaction nature, we require a specific component from Kafka Streams named a <code>Transformer.</code>
+This utility allows us to process events one by one while interacting with a <code>State Store</code>–another
+component of Kafka Streams that help us to persist our account balance in a local instance of an embedded database - RocksDB.</p>
+</div>
+<div class="paragraph">
+<p>Open the <code>io.confluent.developer.ccloud.demo.kstream.TransactionTransformer</code>
+Java class and implement the <code>transform</code> function to return a <code>TransactionResult</code> based on the validity of the transaction request.
+The <code>TransactionResult</code> contains a <code>success</code> flag set to <code>true</code> if the funds were successfully updated.</p>
+</div>
+<div class="paragraph">
+<p>The <code>transform</code> method also updates the <code>store</code> State Store.
+The class already has utility functions to help you execute our business logic.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -379,136 +451,77 @@ processing for our use case.</p>
 <td class="content">
 <div class="title">"Help me! I can&#8217;t figure out what code to modify!"</div>
 <div class="paragraph">
-<p>If during the exercise you are lost, you can at any point reset your codebase and switch to the <code>solution</code> to run the Stream Processor without coding the solution yourself.</p>
-</div>
-<div class="paragraph">
-<p>Be careful before running the next command as you will lose any uncommitted changes in your local git repository:</p>
+<p>If you are stuck on this exercise, you can switch to the <code>solution-transformer</code> branch:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="nowrap">git reset --hard origin/master &amp;&amp; git checkout solution</pre>
+<pre class="highlightjs highlight nowrap"><code class="language-shell script hljs" data-lang="shell script">git reset --hard origin/master &amp;&amp; git checkout solution-transformer   <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>All of your local code changes will be lost.</td>
+</tr>
+</table>
 </div>
 </td>
 </tr>
 </table>
 </div>
-<div class="sect2">
-<h3 id="atomic-transaction-processing-with-kafka-streams"><a class="anchor" href="#atomic-transaction-processing-with-kafka-streams"></a>Atomic transaction processing with Kafka Streams</h3>
-<div class="paragraph">
-<p>Our business requirement states that for every request received, we must check
-whether the funds are sufficient before updating the balance of the account
-being processed. We should never have two transactions being processed at the
-same time for the same account. This would create a race condition for which we
-have no guarantee we can enforce the balance check before withdrawing funds.</p>
-</div>
-<div class="paragraph">
-<p>The Data Generator writes transaction requests to the Kafka topic with a key
-equal to the account number of the transaction. Therefore, we can be sure all
-messages of an account will be proccessed by a single thread for our Transaction
-Service no matter how many instances of it are concurrently running.</p>
-</div>
-<div class="paragraph">
-<p>Kafka Streams won&#8217;t commit any message offset until it completes our business
-logic of managing a transaction request.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="/images/transaction-service.png" alt="Transaction Service">
-</div>
-</div>
-<div class="sect3">
-<h4 id="implement-the-transaction-transformer"><a class="anchor" href="#implement-the-transaction-transformer"></a>Implement the Transaction Transformer</h4>
-<div class="paragraph">
-<p>Because of the transaction nature of our stream processor, we require a specific
-component from Kafka Streams named a <code>Transformer</code>. This utility allows us to
-process events one by one while interacting with a <code>State Store</code>–another
-component of Kafka Streams that allows us to persist our account balance.</p>
-</div>
-<div class="paragraph">
-<p>Open the <code>io.confluent.developer.ccloud.demo.kstream.TransactionTransformer</code>
-Java class and implement the <code>transform</code> function to return a
-<code>TransactionResult</code> based on the validity of the transaction request. The
-<code>TransactionResult</code> contains a <code>success</code> flag that will be set to <code>true</code> if
-the funds were successfully updated.</p>
-</div>
-<div class="paragraph">
-<p>The <code>transform</code> method also updates the <code>store</code> State Store. The class already
-has utility functions to help you execute our business logic.</p>
-</div>
-<div class="paragraph">
-<p>If you are stuck on this exercise, you can switch to the <code>solution-transformer</code>
-branch:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="nowrap">git reset --hard origin/master &amp;&amp; git checkout solution-transformer</pre>
-</div>
-</div>
 </div>
 <div class="sect3">
 <h4 id="implement-the-streaming-topology"><a class="anchor" href="#implement-the-streaming-topology"></a>Implement the Streaming Topology</h4>
 <div class="paragraph">
-<p>In Kafka Streams, a <code>Topology</code> is the definition of your data flow. It&#8217;s a
-manifest for all operations and transformations to be applied to your data.</p>
+<p>In Kafka Streams, a <code>Topology</code> is the definition of your data flow.
+It&#8217;s a  manifest for all operations and transformations to be applied to your data.</p>
 </div>
 <div class="paragraph">
-<p>To start a stream processor, Kafka Streams only requires you to build a
-<code>Topology</code> and to hand it over. Kafka Streams will take care of managing the
-underlying consumers and producers.</p>
+<p>To start a stream processor, Kafka Streams only requires you to build a`Topology` and hand it over.
+Kafka Streams will take care of managing the underlying consumers and producers.</p>
 </div>
 <div class="paragraph">
-<p>The <code>io.confluent.developer.ccloud.demo.kstream.KStreamConfig</code> Java class
-already contains all the boilerplate code required by Kafka Streams to start our
-processor. In this exercise, we will leverage a <code>StreamsBuilder</code> to define and
-instantiate a <code>Topology</code> that will handle our transaction processing.</p>
+<p>The <code>io.confluent.developer.ccloud.demo.kstream.KStreamConfig</code> Java class already contains all the boilerplate code required by Kafka Streams to start our processor.
+In this exercise, we will leverage a <code>StreamsBuilder</code> to define and instantiate a <code>Topology</code> that will handle our transaction processing.</p>
 </div>
 <div class="paragraph">
-<p>Open the
-<code>io.confluent.developer.ccloud.demo.kstream.KStreamConfig.defineStreams</code> method
-and get ready to write your first Kafka Streams Topology.</p>
+<p>Open the <code>io.confluent.developer.ccloud.demo.kstream.KStreamConfig.defineStreams</code> method and get ready to write your first Kafka Streams Topology.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="create-a-kstream-from-the-source-topic"><a class="anchor" href="#create-a-kstream-from-the-source-topic"></a>Create a KStream from the source topic.</h4>
 <div class="paragraph">
-<p>Use the <code>stream</code> method of <code>streamsBuilder</code> to turn a topic into a <code>KStream</code>.</p>
+<p>Use the <code>stream</code> method of <code>streamsBuilder</code> to turn a topic into a <code>KStream.</code></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-java hljs" data-lang="java">KStream&lt;String, Transaction&gt; transactionStream =
-  streamsBuilder.stream("transaction-request");</code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-java hljs" data-lang="java">KStream&lt;String, Transaction&gt; transactionStream = streamsBuilder.stream("transaction-request");</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="leverage-the-transformer-to-process-our-requests"><a class="anchor" href="#leverage-the-transformer-to-process-our-requests"></a>Leverage the Transformer to process our requests</h4>
 <div class="paragraph">
-<p>To inform Kafka Streams that we want to update the <code>funds</code> State Store for all
-incoming requests atomically, we can leverage the <code>transformValues</code> operator to
-plugin our <code>TransactionTransformer</code>. This operator requires us to specify the
-name of the <code>funds</code> State Store that the <code>Transformer</code> will use. This also
-instructs Kafka Streams to keep track of events from our <code>transaction-request</code>
-since they will result in a change of state for our store.</p>
+<p>To inform Kafka Streams that we want to update the <code>funds</code> State Store for all incoming requests atomically, we can leverage the <code>transformValues</code> operator to plugin our <code>TransactionTransformer.</code>
+This operator requires us to specify the <code>funds</code> State Store that the <code>Transformer</code> will use.
+This also instructs Kafka Streams to keep track of events from our <code>transaction-request</code> since they will result in a change of state for our store.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-java hljs" data-lang="java">KStream&lt;String, TransactionResult&gt; resultStream = transactionStream
-  .transformValues(this::transactionTransformer, "funds");</code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-java hljs" data-lang="java">KStream&lt;String, TransactionResult&gt; resultStream = transactionStream.transformValue(this::transactionTransformer, "funds");</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="redirect-the-transaction-result-to-the-appropriate-topic"><a class="anchor" href="#redirect-the-transaction-result-to-the-appropriate-topic"></a>Redirect the transaction result to the appropriate topic.</h4>
 <div class="paragraph">
-<p>With a new derived stream containing <code>TransactionResult</code>, we can now use the
-information contained in the payload to feed a success or failure topic.</p>
+<p>With a new derived stream containing <code>TransactionResult,</code> we can now use the information contained in the payload to feed a success or failure topic.</p>
 </div>
 <div class="paragraph">
-<p>We will achieve this by deriving two streams from our <code>resultStream</code>. Each
-stream will be built by applying a <code>filter</code> and <code>filterNot</code> operator with a
-predicate on the <code>success</code> flag from our <code>TransactionResult</code> payload. With the
-two derived streams, we can explicitly call the <code>to</code> operator to instruct Kafka
+<p>We will achieve this by deriving two streams from our <code>resultStream.</code>
+Each stream will be built by applying a <code>filter</code> and <code>filterNot</code> operator with a predicate on the <code>success</code> flag from our <code>TransactionResult</code> payload.
+With the two derived streams, we can explicitly call the <code>to</code> operator to instruct Kafka
 Streams to write the mutated events to their respective topics.</p>
 </div>
 <div class="listingblock">
@@ -524,7 +537,7 @@ resultStream
 </div>
 </div>
 <div class="sect3">
-<h4 id="the-implemented-definestreams-method"><a class="anchor" href="#the-implemented-definestreams-method"></a>The implemented defineStreams method</h4>
+<h4 id="the-implemented-definestreams-method"><a class="anchor" href="#the-implemented-definestreams-method"></a>The implemented <code>defineStreams</code> method</h4>
 <div class="paragraph">
 <p>Use this reference implementation to validate you have the right stream definition.</p>
 </div>
@@ -554,26 +567,29 @@ resultStream
 </div>
 <div class="sect2">
 <h3 id="running-the-kafka-streams-application"><a class="anchor" href="#running-the-kafka-streams-application"></a>Running the Kafka Streams application</h3>
-<div class="paragraph">
-<p>If you are running the application from your Java IDE, launch the main method
-from <code>io.confluent.developer.ccloud.demo.kstream.KStreamDemoApplication</code>.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you are running the application from your Java IDE, launch the main method from <code>io.confluent.developer.ccloud.demo.kstream.KStreamDemoApplication</code>.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>If you want to run with the CLI, you must build the application before launching
-it.</p>
-</div>
-<div class="paragraph">
-<p>To build the application run the following command:</p>
+<p>If you want to run with the CLI, you must build the application before launching it.</p>
 </div>
 <div class="listingblock">
+<div class="title">To build the application, run the following command:</div>
 <div class="content">
 <pre class="nowrap">./gradlew :kstreams-demo:build</pre>
 </div>
 </div>
-<div class="paragraph">
-<p>To run the application run the following command:</p>
-</div>
 <div class="listingblock">
+<div class="title">To run the application run the following command</div>
 <div class="content">
 <pre class="nowrap">java -jar kstreams-demo/build/libs/kstreams-demo-0.0.1-SNAPSHOT.jar</pre>
 </div>
@@ -585,8 +601,8 @@ it.</p>
 <p>Ensure your Data Generator application is still running from the previous section.</p>
 </div>
 <div class="paragraph">
-<p>The utility script <code>scripts/generate-transaction.sh</code> will let you generate
-transactions. Generate a few transactions using the following commands:</p>
+<p>The utility script <code>scripts/generate-transaction.sh</code> will let you generate transactions.
+Generate a few transactions using the following commands:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -630,20 +646,17 @@ scripts/generate-transaction.sh 2 WITHDRAW 300 CAD</pre>
 <p>Access Confluent Cloud user interface from <a href="https://confluent.cloud" class="bare">https://confluent.cloud</a>.</p>
 </li>
 <li>
-<p>From the main screen, navigate to the environment that looks like
-<code>demo-env-&lt;some-number&gt;</code>.</p>
+<p>From the main screen, navigate to the environment that looks like <code>demo-env-&lt;some-number&gt;.</code></p>
 </li>
 <li>
-<p>Inside of the environment you should see cluster that looks like
-<code>demo-kafka-cluster-&lt;some-number&gt;</code>. On the left side, click on
-<code>Topics</code>.</p>
+<p>Inside of the environment, you should see a cluster that looks like <code>demo-kafka-cluster-&lt;some-number&gt;.</code>
+On the left side, click on <code>Topics.</code></p>
 </li>
 <li>
 <p>Click on the <code>transaction-success</code> topic and access the <code>messages</code> tab.</p>
 </li>
 <li>
-<p>Click on the <code>offset</code> textbox and type <code>0</code> and press enter to load all
-messages from partition 0 starting from offset 0.</p>
+<p>Click on the <code>offset</code> textbox and type <code>0</code> and press enter to load all messages from partition 0 starting from offset 0.</p>
 </li>
 </ol>
 </div>
@@ -663,8 +676,7 @@ don&#8217;t see any messages, try your luck with partition 1 starting from offse
 <p>Select the <code>transaction-failed</code> topic and access the <code>messages</code> tab.</p>
 </li>
 <li>
-<p>Click on the <code>offset</code> textbox and type <code>0</code> and press enter to load all
-messages from partition 0 starting from offset 0.</p>
+<p>Click on the <code>offset</code> textbox and type <code>0</code> and press enter to load all messages from partition 0 starting from offset 0.</p>
 </li>
 </ol>
 </div>
@@ -674,7 +686,7 @@ see any messages, try your lock with partition 1 starting from offset 0.</p>
 </div>
 <div class="paragraph">
 <p>In the next section, we will explore how writing Stream Processor can be
-simplified with <code>ksqlDB</code>.</p>
+simplified with <code>ksqlDB.</code></p>
 </div>
 </div>
 </div>
@@ -691,7 +703,7 @@ enriched with account details.</p>
 <div class="paragraph">
 <p>Rather than within this new service as another Kafka Streams application, we
 will leverage ksqlDB to declare a stream processor that will enrich our
-transaction data in real time with our referential data coming from the
+transaction data in real-time with our referential data coming from the
 <code>account</code> topic. The objective of this section is to show how you can use an
 SQL-like query language to generate streams processors like Kafka Streams,
 without having to compile and run any custom software.</p>
@@ -701,31 +713,37 @@ without having to compile and run any custom software.</p>
 <img src="/images/transaction-statement-overview.png" alt="Transaction Statements">
 </div>
 </div>
-<div class="sidebarblock">
-<div class="content">
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
 <div class="title">Connect to ksqlDB with CLI</div>
 <div class="paragraph">
-<p>In this excersise, we&#8217;re going to use ksqlDB Cloud UI.
-But you also can run cli using docker.</p>
+<p>In this exercise, we&#8217;re going to use ksqlDB Cloud UI.
+But you also can run CLI using docker.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="nowrap">docker run -it confluentinc/ksqldb-cli:0.11.0 ksql -u $KSQL_API_KEY -p $KSQL_API_SECRET $KSQLDB_ENDPOINT</pre>
+<pre class="highlightjs highlight nowrap"><code class="language-shell script hljs" data-lang="shell script">docker run -it confluentinc/ksqldb-cli:0.11.0 ksql -u $KSQL_API_KEY -p $KSQL_API_SECRET $KSQLDB_ENDPOINT</code></pre>
 </div>
 </div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="create-the-account-table"><a class="anchor" href="#create-the-account-table"></a>Create the account table</h3>
 <div class="paragraph">
-<p>ksqlDB is built on top of Kafka Streams. As such, the <code>KStream</code> and <code>KTable</code> are
-both key constructs for defining stream processors.</p>
+<p>ksqlDB is built on top of Kafka Streams. As such, the <code>KStream</code> and <code>KTable</code> are both key constructs for defining stream processors.</p>
 </div>
 <div class="paragraph">
-<p>The first step requires us to instruct ksqlDB that we wish to turn the <code>account</code>
-topic into a <code>Table</code>. This table will allow us to join each
-<code>transaction-success</code> event with the latest <code>account</code> event of the underlying
-topic. Run the following command in your ksqlDB CLI terminal:</p>
+<p>The first step requires us to instruct ksqlDB that we wish to turn the <code>account</code> topic into a <code>Table</code>.
+This table will allow us to join each <code>transaction-success</code> event with the latest <code>account</code> event of the underlying
+topic.
+Run the following command in your ksqlDB CLI terminal:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -750,8 +768,7 @@ topic. Run the following command in your ksqlDB CLI terminal:</p>
 <div class="sect2">
 <h3 id="create-the-transaction-success-stream"><a class="anchor" href="#create-the-transaction-success-stream"></a>Create the transaction-success stream</h3>
 <div class="paragraph">
-<p>Before we create the <code>Transaction Statement</code> stream processor, we must also
-inform ksqlDB that we wish to turn the <code>transaction-success</code> into a <code>Stream</code>.
+<p>Before we create the <code>Transaction Statement</code> stream processor, we must also inform ksqlDB that we wish to turn the <code>transaction-success</code> into a <code>Stream.</code>
 Run the following command in your ksqlDB CLI terminal:</p>
 </div>
 <div class="listingblock">
@@ -772,19 +789,15 @@ Run the following command in your ksqlDB CLI terminal:</p>
 <div class="sect2">
 <h3 id="create-the-transaction-statement-stream"><a class="anchor" href="#create-the-transaction-statement-stream"></a>Create the transaction statement stream</h3>
 <div class="paragraph">
-<p>Now that we have all the ingredients of our <code>Transaction Statement</code> stream
-processor, we can now create a new stream derived from our <code>transaction-success</code>
-events paired with the latest data from the <code>account</code> topic. We will instruct
-ksqlDB to create a new stream as a query. By default, ksqlDB will publish any
-output to a new <code>TRANSACTION_STATEMENT</code> topic. The select query provides the
-details about with events to subscribe as well as which table to join each
-notification. The output of this new stream processor will be a mix of the
-transaction details coupled with all the details of the matching account. The
-key from <code>transaction-success</code> and <code>account</code> will be used as matching criteria
-for the <code>LEFT JOIN</code> command. <code>EMIT CHANGES</code> informs ksqlDB that the query is
-long-running and should be kept alive–as if it were a Kafka Streams application
-to be 100% available to process all events. Run the following command in your
-ksqlDB CLI terminal:</p>
+<p>Now that we have all the ingredients of our <code>Transaction Statement</code> stream processor, we can now create a new stream derived from our <code>transaction-success</code> events paired with the latest data from the <code>account</code> topic.
+We will instruct ksqlDB to create a new stream as a query.
+By default, ksqlDB will publish any output to a new <code>TRANSACTION_STATEMENT</code> topic.
+The select query provides the details about with events to subscribe and which table to join each
+notification.
+The output of this new stream processor will be a mix of the transaction details coupled with all the matching account details.
+The key from <code>transaction-success</code> and <code>account</code> will be used as matching criteria for the <code>LEFT JOIN</code> command.
+<code>EMIT CHANGES</code> informs ksqlDB that the query is long-running and should be kept alive–as if it were a Kafka Streams application to be 100% available to process all events.
+Run  the following command in your ksqlDB CLI prompt:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -808,15 +821,16 @@ ksqlDB CLI terminal:</p>
 <code>demo-env-&lt;some-number&gt;</code>.</p>
 </li>
 <li>
-<p>Inside of this environment you should see cluster that looks like
-<code>demo-kafka-cluster-&lt;some-number&gt;</code>. On the left side click on <code>Topics</code>.</p>
+<p>Inside of this environment, you should see a cluster that looks like <code>demo-kafka-cluster-&lt;some-number&gt;</code>.</p>
+</li>
+<li>
+<p>On the left side, click on <code>Topics.</code></p>
 </li>
 <li>
 <p>Click on the <code>TRANSACTION_STATEMENT</code> topic and access the <code>messages</code> tab.</p>
 </li>
 <li>
-<p>Click on the <code>offset</code> textbox and type <code>0</code> and press enter to instruct C3 to
-load all messages from partition 0 starting from offset 0.</p>
+<p>Click on the <code>offset</code> textbox and type <code>0</code> and press enter to load all messages from partition 0 starting from offset <code>0</code>.</p>
 </li>
 </ol>
 </div>
@@ -833,10 +847,15 @@ load all messages from partition 0 starting from offset 0.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Congratulations! Now you know how to build event-driven microservices using
-Spring Boot, Kafka Streams and ksqlDB.</p>
+Spring Boot, Kafka Streams, and ksqlDB.</p>
 </div>
-<div class="sidebarblock">
-<div class="content">
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
 <div class="title">Don&#8217;t forget to clean up</div>
 <div class="listingblock">
 <div class="content">
@@ -857,7 +876,9 @@ $ ./ccloud_stack_destroy.sh  stack-configs/java-service-account-103523.config <i
 </tr>
 </table>
 </div>
-</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -865,7 +886,7 @@ $ ./ccloud_stack_destroy.sh  stack-configs/java-service-account-103523.config <i
 <h2 id="special-thanks"><a class="anchor" href="#special-thanks"></a>Special Thanks!</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This workshop based on work of <a href="https://github.com/daniellavoie">Daniel Lavoie</a>.
+<p>This workshop is based on the work of <a href="https://github.com/daniellavoie">Daniel Lavoie</a>.
 Much ♥️!</p>
 </div>
 </div>
