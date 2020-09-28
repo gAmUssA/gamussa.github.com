@@ -1,11 +1,13 @@
 = New "Java Head Brain" blog prototype
 :awestruct-layout: index
 
+[quote, Viktor Gamov aka @gAmUssA, Developer Advocate at Confluent]     
+...And as always, have a nice day!
+
 [.panel]
 .*What is this all about?*
 
 👋 Hello!
-Thanks for stopping by.
 My name is Viktor Gamov.
 I'm a Developer Advocate at http://confluent.io[Confluent], the company that makes a streaming platform based on Apache Kafka.
 I'm a professional conference speaker on distributed systems, Java, and JavaScript topics, and is regular on events including JavaOne, Devoxx, OSCON, QCon, and https://speaking.gamov.io[others].
