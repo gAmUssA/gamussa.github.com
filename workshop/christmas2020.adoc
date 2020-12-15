@@ -80,8 +80,8 @@ If you follow steps below, you should check out only directory that has source c
 mkdir ~/temp/demo-scene
 cd ~/temp/demo-scene
 git init .
-git remote add origin -f https://github.com/confluentinc/demo-scene/
 git config core.sparsecheckout true
+git remote add origin -f https://github.com/confluentinc/demo-scene/
 echo "streaming-movies-workshop/*" >> .git/info/sparse-checkout
 git pull --depth=1 origin master
 cd streaming-movies-workshop
