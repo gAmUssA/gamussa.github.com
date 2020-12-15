@@ -21,6 +21,14 @@ Viktor Gamov <viktor@confluent.io>, © 2020 Confluent, Inc.
 :source-highlighter: highlight.js
 :highlightjs-theme: idea
 :experimental:
+ifndef::awestruct[]
+:imagesdir: ../images
+:awestruct-draft: false
+:awestruct-layout: post
+:awestruct-tags: []
+:idprefix:
+:idseparator: -
+endif::awestruct[]
 
 This is a brief manual for a workshop that taken place online at https://youtube.com/confluent
 
