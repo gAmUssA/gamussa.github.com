@@ -141,6 +141,54 @@ This workshop includes two apps - the microservices developed with Spring Boot.
 ----
 skaffold run #<1>
 ----
-<1> This command will build images for 
+<1> This command will build images for
 
+== 2️⃣ Create Materialized view 
 
+[TIP]
+.Connect to ksqlDB with CLI
+====
+In this exercise, we're going to use ksqlDB Cloud UI.
+But you also can run CLI using docker.
+
+[source,shell script]
+----
+docker run -it confluentinc/ksqldb-cli:0.13.0 ksql -u $KSQL_API_KEY -p $KSQL_API_SECRET $KSQLDB_ENDPOINT
+----
+====
+
+[source,sql]
+.Materialized view
+----
+CREATE STREAM RATED_MOVIES_STREAM WITH (
+    kafka_topic = 'RATED_MOVIES',
+    value_format = 'avro'
+);
+
+CREATE TABLE RATED_MOVIES_VIEW AS SELECT
+  RATED_MOVIES_STREAM.TITLE as TITLE,
+  LATEST_BY_OFFSET(RELEASE_YEAR) as RELEASE_YEAR,
+  LATEST_BY_OFFSET(MOVIE_ID) as MOVIE_ID,
+  LATEST_BY_OFFSET(RATING) as CURRENT_RATING
+FROM RATED_MOVIES_STREAM
+GROUP BY TITLE
+EMIT CHANGES;
+----
+
+[NOTE]
+====
+If you are getting error about accessing the `movies` and `ratings` topic you need grant access to Kafka topic `movies` and `ratings` to ksqlDB server with command
+
+[source,shell script]
+----
+CCLOUD_KSQL_ID=`ccloud ksql app list -ojson | jq -r '.[0].id'`
+CCLOUD_KAFKA_ID=`ccloud kafka cluster list -ojson | jq -r '.[0].id'`
+ccloud ksql app configure-acls ${CCLOUD_KSQL_ID} "*" --cluster ${CCLOUD_KAFKA_ID}
+
+# or 
+ccloud ksql app configure-acls `ccloud ksql app list -ojson | jq -r '.[0].id'` "*" --cluster `ccloud kafka cluster list -ojson | jq -r '.[0].id'`
+----
+
+where `ccloud ksql app list -ojson | jq -r '.[0].id'` gives your id of ksqlDB cluster
+and `ccloud kafka cluster list -ojson | jq -r '.[0].id'` gives you id of Kafka cluster
+====
