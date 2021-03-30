@@ -1,4 +1,5 @@
 <!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><html class="no-js" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Learn how to build event-driven microservices with Apache Kafka, Kotlin, and Ktor | gamov.io</title><meta name="author" content="Viktor Gamov &lt;viktor@confluent.io&gt;, Anton Arhipov &lt;anton@jetbrains.com&gt;"><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@asciidoctor"><meta name="twitter:url" content="http://gamov.io/workshop/ktor-kafka-2021.html"><meta name="twitter:title" content="Learn how to build event-driven microservices with Apache Kafka, Kotlin, and Ktor"><meta name="twitter:description" content="Table of content
+Links
 Prerequisites
 Tutorial
 Gradle build
@@ -6,10 +7,12 @@ Config files
 Web application
 Data classes
 Streaming application
+Infrastructure
 How can I implement an average aggregation that implements incremental functions, namely count and sum?
 Kafka Streams natively supports..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html"><span class="icon"><i class="fa fa-th-large"></i></span>&nbspBlog</a></li><li class="divider"></li><li><a href="https://www.youtube.com/ViktorGamov" target="_blank"><span class="icon"><i class="fa fa-youtube"></i></span>&nbspYouTube </a></li><li class="divider"></li><li><a href="https://speaking.gamov.io" target="_blank"><span class="icon"><i class="fa fa-slideshare"></i></span>&nbspMy Talks</a></li><li class="divider"></li><li><a href="https://github.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-github"></i></span>&nbspGithub</a></li><li class="divider"></li><li><a href="https://twitter.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-twitter"></i></span>&nbspTwitter</a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://gamov.io">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h2 class="header"><a href="/workshop/ktor-kafka-2021.html">Learn how to build event-driven microservices with Apache Kafka, Kotlin, and Ktor</a></h2><h5 class="subheader">Written by&nbsp <a href="#">Viktor Gamov &lt;viktor@confluent.io&gt;, Anton Arhipov &lt;anton@jetbrains.com&gt;</a>&nbsp- <time class="pubdate" datetime="2021-03-30T00:00:00+00:00">Tuesday, March 30, 2021</time></h5><div class="row"><div class="large-12 columns text-left"><div id="toc" class="toc">
 <div id="toctitle">Table of content</div>
 <ul class="sectlevel1">
+<li><a href="#links">Links</a></li>
 <li><a href="#prerequisites">Prerequisites</a></li>
 <li><a href="#tutorial">Tutorial</a>
 <ul class="sectlevel2">
@@ -23,6 +26,7 @@ Kafka Streams natively supports..."><link rel="stylesheet" href="/stylesheets/ap
 <li><a href="#streaming-application">Streaming application</a></li>
 </ul>
 </li>
+<li><a href="#infrastructure">Infrastructure</a></li>
 </ul>
 </div>
 <div id="preamble">
@@ -43,6 +47,21 @@ In this tutorial, we&#8217;ll write a program that calculates and maintains a ru
 <img src="/images/ktor-kafka.png" alt="ktor kafka">
 </div>
 <div class="title">Figure 1. The Tutorial Architecture Overview</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="links"><a class="anchor" href="#links"></a>Links</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://gamov.dev/ktor-kafka">Self-link</a></p>
+</li>
+<li>
+<p><a href="https://gamov.dev/ktor-kafka-git">Github repo with full example</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -124,6 +143,7 @@ val logback_version: String by project
 val ktor_version: String by project
 val kotlin_version: String by project
 val confluent_version: String by project
+val ak_version: String by project
 
 plugins {
     application
@@ -165,7 +185,7 @@ dependencies {
     implementation("com.github.gAmUssA:ktor-kafka:1913118fb3")
 
     testImplementation("io.ktor:ktor-server-tests:$ktor_version")
-
+    testImplementation("org.apache.kafka:kafka-streams-test-utils:$ak_version")
 }
 
 tasks.withType&lt;KotlinCompile&gt;().configureEach {
@@ -176,11 +196,14 @@ tasks.withType&lt;KotlinCompile&gt;().configureEach {
 <div class="listingblock">
 <div class="title">gradle.properies</div>
 <div class="content">
-<pre class="nowrap">logback_version=1.2.1
+<pre class="nowrap">kotlin.code.style=official
+org.gradle.parallel=true
+org.gradle.caching=true
 ktor_version=1.5.2
-kotlin.code.style=official
+logback_version=1.2.1
 kotlin_version=1.4.30
-confluent_version=6.1.1</pre>
+confluent_version=6.1.1
+ak_version=2.7.0</pre>
 </div>
 </div>
 </div>
@@ -397,10 +420,52 @@ object Html {
 </div>
 </div>
 <div class="paragraph">
-<p>TODO: describe the resournces part and JavaScript</p>
+<p>There&#8217;s some JavaScript that we need to include for this HTML thingy to work properly.</p>
 </div>
 <div class="paragraph">
-<p>Then create the following file at <code>/src/main/kotlin/io/confluent/developer/Application.kt</code>.</p>
+<p>Let&#8217;s add the following file: <code>/src/main/resources/META-INF/resources/assets/index.js</code> with the content&#8217;s as provided below:</p>
+</div>
+<div class="listingblock">
+<div class="title">index.js</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-javascript hljs" data-lang="javascript">const wsProto = (window.location.protocol === 'https:') ? 'wss:' : 'ws:';
+const wsBase = `${wsProto}//${window.location.hostname}:${window.location.port}`;
+
+window.onload = function () {
+    $(".alert").hide()
+    let myForm = document.getElementById('myform');
+    myForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        let formData = new FormData(myForm), result = {};
+
+        for (let entry of formData.entries()) {
+            result[entry[0]] = entry[1];
+        }
+        result = JSON.stringify(result)
+        // console.log(result);
+
+        let xhr = new XMLHttpRequest();
+
+        xhr.open(myForm.method, myForm.action, true);
+        xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+        xhr.send(result);
+        $(".alert").show()
+    });
+
+    let ws = new WebSocket(`${wsBase}/kafka`);
+    ws.onmessage = function (event) {
+        let data = JSON.parse(event.data);
+        console.log(data)
+    };
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>First, we set up a form listener to send the movie ratings to the web application. And secondly there&#8217;s a WebSocket channel that we open in order to receive the data from the backend.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s build the application backend now. Create the following file at <code>/src/main/kotlin/io/confluent/developer/Application.kt</code>.</p>
 </div>
 <div class="listingblock">
 <div class="title">Application.kt</div>
@@ -717,7 +782,23 @@ This method actually runs our Streams topology using the <code>TopologyTestDrive
 <div class="listingblock">
 <div class="title">RunningAverageTest.kt</div>
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-kotlin hljs" data-lang="kotlin">class RunningAverageTest {
+<pre class="highlightjs highlight nowrap"><code class="language-kotlin hljs" data-lang="kotlin">import io.confluent.developer.kstreams.*
+import io.confluent.kafka.streams.serdes.json.KafkaJsonSchemaSerde
+import org.apache.kafka.common.serialization.DoubleDeserializer
+import org.apache.kafka.common.serialization.LongDeserializer
+import org.apache.kafka.common.serialization.LongSerializer
+import org.apache.kafka.streams.*
+import org.apache.kafka.streams.kstream.KStream
+import org.apache.kafka.streams.state.KeyValueStore
+import org.hamcrest.CoreMatchers
+import org.hamcrest.MatcherAssert
+import org.junit.After
+import org.junit.Assert
+import org.junit.Before
+import org.junit.Test
+import java.util.*
+
+class RunningAverageTest {
     private lateinit var testDriver: TopologyTestDriver
     private var ratingSpecificAvroSerde: KafkaJsonSchemaSerde&lt;Rating&gt;? = null
 
@@ -793,6 +874,58 @@ This method actually runs our Streams topology using the <code>TopologyTestDrive
     }
 }</code></pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="infrastructure"><a class="anchor" href="#infrastructure"></a>Infrastructure</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="title">docker-compose.yml</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-yaml hljs" data-lang="yaml">version: '2'
+
+services:
+zookeeper:
+image: confluentinc/cp-zookeeper:6.0.0
+hostname: zookeeper
+container_name: zookeeper
+ports:
+- "2181:2181"
+environment:
+ZOOKEEPER_CLIENT_PORT: 2181
+ZOOKEEPER_TICK_TIME: 2000
+
+  broker:
+    image: confluentinc/cp-kafka:6.0.0
+    hostname: broker
+    container_name: broker
+    depends_on:
+      - zookeeper
+    ports:
+      - "29092:29092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_TOOLS_LOG4J_LOGLEVEL: ERROR
+
+  schema-registry:
+    image: confluentinc/cp-schema-registry:6.0.0
+    hostname: schema-registry
+    container_name: schema-registry
+    depends_on:
+      - broker
+    ports:
+      - "8081:8081"
+    environment:
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'broker:9092'
+      SCHEMA_REGISTRY_LOG4J_ROOT_LOGLEVEL: WARN</code></pre>
 </div>
 </div>
 </div>
