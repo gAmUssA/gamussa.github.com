@@ -1,21 +1,22 @@
 <!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><html class="no-js" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Learn how to build event-driven microservices with Apache Kafka, Kotlin, and Ktor | gamov.io</title><meta name="author" content="Viktor Gamov &lt;viktor@confluent.io&gt;, Anton Arhipov &lt;anton@jetbrains.com&gt;"><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@asciidoctor"><meta name="twitter:url" content="http://gamov.io/workshop/ktor-kafka-2021.html"><meta name="twitter:title" content="Learn how to build event-driven microservices with Apache Kafka, Kotlin, and Ktor"><meta name="twitter:description" content="Table of content
 Tutorial
-Add required dependencies
-Kafka Streams and Confluent Serdes
-Kafka Ktor libraries
-Models / POKO
-How can I implement an average aggregation that implements incremental functions, namely count..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html"><span class="icon"><i class="fa fa-th-large"></i></span>&nbspBlog</a></li><li class="divider"></li><li><a href="https://www.youtube.com/ViktorGamov" target="_blank"><span class="icon"><i class="fa fa-youtube"></i></span>&nbspYouTube </a></li><li class="divider"></li><li><a href="https://speaking.gamov.io" target="_blank"><span class="icon"><i class="fa fa-slideshare"></i></span>&nbspMy Talks</a></li><li class="divider"></li><li><a href="https://github.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-github"></i></span>&nbspGithub</a></li><li class="divider"></li><li><a href="https://twitter.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-twitter"></i></span>&nbspTwitter</a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://gamov.io">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h2 class="header"><a href="/workshop/ktor-kafka-2021.html">Learn how to build event-driven microservices with Apache Kafka, Kotlin, and Ktor</a></h2><h5 class="subheader">Written by&nbsp <a href="#">Viktor Gamov &lt;viktor@confluent.io&gt;, Anton Arhipov &lt;anton@jetbrains.com&gt;</a>&nbsp- <time class="pubdate" datetime="2021-03-30T00:00:00+00:00">Tuesday, March 30, 2021</time></h5><div class="row"><div class="large-12 columns text-left"><div id="toc" class="toc">
+Gradle build
+Web application
+Data classes
+Streaming application
+How can I implement an average aggregation that implements incremental functions, namely count and sum?
+Kafka Streams natively supports incremental..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html"><span class="icon"><i class="fa fa-th-large"></i></span>&nbspBlog</a></li><li class="divider"></li><li><a href="https://www.youtube.com/ViktorGamov" target="_blank"><span class="icon"><i class="fa fa-youtube"></i></span>&nbspYouTube </a></li><li class="divider"></li><li><a href="https://speaking.gamov.io" target="_blank"><span class="icon"><i class="fa fa-slideshare"></i></span>&nbspMy Talks</a></li><li class="divider"></li><li><a href="https://github.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-github"></i></span>&nbspGithub</a></li><li class="divider"></li><li><a href="https://twitter.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-twitter"></i></span>&nbspTwitter</a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://gamov.io">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h2 class="header"><a href="/workshop/ktor-kafka-2021.html">Learn how to build event-driven microservices with Apache Kafka, Kotlin, and Ktor</a></h2><h5 class="subheader">Written by&nbsp <a href="#">Viktor Gamov &lt;viktor@confluent.io&gt;, Anton Arhipov &lt;anton@jetbrains.com&gt;</a>&nbsp- <time class="pubdate" datetime="2021-03-30T00:00:00+00:00">Tuesday, March 30, 2021</time></h5><div class="row"><div class="large-12 columns text-left"><div id="toc" class="toc">
 <div id="toctitle">Table of content</div>
 <ul class="sectlevel1">
 <li><a href="#tutorial">Tutorial</a>
 <ul class="sectlevel2">
-<li><a href="#add-required-dependencies">Add required dependencies</a>
+<li><a href="#gradle-build">Gradle build</a></li>
+<li><a href="#web-application">Web application</a>
 <ul class="sectlevel3">
-<li><a href="#kafka-streams-and-confluent-serdes">Kafka Streams and Confluent Serdes</a></li>
-<li><a href="#kafka-ktor-libraries">Kafka Ktor libraries</a></li>
+<li><a href="#data-classes">Data classes</a></li>
 </ul>
 </li>
-<li><a href="#models-poko">Models / POKO</a></li>
+<li><a href="#streaming-application">Streaming application</a></li>
 </ul>
 </li>
 </ul>
@@ -41,87 +42,328 @@ In this tutorial, we&#8217;ll write a program that calculates and maintains a ru
 <div class="paragraph">
 <p>To get started, make a new directory anywhere you&#8217;d like for this project:</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Anton writes init
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>First, create a Kotlin project with Kotlin DSL</p>
 </div>
 <div class="sect2">
-<h3 id="add-required-dependencies"><a class="anchor" href="#add-required-dependencies"></a>Add required dependencies</h3>
-<div class="sect3">
-<h4 id="kafka-streams-and-confluent-serdes"><a class="anchor" href="#kafka-streams-and-confluent-serdes"></a>Kafka Streams and Confluent Serdes</h4>
+<h3 id="gradle-build"><a class="anchor" href="#gradle-build"></a>Gradle build</h3>
 <div class="listingblock">
 <div class="title">build.gradle.kts</div>
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-kotlin hljs" data-lang="kotlin">repositories {
-    maven ("https://packages.confluent.io/maven")
+<pre class="nowrap">import org.jetbrains.kotlin.gradle.dsl.Coroutines
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+val logback_version: String by project
+val ktor_version: String by project
+val kotlin_version: String by project
+val confluent_version: String by project
+
+plugins {
+    application
+    kotlin("jvm") version "1.4.30"
 }
 
-dependencies{
+group = "com.example"
+version = "0.0.1-SNAPSHOT"
+
+application {
+    mainClassName = "io.ktor.server.netty.EngineMain"
+}
+
+repositories {
+    mavenLocal()
+    jcenter()
+    maven ("https://packages.confluent.io/maven")
+    maven ("https://kotlin.bintray.com/ktor")
+    maven ("https://jitpack.io")
+}
+
+dependencies {
+    implementation("org.apache.kafka:kafka-streams:2.7.0")
+
     implementation("io.confluent:kafka-json-schema-serializer:$confluent_version")
     implementation("io.confluent:kafka-streams-json-schema-serde:$confluent_version") {
         exclude("org.apache.kafka", "kafka-clients")
     }
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="kafka-ktor-libraries"><a class="anchor" href="#kafka-ktor-libraries"></a>Kafka Ktor libraries</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>add dependency and jitpack repo</p>
-<div class="listingblock">
-<div class="title">build.gradle.kts</div>
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-kotlin hljs" data-lang="kotlin">repositories {
-    maven ("https://jitpack.io")
+
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version")
+    implementation("io.ktor:ktor-server-netty:$ktor_version")
+    implementation("ch.qos.logback:logback-classic:$logback_version")
+    implementation("io.ktor:ktor-server-core:$ktor_version")
+    implementation("io.ktor:ktor-html-builder:$ktor_version")
+    implementation("io.ktor:ktor-server-host-common:$ktor_version")
+    implementation("io.ktor:ktor-jackson:$ktor_version")
+    implementation("io.ktor:ktor-websockets:$ktor_version")
+
+    implementation("com.github.gAmUssA:ktor-kafka:1913118fb3")
+
+    testImplementation("io.ktor:ktor-server-tests:$ktor_version")
+
 }
 
-dependencies{
-    implementation("com.github.gAmUssA:ktor-kafka:main-SNAPSHOT")
-}</code></pre>
+tasks.withType&lt;KotlinCompile&gt;().configureEach {
+    kotlinOptions.jvmTarget = "1.8"
+}</pre>
 </div>
 </div>
-</li>
-<li>
-<p>in <code>Application.module</code></p>
 <div class="listingblock">
-<div class="title">Application.kt</div>
+<div class="title">gradle.properies</div>
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-kotlin hljs" data-lang="kotlin">import io.confluent.developer.ktor.Kafka
-import io.confluent.developer.ktor.newTopic
-
-fun Application.module(){
-
-    //install Kafka feature
-    install(Kafka) {
-        configurationPath = "src/main/resources/kafka.conf"
-        topics = listOf(
-            newTopic("myTopic") {
-                partitions = 3
-                replicas = 1
-            }
-        )
-    }
-}</code></pre>
-</div>
-</div>
-</li>
-</ul>
+<pre class="nowrap">logback_version=1.2.1
+ktor_version=1.5.2
+kotlin.code.style=official
+kotlin_version=1.4.30
+confluent_version=6.1.1</pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="models-poko"><a class="anchor" href="#models-poko"></a>Models / POKO</h3>
+<h3 id="web-application"><a class="anchor" href="#web-application"></a>Web application</h3>
+<div class="paragraph">
+<p>First, we create a view code that renders the UI using the kotlinx.html library. create the following file at <code>/src/main/kotlin/io/confluent/developer/Html.kt</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Html.kt</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-kotlin hljs" data-lang="kotlin">package io.confluent.developer
+
+import kotlinx.html.*
+import kotlinx.html.dom.createHTMLDocument
+import org.w3c.dom.Document
+
+object Html {
+
+    class TEMPLATE(consumer: TagConsumer&lt;*&gt;) :
+        HTMLTag(
+            "template", consumer, emptyMap(),
+            inlineTag = true,
+            emptyTag = false
+        ), HtmlInlineTag
+
+    fun FlowContent.template(block: TEMPLATE.() -&gt; Unit = {}) {
+        TEMPLATE(consumer).visit(block)
+    }
+
+    fun TEMPLATE.li(classes: String? = null, block: LI.() -&gt; Unit = {}) {
+        LI(attributesMapOf("class", classes), consumer).visit(block)
+    }
+
+    fun page(js: String, content: FlowContent.() -&gt; Unit = {}): HTML.() -&gt; Unit = {
+        head {
+            css("https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css")
+            css("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css")
+            js("https://code.jquery.com/jquery-3.5.1.slim.min.js")
+            js("https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js")
+
+            js("/assets/$js")
+            title("Ktor Kafka App")
+        }
+
+        body {
+            div("container rounded") {
+                content()
+            }
+        }
+    }
+
+    val indexHTML = page("index.js") {
+        val movies = mapOf(
+            362 to "Lethal Weapon",
+            363 to "Guardians of the Galaxy",
+            364 to "Se7en"
+        )
+        div("row") {
+            form(
+                action = "/rating",
+                method = FormMethod.post
+            ) {
+                name = "myform"
+                id = "myform"
+                div("form-group row") {
+                    label("col-4 col-form-label") {
+                        htmlFor = "movieId"
+                        +"Movie Title"
+                    }
+                    div("col-8") {
+                        select("custom-select") {
+                            name = "movieId"
+                            id = "movieId"
+                            for ((k, v) in movies) {
+                                option {
+                                    value = k.toString()
+                                    +v
+                                }
+                            }
+                        }
+                    }
+                }
+
+                div("form-group row") {
+                    label("col-4 col-form-label") {
+                        htmlFor = "rating"
+                        +"Rating"
+                    }
+                    div("col-8") {
+                        select("custom-select") {
+                            name = "rating"
+                            id = "rating"
+                            for (n in 10 downTo 1) {
+                                option {
+                                    value = n.toString()
+                                    +"$n"
+                                }
+                            }
+                        }
+                    }
+                }
+
+                div("form-group row") {
+                    div("offset-4 col-8") {
+                        button(classes = "btn btn-primary", type = ButtonType.submit, name = "submit") {
+                            +"Submit"
+                        }
+
+                    }
+                }
+
+            }
+        }
+
+        div("container") {
+            id = "myAlert"
+            div("alert alert-success alert-dismissible hide") {
+                id = "myAlert2"
+                role = "alert"
+                +"Thank you for submitting your rating"
+                button(type = ButtonType.button, classes = "close") {
+                    attributes["data-dismiss"] = "alert"
+                    span {
+                        +"x"
+                    }
+                }
+            }
+        }
+
+
+    }
+
+    val index: Document = createHTMLDocument().html(block = indexHTML)
+
+    fun HEAD.css(source: String) {
+        link(source, LinkRel.stylesheet)
+    }
+
+    fun HEAD.js(source: String) {
+        script(ScriptType.textJavaScript) {
+            src = source
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>TODO: describe the resournces part and JavaScript</p>
+</div>
+<div class="paragraph">
+<p>Then create the following file at <code>/src/main/kotlin/io/confluent/developer/Application.kt</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Application.kt</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-kotlin hljs" data-lang="kotlin">import com.typesafe.config.Config
+import com.typesafe.config.ConfigFactory.parseFile
+import io.confluent.developer.Html.indexHTML
+import io.confluent.developer.kstreams.Rating
+import io.confluent.developer.kstreams.ratingTopicName
+import io.confluent.developer.kstreams.ratingsAvgTopicName
+import io.confluent.developer.ktor.buildProducer
+import io.confluent.developer.ktor.createKafkaConsumer
+import io.confluent.developer.ktor.send
+import io.ktor.application.*
+import io.ktor.features.*
+import io.ktor.html.*
+import io.ktor.http.*
+import io.ktor.http.cio.websocket.*
+import io.ktor.http.content.*
+import io.ktor.jackson.*
+import io.ktor.request.*
+import io.ktor.response.*
+import io.ktor.routing.*
+import io.ktor.server.netty.*
+import io.ktor.websocket.*
+import org.apache.kafka.clients.consumer.KafkaConsumer
+import org.apache.kafka.clients.producer.KafkaProducer
+import java.io.File
+import java.time.Duration
+
+fun main(args: Array&lt;String&gt;): Unit = EngineMain.main(args)
+
+fun Application.module(testing: Boolean = false) {
+
+    //https://youtrack.jetbrains.com/issue/KTOR-2318
+    val kafkaConfigPath = "src/main/resources/kafka.conf"
+
+    install(ContentNegotiation) {
+        jackson()
+    }
+
+    val config: Config = parseFile(File(kafkaConfigPath))
+    val producer: KafkaProducer&lt;Long, Rating&gt; = buildProducer(config)
+
+    install(WebSockets)
+    routing {
+        //region static assets location
+        static("/assets") {
+            resources("META-INF/resources/assets")
+        }
+        //endregion
+
+        post("rating") {
+            val rating = call.receive&lt;Rating&gt;()
+
+            producer.send(ratingTopicName, rating.movieId, rating)
+
+            data class Status(val message: String)
+            call.respond(HttpStatusCode.Accepted, Status("Accepted"))
+        }
+
+        webSocket("/kafka") {
+            val consumer: KafkaConsumer&lt;Long, Double&gt; = createKafkaConsumer(config, ratingsAvgTopicName)
+            try {
+                while (true) {
+                    consumer.poll(Duration.ofMillis(100))
+                        .forEach {
+                            outgoing.send(
+                                Frame.Text(
+                                    """{
+                                "movieId":${it.key()},
+                                "rating":${it.value()}
+                                }
+                            """.trimIndent()
+                                )
+                            )
+                        }
+                }
+            } finally {
+                consumer.apply {
+                    unsubscribe()
+                    //close()
+                }
+                log.info("consumer for ${consumer.groupMetadata().groupId()} unsubscribed and closed...")
+            }
+        }
+        get("/") {
+            call.respondHtml(
+                HttpStatusCode.OK,
+                indexHTML
+            )
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="data-classes"><a class="anchor" href="#data-classes"></a>Data classes</h4>
 <div class="paragraph">
 <p>Create a data class file at <code>src/main/kotlin/io/confluent/developer/kstreams/Rating.kt</code> for the stream of ratings:</p>
 </div>
@@ -153,6 +395,10 @@ The reason why we&#8217;re using json schema support in Schema Registry for this
 </tr>
 </table>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="streaming-application"><a class="anchor" href="#streaming-application"></a>Streaming application</h3>
 <div class="paragraph">
 <p>Then create the following file at <code>/src/main/kotlin/io/confluent/developer/kstreams/RunningAverage.kt</code>.
 Let&#8217;s take a close look at the <code>buildTopology()</code> method, which uses the Kafka Streams DSL.</p>
@@ -160,12 +406,33 @@ Let&#8217;s take a close look at the <code>buildTopology()</code> method, which 
 <div class="listingblock">
 <div class="title">RunningAverage.kt</div>
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-kotlin hljs" data-lang="kotlin">fun main(args: Array&lt;String&gt;): Unit = EngineMain.main(args)
+<pre class="highlightjs highlight nowrap"><code class="language-kotlin hljs" data-lang="kotlin">import com.typesafe.config.Config
+import com.typesafe.config.ConfigFactory
+import io.confluent.developer.ktor.*
+import io.confluent.kafka.schemaregistry.client.SchemaRegistryClientConfig.BASIC_AUTH_CREDENTIALS_SOURCE
+import io.confluent.kafka.schemaregistry.client.SchemaRegistryClientConfig.USER_INFO_CONFIG
+import io.confluent.kafka.streams.serdes.json.KafkaJsonSchemaSerde
+import io.ktor.application.*
+import io.ktor.server.netty.*
+import org.apache.kafka.common.serialization.Serdes.*
+import org.apache.kafka.common.utils.Bytes
+import org.apache.kafka.streams.KafkaStreams
+import org.apache.kafka.streams.KeyValue
+import org.apache.kafka.streams.StreamsBuilder
+import org.apache.kafka.streams.Topology
+import org.apache.kafka.streams.kstream.*
+import org.apache.kafka.streams.kstream.Grouped.with
+import org.apache.kafka.streams.state.KeyValueStore
+import java.io.File
+import java.time.Duration
+import java.util.*
 
-const val ratingTopicName = "ratings" const val ratingsAvgTopicName = "rating-averages"
+const val ratingTopicName = "ratings"
+const val ratingsAvgTopicName = "rating-averages"
 
-@Suppress("unused") // Referenced in application.conf @JvmOverloads fun Application.module(testing: Boolean = false) {
-lateinit var streams: KafkaStreams
+fun Application.module(testing: Boolean = false) {
+
+    lateinit var streams: KafkaStreams
 
     // load properties
     val kafkaConfigPath = "src/main/resources/kafka.conf"
@@ -255,8 +522,9 @@ fun getRatingAverageTable( ratings: KStream&lt;Long, Rating&gt;, avgRatingsTopic
 }
 
 inline fun &lt;reified V&gt; jsonSchemaSerde( properties: Properties, isKeySerde: Boolean ): KafkaJsonSchemaSerde&lt;V&gt; {
-val schemaSerde = KafkaJsonSchemaSerde(V::class.java) val crSource = properties[BASIC_AUTH_CREDENTIALS_SOURCE]
-val uiConfig = properties[USER_INFO_CONFIG]
+    val schemaSerde = KafkaJsonSchemaSerde(V::class.java)
+    val crSource = properties[BASIC_AUTH_CREDENTIALS_SOURCE]
+    val uiConfig = properties[USER_INFO_CONFIG]
 
     val map = mutableMapOf(
         "schema.registry.url" to properties["schema.registry.url"]
@@ -273,8 +541,7 @@ val uiConfig = properties[USER_INFO_CONFIG]
 </div>
 </div>
 <div class="paragraph">
-<p>Please note the code snippet around line 134.
-To calculate the running average, we need to capture the sum of ratings and counts as part of the same aggregating operation.</p>
+<p>To calculate the running average, we need to capture the sum of ratings and counts as part of the same aggregating operation.</p>
 </div>
 <div class="listingblock">
 <div class="title">Compute count and sum in a single aggregation step and emit <code>&lt;count,sum&gt;</code> tuple as aggregation result values.</div>
