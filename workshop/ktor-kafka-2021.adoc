@@ -34,6 +34,11 @@ In this tutorial, we'll write a program that calculates and maintains a running 
 .The Tutorial Architecture Overview
 image::ktor-kafka.png[]
 
+== Links
+
+* https://gamov.dev/ktor-kafka[Self-link]
+* https://gamov.dev/ktor-kafka-git[Github repo with full example]
+
 == Prerequisites
 
 Ensure you install the following toolset on your computer:
