@@ -1,0 +1,421 @@
+<!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><html class="no-js" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Learn how to build event-driven microservices with Apache Kafka, Kotlin, and Ktor | gamov.io</title><meta name="author" content="Viktor Gamov &lt;viktor@confluent.io&gt;, Anton Arhipov &lt;anton@jetbrains.com&gt;"><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@asciidoctor"><meta name="twitter:url" content="http://gamov.io/workshop/ktor-kafka-2021.html"><meta name="twitter:title" content="Learn how to build event-driven microservices with Apache Kafka, Kotlin, and Ktor"><meta name="twitter:description" content="Table of content
+Tutorial
+Add required dependencies
+Kafka Streams and Confluent Serdes
+Kafka Ktor libraries
+Models / POKO
+How can I implement an average aggregation that implements incremental functions, namely count..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html"><span class="icon"><i class="fa fa-th-large"></i></span>&nbspBlog</a></li><li class="divider"></li><li><a href="https://www.youtube.com/ViktorGamov" target="_blank"><span class="icon"><i class="fa fa-youtube"></i></span>&nbspYouTube </a></li><li class="divider"></li><li><a href="https://speaking.gamov.io" target="_blank"><span class="icon"><i class="fa fa-slideshare"></i></span>&nbspMy Talks</a></li><li class="divider"></li><li><a href="https://github.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-github"></i></span>&nbspGithub</a></li><li class="divider"></li><li><a href="https://twitter.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-twitter"></i></span>&nbspTwitter</a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://gamov.io">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h2 class="header"><a href="/workshop/ktor-kafka-2021.html">Learn how to build event-driven microservices with Apache Kafka, Kotlin, and Ktor</a></h2><h5 class="subheader">Written by&nbsp <a href="#">Viktor Gamov &lt;viktor@confluent.io&gt;, Anton Arhipov &lt;anton@jetbrains.com&gt;</a>&nbsp- <time class="pubdate" datetime="2021-03-30T00:00:00+00:00">Tuesday, March 30, 2021</time></h5><div class="row"><div class="large-12 columns text-left"><div id="toc" class="toc">
+<div id="toctitle">Table of content</div>
+<ul class="sectlevel1">
+<li><a href="#tutorial">Tutorial</a>
+<ul class="sectlevel2">
+<li><a href="#add-required-dependencies">Add required dependencies</a>
+<ul class="sectlevel3">
+<li><a href="#kafka-streams-and-confluent-serdes">Kafka Streams and Confluent Serdes</a></li>
+<li><a href="#kafka-ktor-libraries">Kafka Ktor libraries</a></li>
+</ul>
+</li>
+<li><a href="#models-poko">Models / POKO</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>How can I implement an average aggregation that implements incremental functions, namely count and sum?</p>
+</div>
+<div class="paragraph">
+<p>Kafka Streams natively supports <em>incremental</em> aggregation functions, in which the aggregation result is updated based on the values captured by each window.
+Incremental functions include <code>count</code>, <code>sum</code>, <code>min</code>, and <code>max</code>.
+An average aggregation cannot be computed incrementally.
+However, as this tutorial shows, it can be implemented by composing incremental functions, namely count and sum.
+Consider a topic with events that represent ratings of movies.
+In this tutorial, we&#8217;ll write a program that calculates and maintains a running average rating for each movie.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="tutorial"><a class="anchor" href="#tutorial"></a>Tutorial</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To get started, make a new directory anywhere you&#8217;d like for this project:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Anton writes init
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="add-required-dependencies"><a class="anchor" href="#add-required-dependencies"></a>Add required dependencies</h3>
+<div class="sect3">
+<h4 id="kafka-streams-and-confluent-serdes"><a class="anchor" href="#kafka-streams-and-confluent-serdes"></a>Kafka Streams and Confluent Serdes</h4>
+<div class="listingblock">
+<div class="title">build.gradle.kts</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-kotlin hljs" data-lang="kotlin">repositories {
+    maven ("https://packages.confluent.io/maven")
+}
+
+dependencies{
+    implementation("io.confluent:kafka-json-schema-serializer:$confluent_version")
+    implementation("io.confluent:kafka-streams-json-schema-serde:$confluent_version") {
+        exclude("org.apache.kafka", "kafka-clients")
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="kafka-ktor-libraries"><a class="anchor" href="#kafka-ktor-libraries"></a>Kafka Ktor libraries</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>add dependency and jitpack repo</p>
+<div class="listingblock">
+<div class="title">build.gradle.kts</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-kotlin hljs" data-lang="kotlin">repositories {
+    maven ("https://jitpack.io")
+}
+
+dependencies{
+    implementation("com.github.gAmUssA:ktor-kafka:main-SNAPSHOT")
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>in <code>Application.module</code></p>
+<div class="listingblock">
+<div class="title">Application.kt</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-kotlin hljs" data-lang="kotlin">import io.confluent.developer.ktor.Kafka
+import io.confluent.developer.ktor.newTopic
+
+fun Application.module(){
+
+    //install Kafka feature
+    install(Kafka) {
+        configurationPath = "src/main/resources/kafka.conf"
+        topics = listOf(
+            newTopic("myTopic") {
+                partitions = 3
+                replicas = 1
+            }
+        )
+    }
+}</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="models-poko"><a class="anchor" href="#models-poko"></a>Models / POKO</h3>
+<div class="paragraph">
+<p>Create a data class file at <code>src/main/kotlin/io/confluent/developer/kstreams/Rating.kt</code> for the stream of ratings:</p>
+</div>
+<div class="listingblock">
+<div class="title">Rating.kt</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-kotlin hljs" data-lang="kotlin">data class Rating(val movieId: Long = 1L, val rating: Double = 0.0)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Next, create data class file in <code>src/main/kotlin/io/confluent/developer/kstreams/Rating.kt</code> for the pair of counts and sums:</p>
+</div>
+<div class="listingblock">
+<div class="title">CountAndSum.kt</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-kotlin hljs" data-lang="kotlin">data class CountAndSum(var count: Long = 0L, var sum: Double = 0.0)</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+We&#8217;re going to use this record to store intermediate results.
+The reason why we&#8217;re using json schema support in Schema Registry for this is that we can use <code>KafkaJsonSchemaSerde</code> to handle all our serialization needs.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Then create the following file at <code>/src/main/kotlin/io/confluent/developer/kstreams/RunningAverage.kt</code>.
+Let&#8217;s take a close look at the <code>buildTopology()</code> method, which uses the Kafka Streams DSL.</p>
+</div>
+<div class="listingblock">
+<div class="title">RunningAverage.kt</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-kotlin hljs" data-lang="kotlin">fun main(args: Array&lt;String&gt;): Unit = EngineMain.main(args)
+
+const val ratingTopicName = "ratings" const val ratingsAvgTopicName = "rating-averages"
+
+@Suppress("unused") // Referenced in application.conf @JvmOverloads fun Application.module(testing: Boolean = false) {
+lateinit var streams: KafkaStreams
+
+    // load properties
+    val kafkaConfigPath = "src/main/resources/kafka.conf"
+    val config: Config = ConfigFactory.parseFile(File(kafkaConfigPath))
+    val properties = effectiveStreamProperties(config)
+
+    //region Kafka
+    install(Kafka) {
+        configurationPath = kafkaConfigPath
+        topics = listOf(
+            newTopic(ratingTopicName) {
+                partitions = 3
+                //replicas = 1 // for docker
+                replicas = 3 // for cloud
+            },
+            newTopic(ratingsAvgTopicName) {
+                partitions = 3
+                //replicas = 1 // for docker
+                replicas = 3 // for cloud
+            }
+        )
+    }
+    //endregion
+
+    val streamsBuilder = StreamsBuilder()
+    val topology = buildTopology(streamsBuilder, properties)
+    //(topology.describe().toString())
+
+    streams = streams(topology, config)
+
+    environment.monitor.subscribe(ApplicationStarted) {
+        streams.cleanUp()
+        streams.start()
+        log.info("Kafka Streams app is ready to roll...")
+    }
+
+    environment.monitor.subscribe(ApplicationStopped) {
+        log.info("Time to clean up...")
+        streams.close(Duration.ofSeconds(5))
+    }
+}
+
+fun buildTopology( builder: StreamsBuilder, properties: Properties ): Topology {
+
+    val ratingStream: KStream&lt;Long, Rating&gt; = ratingsStream(builder, properties)
+
+    getRatingAverageTable(
+        ratingStream,
+        ratingsAvgTopicName,
+        jsonSchemaSerde(properties, false)
+    )
+    return builder.build()
+}
+
+fun ratingsStream(builder: StreamsBuilder, properties: Properties): KStream&lt;Long, Rating&gt; {
+return builder.stream( ratingTopicName, Consumed.with(Long(), jsonSchemaSerde(properties, false)) ) }
+
+fun getRatingAverageTable( ratings: KStream&lt;Long, Rating&gt;, avgRatingsTopicName: String, countAndSumSerde: KafkaJsonSchemaSerde&lt;CountAndSum&gt; ): KTable&lt;Long, Double&gt; {
+
+    // Grouping Ratings
+    val ratingsById: KGroupedStream&lt;Long, Double&gt; = ratings
+        .map { _, rating -&gt; KeyValue(rating.movieId, rating.rating) }
+        .groupByKey(with(Long(), Double()))
+
+    val ratingCountAndSum: KTable&lt;Long, CountAndSum&gt; = ratingsById.aggregate(
+        { CountAndSum(0L, 0.0) },
+        { _, value, aggregate -&gt;
+            aggregate.count = aggregate.count + 1
+            aggregate.sum = aggregate.sum + value
+            aggregate
+        },
+        Materialized.with(Long(), countAndSumSerde)
+    )
+
+    val ratingAverage: KTable&lt;Long, Double&gt; = ratingCountAndSum.mapValues(
+        { value -&gt; value.sum.div(value.count) },
+        Materialized.`as`&lt;Long, Double, KeyValueStore&lt;Bytes, ByteArray&gt;&gt;("average-ratings")
+            .withKeySerde(LongSerde())
+            .withValueSerde(DoubleSerde())
+    )
+
+    // persist the result in topic
+    val stream = ratingAverage.toStream()
+    //stream.peek { key, value -&gt; println("$key:$value") }
+    stream.to(avgRatingsTopicName, producedWith&lt;Long, Double&gt;())
+    return ratingAverage
+}
+
+inline fun &lt;reified V&gt; jsonSchemaSerde( properties: Properties, isKeySerde: Boolean ): KafkaJsonSchemaSerde&lt;V&gt; {
+val schemaSerde = KafkaJsonSchemaSerde(V::class.java) val crSource = properties[BASIC_AUTH_CREDENTIALS_SOURCE]
+val uiConfig = properties[USER_INFO_CONFIG]
+
+    val map = mutableMapOf(
+        "schema.registry.url" to properties["schema.registry.url"]
+    )
+    crSource?.let {
+        map[BASIC_AUTH_CREDENTIALS_SOURCE] = crSource
+    }
+    uiConfig?.let {
+        map[USER_INFO_CONFIG] = uiConfig
+    }
+    schemaSerde.configure(map, isKeySerde)
+    return schemaSerde;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Please note the code snippet around line 134.
+To calculate the running average, we need to capture the sum of ratings and counts as part of the same aggregating operation.</p>
+</div>
+<div class="listingblock">
+<div class="title">Compute count and sum in a single aggregation step and emit <code>&lt;count,sum&gt;</code> tuple as aggregation result values.</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-kotlin hljs" data-lang="kotlin">val ratingCountAndSum: KTable&lt;Long, CountAndSum&gt; = ratingsById.aggregate(
+        { CountAndSum(0L, 0.0) },
+        { _, value, aggregate -&gt;
+            aggregate.count = aggregate.count + 1
+            aggregate.sum = aggregate.sum + value
+            aggregate
+        },
+        Materialized.with(Long(), countAndSumSerde)
+    )</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Compute average for each tuple.</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-kotlin hljs" data-lang="kotlin">val ratingAverage: KTable&lt;Long, Double&gt; = ratingCountAndSum.mapValues(
+        { value -&gt; value.sum.div(value.count) },
+        Materialized.`as`&lt;Long, Double, KeyValueStore&lt;Bytes, ByteArray&gt;&gt;("average-ratings")
+            .withKeySerde(LongSerde())
+            .withValueSerde(DoubleSerde())
+    )</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This pattern can also be applied to compute a windowed average or to compose other functions.</p>
+</div>
+<div class="paragraph">
+<p>Now create the following file at <code>src/test/kotlin/io/confluent/developer/RunningAverageTest.kt</code>.
+Testing a Kafka streams application requires a bit of test harness code, but happily the <code>org.apache.kafka.streams.TopologyTestDriver</code> class makes this much more pleasant that it would otherwise be.</p>
+</div>
+<div class="paragraph">
+<p>There is a <code>validateAverageRating()</code> method in <code>RunningAverageTest</code> annotated with <code><a href="https://github.com/Test">@Test</a></code>.
+This method actually runs our Streams topology using the <code>TopologyTestDriver</code> and some mocked data that is set up inside the test method.</p>
+</div>
+<div class="listingblock">
+<div class="title">RunningAverageTest.kt</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-kotlin hljs" data-lang="kotlin">class RunningAverageTest {
+    private lateinit var testDriver: TopologyTestDriver
+    private var ratingSpecificAvroSerde: KafkaJsonSchemaSerde&lt;Rating&gt;? = null
+
+    @Before
+    fun setUp() {
+        val mockProps = Properties()
+        mockProps["application.id"] = "kafka-movies-test"
+        mockProps["bootstrap.servers"] = "DUMMY_KAFKA_CONFLUENT_CLOUD_9092"
+        mockProps["schema.registry.url"] = "mock://DUMMY_SR_CONFLUENT_CLOUD_8080"
+
+        val builder = StreamsBuilder()
+        val countAndSumSerde: KafkaJsonSchemaSerde&lt;CountAndSum&gt; = jsonSchemaSerde(mockProps, false)
+        ratingSpecificAvroSerde = jsonSchemaSerde(mockProps, false)
+
+        val ratingStream: KStream&lt;Long, Rating&gt; = ratingsStream(builder, mockProps)
+
+        getRatingAverageTable(
+            ratingStream,
+            AVERAGE_RATINGS_TOPIC_NAME,
+            countAndSumSerde
+        )
+        val topology = builder.build()
+        testDriver = TopologyTestDriver(topology, mockProps)
+    }
+
+    @Test
+    fun validateIfTestDriverCreated() {
+        Assert.assertNotNull(testDriver)
+    }
+
+    @Test
+    fun validateAverageRating() {
+        val inputTopic: TestInputTopic&lt;Long, Rating&gt; = testDriver.createInputTopic(
+            RATINGS_TOPIC_NAME,
+            LongSerializer(),
+            ratingSpecificAvroSerde?.serializer()
+        )
+        inputTopic.pipeKeyValueList(
+            listOf(
+                KeyValue(LETHAL_WEAPON_RATING_8.movieId, LETHAL_WEAPON_RATING_8),
+                KeyValue(LETHAL_WEAPON_RATING_10.movieId, LETHAL_WEAPON_RATING_10)
+            )
+        )
+        val outputTopic: TestOutputTopic&lt;Long, Double&gt; = testDriver.createOutputTopic(
+            AVERAGE_RATINGS_TOPIC_NAME,
+            LongDeserializer(),
+            DoubleDeserializer()
+        )
+        val keyValues: List&lt;KeyValue&lt;Long, Double&gt;&gt; = outputTopic.readKeyValuesToList()
+        // I sent two records to input topic
+        // I expect second record in topic will contain correct result
+        val longDoubleKeyValue = keyValues[1]
+        println("longDoubleKeyValue = $longDoubleKeyValue")
+        MatcherAssert.assertThat(
+            longDoubleKeyValue,
+            CoreMatchers.equalTo(KeyValue(362L, 9.0))
+        )
+        val keyValueStore: KeyValueStore&lt;Long, Double&gt; = testDriver.getKeyValueStore("average-ratings")
+        val expected = keyValueStore[362L]
+        Assert.assertEquals("Message", expected, 9.0, 0.0)
+    }
+
+    @After
+    fun tearDown() {
+        testDriver.close()
+    }
+
+    companion object {
+        private const val RATINGS_TOPIC_NAME = "ratings"
+        private const val AVERAGE_RATINGS_TOPIC_NAME = "average-ratings"
+        private val LETHAL_WEAPON_RATING_10 = Rating(362L, 10.0)
+        private val LETHAL_WEAPON_RATING_8 = Rating(362L, 8.0)
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div></div></div><footer class="entry-footer"><div class="tags"><span class="title">tags: </span></div></footer><div id="comments">
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+            var disqus_shortname = 'nextjavaheadbraincom';
+            var disqus_url = "http://gamov.io/workshop/ktor-kafka-2021.html";
+            var disqus_developer = null;
+            var disqus_identifier = null;
+            (function() {
+              var dsq = document.createElement("script"); dsq.type = "text/javascript"; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(dsq);
+            })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=nextjavaheadbraincom">comments powered by Disqus.</a></noscript>
+          </div></article></div></div></body></html><div id="copyright"><div class="row full-width"><div class="large-4 columns"><p>© Viktor Gamov 2020—2007</p></div><div class="large-8 columns"><ul class="inline-list right"><li><a href="https://github.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-github"></i></span>&nbspGithub</a></li><li class="divider"></li><li><a href="https://twitter.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-twitter"></i></span>&nbspTwitter</a></li><li class="divider"></li></ul></div></div></div><script>document.write('<script src=' + ('__proto__' in {} ? '/javascripts/vendor/zepto' : '/javascripts/vendor/jquery') + '.js><\/script>')</script><script src="/javascripts/foundation/foundation.js"><script src="/javascripts/foundation/foundation.topbar.js"></script></script><script>$(document).foundation();</script><script src="/javascripts/vendor/highlight.min.js"></script><script>$(hljs.initHighlighting());</script><script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount','UA-40354726-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+ var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!--End Footer-->
