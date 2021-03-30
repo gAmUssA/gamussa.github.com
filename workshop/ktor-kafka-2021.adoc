@@ -31,6 +31,27 @@ However, as this tutorial shows, it can be implemented by composing incremental 
 Consider a topic with events that represent ratings of movies.
 In this tutorial, we'll write a program that calculates and maintains a running average rating for each movie.
 
+.The Tutorial Architecture Overview
+image::ktor-kafka.png[]
+
+== Prerequisites
+
+Ensure you install the following toolset on your computer:
+
+* https://confluent.cloud[Confluent Cloud]
++
+
+TIP: You should have your login and password information handy after you sign up for Confluent Cloud.
+The `ccloud` init script will ask you for your login information.
+
+* https://docs.confluent.io/current/cloud/cli/install.html[Confluent Cloud CLI]
+* Docker (If you want to run locally)
+** https://docs.docker.com/docker-for-mac/install/[install Docker Desktop for MacOS]
+* Git
+* https://jdk.dev[Java 11 (or later)]
+* Your favorite IDE or text editor
+** Personally, I recommend https://www.jetbrains.com/idea/[IntelliJ IDEA].
+
 == Tutorial
 
 To get started, make a new directory anywhere you'd like for this project:
@@ -39,8 +60,8 @@ First, create a Kotlin project with Kotlin DSL
 
 === Gradle build
 
+[source,kotlin]
 .build.gradle.kts
-
 ----
 import org.jetbrains.kotlin.gradle.dsl.Coroutines
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -107,7 +128,17 @@ kotlin_version=1.4.30
 confluent_version=6.1.1
 ----
 
+=== Config files
+
+[source]
+.application.conf
+----
+
+----
+
+
 === Web application
+
 First, we create a view code that renders the UI using the kotlinx.html library. create the following file at `/src/main/kotlin/io/confluent/developer/Html.kt`.
 
 .Html.kt
