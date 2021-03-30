@@ -1,0 +1,364 @@
+= Learn how to build event-driven microservices with Apache Kafka, Kotlin, and Ktor
+Viktor Gamov <viktor@confluent.io>, Anton Arhipov <anton@jetbrains.com> 
+v1.0, 2021-03-30
+:toc: auto
+:toc-placement: auto
+:toc-position: auto
+:toc-title: Table of content
+:toclevels: 3
+:idprefix:
+:idseparator: -
+:sectanchors:
+:icons: font
+:source-highlighter: highlight.js
+:highlightjs-theme: idea
+:experimental:
+ifndef::awestruct[]
+:imagesdir: ../images
+:awestruct-draft: false
+:awestruct-layout: post
+:awestruct-tags: []
+:idprefix:
+:idseparator: -
+endif::awestruct[]
+
+How can I implement an average aggregation that implements incremental functions, namely count and sum?
+
+Kafka Streams natively supports _incremental_ aggregation functions, in which the aggregation result is updated based on the values captured by each window.
+Incremental functions include `count`, `sum`, `min`, and `max`.
+An average aggregation cannot be computed incrementally.
+However, as this tutorial shows, it can be implemented by composing incremental functions, namely count and sum.
+Consider a topic with events that represent ratings of movies.
+In this tutorial, we'll write a program that calculates and maintains a running average rating for each movie.
+
+== Tutorial
+
+To get started, make a new directory anywhere you'd like for this project:
+
+NOTE: Anton writes init
+
+=== Add required dependencies
+
+==== Kafka Streams and Confluent Serdes
+
+[source,kotlin]
+.build.gradle.kts
+----
+repositories { 
+    maven ("https://packages.confluent.io/maven") 
+}
+
+dependencies{
+    implementation("io.confluent:kafka-json-schema-serializer:$confluent_version")
+    implementation("io.confluent:kafka-streams-json-schema-serde:$confluent_version") {
+        exclude("org.apache.kafka", "kafka-clients")
+    }
+}
+----
+
+==== Kafka Ktor libraries
+
+* add dependency and jitpack repo
++
+
+[source,kotlin]
+.build.gradle.kts
+----
+repositories {
+    maven ("https://jitpack.io")
+}
+
+dependencies{
+    implementation("com.github.gAmUssA:ktor-kafka:main-SNAPSHOT")
+}
+----
+
+* in `Application.module`
++
+
+[source,kotlin]
+.Application.kt
+----
+import io.confluent.developer.ktor.Kafka
+import io.confluent.developer.ktor.newTopic
+
+fun Application.module(){
+    
+    //install Kafka feature
+    install(Kafka) {
+        configurationPath = "src/main/resources/kafka.conf"
+        topics = listOf(
+            newTopic("myTopic") {
+                partitions = 3
+                replicas = 1
+            }
+        )
+    }
+}
+----
+
+=== Models / POKO
+
+Create a data class file at `src/main/kotlin/io/confluent/developer/kstreams/Rating.kt` for the stream of ratings:
+
+[source,kotlin]
+.Rating.kt
+----
+
+data class Rating(val movieId: Long = 1L, val rating: Double = 0.0)
+
+----
+
+Next, create data class file in `src/main/kotlin/io/confluent/developer/kstreams/Rating.kt` for the pair of counts and sums:
+
+[source,kotlin]
+.CountAndSum.kt
+----
+
+data class CountAndSum(var count: Long = 0L, var sum: Double = 0.0)
+
+----
+
+NOTE: We're going to use this record to store intermediate results.
+The reason why we're using json schema support in Schema Registry for this is that we can use `KafkaJsonSchemaSerde` to handle all our serialization needs.
+
+
+Then create the following file at `/src/main/kotlin/io/confluent/developer/kstreams/RunningAverage.kt`.
+Let's take a close look at the `buildTopology()` method, which uses the Kafka Streams DSL.
+
+[source,kotlin]
+.RunningAverage.kt
+----
+
+fun main(args: Array<String>): Unit = EngineMain.main(args)
+
+const val ratingTopicName = "ratings" const val ratingsAvgTopicName = "rating-averages"
+
+@Suppress("unused") // Referenced in application.conf @JvmOverloads fun Application.module(testing: Boolean = false) {
+lateinit var streams: KafkaStreams
+
+    // load properties
+    val kafkaConfigPath = "src/main/resources/kafka.conf"
+    val config: Config = ConfigFactory.parseFile(File(kafkaConfigPath))
+    val properties = effectiveStreamProperties(config)
+
+    //region Kafka
+    install(Kafka) {
+        configurationPath = kafkaConfigPath
+        topics = listOf(
+            newTopic(ratingTopicName) {
+                partitions = 3
+                //replicas = 1 // for docker
+                replicas = 3 // for cloud
+            },
+            newTopic(ratingsAvgTopicName) {
+                partitions = 3
+                //replicas = 1 // for docker
+                replicas = 3 // for cloud
+            }
+        )
+    }
+    //endregion
+
+    val streamsBuilder = StreamsBuilder()
+    val topology = buildTopology(streamsBuilder, properties)
+    //(topology.describe().toString())
+
+    streams = streams(topology, config)
+
+    environment.monitor.subscribe(ApplicationStarted) {
+        streams.cleanUp()
+        streams.start()
+        log.info("Kafka Streams app is ready to roll...")
+    }
+
+    environment.monitor.subscribe(ApplicationStopped) {
+        log.info("Time to clean up...")
+        streams.close(Duration.ofSeconds(5))
+    }
+}
+
+fun buildTopology( builder: StreamsBuilder, properties: Properties ): Topology {
+
+    val ratingStream: KStream<Long, Rating> = ratingsStream(builder, properties)
+
+    getRatingAverageTable(
+        ratingStream,
+        ratingsAvgTopicName,
+        jsonSchemaSerde(properties, false)
+    )
+    return builder.build()
+}
+
+fun ratingsStream(builder: StreamsBuilder, properties: Properties): KStream<Long, Rating> {
+return builder.stream( ratingTopicName, Consumed.with(Long(), jsonSchemaSerde(properties, false)) ) }
+
+fun getRatingAverageTable( ratings: KStream<Long, Rating>, avgRatingsTopicName: String, countAndSumSerde: KafkaJsonSchemaSerde<CountAndSum> ): KTable<Long, Double> {
+
+    // Grouping Ratings
+    val ratingsById: KGroupedStream<Long, Double> = ratings
+        .map { _, rating -> KeyValue(rating.movieId, rating.rating) }
+        .groupByKey(with(Long(), Double()))
+
+    val ratingCountAndSum: KTable<Long, CountAndSum> = ratingsById.aggregate(
+        { CountAndSum(0L, 0.0) },
+        { _, value, aggregate ->
+            aggregate.count = aggregate.count + 1
+            aggregate.sum = aggregate.sum + value
+            aggregate
+        },
+        Materialized.with(Long(), countAndSumSerde)
+    )
+
+    val ratingAverage: KTable<Long, Double> = ratingCountAndSum.mapValues(
+        { value -> value.sum.div(value.count) },
+        Materialized.`as`<Long, Double, KeyValueStore<Bytes, ByteArray>>("average-ratings")
+            .withKeySerde(LongSerde())
+            .withValueSerde(DoubleSerde())
+    )
+
+    // persist the result in topic
+    val stream = ratingAverage.toStream()
+    //stream.peek { key, value -> println("$key:$value") }
+    stream.to(avgRatingsTopicName, producedWith<Long, Double>())
+    return ratingAverage
+}
+
+inline fun <reified V> jsonSchemaSerde( properties: Properties, isKeySerde: Boolean ): KafkaJsonSchemaSerde<V> {
+val schemaSerde = KafkaJsonSchemaSerde(V::class.java) val crSource = properties[BASIC_AUTH_CREDENTIALS_SOURCE]
+val uiConfig = properties[USER_INFO_CONFIG]
+
+    val map = mutableMapOf(
+        "schema.registry.url" to properties["schema.registry.url"]
+    )
+    crSource?.let {
+        map[BASIC_AUTH_CREDENTIALS_SOURCE] = crSource
+    }
+    uiConfig?.let {
+        map[USER_INFO_CONFIG] = uiConfig
+    }
+    schemaSerde.configure(map, isKeySerde)
+    return schemaSerde;
+}
+----
+
+Please note the code snippet around line 134.
+To calculate the running average, we need to capture the sum of ratings and counts as part of the same aggregating operation.
+
+[source,kotlin]
+.Compute count and sum in a single aggregation step and emit `<count,sum>` tuple as aggregation result values.
+----
+val ratingCountAndSum: KTable<Long, CountAndSum> = ratingsById.aggregate(
+        { CountAndSum(0L, 0.0) },
+        { _, value, aggregate ->
+            aggregate.count = aggregate.count + 1
+            aggregate.sum = aggregate.sum + value
+            aggregate
+        },
+        Materialized.with(Long(), countAndSumSerde)
+    )
+----
+
+[source,kotlin]
+.Compute average for each tuple.
+----
+val ratingAverage: KTable<Long, Double> = ratingCountAndSum.mapValues(
+        { value -> value.sum.div(value.count) },
+        Materialized.`as`<Long, Double, KeyValueStore<Bytes, ByteArray>>("average-ratings")
+            .withKeySerde(LongSerde())
+            .withValueSerde(DoubleSerde())
+    )
+----
+
+This pattern can also be applied to compute a windowed average or to compose other functions.
+
+Now create the following file at `src/test/kotlin/io/confluent/developer/RunningAverageTest.kt`.
+Testing a Kafka streams application requires a bit of test harness code, but happily the `org.apache.kafka.streams.TopologyTestDriver` class makes this much more pleasant that it would otherwise be.
+
+There is a `validateAverageRating()` method in `RunningAverageTest` annotated with `@Test`.
+This method actually runs our Streams topology using the `TopologyTestDriver` and some mocked data that is set up inside the test method.
+
+[source,kotlin]
+.RunningAverageTest.kt
+----
+class RunningAverageTest {
+    private lateinit var testDriver: TopologyTestDriver
+    private var ratingSpecificAvroSerde: KafkaJsonSchemaSerde<Rating>? = null
+
+    @Before
+    fun setUp() {
+        val mockProps = Properties()
+        mockProps["application.id"] = "kafka-movies-test"
+        mockProps["bootstrap.servers"] = "DUMMY_KAFKA_CONFLUENT_CLOUD_9092"
+        mockProps["schema.registry.url"] = "mock://DUMMY_SR_CONFLUENT_CLOUD_8080"
+
+        val builder = StreamsBuilder()
+        val countAndSumSerde: KafkaJsonSchemaSerde<CountAndSum> = jsonSchemaSerde(mockProps, false)
+        ratingSpecificAvroSerde = jsonSchemaSerde(mockProps, false)
+
+        val ratingStream: KStream<Long, Rating> = ratingsStream(builder, mockProps)
+
+        getRatingAverageTable(
+            ratingStream,
+            AVERAGE_RATINGS_TOPIC_NAME,
+            countAndSumSerde
+        )
+        val topology = builder.build()
+        testDriver = TopologyTestDriver(topology, mockProps)
+    }
+
+    @Test
+    fun validateIfTestDriverCreated() {
+        Assert.assertNotNull(testDriver)
+    }
+
+    @Test
+    fun validateAverageRating() {
+        val inputTopic: TestInputTopic<Long, Rating> = testDriver.createInputTopic(
+            RATINGS_TOPIC_NAME,
+            LongSerializer(),
+            ratingSpecificAvroSerde?.serializer()
+        )
+        inputTopic.pipeKeyValueList(
+            listOf(
+                KeyValue(LETHAL_WEAPON_RATING_8.movieId, LETHAL_WEAPON_RATING_8),
+                KeyValue(LETHAL_WEAPON_RATING_10.movieId, LETHAL_WEAPON_RATING_10)
+            )
+        )
+        val outputTopic: TestOutputTopic<Long, Double> = testDriver.createOutputTopic(
+            AVERAGE_RATINGS_TOPIC_NAME,
+            LongDeserializer(),
+            DoubleDeserializer()
+        )
+        val keyValues: List<KeyValue<Long, Double>> = outputTopic.readKeyValuesToList()
+        // I sent two records to input topic
+        // I expect second record in topic will contain correct result
+        val longDoubleKeyValue = keyValues[1]
+        println("longDoubleKeyValue = $longDoubleKeyValue")
+        MatcherAssert.assertThat(
+            longDoubleKeyValue,
+            CoreMatchers.equalTo(KeyValue(362L, 9.0))
+        )
+        val keyValueStore: KeyValueStore<Long, Double> = testDriver.getKeyValueStore("average-ratings")
+        val expected = keyValueStore[362L]
+        Assert.assertEquals("Message", expected, 9.0, 0.0)
+    }
+
+    @After
+    fun tearDown() {
+        testDriver.close()
+    }
+
+    companion object {
+        private const val RATINGS_TOPIC_NAME = "ratings"
+        private const val AVERAGE_RATINGS_TOPIC_NAME = "average-ratings"
+        private val LETHAL_WEAPON_RATING_10 = Rating(362L, 10.0)
+        private val LETHAL_WEAPON_RATING_8 = Rating(362L, 8.0)
+    }
+}
+----
+
+
+
+
+
