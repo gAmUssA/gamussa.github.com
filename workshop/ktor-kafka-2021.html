@@ -1,16 +1,20 @@
 <!DOCTYPE html><!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><html class="no-js" lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Learn how to build event-driven microservices with Apache Kafka, Kotlin, and Ktor | gamov.io</title><meta name="author" content="Viktor Gamov &lt;viktor@confluent.io&gt;, Anton Arhipov &lt;anton@jetbrains.com&gt;"><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@asciidoctor"><meta name="twitter:url" content="http://gamov.io/workshop/ktor-kafka-2021.html"><meta name="twitter:title" content="Learn how to build event-driven microservices with Apache Kafka, Kotlin, and Ktor"><meta name="twitter:description" content="Table of content
+Prerequisites
 Tutorial
 Gradle build
+Config files
 Web application
 Data classes
 Streaming application
 How can I implement an average aggregation that implements incremental functions, namely count and sum?
-Kafka Streams natively supports incremental..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html"><span class="icon"><i class="fa fa-th-large"></i></span>&nbspBlog</a></li><li class="divider"></li><li><a href="https://www.youtube.com/ViktorGamov" target="_blank"><span class="icon"><i class="fa fa-youtube"></i></span>&nbspYouTube </a></li><li class="divider"></li><li><a href="https://speaking.gamov.io" target="_blank"><span class="icon"><i class="fa fa-slideshare"></i></span>&nbspMy Talks</a></li><li class="divider"></li><li><a href="https://github.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-github"></i></span>&nbspGithub</a></li><li class="divider"></li><li><a href="https://twitter.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-twitter"></i></span>&nbspTwitter</a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://gamov.io">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h2 class="header"><a href="/workshop/ktor-kafka-2021.html">Learn how to build event-driven microservices with Apache Kafka, Kotlin, and Ktor</a></h2><h5 class="subheader">Written by&nbsp <a href="#">Viktor Gamov &lt;viktor@confluent.io&gt;, Anton Arhipov &lt;anton@jetbrains.com&gt;</a>&nbsp- <time class="pubdate" datetime="2021-03-30T00:00:00+00:00">Tuesday, March 30, 2021</time></h5><div class="row"><div class="large-12 columns text-left"><div id="toc" class="toc">
+Kafka Streams natively supports..."><link rel="stylesheet" href="/stylesheets/app.css"><script src="/javascripts/vendor/custom.modernizr.js"></script><link rel="shortcut icon" href="/images/favicon.ico"><link rel="author" href="/humans.txt"><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"></head><body class="antialiased"><nav class="top-bar"><ul class="title-area"><li class="name"><h1><a href="/">Viktor Gamov</a></h1></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li><a href="/posts.html"><span class="icon"><i class="fa fa-th-large"></i></span>&nbspBlog</a></li><li class="divider"></li><li><a href="https://www.youtube.com/ViktorGamov" target="_blank"><span class="icon"><i class="fa fa-youtube"></i></span>&nbspYouTube </a></li><li class="divider"></li><li><a href="https://speaking.gamov.io" target="_blank"><span class="icon"><i class="fa fa-slideshare"></i></span>&nbspMy Talks</a></li><li class="divider"></li><li><a href="https://github.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-github"></i></span>&nbspGithub</a></li><li class="divider"></li><li><a href="https://twitter.com/gamussa" target="_blank"><span class="icon"><i class="fa fa-twitter"></i></span>&nbspTwitter</a></li><li class="divider"></li><li class="has-form"><a class="small button" href="http://enterprisewebbook.com">Enterprise Web Development</a></li></ul></section></nav><div class="row"><div class="large-12 column"><h1 class="header"><a href="http://gamov.io">Crash Course In Java Brain Surgery</a></h1><h6 class="subheader">insinuation and speculations: My thoughts about Java, HTML5, software development and IT in general</h6><hr></div></div><!--Main Page Content--><div class="row"><div id="content"><!--Main Blog Content--><div class="large-12 columns" role="content"></div><article><h2 class="header"><a href="/workshop/ktor-kafka-2021.html">Learn how to build event-driven microservices with Apache Kafka, Kotlin, and Ktor</a></h2><h5 class="subheader">Written by&nbsp <a href="#">Viktor Gamov &lt;viktor@confluent.io&gt;, Anton Arhipov &lt;anton@jetbrains.com&gt;</a>&nbsp- <time class="pubdate" datetime="2021-03-30T00:00:00+00:00">Tuesday, March 30, 2021</time></h5><div class="row"><div class="large-12 columns text-left"><div id="toc" class="toc">
 <div id="toctitle">Table of content</div>
 <ul class="sectlevel1">
+<li><a href="#prerequisites">Prerequisites</a></li>
 <li><a href="#tutorial">Tutorial</a>
 <ul class="sectlevel2">
 <li><a href="#gradle-build">Gradle build</a></li>
+<li><a href="#config-files">Config files</a></li>
 <li><a href="#web-application">Web application</a>
 <ul class="sectlevel3">
 <li><a href="#data-classes">Data classes</a></li>
@@ -34,6 +38,69 @@ However, as this tutorial shows, it can be implemented by composing incremental 
 Consider a topic with events that represent ratings of movies.
 In this tutorial, we&#8217;ll write a program that calculates and maintains a running average rating for each movie.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="/images/ktor-kafka.png" alt="ktor kafka">
+</div>
+<div class="title">Figure 1. The Tutorial Architecture Overview</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="prerequisites"><a class="anchor" href="#prerequisites"></a>Prerequisites</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ensure you install the following toolset on your computer:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://confluent.cloud">Confluent Cloud</a></p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You should have your login and password information handy after you sign up for Confluent Cloud.
+The <code>ccloud</code> init script will ask you for your login information.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p><a href="https://docs.confluent.io/current/cloud/cli/install.html">Confluent Cloud CLI</a></p>
+</li>
+<li>
+<p>Docker (If you want to run locally)</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.docker.com/docker-for-mac/install/">install Docker Desktop for MacOS</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Git</p>
+</li>
+<li>
+<p><a href="https://jdk.dev">Java 11 (or later)</a></p>
+</li>
+<li>
+<p>Your favorite IDE or text editor</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Personally, I recommend <a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -50,7 +117,7 @@ In this tutorial, we&#8217;ll write a program that calculates and maintains a ru
 <div class="listingblock">
 <div class="title">build.gradle.kts</div>
 <div class="content">
-<pre class="nowrap">import org.jetbrains.kotlin.gradle.dsl.Coroutines
+<pre class="highlightjs highlight nowrap"><code class="language-kotlin hljs" data-lang="kotlin">import org.jetbrains.kotlin.gradle.dsl.Coroutines
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val logback_version: String by project
@@ -103,7 +170,7 @@ dependencies {
 
 tasks.withType&lt;KotlinCompile&gt;().configureEach {
     kotlinOptions.jvmTarget = "1.8"
-}</pre>
+}</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -114,6 +181,15 @@ ktor_version=1.5.2
 kotlin.code.style=official
 kotlin_version=1.4.30
 confluent_version=6.1.1</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="config-files"><a class="anchor" href="#config-files"></a>Config files</h3>
+<div class="listingblock">
+<div class="title">application.conf</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code></code></pre>
 </div>
 </div>
 </div>
