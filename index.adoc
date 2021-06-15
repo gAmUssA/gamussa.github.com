@@ -1,7 +1,7 @@
 = New "Java Head Brain" blog prototype
 :awestruct-layout: index
 
-[quote, Viktor Gamov aka @gAmUssA, Developer Advocate at Confluent]     
+[quote, Viktor Gamov aka @gAmUssA, Principa Developer Advocate at Kong]     
 ...And as always, have a nice day!
 
 [.panel]
@@ -9,11 +9,12 @@
 
 👋 Hello!
 My name is Viktor Gamov.
-I'm a Developer Advocate at http://confluent.io[Confluent], the company that makes a streaming platform based on Apache Kafka.
+I'm a Developer Advocate at http://konghq.io[Kong], a cloud connectivity company.
+You may know me for some work I did with https://confluent.io[Confluent] or https://hazelcast.com[Hazelcast].
 I'm a professional conference speaker on distributed systems, Java, and JavaScript topics, and is regular on events including JavaOne, Devoxx, OSCON, QCon, and https://speaking.gamov.io[others].
 I'm occasionally blogging http://gamov.io/posts.html[here] and produce a podcast http://razborpoletov.com[Razbor Poletov] (in Russian) and co-hosts http://devrelrad.io[DevRelRad.io].
 Back in my consultancy days, I co-authored O'Reilly's book <<enterprisewebbook, «Enterprise Web Development. Building HTML5 Applications: From Desktop to Mobile.»>>
-You can follow me on Twitter https://twitter.con/gamussa[@gamussa], where I post about gym life, food, open source, and, of course, Kafka and Confluent!
+You can follow me on Twitter https://twitter.con/gamussa[@gamussa], where I post about gym life, food, open source, and, of course, Kubernetes, Cloud and Kong.
 
 [[enterprisewebbook]]
 == Enterprise Web Development

@@ -7,6 +7,7 @@ require 'awestruct_ext'
 
 Awestruct::Extensions::Pipeline.new do
   extension Awestruct::Extensions::Posts.new('/posts', :posts)
+  extension Awestruct::Extensions::Posts.new('/workshop', :workshops)
   extension Awestruct::Extensions::Paginator.new(:posts, '/index', :per_page => 10)
   extension Awestruct::Extensions::PostsArchiver.new('/posts', :posts, :archive)
   #extension Awestruct::Extensions::Tagger.new(:posts, '/posts', '/posts/tags', :per_page => 10)

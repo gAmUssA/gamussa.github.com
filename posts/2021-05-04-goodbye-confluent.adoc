@@ -1,0 +1,41 @@
+= Goodbye Confluent
+Viktor Gamov
+2021-05-06 23:34
+:imagesdir: ../images
+:icons:
+:keywords:
+:toc:
+ifndef::awestruct[]
+:awestruct-layout: post
+:awestruct-tags: []
+:idprefix:
+:idseparator: -
+endif::awestruct[]
+
+
+.TL;DR
+NOTE: May 6th, 2021, was my last day at Confluent.
+Here is an email, that I sent to my former co-workers @ConfluentInc.
+
+
+====
+Dear team,
+
+I'd like to let you know that I am leaving my position of Developer Advocate on May 6th.
+I have really enjoyed my time here in Confluent, and I appreciate having had the opportunity to work with with many of you. It was quite a ride, but I would do it again without any doubts. 
+
+Even though I will miss many people across the organization, I am looking forward to starting a new phase of my career.
+
+Please keep in touch. Don't hesitate to reach out if you need anything.
+You should know where to find me by now.
+
+Thanks again. It's been a pleasure working with you.
+
+It was Viktor Gamov,
+And as always, have a nice day...
+====
+
+And also I posted video on my https://gamov.dev.youtube[YT channel].
+
+[role="center"]
+video::6R1BWIMn5-E[youtube,800,600]

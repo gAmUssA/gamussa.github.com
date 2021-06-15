@@ -1,0 +1,15 @@
+---
+layout: post
+title : Workshops
+---
+
+h2.header= 'Walkthroughs of past workshops'
+ul.disc
+  - site.workshops.each do |post|
+    li
+      .date= post.date.strftime('%B %d, %Y')
+      | ✪&nbsp;
+      - if post.link
+        a.link  href=post.url "#{site.linked_list.link} #{post.title}"
+      - else
+        a  href=(post.url ) = post.title
