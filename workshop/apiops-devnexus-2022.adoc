@@ -1,0 +1,59 @@
+= API design and APIOps
+Viktor Gamov <viktor@konghq.com>
+v1.0, 2022-04-12
+:toc: auto
+:toc-placement: auto
+:toc-position: macro
+:toc-title: Table of content
+:toclevels: 3
+:idprefix:
+:idseparator: -
+:sectanchors:
+:icons: font
+:source-highlighter: highlight.js
+:highlightjs-theme: idea
+:experimental:
+ifndef::awestruct[]
+:imagesdir: ../images
+:awestruct-draft: false
+:awestruct-layout: post
+:awestruct-tags: []
+:idprefix:
+:idseparator: -
+endif::awestruct[]
+
+
+Building an API is just the first step. 
+You also need to deploy that API and help your customers onboard to drive API consumption. 
+Design APIs in Insomnia, generate configurations for Kong Gateway and publish REST, GraphQL, and gRPC services to the Kong Dev Portal to enable your audience. 
+In this workshop, we will go through all steps of the API Management cycle - from designing API specifications to publishing APIs for public consumption.
+
+image::APIOps.png[width=45%]
+
+toc::[]
+
+== Outline
+
+* Design API in Insomnia
+** Design
+** Debug
+** Test
+* Deploy Services to API management (APIM) Platform - Kong
+** Generate config with `inso` from OpenAPI spec.
+** Learn how to use `deck` and GitHub actions for continuous delivery.
+** Use a mocking plugin for the default implementation.
+** Use rate limit plugin
+* Publish API to Developer Portal for public consumption.
+
+== Prerequisites 
+
+* https://docs.insomnia.rest/insomnia/install[Insomnia]
+** https://docs.insomnia.rest/inso-cli/install[inso cli]
+* https://www.docker.com/products/docker-desktop/[Docker Desktop]
+* https://github.com/Kong/deck#installation[deck]
+* https://github.com[Github] account
+* https://konnect.konghq.com/[Kong Konnect] account
+
+== Workshop
+
+TBA

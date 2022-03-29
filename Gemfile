@@ -25,7 +25,7 @@ gem "coffee-script"
 # required to use the minify extension
 gem 'uglifier', '~> 1.3.0'
 gem 'htmlcompressor', '~> 0.0.3'
-gem 'guard', :git => 'git://github.com/guard/guard.git'
+gem 'guard', :git => 'ssh://github.com/guard/guard.git'
 
 # set EXECJS_RUNTIME=SpiderMonkey as alternative to theruby(racer|rhino)
 #gem 'therubyracer', '~> 0.11.4', :platforms => [:ruby]
