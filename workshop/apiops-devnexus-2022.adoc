@@ -22,15 +22,20 @@ ifndef::awestruct[]
 :idseparator: -
 endif::awestruct[]
 
-
-Building an API is just the first step. 
-You also need to deploy that API and help your customers onboard to drive API consumption. 
-Design APIs in Insomnia, generate configurations for Kong Gateway and publish REST, GraphQL, and gRPC services to the Kong Dev Portal to enable your audience. 
+Building an API is just the first step.
+You also need to deploy that API and help your customers onboard to drive API consumption.
+Design APIs in Insomnia, generate configurations for Kong Gateway and publish REST, GraphQL, and gRPC services to the Kong Dev Portal to enable your audience.
 In this workshop, we will go through all steps of the API Management cycle - from designing API specifications to publishing APIs for public consumption.
 
 image::APIOps.png[width=45%]
 
 toc::[]
+
+.Links
+****
+- https://gamov.io/workshop/2022/04/12/apiops-devnexus-2022.html[self-link]
+- https://gamov.dev/konnect[Request Konnect Enterprise license]
+****
 
 == Outline
 
@@ -49,11 +54,99 @@ toc::[]
 
 * https://docs.insomnia.rest/insomnia/install[Insomnia]
 ** https://docs.insomnia.rest/inso-cli/install[inso cli]
+** recommended to use beta channel
 * https://www.docker.com/products/docker-desktop/[Docker Desktop]
 * https://github.com/Kong/deck#installation[deck]
 * https://github.com[Github] account
 * https://konnect.konghq.com/[Kong Konnect] account
 
+=== Test environment
+
+image::insomnia.png[width=50%]
+
+[source,bash]
+.test.sh
+----
+docker version
+
+> inso --version
+2.8.0
+
+> deck version
+decK v1.11.0 (4235c73)
+----
+
 == Workshop
 
-TBA
+image::gitops-demo.png[]
+
+
+.A code of the application and other things can be found 
+****
+https://github.com/gAmUssA/apiops-workshop
+****
+
+=== Designing, testing and debugging API 
+
+==== API Purpose
+
+This is a sample application returns a list of Kong products and Devnexus sessions.
+A `/products` endpoint returns a list of Kong products.
+A `/sessions` endpoint returns a list of Devnexus sessions.
+
+==== Open API spec in Insomnia
+
+TBD
+
+==== Generate Kong config with inso
+
+[source,bash]
+.filename
+----
+inso generate config src/main/resources/spec/devnexus-api-v1.0.yaml \ 
+  --type declarative \
+  --format yaml \
+  --output kong.yaml
+----
+
+.Kong and declarative config
+****
+I created a tutorial and video about using kong in docker with declarative config.
+<LINK TO DEMO SCENE>
+It can we tested as well using for instance with Testcontainers.
+<LINK TO DEMO SCENE and Kong Builders VIDEO>
+****
+
+=== Deploying API config to Kong 
+
+_Lecture parts_
+
+==== Validation of decK + Konnect
+
+* Create file `~/.deck.yaml`
++
+
+[source,yaml]
+.`.deck.yaml`
+----
+konnect-email: your_email+konnectt@konghq.com
+konnect-password: your_p!ssw0rd
+----
+
+* Test connection
++
+
+[source,bash]
+.shell
+----
+> deck konnect ping
+Successfully Konnected as Username!
+
+> deck convert --from kong-gateway --to konnect --input-file kong.yaml --output-file konnect.yaml
+
+> deck konnect sync
+----
+
+==== Adding plugins 
+
+=== Enabling Developer Portal
