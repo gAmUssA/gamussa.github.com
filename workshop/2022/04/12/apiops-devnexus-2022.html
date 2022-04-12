@@ -17,9 +17,45 @@ In this workshop, we will go through all steps of the API Management cycle - fro
 <div id="toctitle" class="title">Table of content</div>
 <ul class="sectlevel1">
 <li><a href="#outline">Outline</a></li>
-<li><a href="#prerequisites">Prerequisites</a></li>
-<li><a href="#workshop">Workshop</a></li>
+<li><a href="#prerequisites">Prerequisites</a>
+<ul class="sectlevel2">
+<li><a href="#test-environment">Test environment</a></li>
 </ul>
+</li>
+<li><a href="#workshop">Workshop</a>
+<ul class="sectlevel2">
+<li><a href="#designing-testing-and-debugging-api">Designing, testing and debugging API</a>
+<ul class="sectlevel3">
+<li><a href="#api-purpose">API Purpose</a></li>
+<li><a href="#open-api-spec-in-insomnia">Open API spec in Insomnia</a></li>
+<li><a href="#generate-kong-config-with-inso">Generate Kong config with inso</a></li>
+</ul>
+</li>
+<li><a href="#deploying-api-config-to-kong">Deploying API config to Kong</a>
+<ul class="sectlevel3">
+<li><a href="#validation-of-deck-konnect">Validation of decK + Konnect</a></li>
+<li><a href="#adding-plugins">Adding plugins</a></li>
+</ul>
+</li>
+<li><a href="#enabling-developer-portal">Enabling Developer Portal</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Links</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://gamov.io/workshop/2022/04/12/apiops-devnexus-2022.html">self-link</a></p>
+</li>
+<li>
+<p><a href="https://gamov.dev/konnect">Request Konnect Enterprise license</a></p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -82,6 +118,9 @@ In this workshop, we will go through all steps of the API Management cycle - fro
 <li>
 <p><a href="https://docs.insomnia.rest/inso-cli/install">inso cli</a></p>
 </li>
+<li>
+<p>recommended to use beta channel</p>
+</li>
 </ul>
 </div>
 </li>
@@ -99,13 +138,128 @@ In this workshop, we will go through all steps of the API Management cycle - fro
 </li>
 </ul>
 </div>
+<div class="sect2">
+<h3 id="test-environment"><a class="anchor" href="#test-environment"></a>Test environment</h3>
+<div class="imageblock">
+<div class="content">
+<img src="/images/insomnia.png" alt="insomnia" width="50%">
+</div>
+</div>
+<div class="listingblock">
+<div class="title">test.sh</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">docker version
+
+&gt; inso --version
+2.8.0
+
+&gt; deck version
+decK v1.11.0 (4235c73)</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="workshop"><a class="anchor" href="#workshop"></a>Workshop</h2>
 <div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="/images/gitops-demo.png" alt="gitops demo">
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">A code of the application and other things can be found</div>
 <div class="paragraph">
-<p>TBA</p>
+<p><a href="https://github.com/gAmUssA/apiops-workshop" class="bare">https://github.com/gAmUssA/apiops-workshop</a></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="designing-testing-and-debugging-api"><a class="anchor" href="#designing-testing-and-debugging-api"></a>Designing, testing and debugging API</h3>
+<div class="sect3">
+<h4 id="api-purpose"><a class="anchor" href="#api-purpose"></a>API Purpose</h4>
+<div class="paragraph">
+<p>This is a sample application returns a list of Kong products and Devnexus sessions.
+A <code>/products</code> endpoint returns a list of Kong products.
+A <code>/sessions</code> endpoint returns a list of Devnexus sessions.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="open-api-spec-in-insomnia"><a class="anchor" href="#open-api-spec-in-insomnia"></a>Open API spec in Insomnia</h4>
+<div class="paragraph">
+<p>TBD</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="generate-kong-config-with-inso"><a class="anchor" href="#generate-kong-config-with-inso"></a>Generate Kong config with inso</h4>
+<div class="listingblock">
+<div class="title">filename</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">inso generate config src/main/resources/spec/devnexus-api-v1.0.yaml \
+  --type declarative \
+  --format yaml \
+  --output kong.yaml</code></pre>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Kong and declarative config</div>
+<div class="paragraph">
+<p>I created a tutorial and video about using kong in docker with declarative config.
+&lt;LINK TO DEMO SCENE&gt;
+It can we tested as well using for instance with Testcontainers.
+&lt;LINK TO DEMO SCENE and Kong Builders VIDEO&gt;</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deploying-api-config-to-kong"><a class="anchor" href="#deploying-api-config-to-kong"></a>Deploying API config to Kong</h3>
+<div class="paragraph">
+<p><em>Lecture parts</em></p>
+</div>
+<div class="sect3">
+<h4 id="validation-of-deck-konnect"><a class="anchor" href="#validation-of-deck-konnect"></a>Validation of decK + Konnect</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Create file <code>~/.deck.yaml</code></p>
+<div class="listingblock">
+<div class="title"><code>.deck.yaml</code></div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-yaml hljs" data-lang="yaml">konnect-email: your_email+konnectt@konghq.com
+konnect-password: your_p!ssw0rd</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Test connection</p>
+<div class="listingblock">
+<div class="title">shell</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">&gt; deck konnect ping
+Successfully Konnected as Username!
+
+&gt; deck convert --from kong-gateway --to konnect --input-file kong.yaml --output-file konnect.yaml
+
+&gt; deck konnect sync</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="adding-plugins"><a class="anchor" href="#adding-plugins"></a>Adding plugins</h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="enabling-developer-portal"><a class="anchor" href="#enabling-developer-portal"></a>Enabling Developer Portal</h3>
+
 </div>
 </div>
 </div></div></div><footer class="entry-footer"><div class="tags"><span class="title">tags: </span></div></footer><div id="comments">
