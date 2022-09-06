@@ -64,6 +64,10 @@ toc::[]
 
 image::insomnia.png[width=50%]
 
+NOTE: I recommend enabling Insomnia Beta channel - Preferences gear -> General -> Software Updates
+image:insomnia_beta.png[]
+
+
 [source,bash]
 .test.sh
 ----
