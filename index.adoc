@@ -1,23 +1,43 @@
 = New "Java Head Brain" blog prototype
 :awestruct-layout: index
+:yt: https://www.youtube.com/%40viktorgamov
+:devrel: https://www.youtube.com/%40devrelradio
 
-[quote, Viktor Gamov aka @gAmUssA, Principal Developer Advocate at Kong]
+[quote, Viktor Gamov aka @gAmUssA, Principal Developer Advocate at Confluent]
 ...And as always, have a nice day!
 
 [.panel]
 .*What is this all about?*
 
-Viktor Gamov is a Principal Developer Advocate at Kong, a cloud API connectivity company. Viktor has comprehensive expertise in building distributed systems and cloud-native architectures using open source technologies. He enjoys helping architects and developers design and develop low latency, scalable, and highly available systems. He is  and professional conference speaker on distributed systems, streaming data, JVM, and DevOps topics. He's regular on events including JavaOne, Devoxx, SpringOne, QCon, and others. He co-authored books O'Reilly's «Enterprise Web Development» and Manning's «Apache Kafka® in Action.» He blogs at http://gamov.io and co-hosts KongCast https://pod.link/kongcast. Follow Viktor on Twitter @gamussa, where he posts there about gym life, food, open-source, and Kong and Cloud.
+Viktor Gamov is a Principal Developer Advocate at Confluent, founded by the original creators of Apache Kafka®. 
+With a rich background in implementing and advocating for distributed systems and cloud-native architectures, Viktor excels in open-source technologies. 
+He is passionate about assisting architects, developers, and operators in crafting systems that are not only low in latency and scalable but also highly available.
+
+As a Java Champion and an esteemed speaker, Viktor is known for his insightful presentations at top industry events like JavaOne, Devoxx, Kafka Summit, and QCon. 
+His expertise spans distributed systems, real-time data streaming, JVM, and DevOps.
+
+Viktor has co-authored "Enterprise Web Development" from O'Reilly and "Apache Kafka® in Action" from Manning. 
 
 👋 Hello!
 My name is Viktor Gamov.
-I'm a Developer Advocate at http://konghq.io[Kong], a cloud and API connectivity company.
-I'm a https://github.com/aalmiray/java-champions/[Java Champion] and a professional conference speaker on distributed systems, Java, and JavaScript topics and am regular on events including JavaOne, Devoxx, OSCON, QCon, and https://speaking.gamov.io[others].
-You may know me for my work at https://confluent.io[Confluent] or https://hazelcast.com[Hazelcast].
-I'm occasionally blogging http://gamov.io/posts.html[here] and produce a podcast https://konghq.com/kongcast[Kongcast].
-Recently, I co-authored Manning's book <<kafkainactionbook,«Kafka in Action»>>
-Back in my consultancy days, I co-authored O'Reilly's book <<enterprisewebbook, «Enterprise Web Development. Building HTML5 Applications: From Desktop to Mobile.»>>
-You can follow me on Twitter https://twitter.con/gamussa[@gamussa], where I post about gym life, food, open source, and, of course, Kubernetes, Cloud, and Kong.
+I'm a Developer Advocate at https://confluent.io[Confluent], where I help developers build better distributed systems.
+I'm a https://javachampions.org/[Java Champion] and you can check out my talks at https://speaking.gamov.io[speaking.gamov.io].
+
+Find me online:
+
+* This website: http://gamov.io[gamov.io]
+* X (Twitter): https://twitter.com/gAmUssA[@gAmUssA]
+* Bluesky: https://bsky.app/profile/gamussa.dev[gamussa.dev]
+* LinkedIn: https://linkedin.com/in/vikgamov[Viktor Gamov]
+* GitHub: https://github.com/gamussa/[gamussa]
+* Sessionize: https://sessionize.com/vikgamov[Viktor Gamov]
+* YouTube: {yt}[Viktor Gamov]
+* I co-host {devrel}[DevRel Radio] podcast
+
+I'm also the co-author of two books:
+
+- Manning's <<kafkainactionbook,«Kafka in Action»>>
+- O'Reilly's <<enterprisewebbook, «Enterprise Web Development. Building HTML5 Applications: From Desktop to Mobile.»>>
 
 [[kafkainactionbook]]
 == Kafka In Action
@@ -61,29 +81,3 @@ image::cover.png[Cover]
 
 [role="large-8 columns"]
 _How do you make your enterprise applications or sites available on an assortment of mobile devices and the desktop? This hands-on guide shows you how to build HTML5 applications that satisfy both requirements. You'll start by learning how to use HTML, JavaScript, CSS, and related technologies to build a sample website for the desktop, and then you'll discover how to adapt the code for the mobile Web._
-
-[role="large-8 columns"]
-In the process, you'll explore options for building a single codebase for both desktop and mobile, using recursive design, or developing two separate codebases. You'll also compare solutions offered by popular JavaScript frameworks, including jQuery, Ext JS, JQuery Mobile, and Sencha Touch.
-
-[role="large-8 columns"]
-* Learn how to develop applications with HTML, JavaScript, CSS, Ajax, and JSON
-* Discover how WebSockets is much more efficient than HTTP for data exchange
-* Select the JavaScript framework that best fits your needs
-* Learn options for moving your application to the mobile space
-* Get code samples from GitHub, and view the sample application on the Web
-+
-
-++++
-<br />
-<a class="small button success radius" target="_blank" href="http://enterprisewebbook.com">Read Free chapters Online!</a>
-<a class="small button" href="http://shop.oreilly.com/product/0636920028314.do?&code=WKERRLS">Buy at O'Reilly</a>
-++++
-
-[role="large-12 columns"]
-=== Disclaimer
-
-[.panel]
-* The opinions expressed here are my own and are not necessarily shared by my employer, any other organization, or any other individual.
-* Any trademarked names or labels used in this blog remain the property of their respective trademark owners.
-* No guarantees are made regarding the accuracy or usefulness of content on this blog, though I try to be accurate.
-* Links to external sites do not imply endorsement of the linked-to sites
