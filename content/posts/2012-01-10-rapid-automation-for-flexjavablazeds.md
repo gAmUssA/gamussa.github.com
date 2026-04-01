@@ -1,0 +1,10 @@
+---
+title: "Rapid automation for Flex/Java/BlazeDS projects"
+date: 2012-01-10
+author: "Viktor Gamov"
+slug: "rapid-automation-for-flexjavablazeds"
+---
+
+Right after vacation I talked on New York Flex User group regarding open source project for Flex/Java developers - Clear Toolkit. Here are the slides of my presentation.
+<iframe frameborder="0" height="451" src="https://docs.google.com/present/embed?id=dgqpwrbr_452gnrs3wks&size=m" width="555"></iframe>
+Feel free to comment!

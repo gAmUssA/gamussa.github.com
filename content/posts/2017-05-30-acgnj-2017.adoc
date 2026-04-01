@@ -1,0 +1,28 @@
+---
+title: "Distributed Java Streams @ ACGNJ 2017"
+date: 2017-05-30
+author: "Viktor Gamov"
+slug: "acgnj-2017"
+---
+== The Splendors and Miseries of the Distributed Streams
+
+[role="text-center"]
+video::RgTlHELZiZQ[youtube, width=853, height=480]
+
+== Have you seen it? Do you like it? Please, rate
+
+++++
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeeJN9gLXRTUaCEUmCET5PDdTQTdBfT5HMY1KPNaAnQcc49XQ/viewform?embedded=true" width="600" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+++++
+
+== Slides
+
+.Speakerdeck
+++++
+TBD
+++++
+
+.Slideshare
+++++
+TBD
+++++

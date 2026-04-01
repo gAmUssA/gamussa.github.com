@@ -1,0 +1,15 @@
+---
+title: "Alfred Extension: Show/Hide desktop icons on Mac OS X"
+date: 2012-05-21
+author: "Viktor Gamov"
+slug: "alfred-showhide-desktop-icons-on-mac-os"
+---
+
+<div class="separator" style="clear: both; text-align: center;"><a href="/images/blog/2012-05-21-alfred-showhide-desktop-icons-on-mac-os/2012-05-21-alfred-showhide-desktop-icons-on-mac-os*1.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="103" src="/images/blog/2012-05-21-alfred-showhide-desktop-icons-on-mac-os/2012-05-21-alfred-showhide-desktop-icons-on-mac-os*1.png" width="400" /></a></div>For some reasons, I’m using desktop as temporary storage of files - downloaded from internet, in-progress documents, screenshots and code snippets. Time after time I create screencasts and I need to have clean desktop.
+First, I tried to find available solution and have found <a href="http://manytricks.com/desktopcurtain/">Desktop Curtain</a>. I don’t need all this fanciness (different desktop wallpapers, customization) so $2.99 is overkill for me and for this taks.
+<a name='more'></a>
+So, I decide to create my own solution with help of shell and Alfred.
+Googled for Mac OS X command and I created simple script what I wrapped after as Alfred Extension. 
+<script src="https://gist.github.com/2760502.js?file=toggle*desktop*icons.sh"></script>
+You can download Alfred Extension for my <a href="https://dl.dropbox.com/u/1585128/Toggle*Desktop*Icons.alfredextension">Dropbox</a>. To use it you need to have <a href="http://www.alfredapp.com/powerpack/">Alfred PowerPack</a> purchased. 
+Cheers

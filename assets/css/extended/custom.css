@@ -1,0 +1,586 @@
+/* ==========================================================================
+   gamov.io — Design System
+   Lora (body/headings) + Inter (UI chrome) + JetBrains Mono (code)
+   Clean white, near-black text, blue accents
+   ========================================================================== */
+
+:root {
+  /* Typography */
+  --serif: 'Lora', Georgia, 'Times New Roman', serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --mono: 'JetBrains Mono', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+
+  /* Palette — clean white + blue accent */
+  --accent: #2563EB;
+  --accent-hover: #1d4ed8;
+  --nav-bg: #18181B;
+  --border-light: #e5e7eb;
+
+  /* Layout — wider for modern screens */
+  --content-width: 960px;
+  --prose-measure: 72ch;
+}
+
+/* ---------- Force clean white, not gray ---------- */
+:root {
+  --theme: #ffffff;
+  --entry: #ffffff;
+  --primary: #09090B;
+  --secondary: #52525b;
+  --tertiary: #e5e7eb;
+  --content: #18181B;
+  --code-block-bg: #f4f4f5;
+  --code-bg: #f4f4f5;
+  --border: #e5e7eb;
+  color-scheme: light;
+}
+
+body {
+  font-family: var(--serif);
+  font-size: 18px;
+  background: #ffffff;
+  color: #09090B;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Override PaperMod's gray list background */
+.list {
+  background: #ffffff;
+}
+
+/* ---------- Reading content — Lora, optimal measure ---------- */
+.post-content p,
+.post-content > ul > li,
+.post-content > ol > li,
+.post-content dd,
+.post-content blockquote p {
+  font-family: var(--serif);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  letter-spacing: 0.005em;
+  max-width: var(--prose-measure);
+}
+
+.post-content p {
+  margin-bottom: 1.1em;
+}
+
+/* AsciiDoc rendered HTML — tighter spacing */
+.post-content .paragraph + .paragraph { margin-top: 0; }
+.post-content .paragraph p { margin-bottom: 0.9em; }
+.post-content .sectionbody > .paragraph:first-child p { margin-top: 0; }
+
+/* AsciiDoc section spacing */
+.post-content .sect1 { margin-bottom: 0.5em; }
+.post-content .sect1 + .sect1 { margin-top: 1em; }
+.post-content .sectionbody { margin-top: 0.5em; }
+
+/* AsciiDoc lists — tighter */
+.post-content .ulist ul,
+.post-content .olist ol {
+  margin-top: 0.3em;
+  margin-bottom: 0.8em;
+  max-width: var(--prose-measure);
+}
+
+.post-content .ulist li p,
+.post-content .olist li p {
+  margin-bottom: 0.3em;
+}
+
+/* Structural elements use full width */
+.post-content pre,
+.post-content table,
+.post-content .imageblock,
+.post-content img,
+.post-content .tableblock,
+.post-content .listingblock,
+.post-content .literalblock {
+  max-width: 100%;
+}
+
+/* ---------- Homepage content ---------- */
+.home-info .entry-content,
+.page-content p,
+.page-content li {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: var(--prose-measure);
+}
+
+/* Profile mode hero */
+.profile .profile_inner h1 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 2.4rem;
+}
+
+.profile .profile_inner .tagline {
+  font-family: var(--serif);
+  font-style: italic;
+  color: #52525b;
+}
+
+/* Profile buttons — blue accent */
+.profile .profile_inner .button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5em 1.2em;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 200ms;
+}
+
+.profile .profile_inner .button:hover {
+  background: var(--accent-hover);
+}
+
+/* ---------- UI chrome — Inter ---------- */
+.nav,
+.post-meta,
+.post-tags,
+.footer,
+.pagination,
+.post-entry .entry-content,
+.breadcrumbs,
+.toc,
+#toc,
+.post-entry .entry-footer {
+  font-family: var(--sans);
+}
+
+/* ---------- Links — blue accent, subtle underline ---------- */
+.post-content a,
+.page-content a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(37, 99, 235, 0.3);
+  transition: text-decoration-color 200ms;
+}
+
+.post-content a:hover,
+.page-content a:hover {
+  text-decoration-color: var(--accent);
+}
+
+/* ---------- Content width ---------- */
+.main {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+header.header {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+/* ---------- Dark nav bar ---------- */
+.nav {
+  background: var(--nav-bg);
+  max-width: 100%;
+  padding: 0 2rem;
+}
+
+.nav a,
+.nav #theme-toggle {
+  color: #e0e0e0 !important;
+}
+
+.nav a:hover {
+  color: #fff !important;
+}
+
+.logo a {
+  color: #fff !important;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+/* ---------- Headings — Lora semi-bold ---------- */
+h1, h2, h3, h4, h5, h6,
+.post-title,
+.entry-header h2 {
+  font-family: var(--serif);
+  font-weight: 600;
+  color: #09090B;
+}
+
+.post-title {
+  font-size: 2.4rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.post-content h2 {
+  margin-top: 2.2em;
+  margin-bottom: 0.6em;
+  font-size: 1.6rem;
+}
+
+.post-content h3 {
+  margin-top: 1.8em;
+  margin-bottom: 0.5em;
+  font-size: 1.3rem;
+}
+
+.post-content h4 {
+  margin-top: 1.4em;
+  font-size: 1.1rem;
+}
+
+/* ---------- Post meta ---------- */
+.post-meta {
+  color: #52525b;
+  font-size: 0.88rem;
+}
+
+/* ---------- Code — JetBrains Mono ---------- */
+code,
+pre code {
+  font-family: var(--mono);
+  font-feature-settings: "calt" 1;
+}
+
+:not(pre) > code {
+  font-size: 0.85em;
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  background: #f4f4f5;
+}
+
+.post-content pre {
+  border-radius: 6px;
+  padding: 1.1em 1.3em;
+  line-height: 1.55;
+  overflow-x: auto;
+  font-size: 0.875rem;
+  background: #f8f8f8 !important;
+  border: 1px solid #e5e7eb;
+}
+
+.post-content pre code {
+  display: block !important;  /* override PaperMod's display:grid which breaks Rouge inline spans */
+  font-size: inherit;
+  padding: 10px;
+  background: none !important;
+  border: none;
+  color: #1f1f1f !important;
+  white-space: pre;
+  word-break: normal;
+}
+
+/* Rouge highlighted code blocks — override PaperMod dark defaults */
+pre.rouge.highlight {
+  background: #f8f8f8 !important;
+  padding: 0;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  overflow-x: auto;
+}
+
+pre.rouge.highlight code {
+  display: block !important;
+  background: none !important;
+  color: #1f1f1f !important;
+  padding: 1.1em 1.3em;
+  white-space: pre;
+}
+
+/* ---------- AsciiDoc admonitions ---------- */
+.admonitionblock > table {
+  border: 0;
+  background: none;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 1.5em;
+}
+
+.admonitionblock > table td.icon {
+  text-align: center;
+  width: 60px;
+  vertical-align: top;
+  padding: 0.8em 0;
+  font-family: var(--sans);
+}
+
+.admonitionblock > table td.icon .title {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.78em;
+  letter-spacing: 0.06em;
+}
+
+.admonitionblock > table td.content {
+  padding: 0.8em 1em;
+  border-left: 3px solid var(--accent);
+  color: #18181B;
+}
+
+.admonitionblock.note td.icon .title { color: #2563EB; }
+.admonitionblock.note td.content { border-left-color: #2563EB; }
+.admonitionblock.tip td.icon .title { color: #16a34a; }
+.admonitionblock.tip td.content { border-left-color: #16a34a; }
+.admonitionblock.warning td.icon .title { color: #d97706; }
+.admonitionblock.warning td.content { border-left-color: #d97706; }
+.admonitionblock.caution td.icon .title { color: #dc2626; }
+.admonitionblock.caution td.content { border-left-color: #dc2626; }
+.admonitionblock.important td.icon .title { color: #dc2626; }
+.admonitionblock.important td.content { border-left-color: #dc2626; }
+
+/* ---------- AsciiDoc listing/literal titles ---------- */
+.listingblock > .title,
+.literalblock > .title {
+  font-family: var(--sans);
+  font-size: 0.82em;
+  color: #52525b;
+  margin-bottom: 0.3em;
+  font-style: italic;
+}
+
+/* ---------- AsciiDoc TOC ---------- */
+#toc {
+  margin-bottom: 2em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 0.9rem;
+}
+
+#toc ol,
+#toc ul {
+  list-style-type: none;
+  padding-left: 1em;
+}
+
+#toctitle {
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  color: #52525b;
+}
+
+/* ---------- Sidebar blocks ---------- */
+.sidebarblock {
+  padding: 1em 1.2em;
+  border-radius: 6px;
+  margin-bottom: 1.5em;
+  background: #f4f4f5;
+  border: 1px solid #e5e7eb;
+}
+
+.sidebarblock > .content > .title {
+  font-weight: 700;
+  margin-bottom: 0.5em;
+}
+
+/* ---------- Quote blocks ---------- */
+.quoteblock {
+  margin: 1.5em 0;
+  padding-left: 1.2em;
+  border-left: 3px solid var(--accent);
+}
+
+.quoteblock blockquote {
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-style: italic;
+}
+
+.quoteblock .attribution {
+  font-size: 0.85em;
+  color: #52525b;
+  margin-top: 0.5em;
+  font-family: var(--sans);
+}
+
+/* ---------- Blockquotes (markdown) ---------- */
+.post-content blockquote,
+.page-content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 1.2em;
+  color: #3f3f46;
+  font-style: italic;
+}
+
+/* ---------- Images ---------- */
+.post-content img,
+.page-content img {
+  border-radius: 6px;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- Home page ---------- */
+.first-entry {
+  border: none;
+}
+
+/* Homepage content section */
+.page-content {
+  margin-top: 2em;
+}
+
+.page-content h2 {
+  font-size: 1.6rem;
+  margin-top: 2em;
+  padding-top: 0.5em;
+}
+
+.page-content h3 {
+  font-size: 1.35rem;
+  margin-top: 1.5em;
+}
+
+.page-content h4 {
+  font-size: 1.1rem;
+  color: #52525b;
+  font-weight: 500;
+}
+
+.page-content hr {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 2.5em 0;
+}
+
+/* ---------- Post list ---------- */
+.post-entry {
+  border-bottom: 1px solid #e5e7eb;
+  background: #ffffff;
+}
+
+.post-entry .entry-header h2 {
+  font-size: 1.35rem;
+}
+
+.post-entry a {
+  color: #09090B;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  max-width: 100%;
+  background: var(--nav-bg);
+  color: #a1a1aa;
+  padding: 1.5rem 2rem;
+}
+
+.footer a {
+  color: #d4d4d8;
+}
+
+/* ---------- Tags ---------- */
+.post-tags a {
+  font-size: 0.82em;
+  color: var(--accent);
+}
+
+/* ---------- HR ---------- */
+.post-content hr {
+  margin: 2.5em auto;
+  max-width: var(--prose-measure);
+  border: none;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* ---------- Lists — keep measure ---------- */
+.post-content ul,
+.post-content ol {
+  max-width: var(--prose-measure);
+}
+
+/* ---------- AsciiDoc callout numbers ---------- */
+.conum[data-value] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  font-style: normal !important;
+  width: 1.3em;
+  height: 1.3em;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  vertical-align: middle;
+  margin: 0 0.15em;
+}
+
+.conum[data-value]::after { content: attr(data-value); }
+.conum[data-value] * { display: none; }
+
+/* Callout list */
+.colist td {
+  padding: 0.25em 0.5em;
+  vertical-align: top;
+  border: none !important;
+}
+
+.colist {
+  font-size: 0.92rem;
+  margin-top: 0.5em;
+}
+
+/* ---------- AsciiDoc image/figure captions ---------- */
+.imageblock {
+  margin: 1.5em 0;
+}
+
+.imageblock .title,
+.videoblock .title {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  color: #52525b;
+  text-align: center;
+  margin-top: 0.5em;
+  font-style: italic;
+}
+
+/* ---------- AsciiDoc example blocks ---------- */
+.exampleblock > .content {
+  padding: 1em 1.2em;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  margin-bottom: 1.5em;
+}
+
+/* ---------- AsciiDoc tables ---------- */
+.post-content .tableblock {
+  margin-bottom: 1.5em;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  body {
+    font-size: 17px;
+  }
+  .post-content p,
+  .post-content > ul > li,
+  .post-content > ol > li {
+    font-size: 1.06rem;
+    line-height: 1.65;
+  }
+  .post-content pre {
+    font-size: 0.82rem;
+    padding: 0.9em 1em;
+  }
+  .post-title {
+    font-size: 1.8rem;
+  }
+  .main {
+    padding: 0 1.2rem;
+  }
+  .profile .profile_inner h1 {
+    font-size: 1.8rem;
+  }
+}

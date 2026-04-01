@@ -1,0 +1,123 @@
+baseURL = '/'
+languageCode = 'en-us'
+title = 'gamov.io'
+theme = 'PaperMod'
+enableRobotsTXT = true
+
+[pagination]
+  pagerSize = 10
+
+[params]
+  description = "Crash Course In Java Brain Surgery — insinuation and speculations"
+  author = "Viktor Gamov"
+  defaultTheme = "light"
+  ShowReadingTime = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = false
+  ShowCodeCopyButtons = true
+  ShowRssButtonInSectionTermList = true
+  ShowShareButtons = false
+  ShowToc = true
+  TocOpen = false
+  comments = false
+
+  [params.profileMode]
+    enabled = false
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/gamussa"
+  [[params.socialIcons]]
+    name = "twitter"
+    url = "https://twitter.com/gamussa"
+  [[params.socialIcons]]
+    name = "bluesky"
+    url = "https://bsky.app/profile/gamussa.dev"
+  [[params.socialIcons]]
+    name = "youtube"
+    url = "https://www.youtube.com/@viktorgamov"
+  [[params.socialIcons]]
+    name = "linkedin"
+    url = "https://linkedin.com/in/vikgamov"
+  [[params.socialIcons]]
+    name = "rss"
+    url = "/index.xml"
+
+  [params.assets]
+    favicon = "/images/favicon.ico"
+
+  [params.cover]
+    hidden = false
+    hiddenInList = true
+
+[menu]
+  [[menu.main]]
+    identifier = "blog"
+    name = "Blog"
+    url = "/posts/"
+    weight = 10
+  [[menu.main]]
+    identifier = "workshops"
+    name = "Workshops"
+    url = "/workshops/"
+    weight = 20
+  [[menu.main]]
+    identifier = "youtube"
+    name = "YouTube"
+    url = "https://www.youtube.com/@viktorgamov"
+    weight = 30
+    [menu.main.params]
+      external = true
+  [[menu.main]]
+    identifier = "talks"
+    name = "Talks"
+    url = "https://speaking.gamov.io"
+    weight = 40
+    [menu.main.params]
+      external = true
+  [[menu.main]]
+    identifier = "tags"
+    name = "Tags"
+    url = "/tags/"
+    weight = 50
+  [[menu.main]]
+    identifier = "search"
+    name = "Search"
+    url = "/search/"
+    weight = 60
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[minify]
+  disableJSON = true
+
+[security]
+  [security.exec]
+    allow = ['^(dart-)?sass(-embedded)?$', '^go$', '^git$', '^npx$', '^postcss$', '^tailwindcss$', '^asciidoctor$']
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    style = "github"
+    lineNos = false
+    noClasses = false
+  [markup.asciidocExt]
+    backend = "html5"
+    safeMode = "unsafe"
+    workingFolderCurrent = true
+    [markup.asciidocExt.attributes]
+      "icons" = "font"
+      "sectanchors" = ""
+      "idprefix" = ""
+      "idseparator" = "-"
+      "source-highlighter" = "rouge"
+      "rouge-css" = "style"
+      "rouge-style" = "github"
+      "toc" = ""
+      "toclevels" = "2"
+      "imagesdir" = "/images"
+      "allow-uri-read" = ""
+      "figure-caption!" = ""

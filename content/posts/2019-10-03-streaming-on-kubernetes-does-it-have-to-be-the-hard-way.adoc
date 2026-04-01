@@ -1,0 +1,53 @@
+---
+title: "Streaming on Kubernetes. Does it have to be The Hard Way"
+date: 2019-10-03
+author: "Viktor Gamov"
+draft: true
+slug: "streaming-on-kubernetes-does-it-have-to-be-the-hard-way"
+---
+:toc: macro
+
+image::sf_fall.jpg[width=50%, align="center"]
+
+.TL;DR
+
+NOTE: October 1st, San Francisco, California. 
+I presented Confluent Operator update talk at Kafka Summit. 
+This is playbook of https://github.com/confluentinc/demo-scene/tree/master/twitter-streams-operator[my demo (posted on github)]
+
+.Revisions history
+[width="70%",cols="",options="header"]
+|===
+|Version    |Date       | Comments
+|*v1.0*     |10/03/2019  | Initial revision
+|===
+
+toc::[]
+
+== Prerequisites
+
+* Get example from GitHub
+** If you will follow steps below you should checkout only directory that has source code relevant to this post.
++
+
+[source,bash]
+----
+mkdir ~/temp/demo-scene
+cd ~/temp/demo-scene
+git init .
+git remote add origin -f https://github.com/confluentinc/demo-scene/
+git config core.sparsecheckout true
+echo "twitter-streams-operator/*" >> .git/info/sparse-checkout
+git pull --depth=2 origin master
+cd twitter-streams-operator
+ls -lh
+----
+// http://scriptedonachip.com/git-sparse-checkout
++
+
+and you should see something like this
++
+
+[role="text-center"]
+.The output of `ls -lh twitter-streams-operator`
+image::ls-lh-twitter-streams.png[width=75%]
