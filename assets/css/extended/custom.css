@@ -182,10 +182,17 @@ header.header {
   margin: 0 auto;
 }
 
-/* ---------- Dark nav bar ---------- */
+/* ---------- Dark nav bar — full viewport width ---------- */
+header.header {
+  max-width: 100%;
+  background: var(--nav-bg);
+  padding: 0;
+}
+
 .nav {
   background: var(--nav-bg);
-  max-width: 100%;
+  max-width: var(--content-width);
+  margin: 0 auto;
   padding: 0 2rem;
 }
 
