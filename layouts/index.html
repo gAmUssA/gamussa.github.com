@@ -8,16 +8,20 @@
      ================================================================ */}}
 
 <!-- ─── HERO ─── -->
-<!-- Banner — full viewport width, outside content container -->
+<!-- Banner — full viewport width, cropped to a slim panoramic strip -->
 <div style="
   width: 100vw;
   margin-left: calc(50% - 50vw);
-  margin-bottom: 0;
+  overflow: hidden;
+  height: 220px;
 ">
   <img src="/images/new_banner.png"
        alt="Brooklyn Bridge sketch with network topology lines"
        style="
          width: 100%;
+         height: 220px;
+         object-fit: cover;
+         object-position: center 65%;
          display: block;
        ">
 </div>
