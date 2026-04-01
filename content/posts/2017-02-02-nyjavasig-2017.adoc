@@ -2,7 +2,7 @@
 title: "NYJavaSig, February 2017"
 date: 2017-02-02
 author: "Viktor Gamov"
-tags: ["java", "stream-api", "jug"]
+tags: ["java", "stream-api", "jug", "hazelcast", "distributed-systems", "streaming", "talk"]
 slug: "nyjavasig-2017"
 ---
 == Riding the Distributed Java Streams

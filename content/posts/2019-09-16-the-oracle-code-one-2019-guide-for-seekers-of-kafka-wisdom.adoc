@@ -2,6 +2,7 @@
 title: "The Ultimate Oracle Code One 2019 Guide for Kafka and Stream Processing wisdom seekers"
 date: 2019-09-16
 author: "Viktor Gamov"
+tags: ["kafka", "ksql", "streaming", "conferences", "javaone"]
 slug: "the-oracle-code-one-2019-guide-for-seekers-of-kafka-wisdom"
 ---
 :toc: macro

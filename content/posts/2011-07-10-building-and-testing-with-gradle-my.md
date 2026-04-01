@@ -2,6 +2,7 @@
 title: "Building and Testing with Gradle - My Book Review"
 date: 2011-07-10
 author: "Viktor Gamov"
+tags: ["gradle", "java", "book-review"]
 slug: "building-and-testing-with-gradle-my"
 ---
     

@@ -2,7 +2,7 @@
 title: "I'm speaking at JavaOne 2013"
 date: 2013-07-09
 author: "Viktor Gamov"
-tags: ["javaone", "javascript"]
+tags: ["javaone", "javascript", "java", "conferences", "talk"]
 slug: "im-speaking-at-javaone"
 ---
 :mdash: &#8212;

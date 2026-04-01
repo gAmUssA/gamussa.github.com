@@ -2,6 +2,7 @@
 title: "Goodbye, Hazelcast!"
 date: 2017-07-21
 author: "Viktor Gamov"
+tags: ["hazelcast", "career"]
 slug: "goodbye-hazelcast"
 ---
 .TL;DR

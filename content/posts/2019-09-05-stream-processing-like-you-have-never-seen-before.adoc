@@ -2,6 +2,7 @@
 title: "Stream Processing Like You Have Never Seen Before"
 date: 2019-09-05
 author: "Viktor Gamov"
+tags: ["kafka", "spring", "avro", "streaming", "gradle", "tutorial"]
 slug: "stream-processing-like-you-have-never-seen-before"
 ---
 :toc: macro

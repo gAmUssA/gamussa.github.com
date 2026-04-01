@@ -2,6 +2,7 @@
 title: "JavaPuzzlers @ PhillyETE 2017"
 date: 2017-04-18
 author: "Viktor Gamov"
+tags: ["java", "conferences", "presentations", "talk"]
 slug: "phillyete-2017"
 ---
 == Have you seen it? Do you like it? Please, rate

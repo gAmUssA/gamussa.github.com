@@ -2,6 +2,7 @@
 title: "Tips And Tricks That I use in my demos and presentation with Docker"
 date: 2018-11-28
 author: "Viktor Gamov"
+tags: ["docker", "tips-and-tricks", "presentations"]
 slug: "tips-and-tricks-that-i-use-in-my-demos-and-presentation-with-docker"
 ---
 .A very small tip for you!

@@ -2,7 +2,7 @@
 title: "Productive Enterprise Web Development with ExtJS and Clear Data Builder"
 date: 2013-02-05
 author: "Viktor Gamov"
-tags: ["java", "extjs", "sencha", "cdb"]
+tags: ["java", "extjs", "sencha", "cdb", "tutorial"]
 slug: "prouctive-enterprise-web-dev-with-cdb"
 ---
 :toc: macro

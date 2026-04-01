@@ -2,6 +2,7 @@
 title: "Rapid automation for Flex/Java/BlazeDS projects"
 date: 2012-01-10
 author: "Viktor Gamov"
+tags: ["java", "presentations", "talk"]
 slug: "rapid-automation-for-flexjavablazeds"
 ---
 

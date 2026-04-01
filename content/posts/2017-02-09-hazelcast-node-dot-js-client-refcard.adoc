@@ -2,7 +2,7 @@
 title: "Hazelcast Node.js Client Refcard"
 date: 2017-02-09
 author: "Viktor Gamov"
-tags: ["imdg", "java", "nodejs"]
+tags: ["imdg", "java", "nodejs", "hazelcast", "javascript", "distributed-systems", "tutorial"]
 slug: "hazelcast-node-dot-js-client-refcard"
 ---
 image::IMDG_orange_logo_square.png[align="center"]

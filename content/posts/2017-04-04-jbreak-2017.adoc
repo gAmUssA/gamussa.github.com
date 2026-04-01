@@ -2,6 +2,7 @@
 title: "JBreak 2017 [RU]"
 date: 2017-04-04
 author: "Viktor Gamov"
+tags: ["hazelcast", "java", "distributed-systems", "streaming", "conferences", "talk"]
 slug: "jbreak-2017"
 ---
 image::jbreak.png[align="center", width="20%"]

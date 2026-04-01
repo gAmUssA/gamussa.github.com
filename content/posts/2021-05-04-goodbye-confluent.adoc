@@ -2,6 +2,7 @@
 title: "Goodbye Confluent"
 date: 2021-05-06
 author: "Viktor Gamov"
+tags: ["career", "devrel", "kafka"]
 slug: "goodbye-confluent"
 ---
 .TL;DR

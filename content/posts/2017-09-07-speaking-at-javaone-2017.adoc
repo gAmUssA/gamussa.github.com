@@ -2,7 +2,7 @@
 title: "I'm Speaking At JavaOne 2017"
 date: 2017-09-07
 author: "Viktor Gamov"
-tags: ["javaone", "conference"]
+tags: ["javaone", "conference", "conferences", "docker", "streaming", "talk"]
 slug: "speaking-at-javaone-2017"
 ---
 .TL;DR

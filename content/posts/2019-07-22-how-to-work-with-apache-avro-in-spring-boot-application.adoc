@@ -3,6 +3,7 @@ title: "How to Work with Confluent Schema Registry and Apache Avro in Spring Boo
 date: 2019-07-22
 author: "Viktor Gamov"
 draft: true
+tags: ["kafka", "avro", "spring", "java", "tutorial"]
 slug: "how-to-work-with-apache-avro-in-spring-boot-application"
 ---
 :experimental:

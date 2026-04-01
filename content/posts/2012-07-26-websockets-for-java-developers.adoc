@@ -2,6 +2,7 @@
 title: "WebSockets for Java Developers. Princeton JUG talk slides"
 date: 2012-07-26
 author: "Viktor Gamov"
+tags: ["java", "javascript", "presentations", "talk"]
 slug: "websockets-for-java-developers"
 ---
 Last tuesday I delivered presentation at Princeton JUG «WebSockets: The Current State of the Most Valuable HTML5 API». + HTML5 specification includes WebSockets, a new communication protocol

@@ -3,7 +3,7 @@ title: "Getting Started With Nashorn"
 date: 2013-07-17
 author: "Viktor Gamov"
 draft: true
-tags: ["nashorn", "javascript", "java"]
+tags: ["nashorn", "javascript", "java", "tutorial"]
 slug: "getting-started-with-nashorn"
 ---
 :toc: macro

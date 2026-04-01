@@ -3,6 +3,7 @@ title: "Streaming on Kubernetes. Does it have to be The Hard Way"
 date: 2019-10-03
 author: "Viktor Gamov"
 draft: true
+tags: ["kafka", "kubernetes", "streaming", "kafka-summit", "tutorial"]
 slug: "streaming-on-kubernetes-does-it-have-to-be-the-hard-way"
 ---
 :toc: macro

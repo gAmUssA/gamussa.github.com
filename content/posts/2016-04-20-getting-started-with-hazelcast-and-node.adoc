@@ -2,7 +2,7 @@
 title: "Getting Started with Hazelcast and Node.js"
 date: 2016-04-18
 author: "Viktor Gamov"
-tags: ["hazelcast", "nodejs"]
+tags: ["hazelcast", "nodejs", "javascript", "distributed-systems", "tutorial"]
 slug: "getting-started-with-hazelcast-and-node"
 ---
 :ast: &ast;

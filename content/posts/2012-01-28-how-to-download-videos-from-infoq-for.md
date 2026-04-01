@@ -2,6 +2,7 @@
 title: "How to download videos from InfoQ for offline viewing"
 date: 2012-01-28
 author: "Viktor Gamov"
+tags: ["tips-and-tricks"]
 slug: "how-to-download-videos-from-infoq-for"
 ---
 

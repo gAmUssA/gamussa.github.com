@@ -2,7 +2,7 @@
 title: "Set JDK on OSX"
 date: 2013-01-19
 author: "Viktor Gamov"
-tags: ["osx", "java", "protip", "zsh"]
+tags: ["osx", "java", "protip", "zsh", "tips-and-tricks"]
 slug: "set-jdk-on-osx"
 ---
 :mdash: &#8212;

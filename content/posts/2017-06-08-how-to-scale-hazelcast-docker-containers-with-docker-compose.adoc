@@ -2,6 +2,7 @@
 title: "How To Scale Hazelcast Cluster with Docker Compose"
 date: 2017-06-08
 author: "Viktor Gamov"
+tags: ["hazelcast", "docker", "distributed-systems", "tutorial"]
 slug: "how-to-scale-hazelcast-docker-containers-with-docker-compose"
 ---
 :toc: macro

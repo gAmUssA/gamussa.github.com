@@ -2,6 +2,7 @@
 title: "Cloud Foundry Summit Silicon Valley 2017"
 date: 2017-06-15
 author: "Viktor Gamov"
+tags: ["hazelcast", "nodejs", "caching", "distributed-systems", "conferences", "talk"]
 slug: "cfsummit-2017"
 ---
 image::cf_logo.png[align="center",width=50%]

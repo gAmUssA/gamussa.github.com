@@ -2,6 +2,7 @@
 title: "Alfred Extension: Show/Hide desktop icons on Mac OS X"
 date: 2012-05-21
 author: "Viktor Gamov"
+tags: ["tips-and-tricks"]
 slug: "alfred-showhide-desktop-icons-on-mac-os"
 ---
 

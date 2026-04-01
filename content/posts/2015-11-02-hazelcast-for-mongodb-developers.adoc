@@ -2,6 +2,7 @@
 title: "Hazelcast for MongoDB Developers"
 date: 2015-11-02
 author: "Viktor Gamov"
+tags: ["hazelcast", "distributed-systems", "caching", "java"]
 slug: "hazelcast-for-mongodb-developers"
 ---
 :ast: &ast;

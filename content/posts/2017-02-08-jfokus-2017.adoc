@@ -2,7 +2,7 @@
 title: "Jfokus 2017"
 date: 2017-02-08
 author: "Viktor Gamov"
-tags: ["presentation", "hazelcast"]
+tags: ["presentation", "hazelcast", "java", "distributed-systems", "streaming", "conferences", "talk"]
 slug: "jfokus-2017"
 ---
 == Riding the Distributed Java Streams

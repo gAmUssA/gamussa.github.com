@@ -2,7 +2,7 @@
 title: "Testing containers with Testcontainers @ Atlanta JUG"
 date: 2017-07-20
 author: "Viktor Gamov"
-tags: ["hazelcast", "junit", "docker", "containers"]
+tags: ["hazelcast", "junit", "docker", "containers", "testing", "java", "talk"]
 slug: "testcontainers-ajug"
 ---
 :toc: macro

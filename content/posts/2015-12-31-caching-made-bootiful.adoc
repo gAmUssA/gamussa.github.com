@@ -2,7 +2,7 @@
 title: "Caching Made Bootiful — Hazelcast Way"
 date: 2015-12-31
 author: "Viktor Gamov"
-tags: ["hazelcast", "spring boot"]
+tags: ["hazelcast", "spring boot", "spring", "java", "caching", "tutorial"]
 slug: "caching-made-bootiful"
 ---
 :ast: &ast;

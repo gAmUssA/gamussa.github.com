@@ -2,6 +2,7 @@
 title: "WebJars for assets management in your project"
 date: 2012-05-16
 author: "Viktor Gamov"
+tags: ["java", "javascript"]
 slug: "webjars-for-assets-management-in-your"
 ---
 

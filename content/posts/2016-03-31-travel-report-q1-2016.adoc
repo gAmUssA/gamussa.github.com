@@ -2,6 +2,7 @@
 title: "Travel Report - Q1 2016"
 date: 2016-03-31
 author: "Viktor Gamov"
+tags: ["hazelcast", "conferences", "devrel", "travel-report", "devnexus"]
 slug: "travel-report-q1-2016"
 ---
 :toc: macro

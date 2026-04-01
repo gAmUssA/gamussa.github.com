@@ -2,6 +2,7 @@
 title: "Streaming Movies Ratings with Kafka Streams and KSQL"
 date: 2018-11-20
 author: "Viktor Gamov"
+tags: ["kafka", "ksql", "streaming", "kafka-summit", "tutorial"]
 slug: "streaming-moview-ratings-with-kafka-streams-and-ksql"
 ---
 :toc: macro

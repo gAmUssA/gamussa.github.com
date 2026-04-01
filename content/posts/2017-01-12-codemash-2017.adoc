@@ -2,6 +2,7 @@
 title: "Codemash 2017"
 date: 2017-01-12
 author: "Viktor Gamov"
+tags: ["hazelcast", "spring", "caching", "conferences", "talk"]
 slug: "codemash-2017"
 ---
 image::http://www.codemash.org/wp-content/themes/codemash/images/codemash-icon-featured-box.png[align="center"]

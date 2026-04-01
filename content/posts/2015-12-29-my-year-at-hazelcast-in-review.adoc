@@ -2,7 +2,7 @@
 title: "My Year At Hazelcast In Review"
 date: 2015-12-29
 author: "Viktor Gamov"
-tags: ["hazelcast", "open source", "jug"]
+tags: ["hazelcast", "open source", "jug", "conferences", "devrel", "travel-report"]
 slug: "my-year-at-hazelcast-in-review"
 ---
 :toc: macro

@@ -2,7 +2,7 @@
 title: "Divide, Distribute and Conquer — Stream v. Batch @ Philly JUG"
 date: 2017-09-20
 author: "Viktor Gamov"
-tags: ["kafka", "kafka-streams"]
+tags: ["kafka", "kafka-streams", "java", "streaming", "talk"]
 slug: "stream-v-batch"
 ---
 :toc: macro

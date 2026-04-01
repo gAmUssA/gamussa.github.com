@@ -2,6 +2,7 @@
 title: "5 Kubernetes Tools You Probably Don't Use (But You Should)"
 date: 2020-03-26
 author: "Viktor Gamov"
+tags: ["kubernetes", "tips-and-tricks", "devrel"]
 slug: "5-kubernetes-tools-you-probably-dont-use-but-you-should"
 ---
 :toc: macro

@@ -2,7 +2,7 @@
 title: "Goodbye, Farata. Hello, Hazelcast!"
 date: 2014-12-13
 author: "Viktor Gamov"
-tags: ["hazelcast", "job", "farata"]
+tags: ["hazelcast", "job", "farata", "career"]
 slug: "goodbye-farata-hello-hazelcast"
 ---
 [quote, Wayne Dyer]

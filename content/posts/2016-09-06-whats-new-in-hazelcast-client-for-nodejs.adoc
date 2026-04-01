@@ -2,7 +2,7 @@
 title: "What's New in Hazelcast Node.js Client"
 date: 2016-09-09
 author: "Mustafa Iman"
-tags: ["hazelcast", "nodejs"]
+tags: ["hazelcast", "nodejs", "javascript", "distributed-systems"]
 slug: "whats-new-in-hazelcast-client-for-nodejs"
 ---
 :ast: &ast;

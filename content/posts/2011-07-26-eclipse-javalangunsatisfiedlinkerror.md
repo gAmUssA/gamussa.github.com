@@ -2,6 +2,7 @@
 title: "Eclipse: java.lang.UnsatisfiedLinkError: Cannot load 32-bit SWT libraries on 64-bit JVM"
 date: 2011-07-26
 author: "Viktor Gamov"
+tags: ["java", "tips-and-tricks"]
 slug: "eclipse-javalangunsatisfiedlinkerror"
 ---
 

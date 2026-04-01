@@ -2,6 +2,7 @@
 title: "JPoint - 2017 [RU]"
 date: 2017-04-08
 author: "Viktor Gamov"
+tags: ["hazelcast", "java", "kafka", "distributed-systems", "streaming", "conferences", "talk"]
 slug: "jpoint-2017"
 ---
 image::jpoint.png[align="center", width="20%"]

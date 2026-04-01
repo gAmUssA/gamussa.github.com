@@ -2,6 +2,7 @@
 title: "Who is tweeting about hashtag KSQL?"
 date: 2018-11-28
 author: "Viktor Gamov"
+tags: ["kafka", "ksql", "docker", "streaming", "tutorial"]
 slug: "who-is-tweeting-about-ksql"
 ---
 :toc: macro

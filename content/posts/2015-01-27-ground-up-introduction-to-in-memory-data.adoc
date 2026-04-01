@@ -2,7 +2,7 @@
 title: "Ground-up Introduction To In-Memory Data"
 date: 2015-01-27
 author: "Viktor Gamov"
-tags: ["hazelcast", "imdg"]
+tags: ["hazelcast", "imdg", "distributed-systems", "caching", "conferences"]
 slug: "ground-up-introduction-to-in-memory-data"
 ---
 .TL;DR
