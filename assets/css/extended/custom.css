@@ -399,6 +399,16 @@ pre.rouge.highlight code {
   margin-bottom: 0;
 }
 
+/* Kill PaperMod's default table td border on admonitions */
+.admonitionblock > table td {
+  border: none !important;
+}
+
+/* Also kill it on callout tables */
+.colist > table td {
+  border: none !important;
+}
+
 /* ---------- AsciiDoc listing/literal titles ---------- */
 .listingblock > .title,
 .literalblock > .title {
