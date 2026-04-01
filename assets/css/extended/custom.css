@@ -212,6 +212,13 @@ header.header {
   font-weight: 500;
 }
 
+/* Nav menu icons (from .Pre field) */
+#menu svg {
+  display: inline-block;
+  vertical-align: -2px;
+  margin-right: 3px;
+}
+
 /* ---------- Headings — Lora semi-bold ---------- */
 h1, h2, h3, h4, h5, h6,
 .post-title,
