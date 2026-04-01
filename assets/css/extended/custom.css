@@ -296,46 +296,94 @@ pre.rouge.highlight code {
 }
 
 /* ---------- AsciiDoc admonitions ---------- */
+/* Asciidoctor generates: <td class="icon"><i class="fa icon-note" title="Note"></i></td>
+   We hide the <i>, use ::after on td.icon to show a CSS label + circle icon */
 .admonitionblock > table {
   border: 0;
   background: none;
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  margin-bottom: 1.5em;
+  margin: 1.2em 0;
 }
 
 .admonitionblock > table td.icon {
   text-align: center;
-  width: 60px;
+  width: 54px;
   vertical-align: top;
-  padding: 0.8em 0;
+  padding: 0.9em 0 0;
   font-family: var(--sans);
 }
 
-.admonitionblock > table td.icon .title {
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 0.78em;
-  letter-spacing: 0.06em;
+/* Hide the broken FA <i> element */
+.admonitionblock > table td.icon i {
+  display: none;
 }
+
+/* Show label via ::after using the title attribute from the <i> tag */
+.admonitionblock > table td.icon::after {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  line-height: 1;
+}
+
+/* Per-type styling: icon circle + border color + label */
+.admonitionblock.note td.icon::after {
+  content: "i";
+  background: #EFF6FF;
+  color: #2563EB;
+  border: 1.5px solid rgba(37,99,235,0.3);
+}
+.admonitionblock.note td.content { border-left: 3px solid #2563EB; }
+
+.admonitionblock.tip td.icon::after {
+  content: "✓";
+  background: #F0FDF4;
+  color: #16a34a;
+  border: 1.5px solid rgba(22,163,74,0.3);
+}
+.admonitionblock.tip td.content { border-left: 3px solid #16a34a; }
+
+.admonitionblock.warning td.icon::after {
+  content: "!";
+  background: #FFFBEB;
+  color: #d97706;
+  border: 1.5px solid rgba(217,119,6,0.3);
+}
+.admonitionblock.warning td.content { border-left: 3px solid #d97706; }
+
+.admonitionblock.caution td.icon::after {
+  content: "⚑";
+  background: #FFF1F2;
+  color: #dc2626;
+  border: 1.5px solid rgba(220,38,38,0.3);
+}
+.admonitionblock.caution td.content { border-left: 3px solid #dc2626; }
+
+.admonitionblock.important td.icon::after {
+  content: "!";
+  background: #FFF1F2;
+  color: #dc2626;
+  border: 1.5px solid rgba(220,38,38,0.3);
+}
+.admonitionblock.important td.content { border-left: 3px solid #dc2626; }
 
 .admonitionblock > table td.content {
   padding: 0.8em 1em;
-  border-left: 3px solid var(--accent);
+  border-left: 3px solid #e5e7eb;
   color: #18181B;
 }
 
-.admonitionblock.note td.icon .title { color: #2563EB; }
-.admonitionblock.note td.content { border-left-color: #2563EB; }
-.admonitionblock.tip td.icon .title { color: #16a34a; }
-.admonitionblock.tip td.content { border-left-color: #16a34a; }
-.admonitionblock.warning td.icon .title { color: #d97706; }
-.admonitionblock.warning td.content { border-left-color: #d97706; }
-.admonitionblock.caution td.icon .title { color: #dc2626; }
-.admonitionblock.caution td.content { border-left-color: #dc2626; }
-.admonitionblock.important td.icon .title { color: #dc2626; }
-.admonitionblock.important td.content { border-left-color: #dc2626; }
+.admonitionblock > table td.content > .paragraph:last-child > p {
+  margin-bottom: 0;
+}
 
 /* ---------- AsciiDoc listing/literal titles ---------- */
 .listingblock > .title,
