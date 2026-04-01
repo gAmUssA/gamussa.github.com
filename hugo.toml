@@ -1,6 +1,6 @@
 baseURL = '/'
 languageCode = 'en-us'
-title = 'gamov.io'
+title = 'Viktor Gamov'
 theme = 'PaperMod'
 enableRobotsTXT = true
 
