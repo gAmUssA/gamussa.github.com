@@ -1,0 +1,135 @@
+---
+title: "When AI Alignment Experts Can't Align Their Own AI"
+date: 2026-03-30
+author: "Viktor Gamov"
+tags: ["ai", "agents", "security", "java", "open-source"]
+slug: "openclaw-vs-nanoclaw"
+---
+
+[discrete]
+== TLDR
+
+* Meta's director of AI alignment told her agent "confirm before acting." It deleted her entire inbox anyway.
+* OpenClaw hit 250k GitHub stars in 60 days, its codebase hit 400,000 lines, and about 12% of its skill marketplace was malware.
+* NanoClaw runs every agent in its own Linux container with 4,000 lines of code you can read in one sitting.
+* I picked a third option. It runs on the JVM.
+
+== The Inbox Incident
+
+Summer Yue runs AI alignment at Meta's Superintelligence Labs.
+Her job is making sure AI systems do what humans tell them to do.
+
+She connected an https://techcrunch.com/2026/03/18/meta-is-having-trouble-with-rogue-ai-agents/[OpenClaw agent] to her email and gave it one instruction: always confirm before taking any action.
+The agent quickly deleted her entire inbox.
+She typed STOP.
+It kept going.
+She had to sprint to her Mac Mini and kill the process like defusing a bomb.
+
+The person responsible for AI alignment at one of the largest AI labs on the planet could not control an open-source agent running on her own hardware.
+
+And she wasn't alone.
+Weeks earlier, https://winbuzzer.com/2026/03/20/meta-ai-agent-rogue-data-breach-sev1-xcxwbn/[another Meta AI agent] went rogue during an internal test, posting flawed technical advice without permission.
+An engineer followed that advice and accidentally exposed proprietary code, business strategies, and user data to unauthorized employees for two hours.
+Meta classified it as a Sev-1, their second-highest severity level.
+
+Two incidents at the same company in the same month, both involving agents that were explicitly told to behave.
+
+== What OpenClaw Actually Is
+
+OpenClaw is an open-source AI agent that runs locally on your machine and actually does things.
+It handles shell commands, file management, web browsing, and sending emails, all triggered through WhatsApp, Telegram, Slack, or any messaging app you use.
+
+It hit https://github.com/topics/openclaw[250,000 GitHub stars] in about 60 days, surpassing React's growth rate in half the time.
+Nothing in open-source history has grown this fast.
+
+The idea is simple.
+You give an LLM hands.
+It can read your files, manage your calendar, deploy your code, and it remembers everything across sessions through persistent memory stored as markdown files on disk.
+
+And it mostly works.
+Until your alignment director's inbox disappears.
+
+== The Architecture Problem
+
+OpenClaw's codebase reached nearly 400,000 lines, most of it AI-generated and difficult to audit.
+Everything runs in a single Node.js process with shared memory.
+The security model relies on application-level permission checks.
+If the agent decides to ignore those checks, as it did with Summer Yue, no OS-level boundary stops it.
+
+Then the https://www.reco.ai/blog/openclaw-the-ai-agent-security-crisis-unfolding-right-now[security researchers showed up].
+They found that 341 out of 2,857 skills on OpenClaw's marketplace were malicious.
+That's roughly one in eight.
+These weren't obvious fakes.
+They had professional documentation, innocent names like "solana-wallet-tracker," and quietly installed keyloggers.
+Meanwhile, https://www.adminbyrequest.com/en/blogs/openclaw-went-from-viral-ai-agent-to-security-crisis-in-just-three-weeks[21,639 OpenClaw instances] were publicly exposed on the internet.
+
+The https://thehackernews.com/2026/02/clawjacked-flaw-lets-malicious-sites.html["ClawJacked" vulnerability] made it worse.
+A malicious link could trigger remote code execution on any OpenClaw instance.
+A single click gave full access to whatever the agent could see.
+
+This is the cost of growing from zero to viral in three weeks.
+The community scaled faster than the security model.
+
+== 4,000 Lines and a Container Wall
+
+Gavriel Cohen looked at this and had a different idea.
+https://github.com/nanoclaw/nanoclaw[NanoClaw] is about 4,000 lines of code across 15 files.
+You can read the entire codebase in one sitting.
+Andrej Karpathy https://x.com/karpathy/status/2024987174077432126[put it this way]: "the core engine is ~4000 lines of code (fits into both my head and that of AI agents, so it feels manageable, auditable, flexible, etc.) and runs everything in containers by default."
+
+The architectural difference is at the OS level.
+Every agent runs in its own isolated Linux container.
+https://developer.apple.com/documentation/apple-containers[Apple Container] on macOS, Docker on Linux.
+Filesystem isolation is enforced by the operating system itself.
+The agent can go wild inside its sandbox: install tools, run bash, do whatever it needs.
+But it can only see the directories you explicitly mounted.
+If an agent goes rogue, the damage stops at the container wall.
+
+NanoClaw runs on the https://docs.anthropic.com/en/docs/agents-sdk[Anthropic Agent SDK] and supports agent swarms, where multiple specialized agents collaborate in the same chat.
+You customize it by talking to Claude Code and describing what you want.
+Say "add Telegram support" and the AI rewrites the code for you.
+The whole philosophy is skills over features, and the codebase stays small because of it.
+
+== Two Camps, One Destination
+
+So you've got two camps forming.
+
+OpenClaw went maximalist.
+Fifty-plus integrations, a skill marketplace, a massive community, and Steinberger brought it under OpenAI's umbrella.
+The bet is that breadth of integration wins and the security problems are solvable with better review processes and sandboxing after the fact.
+
+NanoClaw went the other direction with a security-first, auditable codebase and container isolation at the OS level, all built on Anthropic's stack.
+The thinking is that a smaller, more principled foundation will prove more durable as agents get more powerful and the stakes get higher.
+
+Both camps agree on one thing.
+Personal AI agents that execute tasks on your behalf, on your hardware, with access to your files and email and calendar?
+That's where computing is going.
+The https://fortune.com/2026/03/24/ai-agents-are-getting-more-capable-but-reliability-is-lagging-narayanan-kapoor/[80% of organizations] reporting risky agent behaviors suggests the question isn't whether to use agents but how to keep them under control.
+
+== My Side
+
+I know which camp I'm in.
+https://clawrunr.io[ClawRunr].
+Java 25, Spring Boot 4, Spring AI, runs entirely on my hardware.
+
+The JVM has been running mission-critical systems for decades.
+It has mature security managers, classloaders for isolation, and an ecosystem of production-grade tooling for monitoring, profiling, and debugging long-running processes.
+When the question is "which runtime do I trust with access to my email, my files, and my calendar," the answer for me is the one I've been building production systems on for fifteen years.
+
+Sometimes the right answer to "which AI agent runtime?" is the one your team already knows how to operate.
+
+== Watch the Video
+
+I recorded a short video covering this topic if you prefer that format.
+
+video::WCEWoI2JK6U[youtube,width=800,height=450]
+
+== What Comes Next
+
+The inbox incident isn't a cautionary tale about one tool.
+It's a preview of what happens when capable agents meet insufficient guardrails.
+Summer Yue's experience is going to happen to a lot more people as agents get more capable and more widely deployed.
+
+The frameworks will get better.
+The security models will mature.
+The question is whether you want to be running an agent with 400,000 lines of unauditable code when that happens, or one where you can read every line and kill it at the container wall.
