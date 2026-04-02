@@ -19,7 +19,7 @@ toc::[]
 This hands-on workshop walks you through building a complete real-time data pipeline using *Confluent Cloud*.
 You'll stream live cryptocurrency price data from the CoinGecko API, process it with Apache Flink SQL, and materialize it as Apache Iceberg tables using Tableflow — all queryable through DuckDB.
 
-image::/images/workshops/cc-workshop/pipeline-overview.svg[Pipeline Overview,opts=inline]
+image::/images/workshops/cc-workshop/pipeline-overview.svg[Pipeline Overview]
 
 === What You'll Learn
 
@@ -55,7 +55,7 @@ _30 minutes_
 
 Create Kafka topics, set up an HTTP Source Connector for live cryptocurrency data, produce and consume real-time price events.
 
-image::/images/workshops/cc-workshop/module2-kafka.svg[Kafka Data Ingestion,opts=inline]
+image::/images/workshops/cc-workshop/module2-kafka.svg[Kafka Data Ingestion]
 
 https://github.com/gAmUssA/cc-workshop/blob/main/guides/02-kafka-hands-on.adoc[Open Guide icon:arrow-right[]]
 
@@ -64,7 +64,7 @@ _25 minutes_
 
 Materialize the `crypto-prices` topic as an Iceberg table via Tableflow, connect DuckDB to the Iceberg REST Catalog, and run real-time analytics queries.
 
-image::/images/workshops/cc-workshop/module3-tableflow.svg[Tableflow and Iceberg,opts=inline]
+image::/images/workshops/cc-workshop/module3-tableflow.svg[Tableflow and Iceberg]
 
 https://github.com/gAmUssA/cc-workshop/blob/main/guides/03-tableflow-iceberg-setup.adoc[Open Guide icon:arrow-right[]]
 
@@ -77,7 +77,7 @@ The core module. Create a Flink compute pool, transform nested cryptocurrency da
 * `crypto-trends` — rolling trend analysis
 * `crypto-predictions` — pattern-based predictions
 
-image::/images/workshops/cc-workshop/module4-flink.svg[Flink Stream Processing,opts=inline]
+image::/images/workshops/cc-workshop/module4-flink.svg[Flink Stream Processing]
 
 [source,sql]
 ----
