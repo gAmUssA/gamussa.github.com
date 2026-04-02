@@ -19,7 +19,7 @@ toc::[]
 This hands-on workshop walks you through building a complete real-time data pipeline using *Confluent Cloud*.
 You'll stream live cryptocurrency price data from the CoinGecko API, process it with Apache Flink SQL, and materialize it as Apache Iceberg tables using Tableflow — all queryable through DuckDB.
 
-The use case: a *cryptocurrency analytics pipeline* that ingests live price data and builds real-time alerts, trends, and predictions on top of it.
+image::/images/workshops/cc-workshop/pipeline-overview.svg[Pipeline Overview,opts=inline]
 
 === What You'll Learn
 
@@ -55,9 +55,7 @@ _30 minutes_
 
 Create Kafka topics, set up an HTTP Source Connector for live cryptocurrency data, produce and consume real-time price events.
 
-----
-CoinGecko API → HTTP Source Connector → Schema Registry → Kafka Topics
-----
+image::/images/workshops/cc-workshop/module2-kafka.svg[Kafka Data Ingestion,opts=inline]
 
 https://github.com/gAmUssA/cc-workshop/blob/main/guides/02-kafka-hands-on.adoc[Open Guide icon:arrow-right[]]
 
@@ -66,9 +64,7 @@ _25 minutes_
 
 Materialize the `crypto-prices` topic as an Iceberg table via Tableflow, connect DuckDB to the Iceberg REST Catalog, and run real-time analytics queries.
 
-----
-Kafka Topics → Tableflow Materialization → Iceberg Tables → DuckDB Analytics
-----
+image::/images/workshops/cc-workshop/module3-tableflow.svg[Tableflow and Iceberg,opts=inline]
 
 https://github.com/gAmUssA/cc-workshop/blob/main/guides/03-tableflow-iceberg-setup.adoc[Open Guide icon:arrow-right[]]
 
@@ -81,16 +77,14 @@ The core module. Create a Flink compute pool, transform nested cryptocurrency da
 * `crypto-trends` — rolling trend analysis
 * `crypto-predictions` — pattern-based predictions
 
+image::/images/workshops/cc-workshop/module4-flink.svg[Flink Stream Processing,opts=inline]
+
 [source,sql]
 ----
 -- Example: Real-time price alerts
 SELECT symbol, price, `timestamp`
 FROM crypto_prices_exploded
 WHERE price > 50000 AND symbol = 'bitcoin';
-----
-
-----
-Kafka Topics → Flink SQL Processing → Derived Topics → Tableflow → DuckDB
 ----
 
 https://github.com/gAmUssA/cc-workshop/blob/main/guides/04-flink-hands-on.adoc[Open Guide icon:arrow-right[]]

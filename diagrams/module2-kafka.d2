@@ -1,0 +1,53 @@
+direction: right
+
+title: {
+  label: "Module 2: Kafka Data Ingestion"
+  style.font-size: 20
+  style.bold: true
+  near: top-center
+}
+
+coingecko: CoinGecko\nREST API {
+  style.fill: "#FFF7ED"
+  style.stroke: "#F97316"
+  style.font-color: "#c2410c"
+  style.bold: true
+}
+
+connector: HTTP Source\nConnector {
+  style.fill: "#EEF2FF"
+  style.stroke: "#4F46E5"
+  style.font-color: "#4338CA"
+  style.double-border: true
+}
+
+sr: Schema Registry {
+  style.fill: "#F0FDF4"
+  style.stroke: "#16a34a"
+  style.font-color: "#166534"
+  shape: cylinder
+}
+
+kafka: Confluent Cloud Kafka {
+  style.fill: "#1a202c"
+  style.stroke: "#334155"
+  style.font-color: "#f8fafc"
+  style.bold: true
+
+  crypto-prices: crypto-prices {
+    shape: queue
+    style.fill: "#334155"
+    style.font-color: "#f8fafc"
+  }
+}
+
+coingecko -> connector: "JSON\n/coins/markets" {
+  style.stroke: "#F97316"
+}
+connector -> sr: "AVRO\nvalidation" {
+  style.stroke: "#16a34a"
+}
+connector -> kafka.crypto-prices: "produce\nevents" {
+  style.stroke: "#4F46E5"
+  style.bold: true
+}

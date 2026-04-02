@@ -1,0 +1,106 @@
+direction: right
+
+title: {
+  label: "Real-Time Crypto Analytics Pipeline"
+  style.font-size: 24
+  style.bold: true
+  near: top-center
+}
+
+coingecko: CoinGecko API {
+  icon: https://simpleicons.org/icons/bitcoin.svg
+  style.fill: "#FFF7ED"
+  style.stroke: "#F97316"
+  style.font-color: "#c2410c"
+  style.bold: true
+}
+
+connector: HTTP Source\nConnector {
+  style.fill: "#EEF2FF"
+  style.stroke: "#4F46E5"
+  style.font-color: "#4338CA"
+}
+
+sr: Schema\nRegistry {
+  style.fill: "#F0FDF4"
+  style.stroke: "#16a34a"
+  style.font-color: "#166534"
+  shape: cylinder
+}
+
+kafka: Apache Kafka {
+  style.fill: "#1a202c"
+  style.stroke: "#334155"
+  style.font-color: "#f8fafc"
+  style.bold: true
+
+  topics: {
+    crypto-prices {
+      shape: queue
+      style.fill: "#334155"
+      style.font-color: "#f8fafc"
+    }
+  }
+}
+
+flink: Apache Flink {
+  style.fill: "#EEF2FF"
+  style.stroke: "#4F46E5"
+  style.font-color: "#4338CA"
+  style.bold: true
+
+  sql: Flink SQL {
+    style.fill: "#E0E7FF"
+    style.stroke: "#6366F1"
+  }
+}
+
+derived: Derived Topics {
+  style.fill: "#1a202c"
+  style.stroke: "#334155"
+  style.font-color: "#f8fafc"
+
+  alerts: price-alerts {
+    shape: queue
+    style.fill: "#334155"
+    style.font-color: "#f8fafc"
+  }
+  trends: crypto-trends {
+    shape: queue
+    style.fill: "#334155"
+    style.font-color: "#f8fafc"
+  }
+}
+
+tableflow: Tableflow {
+  style.fill: "#ECFEFF"
+  style.stroke: "#0891b2"
+  style.font-color: "#0e7490"
+  style.bold: true
+}
+
+iceberg: Iceberg\nTables {
+  shape: cylinder
+  style.fill: "#F0FDF4"
+  style.stroke: "#16a34a"
+  style.font-color: "#166534"
+}
+
+duckdb: DuckDB {
+  style.fill: "#FEF3C7"
+  style.stroke: "#F59E0B"
+  style.font-color: "#92400e"
+  style.bold: true
+}
+
+coingecko -> connector: REST API
+connector -> sr: validate
+connector -> kafka.topics.crypto-prices: produce
+kafka.topics.crypto-prices -> flink.sql: stream
+flink.sql -> derived.alerts: alerts
+flink.sql -> derived.trends: trends
+kafka.topics.crypto-prices -> tableflow
+derived.alerts -> tableflow
+derived.trends -> tableflow
+tableflow -> iceberg: materialize
+iceberg -> duckdb: query

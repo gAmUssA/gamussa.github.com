@@ -255,6 +255,21 @@ h1, h2, h3, h4, h5, h6,
   font-size: 1.1rem;
 }
 
+/* ---------- Heading anchors — prevent layout shift on hover ---------- */
+h1 .anchor, h2 .anchor, h3 .anchor, h4 .anchor, h5 .anchor, h6 .anchor {
+  opacity: 0;
+  transition: opacity 150ms;
+  position: absolute;
+  margin-left: 0.3em;
+}
+h1:hover .anchor, h2:hover .anchor, h3:hover .anchor,
+h4:hover .anchor, h5:hover .anchor, h6:hover .anchor {
+  opacity: 0.4;
+}
+h1, h2, h3, h4, h5, h6 {
+  position: relative;
+}
+
 /* ---------- Post meta ---------- */
 .post-meta {
   color: #4b5563;
