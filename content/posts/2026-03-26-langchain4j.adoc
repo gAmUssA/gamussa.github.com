@@ -1,0 +1,114 @@
+---
+title: "Twelve Million Java Developers and the AI Ecosystem Forgot About Them"
+date: 2026-03-26
+author: "Viktor Gamov"
+tags: ["java", "ai", "langchain4j", "agents", "spring-ai"]
+slug: "langchain4j"
+---
+
+[discrete]
+== TLDR
+
+* There are twelve million Java developers and the AI ecosystem built everything for Python first. LangChain4j fixes that.
+* You can wire up an LLM, give it tools (database queries, API calls, search), and let it decide which tool to use and when. That's an agent, built in Java.
+* It handles prompt templates, chat memory, RAG pipelines, MCP support, and tool calling across 20+ LLM providers through a single API.
+
+== The Python Problem
+
+There are twelve million Java developers on this planet, and the AI ecosystem decided Python is the only language that matters.
+
+Every major LLM framework launched in Python first: LangChain, LlamaIndex, CrewAI, Haystack.
+The tutorials, the examples, the blog posts are all Python.
+If you're a Java developer who wants to build with LLMs, the industry's answer has been "learn Python" or "call a Flask endpoint."
+
+That answer has always been wrong.
+Java runs the backend systems where AI needs to live: the banking platforms, the healthcare systems, the logistics engines, the e-commerce stacks.
+Asking those teams to bolt on a Python microservice for AI features means a second language, a second deployment pipeline, a second set of dependencies, and a second team to maintain it all.
+
+https://docs.langchain4j.dev/[LangChain4j] is the library that says you don't have to.
+Build and ship it in Java.
+
+.LangChain4j: supercharge your Java application with the power of LLMs
+image::langchain4j-home.png[LangChain4j homepage,width=800]
+
+== What LangChain4j Actually Does
+
+LangChain4j is a Java library that connects large language models into your Java applications through a unified API.
+It supports https://github.com/langchain4j/langchain4j[20+ LLM providers]: OpenAI, Anthropic, Mistral, Google Vertex AI, Ollama for local models, and more.
+You pick your model, swap in a different one later, and the rest of your code stays the same.
+
+Here's the practical version.
+Say you're building an internal tool at your company.
+Users ask questions about your data in plain English and get real answers back.
+With LangChain4j, you wire up an LLM, give it tools (a database query tool, a search tool, maybe an API call), and the model decides which tool to use and in what order.
+
+That setup, where the model autonomously selects and chains tools to answer a query, is what the industry calls an agent.
+You just built one in Java without touching Python.
+
+== The Building Blocks
+
+.LangChain4j features: 20+ LLM providers, 30+ vector stores, AI Services, agents, RAG, tools, MCP, and more
+image::langchain4j-features.png[LangChain4j features list,width=800]
+
+LangChain4j handles the infrastructure you'd otherwise write from scratch:
+
+* Prompt templates for structuring your inputs to the model
+* Chat memory so the model remembers what the user said three messages ago
+* RAG (Retrieval-Augmented Generation) pipelines for feeding your own documents into the model, with support for 30+ vector stores
+* Tool calling so the LLM can invoke your Java methods directly
+* MCP (Model Context Protocol) support for standardized tool integration
+* Structured output parsing so you get typed Java objects back, not raw strings
+
+The API has three levels of abstraction.
+At the lowest level, you work directly with prompts and model responses.
+In the middle, you get helper classes for common patterns like chat, RAG, and tool execution.
+At the highest level, https://docs.langchain4j.dev/tutorials/ai-services[AI Services] let you define a Java interface, annotate it, and LangChain4j generates the implementation that wires everything together.
+You write an interface.
+The framework handles the plumbing.
+
+== Agents in Java
+
+The agent pattern in LangChain4j follows the ReAct loop (Reasoning + Acting) that most frameworks use.
+The model receives a query, reasons about what to do, picks a tool, executes it, reads the result, and decides whether to call another tool or return an answer.
+
+What makes this work well in Java is that your tools are just Java methods.
+You annotate a method with `@Tool`, describe what it does, and LangChain4j registers it with the model.
+The LLM sees the description, decides when to call it, and your code executes on the JVM like any other method call.
+
+If you need more complex agent workflows, https://github.com/langgraph4j/langgraph4j[LangGraph4j] adds stateful graph-based execution with cyclic flows, checkpointing, and visual debugging.
+It works with both LangChain4j and Spring AI.
+
+== The Quarkus Connection
+
+LangChain4j integrates well with Spring Boot, but the Quarkus integration deserves its own mention.
+Quarkus gives you dev mode with live reload, so you can iterate on your AI service the same way you iterate on a REST endpoint.
+Change a prompt template, hit save, and the running app picks it up.
+
+The real payoff is native compilation with GraalVM.
+A LangChain4j service compiled to a native binary starts in milliseconds and uses a fraction of the memory.
+That matters when you're deploying AI services at scale and paying for compute by the second.
+
+The Quarkus + LangChain4j combination produces a production-ready AI service with the startup time of a Go binary and the ecosystem of Java.
+That combination deserves its own post, and it will get one.
+
+== Watch the Reel
+
+I recorded a short video on this topic.
+The thesis is simple: I'm not settling for Python when Java does the job.
+
+video::lZsr-jTShG8[youtube,width=800,height=450]
+
+== Why This Matters
+
+The AI ecosystem's Python bias created a real gap.
+Enterprise Java teams couldn't participate in the LLM revolution without introducing a second language into their stack.
+LangChain4j closes that gap.
+
+.LangChain4j on GitHub: 11.4k stars, 3,178 commits, 583 open issues, active development
+image::langchain4j-github.png[LangChain4j GitHub repository,width=800]
+
+With https://github.com/langchain4j/langchain4j[nearly 12,000 GitHub stars], over 580 contributors, and a release cadence that tracks LLM provider updates within days, it's the most actively maintained Java LLM library available.
+Google's ADK for Java integrated with LangChain4j in 2026, which tells you where the ecosystem is heading.
+
+Twelve million Java developers already know the best language for building production AI services.
+The rest of the industry is starting to catch on.
