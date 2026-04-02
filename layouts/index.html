@@ -22,27 +22,27 @@
        display: block;
      ">
 
-<section style="
+<section class="hero-section" style="
   text-align: center;
   padding: 2rem 0 3rem;
   border-bottom: 1px solid var(--border-light);
 ">
 
-  <h1 style="
+  <h1 class="hero-title" style="
     font-family: var(--serif);
     font-size: 2.8rem;
     font-weight: 700;
     line-height: 1.15;
-    color: #09090B;
+    color: var(--primary);
     margin: 0 0 0.35em;
     letter-spacing: -0.015em;
   ">Crash Course In<br>Java Brain Surgery</h1>
 
-  <p style="
+  <p class="hero-subtitle" style="
     font-family: var(--serif);
     font-style: italic;
     font-size: 1.15rem;
-    color: #52525b;
+    color: var(--secondary);
     margin: 0 0 1.6rem;
   ">insinuation and speculations</p>
 
@@ -431,26 +431,52 @@
   margin: 0;
 ">...And as always, have a nice day!</p>
 
-<!-- ─── RESPONSIVE OVERRIDES ─── -->
+<!-- ─── RESPONSIVE + DARK MODE OVERRIDES ─── -->
 <style>
-  /* Reset PaperMod's profile styles so they don't conflict */
   .profile { display: none !important; }
 
+  /* Dark mode — hero text colors */
+  [data-theme="dark"] .hero-title { color: #f8fafc !important; }
+  [data-theme="dark"] .hero-subtitle { color: #94a3b8 !important; }
+  [data-theme="dark"] .hero-body { color: #cbd5e1 !important; }
+  [data-theme="dark"] .hero-body strong { color: #f1f5f9 !important; }
+  [data-theme="dark"] .hero-muted { color: #94a3b8 !important; }
+  [data-theme="dark"] .hero-section { border-color: #334155 !important; }
+  [data-theme="dark"] .hero-social { color: #94a3b8 !important; }
+  [data-theme="dark"] .hero-social:hover { color: #f1f5f9 !important; }
+  [data-theme="dark"] .hero-btn-outline { color: #f1f5f9 !important; border-color: #334155 !important; }
+  [data-theme="dark"] .hero-btn-outline:hover { border-color: #f1f5f9 !important; }
+  [data-theme="dark"] .hero-post a { color: #f1f5f9 !important; }
+  [data-theme="dark"] .hero-post-title { color: #f8fafc !important; }
+  [data-theme="dark"] .hero-post-date { color: #64748b !important; }
+  [data-theme="dark"] .hero-post-summary { color: #94a3b8 !important; }
+  [data-theme="dark"] .hero-post { border-color: #1e293b !important; }
+  [data-theme="dark"] .hero-book-title { color: #f8fafc !important; }
+  [data-theme="dark"] .hero-book-pub { color: #94a3b8 !important; }
+  [data-theme="dark"] .hero-book-link { color: #22d3ee !important; }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .hero-title { color: #f8fafc !important; }
+    :root:not([data-theme="light"]) .hero-subtitle { color: #94a3b8 !important; }
+    :root:not([data-theme="light"]) .hero-body { color: #cbd5e1 !important; }
+    :root:not([data-theme="light"]) .hero-body strong { color: #f1f5f9 !important; }
+    :root:not([data-theme="light"]) .hero-muted { color: #94a3b8 !important; }
+    :root:not([data-theme="light"]) .hero-section { border-color: #334155 !important; }
+    :root:not([data-theme="light"]) .hero-social { color: #94a3b8 !important; }
+    :root:not([data-theme="light"]) .hero-post a { color: #f1f5f9 !important; }
+    :root:not([data-theme="light"]) .hero-post-title { color: #f8fafc !important; }
+    :root:not([data-theme="light"]) .hero-post-date { color: #64748b !important; }
+    :root:not([data-theme="light"]) .hero-post-summary { color: #94a3b8 !important; }
+    :root:not([data-theme="light"]) .hero-post { border-color: #1e293b !important; }
+    :root:not([data-theme="light"]) .hero-book-title { color: #f8fafc !important; }
+    :root:not([data-theme="light"]) .hero-book-pub { color: #94a3b8 !important; }
+    :root:not([data-theme="light"]) .hero-book-link { color: #22d3ee !important; }
+  }
+
   @media (max-width: 640px) {
-    /* Hero title size down */
-    .main > section:first-child h1 {
-      font-size: 2rem !important;
-    }
-    /* Stack book covers vertically */
-    .main > section:last-of-type > div:last-child {
-      grid-template-columns: 1fr !important;
-      gap: 2rem !important;
-    }
-    /* Post title + date stack */
-    .main > section:nth-of-type(2) article > a > div {
-      flex-direction: column !important;
-      gap: 0.25rem !important;
-    }
+    .main > section:first-child h1 { font-size: 2rem !important; }
+    .main > section:last-of-type > div:last-child { grid-template-columns: 1fr !important; gap: 2rem !important; }
+    .main > section:nth-of-type(2) article > a > div { flex-direction: column !important; gap: 0.25rem !important; }
   }
 </style>
 
