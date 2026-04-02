@@ -160,29 +160,9 @@ Principal Developer Advocate promoting the integration of AI-assisted engineerin
 
 </div>
 
-<div class="role">
-<div class="role-header">
-  <h3 class="role-title">Senior Software Engineer</h3>
-  <span class="role-date">Feb 2014 – Dec 2014</span>
-</div>
-<p class="role-company">ENSO Financial Analytics</p>
+**Earlier:** Senior Software Engineer at ENSO Financial Analytics and Farata Systems (2009–2014), building enterprise web applications for Fortune 500 clients including Citi and Goldman Sachs. Co-authored *Enterprise Web Development* (O'Reilly, 2014) during this period.
 
-- Built financial analytics software in the hedge fund administration space
 
-</div>
-
-<div class="role">
-<div class="role-header">
-  <h3 class="role-title">Senior Software Engineer</h3>
-  <span class="role-date">Dec 2009 – Dec 2014</span>
-</div>
-<p class="role-company">Farata Systems</p>
-
-- Designed and built enterprise web applications for Fortune 500 clients using Java, JavaScript, and HTML5
-- Co-authored *Enterprise Web Development* (O'Reilly, 2014) covering HTML5 application architecture from desktop to mobile
-- Contracted to major financial institutions including Citi (2012–2014) and Goldman Sachs (2011–2012)
-
-</div>
 
 </div>
 
