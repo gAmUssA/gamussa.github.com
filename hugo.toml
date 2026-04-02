@@ -1,6 +1,7 @@
 baseURL = '/'
 languageCode = 'en-us'
 title = 'Viktor Gamov'
+copyright = '© 2011–2026 Viktor Gamov'
 theme = 'PaperMod'
 enableRobotsTXT = true
 
