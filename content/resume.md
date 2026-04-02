@@ -7,6 +7,7 @@ ShowToc: false
 ShowBreadCrumbs: false
 ShowReadingTime: false
 ShowShareButtons: false
+comments: false
 ---
 
 <style>

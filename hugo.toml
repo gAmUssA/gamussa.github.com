@@ -20,7 +20,7 @@ enableRobotsTXT = true
   ShowShareButtons = false
   ShowToc = true
   TocOpen = false
-  comments = false
+  comments = true
 
   [params.profileMode]
     enabled = false
