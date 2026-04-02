@@ -42,10 +42,16 @@ ShowShareButtons: false
 .pub { margin-bottom: 1rem; }
 .pub-title { font-family: var(--serif); font-weight: 600; color: var(--primary); }
 .pub-meta { font-family: var(--sans); font-size: 0.85rem; color: var(--secondary); }
+
+.edu { margin-bottom: 1rem; }
+.edu-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.25rem; }
+.edu-school { font-family: var(--serif); font-size: 1.05rem; font-weight: 600; color: var(--primary); margin: 0; }
+.edu-date { font-family: var(--sans); font-size: 0.82rem; color: var(--secondary); white-space: nowrap; }
+.edu-degree { font-family: var(--sans); font-size: 0.9rem; color: var(--secondary); margin: 0.1em 0 0; }
 </style>
 
 <div class="resume-header">
-<h2>Principal Developer Advocate · Distributed Systems · AI-Assisted Engineering</h2>
+<h2>Principal Developer Advocate · AI-Assisted Engineering & Real-Time Data · Java Champion</h2>
 
 <div class="resume-badges">
   <span>Java Champion</span>
@@ -61,7 +67,8 @@ ShowShareButtons: false
   <a href="https://bsky.app/profile/gamussa.dev">Bluesky</a> · 
   <a href="https://twitter.com/gAmUssA">X/Twitter</a> · 
   <a href="https://www.youtube.com/@viktorgamov">YouTube</a> · 
-  <a href="https://speaking.gamov.io">Speaking</a>
+  <a href="https://speaking.gamov.io">Speaking</a> · 
+  <a href="https://ai-assisted.engineering">ai-assisted.engineering</a>
 </div>
 </div>
 
@@ -69,7 +76,13 @@ ShowShareButtons: false
 
 ## Summary
 
-Developer advocate and engineer with 20+ years of experience in distributed systems, real-time data streaming, and developer education. Java Champion and co-author of two technical books. I help engineering teams adopt streaming platforms, build event-driven architectures, and ship production systems that scale. Most recently focused on AI-assisted engineering — agentic frameworks, coding tools, and human+AI development workflows.
+Principal Developer Advocate promoting the integration of AI-assisted engineering with real-time data platforms. Creator of [ai-assisted.engineering](https://ai-assisted.engineering), working to improve developer productivity through intelligent tools and agentic systems.
+
+**Current Focus:** Developing AI systems with MCP (Model Context Protocol), connecting LLM agents to streaming data platforms (Kafka, Flink) for real-time reasoning and decision-making. Hands-on with GitHub Copilot, Cursor, Windsurf, JetBrains Junie, Amazon Q Developer, and Claude Code — advocating Prompt-Driven Development (PDD) and Spec-Driven methods for structured AI workflows.
+
+**Platform Engineering:** 10+ years promoting Apache Kafka, Flink, distributed systems, and cloud-native architectures at Confluent, Kong, StarTree, and Hazelcast.
+
+**Thought Leadership:** Java Champion. Author of *Kafka in Action*. International speaker at JavaOne, Devoxx, Current, KotlinConf, QCon, Kafka Summit. Conference demos with real-time LLM integration.
 
 </div>
 
@@ -80,28 +93,53 @@ Developer advocate and engineer with 20+ years of experience in distributed syst
 <div class="role">
 <div class="role-header">
   <h3 class="role-title">Principal Developer Advocate</h3>
-  <span class="role-date">2021 – Present</span>
+  <span class="role-date">Sep 2024 – Present</span>
 </div>
 <p class="role-company">Confluent</p>
 
 - Lead developer education for Apache Kafka, Flink SQL, and Confluent Cloud — workshops, tutorials, and conference talks reaching thousands of developers annually
 - Built [selectstar.stream](https://selectstar.stream) — interactive Flink SQL tutorial teaching table-stream duality with animated visualizations
 - Created [Flink SQL Playground](https://sql.selectstar.stream) — live environment for running Flink queries against streaming data
-- Developed hands-on workshops for Confluent Cloud covering Kafka, Flink, Tableflow, and Iceberg integration
-- Keynote and featured speaker at KotlinConf, Devoxx, Current, Kafka Summit, Jfokus, Devnexus, QCon
-- Pioneered AI-assisted engineering workflows using agentic frameworks and LLM coding tools
+- Developing MCP integrations connecting LLM agents to streaming data platforms for real-time reasoning
+- Featured speaker at KotlinConf, Devoxx, Current, Jfokus, Devnexus, Iceberg Summit
 - Co-host of [DevRel Radio](https://www.youtube.com/@devrelradio) podcast
 
 </div>
 
 <div class="role">
 <div class="role-header">
-  <h3 class="role-title">Developer Advocate</h3>
-  <span class="role-date">2017 – 2021</span>
+  <h3 class="role-title">Head of Developer Advocacy</h3>
+  <span class="role-date">Jan 2024 – Sep 2024</span>
+</div>
+<p class="role-company">StarTree</p>
+
+- Led developer advocacy for StarTree's real-time analytics platform built on Apache Pinot
+- Created content and workshops for real-time OLAP analytics use cases combining Kafka, Flink, and Pinot
+
+</div>
+
+<div class="role">
+<div class="role-header">
+  <h3 class="role-title">Principal Developer Advocate</h3>
+  <span class="role-date">May 2021 – Dec 2023</span>
+</div>
+<p class="role-company">Kong Inc.</p>
+
+- Led developer advocacy for Kong's API gateway and service connectivity platform
+- Created technical content, demos, and conference talks on API management, service mesh, and cloud-native architectures
+- Spoke at KubeCon, Devoxx, and API-focused conferences worldwide
+- Served as Program Committee Member for KubeCon + CloudNativeCon 2023
+
+</div>
+
+<div class="role">
+<div class="role-header">
+  <h3 class="role-title">Developer Advocate & Solutions Architect</h3>
+  <span class="role-date">Jul 2017 – May 2021</span>
 </div>
 <p class="role-company">Confluent</p>
 
-- Grew Kafka developer community through conference talks, blog posts, webinars, and open-source contributions
+- Grew Apache Kafka developer community through conference talks, blog posts, webinars, and open-source contributions
 - Co-authored *Kafka in Action* (Manning, 2022) — practical guide to building event streaming applications
 - Built demo applications and reference architectures for Kafka Streams, ksqlDB, and Connect
 - Regular speaker at JavaOne, Devoxx, Kafka Summit, and regional meetups worldwide
@@ -110,8 +148,8 @@ Developer advocate and engineer with 20+ years of experience in distributed syst
 
 <div class="role">
 <div class="role-header">
-  <h3 class="role-title">Developer Advocate</h3>
-  <span class="role-date">2014 – 2017</span>
+  <h3 class="role-title">Developer Advocate & Solution Architect</h3>
+  <span class="role-date">Dec 2014 – Jul 2017</span>
 </div>
 <p class="role-company">Hazelcast</p>
 
@@ -124,17 +162,28 @@ Developer advocate and engineer with 20+ years of experience in distributed syst
 
 <div class="role">
 <div class="role-header">
-  <h3 class="role-title">Senior Software Engineer / Technical Lead</h3>
-  <span class="role-date">2006 – 2014</span>
+  <h3 class="role-title">Senior Software Engineer</h3>
+  <span class="role-date">Feb 2014 – Dec 2014</span>
+</div>
+<p class="role-company">ENSO Financial Analytics</p>
+
+- Built financial analytics software in the hedge fund administration space
+
+</div>
+
+<div class="role">
+<div class="role-header">
+  <h3 class="role-title">Senior Software Engineer</h3>
+  <span class="role-date">Dec 2009 – Dec 2014</span>
 </div>
 <p class="role-company">Farata Systems</p>
 
 - Designed and built enterprise web applications for Fortune 500 clients using Java, JavaScript, and HTML5
 - Co-authored *Enterprise Web Development* (O'Reilly, 2014) covering HTML5 application architecture from desktop to mobile
-- Led adoption of modern frontend frameworks and build tooling across client projects
-- Mentored junior engineers and contributed to company's technical direction
+- Contracted to major financial institutions including Citi (2012–2014) and Goldman Sachs (2011–2012)
 
 </div>
+
 </div>
 
 <div class="resume-section">
@@ -162,14 +211,14 @@ Developer advocate and engineer with 20+ years of experience in distributed syst
 <div class="talk-grid">
   <span class="talk-name">The Missing Protocol: How MCP Bridges LLMs and Data Streams</span>
   <span class="talk-venue">AgentCon Toronto 2026</span>
+  <span class="talk-name">One Does Not Simply Query a Stream</span>
+  <span class="talk-venue">Elastic User Groups 2026</span>
   <span class="talk-name">Event-Driven Analytics with Apache Flink and Ktor</span>
   <span class="talk-venue">KotlinConf 2025</span>
   <span class="talk-name">Stream Processing Smackdown: Kafka Streams vs. Flink</span>
   <span class="talk-venue">Current London 2025</span>
   <span class="talk-name">Codepocalypse Now: LangChain4j vs. Spring AI</span>
   <span class="talk-venue">Devoxx France 2025</span>
-  <span class="talk-name">One Does Not Simply Query a Stream</span>
-  <span class="talk-venue">Elastic User Groups 2026</span>
   <span class="talk-name">Uncorking Real-time Analytics with Kafka, Flink, and Pinot</span>
   <span class="talk-venue">Multiple venues</span>
   <span class="talk-name">Testing Data-Intensive Apps with Testcontainers</span>
@@ -179,6 +228,15 @@ Developer advocate and engineer with 20+ years of experience in distributed syst
 </div>
 
 Full speaking history at [speaking.gamov.io](https://speaking.gamov.io)
+
+</div>
+
+<div class="resume-section">
+
+## Certifications
+
+- **Data Streaming Engineer** — Confluent
+- **Program Committee Member** — KubeCon + CloudNativeCon + Open Source Summit China 2023
 
 </div>
 
@@ -194,16 +252,41 @@ Full speaking history at [speaking.gamov.io](https://speaking.gamov.io)
 
 <div class="resume-section">
 
+## Education
+
+<div class="edu">
+<div class="edu-header">
+  <h3 class="edu-school">Moscow State University of Transport (MIIT)</h3>
+  <span class="edu-date">2007 – 2010</span>
+</div>
+</div>
+
+<div class="edu">
+<div class="edu-header">
+  <h3 class="edu-school">Lipetsk State Technical University</h3>
+  <span class="edu-date">2002 – 2007</span>
+</div>
+<p class="edu-degree">Master of Science, Computer Science & Information Technology</p>
+</div>
+
+</div>
+
+<div class="resume-section">
+
 ## Technical Expertise
 
 **Streaming & Data:** Apache Kafka, Kafka Streams, ksqlDB, Apache Flink, Flink SQL, Confluent Cloud, Tableflow, Apache Iceberg, Apache Pinot
 
-**Languages & Frameworks:** Java, Kotlin, TypeScript, Go, Spring Boot, Ktor, Lit
+**AI & Tooling:** MCP (Model Context Protocol), LangChain4j, Spring AI, Claude Code, GitHub Copilot, Cursor, Windsurf, JetBrains Junie, Amazon Q Developer
 
-**AI & Tooling:** AI-assisted engineering, agentic frameworks, MCP (Model Context Protocol), LangChain4j, Spring AI, Claude Code
+**Languages & Frameworks:** Java, Kotlin, TypeScript, Go, Spring Boot, Ktor, Lit
 
 **Infrastructure:** Kubernetes, Docker, Testcontainers, GitHub Actions, Terraform
 
+**API & Connectivity:** Kong Gateway, API management, service mesh, gRPC
+
 **Developer Education:** Technical writing, conference speaking, workshop design, video production, podcast hosting
+
+**Languages:** English, Russian
 
 </div>
