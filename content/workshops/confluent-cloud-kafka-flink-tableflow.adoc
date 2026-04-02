@@ -1,0 +1,126 @@
+---
+title: "Hands-On with Confluent Cloud: Apache Kafka, Flink, and Tableflow"
+date: 2025-01-15
+author: "Viktor Gamov"
+tags: ["kafka", "flink", "confluent", "streaming", "workshop", "iceberg"]
+slug: "confluent-cloud-kafka-flink-tableflow"
+description: "A 2-hour hands-on workshop building a real-time cryptocurrency analytics pipeline with Apache Kafka, Flink SQL, Tableflow, and DuckDB on Confluent Cloud."
+---
+
+:toc: macro
+:experimental:
+
+https://github.com/gAmUssA/cc-workshop[**GitHub Repository** icon:github[]] | Duration: *2 hours* | Difficulty: *Beginner to Advanced*
+
+toc::[]
+
+== Overview
+
+This hands-on workshop walks you through building a complete real-time data pipeline using *Confluent Cloud*.
+You'll stream live cryptocurrency price data from the CoinGecko API, process it with Apache Flink SQL, and materialize it as Apache Iceberg tables using Tableflow — all queryable through DuckDB.
+
+The use case: a *cryptocurrency analytics pipeline* that ingests live price data and builds real-time alerts, trends, and predictions on top of it.
+
+=== What You'll Learn
+
+* Set up and configure a Kafka cluster on Confluent Cloud
+* Create topics and ingest live data using HTTP Source Connector
+* Materialize Kafka topics as Iceberg tables with Tableflow
+* Write Flink SQL for real-time stream processing
+* Query real-time and historical data with DuckDB
+
+=== Technologies
+
+[cols="1,3"]
+|===
+| *Apache Kafka* | Data streaming and topic management
+| *Apache Flink* | Real-time stream processing via Flink SQL
+| *Tableflow* | Materializing Kafka topics as Apache Iceberg tables
+| *DuckDB* | Lightweight analytics on Iceberg tables
+| *Schema Registry* | AVRO schema validation
+| *CoinGecko API* | Live cryptocurrency price data source
+|===
+
+== Workshop Modules
+
+=== Module 1: Setting Up Confluent Cloud
+_15 minutes_
+
+Validate prerequisite tools, authenticate with Confluent Cloud, create a Kafka cluster, generate API keys, and validate Tableflow access.
+
+https://github.com/gAmUssA/cc-workshop/blob/main/guides/01-setup-confluent-cloud.adoc[Open Guide icon:arrow-right[]]
+
+=== Module 2: Kafka Hands-On with CoinGecko Data
+_30 minutes_
+
+Create Kafka topics, set up an HTTP Source Connector for live cryptocurrency data, produce and consume real-time price events.
+
+----
+CoinGecko API → HTTP Source Connector → Schema Registry → Kafka Topics
+----
+
+https://github.com/gAmUssA/cc-workshop/blob/main/guides/02-kafka-hands-on.adoc[Open Guide icon:arrow-right[]]
+
+=== Module 3: Tableflow & Iceberg Setup
+_25 minutes_
+
+Materialize the `crypto-prices` topic as an Iceberg table via Tableflow, connect DuckDB to the Iceberg REST Catalog, and run real-time analytics queries.
+
+----
+Kafka Topics → Tableflow Materialization → Iceberg Tables → DuckDB Analytics
+----
+
+https://github.com/gAmUssA/cc-workshop/blob/main/guides/03-tableflow-iceberg-setup.adoc[Open Guide icon:arrow-right[]]
+
+=== Module 4: Flink Stream Processing
+_45 minutes_
+
+The core module. Create a Flink compute pool, transform nested cryptocurrency data, write SQL queries for real-time analysis, and create derived tables:
+
+* `price-alerts` — threshold-based price alerts
+* `crypto-trends` — rolling trend analysis
+* `crypto-predictions` — pattern-based predictions
+
+[source,sql]
+----
+-- Example: Real-time price alerts
+SELECT symbol, price, `timestamp`
+FROM crypto_prices_exploded
+WHERE price > 50000 AND symbol = 'bitcoin';
+----
+
+----
+Kafka Topics → Flink SQL Processing → Derived Topics → Tableflow → DuckDB
+----
+
+https://github.com/gAmUssA/cc-workshop/blob/main/guides/04-flink-hands-on.adoc[Open Guide icon:arrow-right[]]
+
+=== Module 5: Teardown
+_15 minutes_
+
+IMPORTANT: Critical cleanup guide to prevent accidental charges. Stops Flink compute pools, deletes connectors, removes API keys, and optionally tears down the cluster.
+
+https://github.com/gAmUssA/cc-workshop/blob/main/guides/05-teardown-resources.adoc[Open Guide icon:arrow-right[]]
+
+== Getting Started
+
+The workshop supports multiple environments:
+
+* **GitHub Codespaces** — one-click setup, everything pre-configured
+* **VS Code Dev Containers** — local Docker-based environment
+* **Local setup** — bring your own tools (Confluent CLI, DuckDB, jq)
+
+[source,bash]
+----
+git clone https://github.com/gAmUssA/cc-workshop.git
+cd cc-workshop
+----
+
+See the https://github.com/gAmUssA/cc-workshop#prerequisites[prerequisites] in the repo README.
+
+== Resources
+
+* https://github.com/gAmUssA/cc-workshop[GitHub Repository]
+* https://www.confluent.io/[Confluent Cloud]
+* https://docs.confluent.io/cloud/current/flink/overview.html[Flink on Confluent Cloud docs]
+* https://docs.confluent.io/cloud/current/topics/tableflow/overview.html[Tableflow docs]
