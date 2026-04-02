@@ -1,4 +1,4 @@
 ---
 title: "Blog"
-description: "Crash Course In Java Brain Surgery — insinuation and speculations"
+description: "Crash Course In Kafka Brain Surgery — insinuation and speculations"
 ---
