@@ -73,11 +73,25 @@ posts:
 drafts:
     @grep -rl 'draft: true' content/posts/ 2>/dev/null || echo "No drafts found"
 
+# Render all d2 diagrams to SVG
+diagrams:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    count=0
+    for f in diagrams/*.d2; do
+        name=$(basename "$f" .d2)
+        out="static/images/workshops/cc-workshop/${name}.svg"
+        mkdir -p "$(dirname "$out")"
+        d2 --theme 1 "$f" "$out"
+        count=$((count + 1))
+    done
+    echo "Rendered $count diagrams"
+
 # Check that dependencies are installed
 check:
     #!/usr/bin/env bash
     ok=true
-    for cmd in hugo asciidoctor; do
+    for cmd in hugo asciidoctor d2; do
         if command -v $cmd &>/dev/null; then
             printf "✓ %-15s %s\n" "$cmd" "$(command -v $cmd)"
         else
