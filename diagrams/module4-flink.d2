@@ -8,63 +8,75 @@ title: {
 }
 
 kafka: Kafka {
-  style.fill: "#1a202c"
-  style.stroke: "#334155"
-  style.font-color: "#f8fafc"
+  style.fill: "#334155"
+  style.stroke: "#475569"
+  style.font-color: "#f1f5f9"
 
   input: crypto-prices {
     shape: queue
-    style.fill: "#334155"
-    style.font-color: "#f8fafc"
+    style.fill: "#475569"
+    style.font-color: "#f1f5f9"
   }
 }
 
 flink: Flink SQL {
-  style.fill: "#EEF2FF"
+  style.fill: "#f8fafc"
   style.stroke: "#4F46E5"
-  style.font-color: "#4338CA"
+  style.font-color: "#4F46E5"
   style.bold: true
   style.double-border: true
 
-  explode: Explode\nnested JSON
-  alerts_q: Price alerts\nSQL
-  trends_q: Trend analysis\nSQL
+  explode: Explode\nnested JSON {
+    style.fill: "#f1f5f9"
+    style.stroke: "#94a3b8"
+    style.font-color: "#475569"
+  }
+  alerts_q: Price alerts\nSQL {
+    style.fill: "#f1f5f9"
+    style.stroke: "#94a3b8"
+    style.font-color: "#475569"
+  }
+  trends_q: Trend analysis\nSQL {
+    style.fill: "#f1f5f9"
+    style.stroke: "#94a3b8"
+    style.font-color: "#475569"
+  }
 }
 
 output: Output Topics {
-  style.fill: "#1a202c"
-  style.stroke: "#334155"
-  style.font-color: "#f8fafc"
+  style.fill: "#334155"
+  style.stroke: "#475569"
+  style.font-color: "#f1f5f9"
 
   exploded: crypto-prices\n-exploded {
     shape: queue
-    style.fill: "#334155"
-    style.font-color: "#f8fafc"
+    style.fill: "#475569"
+    style.font-color: "#f1f5f9"
   }
   alerts: price-alerts {
     shape: queue
-    style.fill: "#7f1d1d"
-    style.font-color: "#fca5a5"
+    style.fill: "#475569"
+    style.font-color: "#f1f5f9"
   }
   trends: crypto-trends {
     shape: queue
-    style.fill: "#1e3a5f"
-    style.font-color: "#93c5fd"
+    style.fill: "#475569"
+    style.font-color: "#f1f5f9"
   }
 }
 
 tableflow: Tableflow {
-  style.fill: "#ECFEFF"
+  style.fill: "#f8fafc"
   style.stroke: "#0891b2"
-  style.font-color: "#0e7490"
+  style.font-color: "#0891b2"
   style.bold: true
 }
 
 iceberg: Iceberg {
   shape: cylinder
-  style.fill: "#F0FDF4"
-  style.stroke: "#16a34a"
-  style.font-color: "#166534"
+  style.fill: "#f1f5f9"
+  style.stroke: "#94a3b8"
+  style.font-color: "#475569"
 }
 
 kafka.input -> flink.explode: stream {
@@ -73,11 +85,11 @@ kafka.input -> flink.explode: stream {
 flink.explode -> output.exploded
 flink.explode -> flink.alerts_q
 flink.explode -> flink.trends_q
-flink.alerts_q -> output.alerts: "price > threshold" {
-  style.stroke: "#dc2626"
+flink.alerts_q -> output.alerts {
+  style.stroke: "#94a3b8"
 }
-flink.trends_q -> output.trends: "rolling window" {
-  style.stroke: "#2563eb"
+flink.trends_q -> output.trends {
+  style.stroke: "#94a3b8"
 }
 output.exploded -> tableflow
 output.alerts -> tableflow

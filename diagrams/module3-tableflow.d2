@@ -8,44 +8,44 @@ title: {
 }
 
 kafka: Kafka Topics {
-  style.fill: "#1a202c"
-  style.stroke: "#334155"
-  style.font-color: "#f8fafc"
+  style.fill: "#334155"
+  style.stroke: "#475569"
+  style.font-color: "#f1f5f9"
   style.bold: true
 
   topic: crypto-prices {
     shape: queue
-    style.fill: "#334155"
-    style.font-color: "#f8fafc"
+    style.fill: "#475569"
+    style.font-color: "#f1f5f9"
   }
 }
 
 tableflow: Tableflow {
-  style.fill: "#ECFEFF"
+  style.fill: "#f8fafc"
   style.stroke: "#0891b2"
-  style.font-color: "#0e7490"
+  style.font-color: "#0891b2"
   style.bold: true
   style.double-border: true
 }
 
 iceberg: Iceberg Tables {
-  style.fill: "#F0FDF4"
-  style.stroke: "#16a34a"
-  style.font-color: "#166534"
+  style.fill: "#f1f5f9"
+  style.stroke: "#94a3b8"
+  style.font-color: "#475569"
   shape: cylinder
   style.bold: true
 }
 
 catalog: Iceberg REST\nCatalog {
-  style.fill: "#EEF2FF"
-  style.stroke: "#4F46E5"
-  style.font-color: "#4338CA"
+  style.fill: "#f8fafc"
+  style.stroke: "#94a3b8"
+  style.font-color: "#475569"
 }
 
 duckdb: DuckDB {
-  style.fill: "#FEF3C7"
-  style.stroke: "#F59E0B"
-  style.font-color: "#92400e"
+  style.fill: "#f8fafc"
+  style.stroke: "#94a3b8"
+  style.font-color: "#475569"
   style.bold: true
 }
 
@@ -54,10 +54,10 @@ kafka.topic -> tableflow: "materialize" {
   style.bold: true
 }
 tableflow -> iceberg: "Iceberg\nformat" {
-  style.stroke: "#16a34a"
+  style.stroke: "#94a3b8"
 }
 iceberg -> catalog: "register"
 catalog -> duckdb: "SQL\nqueries" {
-  style.stroke: "#F59E0B"
+  style.stroke: "#4F46E5"
   style.bold: true
 }

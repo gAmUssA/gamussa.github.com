@@ -8,88 +8,88 @@ title: {
 }
 
 coingecko: CoinGecko API {
-  icon: https://simpleicons.org/icons/bitcoin.svg
-  style.fill: "#FFF7ED"
-  style.stroke: "#F97316"
-  style.font-color: "#c2410c"
+  style.fill: "#f8fafc"
+  style.stroke: "#94a3b8"
+  style.font-color: "#475569"
   style.bold: true
 }
 
 connector: HTTP Source\nConnector {
-  style.fill: "#EEF2FF"
-  style.stroke: "#4F46E5"
-  style.font-color: "#4338CA"
+  style.fill: "#f8fafc"
+  style.stroke: "#94a3b8"
+  style.font-color: "#475569"
 }
 
 sr: Schema\nRegistry {
-  style.fill: "#F0FDF4"
-  style.stroke: "#16a34a"
-  style.font-color: "#166534"
+  style.fill: "#f1f5f9"
+  style.stroke: "#94a3b8"
+  style.font-color: "#475569"
   shape: cylinder
 }
 
 kafka: Apache Kafka {
-  style.fill: "#1a202c"
-  style.stroke: "#334155"
-  style.font-color: "#f8fafc"
+  style.fill: "#334155"
+  style.stroke: "#475569"
+  style.font-color: "#f1f5f9"
   style.bold: true
 
   topics: {
     crypto-prices {
       shape: queue
-      style.fill: "#334155"
-      style.font-color: "#f8fafc"
+      style.fill: "#475569"
+      style.font-color: "#f1f5f9"
     }
   }
 }
 
 flink: Apache Flink {
-  style.fill: "#EEF2FF"
+  style.fill: "#f8fafc"
   style.stroke: "#4F46E5"
-  style.font-color: "#4338CA"
+  style.font-color: "#4F46E5"
   style.bold: true
 
   sql: Flink SQL {
-    style.fill: "#E0E7FF"
+    style.fill: "#f1f5f9"
     style.stroke: "#6366F1"
+    style.font-color: "#4F46E5"
   }
 }
 
 derived: Derived Topics {
-  style.fill: "#1a202c"
-  style.stroke: "#334155"
-  style.font-color: "#f8fafc"
+  style.fill: "#334155"
+  style.stroke: "#475569"
+  style.font-color: "#f1f5f9"
 
   alerts: price-alerts {
     shape: queue
-    style.fill: "#334155"
-    style.font-color: "#f8fafc"
+    style.fill: "#475569"
+    style.font-color: "#f1f5f9"
   }
   trends: crypto-trends {
     shape: queue
-    style.fill: "#334155"
-    style.font-color: "#f8fafc"
+    style.fill: "#475569"
+    style.font-color: "#f1f5f9"
   }
 }
 
 tableflow: Tableflow {
-  style.fill: "#ECFEFF"
+  style.fill: "#f8fafc"
   style.stroke: "#0891b2"
-  style.font-color: "#0e7490"
+  style.font-color: "#0891b2"
   style.bold: true
 }
 
 iceberg: Iceberg\nTables {
   shape: cylinder
-  style.fill: "#F0FDF4"
-  style.stroke: "#16a34a"
-  style.font-color: "#166534"
+  style.fill: "#f1f5f9"
+  style.stroke: "#94a3b8"
+  style.font-color: "#475569"
 }
 
 duckdb: DuckDB {
-  style.fill: "#FEF3C7"
-  style.stroke: "#F59E0B"
-  style.font-color: "#92400e"
+  style.fill: "#f8fafc"
+  style.stroke: "#94a3b8"
+  style.font-color: "#475569"
   style.bold: true
 }
 
