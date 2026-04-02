@@ -8,99 +8,100 @@ title: {
 }
 
 coingecko: CoinGecko API {
-  style.fill: "#f8fafc"
-  style.stroke: "#94a3b8"
-  style.font-color: "#475569"
+  style.fill: "#f1f5f9"
+  style.stroke: "#64748b"
+  style.font-color: "#1e293b"
   style.bold: true
 }
 
 connector: HTTP Source\nConnector {
-  style.fill: "#f8fafc"
-  style.stroke: "#94a3b8"
-  style.font-color: "#475569"
+  style.fill: "#e0e7ff"
+  style.stroke: "#4F46E5"
+  style.font-color: "#312e81"
+  style.bold: true
 }
 
 sr: Schema\nRegistry {
   style.fill: "#f1f5f9"
-  style.stroke: "#94a3b8"
-  style.font-color: "#475569"
+  style.stroke: "#64748b"
+  style.font-color: "#1e293b"
   shape: cylinder
 }
 
 kafka: Apache Kafka {
-  style.fill: "#334155"
+  style.fill: "#1e293b"
   style.stroke: "#475569"
-  style.font-color: "#f1f5f9"
+  style.font-color: "#e2e8f0"
   style.bold: true
 
   topics: {
     crypto-prices {
       shape: queue
-      style.fill: "#475569"
-      style.font-color: "#f1f5f9"
+      style.fill: "#334155"
+      style.font-color: "#e2e8f0"
     }
   }
 }
 
 flink: Apache Flink {
-  style.fill: "#f8fafc"
+  style.fill: "#e0e7ff"
   style.stroke: "#4F46E5"
-  style.font-color: "#4F46E5"
+  style.font-color: "#312e81"
   style.bold: true
 
   sql: Flink SQL {
-    style.fill: "#f1f5f9"
+    style.fill: "#eef2ff"
     style.stroke: "#6366F1"
-    style.font-color: "#4F46E5"
+    style.font-color: "#312e81"
   }
 }
 
 derived: Derived Topics {
-  style.fill: "#334155"
+  style.fill: "#1e293b"
   style.stroke: "#475569"
-  style.font-color: "#f1f5f9"
+  style.font-color: "#e2e8f0"
 
   alerts: price-alerts {
     shape: queue
-    style.fill: "#475569"
-    style.font-color: "#f1f5f9"
+    style.fill: "#334155"
+    style.font-color: "#e2e8f0"
   }
   trends: crypto-trends {
     shape: queue
-    style.fill: "#475569"
-    style.font-color: "#f1f5f9"
+    style.fill: "#334155"
+    style.font-color: "#e2e8f0"
   }
 }
 
 tableflow: Tableflow {
-  style.fill: "#f8fafc"
+  style.fill: "#ecfeff"
   style.stroke: "#0891b2"
-  style.font-color: "#0891b2"
+  style.font-color: "#155e75"
   style.bold: true
 }
 
 iceberg: Iceberg\nTables {
   shape: cylinder
   style.fill: "#f1f5f9"
-  style.stroke: "#94a3b8"
-  style.font-color: "#475569"
+  style.stroke: "#64748b"
+  style.font-color: "#1e293b"
 }
 
 duckdb: DuckDB {
-  style.fill: "#f8fafc"
-  style.stroke: "#94a3b8"
-  style.font-color: "#475569"
+  style.fill: "#f1f5f9"
+  style.stroke: "#64748b"
+  style.font-color: "#1e293b"
   style.bold: true
 }
 
-coingecko -> connector: REST API
-connector -> sr: validate
-connector -> kafka.topics.crypto-prices: produce
-kafka.topics.crypto-prices -> flink.sql: stream
-flink.sql -> derived.alerts: alerts
-flink.sql -> derived.trends: trends
-kafka.topics.crypto-prices -> tableflow
+coingecko -> connector: REST API { style.font-color: "#1e293b" }
+connector -> sr: validate { style.font-color: "#1e293b" }
+connector -> kafka.topics.crypto-prices: produce { style.font-color: "#1e293b" }
+kafka.topics.crypto-prices -> flink.sql: stream { style.font-color: "#1e293b" }
+flink.sql -> derived.alerts: alerts { style.font-color: "#1e293b" }
+flink.sql -> derived.trends: trends { style.font-color: "#1e293b" }
+kafka.topics.crypto-prices -> tableflow { style.font-color: "#1e293b" }
 derived.alerts -> tableflow
 derived.trends -> tableflow
-tableflow -> iceberg: materialize
-iceberg -> duckdb: query
+tableflow -> iceberg: materialize { style.font-color: "#1e293b" }
+iceberg -> duckdb: query { style.font-color: "#1e293b" }

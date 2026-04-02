@@ -2,52 +2,58 @@ direction: right
 
 title: {
   label: "Module 2: Kafka Data Ingestion"
-  style.font-size: 20
+  style.font-size: 22
   style.bold: true
   near: top-center
 }
 
 coingecko: CoinGecko\nREST API {
-  style.fill: "#f8fafc"
-  style.stroke: "#94a3b8"
-  style.font-color: "#475569"
+  style.fill: "#f1f5f9"
+  style.stroke: "#64748b"
+  style.font-color: "#1e293b"
   style.bold: true
 }
 
 connector: HTTP Source\nConnector {
-  style.fill: "#f8fafc"
+  style.fill: "#e0e7ff"
   style.stroke: "#4F46E5"
-  style.font-color: "#4F46E5"
+  style.font-color: "#312e81"
   style.double-border: true
+  style.bold: true
 }
 
 sr: Schema Registry {
   style.fill: "#f1f5f9"
-  style.stroke: "#94a3b8"
-  style.font-color: "#475569"
+  style.stroke: "#64748b"
+  style.font-color: "#1e293b"
   shape: cylinder
+  style.bold: true
 }
 
 kafka: Confluent Cloud Kafka {
-  style.fill: "#334155"
+  style.fill: "#1e293b"
   style.stroke: "#475569"
-  style.font-color: "#f1f5f9"
+  style.font-color: "#e2e8f0"
   style.bold: true
 
   crypto-prices: crypto-prices {
     shape: queue
-    style.fill: "#475569"
-    style.font-color: "#f1f5f9"
+    style.fill: "#334155"
+    style.font-color: "#e2e8f0"
+    style.bold: true
   }
 }
 
 coingecko -> connector: "JSON\n/coins/markets" {
-  style.stroke: "#94a3b8"
+  style.stroke: "#64748b"
+  style.font-color: "#1e293b"
 }
 connector -> sr: "AVRO\nvalidation" {
-  style.stroke: "#94a3b8"
+  style.stroke: "#64748b"
+  style.font-color: "#1e293b"
 }
 connector -> kafka.crypto-prices: "produce\nevents" {
   style.stroke: "#4F46E5"
+  style.font-color: "#1e293b"
   style.bold: true
 }
