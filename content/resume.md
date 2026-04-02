@@ -103,6 +103,7 @@ Principal Developer Advocate promoting the integration of AI-assisted engineerin
 - Developing MCP integrations connecting LLM agents to streaming data platforms for real-time reasoning
 - Featured speaker at KotlinConf, Devoxx, Current, Jfokus, Devnexus, Iceberg Summit
 - Co-host of [DevRel Radio](https://www.youtube.com/@devrelradio) podcast
+- Host of [Confluent Developer Podcast](https://www.youtube.com/playlist?list=PLf38f5LhQtheIY9IXnYDi1_0Fhc3fPmG7) and [Streaming Frontiers](https://www.youtube.com/playlist?list=PLf38f5LhQtheqY3k6rv9Qvr4cezoUbW7m) live stream
 
 </div>
 
@@ -114,7 +115,8 @@ Principal Developer Advocate promoting the integration of AI-assisted engineerin
 <p class="role-company">StarTree</p>
 
 - Led developer advocacy for StarTree's real-time analytics platform built on Apache Pinot
-- Created content and workshops for real-time OLAP analytics use cases combining Kafka, Flink, and Pinot
+- Created the [Apache Pinot Developer Course](https://www.youtube.com/playlist?list=PLihIrF0tCXdckH2BSA1D8l-QPGfVXEuFV) — comprehensive video series on real-time OLAP analytics
+- Created content and workshops for real-time analytics use cases combining Kafka, Flink, and Pinot
 
 </div>
 
@@ -126,6 +128,7 @@ Principal Developer Advocate promoting the integration of AI-assisted engineerin
 <p class="role-company">Kong Inc.</p>
 
 - Led developer advocacy for Kong's API gateway and service connectivity platform
+- Created and hosted [Kongcast](https://www.youtube.com/playlist?list=PLg_AhYkg50vh67Mri2YnniIRZmmxHOcT7) podcast and [Kong Builders](https://www.youtube.com/playlist?list=PLg_AhYkg50vjOi0aIr6ZPh3iRwO0YX2-z) video series
 - Created technical content, demos, and conference talks on API management, service mesh, and cloud-native architectures
 - Spoke at KubeCon, Devoxx, and API-focused conferences worldwide
 - Served as Program Committee Member for KubeCon + CloudNativeCon 2023
