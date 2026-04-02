@@ -29,7 +29,7 @@ https://docs.langchain4j.dev/[LangChain4j] is the library that says you don't ha
 Build and ship it in Java.
 
 .LangChain4j: supercharge your Java application with the power of LLMs
-image::langchain4j-home.png[LangChain4j homepage,width=800]
+image::langchain4j/langchain4j-home.png[LangChain4j homepage,width=800]
 
 == What LangChain4j Actually Does
 
@@ -48,7 +48,7 @@ You just built one in Java without touching Python.
 == The Building Blocks
 
 .LangChain4j features: 20+ LLM providers, 30+ vector stores, AI Services, agents, RAG, tools, MCP, and more
-image::langchain4j-features.png[LangChain4j features list,width=800]
+image::langchain4j/langchain4j-features.png[LangChain4j features list,width=800]
 
 LangChain4j handles the infrastructure you'd otherwise write from scratch:
 
@@ -105,7 +105,7 @@ Enterprise Java teams couldn't participate in the LLM revolution without introdu
 LangChain4j closes that gap.
 
 .LangChain4j on GitHub: 11.4k stars, 3,178 commits, 583 open issues, active development
-image::langchain4j-github.png[LangChain4j GitHub repository,width=800]
+image::langchain4j/langchain4j-github.png[LangChain4j GitHub repository,width=800]
 
 With https://github.com/langchain4j/langchain4j[nearly 12,000 GitHub stars], over 580 contributors, and a release cadence that tracks LLM provider updates within days, it's the most actively maintained Java LLM library available.
 Google's ADK for Java integrated with LangChain4j in 2026, which tells you where the ecosystem is heading.
