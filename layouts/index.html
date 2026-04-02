@@ -18,19 +18,19 @@
 
   <!-- Credential badges -->
   <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:0.5rem; margin-bottom:1.8rem;">
-    <span class="hero-badge" style="--badge-color:var(--accent); --badge-bg:#EEF2FF; --badge-border:rgba(79,70,229,0.2);">
+    <span class="hero-badge">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
       Java Champion
     </span>
-    <span class="hero-badge" style="--badge-color:#16a34a; --badge-bg:#F0FDF4; --badge-border:rgba(22,163,74,0.2);">
+    <span class="hero-badge">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
       Conference Speaker
     </span>
-    <span class="hero-badge" style="--badge-color:#c2410c; --badge-bg:#FFF7ED; --badge-border:rgba(194,65,12,0.2);">
+    <span class="hero-badge">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
       Published Author
     </span>
-    <span class="hero-badge" style="--badge-color:#be185d; --badge-bg:#FDF2F8; --badge-border:rgba(190,24,93,0.2);">
+    <span class="hero-badge">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.4"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.4"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/></svg>
       Podcast Host
     </span>
@@ -142,13 +142,13 @@
     margin-left: calc(-50vw + 50%) !important;
   }
 
-  /* Badges */
+  /* Badges — muted, uniform */
   .hero-badge {
     display: inline-flex; align-items: center; gap: 0.35em;
-    font-family: var(--sans); font-size: 0.82rem; font-weight: 600;
+    font-family: var(--sans); font-size: 0.82rem; font-weight: 500;
     letter-spacing: 0.02em; padding: 0.35em 0.9em; border-radius: 100px;
-    background: var(--badge-bg); color: var(--badge-color);
-    border: 1px solid var(--badge-border);
+    background: transparent; color: var(--secondary);
+    border: 1px solid var(--border);
   }
 
   /* Social icons */
@@ -189,17 +189,7 @@
     color: var(--accent-secondary); text-decoration: none;
   }
 
-  /* Dark mode — badges get transparent bg */
-  [data-theme="dark"] .hero-badge {
-    background: transparent !important;
-    border-color: var(--badge-color) !important;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .hero-badge {
-      background: transparent !important;
-      border-color: var(--badge-color) !important;
-    }
-  }
+  /* Badges already use var() — no dark mode override needed */
 
   /* Responsive */
   @media (max-width: 640px) {
