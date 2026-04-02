@@ -346,6 +346,7 @@ pre.rouge.highlight {
   border-radius: 6px;
   border: 1px solid var(--border);
   overflow-x: auto;
+  position: relative;
 }
 
 pre.rouge.highlight code {
@@ -353,7 +354,57 @@ pre.rouge.highlight code {
   background: none !important;
   color: var(--content) !important;
   padding: 1.1em 1.3em;
+  padding-top: 2.2em;
   white-space: pre;
+}
+
+/* Language label — uses data-lang attribute from Rouge */
+pre.rouge.highlight code[data-lang]::before {
+  content: attr(data-lang);
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.2em 0.7em;
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--secondary);
+  background: var(--border);
+  border-radius: 0 6px 0 6px;
+  line-height: 1.6;
+}
+
+/* Collapsible code blocks — toggled by JS for blocks > 15 lines */
+pre.rouge.highlight.collapsible {
+  max-height: 360px;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+pre.rouge.highlight.collapsible.expanded {
+  max-height: none;
+}
+
+.code-expand-btn {
+  display: block;
+  width: 100%;
+  padding: 0.4em 0;
+  border: none;
+  border-top: 1px solid var(--border);
+  background: var(--code-block-bg);
+  color: var(--secondary);
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 0 0 6px 6px;
+  text-align: center;
+}
+
+.code-expand-btn:hover {
+  color: var(--primary);
 }
 
 /* ---------- AsciiDoc admonitions ---------- */

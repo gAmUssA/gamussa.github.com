@@ -1,0 +1,18 @@
+<script>
+document.querySelectorAll('pre.rouge.highlight').forEach(function(pre) {
+  var code = pre.querySelector('code');
+  if (!code) return;
+  var lines = code.textContent.split('\n').length;
+  if (lines <= 15) return;
+
+  pre.classList.add('collapsible');
+  var btn = document.createElement('button');
+  btn.className = 'code-expand-btn';
+  btn.textContent = 'Show all ' + lines + ' lines';
+  btn.addEventListener('click', function() {
+    var expanded = pre.classList.toggle('expanded');
+    btn.textContent = expanded ? 'Collapse' : 'Show all ' + lines + ' lines';
+  });
+  pre.parentNode.insertBefore(btn, pre.nextSibling);
+});
+</script>
