@@ -5,16 +5,7 @@
 <!-- ─── BANNER ─── -->
 <img src="/images/new_banner.png"
      alt="Brooklyn Bridge sketch with network topology lines"
-     class="hero-banner"
-     style="
-       width: calc(100% + 4rem);
-       margin-left: -2rem;
-       margin-right: -2rem;
-       max-height: 300px;
-       object-fit: cover;
-       object-position: center 45%;
-       display: block;
-     ">
+     class="hero-banner">
 
 <!-- ─── HERO ─── -->
 <section class="hero-section" style="text-align:center; padding:2rem 0 3rem; border-bottom:1px solid var(--border);">
@@ -138,6 +129,18 @@
 <!-- ─── STYLES ─── -->
 <style>
   .profile { display: none !important; }
+
+  /* Banner — full viewport width, breaking out of .main */
+  .hero-banner {
+    display: block;
+    max-height: 300px;
+    object-fit: cover;
+    object-position: center 45%;
+    /* Break out: 50% of .main puts us at center of viewport, then go full width */
+    width: 100vw !important;
+    max-width: none !important;
+    margin-left: calc(-50vw + 50%) !important;
+  }
 
   /* Badges */
   .hero-badge {

@@ -42,6 +42,7 @@ body {
   font-size: 18px;
   background: #ffffff;
   color: #1a202c;
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
