@@ -369,7 +369,7 @@ pre.rouge.highlight code[data-lang]::before {
   content: attr(data-lang);
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
   padding: 0.2em 0.7em;
   font-family: var(--sans);
   font-size: 0.7rem;
@@ -378,8 +378,15 @@ pre.rouge.highlight code[data-lang]::before {
   letter-spacing: 0.05em;
   color: var(--secondary);
   background: var(--border);
-  border-radius: 0 6px 0 6px;
+  border-radius: 6px 0 6px 0;
   line-height: 1.6;
+}
+
+/* Copy button on Rouge code blocks */
+pre.rouge.highlight .copy-code {
+  position: absolute;
+  top: 4px;
+  right: 4px;
 }
 
 /* Collapsible code blocks — toggled by JS for blocks > 15 lines */

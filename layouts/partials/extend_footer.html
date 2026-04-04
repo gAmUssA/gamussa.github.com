@@ -9,6 +9,24 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <script>
+/* Copy button for Rouge code blocks — PaperMod's script misses these */
+document.querySelectorAll('pre.rouge.highlight code').forEach(function(codeblock) {
+  var pre = codeblock.parentNode;
+  if (pre.querySelector('.copy-code')) return;
+  var btn = document.createElement('button');
+  btn.className = 'copy-code';
+  btn.textContent = 'copy';
+  btn.addEventListener('click', function() {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(codeblock.textContent);
+    }
+    btn.textContent = 'copied!';
+    setTimeout(function() { btn.textContent = 'copy'; }, 2000);
+  });
+  pre.appendChild(btn);
+});
+
+/* Collapsible code blocks */
 document.querySelectorAll('pre.rouge.highlight').forEach(function(pre) {
   var code = pre.querySelector('code');
   if (!code) return;
