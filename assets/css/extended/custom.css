@@ -131,6 +131,12 @@ body {
   max-width: 100%;
 }
 
+/* Zoomable images — cursor hint */
+.post-content img {
+  cursor: zoom-in;
+  transition: opacity 0.2s;
+}
+
 /* ---------- Homepage content ---------- */
 .home-info .entry-content,
 .page-content p,
