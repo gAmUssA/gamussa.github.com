@@ -1,0 +1,87 @@
+==================================================================
+https://keybase.io/gamussa
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://gamov.io
+  * I am gamussa (https://keybase.io/gamussa) on keybase.
+  * I have a public key with fingerprint 1B76 A73D 0DCA 3B8F B09A  2027 EFC7 C238 C9E7 FE3C
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0101ab36421456436cc8012eba3dbde8ca64c68fe2fc733b737c89a921bc6637d9e50a",
+      "fingerprint": "1b76a73d0dca3b8fb09a2027efc7c238c9e7fe3c",
+      "host": "keybase.io",
+      "key_id": "efc7c238c9e7fe3c",
+      "kid": "0101ab36421456436cc8012eba3dbde8ca64c68fe2fc733b737c89a921bc6637d9e50a",
+      "uid": "0640f2057939f1def133febcb34f0600",
+      "username": "gamussa"
+    },
+    "merkle_root": {
+      "ctime": 1775307199,
+      "hash_meta": "c158e5cbfe676278c5a8d6bca1c27fa5f6f3a348e1ffb4819cc28dd77d035835",
+      "seqno": 27508450
+    },
+    "revoke": {
+      "sig_ids": [
+        "7d0bce8c8a7861c496492b719a29733b57e850157acadc2827f201545734a2830f"
+      ]
+    },
+    "service": {
+      "hostname": "gamov.io",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1775307227,
+  "expire_in": 157680000,
+  "prev": "4ee7f8c026867286507a514e217a5b58c5231535519fd32a07b67303b9e4b1f2",
+  "seqno": 16,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.1.17
+Comment: https://keybase.io/crypto
+
+yMPJAnicrVNrbBRFAL4C1panbSQFzgZYCVg4YGdmd2e2tCIRqa3PQHjYAtfZ2dl2
+6fX2endtaUuJhkcoWMSiyCOkiAExagxQLdFW6CHWxgeBoCAtr9RCYpBSIA2EWpwD
+DTHxp/NnMpPvNd/MfDNsoGdwXHdrlLRd6c+I+z7qlnrsE4ntVZLhmBVSepVUxO9P
+PGDycMRfZJtSuiQDGVADaQoEiqopSGOMyABygyLTMDlhVFOYRiwOLYYRMjDCjOhU
+h8BgmoawqXNVppJPsuxgAXdDrh2MCFlgYI1iZMomo8ggliHrFMoQc6HCICJM59ji
+iAlioROOMUQ4g4b5NNsRe2Lhvx/vP/D/c+7SB3KaIltQVrGOdAuY3AIIWdxgBlIs
+WZPlGDDM3SAt5gJdQItLw2EqVfukYu4WBbjfdZxIrFsWsWMIgLGKZAx0XZyPhgv9
+xTxCBZEBlXCVGRbXsAYxYSolpmYwChjEFlUtzUIUKYQDyzIUAnTGIDFNjE0ZqQSp
+IkaYlwQdKR1iVSaKKosILi9zinjMPWwXiNrCUnqeJBgGEzUQiokGmKJrig4NkYhC
+PdaHijlRZaBiyqgpTIQ9FEtOxUihkCDZkpZUx9zcMpvdF4/d08PzO2UPbirkOhGH
+OQGxWxiJhMLpsVIiFaEYrJwb/r8F/IYdNMULEYwy7oZtJyhKEsh/9wUh9kl8ech2
+ud+OIVSsEVmMmA8vE5IKF++AMBlqRMOQaKqMqQoUDoGYDVUUChFQkaoC3TIRpDI2
+NIxkZOhcMYAFHxYINJGTFghN0VqQRkpdLlVHWxYP8sQN9sQ/MiD2dTyDEx/750Ml
+HxzRP7Nt4ZDAF7sy06f173vbWRPvTUhsm3frmZt7dqxXCvtLW5uvkiFVxUu2Necl
+bc79uaT+ZXr6xx/UjUuS00akpXzVPPb6jPaeK+W5B+pwb9Y4MOfalpxJw5orpY7z
+3/0+/lDngilv+oJdEx8P1KyoOjY6pXvHvgpv6vs9q06ubajJ1e5eB8u3brw2aVVn
+37Gsn+bs6NrYsz7z6cX3ji4Y2rqIHP5oAKwoad527syh6TiQm/qxvqh7Z+LKz5Oe
+68gYP/e3quim4a9nHj6UeqnuoP/DP94D9Zdy87OXPdG7N9o4aly0ZspLe8553Flz
+s8+vnWEVbw594vTd7aSZK6cldFYndfTsvriyd0PtKGf1scKsgReXHT/uratM/mXX
+2PKl6NM8aUtv34S8pEZyZ0z+5P2VZ+pvNcy6nT3a2/jsyQSp6Wbb7gsj+6Sn1sUN
+65JWB7Sz8e0p271fNrQEXgudZRf8031NR8YX7D019dXKGmvF6cy0z9pN942FZxI6
+b0xWKg6npHmLMltKt818Hh/54PamoSBwObLvhDZmvg2ypRv7faeKqmtHtP354pGt
+Ux+1L7z1NS735bRMvdfecnX3mvmX819492h8Dl6+8NuM2U2DtluKJ752ekZDsDq1
+qaPV8tSsq49uKPGuuPnOyEaYPDHv18jsLg96Zd7OBVmzWq4eeHJ4wpbEg3dyykdP
+4Pa1pfko8BeMvvn4
+=dDBe
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/gamussa
+
+==================================================================
