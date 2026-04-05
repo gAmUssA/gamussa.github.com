@@ -15,3 +15,5 @@ fix_asciidoc.rb
 
 # Old Awestruct site (kept for reference)
 _old_awestruct/
+.history
+.playwright-mcp
