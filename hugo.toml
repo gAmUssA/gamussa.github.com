@@ -9,6 +9,7 @@ enableRobotsTXT = true
   pagerSize = 10
 
 [params]
+  env = "production"
   description = "Crash Course In Kafka Brain Surgery — insinuation and speculations"
   author = "Viktor Gamov"
   defaultTheme = "light"
@@ -21,6 +22,11 @@ enableRobotsTXT = true
   ShowToc = true
   TocOpen = false
   comments = true
+
+  images = ["/images/new_banner.jpg"]
+
+  [params.social]
+    twitter = "@gAmUssA"
 
   [params.profileMode]
     enabled = false

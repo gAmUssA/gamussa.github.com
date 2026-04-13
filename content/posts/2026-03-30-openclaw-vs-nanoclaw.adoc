@@ -4,6 +4,7 @@ date: 2026-03-30
 author: "Viktor Gamov"
 tags: ["ai", "agents", "security", "java", "open-source"]
 slug: "openclaw-vs-nanoclaw"
+description: "Meta's AI alignment director couldn't control her own agent. OpenClaw hit 250k stars and 12% of its marketplace was malware. NanoClaw runs 4,000 lines in containers. I picked a JVM option."
 ---
 
 [discrete]

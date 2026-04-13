@@ -4,6 +4,7 @@ date: 2026-04-01
 author: "Viktor Gamov"
 tags: ["flink", "streaming", "sql", "tutorial", "open-source"]
 slug: "select-star-from-stream"
+description: "An interactive tutorial that teaches Flink SQL's table-stream duality with animated visualizations. Six sections from dynamic tables to live aggregation queries."
 cover:
   image: "images/selectstar-stream-home.png"
   alt: "selectstar.stream — Interactive Flink SQL Tutorial"
