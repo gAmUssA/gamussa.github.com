@@ -109,6 +109,21 @@ stats: build
     printf "Pages:  %s\n" "$(find public -name '*.html' | wc -l | tr -d ' ')"
     printf "Size:   %s\n" "$(du -sh public | awk '{print $1}')"
 
+# Generate OG images for all posts
+og-all:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    count=0
+    for f in content/posts/2026-*.adoc; do
+        slug=$(grep -m1 '^slug:' "$f" | sed 's/slug: *"*\([^"]*\)"*/\1/')
+        title=$(grep -m1 '^title:' "$f" | sed 's/title: *"*\([^"]*\)"*/\1/')
+        out="static/images/og/${slug}.png"
+        mkdir -p "$(dirname "$out")"
+        python3 scripts/og-image.py "$title" "$out"
+        count=$((count + 1))
+    done
+    echo "Generated $count OG images"
+
 # Serve and open in browser
 open:
     #!/usr/bin/env bash

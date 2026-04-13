@@ -4,9 +4,10 @@ date: 2026-04-12
 author: "Viktor Gamov"
 tags: ["flink", "sql", "confluent-cloud", "kafka", "ai", "mcp"]
 slug: "flink-sql-enrichment"
-description: "Runnable Flink SQL for four enrichment strategies on Confluent Cloud — external joins, temporal joins, bootstrapping, and gated enrichment. Plus a Tessl skill that generates the SQL for you."
+description: "Runnable Flink SQL for four enrichment strategies on Confluent Cloud. Plus a Tessl skill that writes the queries for you."
+og_title: "Flink SQL Enrichment on Confluent Cloud"
 cover:
-  image: "images/agentic-skill-flow.png"
+  image: "images/og/flink-sql-enrichment.png"
   alt: "Flink SQL enrichment workflow with AI skill and MCP"
 ---
 

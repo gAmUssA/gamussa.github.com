@@ -4,9 +4,10 @@ date: 2026-04-08
 author: "Viktor Gamov"
 tags: ["iceberg", "flink", "trino", "duckdb", "lakehouse", "streaming"]
 slug: "time-travel-schema-evolution"
-description: "Iceberg snapshots give you time travel queries on a streaming pipeline for free. Add columns while Flink is writing. Query the same tables from Trino and DuckDB without copying data."
+description: "Iceberg snapshots give you time travel on a streaming pipeline. Add columns while Flink writes. Query from Trino and DuckDB."
+og_title: "Time Travel & Schema Evolution in the Lakehouse"
 cover:
-  image: "images/iceberg-features-flow.png"
+  image: "images/og/time-travel-schema-evolution.png"
   alt: "Iceberg features in the streaming lakehouse"
 ---
 

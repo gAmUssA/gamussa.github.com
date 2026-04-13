@@ -4,10 +4,11 @@ date: 2026-03-26
 author: "Viktor Gamov"
 tags: ["java", "ai", "langchain4j", "agents", "spring-ai"]
 slug: "langchain4j"
-description: "There are twelve million Java developers and the AI ecosystem built everything for Python first. LangChain4j fixes that — agents, RAG, tool calling, and 20+ LLM providers in pure Java."
+description: "12 million Java devs and AI built everything for Python. LangChain4j brings agents, RAG, and tool calling to the JVM."
+og_title: "12M Java Developers and AI Forgot About Them"
 cover:
-  image: "images/langchain4j/langchain4j-home.png"
-  alt: "LangChain4j homepage"
+  image: "images/og/langchain4j.png"
+  alt: "LangChain4j for Java developers"
 ---
 
 [discrete]

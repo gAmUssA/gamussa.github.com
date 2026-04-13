@@ -4,9 +4,10 @@ date: 2026-04-02
 author: "Viktor Gamov"
 tags: ["kafka", "flink", "iceberg", "trino", "superset", "lakehouse", "open-source"]
 slug: "streaming-lakehouse"
-description: "A fully open-source streaming lakehouse: Kafka, Flink, Iceberg, Trino, and Superset running locally in Docker Compose. One make demo command runs it all."
+description: "Open-source streaming lakehouse: Kafka, Flink, Iceberg, Trino, Superset in Docker Compose. One make demo runs it all."
+og_title: "Streaming Lakehouse with Kafka, Iceberg & Trino"
 cover:
-  image: "images/pipeline-dataflow.png"
+  image: "images/og/streaming-lakehouse.png"
   alt: "Streaming lakehouse architecture diagram"
 ---
 
