@@ -29,6 +29,9 @@ def find_font(names, size):
     return ImageFont.load_default()
 
 
+SUBTITLE = "Crash Course In Kafka Brain Surgery"
+
+
 def generate(title, output):
     W, H = 1200, 630
     bg = "#0f172a"
@@ -36,25 +39,32 @@ def generate(title, output):
     draw = ImageDraw.Draw(img)
 
     font_title = find_font(["Inter-SemiBold", "Inter-Bold"], 48)
-    font_sub = find_font(["Inter-Regular", "Inter"], 22)
+    font_subtitle = find_font(["Lora-Italic", "Inter-Light"], 20)
+    font_sub = find_font(["Inter-Regular", "Inter"], 20)
     font_cta = find_font(["Inter-SemiBold", "Inter-Bold"], 18)
+
+    # Accent line top
+    draw.rectangle([0, 0, W, 4], fill="#4F46E5")
+
+    # Blog subtitle
+    draw.text((80, 40), SUBTITLE, fill="#64748b", font=font_subtitle)
+
+    # Thin separator
+    draw.rectangle([80, 75, 280, 76], fill="#334155")
 
     # Title — wrap to ~34 chars per line
     lines = textwrap.wrap(title, width=34)
-    y = 100
+    y = 110
     for line in lines[:5]:
         draw.text((80, y), line, fill="#e2e8f0", font=font_title)
         y += 60
 
     # Branding
-    draw.text((80, 550), "Viktor Gamov  \u00b7  gamov.io", fill="#94a3b8", font=font_sub)
+    draw.text((80, 555), "Viktor Gamov  \u00b7  gamov.io", fill="#94a3b8", font=font_sub)
 
     # CTA button
-    draw.rounded_rectangle([900, 510, 1120, 555], radius=8, fill="#4F46E5")
-    draw.text((930, 520), "Read more \u2192", fill="#ffffff", font=font_cta)
-
-    # Accent line
-    draw.rectangle([0, 0, W, 4], fill="#4F46E5")
+    draw.rounded_rectangle([900, 515, 1120, 558], radius=8, fill="#4F46E5")
+    draw.text((930, 525), "Read more \u2192", fill="#ffffff", font=font_cta)
 
     img.save(output, "PNG")
     print(f"Created: {output}")
