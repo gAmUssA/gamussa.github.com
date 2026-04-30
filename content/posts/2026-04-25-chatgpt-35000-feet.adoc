@@ -204,9 +204,9 @@ When ollama exits, the next command runs IN THE SAME PANE, with the conversation
 Now the clipboard has the chat.
 The status bar flashes "chat copied to clipboard."
 
-// Source: clipboard-flow.d2 — re-render with `d2 clipboard-flow.d2 clipboard-flow.png`
+// Source: clipboard-flow.d2 — re-render with `d2 clipboard-flow.d2 clipboard-flow.svg`
 .Clipboard tear-down: capture timing decides everything
-image::clipboard-flow.png[Clipboard tear-down sequence: naive (5 steps ending in an empty pane) vs fixed (capture-pane wedged in before teardown)]
+image::clipboard-flow.svg[Clipboard tear-down sequence: naive (5 steps ending in an empty pane) vs fixed (capture-pane wedged in before teardown)]
 
 NOTE: There are two requirements: you need macOS for `pbcopy` (Linux users can use `xclip` or `wl-copy`), and your tmux scrollback should be set deep enough to hold 5000 lines.
 My config uses `set -g history-limit 50000`, which is more than enough.
