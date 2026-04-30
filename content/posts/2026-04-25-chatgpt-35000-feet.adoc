@@ -240,8 +240,8 @@ I'm curious if `gemma3:4b` will be the default for everyone, or if my prompt inf
 In Episode 2, I'll cover Claude Code in pop-ups (per-project, persistent) and `cdev`, a script that creates a project-specific tmux session with Claude, a shell, and a tests window.
 It's a different tool, but uses the same pop-up setup.
 
-== About
-
-Viktor Gamov is a Principal Developer Advocate at Confluent, where he spends most of his day in tmux and the rest of it explaining why streaming systems behave the way they do.
+****
+**About the author** — Viktor Gamov is a Principal Developer Advocate at Confluent, where he spends most of his day in tmux and the rest of it explaining why streaming systems behave the way they do.
 A Java Champion and co-author of Manning's "Kafka in Action," he's spent over a decade helping developers build streaming systems that actually work in production.
 He runs his models the same way he trains for marathons: locally, consistently, and with full control on his own laptop.
+****
