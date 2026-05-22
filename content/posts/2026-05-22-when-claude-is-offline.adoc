@@ -4,7 +4,7 @@ date: 2026-05-22
 author: "Viktor Gamov"
 tags: ["opencode", "pi", "ollama", "local-llm", "coding-agent", "ai", "terminal", "tmux"]
 slug: "when-claude-is-offline"
-description: "OpenCode and Pi can drive a real file-editing agent on a local Ollama model. But only one that can tool-call. qwen2.5-coder:7b can't. qwen3-coder:30b can."
+description: "OpenCode and Pi can drive a real file-editing agent on a local Ollama model. Local models FTW"
 og_title: "Running a Local Coding Agent When Claude Is Offline"
 cover:
   image: "images/og/when-claude-is-offline.png"
@@ -14,9 +14,12 @@ cover:
 [discrete]
 == TLDR
 
-OpenCode and Pi work as coding agents on a local Ollama model. They can edit files, run commands, and keep everything on your laptop. I always use them in a tmux environment.
-The model decides what actions are possible, and the agent carries them out. `qwen2.5-coder:7b` is fast but only replies in plain text, so neither agent can use tool calls with it. On my machine, only `qwen3-coder:30b` creates usable tool_calls, which lets the agents actually do things.
-OpenCode uses MCP to communicate, but Pi does not. Both agents, along with Claude Code, can use the same SKILL.md file in ~/.agents/skills/.
+* OpenCode and Pi work as coding agents on a local Ollama model. 
+They can edit files, run commands, and keep everything on your laptop. I always use them in a tmux environment.
+* The model decides what actions are possible, and the agent carries them out. 
+* `qwen2.5-coder:7b` is fast but only replies in plain text, so neither agent can use tool calls with it. 
+On my machine, only `qwen3-coder:30b` creates usable tool_calls, which lets the agents actually do things.
+* OpenCode uses MCP to communicate, but Pi does not. Both agents, along with Claude Code, can use the same `SKILL.md` file in `~/.agents/skills/`.
 * It confidently gave me the wrong Ollama version, pulling info from two SEO blogs. There are limits to working locally, and I ran into them.
 
 The pop-up from https://gamov.io/posts/chatgpt-35000-feet/[part one] is great for one thing: answering questions.
