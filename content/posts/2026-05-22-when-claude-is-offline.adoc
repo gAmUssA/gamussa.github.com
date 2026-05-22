@@ -23,7 +23,7 @@ On my machine, only `qwen3-coder:30b` creates usable tool_calls, which lets the 
 * It confidently gave me the wrong Ollama version, pulling info from two SEO blogs. There are limits to working locally, and I ran into them.
 
 The pop-up from https://gamov.io/posts/chatgpt-35000-feet/[part one] is great for one thing: answering questions.
-You hit `prefix + a`, choose a model, ask something like __"what does this awk one-liner do,"__ read the answer, type `/bye`, and the whole chat ends up on your clipboard. Nice!
+You hit `prefix + a`, choose a model, ask something like __"how do I format a LocalDateTime in Java,"__ read the answer, type `/bye`, and the whole chat ends up on your clipboard. Nice!
 That's the main benefit when I'm offline on a flight.
 
 Last week, I spent three hours working on a Hugo theme during a flight. I wasn't looking for answers.
@@ -34,8 +34,8 @@ My tmux pop-up can't do those things.
 That's where I need a coding agent. 
 The one I usually use is Claude Code, but at 35,000 feet, it's not available.
 
-.The tmux pop-up answering a one-liner question — useful, but it never touches a file
-image::tmux-pop-up.png[The tmux pop-up answering a one-liner question, width=800]
+.The tmux pop-up answering a quick Java question — useful, but it never touches a file
+image::tmux-pop-up.png[The tmux pop-up answering a quick Java question, width=800]
 
 == Same chassis, third AI
 
