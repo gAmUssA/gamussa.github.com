@@ -90,9 +90,8 @@ OpenCode answered with a fenced `bash` block describing the commands it would ru
 Pi got one step further into the motion, emitting the tool-call JSON as text before it stopped.
 The model knew what to do, but just described it instead of actually doing it—like my son talking about chores instead of doing them.
 
-// TODO screenshot pending — add static/images/qwen-toolcall-comparison.png then uncomment:
-// .Side by side — qwen2.5-coder:7b narrating the commands as text vs qwen3-coder:30b actually writing and running fizzbuzz.py
-// image::qwen-toolcall-comparison.png[qwen2.5-coder narrating vs qwen3-coder executing fizzbuzz, width=800]
+.Side by side — qwen2.5-coder:7b narrating the commands as text vs qwen3-coder:30b actually writing and running fizzbuzz.py
+image::fizzbuzz-7b-vs-30b.png[qwen2.5-coder narrating vs qwen3-coder executing fizzbuzz, width=800]
 
 One `curl` to Ollama explains it. Same prompt, one tool defined, two models:
 
