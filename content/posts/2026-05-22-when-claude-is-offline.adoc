@@ -16,26 +16,26 @@ cover:
 
 * OpenCode and Pi work as coding agents on a local Ollama model. 
 They can edit files, run commands, and keep everything on your laptop. I always use them in a tmux environment.
-* The model decides what actions are possible, and the agent carries them out. 
 * `qwen2.5-coder:7b` is fast but only replies in plain text, so neither agent can use tool calls with it. 
 On my machine, only `qwen3-coder:30b` creates usable tool_calls, which lets the agents actually do things.
-* OpenCode uses MCP to communicate, but Pi does not. Both agents, along with Claude Code, can use the same `SKILL.md` file in `~/.agents/skills/`.
-* It confidently gave me the wrong Ollama version, pulling info from two SEO blogs. There are limits to working locally, and I ran into them.
+* OpenCode uses MCP to communicate, but Pi does not. 
+Both agents, along with Claude Code, can use the same `SKILL.md` file in `~/.agents/skills/`.
 
 The pop-up from https://gamov.io/posts/chatgpt-35000-feet/[part one] is great for one thing: answering questions.
 You hit `prefix + a`, choose a model, ask something like __"how do I format a LocalDateTime in Java,"__ read the answer, type `/bye`, and the whole chat ends up on your clipboard. Nice!
 That's the main benefit when I'm offline on a flight.
 
-Last week, I spent three hours working on a Hugo theme during a flight. I wasn't looking for answers.
+.The tmux pop-up answering a quick Java question — useful, but it never touches a file
+image::tmux-pop-up.png[The tmux pop-up answering a quick Java question, width=800]
+
+Last week, I spent three hours working on a Hugo theme during a flight. 
+I wasn't looking for answers.
 What I really needed was hands-on help.
 I needed to edit the template, run the build, check the error, fix the template, and build again.
 My tmux pop-up can't do those things.
 
 That's where I need a coding agent. 
 The one I usually use is Claude Code, but at 35,000 feet, it's not available.
-
-.The tmux pop-up answering a quick Java question — useful, but it never touches a file
-image::tmux-pop-up.png[The tmux pop-up answering a quick Java question, width=800]
 
 == Same chassis, third AI
 
@@ -52,7 +52,7 @@ image::when-claude-is-offline.svg[Local coding-agent fallback stack, align="cent
 
 == Two contenders
 
-OpenCode is the main one. It's a Go binary and the most popular open-source coding agent, with 161k stars on GitHub. It works with many providers, including a local Ollama.
+OpenCode is the main one. Its core is TypeScript running on Bun, with a Go terminal UI, shipped as a self-contained binary — and it's the most popular open-source coding agent, with 161k stars on GitHub. It works with many providers, including a local Ollama.
 Pi is at the other end of the spectrum.
 It's lightweight, installed with npm, and written by Mario Zechner. Pi focuses on just four core tools: read, write, edit, and bash.
 
