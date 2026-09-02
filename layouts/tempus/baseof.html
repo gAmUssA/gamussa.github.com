@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="{{ site.Language.Lang }}">
+<head>
+  {{- partial "head.html" . }}
+  {{- $tempusCSS := resources.Get "css/tempus.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $tempusCSS.RelPermalink }}" integrity="{{ $tempusCSS.Data.Integrity }}" crossorigin="anonymous">
+  <link rel="apple-touch-icon" href="{{ "tempus/icon-1024.png" | relURL }}">
+</head>
+<body class="tempus-page">
+  {{- block "main" . }}{{ end }}
+</body>
+</html>
