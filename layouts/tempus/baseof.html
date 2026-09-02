@@ -1,10 +1,21 @@
 <!doctype html>
 <html lang="{{ site.Language.Lang }}">
 <head>
-  {{- partial "head.html" . }}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <title>{{ .Title }}</title>
+  <meta name="description" content="{{ .Description }}">
+  <meta name="author" content="{{ partial "author.html" . }}">
+  <link rel="canonical" href="{{ .Permalink }}">
+  <link rel="icon" href="{{ site.Params.assets.favicon | default "favicon.ico" | absURL }}">
+  <link rel="apple-touch-icon" href="{{ "tempus/icon-1024.png" | relURL }}">
+  <meta name="theme-color" content="#0A1424">
+  {{- partial "extend_head.html" . }}
+  {{- partial "templates/opengraph.html" . }}
+  {{- partial "templates/twitter_cards.html" . }}
   {{- $tempusCSS := resources.Get "css/tempus.css" | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $tempusCSS.RelPermalink }}" integrity="{{ $tempusCSS.Data.Integrity }}" crossorigin="anonymous">
-  <link rel="apple-touch-icon" href="{{ "tempus/icon-1024.png" | relURL }}">
 </head>
 <body class="tempus-page">
   {{- block "main" . }}{{ end }}

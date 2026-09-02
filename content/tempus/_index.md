@@ -1,9 +1,9 @@
 ---
-title: "Tempus — World Clock & Time Zone Converter"
+title: "Tempus — World Clock & Meeting Finder for iPhone"
 layout: "tempus"
 url: "/tempus/"
-description: "Tempus is a world clock, time zone converter and meeting finder for iPhone and Apple Watch."
-summary: "A world clock and time zone converter built for people who work, travel, and stay in touch across time zones."
+description: "Named clocks, instant time conversion, and a meeting finder for people working across time zones. No accounts, no ads, no tracking. iPhone + Apple Watch."
+summary: "Named clocks, instant time conversion, and a meeting finder for people working across time zones. No accounts, no ads, no tracking. iPhone + Apple Watch."
 images:
-  - "/tempus/hero/00b_clock_list_hero.png"
+  - "/images/og/tempus-landing.png"
 ---

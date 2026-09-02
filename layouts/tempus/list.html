@@ -1,167 +1,33 @@
 {{ define "main" }}
 <a class="skip-link" href="#main-content">Skip to content</a>
-
 <header class="tempus-header" aria-label="Tempus">
-  <a class="brand" href="{{ .RelPermalink }}" aria-label="Tempus home">
-    <picture>
-      <source type="image/webp" srcset="{{ "tempus/icon-1024-1x.webp" | relURL }} 1x, {{ "tempus/icon-1024-2x.webp" | relURL }} 2x">
-      <img src="{{ "tempus/icon-1024.png" | relURL }}" width="1024" height="1024" alt="Tempus app icon">
-    </picture>
-    <span>Tempus</span>
-  </a>
-  <a class="header-link" href="#features">Features</a>
+  <a class="brand" href="{{ .RelPermalink }}" aria-label="Tempus home"><picture><source type="image/webp" srcset="{{ "tempus/icon-1024-1x.webp" | relURL }} 1x, {{ "tempus/icon-1024-2x.webp" | relURL }} 2x"><img src="{{ "tempus/icon-1024.png" | relURL }}" width="1024" height="1024" alt="Tempus clock mark"></picture><span>Tempus</span></a>
+  <a class="gold-button nav-cta" href="https://apps.apple.com/app/tempus-world-clock/id6757654219">Get Tempus</a>
 </header>
-
 <main id="main-content">
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="content-wrap hero-copy">
-      <p class="eyebrow">World clock · Time zone converter</p>
-      <h1 id="hero-title">Time that works for everyone.</h1>
-      <p class="lede">Tempus is a world clock and time zone converter built for people who work, travel, and stay in touch across time zones.</p>
-      <a class="app-store-button" href="https://apps.apple.com/app/tempus-world-clock/id6757654219">Download on the App Store</a>
-      <p class="platform-note">For iPhone and Apple Watch</p>
-    </div>
-    <div class="hero-image-wrap">
-      <picture>
-        <source type="image/webp" srcset="{{ "tempus/hero/00b_clock_list_hero-1x.webp" | relURL }} 1x, {{ "tempus/hero/00b_clock_list_hero-2x.webp" | relURL }} 2x">
-        <img class="hero-image" src="{{ "tempus/hero/00b_clock_list_hero.png" | relURL }}" width="1320" height="2868" alt="Tempus showing a list of named world clocks" fetchpriority="high" decoding="async">
-      </picture>
-    </div>
-  </section>
+  <section class="hero ink-band" aria-labelledby="hero-title"><div class="content-wrap hero-layout"><div class="hero-copy"><p class="eyebrow">World clock · iPhone + Apple Watch</p><h1 id="hero-title">Every time zone.<br>One glance.</h1><p class="lede">Tempus is the world clock for people who work, travel, and stay close to the people they love — named clocks, instant conversion, and a meeting finder that actually finds the meeting.</p><div class="hero-actions"><a class="app-store-badge" href="https://apps.apple.com/app/tempus-world-clock/id6757654219" aria-label="Download Tempus on the App Store"><svg viewBox="0 0 180 60" aria-hidden="true"><path fill="#fff" d="M42.1 12.3c2.3-2.8 3.9-6.7 3.5-10.6-3.4.1-7.5 2.3-9.9 5.1-2.2 2.5-4.1 6.5-3.6 10.3 3.7.3 7.5-1.8 10-4.5zM45.5 18.8c-5.4-.3-10 3.1-12.6 3.1-2.7 0-6.7-2.9-11.2-2.8-5.8.1-11.2 3.5-14.2 8.9-6.1 10.6-1.6 26.2 4.3 34.7 2.9 4.2 6.3 8.8 10.8 8.6 4.3-.2 5.9-2.8 11.1-2.8 5.2 0 6.6 2.8 11.2 2.7 4.6-.1 7.5-4.2 10.4-8.4 3.3-4.9 4.7-9.7 4.8-10-10.7-4.1-12.4-19.4-1.8-25.2-3.2-5-8.2-7.8-12.9-7.9z" transform="scale(.63) translate(8 10)"/><text x="60" y="24" fill="#fff" font-family="Arial,sans-serif" font-size="11">Download on the</text><text x="60" y="43" fill="#fff" font-family="Arial,sans-serif" font-size="20">App Store</text></svg></a><a class="text-link" href="#features">See how it works <span aria-hidden="true">↓</span></a></div></div><div class="hero-crop"><picture><source type="image/webp" srcset="{{ "tempus/hero/00b_clock_list_hero-1x.webp" | relURL }} 1x, {{ "tempus/hero/00b_clock_list_hero-2x.webp" | relURL }} 2x"><img src="{{ "tempus/hero/00b_clock_list_hero.png" | relURL }}" width="1320" height="2868" alt="Tempus app showing a list of named world clocks for New York, Edinburgh, Kyoto, Marseille, Sydney, and San Francisco with live times." fetchpriority="high" decoding="async"></picture></div></div></section>
 
-  <section class="value-props section" aria-labelledby="why-tempus">
-    <div class="content-wrap">
-      <p class="eyebrow">Made for your actual day</p>
-      <h2 id="why-tempus">Know the time, without doing the math.</h2>
-      <div class="value-grid">
-        <article>
-          <h3>Name your clocks</h3>
-          <p>Add cities or the people you talk to, then give every clock a custom name and color tag so it is readable at a glance.</p>
-        </article>
-        <article>
-          <h3>See every time together</h3>
-          <p>Pick any time in any zone and see it in all your clocks at once, with day and night indicators to show who is awake.</p>
-        </article>
-        <article>
-          <h3>Keep it with you</h3>
-          <p>Home Screen widgets and iCloud sync keep your clocks in view across your devices.</p>
-        </article>
-      </div>
-    </div>
-  </section>
+  <section class="value-props section" aria-labelledby="why-tempus"><div class="content-wrap"><p class="eyebrow">Why Tempus</p><h2 id="why-tempus">Built for people juggling time zones, not tourists checking one.</h2><div class="value-grid">
+    <article><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7zM13 3v5h5M8 12h8M8 16h6"/></svg></span><h3>Clocks with names, not just cities</h3><p>Add a clock for a city or a person — “Mum in Sydney,” “Design team, Berlin” — with a custom name, emoji, and color tag so it’s readable at a glance.</p></article>
+    <article><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 17h16M9 4v6M15 14v6"/></svg></span><h3>Convert instantly</h3><p>Pick any time in any zone and every clock updates together. Drag the time scrubber to slide through the day and see who’s awake.</p></article>
+    <article><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18m-9 4v4m-3-2h6"/></svg></span><h3>Find a meeting that actually works</h3><p>Set working hours per clock and Tempus shows the overlap. Add it to your calendar in one tap or share an .ics invite.</p></article>
+    <article><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><h3>Private by design</h3><p>No account, no ads, no tracking. Your clocks live on your device and in your own private iCloud database.</p></article>
+  </div></div></section>
 
-  <section class="features section" id="features" aria-labelledby="features-title">
-    <div class="content-wrap">
-      <p class="eyebrow">Everything you need</p>
-      <h2 id="features-title">Built for across-the-world days.</h2>
-
-      <article class="feature feature-reverse">
-        <div class="feature-copy">
-          <p class="feature-number">01</p>
-          <h3>Find a meeting time that works</h3>
-          <p>Select two or more clocks, set working hours for each, and see the overlapping windows where everyone is available. Add the meeting to your calendar in one tap or share it as an .ics invite.</p>
-        </div>
-        <picture class="device-shot">
-          <source type="image/webp" srcset="{{ "tempus/screens/03_meeting_finder-1x.webp" | relURL }} 1x, {{ "tempus/screens/03_meeting_finder-2x.webp" | relURL }} 2x">
-          <img src="{{ "tempus/screens/03_meeting_finder.png" | relURL }}" width="1320" height="2868" alt="Tempus Meeting Finder showing available times across cities" loading="lazy" decoding="async">
-        </picture>
-      </article>
-
-      <article class="feature">
-        <div class="feature-copy">
-          <p class="feature-number">02</p>
-          <h3>Convert times instantly</h3>
-          <p>Pick any time in any zone and see it in all your clocks at once. Drag the time scrubber to slide through the day and watch every clock move together.</p>
-        </div>
-        <picture class="device-shot">
-          <source type="image/webp" srcset="{{ "tempus/screens/02_converter-1x.webp" | relURL }} 1x, {{ "tempus/screens/02_converter-2x.webp" | relURL }} 2x">
-          <img src="{{ "tempus/screens/02_converter.png" | relURL }}" width="1320" height="2868" alt="Tempus time converter showing the same time in multiple cities" loading="lazy" decoding="async">
-        </picture>
-      </article>
-
-      <article class="feature feature-reverse">
-        <div class="feature-copy">
-          <p class="feature-number">03</p>
-          <h3>Get the full city picture</h3>
-          <p>Tap any clock for a full city view: a skyline illustration that changes with the time of day, sunrise and sunset times, and current weather conditions.</p>
-        </div>
-        <picture class="device-shot">
-          <source type="image/webp" srcset="{{ "tempus/screens/07_city_detail-1x.webp" | relURL }} 1x, {{ "tempus/screens/07_city_detail-2x.webp" | relURL }} 2x">
-          <img src="{{ "tempus/screens/07_city_detail.png" | relURL }}" width="1320" height="2868" alt="Tempus city detail view with weather and sunrise information" loading="lazy" decoding="async">
-        </picture>
-      </article>
-
-      <article class="feature">
-        <div class="feature-copy">
-          <p class="feature-number">04</p>
-          <h3>Your clocks, on your wrist</h3>
-          <p>Tempus on Apple Watch shows your clocks on your wrist, lets you convert times with the Digital Crown, and offers complications for your favorite clocks. Clocks sync instantly between iPhone and Apple Watch.</p>
-        </div>
-        <picture class="device-shot watch-shot">
-          <source type="image/webp" srcset="{{ "tempus/screens/watch_01_clock_list-1x.webp" | relURL }} 1x, {{ "tempus/screens/watch_01_clock_list-2x.webp" | relURL }} 2x">
-          <img src="{{ "tempus/screens/watch_01_clock_list.png" | relURL }}" width="416" height="496" alt="Tempus Apple Watch app showing world clocks" loading="lazy" decoding="async">
-        </picture>
-      </article>
-    </div>
-  </section>
-
-  <section class="privacy-promise section" aria-labelledby="privacy-title">
-    <div class="content-wrap narrow">
-      <p class="eyebrow">Privacy first</p>
-      <h2 id="privacy-title">Your time is yours.</h2>
-      <p>Tempus has no account, no ads, and no tracking. Your clocks are stored on your device and in your private iCloud database. Weather is provided by Apple Weather for the cities you add, never for your own location.</p>
-      <a class="text-link" href="{{ "/tempus/privacy/" | relURL }}">Read the privacy policy <span aria-hidden="true">→</span></a>
-    </div>
-  </section>
-
-  <section class="faq section" aria-labelledby="faq-title">
-    <div class="content-wrap narrow">
-      <p class="eyebrow">Support</p>
-      <h2 id="faq-title">Frequently asked questions</h2>
-      <div class="faq-list">
-        <details>
-          <summary>How do I add a clock?</summary>
-          <p>Tap <strong>+</strong> on the clock list, search for a city, then optionally give it a custom name, emoji and color.</p>
-        </details>
-        <details>
-          <summary>How do I convert a time?</summary>
-          <p>Open <strong>Convert</strong>, choose a source clock and time, or drag the scrubber. All your clocks update together.</p>
-        </details>
-        <details>
-          <summary>How does the Meeting Finder work?</summary>
-          <p>Pick two or more clocks, set working hours for each, and Tempus shows the windows where everyone is available. Tap a slot to add it to your calendar or share an .ics invite.</p>
-        </details>
-        <details>
-          <summary>Why don't I see weather?</summary>
-          <p>Weather is optional. Turn it on in <strong>Settings › Weather</strong>. It needs an internet connection and is provided by Apple Weather for the cities you added, not for your location.</p>
-        </details>
-        <details>
-          <summary>My clocks are not syncing to my Apple Watch.</summary>
-          <p>Make sure both devices are signed into the same iCloud account and that the watch app is installed. Opening Tempus on the iPhone triggers an immediate sync to the watch.</p>
-        </details>
-        <details>
-          <summary>Can I use Tempus on iPad or Mac?</summary>
-          <p>Version 1.0 is designed for iPhone and Apple Watch.</p>
-        </details>
-      </div>
-      <p class="faq-contact">Need more help? <a href="{{ "/tempus/support/" | relURL }}">Visit Tempus Support</a> or <a href="mailto:viktor@gamov.io">email Viktor</a>.</p>
-    </div>
-  </section>
-
-  <section class="final-cta section" aria-label="Download Tempus">
-    <div class="content-wrap narrow">
-      <h2>Keep every time in reach.</h2>
-      <a class="app-store-button" href="https://apps.apple.com/app/tempus-world-clock/id6757654219">Download on the App Store</a>
-    </div>
-  </section>
+  <section class="features ink-band section" id="features" aria-labelledby="features-title"><div class="content-wrap"><p class="eyebrow">See how it works</p><h2 id="features-title">A calmer way to coordinate.</h2>
+    <article class="feature feature-reverse"><div class="feature-copy"><p class="feature-number">01 · Meeting Finder</p><h3>Find the window that works for everyone</h3><p>Select two or more clocks, set working hours for each, and Tempus highlights the overlap. Tap a slot to add it to your calendar or export it as an .ics invite.</p></div><picture class="device-shot"><source type="image/webp" srcset="{{ "tempus/screens/03_meeting_finder-1x.webp" | relURL }} 1x, {{ "tempus/screens/03_meeting_finder-2x.webp" | relURL }} 2x"><img src="{{ "tempus/screens/03_meeting_finder.png" | relURL }}" width="1320" height="2868" alt="Tempus Meeting Finder showing selected cities, an overlap timeline, and best meeting times." loading="lazy" decoding="async"></picture></article>
+    <article class="feature"><div class="feature-copy"><p class="feature-number">02 · Time Converter</p><h3>Drag once, see every zone move</h3><p>Pick a time in any clock and every other clock updates with it. Drag the scrubber to slide through the day; day/night dots show who’s awake.</p></div><picture class="device-shot"><source type="image/webp" srcset="{{ "tempus/screens/02_converter-1x.webp" | relURL }} 1x, {{ "tempus/screens/02_converter-2x.webp" | relURL }} 2x"><img src="{{ "tempus/screens/02_converter.png" | relURL }}" width="1320" height="2868" alt="Tempus Time Converter with a scrubber showing converted times for Tokyo and Sydney." loading="lazy" decoding="async"></picture></article>
+    <article class="feature feature-reverse"><div class="feature-copy"><p class="feature-number">03 · City Detail</p><h3>A place, not just an offset</h3><p>Tap any clock for a full city view — a skyline that shifts with the time of day, sunrise and sunset, and current conditions from Apple Weather.</p></div><picture class="device-shot"><source type="image/webp" srcset="{{ "tempus/screens/07_city_detail-1x.webp" | relURL }} 1x, {{ "tempus/screens/07_city_detail-2x.webp" | relURL }} 2x"><img src="{{ "tempus/screens/07_city_detail.png" | relURL }}" width="1320" height="2868" alt="Tempus City Detail view for Tokyo with skyline, sunrise and sunset times." loading="lazy" decoding="async"></picture></article>
+    <article class="feature"><div class="feature-copy"><p class="feature-number">04 · Apple Watch</p><h3>Time on your wrist</h3><p>Tempus on Apple Watch shows your clocks, converts with the Digital Crown, and offers complications for your favorite cities. Clocks sync instantly between iPhone and Watch.</p><p class="feature-caption">Home Screen widgets and iCloud keep every device in sync.</p></div><div class="watch-crop"><picture><source type="image/webp" srcset="{{ "tempus/hero/00c_watch_hero-1x.webp" | relURL }} 1x, {{ "tempus/hero/00c_watch_hero-2x.webp" | relURL }} 2x"><img src="{{ "tempus/hero/00c_watch_hero.png" | relURL }}" width="1320" height="2868" alt="Apple Watch on a wrist showing the Tempus complication against a city skyline at dusk." loading="lazy" decoding="async"></picture></div></article>
+  </div></section>
+  <section class="privacy-promise section" aria-labelledby="privacy-title"><div class="content-wrap narrow"><p class="eyebrow">Privacy first</p><h2 id="privacy-title">No accounts. No ads. No tracking.</h2><p>Tempus doesn’t know who you are and doesn’t want to. Your clocks are stored on your device and, if you turn on iCloud, in your own private iCloud database — never on our servers, because we don’t have any. Weather comes from Apple Weather for the cities you add, never for your location.</p><a class="text-link" href="{{ "/tempus/privacy/" | relURL }}">Read the full privacy policy <span aria-hidden="true">→</span></a></div></section>
+  <section class="faq section" aria-labelledby="faq-title"><div class="content-wrap narrow"><p class="eyebrow">Support</p><h2 id="faq-title">Questions</h2><div class="faq-list"><details><summary>How do I add a clock?</summary><p>Tap <strong>+</strong> on the clock list, search for a city, then optionally give it a custom name, emoji and color.</p></details><details><summary>How do I convert a time?</summary><p>Open <strong>Convert</strong>, choose a source clock and time, or drag the scrubber. All your clocks update together.</p></details><details><summary>How does the Meeting Finder work?</summary><p>Pick two or more clocks, set working hours for each, and Tempus shows the windows where everyone is available. Tap a slot to add it to your calendar or share an .ics invite.</p></details><details><summary>Why don't I see weather?</summary><p>Weather is optional. Turn it on in <strong>Settings › Weather</strong>. It needs an internet connection and is provided by Apple Weather for the cities you added, not for your location.</p></details><details><summary>My clocks are not syncing to my Apple Watch.</summary><p>Make sure both devices are signed into the same iCloud account and that the watch app is installed. Opening Tempus on the iPhone triggers an immediate sync to the watch.</p></details><details><summary>Can I use Tempus on iPad or Mac?</summary><p>Version 1.0 is designed for iPhone and Apple Watch.</p></details></div><p class="faq-contact">Still stuck? Email <a href="mailto:viktor@gamov.io">viktor@gamov.io</a> — see the <a href="{{ "/tempus/support/" | relURL }}">full support page</a>.</p></div></section>
 </main>
-
-<footer class="tempus-footer">
-  <a class="brand" href="{{ .RelPermalink }}" aria-label="Tempus home">Tempus</a>
-  <nav aria-label="Footer navigation">
-    <a href="{{ "/tempus/privacy/" | relURL }}">Privacy</a>
-    <a href="{{ "/tempus/support/" | relURL }}">Support</a>
-    <a href="mailto:viktor@gamov.io">Contact</a>
-  </nav>
-</footer>
+<footer class="tempus-footer ink-band"><span>© 2026 Viktor Gamov</span><nav aria-label="Footer navigation"><a href="{{ "/tempus/privacy/" | relURL }}">Privacy</a><a href="{{ "/tempus/support/" | relURL }}">Support</a><a href="mailto:viktor@gamov.io">viktor@gamov.io</a></nav></footer>
+<script>
+  const tempusHeader = document.querySelector('.tempus-header');
+  const updateTempusHeader = () => tempusHeader.classList.toggle('is-scrolled', window.scrollY > 24);
+  window.addEventListener('scroll', updateTempusHeader, { passive: true });
+  updateTempusHeader();
+</script>
 {{ end }}
