@@ -12,3 +12,4 @@
 .brand,.nav-cta,.tempus-footer a{min-height:44px}.tempus-footer a{display:inline-flex;align-items:center}
 .device-shot{padding:0}.tempus-header{position:fixed;background:transparent;box-shadow:none;transition:background-color 180ms ease-out,border-color 180ms ease-out,box-shadow 180ms ease-out}.tempus-header.is-scrolled{background:var(--ink-surface);box-shadow:var(--shadow-card)}
 @media(max-width:800px){.hero-copy{padding-top:120px}}@media(max-width:430px){.hero-copy{padding-top:104px}}
+.app-store-badge{width:203px}
