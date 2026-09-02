@@ -151,8 +151,10 @@
 <footer class="tempus-footer ink-band"><span>© 2026 Viktor Gamov</span><nav aria-label="Footer navigation"><span aria-hidden="true">·</span><a href="{{ "/tempus/privacy/" | relURL }}">Privacy</a><span aria-hidden="true">·</span><a href="{{ "/tempus/support/" | relURL }}">Support</a><span aria-hidden="true">·</span><a href="mailto:viktor@gamov.io">viktor@gamov.io</a></nav></footer>
 <script>
   const tempusHeader = document.querySelector('.tempus-header');
-  const updateTempusHeader = () => tempusHeader.classList.toggle('is-scrolled', window.scrollY > 24);
+  const tempusHero = document.querySelector('.hero');
+  const updateTempusHeader = () => tempusHeader.classList.toggle('is-scrolled', window.scrollY >= tempusHero.offsetHeight - tempusHeader.offsetHeight);
   window.addEventListener('scroll', updateTempusHeader, { passive: true });
+  window.addEventListener('resize', updateTempusHeader);
   updateTempusHeader();
 </script>
 {{ end }}
