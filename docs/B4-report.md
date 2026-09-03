@@ -32,4 +32,8 @@ Once those 2752×2064 PNGs arrive, generate the corresponding `-1x.webp` and `-2
 - `content/tempus/_index.md`
 - `layouts/tempus/list.html`
 
+## Images
+
+Added all three supplied 2752×2064 PNGs and responsive WebP pairs: `-1x.webp` at 1376×1032 and `-2x.webp` at 2752×2064. The rendered `/tempus/` page exposes each pair in its matching `<picture>` `srcset`; all three PNG and six WebP URLs returned HTTP 200 from the temporary Hugo server on port 1417, which was then stopped.
+
 DONE: docs/B4-report.md
