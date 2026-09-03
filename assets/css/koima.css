@@ -23,7 +23,7 @@
 .coming-soon{display:inline-flex;min-height:40px;align-items:center;padding:8px 16px;border:1px solid var(--ink-border);border-radius:var(--radius-full);background:var(--ink-surface);color:var(--gold-400);font-size:15px;font-weight:600}
 .hero-note{max-width:40ch;margin:16px 0 0;color:var(--ink-text-secondary);font-size:14px}
 .koima-hero-art{justify-self:end;width:min(100%,420px);padding:0 0 96px}
-.koima-hero-art svg{width:100%;height:auto}
+.koima-hero-art picture,.koima-hero-art img{display:block;width:100%;height:auto;border-radius:var(--radius-lg)}
 .koima-figure{display:grid;justify-self:center;width:min(100%,320px);aspect-ratio:1/1;place-items:center;padding:32px;border:1px solid var(--ink-border);border-radius:var(--radius-lg);background:var(--ink-surface);box-shadow:var(--shadow-card)}
 .koima-figure svg{width:min(100%,180px);height:auto;fill:none;stroke:var(--gold-400);stroke-linecap:round;stroke-linejoin:round;stroke-width:1.4}
 .plan-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-bottom:32px}
