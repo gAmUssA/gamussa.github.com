@@ -24,20 +24,47 @@ Koima is a nap timer for Apple Watch, distributed as an iPhone app that embeds t
 
 ## Health data
 
-Koima uses Apple's HealthKit framework. Health access is optional — you grant it, and you can revoke it at any time in the Health app under Sharing › Apps.
+Koima uses Apple's HealthKit framework on **both** the Apple Watch and the iPhone. Health access is optional, you grant it separately on each device, and you can revoke it at any time.
 
-| Health data | Direction | Why |
-|-------------|-----------|-----|
-| Heart rate | **Read** during a nap | To show a live reading on the countdown and an average in the post-nap summary |
-| Sleep analysis | **Written** once, when a nap completes | To record the nap in Apple Health alongside the rest of your sleep |
+| Device | Health data | Direction | Why |
+|--------|-------------|-----------|-----|
+| Apple Watch | Heart rate | **Read** during a nap | To show a live reading on the countdown and an average in the post-nap summary |
+| Apple Watch | Sleep analysis | **Written** once, when a nap completes | To record the nap in Apple Health alongside the rest of your sleep |
+| iPhone | Sleep analysis | **Read** | To show your nap history in the iPhone app |
 
-How that health data is treated:
+Koima records completed naps as sleep samples in Apple Health from the Apple Watch app. On iPhone, Koima reads only the sleep samples created by its Apple Watch app to display your Koima nap history.
 
-- It **stays on your device and in Apple Health**. It is not transmitted to the developer or to any third party.
+### What "only Koima's own records" actually means
+
+We want to be precise here, because the distinction is easy to blur and we would rather state it than let a permission sheet imply it.
+
+**Apple Health's permission is for the whole Sleep category — not for Koima's own records.** iOS provides no way to grant an app access to only the sleep samples that app wrote. So when you allow Koima to read Sleep on your iPhone, you are granting access to sleep data in Apple Health that you permit, which may include sleep recorded by Apple Watch itself or by other apps.
+
+**Koima narrows that itself.** It asks Apple Health only for samples whose source is Koima's own Apple Watch app, and it checks that source again before anything is shown to you. Sleep from any other source is not displayed, not retained by Koima, and not sent anywhere.
+
+That narrowing is a choice in how Koima queries, not a restriction the system places on it. The honest version is: the permission is broad, and we use a narrow slice of it.
+
+Koima also keeps **no copy of your nap history**. The iPhone app reads from Apple Health each time you open the history and holds the results only while you are looking at them. There is no second database of your naps inside Koima.
+
+Your sleep and heart-rate data remain in Apple Health on your devices. Koima does not send Health data to our servers, use it for advertising or marketing, or share it with third parties.
+
+In detail:
+
+- It **stays on your devices and in Apple Health**. It is not transmitted to the developer or to any third party.
 - It is **never used for advertising or marketing purposes**.
 - It is **never used for data mining**, and never sold or shared with third parties, including data brokers.
 - It is used only to provide the nap features described above.
-- Revoking Health access stops both the reading and the writing. The timer and the smart wake continue to work.
+
+### Revoking Health access
+
+Health permission is **per app, per device**. Koima on Apple Watch and Koima on iPhone hold separate permissions, and changing one does not change the other.
+
+- Revoking on the **Apple Watch** stops the heart-rate reading and stops new naps being written to Apple Health. It does **not** stop the iPhone app reading sleep samples that are already there.
+- Revoking on the **iPhone** stops the nap history being read and displayed. It does **not** stop the watch writing new naps to Apple Health.
+
+To stop both, revoke both. Each can be reviewed in the Health app on your iPhone, under **Sharing › Apps**.
+
+The nap timer, the smart wake and the alarm keep working with Health access revoked on either device or both. What you lose is the heart-rate readout, the Health record, and the iPhone nap history.
 
 ## Motion data
 
@@ -77,7 +104,7 @@ Koima is not directed at children under 13 and does not knowingly collect inform
 
 ## Your choices
 
-- Revoke Health access in the Health app under Sharing › Apps to stop all reading and writing of health data.
+- Revoke Health access in the Health app under Sharing › Apps. Remember it is per app and per device: revoke for the Apple Watch app to stop heart-rate reading and new sleep records, and for the iPhone app to stop the nap history being read. See [Revoking Health access](#revoking-health-access) above.
 - Turn off Phone Alarm mode in the app to stop any information leaving the watch.
 - Delete a sleep sample in the Health app to remove that record.
 - Delete the app to remove all local data.
