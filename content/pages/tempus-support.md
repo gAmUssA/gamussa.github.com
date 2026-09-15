@@ -2,7 +2,7 @@
 title: "Tempus Support"
 layout: "single"
 url: "/tempus/support/"
-summary: "Support and FAQ for Tempus, a world clock, time zone converter and meeting finder for iPhone and Apple Watch"
+summary: "Support and FAQ for Tempus, a world clock, time zone converter and meeting finder for iPhone, iPad and Apple Watch"
 ShowToc: false
 ShowBreadCrumbs: false
 ShowReadingTime: false
@@ -10,7 +10,7 @@ ShowShareButtons: false
 comments: false
 ---
 
-Tempus is a world clock, time zone converter and meeting finder for iPhone and Apple Watch.
+Tempus is a world clock, time zone converter and meeting finder for iPhone, iPad and Apple Watch.
 
 ## Frequently asked questions
 
@@ -24,7 +24,7 @@ Tempus is a world clock, time zone converter and meeting finder for iPhone and A
 
 **My clocks are not syncing to my Apple Watch.** Make sure both devices are signed into the same iCloud account and that the watch app is installed. Opening Tempus on the iPhone triggers an immediate sync to the watch.
 
-**Can I use Tempus on iPad or Mac?** Version 1.0 is designed for iPhone and Apple Watch.
+**Can I use Tempus on iPad or Mac?** iPad, yes — version 1.1 is a native iPad app with a clock sidebar, City Detail beside it, keyboard shortcuts and pointer support. There is no separate Mac app.
 
 ## Contact
 

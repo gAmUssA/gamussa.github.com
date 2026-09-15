@@ -1,0 +1,12 @@
+{{- /*
+  Responsive <picture> for a screenshot under static/tempus/.
+
+  Swap contract: drop a replacement <dir>/<file>.png plus <file>-1x.webp and
+  <file>-2x.webp into static/tempus/ and this template needs no change. Only the
+  "w"/"h" values in the caller's dict move, and only if the new capture's pixel
+  dimensions differ.
+
+  Params: dir, file, w, h, alt; optional loading (default "lazy"), fetchpriority.
+*/ -}}
+{{- $base := printf "tempus/%s/%s" .dir .file -}}
+<picture><source type="image/webp" srcset="{{ printf "%s-1x.webp" $base | relURL }} 1x, {{ printf "%s-2x.webp" $base | relURL }} 2x"><img src="{{ printf "%s.png" $base | relURL }}" width="{{ .w }}" height="{{ .h }}" alt="{{ .alt }}"{{ with .fetchpriority }} fetchpriority="{{ . }}"{{ end }} loading="{{ .loading | default "lazy" }}" decoding="async"></picture>
