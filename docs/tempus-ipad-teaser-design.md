@@ -1,6 +1,9 @@
 # Tempus iPad teaser design
 
-Status: implementation handoff for the pre-1.1 landing page  
+Status: **superseded.** This spec described the pre-1.1 "Coming soon: iPad"
+teaser. Tempus 1.1 shipped iPad, and the teaser was replaced by the launched
+iPad feature section plus an "Also new in 1.1" block. Kept as the record of
+what the teaser was; it no longer describes the live page.  
 Route: `/tempus/`  
 Design system: `docs/tempus-landing-design.md` (*Quiet Premium*)
 
