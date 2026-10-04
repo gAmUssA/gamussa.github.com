@@ -23,3 +23,8 @@
   outline: 2px solid var(--primary);
   outline-offset: 3px;
 }
+
+/* Keep labels readable when chapter diagrams scroll on narrow screens. */
+.post-content .lc4j-chapter-diagram img {
+  min-width: 45rem;
+}

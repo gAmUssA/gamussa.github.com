@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="585" viewBox="0 0 1000 585" role="img" aria-labelledby="title description">
+<title id="title">Chapter 7: Measure models, native graph and app separately</title>
+<desc id="description">Native model listeners capture Jev decisions and Gemini, Claude and OpenAI calls. Native Agentic callbacks capture graph stages and human verdict nodes. Separate Java and MCP events capture tool reads, canonical assembly, approval, receipts and history writes. All feed TraceEvidence, which writes local JSONL and updates the TUI. No hosted exporter is configured.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0f766e"/></marker>
+<marker id="feedback" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b45309"/></marker>
+<marker id="muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#64748b"/></marker>
+</defs>
+<rect width="1000" height="585" fill="#f8fafc"/><rect width="1000" height="6" fill="#0f766e"/>
+<g font-family="Inter, Helvetica, Arial, sans-serif" fill="#0f172a">
+<text x="25" y="42" font-size="16" font-weight="700" letter-spacing="2" fill="#0f766e">CHAPTER 7 · JAVA 21 · LANGCHAIN4J</text>
+<text x="25" y="88" font-size="32" font-weight="700">Measure models, native graph and app separately</text>
+<text x="25" y="124" font-size="20" fill="#475569">Observe the same workflow and join evidence with trace / parent context</text>
+<g><rect x="25" y="160" width="270" height="116" rx="12" fill="#faf5ff" stroke="#7e22ce" stroke-width="2"/><text x="41" y="195" font-size="22" font-weight="700">Native model listeners</text><text x="41" y="229" font-size="20" fill="#475569">Jev + Gemini / Claude</text><text x="41" y="257" font-size="20" fill="#475569">IO / usage / latency</text></g>
+<g><rect x="365" y="160" width="270" height="116" rx="12" fill="#ecfdf5" stroke="#0f766e" stroke-width="2"/><text x="381" y="195" font-size="22" font-weight="700">Native graph callbacks</text><text x="381" y="229" font-size="20" fill="#475569">Agentic stages</text><text x="381" y="257" font-size="20" fill="#475569">Human verdict nodes</text></g>
+<g><rect x="705" y="160" width="270" height="116" rx="12" fill="#ecfdf5" stroke="#0f766e" stroke-width="2"/><text x="721" y="195" font-size="22" font-weight="700">Java + MCP events</text><text x="721" y="229" font-size="20" fill="#475569">Reads / assembly / send</text><text x="721" y="257" font-size="20" fill="#475569">Receipt / history state</text></g>
+<g><rect x="25" y="350" width="270" height="116" rx="12" fill="#fff" stroke="#64748b" stroke-width="2"/><text x="41" y="385" font-size="22" font-weight="700">TUI views</text><text x="41" y="419" font-size="20" fill="#475569">Trace + evidence panels</text><text x="41" y="447" font-size="20" fill="#475569">Roles + providers</text></g>
+<g><rect x="365" y="350" width="270" height="116" rx="12" fill="#ecfdf5" stroke="#0f766e" stroke-width="2"/><text x="381" y="385" font-size="22" font-weight="700">TraceEvidence</text><text x="381" y="419" font-size="20" fill="#475569">traceId + parent stage</text><text x="381" y="447" font-size="20" fill="#475569">Correlated local events</text></g>
+<g><rect x="705" y="350" width="270" height="116" rx="12" fill="#fff" stroke="#64748b" stroke-width="2"/><text x="721" y="385" font-size="22" font-weight="700">Local JSONL file</text><text x="721" y="419" font-size="20" fill="#475569">state/trace.jsonl</text><text x="721" y="447" font-size="20" fill="#475569">Event records</text></g>
+<path d="M160 276V320H455V340" fill="none" stroke="#0f766e" stroke-width="2.5" marker-end="url(#arrow)"/><text x="240" y="309" font-size="17" text-anchor="middle" fill="#0f766e" paint-order="stroke" stroke="#f8fafc" stroke-width="5" stroke-linejoin="round">model</text>
+<path d="M500 276V340" fill="none" stroke="#0f766e" stroke-width="2.5" marker-end="url(#arrow)"/><text x="544" y="310" font-size="17" text-anchor="middle" fill="#0f766e" paint-order="stroke" stroke="#f8fafc" stroke-width="5" stroke-linejoin="round">graph</text>
+<path d="M840 276V320H545V340" fill="none" stroke="#0f766e" stroke-width="2.5" marker-end="url(#arrow)"/><text x="770" y="309" font-size="17" text-anchor="middle" fill="#0f766e" paint-order="stroke" stroke="#f8fafc" stroke-width="5" stroke-linejoin="round">app / tool</text>
+<path d="M365 406H305" fill="none" stroke="#0f766e" stroke-width="2.5" marker-end="url(#arrow)"/><text x="335" y="387" font-size="17" text-anchor="middle" fill="#0f766e" paint-order="stroke" stroke="#f8fafc" stroke-width="5" stroke-linejoin="round">display</text>
+<path d="M635 406H695" fill="none" stroke="#0f766e" stroke-width="2.5" marker-end="url(#arrow)"/><text x="665" y="387" font-size="17" text-anchor="middle" fill="#0f766e" paint-order="stroke" stroke="#f8fafc" stroke-width="5" stroke-linejoin="round">append</text>
+<text x="25" y="503" font-size="20" fill="#475569">Inspect real observations; a prepared preview is a layout fixture.</text>
+<text x="25" y="532" font-size="20" fill="#475569">Native callbacks and application evidence have separate labels.</text>
+<text x="25" y="561" font-size="20" fill="#475569">No hosted exporter or subscription CLI traces in this Java demo.</text>
+</g>
+</svg>

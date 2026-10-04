@@ -31,7 +31,8 @@ The examples use LangChain4j builders and Java interfaces directly.
 
 Our fictional assistant helps Viktor draft a decline for an internal training session.
 Calendar and organizer integrations are local MCP mocks; the organizer contacts nobody.
-Live chapters use paid model APIs: Gemini for chat, Jev for decisions, Claude for drafting, and OpenAI for review.
+Live chapters call hosted model APIs that may bill your accounts: Gemini for chat, Jev for decisions, Claude for drafting, and OpenAI for review.
+In chapters 5–7, one request can make up to seven Claude drafting calls and seven OpenAI review calls.
 The useful engineering problem is broader: how do you turn a generated suggestion into a grounded, reviewed, explicitly approved action?
 
 == What you'll build
@@ -74,27 +75,15 @@ cp .env.example .env
 ./jclaw preview
 ----
 
-Obtain your own https://aistudio.google.com/apikey[Google AI Studio key] and https://docs.typesafe.ai/api[TypeSafe API key].
-Chapters 5–7 also need https://platform.claude.com/settings/keys[Anthropic] and https://platform.openai.com/api-keys[OpenAI] API credentials.
+Obtain your own https://aistudio.google.com/apikey[Google AI Studio key] for every live chapter.
+Chapters 5–7 also need https://docs.typesafe.ai/api[TypeSafe], https://platform.claude.com/settings/keys[Anthropic], and https://platform.openai.com/api-keys[OpenAI] API credentials.
 Keep keys in your local `.env`, outside Git.
 `preview` displays prepared UI data without model calls or actions; it checks the layout.
 
 The Java demo pins these LangChain4j modules:
 
-++++
-<div class="lc4j-scroll" role="region" aria-label="LangChain4j module versions" tabindex="0">
-++++
-
-[cols="3,1",options="header"]
-|===
-|Module |Version
-|`langchain4j`, `langchain4j-google-ai-gemini`, `langchain4j-anthropic`, `langchain4j-open-ai`, `langchain4j-http-client-jdk` |`1.21.0`
-|`langchain4j-agentic`, `langchain4j-mcp`, `langchain4j-typesafe` |`1.21.0-beta31`
-|===
-
-++++
-</div>
-++++
+* *1.21.0:* `langchain4j`, `langchain4j-anthropic`, `langchain4j-open-ai`, `langchain4j-http-client-jdk`.
+* *1.21.0-beta31:* `langchain4j-google-genai`, `langchain4j-agentic`, `langchain4j-mcp`, `langchain4j-typesafe`.
 
 Keep these versions together when reproducing the workshop.
 The agentic and decision APIs are experimental; consult the linked documentation when upgrading.
@@ -120,6 +109,16 @@ ____
 
 *Learn:* `ChatModel`, `AiServices.builder`, `@SystemMessage`, `@UserMessage`, and `@V`.
 
+++++
+<div class="lc4j-workflow lc4j-chapter-diagram" role="region" aria-label="Chapter 1 interactions; scroll horizontally on small screens" tabindex="0">
+++++
+image::/images/workshops/codepocalypse-langchain4j-chapter-01-chatbot.svg["The user enters a request in the TUI. Java AiServices binds it to the prompt and calls Gemini through ChatModel. Gemini returns text through the application. No tools or durable history are read."]
+++++
+</div>
+++++
+
+Java binds the input to the AI Service prompt and calls Gemini. The model returns wording; this round reads no calendar or history.
+
 [source,bash]
 ----
 ./jclaw chatbot
@@ -135,7 +134,7 @@ interface Assistant {
     String reply(@V("request") String request);
 }
 
-ChatModel model = GoogleAiGeminiChatModel.builder()
+ChatModel model = GoogleGenAiChatModel.builder()
         .apiKey(System.getenv("GOOGLE_API_KEY"))
         .modelName(System.getenv("JCLAW_CHAT_MODEL"))
         .build();
@@ -157,11 +156,21 @@ Change the system message to require a shorter reply and compare the result.
 The system prompt guides wording; later chapters add application controls for actions.
 
 *Read the code:* `AgentRoles.java`, `DemoSession.java`, `ModelLineup.java`.
-*Official documentation:* https://docs.langchain4j.dev/tutorials/ai-services/[AI Services] and https://docs.langchain4j.dev/integrations/language-models/google-ai-gemini/[Google AI Gemini].
+*Official documentation:* https://docs.langchain4j.dev/tutorials/ai-services/[AI Services] and https://docs.langchain4j.dev/integrations/language-models/google-genai/[Google Gen AI].
 
 == Chapter 2 — Ground answers with tools and MCP
 
 *Learn:* `@Tool`, `@P`, `.tools(...)`, `StdioMcpTransport`, and `DefaultMcpClient`.
+
+++++
+<div class="lc4j-workflow lc4j-chapter-diagram" role="region" aria-label="Chapter 2 interactions; scroll horizontally on small screens" tabindex="0">
+++++
+image::/images/workshops/codepocalypse-langchain4j-chapter-02-tools.svg["The user calls a Java AI Service, which exchanges prompts, tool requests and results with Gemini. The AI Service invokes its read-only Java tool facade. That facade uses stdio MCP to read the calendar and organizer mocks. No send tool is exposed."]
+++++
+</div>
+++++
+
+Gemini proposes a tool request; the Java AI Service executes the registered facade. The facade calls the local MCP mocks and returns their results to the model.
 
 [source,bash]
 ----
@@ -226,6 +235,16 @@ MCP supplies the transport and tool contract. The registered façade determines 
 
 *Learn:* `MessageWindowChatMemory` and `.chatMemory(...)`; use a retrieval tool for recorded outcomes.
 
+++++
+<div class="lc4j-workflow lc4j-chapter-diagram" role="region" aria-label="Chapter 3 interactions; scroll horizontally on small screens" tabindex="0">
+++++
+image::/images/workshops/codepocalypse-langchain4j-chapter-03-memory.svg["The Java AI Service sends context to Gemini and reads its MessageWindowChatMemory for conversation context. When Gemini requests history, Java MemoryTools reads the three seed documents and confirmed sent-history JSON. Session conversation resets on restart; outcome records remain."]
+++++
+</div>
+++++
+
+The message window supplies conversation context. MemoryTools separately retrieves seed documents and confirmed sent records; calendar and organizer reads remain available.
+
 [source,bash]
 ----
 ./jclaw memory
@@ -257,6 +276,16 @@ This example uses document retrieval without an embedding store.
 == Chapter 4 — Load reusable instructions when needed
 
 *Learn:* Runtime skill discovery and a read-only `@Tool` for loading a selected skill.
+
+++++
+<div class="lc4j-workflow lc4j-chapter-diagram" role="region" aria-label="Chapter 4 interactions; scroll horizontally on small screens" tabindex="0">
+++++
+image::/images/workshops/codepocalypse-langchain4j-chapter-04-skills.svg["Java discovers the runtime skill catalog and includes its names and descriptions in the prompt sent to Gemini. Gemini can request readSkill; Java SkillCatalog validates the name and reads the selected SKILL.md from its trusted directory. Skill text returns to the model as instructions, without adding action permissions."]
+++++
+</div>
+++++
+
+Java supplies catalog metadata in the system prompt. Gemini requests a selected skill body through readSkill; Java validates the selection before returning the instructions.
 
 [source,bash]
 ----
@@ -299,6 +328,16 @@ The current demo uses its own scoped `SkillCatalog`; adopting the native module 
 == Chapter 5 — Build a typed decision and review workflow
 
 *Learn:* `DecisionModel`, `DecisionRequest`, `ChoiceQuestion`, typed agent methods, and native sequence, conditional, and loop builders.
+
+++++
+<div class="lc4j-workflow lc4j-chapter-diagram" role="region" aria-label="Chapter 5 interactions; scroll horizontally on small screens" tabindex="0">
+++++
+image::/images/workshops/codepocalypse-langchain4j-chapter-05-workflow.svg["The user submits a decline request. Java reads calendar and history, calls Jev for bounded intent and event choices, validates identity and assembles DeclineRequest. Its native Agentic graph calls Claude to draft DeclineDeployment, assembles the exact DeclineReview and calls OpenAI for DeclineCritique. Rejection returns to Claude for refinement. Approval ends at a reviewed proposal; round 5 has no human send gate."]
+++++
+</div>
+++++
+
+Java owns identity checks, grounded reads and native graph orchestration. Jev returns choices; Claude and OpenAI return typed records. This round ends with a reviewed proposal.
 
 [source,bash]
 ----
@@ -383,6 +422,7 @@ ChatModel reviewModel = OpenAiChatModel.builder()
 The production builders also attach listeners, set timeouts, and disable automatic retries.
 `returnThinking(false)` selects final answer text; it does not disable Opus 5.5's adaptive thinking.
 The OpenAI client requests strict JSON Schema for the typed Judge output.
+`store(false)` asks OpenAI not to store the response for later retrieval.
 See the https://docs.langchain4j.dev/integrations/language-models/anthropic/[Anthropic] and https://docs.langchain4j.dev/integrations/language-models/open-ai/[OpenAI] integration documentation.
 
 The generation interfaces return Java records rather than free-form decisions:
@@ -439,7 +479,8 @@ This fragment shows one pass; the complete workflow adds validation and refineme
 `Workflow.java` composes those roles with `AgenticServices.agentBuilder`, `nonAiAgentBuilder`, `sequenceBuilder`, `conditionalBuilder`, and `loopBuilder`.
 Named state keys connect the stages; application nodes prepare the review and inspect its verdict.
 The loop allows six refinements after the initial draft: at most seven candidates per request.
-Exhaustion, invalid Judge output, or an unavailable Judge blocks further progress.
+Exhaustion, invalid Draft or Judge output, or an unavailable Draft or Judge provider blocks the request.
+Automatic retries are disabled, so a single rate-limit or overload error also shows `BLOCKED`; start a new request after it clears.
 This chapter stops at a reviewed proposal.
 
 *Try:* Submit the opening request, then start a separate request naming an organizer absent from the calendar.
@@ -453,6 +494,16 @@ This chapter stops at a reviewed proposal.
 == Chapter 6 — Bind human approval to the reviewed candidate
 
 *Learn:* `humanInTheLoopBuilder`; enforce the action boundary in ordinary Java.
+
+++++
+<div class="lc4j-workflow lc4j-chapter-diagram" role="region" aria-label="Chapter 6 interactions; scroll horizontally on small screens" tabindex="0">
+++++
+image::/images/workshops/codepocalypse-langchain4j-chapter-06-approval.svg["Starting from the assembled request, Java calls Claude Draft or Refine and OpenAI Judge. Only a Judge-approved candidate reaches Human review. Human feedback returns to Claude and fresh Judge review under the same run and shared refinement budget. Human send approval reaches the Java candidate-bound gate, which calls the organizer MCP mock. Java validates its receipt before writing confirmed sent history. Hold ends unsent, and invalid receipts leave history unchanged."]
+++++
+</div>
+++++
+
+Java resumes the same request after feedback and runs fresh Refine → Judge → Human review. The application binds send approval and checks the mock receipt before writing history.
 
 [source,bash]
 ----
@@ -506,6 +557,16 @@ This chapter's delivery gate is application logic; LangChain4j https://docs.lang
 == Chapter 7 — Observe what actually ran
 
 *Learn:* `ChatModelListener`, `DecisionModelListener`, and native `AgentListener` callbacks.
+
+++++
+<div class="lc4j-workflow lc4j-chapter-diagram" role="region" aria-label="Chapter 7 interactions; scroll horizontally on small screens" tabindex="0">
+++++
+image::/images/workshops/codepocalypse-langchain4j-chapter-07-observability.svg["Native model listeners capture Jev decisions and Gemini, Claude and OpenAI calls. Native Agentic callbacks capture graph stages and human verdict nodes. Separate Java and MCP events capture tool reads, canonical assembly, approval, receipts and history writes. All feed TraceEvidence, which writes local JSONL and updates the TUI. No hosted exporter is configured."]
+++++
+</div>
+++++
+
+Native model and graph listeners emit their own observations. Java and MCP events describe application operations; TraceEvidence correlates them for the local file and dashboard.
 
 [source,bash]
 ----

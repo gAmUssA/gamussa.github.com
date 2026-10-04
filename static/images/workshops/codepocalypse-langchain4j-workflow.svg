@@ -37,7 +37,7 @@
       <path d="M650 335V316H870V291"/>
     </g>
     <g font-size="17" font-weight="600" fill="#92400e">
-      <text x="1060" y="319">refine</text>
+      <text x="1170" y="316" text-anchor="end">refine</text>
       <text x="669" y="309">human feedback</text>
     </g>
     <g font-size="31" font-weight="700">
