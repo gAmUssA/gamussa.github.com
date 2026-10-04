@@ -20,7 +20,7 @@ Tempus is a world clock, time zone converter and meeting finder for iPhone, iPad
 
 **How does the Meeting Finder work?** Pick two or more clocks, set working hours for each, and Tempus shows the windows where everyone is available. Tap a slot to add it to your calendar or share an .ics invite.
 
-**What are profiles?** Profiles are named sets of your clocks, such as Work or Family. Tap the title on iPhone, or use the sidebar on iPad, to switch between a profile and All; **Manage Profiles** creates and edits them. A city can be in several profiles, and deleting a profile keeps its cities. Profiles arrive in Tempus 1.3, in beta on TestFlight now.
+**What are profiles?** Profiles are named sets of your clocks, such as Work or Family. Tap the title on iPhone, or use the sidebar on iPad, to switch between a profile and All; **Manage Profiles** creates and edits them. A city can be in several profiles, and deleting a profile keeps its cities. Profiles are new in Tempus 1.3.
 
 **Why don't I see weather?** Weather is optional. Turn it on in **Settings › Weather**. It needs an internet connection and is provided by Apple Weather for the cities you added, not for your location.
 
