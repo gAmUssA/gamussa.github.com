@@ -26,7 +26,7 @@
 <path d="M705 425H645V457H500V451" fill="none" stroke="#b45309" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#feedback)"/><text x="618" y="477" font-size="17" text-anchor="middle" fill="#b45309" paint-order="stroke" stroke="#f8fafc" stroke-width="5" stroke-linejoin="round">reject → refine</text>
 <path d="M840 451V490H630V500" fill="none" stroke="#0f766e" stroke-width="2.5" marker-end="url(#arrow)"/><text x="749" y="479" font-size="17" text-anchor="middle" fill="#0f766e" paint-order="stroke" stroke="#f8fafc" stroke-width="5" stroke-linejoin="round">approved</text>
 <text x="25" y="643" font-size="20" fill="#475569">Native Agentic nodes build the exact review and inspect the verdict.</text>
-<text x="25" y="672" font-size="20" fill="#475569">At most six refinements / seven candidates. Invalid review blocks.</text>
+<text x="25" y="672" font-size="20" fill="#475569">Six refinements / seven candidates; Draft or Judge errors block.</text>
 <text x="25" y="701" font-size="20" fill="#475569">No action tools on either agent; no human gate or send in round 5.</text>
 </g>
 </svg>

@@ -85,6 +85,9 @@ The Java demo pins these LangChain4j modules:
 * *1.21.0:* `langchain4j`, `langchain4j-anthropic`, `langchain4j-open-ai`, `langchain4j-http-client-jdk`.
 * *1.21.0-beta31:* `langchain4j-google-genai`, `langchain4j-agentic`, `langchain4j-mcp`, `langchain4j-typesafe`.
 
+The Gemini integration uses Google's Java SDK, pinned to `com.google.genai:google-genai:1.71.0`.
+Gemini calls allow one attempt at both SDK and LangChain4j layers.
+
 Keep these versions together when reproducing the workshop.
 The agentic and decision APIs are experimental; consult the linked documentation when upgrading.
 
