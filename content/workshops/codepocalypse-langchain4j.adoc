@@ -1,0 +1,595 @@
+---
+title: "Building Java agents with LangChain4j"
+date: 2026-10-04
+author: "Viktor Gamov"
+tags: ["Java", "LangChain4j", "agents", "MCP", "workshop"]
+keywords: ["Java", "LangChain4j", "MCP", "typed agents", "human approval"]
+author_url: "https://gamov.io/resume/"
+author_same_as: ["https://github.com/gamussa", "https://speaking.gamov.io/"]
+publisher_type: "Person"
+slug: "codepocalypse-langchain4j"
+description: "A companion to Codepocalypse Now: seven Java chapters covering chat, MCP tools, memory, skills, typed workflows, human approval, and observability with LangChain4j."
+draft: true
+cover:
+  image: "/images/workshops/codepocalypse-langchain4j-workflow.png"
+  alt: "A Java agent workflow: Identify, Assemble, Draft, Judge, Human, Delivery, History"
+  hidden: true
+---
+
+:toc: macro
+:toclevels: 2
+:experimental:
+
+// Publication prerequisite: verify the Java repository and round checkpoints are accessible.
+// The repository URL below was supplied by Viktor; keep this page a draft until code publication.
+
+https://github.com/gamussa/jclaw-devoxx-be-2026[**Java demo repository** icon:github[]] | Difficulty: *Intermediate Java* | Format: *Seven chapters with code and exercises*
+
+Build a Java assistant one capability at a time, following the rounds of _Codepocalypse Now: LangChain4j vs. JetBrains Koog_.
+Each chapter explains the API that introduces the next capability, gives you an experiment to run, and identifies a pattern you can use in your own application.
+The examples use LangChain4j builders and Java interfaces directly.
+
+Our fictional assistant helps Viktor draft a decline for an internal training session.
+Calendar and organizer integrations are local MCP mocks; the organizer contacts nobody.
+Live chapters use paid model APIs: Gemini for chat, Jev for decisions, Claude for drafting, and OpenAI for review.
+The useful engineering problem is broader: how do you turn a generated suggestion into a grounded, reviewed, explicitly approved action?
+
+== What you'll build
+
+* A Java assistant grounded in calendar tools and durable decline history.
+* Typed intent and event decisions, followed by a canonical Java request.
+* Separate Draft and Judge agents with a bounded refinement loop.
+* Human approval tied to the current message, followed by receipt-checked history.
+* A local trace showing which models, tools, and workflow stages ran.
+
+++++
+<div class="lc4j-workflow" role="region" aria-label="Agent workflow diagram; scroll horizontally on small screens" tabindex="0">
+++++
+image::/images/workshops/codepocalypse-langchain4j-workflow.svg["Identify, Assemble, Draft, Judge, Human, Delivery, History. Read the top row left to right, the middle row right to left, then move down to History. Judge rejection and human feedback return to Draft. Java enforces approval of the current candidate and validates delivery receipts."]
+++++
+</div>
+++++
+
+Identify selects the intent and event. Java assembles the facts, then Draft and Judge produce a reviewed proposal.
+Human approval and a matching delivery receipt are required before Java records the message in history.
+On small screens, scroll the diagram and tables sideways.
+
+toc::[]
+
+== Set up the Java demo
+
+Use JDK 21 and clone the https://github.com/gamussa/jclaw-devoxx-be-2026[Java demo repository].
+The project includes a Gradle wrapper and a launcher that downloads the pinned shared fixtures and builds the mock servers.
+Application and test sources are Java; the shared domain, mock servers, and TamboUI display are dependencies implemented in Kotlin.
+
+Start from the demo project root:
+
+[source,bash]
+----
+git clone https://github.com/gamussa/jclaw-devoxx-be-2026.git
+cd jclaw-devoxx-be-2026
+cp .env.example .env
+# Edit .env: set GOOGLE_API_KEY for live chat.
+# Chapters 5–7 also need TYPESAFE_API_KEY, ANTHROPIC_API_KEY, and OPENAI_API_KEY.
+./jclaw preview
+----
+
+Obtain your own https://aistudio.google.com/apikey[Google AI Studio key] and https://docs.typesafe.ai/api[TypeSafe API key].
+Chapters 5–7 also need https://platform.claude.com/settings/keys[Anthropic] and https://platform.openai.com/api-keys[OpenAI] API credentials.
+Keep keys in your local `.env`, outside Git.
+`preview` displays prepared UI data without model calls or actions; it checks the layout.
+
+The Java demo pins these LangChain4j modules:
+
+++++
+<div class="lc4j-scroll" role="region" aria-label="LangChain4j module versions" tabindex="0">
+++++
+
+[cols="3,1",options="header"]
+|===
+|Module |Version
+|`langchain4j`, `langchain4j-google-ai-gemini`, `langchain4j-anthropic`, `langchain4j-open-ai`, `langchain4j-http-client-jdk` |`1.21.0`
+|`langchain4j-agentic`, `langchain4j-mcp`, `langchain4j-typesafe` |`1.21.0-beta31`
+|===
+
+++++
+</div>
+++++
+
+Keep these versions together when reproducing the workshop.
+The agentic and decision APIs are experimental; consult the linked documentation when upgrading.
+
+The small Java fragments below belong inside the accompanying application and omit surrounding imports and unchanged plumbing.
+Names such as `McpTools`, `SkillCatalog`, `Workflow`, and the decline records are application classes, not LangChain4j APIs.
+Read the indicated source files alongside each fragment.
+
+Stop the running application before changing rounds.
+Use the matching `round/01-chatbot` through `round/07-observability` checkpoint if your checkout includes them; otherwise, the complete `main` build accepts every chapter command.
+Make exercises on your own branch from a checkpoint so your edits remain easy to revisit.
+The launcher never switches branches and preserves confirmed history.
+Append `plain` to any launch command for scrolling terminal output; stop plain mode with `/quit`, or the dashboard with Ctrl+C.
+
+Use the same opening request across chapters:
+
+[quote]
+____
+Get me out of the Basic AI Proficiency Training on Tuesday, run by Dana from People Ops. Don't reuse an excuse I've already used on her - tell me which ones you're avoiding.
+____
+
+== Chapter 1 — A Java interface for conversation
+
+*Learn:* `ChatModel`, `AiServices.builder`, `@SystemMessage`, `@UserMessage`, and `@V`.
+
+[source,bash]
+----
+./jclaw chatbot
+----
+
+The model generates text. An AI Service gives that interaction an ordinary Java method signature:
+
+[source,java]
+----
+interface Assistant {
+    @SystemMessage("You are Viktor's assistant. Draft suggestions only.")
+    @UserMessage("{{request}}")
+    String reply(@V("request") String request);
+}
+
+ChatModel model = GoogleAiGeminiChatModel.builder()
+        .apiKey(System.getenv("GOOGLE_API_KEY"))
+        .modelName(System.getenv("JCLAW_CHAT_MODEL"))
+        .build();
+
+Assistant assistant = AiServices.builder(Assistant.class)
+        .chatModel(model)
+        .build();
+----
+
+For this isolated example, set `JCLAW_CHAT_MODEL` to a Gemini model available to your account.
+The demo launcher instead resolves its role configuration and current defaults in `ModelLineup.java`.
+`@V` explicitly binds a Java argument to the prompt variable.
+
+*Try:* Submit the opening request. Ask which previous excuses the assistant is avoiding.
+*Expected:* You receive text, but no tool evidence or retrieved history. A fluent answer cannot establish which excuses were actually used.
+Change the system message to require a shorter reply and compare the result.
+
+*Adopt:* Keep the provider behind `ChatModel` and expose a domain-oriented interface to callers.
+The system prompt guides wording; later chapters add application controls for actions.
+
+*Read the code:* `AgentRoles.java`, `DemoSession.java`, `ModelLineup.java`.
+*Official documentation:* https://docs.langchain4j.dev/tutorials/ai-services/[AI Services] and https://docs.langchain4j.dev/integrations/language-models/google-ai-gemini/[Google AI Gemini].
+
+== Chapter 2 — Ground answers with tools and MCP
+
+*Learn:* `@Tool`, `@P`, `.tools(...)`, `StdioMcpTransport`, and `DefaultMcpClient`.
+
+[source,bash]
+----
+./jclaw tools
+----
+
+Register a narrow Java façade over the MCP integration:
+
+[source,java]
+----
+final class CalendarTools {
+    private final McpTools mcp;
+
+    CalendarTools(McpTools mcp) { this.mcp = mcp; }
+
+    @Tool("Read the calendar. Declined entries do not contain their reasons.")
+    public String getCalendar() {
+        return mcp.calendarJson();
+    }
+
+    @Tool("Read sensitivity for the exact organizer.")
+    public String getOrganizerSensitivity(
+            @P(name = "name", description = "Exact organizer name") String name) {
+        return mcp.sensitivity(name);
+    }
+}
+
+Assistant assistant = AiServices.builder(Assistant.class)
+        .chatModel(model)
+        .tools(new CalendarTools(mcp))
+        .build();
+----
+
+The underlying native client starts a local server process:
+
+[source,java]
+----
+var transport = StdioMcpTransport.builder()
+        .command(List.of(javaExecutable, "-jar", calendarJar))
+        .logEvents(false)
+        .build();
+var client = DefaultMcpClient.builder()
+        .key("calendar")
+        .transport(transport)
+        .build();
+// The owning application closes client when the session ends.
+----
+
+`javaExecutable` and `calendarJar` are resolved paths in `McpTools.java`.
+That class executes named MCP requests and validates results; the model-facing façade exposes only reads.
+MCP supplies the transport and tool contract. The registered façade determines which capabilities this assistant can request.
+
+*Try:* Ask for the training time and organizer sensitivity. Inspect the tool panel or plain output.
+*Expected:* Actual calendar and organizer reads supply the answer. Previous decline reasons remain unavailable in this chapter because the calendar does not store them.
+
+*Adopt:* Expose the smallest useful tool surface. Keep a future send operation under application control.
+
+*Read the code:* `McpTools.java`, especially `ReadOnly` and the `boot` method that builds each `DefaultMcpClient`.
+*Official documentation:* https://docs.langchain4j.dev/tutorials/tools/[Tools] and https://docs.langchain4j.dev/tutorials/mcp/[MCP integration].
+
+== Chapter 3 — Separate conversation from durable history
+
+*Learn:* `MessageWindowChatMemory` and `.chatMemory(...)`; use a retrieval tool for recorded outcomes.
+
+[source,bash]
+----
+./jclaw memory
+----
+
+[source,java]
+----
+var conversation = MessageWindowChatMemory.withMaxMessages(30);
+var assistant = AiServices.builder(Assistant.class)
+        .chatModel(model)
+        .chatMemory(conversation)
+        .tools(new McpTools.ReadOnly(mcp), memories)
+        .build();
+----
+
+Here, `memories` is the application's `MemoryTools` instance.
+The message window retains session context. It does not serve as the record of what was delivered.
+The separate retrieval tool reads committed prior-decline documents and confirmed literal messages in `state/sent-history.json`.
+This example uses document retrieval without an embedding store.
+
+*Try:* Submit the opening request, then ask “Which reasons did you retrieve?” Restart and ask again.
+*Expected:* The three seeded reasons (calendar conflict, family obligation, and customer escalation) remain retrievable after restart. Session conversation resets; confirmed sent history persists.
+
+*Adopt:* Store business outcomes separately from conversational context. For multiple users, give each conversation its own memory identity and isolate its durable records.
+
+*Read the code:* `MemoryTools.java`, `SentHistory.java`, and the chat builder in `DemoSession.java`.
+*Official documentation:* https://docs.langchain4j.dev/tutorials/chat-memory/[Chat Memory] and https://docs.langchain4j.dev/tutorials/ai-services/#chat-memory[Memory in AI Services].
+
+== Chapter 4 — Load reusable instructions when needed
+
+*Learn:* Runtime skill discovery and a read-only `@Tool` for loading a selected skill.
+
+[source,bash]
+----
+./jclaw skills
+----
+
+The demo's `SkillCatalog` discovers names and descriptions from a configured directory.
+The assistant sees that catalog at startup and loads the relevant `SKILL.md` body through `readSkill` before applying it:
+
+[source,java]
+----
+interface SkilledAssistant { String reply(String request); }
+
+var skills = new SkillCatalog(skillRoot, toolTrace);
+var assistant = AiServices.builder(SkilledAssistant.class)
+        .chatModel(model)
+        .systemMessageProvider(ignored ->
+                "Available skills: " + skills.discover()
+                + "\nRead a relevant skill before applying it. Preserve facts.")
+        .tools(skills)
+        .build();
+----
+
+`skillRoot` is a trusted directory and `toolTrace` receives evidence of reads.
+`SkilledAssistant` has no `@SystemMessage`; an annotated system message would take precedence over this provider.
+The application rejects unknown names and paths outside that root.
+Loading instructions does not add send permissions.
+
+*Try:* Ask “Rewrite this in corporate-speak: I already build AI agents.” Then ask “Tone it down to 4.”
+*Expected:* The relevant skill is read, the first rewrite uses its default level eleven, and the follow-up reduces the style while preserving facts and commitments. Neither turn sends or saves a decline.
+
+*Adopt:* Keep reusable writing rules or operating procedures outside a large permanent prompt. Load only the relevant instructions into the model context.
+
+*Framework alternative:* LangChain4j also provides `langchain4j-skills:1.21.0-beta31`, including `FileSystemSkillLoader`, `Skills`, and a tool provider.
+The current demo uses its own scoped `SkillCatalog`; adopting the native module would be a separate implementation change.
+
+*Read the code:* `SkillCatalog.java` and the registered skills in `DemoSession.java`.
+*Official documentation:* https://docs.langchain4j.dev/tutorials/skills/[LangChain4j Skills] and https://agentskills.io/specification[Agent Skills specification].
+
+== Chapter 5 — Build a typed decision and review workflow
+
+*Learn:* `DecisionModel`, `DecisionRequest`, `ChoiceQuestion`, typed agent methods, and native sequence, conditional, and loop builders.
+
+[source,bash]
+----
+./jclaw workflow
+----
+
+=== Assign a model to a specific job
+
+++++
+<div class="lc4j-scroll" role="region" aria-label="Workflow model roles and contracts" tabindex="0">
+++++
+
+[cols="2,3,3",options="header"]
+|===
+|Stage |Current implementation |Input and output
+|Identify intent and event |Jev `jev-1.13.0`, native TypeSafe API |Original message, conversation, calendar → typed choices and probabilities
+|Assemble canonical request |Java application code |Verified event and organizer, retrieved memory → `DeclineRequest`
+|Chat and skills |Gemini API |Conversation → text
+|Draft and Refine |Claude Opus 5.5, Anthropic API |Request and feedback → `DeclineDeployment`
+|Judge |GPT-6 Astra, OpenAI API |Current request and exact plan → `DeclineCritique`
+|Human decision and delivery |Application and native human node; local organizer mock |Approval bound to the current candidate → validated receipt
+|===
+
+++++
+</div>
+++++
+
+* Jev makes the bounded intent and event choices. Java verifies the selected identities and assembles the request.
+* Gemini handles chat and skills; Claude drafts/refines; OpenAI judges. The dashboard and trace show the actual providers and IDs.
+* `JCLAW_DRAFT_MODEL` defaults to `claude-opus-5-5`; `JCLAW_REVIEW_MODEL` defaults to `gpt-6-astra`.
+* `JCLAW_CHAT_MODEL` chooses a Gemini model. When blank, it uses `JCLAW_GEMINI_MODEL`, whose default is `gemini-3.7-flash`.
+* Jev is the default decider. Set `JCLAW_DECIDER=gemini` in your environment or `.env` to compare Gemini's routing; it does not act as a failure fallback.
+
+=== Ask for choices rather than generated labels
+
+This reduced example illustrates one typed routing question:
+
+[source,java]
+----
+DecisionModel decider = TypeSafeDecisionModel.builder()
+        .apiKey(System.getenv("TYPESAFE_API_KEY"))
+        .modelName("jev-1.13.0")
+        .build();
+
+var request = DecisionRequest.builder()
+        .input(userMessage)
+        .question("intent", ChoiceQuestion.builder()
+                .text("Does the user request a decline plan or ordinary chat?")
+                .option("DECLINE", "A request to decline an obligation")
+                .option("CHAT", "Conversation, explanation, or a style rewrite")
+                .build())
+        .build();
+var intent = decider.decide(request).choice("intent");
+----
+
+The demo asks both intent and event questions against the same input.
+Event options come from the actual calendar, with `NO_MATCH` and `AMBIGUOUS` choices.
+Java validates the returned model identity, answer distributions, and the shared 0.60 confidence floors before assembling a canonical request.
+An uncertain target asks for clarification before drafting.
+
+=== Give Draft and Judge different contracts
+
+`ModelProviders.java` creates native API clients for the generation roles:
+
+[source,java]
+----
+ChatModel draftModel = AnthropicChatModel.builder()
+        .apiKey(System.getenv("ANTHROPIC_API_KEY"))
+        .modelName("claude-opus-5-5")
+        .maxTokens(8192)
+        .returnThinking(false)
+        .build();
+ChatModel reviewModel = OpenAiChatModel.builder()
+        .apiKey(System.getenv("OPENAI_API_KEY"))
+        .modelName("gpt-6-astra")
+        .supportedCapabilities(Capability.RESPONSE_FORMAT_JSON_SCHEMA)
+        .strictJsonSchema(true)
+        .store(false)
+        .build();
+----
+
+The production builders also attach listeners, set timeouts, and disable automatic retries.
+`returnThinking(false)` selects final answer text; it does not disable Opus 5.5's adaptive thinking.
+The OpenAI client requests strict JSON Schema for the typed Judge output.
+See the https://docs.langchain4j.dev/integrations/language-models/anthropic/[Anthropic] and https://docs.langchain4j.dev/integrations/language-models/open-ai/[OpenAI] integration documentation.
+
+The generation interfaces return Java records rather than free-form decisions:
+
+[source,java]
+----
+interface Drafter {
+    @Agent("Draft a decline proposal")
+    @UserMessage("Request: {{request}}\nPrevious: {{previous}}\nFeedback: {{feedback}}")
+    DeclineDeployment draft(@V("request") DeclineRequest request,
+                            @V("previous") String previous,
+                            @V("feedback") String feedback);
+}
+
+interface Critic {
+    @Agent("Review the exact request and candidate")
+    @UserMessage("Review: {{review}}")
+    DeclineCritique review(@V("review") DeclineReview review);
+}
+----
+
+`DeclineReview` contains both the current request and exact plan.
+Use the complete constraints in `AgentRoles.java` when running the demo; these abbreviated prompts illustrate the signatures.
+Typed parsing establishes a shape. Java validation and a separate Judge assess whether the proposal is acceptable.
+Neither generation role has action tools.
+
+One native candidate-and-review pass connects the typed roles through named state:
+
+[source,java]
+----
+var draftAgent = AgenticServices.agentBuilder(Drafter.class)
+        .chatModel(draftModel).outputKey("plan").build();
+var assembleReview = AgenticServices.nonAiAgentBuilder(scope ->
+        new DeclineReview((DeclineRequest) scope.readState("request"),
+                          (DeclineDeployment) scope.readState("plan")))
+        .outputKey("review").build();
+var judgeAgent = AgenticServices.agentBuilder(Critic.class)
+        .chatModel(reviewModel).outputKey("critique").build();
+
+var candidatePass = AgenticServices.sequenceBuilder()
+        .subAgents(draftAgent, assembleReview, judgeAgent)
+        .outputKey("critique")
+        .build();
+var critique = (DeclineCritique) candidatePass.invoke(Map.of(
+        "request", canonicalRequest,
+        "previous", "No previous plan",
+        "feedback", ""));
+----
+
+`draftModel` and `reviewModel` are independently configured `ChatModel` instances.
+`canonicalRequest` is assembled from verified application data before invocation.
+This fragment shows one pass; the complete workflow adds validation and refinement.
+
+`Workflow.java` composes those roles with `AgenticServices.agentBuilder`, `nonAiAgentBuilder`, `sequenceBuilder`, `conditionalBuilder`, and `loopBuilder`.
+Named state keys connect the stages; application nodes prepare the review and inspect its verdict.
+The loop allows six refinements after the initial draft: at most seven candidates per request.
+Exhaustion, invalid Judge output, or an unavailable Judge blocks further progress.
+This chapter stops at a reviewed proposal.
+
+*Try:* Submit the opening request, then start a separate request naming an organizer absent from the calendar.
+*Expected:* The first run shows a canonical request and typed review. The mismatched organizer requires clarification instead of silently choosing Dana. There is no human send gate in this round.
+
+*Adopt:* Use a decision model for bounded choices, a generation model for drafting, and application code for identity and state validation. Carry a real refinement budget across the request.
+
+*Read the code:* `JevDecider.java`, `Contracts.java`, `AgentRoles.java`, and `Workflow.java`.
+*Official documentation:* https://docs.langchain4j.dev/tutorials/decision-models/[Decision Models], https://docs.langchain4j.dev/integrations/decision-models/typesafe/[TypeSafe integration], https://docs.langchain4j.dev/tutorials/structured-outputs/[Structured Outputs], and https://docs.langchain4j.dev/tutorials/agents/[Agents and Agentic AI].
+
+== Chapter 6 — Bind human approval to the reviewed candidate
+
+*Learn:* `humanInTheLoopBuilder`; enforce the action boundary in ordinary Java.
+
+[source,bash]
+----
+./jclaw guardrails
+----
+
+The native human node records a verdict supplied by the application:
+
+[source,java]
+----
+var humanNode = AgenticServices.humanInTheLoopBuilder()
+        .description("Human verdict on the current reviewed candidate")
+        .responseProvider(scope -> scope.readState("humanFeedback"))
+        .outputKey("humanVerdict")
+        .build();
+----
+
+The terminal waits for your input between native workflow invocations.
+The demo does not implement durable workflow suspension or recovery after a process restart.
+Its human node also does not implement the application's candidate binding or delivery validation.
+
+*Try:* Inspect the reviewed email, then enter feedback:
+
+[quote]
+____
+Make the email shorter and more direct. Keep the proficiency reason; remove the Tuesday-afternoon reference.
+____
+
+*Expected:* Refine → fresh Judge → fresh human approval. The event, organizer, and run stay the same; the refinement counter continues, and Identify does not run again.
+Enter `hold` to end without sending or recording a new decline.
+After a reviewed candidate, `send` approves that exact message for the local mock organizer.
+Use `/chat ...` for ordinary conversation while approval waits, or `/new ...` to start a separate request.
+
+The application enforces four rules:
+
+* Judge rejection and human feedback share one budget of six refinements.
+* A human cannot approve a candidate that Judge rejected.
+* Approval applies to the current candidate. A revised message needs fresh approval.
+* History is written only after a valid receipt matches the call, candidate, event, and organizer IDs and includes a delivery timestamp.
+
+*Failure exercise:* Launch `JCLAW_MOCK_DELIVERY=wrong-candidate ./jclaw guardrails plain`, request a proposal, and approve it.
+*Expected:* Delivery stays unconfirmed and history is not updated. There is no automatic resend.
+
+*Adopt:* Treat approval as a decision about specific content. Record only confirmed outcomes, and reconcile uncertain delivery before retrying.
+A content hash binds a candidate; it does not provide authentication or server-side idempotency.
+
+*Read the code:* `Workflow.ApprovalGate`, `DemoSession.java`, `Delivery.java`, and `SentHistory.java`.
+*Official documentation:* https://docs.langchain4j.dev/tutorials/agents/#human-in-the-loop[Human in the loop].
+This chapter's delivery gate is application logic; LangChain4j https://docs.langchain4j.dev/tutorials/guardrails/[input and output guardrails] are a separate API.
+
+== Chapter 7 — Observe what actually ran
+
+*Learn:* `ChatModelListener`, `DecisionModelListener`, and native `AgentListener` callbacks.
+
+[source,bash]
+----
+./jclaw observability
+----
+
+A minimal chat listener can measure a model interaction without logging its prompt:
+
+[source,java]
+----
+ChatModelListener listener = new ChatModelListener() {
+    private final Object started = new Object();
+
+    @Override
+    public void onRequest(ChatModelRequestContext context) {
+        context.attributes().put(started, System.nanoTime());
+    }
+
+    @Override
+    public void onResponse(ChatModelResponseContext context) {
+        long elapsed = System.nanoTime()
+                - (Long) context.attributes().get(started);
+        System.out.println("durationMs=" + elapsed / 1_000_000
+                + " usage=" + context.chatResponse().tokenUsage());
+    }
+};
+// Attach with .listeners(List.of(listener)) on each provider's model builder.
+----
+
+The complete demo also records model errors, Jev's typed decisions and probabilities, and native agent callbacks.
+Application events separately describe MCP reads, canonical request assembly, human waiting, delivery receipts, and history writes.
+The local trace is `state/trace.jsonl`; it includes fictional model inputs and outputs and should not be treated as a production logging policy.
+
+*Try:* Request a decline, give human feedback once, inspect the revised review, and choose `hold`.
+After stopping, inspect the trace:
+
+[source,bash]
+----
+rg 'DECISION_INPUT|DECISION_OUTPUT|MODEL_INPUT|MODEL_OUTPUT|AGENTIC_GRAPH|HUMAN_HOLD' state/trace.jsonl
+----
+
+*Expected:* One Identify pass for the decline request, evidence for each candidate and Judge interaction, a human verdict, and no delivery/history-write event for the held candidate.
+Separate native graph callbacks from application stages when explaining the trace.
+API usage and elapsed time are visible; there is no hosted telemetry exporter or subscription CLI usage in this implementation.
+
+*Adopt:* Correlate model, tool, workflow, and business events. Attach a role and actual provider to measurements, and choose which content your production logs may retain.
+
+*Read the code:* `TraceEvidence.java`, `GraphEvents.java`, and trace wiring in `Main.java`.
+*Official documentation:* https://docs.langchain4j.dev/tutorials/observability/[Observability] and https://docs.langchain4j.dev/tutorials/decision-models/#observability[Decision model listeners].
+
+== Continue in your own application
+
+Choose a workflow with a concrete reviewable result, such as a support-ticket reply, a change proposal, or a calendar suggestion.
+Keep the Java records, limited tool surface, separate outcome history, bounded review loop, and approval of exact content.
+Replace the scenario and integrations one at a time, verifying the contract at each boundary.
+
+For the accompanying demo, the provider-free validation command is:
+
+[source,bash]
+----
+./gradlew :app:check :app:installDist :mocks:mcpJars --console=plain
+----
+
+The checks exercise typed parsing, workflow limits, approval binding, delivery failure cases, and restart persistence.
+They use network-boundary model fixtures; a passing test is separate from a live provider result.
+
+For more context, read link:/posts/langchain4j/[LangChain4j for Java developers] or explore the link:/workshops/confluent-cloud-kafka-flink-tableflow/[Kafka, Flink, and Tableflow workshop] to practice grounding applications in real data.
+Viktor's link:/resume/#selected-talks[related talks] include Codepocalypse Now and MCP integrations.
+
+=== About the author
+
+Viktor Gamov is a Java Champion, developer advocate, and coauthor of _Kafka in Action_.
+He teaches Java, data systems, and AI application development through conference talks and hands-on workshops.
+See his link:/resume/[background], https://github.com/gamussa[GitHub projects], and https://speaking.gamov.io/[speaking history].
+
+=== References
+
+*Showdown provider note:* The comparison handoff assigns Claude (Anthropic) subscription CLI to Draft/Refine and Codex (OpenAI) subscription CLI to Judge.
+This Java version uses Claude Opus 5.5 through the Anthropic API and GPT-6 Astra through the OpenAI API.
+Call its critic an OpenAI API Judge; it does not launch Codex CLI. Compare API and subscription usage separately.
+The selected IDs are documented in https://platform.claude.com/docs/en/models/opus-5-5/overview[Claude Opus 5.5] and https://developers.openai.com/api/docs/models/gpt-6-astra[GPT-6 Astra].
+These are runtime model roles, separate from the coding assistants used to build the demo.
+The Koog app wires those calls in https://github.com/jbaruch/jclaw-devoxx/blob/70d1856ad32e718dc6c3594295b2eb144b132ea0/app/src/main/kotlin/jclaw/Strategy.kt[Strategy.kt], constructs Claude agents in https://github.com/jbaruch/jclaw-devoxx/blob/70d1856ad32e718dc6c3594295b2eb144b132ea0/app/src/main/kotlin/jclaw/CliCritic.kt[CliCritic.kt], and launches `codex exec --output-schema` through https://github.com/jbaruch/jclaw-devoxx/blob/70d1856ad32e718dc6c3594295b2eb144b132ea0/app/src/main/kotlin/jclaw/TypedCodex.kt[TypedCodex.kt].
+
+* https://docs.langchain4j.dev/[LangChain4j official documentation]
+* https://github.com/jbaruch/jclaw-devoxx/blob/70d1856ad32e718dc6c3594295b2eb144b132ea0/HANDOFF-LC4J.md[Pinned showdown handoff and shared scenario]
+* https://quarkus.io/quarkus-workshop-langchain4j/section-2/step-01/[Quarkus LangChain4j workshop], a companion resource for readers who want Quarkus integration. This workshop uses direct Java builders.
