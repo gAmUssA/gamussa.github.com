@@ -479,6 +479,11 @@ var critique = (DeclineCritique) candidatePass.invoke(Map.of(
 `canonicalRequest` is assembled from verified application data before invocation.
 This fragment shows one pass; the complete workflow adds validation and refinement.
 
+Java reports the avoided reasons separately to the user.
+Claude writes the outward scripts, and Judge evaluates the typed candidate.
+Judge does not require the application's separate report inside that candidate.
+Both roles must avoid reusing a reason in substance, even when the flavor label changes.
+
 `Workflow.java` composes those roles with `AgenticServices.agentBuilder`, `nonAiAgentBuilder`, `sequenceBuilder`, `conditionalBuilder`, and `loopBuilder`.
 Named state keys connect the stages; application nodes prepare the review and inspect its verdict.
 The loop allows six refinements after the initial draft: at most seven candidates per request.
@@ -528,7 +533,9 @@ The terminal waits for your input between native workflow invocations.
 The demo does not implement durable workflow suspension or recovery after a process restart.
 Its human node also does not implement the application's candidate binding or delivery validation.
 
-*Try:* Inspect the reviewed email, then enter feedback:
+*Try:* Inspect the reviewed email, then enter feedback before approving it.
+Keep the app at `HUMAN`; entering `yes` or `send` there approves the current message for the mock organizer.
+Enter this feedback:
 
 [quote]
 ____
