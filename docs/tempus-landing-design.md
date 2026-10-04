@@ -79,7 +79,7 @@ Global note: sections alternate **Light band** (`--bg`/`--surface`/`--text` toke
 | 0 | Nav | Ink (transparent→solid on scroll) |
 | 1 | Hero | Ink |
 | 2 | Why Tempus | Light |
-| 3 | Feature showcases (4) | Ink |
+| 3 | Feature showcases (5) | Ink |
 | 4 | Privacy promise | Light |
 | 5 | FAQ | Light |
 | 6 | Footer | Ink |
@@ -116,7 +116,7 @@ Four icon cards, single row desktop / 2×2 tablet / stacked mobile. No screensho
 | 3 | calendar/overlap | Find a meeting that actually works | Set working hours per clock and Tempus shows the overlap. Add it to your calendar in one tap or share an .ics invite. |
 | 4 | lock/shield | Private by design | No account, no ads, no tracking. Your clocks live on your device and in your own private iCloud database. |
 
-### 3. Feature showcases (ink band, one continuous section, 4 alternating rows)
+### 3. Feature showcases (ink band, one continuous section, 5 alternating rows)
 
 Shared layout rule: desktop alternates image-left/text-right and text-left/image-right per row (zig-zag); tablet/mobile always image-above-text, both centered, 100% width up to a 480px cap on the image.
 
@@ -130,6 +130,8 @@ Shared layout rule: desktop alternates image-left/text-right and text-left/image
 Watch row crop rule (same technique as hero): container `aspect-ratio: 1536 / 2035` (≈ bottom 74% of the 1536×2752 source), `object-fit: cover; object-position: bottom;` — discards the baked "Time On Your Wrist" text band, keeps the sunset skyline + wrist + watch face.
 
 Widgets & iCloud sync are real product facts but do not warrant a 5th full row — fold them into a single caption line under row D: *"Home Screen widgets and iCloud keep every device in sync."*
+
+Row E (added for Tempus 1.3): Profiles, headline "A list for work, another for family", with a "Coming in 1.3 · in beta" badge and a caption saying the App Store version doesn't have profiles yet — 1.3 is on TestFlight only, so the row must not claim App Store availability. Main asset `screens/08_profile_picker.png` (title menu open) in the CSS device frame; `screens/09_profile_list.png` and `screens/10_profile_editor.png` sit under the copy as a smaller captioned pair (`.feature-supporting`). When 1.3 reaches the App Store, drop the badge and caption.
 
 Alt text: A = "Tempus Meeting Finder showing selected cities, an overlap timeline, and best meeting times." B = "Tempus Time Converter with a scrubber showing converted times for Tokyo and Sydney." C = "Tempus City Detail view for Tokyo with skyline, sunrise and sunset times." D = "Apple Watch on a wrist showing the Tempus complication against a city skyline at dusk."
 
