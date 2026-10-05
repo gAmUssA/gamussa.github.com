@@ -4,6 +4,7 @@ date: 2017-06-08
 author: "Viktor Gamov"
 tags: ["hazelcast", "docker", "distributed-systems", "tutorial"]
 slug: "how-to-scale-hazelcast-docker-containers-with-docker-compose"
+aliases: ["/posts/2017/06/08/how-to-scale-hazelcast-docker-containers-with-docker-compose.html"]
 ---
 :toc: macro
 

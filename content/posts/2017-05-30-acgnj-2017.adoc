@@ -4,6 +4,7 @@ date: 2017-05-30
 author: "Viktor Gamov"
 tags: ["hazelcast", "java", "distributed-systems", "streaming", "talk"]
 slug: "acgnj-2017"
+aliases: ["/posts/2017/05/30/acgnj-2017.html"]
 ---
 == The Splendors and Miseries of the Distributed Streams
 

@@ -4,6 +4,7 @@ date: 2019-03-15
 author: "Viktor Gamov"
 tags: ["presentations", "tips-and-tricks", "kafka-summit", "devrel"]
 slug: "quick-tips-on-designing-your-next-presentation"
+aliases: ["/posts/2019/03/15/quick-tips-on-designing-your-next-presentation.html"]
 ---
 :toc: macro
 

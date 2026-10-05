@@ -4,6 +4,7 @@ date: 2016-03-31
 author: "Viktor Gamov"
 tags: ["hazelcast", "conferences", "devrel", "travel-report", "devnexus"]
 slug: "travel-report-q1-2016"
+aliases: ["/posts/2016/03/31/travel-report-q1-2016.html"]
 ---
 :toc: macro
 :experimental:

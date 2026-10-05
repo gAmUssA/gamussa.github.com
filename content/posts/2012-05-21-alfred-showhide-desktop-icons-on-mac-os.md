@@ -4,9 +4,10 @@ date: 2012-05-21
 author: "Viktor Gamov"
 tags: ["tips-and-tricks"]
 slug: "alfred-showhide-desktop-icons-on-mac-os"
+aliases: ["/posts/2012/05/21/alfred-showhide-desktop-icons-on-mac-os.html"]
 ---
 
-<div class="separator" style="clear: both; text-align: center;"><a href="/images/blog/2012-05-21-alfred-showhide-desktop-icons-on-mac-os/2012-05-21-alfred-showhide-desktop-icons-on-mac-os*1.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="103" src="/images/blog/2012-05-21-alfred-showhide-desktop-icons-on-mac-os/2012-05-21-alfred-showhide-desktop-icons-on-mac-os*1.png" width="400" /></a></div>For some reasons, I’m using desktop as temporary storage of files - downloaded from internet, in-progress documents, screenshots and code snippets. Time after time I create screencasts and I need to have clean desktop.
+<div class="separator" style="clear: both; text-align: center;"><a href="/images/blog/2012-05-21-alfred-showhide-desktop-icons-on-mac-os/2012-05-21-alfred-showhide-desktop-icons-on-mac-os_1.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="103" src="/images/blog/2012-05-21-alfred-showhide-desktop-icons-on-mac-os/2012-05-21-alfred-showhide-desktop-icons-on-mac-os_1.png" width="400" /></a></div>For some reasons, I’m using desktop as temporary storage of files - downloaded from internet, in-progress documents, screenshots and code snippets. Time after time I create screencasts and I need to have clean desktop.
 First, I tried to find available solution and have found <a href="http://manytricks.com/desktopcurtain/">Desktop Curtain</a>. I don’t need all this fanciness (different desktop wallpapers, customization) so $2.99 is overkill for me and for this taks.
 <a name='more'></a>
 So, I decide to create my own solution with help of shell and Alfred.

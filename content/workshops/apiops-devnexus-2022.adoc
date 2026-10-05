@@ -1,6 +1,7 @@
 ---
 title: "API design and APIOps"
 type: "page"
+aliases: ["/workshop/2022/04/12/apiops-devnexus-2022.html"]
 ---
 :toc: macro
 :toc-title: Table of content

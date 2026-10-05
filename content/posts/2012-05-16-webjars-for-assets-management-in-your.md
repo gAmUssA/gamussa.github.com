@@ -4,6 +4,7 @@ date: 2012-05-16
 author: "Viktor Gamov"
 tags: ["java", "javascript"]
 slug: "webjars-for-assets-management-in-your"
+aliases: ["/posts/2012/05/16/webjars-for-assets-management-in-your.html"]
 ---
 
 

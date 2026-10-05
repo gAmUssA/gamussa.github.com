@@ -4,6 +4,7 @@ date: 2017-09-20
 author: "Viktor Gamov"
 tags: ["kafka", "kafka-streams", "java", "streaming", "talk"]
 slug: "stream-v-batch"
+aliases: ["/posts/2017/09/20/stream-v-batch.html"]
 ---
 :toc: macro
 

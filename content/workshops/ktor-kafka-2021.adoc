@@ -1,6 +1,7 @@
 ---
 title: "Learn how to build event-driven microservices with Apache Kafka, Kotlin, and Ktor"
 type: "page"
+aliases: ["/workshop/2021/03/30/ktor-kafka-2021.html"]
 ---
 :toc-title: Table of content
 :toclevels: 3

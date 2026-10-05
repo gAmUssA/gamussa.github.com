@@ -1,6 +1,7 @@
 ---
 title: "Microservices with Kafka Streams, Spring Boot and Kubernetes"
 type: "page"
+aliases: ["/workshop/2020/12/15/christmas2020.html"]
 ---
 :revdate: 2020-12-15 8:36:08 -0600
 :linkattrs:

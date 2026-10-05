@@ -4,6 +4,7 @@ date: 2015-11-02
 author: "Viktor Gamov"
 tags: ["hazelcast", "distributed-systems", "caching", "java"]
 slug: "hazelcast-for-mongodb-developers"
+aliases: ["/posts/2015/11/02/hazelcast-for-mongodb-developers.html"]
 ---
 :ast: &ast;
 :y: icon:check-sign[role="green"]

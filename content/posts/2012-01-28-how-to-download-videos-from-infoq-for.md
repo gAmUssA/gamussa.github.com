@@ -4,6 +4,7 @@ date: 2012-01-28
 author: "Viktor Gamov"
 tags: ["tips-and-tricks"]
 slug: "how-to-download-videos-from-infoq-for"
+aliases: ["/posts/2012/01/28/how-to-download-videos-from-infoq-for.html"]
 ---
 
 [![][1]][1]

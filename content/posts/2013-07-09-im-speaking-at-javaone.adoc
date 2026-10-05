@@ -4,6 +4,7 @@ date: 2013-07-09
 author: "Viktor Gamov"
 tags: ["javaone", "javascript", "java", "conferences", "talk"]
 slug: "im-speaking-at-javaone"
+aliases: ["/posts/2013/07/09/im-speaking-at-javaone.html"]
 ---
 :mdash: &#8212;
 

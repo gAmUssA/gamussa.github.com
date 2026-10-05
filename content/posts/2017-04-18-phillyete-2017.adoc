@@ -4,6 +4,7 @@ date: 2017-04-18
 author: "Viktor Gamov"
 tags: ["java", "conferences", "presentations", "talk"]
 slug: "phillyete-2017"
+aliases: ["/posts/2017/04/18/phillyete-2017.html"]
 ---
 == Have you seen it? Do you like it? Please, rate
 

@@ -4,6 +4,7 @@ date: 2015-01-27
 author: "Viktor Gamov"
 tags: ["hazelcast", "imdg", "distributed-systems", "caching", "conferences"]
 slug: "ground-up-introduction-to-in-memory-data"
+aliases: ["/posts/2015/01/27/ground-up-introduction-to-in-memory-data.html"]
 ---
 .TL;DR
 NOTE: This April, http://codepalousa.com/blog/2015/code-palousa-2015-session-listing/[I'm going to deliver] half-day workshop «Ground-up Introduction To In-Memory Data» at http://codepalousa.com[Code PaLOUsa] conference in Louisville, KY.

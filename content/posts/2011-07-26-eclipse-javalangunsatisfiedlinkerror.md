@@ -4,6 +4,7 @@ date: 2011-07-26
 author: "Viktor Gamov"
 tags: ["java", "tips-and-tricks"]
 slug: "eclipse-javalangunsatisfiedlinkerror"
+aliases: ["/posts/2011/07/26/eclipse-javalangunsatisfiedlinkerror.html"]
 ---
 
 [![][1]][1]

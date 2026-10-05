@@ -2,7 +2,7 @@
 title: "Tempus Privacy Policy"
 layout: "single"
 url: "/tempus/privacy/"
-summary: "Privacy policy for Tempus, a world clock and time zone converter for iPhone and Apple Watch"
+summary: "Privacy policy for Tempus, a world clock and time zone converter for iPhone, iPad, and Apple Watch"
 ShowToc: false
 ShowBreadCrumbs: false
 ShowReadingTime: false
@@ -13,7 +13,7 @@ comments: false
 **Effective date:** September 1, 2026
 **Developer:** Viktor Gamov (viktor@gamov.io)
 
-Tempus is a world clock and time zone converter for iPhone and Apple Watch. This policy explains what data the app handles and where it goes.
+Tempus is a world clock and time zone converter for iPhone, iPad, and Apple Watch. This policy explains what data the app handles and where it goes.
 
 ## Summary
 

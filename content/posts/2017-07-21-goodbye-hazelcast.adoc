@@ -4,6 +4,7 @@ date: 2017-07-21
 author: "Viktor Gamov"
 tags: ["hazelcast", "career"]
 slug: "goodbye-hazelcast"
+aliases: ["/posts/2017/07/21/goodbye-hazelcast.html"]
 ---
 .TL;DR
 NOTE: July 21th, 2017, was my last day at Hazelcast.

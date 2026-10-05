@@ -4,6 +4,7 @@ date: 2017-07-20
 author: "Viktor Gamov"
 tags: ["hazelcast", "junit", "docker", "containers", "testing", "java", "talk"]
 slug: "testcontainers-ajug"
+aliases: ["/posts/2017/07/20/testcontainers-ajug.html"]
 ---
 :toc: macro
 

@@ -4,6 +4,7 @@ date: 2019-09-03
 author: "Viktor Gamov"
 tags: ["conferences", "meetups", "kafka", "kafka-summit", "devrel", "travel-report"]
 slug: "where-in-the-world-is-viktor-2019"
+aliases: ["/posts/2019/09/03/where-in-the-world-is-viktor-2019.html"]
 ---
 :toc: macro
 :toc-title: Table of content

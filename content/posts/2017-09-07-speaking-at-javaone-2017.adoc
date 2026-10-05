@@ -4,6 +4,7 @@ date: 2017-09-07
 author: "Viktor Gamov"
 tags: ["javaone", "conference", "conferences", "docker", "streaming", "talk"]
 slug: "speaking-at-javaone-2017"
+aliases: ["/posts/2017/09/07/speaking-at-javaone-2017.html"]
 ---
 .TL;DR
 NOTE: I'm going to speak at https://www.oracle.com/javaone/index.html[JavaOne 2017] in San Francisco, CA October 1st - 5th. 

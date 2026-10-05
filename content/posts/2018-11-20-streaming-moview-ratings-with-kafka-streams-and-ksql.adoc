@@ -4,6 +4,7 @@ date: 2018-11-20
 author: "Viktor Gamov"
 tags: ["kafka", "ksql", "streaming", "kafka-summit", "tutorial"]
 slug: "streaming-moview-ratings-with-kafka-streams-and-ksql"
+aliases: ["/posts/2018/11/20/streaming-moview-ratings-with-kafka-streams-and-ksql.html"]
 ---
 :toc: macro
 :experimental:

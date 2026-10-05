@@ -4,6 +4,7 @@ date: 2014-12-13
 author: "Viktor Gamov"
 tags: ["hazelcast", "job", "farata", "career"]
 slug: "goodbye-farata-hello-hazelcast"
+aliases: ["/posts/2014/12/13/goodbye-farata-hello-hazelcast.html"]
 ---
 [quote, Wayne Dyer]
 ____

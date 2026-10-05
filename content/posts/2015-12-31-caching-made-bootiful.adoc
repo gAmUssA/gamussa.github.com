@@ -4,6 +4,7 @@ date: 2015-12-31
 author: "Viktor Gamov"
 tags: ["hazelcast", "spring boot", "spring", "java", "caching", "tutorial"]
 slug: "caching-made-bootiful"
+aliases: ["/posts/2015/12/31/caching-made-bootiful.html"]
 ---
 :ast: &ast;
 :y: icon:check-sign[role="green"]

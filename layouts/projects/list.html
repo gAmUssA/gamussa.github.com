@@ -14,11 +14,12 @@
 
 <section class="projects-grid">
   {{- range $pages }}
+  {{- $project := . }}
   <article class="project-card">
     <a class="project-card__cover" href="{{ .Params.externalURL | default .Permalink }}"
        {{- if .Params.externalURL }} target="_blank" rel="noopener noreferrer"{{ end }}>
       {{- with .Params.cover.image }}
-      <img src="{{ . | absURL }}" alt="{{ $.Params.cover.alt | default $.Title }}" loading="lazy">
+      <img src="{{ . | absURL }}" alt="{{ $project.Params.cover.alt | default $project.Title }}" loading="lazy">
       {{- end }}
     </a>
     <div class="project-card__body">

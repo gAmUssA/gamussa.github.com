@@ -1,6 +1,7 @@
 ---
 title: "Using Apache Kafka® and Spring Platform to Build Event-Driven Microservices"
 type: "page"
+aliases: ["/workshop/2019/10/06/springone19.html"]
 ---
 :revdate: 2019-10-06 20:40:50 -0600
 :linkattrs:

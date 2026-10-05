@@ -1,6 +1,7 @@
 ---
 title: "Using Apache Kafka® and Spring Platform to Build Event-Driven Microservices"
 type: "page"
+aliases: ["/workshop/2020/02/11/cnfl-pivotal-nyc-2020.html"]
 ---
 :revdate: 2020-02-11 16:45:50 -0600
 :linkattrs:

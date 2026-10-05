@@ -4,6 +4,7 @@ date: 2016-04-18
 author: "Viktor Gamov"
 tags: ["hazelcast", "nodejs", "javascript", "distributed-systems", "tutorial"]
 slug: "getting-started-with-hazelcast-and-node"
+aliases: ["/posts/2016/04/18/getting-started-with-hazelcast-and-node.html"]
 ---
 :ast: &ast;
 :y: icon:check-sign[role="green"]

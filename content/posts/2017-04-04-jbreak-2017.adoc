@@ -4,6 +4,7 @@ date: 2017-04-04
 author: "Viktor Gamov"
 tags: ["hazelcast", "java", "distributed-systems", "streaming", "conferences", "talk"]
 slug: "jbreak-2017"
+aliases: ["/posts/2017/04/04/jbreak-2017.html"]
 ---
 image::jbreak.png[align="center", width="20%"]
 

@@ -4,6 +4,7 @@ date: 2011-07-10
 author: "Viktor Gamov"
 tags: ["gradle", "java", "book-review"]
 slug: "building-and-testing-with-gradle-my"
+aliases: ["/posts/2011/07/10/building-and-testing-with-gradle-my.html"]
 ---
     
 
