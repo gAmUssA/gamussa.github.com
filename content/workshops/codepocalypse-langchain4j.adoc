@@ -554,7 +554,23 @@ The application enforces four rules:
 * Approval applies to the current candidate. A revised message needs fresh approval.
 * History is written only after a valid receipt matches the call, candidate, event, and organizer IDs and includes a delivery timestamp.
 
-*Failure exercise:* Launch `JCLAW_MOCK_DELIVERY=wrong-candidate ./jclaw guardrails plain`, request a proposal, and approve it.
+*Delivery exercise:* If you have not yet sent the proficiency-based decline, stop the app, restart `./jclaw guardrails`, and submit the opening request.
+At a Judge-approved `HUMAN` candidate, enter `send`.
+*Expected:* `DELIVERED` after a matching receipt, then the literal message appears in confirmed history.
+If you already confirmed that decline, continue with the next fixture.
+
+Keep confirmed history for the remaining exercises.
+Proficiency is now a used reason, so use this additional fictional deadline fact:
+
+[quote]
+____
+Get me out of the Basic AI Proficiency Training on Tuesday, run by Dana from People Ops. Don't reuse a past reason. For this fictional rehearsal, I have a hard release deadline this week and am responsible for final release verification. Ask Dana for permission to prioritize that work over the training. Use only the deadline reason; don't add my conference talk, proficiency, or a calendar conflict. Tell me which past reasons you're avoiding.
+____
+
+Restarting clears current-session proposed alternatives while retaining confirmed history.
+
+*Failure exercise:* Stop the app and launch `JCLAW_MOCK_DELIVERY=wrong-candidate ./jclaw guardrails plain`.
+Submit the deadline request above, then enter `send` at a Judge-approved `HUMAN` candidate.
 *Expected:* Delivery stays unconfirmed and history is not updated. There is no automatic resend.
 
 *Adopt:* Treat approval as a decision about specific content. Record only confirmed outcomes, and reconcile uncertain delivery before retrying.
@@ -610,12 +626,24 @@ The complete demo also records model errors, Jev's typed decisions and probabili
 Application events separately describe MCP reads, canonical request assembly, human waiting, delivery receipts, and history writes.
 The local trace is `state/trace.jsonl`; it includes fictional model inputs and outputs and should not be treated as a production logging policy.
 
-*Try:* Request a decline, give human feedback once, inspect the revised review, and choose `hold`.
-After stopping, inspect the trace:
+*Try:* Use the fictional deadline request from Chapter 6, give human feedback once, inspect the revised review, and choose `hold`.
+Use F3 TRACE to inspect the actual inputs, outputs, usage, and native callbacks.
+The file appends across launches, and `traceId` identifies an application session.
+After stopping, count events from the last session with the optional `jq` command:
 
 [source,bash]
 ----
-rg 'DECISION_INPUT|DECISION_OUTPUT|MODEL_INPUT|MODEL_OUTPUT|AGENTIC_GRAPH|HUMAN_HOLD' state/trace.jsonl
+jclaw_trace_id=$(tail -n 1 state/trace.jsonl | jq -r '.traceId')
+jq -n --arg traceId "$jclaw_trace_id" '
+  reduce inputs as $event (
+    {DECISION_OUTPUT: 0, MODEL_OUTPUT: 0, AGENTIC_GRAPH: 0,
+     CANDIDATE: 0, VERDICT: 0, HUMAN_HOLD: 0,
+     DELIVERED: 0, MEMORY_SAVED: 0};
+    if $event.traceId == $traceId then
+      if has($event.kind) then .[$event.kind] += 1 else . end
+    else . end
+  )
+' state/trace.jsonl
 ----
 
 *Expected:* One Identify pass for the decline request, evidence for each candidate and Judge interaction, a human verdict, and no delivery/history-write event for the held candidate.
