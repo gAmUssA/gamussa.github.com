@@ -26,7 +26,7 @@ Tempus is a world clock, time zone converter and meeting finder for iPhone, iPad
 
 **My clocks are not syncing to my Apple Watch.** Make sure both devices are signed into the same iCloud account and that the watch app is installed. Opening Tempus on the iPhone triggers an immediate sync to the watch.
 
-**Can I use Tempus on iPad or Mac?** iPad, yes — version 1.1 is a native iPad app with a clock sidebar, City Detail beside it, keyboard shortcuts and pointer support. There is no separate Mac app.
+**Can I use Tempus on iPad or Mac?** iPad, yes — Tempus is a native iPad app with a clock sidebar, City Detail beside it, keyboard shortcuts and pointer support. There is no separate Mac app.
 
 ## Contact
 
