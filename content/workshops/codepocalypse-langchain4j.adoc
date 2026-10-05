@@ -95,6 +95,36 @@ The small Java fragments below belong inside the accompanying application and om
 Names such as `McpTools`, `SkillCatalog`, `Workflow`, and the decline records are application classes, not LangChain4j APIs.
 Read the indicated source files alongside each fragment.
 
+Java sources live under `app/src/main/java/dev/gamov/jclaw/`.
+The package names describe each class's responsibility:
+
+++++
+<div class="lc4j-scroll" role="region" aria-label="Java packages and source locations" tabindex="0">
+++++
+
+[cols="1,3",options="header"]
+|===
+|Package |Classes to explore
+|`app` |`Main`, `DemoSession`, `DemoMode`, `SessionDisplay`, `CopyCommands`: launch and coordinate the terminal session
+|`agent` |`AgentRoles`, `JevDecider`, `GeminiDecider`, `TurnDecider`, `Workflow`, `WorkflowReports`: typed decisions, generation and native orchestration
+|`domain` |`Contracts`, `Delivery`, `SharedPolicy`: wire records, receipt validation and comparison policy
+|`model` |`ModelProviders`, `ModelLineup`: provider clients and model choices
+|`tools` |`McpTools`, `MemoryTools`, `SkillCatalog`: scoped model capabilities
+|`memory` |`SentHistory`: confirmed outcome persistence
+|`observability` |`TraceEvidence`, `GraphEvents`, `TraceLogProvider`: listeners and local logging
+|`serialization` |`Json`: contract encoding and decoding
+|`checkpoint` |`RoundProjection`: derive the chapter checkpoints
+|===
+
+++++
+</div>
+++++
+
+For example, `agent/Workflow.java` means `dev.gamov.jclaw.agent.Workflow`.
+The typed records in the examples come from `dev.gamov.jclaw.domain.Contracts`.
+Tests mirror the production packages, with shared provider fixtures in the test-only `testing` package.
+The executable entry point is `dev.gamov.jclaw.app.Main`; the `./jclaw` commands stay the same.
+
 Stop the running application before changing rounds.
 Use the matching `round/01-chatbot` through `round/07-observability` checkpoint if your checkout includes them; otherwise, the complete `main` build accepts every chapter command.
 Make exercises on your own branch from a checkpoint so your edits remain easy to revisit.
@@ -148,7 +178,7 @@ Assistant assistant = AiServices.builder(Assistant.class)
 ----
 
 For this isolated example, set `JCLAW_CHAT_MODEL` to a Gemini model available to your account.
-The demo launcher instead resolves its role configuration and current defaults in `ModelLineup.java`.
+The demo launcher instead resolves its role configuration and current defaults in `model/ModelLineup.java`.
 `@V` explicitly binds a Java argument to the prompt variable.
 
 *Try:* Submit the opening request. Ask which previous excuses the assistant is avoiding.
@@ -158,7 +188,7 @@ Change the system message to require a shorter reply and compare the result.
 *Adopt:* Keep the provider behind `ChatModel` and expose a domain-oriented interface to callers.
 The system prompt guides wording; later chapters add application controls for actions.
 
-*Read the code:* `AgentRoles.java`, `DemoSession.java`, `ModelLineup.java`.
+*Read the code:* `agent/AgentRoles.java`, `app/DemoSession.java`, `model/ModelLineup.java`.
 *Official documentation:* https://docs.langchain4j.dev/tutorials/ai-services/[AI Services] and https://docs.langchain4j.dev/integrations/language-models/google-genai/[Google Gen AI].
 
 == Chapter 2 — Ground answers with tools and MCP
@@ -222,7 +252,7 @@ var client = DefaultMcpClient.builder()
 // The owning application closes client when the session ends.
 ----
 
-`javaExecutable` and `calendarJar` are resolved paths in `McpTools.java`.
+`javaExecutable` and `calendarJar` are resolved paths in `tools/McpTools.java`.
 That class executes named MCP requests and validates results; the model-facing façade exposes only reads.
 MCP supplies the transport and tool contract. The registered façade determines which capabilities this assistant can request.
 
@@ -231,7 +261,7 @@ MCP supplies the transport and tool contract. The registered façade determines 
 
 *Adopt:* Expose the smallest useful tool surface. Keep a future send operation under application control.
 
-*Read the code:* `McpTools.java`, especially `ReadOnly` and the `boot` method that builds each `DefaultMcpClient`.
+*Read the code:* `tools/McpTools.java`, especially `ReadOnly` and the `boot` method that builds each `DefaultMcpClient`.
 *Official documentation:* https://docs.langchain4j.dev/tutorials/tools/[Tools] and https://docs.langchain4j.dev/tutorials/mcp/[MCP integration].
 
 == Chapter 3 — Separate conversation from durable history
@@ -273,7 +303,7 @@ This example uses document retrieval without an embedding store.
 
 *Adopt:* Store business outcomes separately from conversational context. For multiple users, give each conversation its own memory identity and isolate its durable records.
 
-*Read the code:* `MemoryTools.java`, `SentHistory.java`, and the chat builder in `DemoSession.java`.
+*Read the code:* `tools/MemoryTools.java`, `memory/SentHistory.java`, and the chat builder in `app/DemoSession.java`.
 *Official documentation:* https://docs.langchain4j.dev/tutorials/chat-memory/[Chat Memory] and https://docs.langchain4j.dev/tutorials/ai-services/#chat-memory[Memory in AI Services].
 
 == Chapter 4 — Load reusable instructions when needed
@@ -325,7 +355,7 @@ Loading instructions does not add send permissions.
 *Framework alternative:* LangChain4j also provides `langchain4j-skills:1.21.0-beta31`, including `FileSystemSkillLoader`, `Skills`, and a tool provider.
 The current demo uses its own scoped `SkillCatalog`; adopting the native module would be a separate implementation change.
 
-*Read the code:* `SkillCatalog.java` and the registered skills in `DemoSession.java`.
+*Read the code:* `tools/SkillCatalog.java` and the registered skills in `app/DemoSession.java`.
 *Official documentation:* https://docs.langchain4j.dev/tutorials/skills/[LangChain4j Skills] and https://agentskills.io/specification[Agent Skills specification].
 
 == Chapter 5 — Build a typed decision and review workflow
@@ -403,7 +433,7 @@ An uncertain target asks for clarification before drafting.
 
 === Give Draft and Judge different contracts
 
-`ModelProviders.java` creates native API clients for the generation roles:
+`model/ModelProviders.java` creates native API clients for the generation roles:
 
 [source,java]
 ----
@@ -448,7 +478,7 @@ interface Critic {
 ----
 
 `DeclineReview` contains both the current request and exact plan.
-Use the complete constraints in `AgentRoles.java` when running the demo; these abbreviated prompts illustrate the signatures.
+Use the complete constraints in `agent/AgentRoles.java` when running the demo; these abbreviated prompts illustrate the signatures.
 Typed parsing establishes a shape. Java validation and a separate Judge assess whether the proposal is acceptable.
 Neither generation role has action tools.
 
@@ -484,7 +514,7 @@ Claude writes the outward scripts, and Judge evaluates the typed candidate.
 Judge does not require the application's separate report inside that candidate.
 Both roles must avoid reusing a reason in substance, even when the flavor label changes.
 
-`Workflow.java` composes those roles with `AgenticServices.agentBuilder`, `nonAiAgentBuilder`, `sequenceBuilder`, `conditionalBuilder`, and `loopBuilder`.
+`agent/Workflow.java` composes those roles with `AgenticServices.agentBuilder`, `nonAiAgentBuilder`, `sequenceBuilder`, `conditionalBuilder`, and `loopBuilder`.
 Named state keys connect the stages; application nodes prepare the review and inspect its verdict.
 The loop allows six refinements after the initial draft: at most seven candidates per request.
 Exhaustion, invalid Draft or Judge output, or an unavailable Draft or Judge provider blocks the request.
@@ -496,7 +526,7 @@ This chapter stops at a reviewed proposal.
 
 *Adopt:* Use a decision model for bounded choices, a generation model for drafting, and application code for identity and state validation. Carry a real refinement budget across the request.
 
-*Read the code:* `JevDecider.java`, `Contracts.java`, `AgentRoles.java`, and `Workflow.java`.
+*Read the code:* `agent/JevDecider.java`, `domain/Contracts.java`, `agent/AgentRoles.java`, and `agent/Workflow.java`.
 *Official documentation:* https://docs.langchain4j.dev/tutorials/decision-models/[Decision Models], https://docs.langchain4j.dev/integrations/decision-models/typesafe/[TypeSafe integration], https://docs.langchain4j.dev/tutorials/structured-outputs/[Structured Outputs], and https://docs.langchain4j.dev/tutorials/agents/[Agents and Agentic AI].
 
 == Chapter 6 — Bind human approval to the reviewed candidate
@@ -576,7 +606,7 @@ Submit the deadline request above, then enter `send` at a Judge-approved `HUMAN`
 *Adopt:* Treat approval as a decision about specific content. Record only confirmed outcomes, and reconcile uncertain delivery before retrying.
 A content hash binds a candidate; it does not provide authentication or server-side idempotency.
 
-*Read the code:* `Workflow.ApprovalGate`, `DemoSession.java`, `Delivery.java`, and `SentHistory.java`.
+*Read the code:* `agent/Workflow.java` (`ApprovalGate`), `app/DemoSession.java`, `domain/Delivery.java`, and `memory/SentHistory.java`.
 *Official documentation:* https://docs.langchain4j.dev/tutorials/agents/#human-in-the-loop[Human in the loop].
 This chapter's delivery gate is application logic; LangChain4j https://docs.langchain4j.dev/tutorials/guardrails/[input and output guardrails] are a separate API.
 
@@ -685,7 +715,7 @@ API usage and elapsed time are visible; there is no hosted telemetry exporter or
 For a provider-free example, run `./gradlew :app:reportFixture --offline` and open `state/report-fixture/review-loop.html` and `human-review.html`.
 These are prepared-response fixtures of real native execution, not reports from your live session.
 
-*Read the code:* `TraceEvidence.java`, `GraphEvents.java`, `WorkflowReports.java`, and report wiring in `Main.java`.
+*Read the code:* `observability/TraceEvidence.java`, `observability/GraphEvents.java`, `agent/WorkflowReports.java`, and report wiring in `app/Main.java`.
 *Official documentation:* https://docs.langchain4j.dev/tutorials/observability/[Observability], https://docs.langchain4j.dev/tutorials/decision-models/#observability[Decision model listeners], and https://docs.langchain4j.dev/tutorials/agents/#observability[Agentic monitoring and HTML reports].
 
 == Continue in your own application
