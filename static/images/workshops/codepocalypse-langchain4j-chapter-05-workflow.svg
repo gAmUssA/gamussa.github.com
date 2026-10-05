@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="725" viewBox="0 0 1000 725" role="img" aria-labelledby="title description">
+<title id="title">Chapter 5: Java orchestrates bounded decisions and review</title>
+<desc id="description">The user submits a decline request. Java reads calendar and history, calls Jev for bounded intent and event choices, validates identity and assembles DeclineRequest. Its native Agentic graph calls Claude to draft DeclineDeployment, assembles the exact DeclineReview and calls OpenAI for DeclineCritique. Rejection returns to Claude for refinement. Approval ends at a reviewed proposal; round 5 has no human send gate.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0f766e"/></marker>
+<marker id="feedback" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b45309"/></marker>
+<marker id="muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#64748b"/></marker>
+</defs>
+<rect width="1000" height="725" fill="#f8fafc"/><rect width="1000" height="6" fill="#0f766e"/>
+<g font-family="Inter, Helvetica, Arial, sans-serif" fill="#0f172a">
+<text x="25" y="42" font-size="16" font-weight="700" letter-spacing="2" fill="#0f766e">CHAPTER 5 · JAVA 21 · LANGCHAIN4J</text>
+<text x="25" y="88" font-size="32" font-weight="700">Java orchestrates bounded decisions and review</text>
+<text x="25" y="124" font-size="20" fill="#475569">Jev selects; Java assembles; Claude drafts; OpenAI judges</text>
+<g><rect x="25" y="160" width="270" height="116" rx="12" fill="#fffbeb" stroke="#a16207" stroke-width="2"/><text x="41" y="195" font-size="22" font-weight="700">User / TUI</text><text x="41" y="229" font-size="20" fill="#475569">Decline request</text></g>
+<g><rect x="365" y="160" width="270" height="116" rx="12" fill="#ecfdf5" stroke="#0f766e" stroke-width="2"/><text x="381" y="195" font-size="22" font-weight="700">Java application</text><text x="381" y="229" font-size="20" fill="#475569">Identify + assemble</text><text x="381" y="257" font-size="20" fill="#475569">DeclineRequest</text></g>
+<g><rect x="705" y="160" width="270" height="116" rx="12" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2"/><text x="721" y="195" font-size="22" font-weight="700">Jev API</text><text x="721" y="229" font-size="20" fill="#475569">Intent + event choices</text><text x="721" y="257" font-size="20" fill="#475569">Confidence / probability</text></g>
+<g><rect x="25" y="335" width="270" height="116" rx="12" fill="#fff" stroke="#64748b" stroke-width="2"/><text x="41" y="370" font-size="22" font-weight="700">Grounded inputs</text><text x="41" y="404" font-size="20" fill="#475569">Calendar + organizer</text><text x="41" y="432" font-size="20" fill="#475569">Seeds + sent history</text></g>
+<g><rect x="365" y="335" width="270" height="116" rx="12" fill="#faf5ff" stroke="#7e22ce" stroke-width="2"/><text x="381" y="370" font-size="22" font-weight="700">Draft / Refine agent</text><text x="381" y="404" font-size="20" fill="#475569">Claude Opus 5.5 API</text><text x="381" y="432" font-size="20" fill="#475569">DeclineDeployment</text></g>
+<g><rect x="705" y="335" width="270" height="116" rx="12" fill="#faf5ff" stroke="#7e22ce" stroke-width="2"/><text x="721" y="370" font-size="22" font-weight="700">Judge agent</text><text x="721" y="404" font-size="20" fill="#475569">OpenAI GPT-6 Astra API</text><text x="721" y="432" font-size="20" fill="#475569">DeclineCritique</text></g>
+<g><rect x="365" y="510" width="270" height="116" rx="12" fill="#ecfdf5" stroke="#0f766e" stroke-width="2"/><text x="381" y="545" font-size="22" font-weight="700">Reviewed proposal</text><text x="381" y="579" font-size="20" fill="#475569">Exact request + plan</text><text x="381" y="607" font-size="20" fill="#475569">This round ends here</text></g>
+<path d="M295 216H355" fill="none" stroke="#0f766e" stroke-width="2.5" marker-end="url(#arrow)"/><text x="325" y="197" font-size="17" text-anchor="middle" fill="#0f766e" paint-order="stroke" stroke="#f8fafc" stroke-width="5" stroke-linejoin="round">request</text>
+<path d="M635 216H695" fill="none" stroke="#0f766e" stroke-width="2.5" marker-end="url(#arrow)" marker-start="url(#arrow)"/><text x="665" y="197" font-size="17" text-anchor="middle" fill="#0f766e" paint-order="stroke" stroke="#f8fafc" stroke-width="5" stroke-linejoin="round">Jev</text>
+<path d="M365 245H325V310H160V325" fill="none" stroke="#0f766e" stroke-width="2.5" marker-end="url(#arrow)" marker-start="url(#arrow)"/><text x="255" y="300" font-size="17" text-anchor="middle" fill="#0f766e" paint-order="stroke" stroke="#f8fafc" stroke-width="5" stroke-linejoin="round">Java reads</text>
+<path d="M500 276V325" fill="none" stroke="#0f766e" stroke-width="2.5" marker-end="url(#arrow)"/><text x="565" y="304" font-size="17" text-anchor="middle" fill="#0f766e" paint-order="stroke" stroke="#f8fafc" stroke-width="5" stroke-linejoin="round">typed request</text>
+<path d="M635 375H695" fill="none" stroke="#0f766e" stroke-width="2.5" marker-end="url(#arrow)"/><text x="665" y="359" font-size="17" text-anchor="middle" fill="#0f766e" paint-order="stroke" stroke="#f8fafc" stroke-width="5" stroke-linejoin="round">review</text>
+<path d="M705 425H645V457H500V451" fill="none" stroke="#b45309" stroke-width="2.5" stroke-dasharray="7 5" marker-end="url(#feedback)"/><text x="618" y="477" font-size="17" text-anchor="middle" fill="#b45309" paint-order="stroke" stroke="#f8fafc" stroke-width="5" stroke-linejoin="round">reject → refine</text>
+<path d="M840 451V490H630V500" fill="none" stroke="#0f766e" stroke-width="2.5" marker-end="url(#arrow)"/><text x="749" y="479" font-size="17" text-anchor="middle" fill="#0f766e" paint-order="stroke" stroke="#f8fafc" stroke-width="5" stroke-linejoin="round">approved</text>
+<text x="25" y="643" font-size="20" fill="#475569">Native Agentic nodes build the exact review and inspect the verdict.</text>
+<text x="25" y="672" font-size="20" fill="#475569">Six refinements / seven candidates; Draft or Judge errors block.</text>
+<text x="25" y="701" font-size="20" fill="#475569">No action tools on either agent; no human gate or send in round 5.</text>
+</g>
+</svg>

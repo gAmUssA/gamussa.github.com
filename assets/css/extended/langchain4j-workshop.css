@@ -1,0 +1,30 @@
+/* Scroll the workshop's wide content without expanding the page on phones. */
+.post-content .lc4j-scroll,
+.post-content .lc4j-workflow {
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.post-content .lc4j-scroll table {
+  min-width: 38rem;
+  width: 100%;
+  margin: 0;
+}
+
+.post-content .lc4j-workflow img {
+  min-width: 38rem;
+  width: 100%;
+  margin: 0;
+}
+
+.post-content .lc4j-scroll:focus-visible,
+.post-content .lc4j-workflow:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+/* Keep labels readable when chapter diagrams scroll on narrow screens. */
+.post-content .lc4j-chapter-diagram img {
+  min-width: 45rem;
+}
