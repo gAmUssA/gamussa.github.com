@@ -1,0 +1,24 @@
+# Hugo build output
+public/
+resources/_gen/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Hugo lock
+.hugo_build.lock
+
+# Project-local Ruby tools
+.bundle/
+.build/
+vendor/bundle/
+
+# Migration scripts (not needed in production)
+migrate.rb
+fix_asciidoc.rb
+
+# Old Awestruct site (kept for reference)
+_old_awestruct/
+.history
+.playwright-mcp

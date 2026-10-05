@@ -1,0 +1,31 @@
+# Local coding-agent fallback stack — when-claude-is-offline post
+direction: right
+
+chassis: "tmux — the chassis" {
+  oc: OpenCode
+  pi: Pi
+}
+
+model: "Ollama\nqwen3-coder:30b-ctx64k\n(64k context)" {
+  shape: cylinder
+}
+
+tools: "built-in tools\nread · write · edit · bash" {
+  shape: rectangle
+}
+
+web: "web search" {
+  mcp: "Tavily via MCP\n(OpenCode only)"
+  skill: "tavily-search skill\n~/.agents/skills"
+}
+
+shared: "discovered by\nOpenCode + Pi + Claude Code" {
+  shape: oval
+}
+
+chassis.oc -> model: "tool_calls"
+chassis.pi -> model: "tool_calls"
+model -> tools: executes
+chassis.oc -> web.mcp
+chassis.pi -> web.skill
+web.skill -> shared

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="430" viewBox="0 0 1000 430" role="img" aria-labelledby="title description">
+<title id="title">Chapter 1: A prompt becomes a Java call</title>
+<desc id="description">The user enters a request in the TUI. Java AiServices binds it to the prompt and calls Gemini through ChatModel. Gemini returns text through the application. No tools or durable history are read.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0f766e"/></marker>
+<marker id="feedback" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b45309"/></marker>
+<marker id="muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#64748b"/></marker>
+</defs>
+<rect width="1000" height="430" fill="#f8fafc"/><rect width="1000" height="6" fill="#0f766e"/>
+<g font-family="Inter, Helvetica, Arial, sans-serif" fill="#0f172a">
+<text x="25" y="42" font-size="16" font-weight="700" letter-spacing="2" fill="#0f766e">CHAPTER 1 · JAVA 21 · LANGCHAIN4J</text>
+<text x="25" y="88" font-size="32" font-weight="700">A prompt becomes a Java call</text>
+<text x="25" y="124" font-size="20" fill="#475569">ChatModel and AiServices; no calendar or history retrieval</text>
+<g><rect x="25" y="170" width="270" height="116" rx="12" fill="#fffbeb" stroke="#a16207" stroke-width="2"/><text x="41" y="205" font-size="22" font-weight="700">User / TUI</text><text x="41" y="239" font-size="20" fill="#475569">Opening request</text></g>
+<g><rect x="365" y="170" width="270" height="116" rx="12" fill="#ecfdf5" stroke="#0f766e" stroke-width="2"/><text x="381" y="205" font-size="22" font-weight="700">Java AI Service</text><text x="381" y="239" font-size="20" fill="#475569">reply(request)</text><text x="381" y="267" font-size="20" fill="#475569">Prompt + ChatModel</text></g>
+<g><rect x="705" y="170" width="270" height="116" rx="12" fill="#faf5ff" stroke="#7e22ce" stroke-width="2"/><text x="721" y="205" font-size="22" font-weight="700">Gemini API</text><text x="721" y="239" font-size="20" fill="#475569">gemini-3.7-flash</text><text x="721" y="267" font-size="20" fill="#475569">Generated text</text></g>
+<path d="M295 226H355" fill="none" stroke="#0f766e" stroke-width="2.5" marker-end="url(#arrow)" marker-start="url(#arrow)"/><text x="325" y="207" font-size="17" text-anchor="middle" fill="#0f766e" paint-order="stroke" stroke="#f8fafc" stroke-width="5" stroke-linejoin="round">turn</text>
+<path d="M635 226H695" fill="none" stroke="#0f766e" stroke-width="2.5" marker-end="url(#arrow)" marker-start="url(#arrow)"/><text x="665" y="207" font-size="17" text-anchor="middle" fill="#0f766e" paint-order="stroke" stroke="#f8fafc" stroke-width="5" stroke-linejoin="round">API</text>
+<text x="25" y="377" font-size="20" fill="#475569">The app supplies persona context; the model supplies wording.</text>
+<text x="25" y="406" font-size="20" fill="#475569">No calendar calls, retrieved excuses, or send capability in this round.</text>
+</g>
+</svg>

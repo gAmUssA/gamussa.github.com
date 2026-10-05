@@ -1,0 +1,902 @@
+/* ==========================================================================
+   gamov.io — Design System
+   Lora (body/headings) + Inter (UI chrome) + JetBrains Mono (code)
+   selectstar.stream palette: indigo primary, teal accent, premium feel
+   ========================================================================== */
+
+:root {
+  /* Typography */
+  --serif: 'Lora', Georgia, 'Times New Roman', serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --mono: 'JetBrains Mono', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+
+  /* Palette — selectstar.stream inspired */
+  --accent: #4F46E5;           /* indigo primary */
+  --accent-hover: #4338CA;
+  --accent-secondary: #0891b2; /* teal for links */
+  --accent-cta: #F97316;       /* orange CTA pop */
+  --nav-bg: #1a202c;           /* premium dark slate */
+  --border-light: #e2e8f0;
+
+  /* Layout — wider for modern screens */
+  --content-width: 960px;
+  --prose-measure: 72ch;
+}
+
+/* ---------- Light mode ---------- */
+:root, :root[data-theme="light"] {
+  --theme: #ffffff;
+  --entry: #ffffff;
+  --primary: #1a202c;
+  --secondary: #4b5563;
+  --tertiary: #e2e8f0;
+  --content: #1a202c;
+  --code-block-bg: #f8fafc;
+  --code-bg: #f1f5f9;
+  --border: #e2e8f0;
+  color-scheme: light;
+}
+
+/* ---------- Dark mode ---------- */
+:root[data-theme="dark"] {
+  --theme: #0a0a0a;
+  --entry: #141414;
+  --primary: #f1f5f9;
+  --secondary: #94a3b8;
+  --tertiary: #1e293b;
+  --content: #e2e8f0;
+  --code-block-bg: #1e1e2e;
+  --code-bg: #1e1e2e;
+  --border: #334155;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --theme: #0a0a0a;
+    --entry: #141414;
+    --primary: #f1f5f9;
+    --secondary: #94a3b8;
+    --tertiary: #1e293b;
+    --content: #e2e8f0;
+    --code-block-bg: #1e1e2e;
+    --code-bg: #1e1e2e;
+    --border: #334155;
+    color-scheme: dark;
+  }
+}
+
+body {
+  font-family: var(--serif);
+  font-size: 18px;
+  background: var(--theme);
+  color: var(--primary);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.list {
+  background: var(--theme);
+}
+
+/* ---------- Reading content — Lora, optimal measure ---------- */
+.post-content p,
+.post-content > ul > li,
+.post-content > ol > li,
+.post-content dd,
+.post-content blockquote p {
+  font-family: var(--serif);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  letter-spacing: 0.005em;
+  max-width: var(--prose-measure);
+}
+
+.post-content p {
+  margin-bottom: 1.1em;
+}
+
+/* AsciiDoc rendered HTML — tighter spacing */
+.post-content .paragraph + .paragraph { margin-top: 0; }
+.post-content .paragraph p { margin-bottom: 0.9em; }
+.post-content .sectionbody > .paragraph:first-child p { margin-top: 0; }
+
+/* AsciiDoc section spacing */
+.post-content .sect1 { margin-bottom: 0.5em; }
+.post-content .sect1 + .sect1 { margin-top: 1em; }
+.post-content .sectionbody { margin-top: 0.5em; }
+
+/* AsciiDoc lists — tighter */
+.post-content .ulist ul,
+.post-content .olist ol {
+  margin-top: 0.3em;
+  margin-bottom: 0.8em;
+  max-width: var(--prose-measure);
+}
+
+.post-content .ulist li p,
+.post-content .olist li p {
+  margin-bottom: 0.3em;
+}
+
+/* Structural elements use full width */
+.post-content pre,
+.post-content table,
+.post-content .imageblock,
+.post-content img,
+.post-content .tableblock,
+.post-content .listingblock,
+.post-content .literalblock {
+  max-width: 100%;
+}
+
+/* Zoomable images — cursor hint */
+.post-content img {
+  cursor: zoom-in;
+  transition: opacity 0.2s;
+}
+
+/* ---------- Homepage content ---------- */
+.home-info .entry-content,
+.page-content p,
+.page-content li {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: var(--prose-measure);
+}
+
+/* Profile mode hero */
+.profile .profile_inner h1 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 2.4rem;
+}
+
+.profile .profile_inner .tagline {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--secondary);
+}
+
+/* Profile buttons — blue accent */
+.profile .profile_inner .button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5em 1.2em;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 200ms;
+}
+
+.profile .profile_inner .button:hover {
+  background: var(--accent-hover);
+}
+
+/* ---------- UI chrome — Inter ---------- */
+.nav,
+.post-meta,
+.post-tags,
+.footer,
+.pagination,
+.post-entry .entry-content,
+.breadcrumbs,
+.toc,
+#toc,
+.post-entry .entry-footer {
+  font-family: var(--sans);
+}
+
+/* ---------- Links — blue accent, subtle underline ---------- */
+.post-content a,
+.page-content a {
+  color: var(--accent-secondary);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(8, 145, 178, 0.3);
+  transition: text-decoration-color 200ms, color 200ms;
+}
+
+.post-content a:hover,
+.page-content a:hover {
+  color: #0e7490;
+  text-decoration-color: #0e7490;
+}
+
+/* ---------- Content width ---------- */
+.main {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+header.header {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+/* ---------- Dark nav bar — full viewport width ---------- */
+header.header {
+  max-width: 100%;
+  background: var(--nav-bg);
+  padding: 0;
+}
+
+.nav {
+  background: var(--nav-bg);
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.nav a,
+.nav #theme-toggle {
+  color: #e0e0e0 !important;
+}
+
+.nav a:hover {
+  color: #fff !important;
+}
+
+.logo a {
+  color: #fff !important;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+/* Nav menu icons (from .Pre field) */
+#menu svg {
+  display: inline-block;
+  vertical-align: -2px;
+  margin-right: 3px;
+}
+
+/* ---------- Headings — Lora semi-bold ---------- */
+h1, h2, h3, h4, h5, h6,
+.post-title,
+.entry-header h2 {
+  font-family: var(--serif);
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.post-title {
+  font-size: 2.4rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.post-content h2 {
+  margin-top: 2.2em;
+  margin-bottom: 0.6em;
+  font-size: 1.6rem;
+}
+
+.post-content h3 {
+  margin-top: 1.8em;
+  margin-bottom: 0.5em;
+  font-size: 1.3rem;
+}
+
+.post-content h4 {
+  margin-top: 1.4em;
+  font-size: 1.1rem;
+}
+
+/* ---------- Heading anchors — prevent layout shift on hover ---------- */
+h1 .anchor, h2 .anchor, h3 .anchor, h4 .anchor, h5 .anchor, h6 .anchor {
+  opacity: 0;
+  transition: opacity 150ms;
+  position: absolute;
+  margin-left: 0.3em;
+}
+h1:hover .anchor, h2:hover .anchor, h3:hover .anchor,
+h4:hover .anchor, h5:hover .anchor, h6:hover .anchor {
+  opacity: 0.4;
+}
+h1, h2, h3, h4, h5, h6 {
+  position: relative;
+}
+
+/* ---------- Post meta ---------- */
+.post-meta {
+  color: var(--secondary);
+  font-size: 0.88rem;
+}
+
+/* ---------- Code — JetBrains Mono ---------- */
+code,
+pre code {
+  font-family: var(--mono);
+  font-feature-settings: "calt" 1;
+}
+
+:not(pre) > code {
+  font-size: 0.85em;
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  background: var(--code-bg);
+}
+
+.post-content pre {
+  border-radius: 6px;
+  padding: 1.1em 1.3em;
+  line-height: 1.55;
+  overflow-x: auto;
+  font-size: 0.875rem;
+  background: var(--code-block-bg) !important;
+  border: 1px solid var(--border);
+}
+
+.post-content pre code {
+  display: block !important;  /* override PaperMod's display:grid which breaks Rouge inline spans */
+  font-size: inherit;
+  padding: 10px;
+  background: none !important;
+  border: none;
+  color: var(--content) !important;
+  white-space: pre;
+  word-break: normal;
+}
+
+/* Rouge highlighted code blocks — override PaperMod dark defaults */
+pre.rouge.highlight {
+  background: var(--code-block-bg) !important;
+  padding: 0;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  overflow-x: auto;
+  position: relative;
+}
+
+pre.rouge.highlight code {
+  display: block !important;
+  background: none !important;
+  color: var(--content) !important;
+  padding: 1.1em 1.3em;
+  padding-top: 2.2em;
+  white-space: pre;
+}
+
+/* Language label — uses data-lang attribute from Rouge */
+pre.rouge.highlight code[data-lang]::before {
+  content: attr(data-lang);
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.2em 0.7em;
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--secondary);
+  background: var(--border);
+  border-radius: 6px 0 6px 0;
+  line-height: 1.6;
+}
+
+/* Copy button on Rouge code blocks */
+pre.rouge.highlight .copy-code {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+}
+
+/* Collapsible code blocks — toggled by JS for blocks > 15 lines */
+pre.rouge.highlight.collapsible {
+  max-height: 360px;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+pre.rouge.highlight.collapsible.expanded {
+  max-height: none;
+}
+
+.code-expand-btn {
+  display: block;
+  width: 100%;
+  padding: 0.4em 0;
+  border: none;
+  border-top: 1px solid var(--border);
+  background: var(--code-block-bg);
+  color: var(--secondary);
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 0 0 6px 6px;
+  text-align: center;
+}
+
+.code-expand-btn:hover {
+  color: var(--primary);
+}
+
+/* ---------- AsciiDoc admonitions ---------- */
+/* Asciidoctor generates: <td class="icon"><i class="fa icon-note" title="Note"></i></td>
+   We hide the <i>, use ::after on td.icon to show a CSS label + circle icon */
+.admonitionblock > table {
+  border: 0;
+  background: none;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 1.2em 0;
+}
+
+.admonitionblock > table td.icon {
+  text-align: center;
+  width: 54px;
+  vertical-align: top;
+  padding: 0.9em 0 0;
+  font-family: var(--sans);
+}
+
+/* Hide the broken FA <i> element */
+.admonitionblock > table td.icon i {
+  display: none;
+}
+
+/* Show label via ::after using the title attribute from the <i> tag */
+.admonitionblock > table td.icon::after {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  line-height: 1;
+}
+
+/* Per-type styling: icon circle + border color + label */
+.admonitionblock.note td.icon::after {
+  content: "i";
+  background: #EEF2FF;
+  color: #4F46E5;
+  border: 1.5px solid rgba(79,70,229,0.3);
+}
+.admonitionblock.note td.content { border-left: 3px solid #4F46E5; }
+
+.admonitionblock.tip td.icon::after {
+  content: "✓";
+  background: #F0FDF4;
+  color: #16a34a;
+  border: 1.5px solid rgba(22,163,74,0.3);
+}
+.admonitionblock.tip td.content { border-left: 3px solid #16a34a; }
+
+.admonitionblock.warning td.icon::after {
+  content: "!";
+  background: #FFFBEB;
+  color: #d97706;
+  border: 1.5px solid rgba(217,119,6,0.3);
+}
+.admonitionblock.warning td.content { border-left: 3px solid #d97706; }
+
+.admonitionblock.caution td.icon::after {
+  content: "⚑";
+  background: #FFF1F2;
+  color: #dc2626;
+  border: 1.5px solid rgba(220,38,38,0.3);
+}
+.admonitionblock.caution td.content { border-left: 3px solid #dc2626; }
+
+.admonitionblock.important td.icon::after {
+  content: "!";
+  background: #FFF1F2;
+  color: #dc2626;
+  border: 1.5px solid rgba(220,38,38,0.3);
+}
+.admonitionblock.important td.content { border-left: 3px solid #dc2626; }
+
+.admonitionblock > table td.content {
+  padding: 0.8em 1em;
+  border-left: 3px solid #e5e7eb;
+  color: var(--primary);
+}
+
+.admonitionblock > table td.content > .paragraph:last-child > p {
+  margin-bottom: 0;
+}
+
+/* Kill PaperMod's default table td border on admonitions */
+.admonitionblock > table td {
+  border: none !important;
+}
+
+/* Also kill it on callout tables */
+.colist > table td {
+  border: none !important;
+}
+
+/* ---------- AsciiDoc listing/literal titles ---------- */
+.listingblock > .title,
+.literalblock > .title {
+  font-family: var(--sans);
+  font-size: 0.82em;
+  color: var(--secondary);
+  margin-bottom: 0.3em;
+  font-style: italic;
+}
+
+/* ---------- AsciiDoc TOC ---------- */
+#toc {
+  margin-bottom: 2em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 0.9rem;
+}
+
+#toc ol,
+#toc ul {
+  list-style-type: none;
+  padding-left: 1em;
+}
+
+#toctitle {
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  color: var(--secondary);
+}
+
+/* ---------- Sidebar blocks ---------- */
+.sidebarblock {
+  padding: 1em 1.2em;
+  border-radius: 6px;
+  margin-bottom: 1.5em;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+}
+
+.sidebarblock > .content > .title {
+  font-weight: 700;
+  margin-bottom: 0.5em;
+}
+
+/* ---------- Quote blocks ---------- */
+.quoteblock {
+  margin: 1.5em 0;
+  padding-left: 1.2em;
+  border-left: 3px solid var(--accent);
+}
+
+.quoteblock blockquote {
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-style: italic;
+}
+
+.quoteblock .attribution {
+  font-size: 0.85em;
+  color: var(--secondary);
+  margin-top: 0.5em;
+  font-family: var(--sans);
+}
+
+/* ---------- Blockquotes (markdown) ---------- */
+.post-content blockquote,
+.page-content blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 1.2em;
+  color: #3f3f46;
+  font-style: italic;
+}
+
+/* ---------- Images ---------- */
+.post-content img,
+.page-content img {
+  border-radius: 6px;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- Home page ---------- */
+.first-entry {
+  border: none;
+}
+
+/* Homepage content section */
+.page-content {
+  margin-top: 2em;
+}
+
+.page-content h2 {
+  font-size: 1.6rem;
+  margin-top: 2em;
+  padding-top: 0.5em;
+}
+
+.page-content h3 {
+  font-size: 1.35rem;
+  margin-top: 1.5em;
+}
+
+.page-content h4 {
+  font-size: 1.1rem;
+  color: var(--secondary);
+  font-weight: 500;
+}
+
+.page-content hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2.5em 0;
+}
+
+/* ---------- Post list ---------- */
+.post-entry {
+  border-bottom: 1px solid var(--border);
+  background: var(--theme);
+}
+
+.post-entry .entry-header h2 {
+  font-size: 1.35rem;
+}
+
+.post-entry a {
+  color: var(--primary);
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  max-width: 100%;
+  background: var(--nav-bg);
+  color: #a1a1aa;
+  padding: 1.5rem 2rem;
+}
+
+.footer a {
+  color: #d4d4d8;
+}
+
+/* ---------- Tags ---------- */
+.post-tags a {
+  font-size: 0.82em;
+  color: var(--accent-secondary);
+}
+
+/* ---------- HR ---------- */
+.post-content hr {
+  margin: 2.5em auto;
+  max-width: var(--prose-measure);
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+/* ---------- Lists — keep measure ---------- */
+.post-content ul,
+.post-content ol {
+  max-width: var(--prose-measure);
+}
+
+/* ---------- AsciiDoc callout numbers ---------- */
+.conum[data-value] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  font-style: normal !important;
+  width: 1.3em;
+  height: 1.3em;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  vertical-align: middle;
+  margin: 0 0.15em;
+}
+
+.conum[data-value]::after { content: attr(data-value); }
+.conum[data-value] * { display: none !important; }
+.conum[data-value] + b { display: none !important; } /* hide the "(1)" text next to callouts */
+
+/* Callout list */
+.colist td {
+  padding: 0.25em 0.5em;
+  vertical-align: top;
+  border: none !important;
+}
+
+.colist {
+  font-size: 0.92rem;
+  margin-top: 0.5em;
+}
+
+/* ---------- AsciiDoc image/figure captions ---------- */
+.imageblock {
+  margin: 1.5em 0;
+}
+
+.imageblock .title,
+.videoblock .title {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  color: var(--secondary);
+  text-align: center;
+  margin-top: 0.5em;
+  font-style: italic;
+}
+
+/* ---------- AsciiDoc example blocks ---------- */
+.exampleblock > .content {
+  padding: 1em 1.2em;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  margin-bottom: 1.5em;
+}
+
+/* ---------- AsciiDoc tables ---------- */
+.post-content .tableblock {
+  margin-bottom: 1.5em;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  body {
+    font-size: 17px;
+  }
+  .post-content p,
+  .post-content > ul > li,
+  .post-content > ol > li {
+    font-size: 1.06rem;
+    line-height: 1.65;
+  }
+  .post-content pre {
+    font-size: 0.82rem;
+    padding: 0.9em 1em;
+  }
+  .post-title {
+    font-size: 1.8rem;
+  }
+  .main {
+    padding: 0 1.2rem;
+  }
+  .profile .profile_inner h1 {
+    font-size: 1.8rem;
+  }
+}
+
+/* ==========================================================================
+   Projects grid
+   ========================================================================== */
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.75rem;
+  margin: 2rem 0;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: 0 10px 30px -12px rgba(79, 70, 229, 0.25);
+}
+
+.project-card__cover {
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--code-block-bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.project-card__cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-card__cover img {
+  transform: scale(1.03);
+}
+
+.project-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.1rem 1.25rem 1.25rem;
+  flex: 1;
+}
+
+.project-card__title {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.project-card__title a {
+  color: var(--primary);
+  text-decoration: none;
+  box-shadow: none;
+  border-bottom: none;
+}
+
+.project-card__title a:hover {
+  color: var(--accent);
+}
+
+.project-card__desc {
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--secondary);
+  margin: 0;
+  flex: 1;
+}
+
+.project-card__links {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+
+.project-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.8rem;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--secondary);
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  text-decoration: none;
+  box-shadow: none;
+  transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.project-card__link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--entry);
+}
+
+.project-card__link--primary {
+  color: #ffffff;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.project-card__link--primary:hover {
+  color: #ffffff;
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+@media (max-width: 600px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="{{ site.Language.Lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow">
+  <title>{{ .Title }}</title>
+  <meta name="description" content="{{ .Description }}">
+  <meta name="author" content="{{ partial "author.html" . }}">
+  <link rel="canonical" href="{{ .Permalink }}">
+  <link rel="icon" href="{{ site.Params.assets.favicon | default "favicon.ico" | absURL }}">
+  <meta name="theme-color" content="#0A1424">
+  {{- partial "extend_head.html" . }}
+  {{- partial "templates/opengraph.html" . }}
+  {{- partial "templates/twitter_cards.html" . }}
+  {{- $koimaCSS := resources.Get "css/koima.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $koimaCSS.RelPermalink }}" integrity="{{ $koimaCSS.Data.Integrity }}" crossorigin="anonymous">
+</head>
+<body class="tempus-page koima-page">
+  {{- block "main" . }}{{ end }}
+</body>
+</html>

@@ -1,0 +1,19 @@
+{{ printf "<?xml version=\"1.0\" encoding=\"utf-8\"?>" | safeHTML }}
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>{{ site.Title | htmlEscape | safeHTML }}</title>
+  <id>{{ site.BaseURL }}</id>
+  <updated>{{ site.Lastmod.Format "2006-01-02T15:04:05Z07:00" }}</updated>
+  <link href="{{ site.BaseURL }}" />
+  {{ with .OutputFormats.Get "atom" }}<link rel="self" href="{{ .Permalink }}" />{{ end }}
+  <author><name>{{ site.Params.author | htmlEscape | safeHTML }}</name></author>
+  {{ range first 20 (where site.RegularPages "Section" "posts").ByDate.Reverse }}
+  <entry>
+    <title>{{ .Title | htmlEscape | safeHTML }}</title>
+    <id>{{ .Permalink }}</id>
+    <link href="{{ .Permalink }}" />
+    <published>{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}</published>
+    <updated>{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}</updated>
+    <summary>{{ .Summary | plainify | htmlEscape | safeHTML }}</summary>
+  </entry>
+  {{ end }}
+</feed>

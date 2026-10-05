@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">Java agents with LangChain4j</title>
+  <desc id="description">Identify, Assemble, Draft, Judge, Human, Delivery, History. Read the top row left to right, the middle row right to left, then move down to History. Judge rejection and human feedback return to Draft. Java enforces approval of the current candidate and validates delivery receipts.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#0f766e"/>
+    </marker>
+    <marker id="refine-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#b45309"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="630" fill="#f8fafc"/>
+  <rect x="0" y="0" width="1200" height="8" fill="#0f766e"/>
+  <g font-family="Inter, Helvetica, Arial, sans-serif" fill="#0f172a">
+    <text x="45" y="51" font-size="17" font-weight="700" letter-spacing="2" fill="#0f766e">SEVEN CHAPTERS · JAVA 21 · GAMOV.IO</text>
+    <text x="45" y="108" font-size="44" font-weight="700">Java agents with LangChain4j</text>
+    <text x="45" y="143" font-size="23" fill="#475569">Typed decisions, review, and human approval before action</text>
+    <g stroke="#cbd5e1" stroke-width="2" fill="#fff">
+      <rect x="45" y="173" width="330" height="117" rx="14"/>
+      <rect x="435" y="173" width="330" height="117" rx="14"/>
+      <rect x="825" y="173" width="330" height="117" rx="14"/>
+      <rect x="825" y="335" width="330" height="117" rx="14"/>
+      <rect x="435" y="335" width="330" height="117" rx="14"/>
+      <rect x="45" y="335" width="330" height="117" rx="14"/>
+      <rect x="45" y="497" width="330" height="103" rx="14"/>
+    </g>
+    <g stroke="#0f766e" stroke-width="3" fill="none" marker-end="url(#arrow)">
+      <path d="M380 232H425"/>
+      <path d="M770 232H815"/>
+      <path d="M990 295V325"/>
+      <path d="M820 394H775"/>
+      <path d="M430 394H385"/>
+      <path d="M210 457V487"/>
+    </g>
+    <g stroke="#b45309" stroke-width="3" stroke-dasharray="7 5" fill="none" marker-end="url(#refine-arrow)">
+      <path d="M1156 394H1176V232H1156"/>
+      <path d="M650 335V316H870V291"/>
+    </g>
+    <g font-size="17" font-weight="600" fill="#92400e">
+      <text x="1170" y="316" text-anchor="end">refine</text>
+      <text x="669" y="309">human feedback</text>
+    </g>
+    <g font-size="31" font-weight="700">
+      <text x="69" y="216">1  Identify</text>
+      <text x="459" y="216">2  Assemble</text>
+      <text x="849" y="216">3  Draft</text>
+      <text x="849" y="378">4  Judge</text>
+      <text x="459" y="378">5  Human</text>
+      <text x="69" y="378">6  Delivery</text>
+      <text x="69" y="540">7  History</text>
+    </g>
+    <g font-size="21" fill="#475569">
+      <text x="69" y="251">Jev: intent and event</text>
+      <text x="459" y="251">Java: verified facts</text>
+      <text x="849" y="251">Claude Opus 5.5 API</text>
+      <text x="849" y="413">OpenAI GPT-6 Astra API</text>
+      <text x="459" y="413">Approve current content</text>
+      <text x="69" y="413">Java: validate mock receipt</text>
+      <text x="69" y="575">Save confirmed message</text>
+    </g>
+    <text x="440" y="535" font-size="25" font-weight="700">Refine repeats Draft → Judge</text>
+    <text x="440" y="573" font-size="21" fill="#475569">One shared budget: at most seven candidates.</text>
+  </g>
+</svg>

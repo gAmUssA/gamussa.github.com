@@ -1,0 +1,28 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    asciidoctor (2.0.26)
+    logger (1.7.0)
+    rouge (5.1.0)
+      strscan (~> 3.1)
+    strscan (3.1.8)
+
+PLATFORMS
+  arm64-darwin-25
+  ruby
+  x86_64-linux
+
+DEPENDENCIES
+  asciidoctor (= 2.0.26)
+  logger (= 1.7.0)
+  rouge (= 5.1.0)
+
+CHECKSUMS
+  asciidoctor (2.0.26) sha256=16e3accf1fc206bbd6335848649d7fd65f31d2daa60d85af13d47a8ee4b071c1
+  bundler (4.0.22) sha256=d8d5ec84c8555e0af71db63ed7aee4d1a8fb839ec46d84212d61979242a5d75a
+  logger (1.7.0) sha256=196edec7cc44b66cfb40f9755ce11b392f21f7967696af15d274dde7edff0203
+  rouge (5.1.0) sha256=b77c632842ab7f5147940212f0345808cccfbce864fd5b631d7d12a35ac85452
+  strscan (3.1.8) sha256=aae2db611a225559f21ffbb71765c9a4e60fd262534a9ea84f4f11c7f32f679e
+
+BUNDLED WITH
+  4.0.22

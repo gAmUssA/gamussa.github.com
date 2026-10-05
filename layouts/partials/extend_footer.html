@@ -1,0 +1,46 @@
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  mediumZoom('.post-content img, .entry-content img', {
+    margin: 24,
+    background: 'rgba(0, 0, 0, 0.85)'
+  });
+});
+</script>
+
+<script>
+/* Copy button for Rouge code blocks — PaperMod's script misses these */
+document.querySelectorAll('pre.rouge.highlight code').forEach(function(codeblock) {
+  var pre = codeblock.parentNode;
+  if (pre.querySelector('.copy-code')) return;
+  var btn = document.createElement('button');
+  btn.className = 'copy-code';
+  btn.textContent = 'copy';
+  btn.addEventListener('click', function() {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(codeblock.textContent);
+    }
+    btn.textContent = 'copied!';
+    setTimeout(function() { btn.textContent = 'copy'; }, 2000);
+  });
+  pre.appendChild(btn);
+});
+
+/* Collapsible code blocks */
+document.querySelectorAll('pre.rouge.highlight').forEach(function(pre) {
+  var code = pre.querySelector('code');
+  if (!code) return;
+  var lines = code.textContent.split('\n').length;
+  if (lines <= 15) return;
+
+  pre.classList.add('collapsible');
+  var btn = document.createElement('button');
+  btn.className = 'code-expand-btn';
+  btn.textContent = 'Show all ' + lines + ' lines';
+  btn.addEventListener('click', function() {
+    var expanded = pre.classList.toggle('expanded');
+    btn.textContent = expanded ? 'Collapse' : 'Show all ' + lines + ' lines';
+  });
+  pre.parentNode.insertBefore(btn, pre.nextSibling);
+});
+</script>

@@ -1,0 +1,370 @@
+---
+title: "Thirty lines to make Claude Code feel native in tmux and iTerm2"
+date: 2026-04-21
+author: "Viktor Gamov"
+tags: ["claude-code", "tmux", "iterm2", "ai", "productivity", "terminal"]
+slug: "tmux-iterm2-claude-code"
+description: "tmux eats Shift+Enter and blocks Claude's notifications. terminal-notifier is dead on Tahoe. Thirty config lines fix all of it."
+og_title: "30 Lines to Make Claude Code Feel Native"
+cover:
+  image: "images/og/tmux-iterm2-claude-code.png"
+  alt: "Claude Code in tmux with iTerm2"
+---
+
+[discrete]
+== TLDR
+
+* Running Claude Code inside tmux eats Shift+Enter and quietly blocks Claude's native desktop notifications.
+Three `.tmux.conf` lines fix both.
+* `terminal-notifier` is dead on macOS Tahoe, built on deprecated `NSUserNotification`.
+`alerter` is the working drop-in on the modern `UNUserNotificationCenter` API.
+* tmux color codes bleed out of `automatic-rename-format` into the status bar theme.
+Use a Nerd Font glyph to mark the Claude pane instead.
+* Thirty lines of config made Claude Code feel native without giving up a decade of iTerm2 muscle memory or server tmux.
+
+Fired up Claude Code in a new iTerm2 pane, hit Shift+Enter mid-prompt, and watched Claude submit the half-finished thing.
+tmux had been eating that keystroke for years.
+I'd never had anything to press it with.
+Claude Code made me look.
+
+[Screenshot 01: Claude Code prompt area mid-keystroke, with Shift+Enter submitting instead of adding a newline]
+
+Once I looked, the list got longer.
+Desktop notifications never made it past tmux either, which meant missing every turn completion when I tabbed to Slack.
+The default status line showed nothing useful.
+With four windows open, I couldn't tell which one had Claude cooking without cycling through them.
+
+The easy fix was to install Ghostty or WezTerm.
+Both would have side-stepped tmux's escape-sequence swallowing, and I had two browser tabs open to the download pages.
+Then I thought about the actual cost.
+Every server I ssh into runs tmux, and I've wired a decade of muscle memory into iTerm2.
+Changing both to make one subprocess happier felt like moving houses because the kitchen tap was leaky.
+
+Thirty lines of config later, I closed both browser tabs.
+
+== Making tmux play nice with Claude Code
+
+Running Claude Code inside tmux breaks two things by default.
+Shift+Enter submits instead of inserting a newline, and Claude Code's native desktop notifications never reach iTerm2.
+Both are tmux swallowing escape sequences that Claude Code emits.
+
+Three lines in `.tmux.conf` fix it:
+
+[source,shell]
+----
+set -g allow-passthrough on #<1>
+set -s extended-keys always #<2>
+set -as terminal-features 'xterm*:extkeys'  #<3>
+----
+<1> `allow-passthrough on` lets DCS-wrapped escape sequences through instead of eating them.
+<2> `extended-keys always` makes tmux forward Shift+Enter as a distinct key event.
+<3> The `terminal-features` line tells tmux which outer terminals support extended keys so it negotiates correctly.
+
+I learned this chasing a notification that never fired.
+The naive test is `printf '\e]9;hello\a'`.
+Outside tmux, that fires an iTerm2 banner.
+Inside tmux, with `allow-passthrough on` already set, nothing happens.
+OSC 9 has to be wrapped in a DCS passthrough envelope before tmux will let it out:
+
+[source,shell]
+----
+printf '\ePtmux;\e\e]9;hello\a\e\\' #<1>
+----
+<1> Claude Code does the DCS wrapping for you when it detects `$TMUX`.
+But it only detects that at session start, so if you change tmux config or iTerm2 settings mid-session you have to restart the CLI before the notification path lights up.
+
+== A bell when Claude finishes
+
+A Claude Code turn can take thirty seconds or five minutes, and the only signal that it's done is the spinner going quiet.
+On long turns I'd tab away to check something else and miss the reply.
+I wanted an actual bell.
+
+Claude Code supports hooks.
+The `Stop` event fires when Claude finishes a response.
+First version in `~/.claude/settings.json`:
+
+[source,json]
+----
+{
+  "hooks": {
+    "Stop": [{
+      "hooks": [{ "type": "command", "command": "printf '\\a'" }]
+    }]
+  }
+}
+----
+
+That version was silent.
+Claude Code captures hook stdout into its transcript, so the BEL character went into the conversation log and never reached my terminal.
+Write to `/dev/tty` directly:
+
+[source,json]
+----
+"command": "printf '\\a' > /dev/tty 2>/dev/null"
+----
+
+That got the terminal bell firing, and tmux's `visual-bell` flashed the status bar.
+That was good enough when iTerm was in focus.
+When I tabbed over to Slack, I still missed every ping.
+
+The natural reach is AppleScript: `osascript -e 'tell application "iTerm" to display notification ...'`.
+That fires a banner with iTerm's icon attached.
+The banner also dismisses silently when you click it.
+AppleScript's `display notification` doesn't let the `tell` target register a click handler.
+Attribution and dispatch are separate.
+And there's no way to attach a custom icon: the main icon is whatever app is delivering the notification, full stop.
+
+My first swing was `terminal-notifier`.
+It has the flags AppleScript doesn't: a click handler via `-activate`, a `-sender` that lets you impersonate an app bundle for the icon, a `-contentImage` for a secondary image.
+I wrote the hook, it rendered once as a test from a bare iTerm tab, then refused to fire anywhere else: inside tmux I got `Unable to post a notification for the current user, as it has no running NotificationCenter instance`.
+terminal-notifier 2.0.0 is a 2017 binary built on `NSUserNotification`, the API Apple deprecated in 10.14.
+On macOS 26 Tahoe, that path is cold storage.
+The `-sender` flag in particular is validated against the process's actual bundle identity, and terminal-notifier (bundle `fr.julienxx.oss.terminal-notifier`) trying to claim it's iTerm gets silently dropped.
+
+The working answer is `alerter`, a Swift rewrite of terminal-notifier on the modern `UNUserNotificationCenter` API.
+It requires macOS 13+, uses kebab-case flags, and actually fires inside tmux:
+
+[source,shell]
+----
+brew install alerter
+----
+
+One more trap before the flag list.
+Both `--sender com.googlecode.iterm2` and `--sender com.mitchellh.ghostty` hang the hook.
+alerter's default sender (set when you don't pass the flag at all) is `com.apple.Terminal`, and that one works: the notification shows up in System Settings → Notifications attributed to "Terminal".
+macOS Tahoe's bundle-identity validation is accepting one specific impersonation path and rejecting everything else.
+Skip `--sender` entirely; let it default.
+The banner is still branded "Claude Code" (via `--title`) with your own icon (via `--app-icon`).
+The "Terminal" parent attribution only shows up in Notification Center's housekeeping view.
+The banner itself stays clean.
+
+Flags that carry weight:
+
+* `--app-icon` sets the left-side icon.
+I point this at a PNG extracted from a jasonlong/iterm2-icons `.icns` so the banner carries an iTerm-colored visual identity.
+* `--content-image` sets the right-side image.
+I extract a PNG from `claude.icns` so each banner reads "Claude Code thing happened in the iTerm-nord-chevron terminal" at a glance.
+* `--ignore-dnd` punches through Focus mode.
+Turn completion beats the morning-do-not-disturb block.
+* `--group claude-code` replaces the previous banner on back-to-back turns instead of stacking them.
+* `--timeout 30` auto-closes the banner.
+
+alerter has no `-activate` flag.
+It blocks until the user interacts and prints the result to stdout: `@CONTENTCLICKED`, `@TIMEOUT`, `@CLOSED`.
+Background a subshell, capture the result, and `open -a iTerm` when you see `@CONTENTCLICKED`.
+
+The full hook lives in a shell script (`~/.claude/stop-hook.sh`) so `settings.json` stays readable:
+
+[source,json]
+----
+"command": "~/projects/dotfiles/claude/stop-hook.sh"
+----
+
+The script:
+
+[source,shell]
+----
+#!/usr/bin/env bash
+set -u
+ALERTER=/opt/homebrew/bin/alerter
+APP_ICON="$HOME/projects/dotfiles/iterm2-icons/iTerm2-nord-chevron.png"
+CONTENT_IMAGE="$HOME/projects/dotfiles/iterm2-icons/claude.png"
+
+input=$(cat)
+printf '\a' > /dev/tty 2>/dev/null
+
+cwd=$(printf '%s' "$input" | jq -r '.cwd // empty' 2>/dev/null)
+name=$(basename "${cwd:-session}")
+branch=$(git -C "${cwd:-.}" symbolic-ref --short HEAD 2>/dev/null || true)
+subtitle="${name}${branch:+ · $branch}"
+
+(
+  result=$("$ALERTER" \
+    --title "Claude Code" \
+    --subtitle "$subtitle" \
+    --message "turn complete" \
+    --sound Glass \
+    --app-icon "$APP_ICON" \
+    --content-image "$CONTENT_IMAGE" \
+    --ignore-dnd \
+    --group claude-code \
+    --timeout 30 2>/dev/null)
+  [[ "$result" == "@CONTENTCLICKED" ]] && open -a iTerm
+) &
+----
+
+Two signals cover the range:
+
+* Terminal BEL → tmux `visual-bell` flashes the status bar on every window, even when Claude's pane is not in focus
+* `alerter` → macOS Notification Center banner titled "Claude Code · dotfiles · main", iTerm icon on the left, Claude icon on the right, Glass sound, Focus-mode bypass via `--ignore-dnd`, click focuses iTerm through `@CONTENTCLICKED` + `open -a iTerm`
+
+[NOTE]
+====
+Claude Code also ships a built-in desktop notification that fires through iTerm's escape-sequence channel.
+Enable it in iTerm2 Settings → Profiles → Terminal: check "Notification Center Alerts", click "Filter Alerts", enable "Send escape sequence-generated alerts".
+The built-in banner is generic (just "Claude Code" as the title), which is why I kept the custom hook on top.
+====
+
+tmux picks up the bell through `visual-bell` and flashes the status bar:
+
+[source,shell]
+----
+# .tmux.conf
+set -g visual-bell on
+set -g bell-action any
+set -g activity-action none
+----
+
+`bell-action any` flashes every window's status bar when one rings.
+If I switched to a different project while Claude was cooking, the status bar would still flicker.
+That's the setting I'd miss most if I went back to defaults.
+
+== Windows that know what they're for
+
+Numeric window names (`zsh 1`, `zsh 2`, `zsh 3`) turn navigation into lookup once I have three or four projects open at once.
+I wanted the current directory on every label.
+
+[source,shell]
+----
+set-option -g allow-rename off
+set-option -g automatic-rename on
+set-option -g automatic-rename-format "#{b:pane_current_path}"
+----
+
+`allow-rename off` blocks programs from hijacking the name via escape sequences.
+With `automatic-rename on`, tmux updates the label from the current directory.
+`#{b:pane_current_path}` is the basename, so `~/projects/dotfiles` shows up as `dotfiles`.
+Manual rename with `prefix + ,` still sticks; tmux stops auto-renaming that one window until I reset it.
+
+== Marking the Claude window
+
+With four windows open I needed to spot which one had Claude cooking.
+The `pane_current_command` variable reports the process that owns the pane.
+For Claude Code that's the version string (`2.1.109`), because the CLI sets its process title to its own version.
+Nothing else I run looks like a version number.
+
+[source,shell]
+----
+set-option -g automatic-rename-format \
+  "#{?#{m:[0-9]*.[0-9]*,#{pane_current_command}},  ,}#{b:pane_current_path}"
+----
+
+Now the window label reads `  dotfiles` when Claude is in that pane, `dotfiles` otherwise.
+
+First version used `#[fg=colour208]*#[default]` to render an orange asterisk.
+That worked for about ten seconds before I noticed my Dracula powerline theme had vanished from the status bar.
+Embedded tmux color codes inside `automatic-rename-format` aren't scoped.
+They bleed into the surrounding status styling and overwrite whatever the theme plugin set.
+The fix was to drop color codes entirely and let a Nerd Font glyph carry the signal on its own.
+`` (Font Awesome robot, U+EE0D) stays visible at status-bar sizes and reads as "AI in this pane" without any color help.
+
+The glyph needs a current Nerd Font.
+I use Iosevka Term NF, which ships programming ligatures in the same bundle, so `->`, `=>`, and `!=` render as ligatures too:
+
+[source,shell]
+----
+brew install --cask font-iosevka-term-nerd-font
+----
+
+Pick `IosevkaTermNF` in iTerm2 → Settings → Profiles → Text → Font.
+
+[NOTE]
+====
+Glyph choice mattered more than I expected.
+The lightning bolt I started with was overloaded, since every terminal theme uses it for something else.
+Iosevka Term Nerd Font ships the Font Awesome icon set, so I swapped in `` (U+EE0D).
+It's unambiguous, visible in peripheral vision, and nobody else's status bar uses it.
+====
+
+[NOTE]
+====
+Verify codepoints against the actual font file, not the Nerd Fonts cheatsheet.
+The cheatsheet had one codepoint for `cod-robot`; my Iosevka Term NF build put `cod-table` there (a 3×3 grid), and the real fa-robot glyph lives at U+EE0D.
+A quick fonttools query saves an hour of rendering tofu and wondering which layer is broken:
+
+[source,python]
+----
+from fontTools.ttLib import TTFont
+f = TTFont("~/Library/Fonts/IosevkaTermNerdFont-Regular.ttf")
+cmap = f.getBestCmap()
+reverse = {v: k for k, v in cmap.items()}
+print(hex(reverse.get("fa-robot", 0)))   # 0xee0d
+----
+====
+
+== A status line that earns its pixels
+
+Claude Code's default status line at the bottom of the TUI shows almost nothing.
+Point a custom command at a shell script and you can render whatever you want: model, directory, git branch, context-window usage, line diff, turn duration.
+
+In `~/.claude/settings.json`:
+
+[source,json]
+----
+"statusLine": {
+  "type": "command",
+  "command": "~/.claude/statusline.sh",
+  "padding": 1
+}
+----
+
+The script receives a JSON payload on stdin (session info, cost, context window, workspace dir) and prints a single styled line.
+Mine renders:
+
+....
+claude-sonnet-4-6 │ dotfiles main* │ 34%/200k │ +42/-7 │ 45s
+....
+
+Context percentage shifts from green to yellow at 50% and red at 75%, so I notice when a long session is about to run out of room before Claude does.
+The `*` after the branch name is a dirty-tree indicator.
+All of this is twenty lines of bash and a single jq pipeline.
+Credit: I adapted this from Jason Vertrees' setup, found via his LinkedIn writeup on tmux + Claude Code.
+
+== Two entry points to Claude
+
+I have two ways to launch Claude Code, depending on whether I'm committing to a project or just want to ask a question.
+
+`cdev` is a shell alias that spins up a full tmux session for a project.
+It creates windows for `claude`, a shell, and a test runner when the repo has one (detected from `package.json`, `Cargo.toml`, `go.mod`, `pytest.ini`, or `pyproject.toml`).
+Running it twice in the same directory attaches to the existing session instead of creating a duplicate:
+
+[source,shell]
+----
+cdev                    # session named after $PWD basename
+cdev ~/projects/api     # or a specific directory
+----
+
+`prefix + y` is the ephemeral version.
+Hash the current path into a stable session name, drop Claude into an 80% tmux popup, and escape back to the main pane with the same key.
+The hash makes it path-scoped: `prefix + y` from `~/projects/dotfiles` always returns to the same popup session:
+
+[source,shell]
+----
+# .tmux.conf
+bind -r y run-shell '\
+  SESSION="claude-$(echo #{pane_current_path} | md5 -q | cut -c1-8)"; \
+  tmux has-session -t "$SESSION" 2>/dev/null || \
+  tmux new-session -d -s "$SESSION" -c "#{pane_current_path}" "claude"; \
+  tmux display-popup -w80% -h80% -E "tmux attach-session -t $SESSION"'
+----
+
+Both are idempotent, so the same path always returns the same session.
+That makes them perfect for "explain this regex" interrupts I don't want to turn into full project sessions.
+
+== Boring stack, sharp tools
+
+Every snippet above is five to twelve lines, running on tools older than Claude Code.
+tmux handles it fine.
+
+People swap tools when they should have written config.
+A terminal migration costs a week of ramp-up and leaves half your scripts stranded in the old world.
+I've made that trade twice and neither migration paid for itself.
+
+When the stack is stable, config becomes the innovation.
+Thirty lines made Claude Code feel native this weekend, and my seven-year-old shell scripts still target the same tmux version.
+
+****
+**About the author** — Viktor Gamov is a Principal Developer Advocate at Confluent, where he connects AI agents to streaming systems and watches both pretend they've tested in production.
+A Java Champion and co-author of Manning's "Kafka in Action," he's spent over a decade writing terminal configs his past self would hate.
+His tmux config has outlived three companies and two terminal migrations.
+****
