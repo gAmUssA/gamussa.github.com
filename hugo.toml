@@ -112,7 +112,14 @@ enableRobotsTXT = true
     weight = 60
 
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
+  home = ["HTML", "RSS", "JSON", "ATOM"]
+
+[mediaTypes."application/atom+xml"]
+  suffixes = ["atom"]
+
+[outputFormats.ATOM]
+  mediaType = "application/atom+xml"
+  baseName = "feed"
 
 [minify]
   disableJSON = true

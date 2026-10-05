@@ -18,6 +18,10 @@ The Ruby tools belong to this project; no global gem install is required.
 The theme's bundled assets follow its submodule pin. Giscus, Google Fonts, and
 PostHog are hosted services and do not have a site-managed package lock.
 
+Historical utility pages and the slide deck retain their original static assets.
+Those archival libraries are separate from the active Hugo/PaperMod toolchain;
+see [ADR 0004](adr/0004-preserve-published-legacy-urls.md).
+
 After any update, build the entire site, check existing routes against the previous
 build, and inspect the home page, search, a post, product pages, and the workshop
 on desktop and mobile. Keep dependency upgrades in a focused PR.

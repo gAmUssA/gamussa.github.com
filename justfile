@@ -109,9 +109,14 @@ check:
         fi
     done
     "$ok" || exit 1
-    hugo_version=$(hugo version | sed -n 's/^hugo v\([0-9.]*\).*/\1/p')
+    hugo_description=$(hugo version)
+    hugo_version=$(printf '%s\n' "$hugo_description" | sed -n 's/^hugo v\([0-9.]*\).*/\1/p')
     if [[ "$hugo_version" != "$(cat .hugo-version)" ]]; then
         echo "Use Hugo Extended $(cat .hugo-version); found $hugo_version." >&2
+        exit 1
+    fi
+    if [[ "$hugo_description" != *+extended* ]]; then
+        echo "Use Hugo Extended $(cat .hugo-version); standard Hugo is not supported." >&2
         exit 1
     fi
     bundle check

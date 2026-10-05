@@ -24,7 +24,7 @@ def find_font(names, size):
                 p = os.path.join(d, name + ext)
                 if os.path.exists(p):
                     return ImageFont.truetype(p, size)
-    return ImageFont.load_default()
+    return ImageFont.load_default(size=size)
 
 
 SUBTITLE = "Crash Course In Kafka Brain Surgery"
@@ -62,7 +62,7 @@ def generate(title, output):
 
     # CTA button
     draw.rounded_rectangle([900, 515, 1120, 558], radius=8, fill="#4F46E5")
-    draw.text((930, 525), "Read more \u2192", fill="#ffffff", font=font_cta)
+    draw.text((930, 525), "Read more", fill="#ffffff", font=font_cta)
 
     img.save(output, "PNG")
     print(f"Created: {output}")

@@ -30,9 +30,9 @@ However, I found very elegant solution how to do that. I did it on my MacOS X wi
 
 
 
-[1]: http://cdn4.infoq.com/styles/i/logo-infoq.gif
+[1]: /images/blog/2012-01-28-how-to-download-videos-from-infoq-for/logo-infoq.gif
 [2]: http://www.infoq.com/
-[4]: https://img.skitch.com/20120128-83adqeb8wr6c67dbdhmduh93e2.jpg
-[5]: https://img.skitch.com/20120128-x5fg6rsj7cwmpnj2qscu8t2431.jpg
+[4]: /images/blog/2012-01-28-how-to-download-videos-from-infoq-for/20120128-83adqeb8wr6c67dbdhmduh93e2.jpg
+[5]: /images/blog/2012-01-28-how-to-download-videos-from-infoq-for/20120128-x5fg6rsj7cwmpnj2qscu8t2431.jpg
 [6]: http://www.infoq.com/presentations/JVM-Performance-Tuning-twitter
-[7]: https://img.skitch.com/20120128-x9nf7y47136yd3ry28du53s1ec.jpg
+[7]: /images/blog/2012-01-28-how-to-download-videos-from-infoq-for/20120128-x9nf7y47136yd3ry28du53s1ec.jpg
