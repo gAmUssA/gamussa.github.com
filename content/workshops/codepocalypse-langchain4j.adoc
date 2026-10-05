@@ -384,7 +384,7 @@ Java owns identity checks, grounded reads and native graph orchestration. Jev re
 |===
 |Stage |Current implementation |Input and output
 |Identify intent and event |Jev `jev-1.13.0`, native TypeSafe API |Original message, conversation, calendar → typed choices and probabilities
-|Assemble canonical request |Java application code |Verified event and organizer, retrieved memory → `DeclineRequest`
+|Assemble canonical request |Java application code |Verified event and organizer, retrieved memory → `DeclineRequest`; MCP sensitivity → `OrganizerContext`
 |Chat and skills |Gemini API |Conversation → text
 |Draft and Refine |Claude Opus 5.5, Anthropic API |Request and feedback → `DeclineDeployment`
 |Judge |GPT-6 Astra, OpenAI API |Current request and exact plan → `DeclineCritique`
@@ -461,20 +461,24 @@ The generation interfaces return Java records rather than free-form decisions:
 ----
 interface Drafter {
     @Agent("Draft a decline proposal")
-    @UserMessage("Request: {{request}}\nPrevious: {{previous}}\nFeedback: {{feedback}}")
+    @UserMessage("Request: {{request}}\nOrganizer: {{organizerContext}}\nPrevious: {{previous}}\nFeedback: {{feedback}}")
     DeclineDeployment draft(@V("request") DeclineRequest request,
+                            @V("organizerContext") OrganizerContext organizerContext,
                             @V("previous") String previous,
                             @V("feedback") String feedback);
 }
 
 interface Critic {
     @Agent("Review the exact request and candidate")
-    @UserMessage("Review: {{review}}")
-    DeclineCritique review(@V("review") DeclineReview review);
+    @UserMessage("Review: {{review}}\nOrganizer: {{organizerContext}}")
+    DeclineCritique review(@V("review") DeclineReview review,
+                          @V("organizerContext") OrganizerContext organizerContext);
 }
 ----
 
 `DeclineReview` contains both the current request and exact plan.
+`OrganizerContext` carries the exact organizer name and bounded MCP sensitivity alongside the shared records.
+Java checks that its organizer matches the request. Both models receive the same context through every refinement.
 Use the complete constraints in `agent/AgentRoles.java` when running the demo; these abbreviated prompts illustrate the signatures.
 Typed parsing establishes a shape. Java validation and a separate Judge assess whether the proposal is acceptable.
 Neither generation role has action tools.
@@ -498,12 +502,15 @@ var candidatePass = AgenticServices.sequenceBuilder()
         .build();
 var critique = (DeclineCritique) candidatePass.invoke(Map.of(
         "request", canonicalRequest,
+        "organizerContext", OrganizerContext.fromMcp(
+                canonicalRequest.organizerName(), "TOUCHY"),
         "previous", "No previous plan",
         "feedback", ""));
 ----
 
 `draftModel` and `reviewModel` are independently configured `ChatModel` instances.
 `canonicalRequest` is assembled from verified application data before invocation.
+The example uses the mock's `TOUCHY` result; the application passes the actual MCP response.
 This fragment shows one pass; the complete workflow adds validation and refinement.
 
 Java reports the avoided reasons separately to the user.
@@ -666,6 +673,8 @@ var monitoredPass = AgenticServices.sequenceBuilder()
         .build();
 monitoredPass.invoke(Map.of(
         "request", canonicalRequest,
+        "organizerContext", OrganizerContext.fromMcp(
+                canonicalRequest.organizerName(), "TOUCHY"),
         "previous", "No previous plan",
         "feedback", ""));
 HtmlReportGenerator.generateReport(monitor, Path.of("review-loop.html"));
