@@ -5,7 +5,7 @@ Personal blog powered by [Hugo](https://gohugo.io/) with the [PaperMod](https://
 ## Local Development
 
 ```bash
-git clone --branch hugo-migration --recurse-submodules https://github.com/gAmUssA/gamussa.github.com.git
+git clone --branch main --recurse-submodules https://github.com/gAmUssA/gamussa.github.com.git
 cd gamussa.github.com
 
 # With Hugo Extended from .hugo-version and Ruby 4.0.x available:
@@ -66,4 +66,16 @@ Your AsciiDoc content here...
 
 ## Deployment
 
-Automated via GitHub Actions on push to `hugo-migration` branch (change to `master` when ready).
+`main` is the default branch and contains the Hugo source. Open new pull requests
+against `main`; each PR runs the complete production build without deploying.
+Merging to `main` builds and deploys the resulting artifact to
+[gamov.io](https://gamov.io/) using GitHub Actions and the `github-pages`
+environment. That environment permits deployments only from `main`.
+
+A manual workflow run deploys only when its selected ref is `main`; runs from
+other refs can build but cannot upload a Pages artifact or deploy. PR jobs have
+read-only permissions, and only the guarded deployment job can publish.
+
+`hugo-migration` remains as historical migration context. The
+`backup/master-pre-hugo` tag preserves the old generated site. See
+[ADR 0002](docs/adr/0002-publish-hugo-source-from-main.md).
