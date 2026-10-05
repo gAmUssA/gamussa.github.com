@@ -47,7 +47,7 @@ gamussa.github.com/
 ## Writing a New Post
 
 ```bash
-hugo new posts/my-new-post.adoc
+bundle exec hugo new posts/my-new-post.adoc
 ```
 
 Or manually create a file in `content/posts/` with frontmatter:
@@ -79,3 +79,8 @@ read-only permissions, and only the guarded deployment job can publish.
 `hugo-migration` remains as historical migration context. The
 `backup/master-pre-hugo` tag preserves the old generated site. See
 [ADR 0002](docs/adr/0002-publish-hugo-source-from-main.md).
+
+The `just` recipes use the same locked Ruby bundle and require the pinned Hugo
+version. `just build` builds production; `just dev` starts the local preview.
+Optional diagram and OG image recipes are described in
+[toolchain maintenance](docs/toolchain.md).

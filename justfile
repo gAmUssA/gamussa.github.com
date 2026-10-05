@@ -1,24 +1,24 @@
 # gamov.io — Hugo command runner
 # Run `just` to see all available recipes
 
-# Ensure homebrew asciidoctor is found before the broken Ruby 2.6 shim
-export PATH := "/opt/homebrew/bin:" + env("PATH")
+# Keep local rendering caches within the project unless explicitly overridden.
+export HUGO_CACHEDIR := env("HUGO_CACHEDIR", justfile_directory() + "/.build/hugo-cache")
 
 # Default recipe: list all commands
 default:
     @just --list
 
 # Start dev server with live reload (drafts included)
-dev:
-    hugo server --buildDrafts --navigateToChanged
+dev: check
+    bundle exec hugo server --buildDrafts --navigateToChanged
 
 # Start dev server without drafts (production preview)
-preview:
-    hugo server --navigateToChanged
+preview: check
+    bundle exec hugo server --navigateToChanged
 
 # Build the site for production
-build:
-    hugo --gc --minify
+build: check
+    bundle exec hugo --gc --minify
 
 # Clean generated files
 clean:
@@ -77,10 +77,18 @@ drafts:
 diagrams:
     #!/usr/bin/env bash
     set -euo pipefail
+    test "$(d2 --version)" = "v$(cat .d2-version)" || {
+        echo "Use D2 $(cat .d2-version) before regenerating diagrams." >&2
+        exit 1
+    }
     count=0
     for f in diagrams/*.d2; do
         name=$(basename "$f" .d2)
-        out="static/images/workshops/cc-workshop/${name}.svg"
+        if [[ "$name" == "when-claude-is-offline" ]]; then
+            out="static/images/${name}.svg"
+        else
+            out="static/images/workshops/cc-workshop/${name}.svg"
+        fi
         mkdir -p "$(dirname "$out")"
         d2 --theme 1 "$f" "$out"
         count=$((count + 1))
@@ -90,16 +98,24 @@ diagrams:
 # Check that dependencies are installed
 check:
     #!/usr/bin/env bash
+    set -euo pipefail
     ok=true
-    for cmd in hugo asciidoctor d2; do
-        if command -v $cmd &>/dev/null; then
+    for cmd in hugo bundle; do
+        if command -v "$cmd" &>/dev/null; then
             printf "✓ %-15s %s\n" "$cmd" "$(command -v $cmd)"
         else
             printf "✗ %-15s NOT FOUND\n" "$cmd"
             ok=false
         fi
     done
-    $ok && echo "" && echo "All good!" || (echo "" && echo "Install missing deps first." && exit 1)
+    "$ok" || exit 1
+    hugo_version=$(hugo version | sed -n 's/^hugo v\([0-9.]*\).*/\1/p')
+    if [[ "$hugo_version" != "$(cat .hugo-version)" ]]; then
+        echo "Use Hugo Extended $(cat .hugo-version); found $hugo_version." >&2
+        exit 1
+    fi
+    bundle check
+    bundle exec asciidoctor --version
 
 # Build and show stats
 stats: build
@@ -119,15 +135,15 @@ og-all:
         title=$(grep -m1 '^title:' "$f" | sed 's/title: *"*\([^"]*\)"*/\1/')
         out="static/images/og/${slug}.png"
         mkdir -p "$(dirname "$out")"
-        python3 scripts/og-image.py "$title" "$out"
+        uv run --script --locked --no-python-downloads scripts/og-image.py "$title" "$out"
         count=$((count + 1))
     done
     echo "Generated $count OG images"
 
 # Serve and open in browser
-open:
+open: check
     #!/usr/bin/env bash
-    hugo server --buildDrafts --navigateToChanged &
+    bundle exec hugo server --buildDrafts --navigateToChanged &
     sleep 1
     open http://localhost:1313
     wait

@@ -1,15 +1,13 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.10"
+# dependencies = ["Pillow==12.3.0"]
+# ///
 """Generate 1200x630 OG images with title, branding, and CTA."""
 import sys
 import textwrap
 
-try:
-    from PIL import Image, ImageDraw, ImageFont
-except ImportError:
-    print("Installing Pillow...")
-    import subprocess
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "Pillow", "-q"])
-    from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont
 
 
 def find_font(names, size):
