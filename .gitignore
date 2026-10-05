@@ -9,6 +9,11 @@ Thumbs.db
 # Hugo lock
 .hugo_build.lock
 
+# Project-local Ruby tools
+.bundle/
+.build/
+vendor/bundle/
+
 # Migration scripts (not needed in production)
 migrate.rb
 fix_asciidoc.rb

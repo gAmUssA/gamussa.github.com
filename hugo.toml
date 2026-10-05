@@ -1,5 +1,5 @@
 baseURL = '/'
-languageCode = 'en-us'
+locale = 'en-US'
 title = 'Viktor Gamov'
 copyright = '© 2011–2026 Viktor Gamov'
 theme = 'PaperMod'
@@ -118,8 +118,10 @@ enableRobotsTXT = true
   disableJSON = true
 
 [security]
-  [security.exec]
-    allow = ['^(dart-)?sass(-embedded)?$', '^go$', '^git$', '^npx$', '^postcss$', '^tailwindcss$', '^asciidoctor$']
+[security.exec]
+  allow = ['^(dart-)?sass(-embedded)?$', '^go$', '^git$', '^npx$', '^postcss$', '^tailwindcss$', '^asciidoctor$']
+  # Preserve Hugo's default allowlist and pass the locked Ruby bundle to Asciidoctor.
+  osEnv = ['(?i)^((HTTPS?|NO)_PROXY|PATH(EXT)?|APPDATA|TE?MP|TERM|GO\w+|(XDG_CONFIG_)?HOME|USERPROFILE|SSH_AUTH_SOCK|DISPLAY|LANG|SYSTEMDRIVE|PROGRAMDATA)$', '^(GEM_HOME|GEM_PATH|RUBYOPT|RUBYLIB|BUNDLE_BIN_PATH|BUNDLE_GEMFILE|BUNDLE_LOCKFILE|BUNDLER_VERSION)$']
 
 [markup]
   [markup.goldmark]

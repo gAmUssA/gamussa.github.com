@@ -5,24 +5,30 @@ Personal blog powered by [Hugo](https://gohugo.io/) with the [PaperMod](https://
 ## Local Development
 
 ```bash
-cd hugo-site
+git clone --branch hugo-migration --recurse-submodules https://github.com/gAmUssA/gamussa.github.com.git
+cd gamussa.github.com
 
-# Install asciidoctor (required for .adoc posts)
-brew install asciidoctor
+# With Hugo Extended from .hugo-version and Ruby 4.0.x available:
+bundle config set --local path vendor/bundle
+bundle install
 
 # Start dev server with drafts
-hugo server --buildDrafts
+bundle exec hugo server --buildDrafts
 
 # Build for production
-hugo --gc --minify
+bundle exec hugo --gc --minify --baseURL https://gamov.io/
 ```
 
 The site will be available at http://localhost:1313/
 
+CI uses the exact Ruby version in `.ruby-version` and Bundler version in
+`Gemfile.lock`. See [build toolchain maintenance](docs/toolchain.md) for versions,
+checksums, and updates.
+
 ## Structure
 
 ```
-hugo-site/
+gamussa.github.com/
 ├── content/
 │   ├── posts/       # Blog posts (.adoc, .md)
 │   ├── workshops/   # Workshop materials (.adoc)
