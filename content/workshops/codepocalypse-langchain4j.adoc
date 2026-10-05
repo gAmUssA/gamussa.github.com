@@ -582,12 +582,12 @@ This chapter's delivery gate is application logic; LangChain4j https://docs.lang
 
 == Chapter 7 — Observe what actually ran
 
-*Learn:* `ChatModelListener`, `DecisionModelListener`, and native `AgentListener` callbacks.
+*Learn:* `ChatModelListener`, `DecisionModelListener`, native `AgentListener` callbacks, and HTML reports from `AgentMonitor`.
 
 ++++
 <div class="lc4j-workflow lc4j-chapter-diagram" role="region" aria-label="Chapter 7 interactions; scroll horizontally on small screens" tabindex="0">
 ++++
-image::/images/workshops/codepocalypse-langchain4j-chapter-07-observability.svg["Native model listeners capture Jev decisions and Gemini, Claude and OpenAI calls. Native Agentic callbacks capture graph stages and human verdict nodes. Separate Java and MCP events capture tool reads, canonical assembly, approval, receipts and history writes. All feed TraceEvidence, which writes local JSONL and updates the TUI. No hosted exporter is configured."]
+image::/images/workshops/codepocalypse-langchain4j-chapter-07-observability.svg["Native model listeners, Agentic callbacks, and separate Java and MCP events feed TraceEvidence for local JSONL and TUI views. AgentMonitor separately observes the native review-loop and human roots, and HtmlReportGenerator writes their topology and execution timelines to local HTML files. Jev Identify, ordinary chat, MCP reads, delivery and history stay in JSONL and TUI evidence. No hosted exporter is configured."]
 ++++
 </div>
 ++++
@@ -626,8 +626,37 @@ The complete demo also records model errors, Jev's typed decisions and probabili
 Application events separately describe MCP reads, canonical request assembly, human waiting, delivery receipts, and history writes.
 The local trace is `state/trace.jsonl`; it includes fictional model inputs and outputs and should not be treated as a production logging policy.
 
+LangChain4j can also generate a self-contained HTML report of a native graph's topology and execution history.
+Attach a monitor to the sequence from Chapter 5:
+
+[source,java]
+----
+AgentMonitor monitor = new AgentMonitor();
+var monitoredPass = AgenticServices.sequenceBuilder()
+        .name("draftAndJudge")
+        .subAgents(draftAgent, assembleReview, judgeAgent)
+        .listener(monitor)
+        .build();
+monitoredPass.invoke(Map.of(
+        "request", canonicalRequest,
+        "previous", "No previous plan",
+        "feedback", ""));
+HtmlReportGenerator.generateReport(monitor, Path.of("review-loop.html"));
+----
+
+This snippet illustrates report wiring; the demo's full workflow adds the bounded loop, safety checks, and shared human-refinement budget.
+The app attaches one monitor to the review loop and another to the human sequence, then updates both reports after each turn.
+Enter `/report` in the TUI or plain app to get their paths: `state/reports/<traceId>/review-loop.html` and `human-review.html`.
+Open the files in a browser and refresh after a revision or verdict.
+
+The native reports show Draft/Judge iterations and submitted human verdicts.
+Jev Identify, ordinary chat, MCP reads, approval gating, delivery and history remain in JSONL/TUI evidence.
+Native scope/session IDs differ from the application trace ID in the directory name.
+A native "success" means the invocation completed; it does not mean the draft was approved or delivered.
+
 *Try:* Use the fictional deadline request from Chapter 6, give human feedback once, inspect the revised review, and choose `hold`.
 Use F3 TRACE to inspect the actual inputs, outputs, usage, and native callbacks.
+Use `/report` to open the review topology and timeline, then the human verdict report after `hold`.
 The file appends across launches, and `traceId` identifies an application session.
 After stopping, count events from the last session with the optional `jq` command:
 
@@ -647,13 +676,17 @@ jq -n --arg traceId "$jclaw_trace_id" '
 ----
 
 *Expected:* One Identify pass for the decline request, evidence for each candidate and Judge interaction, a human verdict, and no delivery/history-write event for the held candidate.
+The review HTML shows both native invocations, and the human HTML records feedback and hold.
 Separate native graph callbacks from application stages when explaining the trace.
 API usage and elapsed time are visible; there is no hosted telemetry exporter or subscription CLI usage in this implementation.
 
 *Adopt:* Correlate model, tool, workflow, and business events. Attach a role and actual provider to measurements, and choose which content your production logs may retain.
 
-*Read the code:* `TraceEvidence.java`, `GraphEvents.java`, and trace wiring in `Main.java`.
-*Official documentation:* https://docs.langchain4j.dev/tutorials/observability/[Observability] and https://docs.langchain4j.dev/tutorials/decision-models/#observability[Decision model listeners].
+For a provider-free example, run `./gradlew :app:reportFixture --offline` and open `state/report-fixture/review-loop.html` and `human-review.html`.
+These are prepared-response fixtures of real native execution, not reports from your live session.
+
+*Read the code:* `TraceEvidence.java`, `GraphEvents.java`, `WorkflowReports.java`, and report wiring in `Main.java`.
+*Official documentation:* https://docs.langchain4j.dev/tutorials/observability/[Observability], https://docs.langchain4j.dev/tutorials/decision-models/#observability[Decision model listeners], and https://docs.langchain4j.dev/tutorials/agents/#observability[Agentic monitoring and HTML reports].
 
 == Continue in your own application
 

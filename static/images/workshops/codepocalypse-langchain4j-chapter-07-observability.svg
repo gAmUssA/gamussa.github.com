@@ -1,12 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="585" viewBox="0 0 1000 585" role="img" aria-labelledby="title description">
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="710" viewBox="0 0 1000 710" role="img" aria-labelledby="title description">
 <title id="title">Chapter 7: Measure models, native graph and app separately</title>
-<desc id="description">Native model listeners capture Jev decisions and Gemini, Claude and OpenAI calls. Native Agentic callbacks capture graph stages and human verdict nodes. Separate Java and MCP events capture tool reads, canonical assembly, approval, receipts and history writes. All feed TraceEvidence, which writes local JSONL and updates the TUI. No hosted exporter is configured.</desc>
+<desc id="description">Native model listeners capture Jev decisions and Gemini, Claude and OpenAI calls. Native Agentic callbacks capture graph stages and human verdict nodes. Separate Java and MCP events capture tool reads, canonical assembly, approval, receipts and history writes. All feed TraceEvidence, which writes local JSONL and updates the TUI. Separate AgentMonitor listeners on the review-loop and human roots feed HtmlReportGenerator for local topology and execution HTML reports. No hosted exporter is configured.</desc>
 <defs>
 <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#0f766e"/></marker>
 <marker id="feedback" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b45309"/></marker>
 <marker id="muted" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#64748b"/></marker>
 </defs>
-<rect width="1000" height="585" fill="#f8fafc"/><rect width="1000" height="6" fill="#0f766e"/>
+<rect width="1000" height="710" fill="#f8fafc"/><rect width="1000" height="6" fill="#0f766e"/>
 <g font-family="Inter, Helvetica, Arial, sans-serif" fill="#0f172a">
 <text x="25" y="42" font-size="16" font-weight="700" letter-spacing="2" fill="#0f766e">CHAPTER 7 · JAVA 21 · LANGCHAIN4J</text>
 <text x="25" y="88" font-size="32" font-weight="700">Measure models, native graph and app separately</text>
@@ -22,8 +22,15 @@
 <path d="M840 276V320H545V340" fill="none" stroke="#0f766e" stroke-width="2.5" marker-end="url(#arrow)"/><text x="770" y="309" font-size="17" text-anchor="middle" fill="#0f766e" paint-order="stroke" stroke="#f8fafc" stroke-width="5" stroke-linejoin="round">app / tool</text>
 <path d="M365 406H305" fill="none" stroke="#0f766e" stroke-width="2.5" marker-end="url(#arrow)"/><text x="335" y="387" font-size="17" text-anchor="middle" fill="#0f766e" paint-order="stroke" stroke="#f8fafc" stroke-width="5" stroke-linejoin="round">display</text>
 <path d="M635 406H695" fill="none" stroke="#0f766e" stroke-width="2.5" marker-end="url(#arrow)"/><text x="665" y="387" font-size="17" text-anchor="middle" fill="#0f766e" paint-order="stroke" stroke="#f8fafc" stroke-width="5" stroke-linejoin="round">append</text>
-<text x="25" y="503" font-size="20" fill="#475569">Inspect real observations; a prepared preview is a layout fixture.</text>
-<text x="25" y="532" font-size="20" fill="#475569">Native callbacks and application evidence have separate labels.</text>
-<text x="25" y="561" font-size="20" fill="#475569">No hosted exporter or subscription CLI traces in this Java demo.</text>
+<path d="M620 160V144H990V495H510V515" fill="none" stroke="#b45309" stroke-width="2.5" marker-end="url(#feedback)"/>
+<text x="706" y="492" font-size="17" text-anchor="middle" fill="#b45309" paint-order="stroke" stroke="#f8fafc" stroke-width="5">native root monitors</text>
+<g><rect x="365" y="525" width="270" height="116" rx="12" fill="#fffbeb" stroke="#b45309" stroke-width="2"/><text x="381" y="560" font-size="22" font-weight="700">Native HTML reports</text><text x="381" y="594" font-size="20" fill="#475569">AgentMonitor → HTML</text><text x="381" y="622" font-size="20" fill="#475569">Topology + waterfall</text></g>
+<text x="25" y="560" font-size="20" fill="#475569">Review loop + human roots</text>
+<text x="25" y="590" font-size="20" fill="#475569">Separate monitors / reports</text>
+<text x="25" y="620" font-size="20" fill="#475569">Refresh after each turn</text>
+<text x="668" y="560" font-size="20" fill="#475569">/report shows local paths</text>
+<text x="668" y="590" font-size="20" fill="#475569">Native success ≠ delivery</text>
+<text x="668" y="620" font-size="20" fill="#475569">Business outcomes in JSONL</text>
+<text x="25" y="683" font-size="20" fill="#475569">No hosted exporter or subscription CLI traces in this Java demo.</text>
 </g>
 </svg>
