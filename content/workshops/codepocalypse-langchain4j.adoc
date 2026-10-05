@@ -9,7 +9,7 @@ author_same_as: ["https://github.com/gamussa", "https://speaking.gamov.io/"]
 publisher_type: "Person"
 slug: "codepocalypse-langchain4j"
 description: "A companion to Codepocalypse Now: seven Java chapters covering chat, MCP tools, memory, skills, typed workflows, human approval, and observability with LangChain4j."
-draft: true
+draft: false
 cover:
   image: "/images/workshops/codepocalypse-langchain4j-workflow.png"
   alt: "A Java agent workflow: Identify, Assemble, Draft, Judge, Human, Delivery, History"
@@ -19,9 +19,6 @@ cover:
 :toc: macro
 :toclevels: 2
 :experimental:
-
-// Publication prerequisite: verify the Java repository and round checkpoints are accessible.
-// The repository URL below was supplied by Viktor; keep this page a draft until code publication.
 
 https://github.com/gamussa/jclaw-devoxx-be-2026[**Java demo repository** icon:github[]] | Difficulty: *Intermediate Java* | Format: *Seven chapters with code and exercises*
 
