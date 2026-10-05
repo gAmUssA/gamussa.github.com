@@ -1,6 +1,7 @@
 ---
 title: "Building Java agents with LangChain4j"
 date: 2026-10-04
+lastmod: 2026-10-05
 author: "Viktor Gamov"
 tags: ["Java", "LangChain4j", "agents", "MCP", "workshop"]
 keywords: ["Java", "LangChain4j", "MCP", "typed agents", "human approval"]
@@ -122,18 +123,18 @@ The typed records in the examples come from `dev.gamov.jclaw.domain.Contracts`.
 Tests mirror the production packages, with shared provider fixtures in the test-only `testing` package.
 The executable entry point is `dev.gamov.jclaw.app.Main`; the `./jclaw` commands stay the same.
 
-Stop the running application before changing rounds.
-Use the matching `round/01-chatbot` through `round/07-observability` checkpoint if your checkout includes them; otherwise, the complete `main` build accepts every chapter command.
-Make exercises on your own branch from a checkpoint so your edits remain easy to revisit.
-The launcher never switches branches and preserves confirmed history.
-Append `plain` to any launch command for scrolling terminal output; stop plain mode with `/quit`, or the dashboard with Ctrl+C.
+Every chapter's *Try it* section includes its own checkout, credentials, launch command, prompts, and expected results.
+You can start at any chapter with JDK 21, Git, and a Bash-compatible terminal available.
+Each exercise creates a uniquely named directory under your terminal's current directory and checks out the matching published `round/...` branch.
+Its conversation and local outcome history belong to that checkout, so earlier exercises cannot change its starting state.
+The three committed prior-decline documents are still available wherever the chapter enables retrieval.
 
-Use the same opening request across chapters:
-
-[quote]
-____
-Get me out of the Basic AI Proficiency Training on Tuesday, run by Dana from People Ops. Don't reuse an excuse I've already used on her - tell me which ones you're avoiding.
-____
+Stop an existing dashboard with Ctrl+C before starting another exercise; plain mode uses `/quit`.
+Keep each exercise's prompts in the app and its shell commands in the terminal.
+You can append `plain` to a launch command for scrolling output and use `/copy reply` or `/copy candidate` to copy only that panel's content.
+The launcher builds the selected checkpoint but never switches branches itself.
+Keep credentials in the checkout's local `.env`; exported settings take precedence over that file.
+For your own code changes, create a branch with `git switch -c my-workshop-changes` in the exercise checkout.
 
 == Chapter 1 — A Java interface for conversation
 
@@ -148,11 +149,6 @@ image::/images/workshops/codepocalypse-langchain4j-chapter-01-chatbot.svg["The u
 ++++
 
 Java binds the input to the AI Service prompt and calls Gemini. The model returns wording; this round reads no calendar or history.
-
-[source,bash]
-----
-./jclaw chatbot
-----
 
 The model generates text. An AI Service gives that interaction an ordinary Java method signature:
 
@@ -178,9 +174,40 @@ For this isolated example, set `JCLAW_CHAT_MODEL` to a Gemini model available to
 The demo launcher instead resolves its role configuration and current defaults in `model/ModelLineup.java`.
 `@V` explicitly binds a Java argument to the prompt variable.
 
-*Try:* Submit the opening request. Ask which previous excuses the assistant is avoiding.
-*Expected:* You receive text, but no tool evidence or retrieved history. A fluent answer cannot establish which excuses were actually used.
-Change the system message to require a shorter reply and compare the result.
+=== Try it: compare replies without tools
+
+. With JDK 21 available, open a terminal and create this chapter's checkout:
++
+[source,bash]
+----
+jclaw_round_dir=$(mktemp -d "$PWD/jclaw-round-01.XXXXXX")
+git clone --branch round/01-chatbot --single-branch \
+  https://github.com/gamussa/jclaw-devoxx-be-2026.git "$jclaw_round_dir"
+cd "$jclaw_round_dir"
+cp .env.example .env
+----
+. Open `.env` in your editor and set `GOOGLE_API_KEY` to your Google AI Studio key. Save the file, then launch:
++
+[source,bash]
+----
+./jclaw chatbot
+----
+. Paste this complete request into the app:
++
+[source,text,role=lc4j-prompt]
+----
+Get me out of the Basic AI Proficiency Training on Tuesday, run by Dana from People Ops. Don't reuse an excuse I've already used on her - tell me which ones you're avoiding.
+----
++
+*Expected:* A conversational reply, zero tool calls, and no delivery or history write. This chapter cannot retrieve past excuses; any list it invents is unsupported.
+. Paste a second, self-contained request to compare the wording:
++
+[source,text,role=lc4j-prompt]
+----
+Draft a one-sentence, polite request from Viktor to Dana from People Ops asking to skip Tuesday's Basic AI Proficiency Training. Do not invent a reason or claim to know my past excuses.
+----
++
+*Expected:* Another text reply with no tool calls. There is no conversation memory in this round, so the second prompt supplies all its own context. Stop the dashboard with Ctrl+C.
 
 *Adopt:* Keep the provider behind `ChatModel` and expose a domain-oriented interface to callers.
 The system prompt guides wording; later chapters add application controls for actions.
@@ -201,11 +228,6 @@ image::/images/workshops/codepocalypse-langchain4j-chapter-02-tools.svg["The use
 ++++
 
 Gemini proposes a tool request; the Java AI Service executes the registered facade. The facade calls the local MCP mocks and returns their results to the model.
-
-[source,bash]
-----
-./jclaw tools
-----
 
 Register a narrow Java façade over the MCP integration:
 
@@ -253,8 +275,41 @@ var client = DefaultMcpClient.builder()
 That class executes named MCP requests and validates results; the model-facing façade exposes only reads.
 MCP supplies the transport and tool contract. The registered façade determines which capabilities this assistant can request.
 
-*Try:* Ask for the training time and organizer sensitivity. Inspect the tool panel or plain output.
-*Expected:* Actual calendar and organizer reads supply the answer. Previous decline reasons remain unavailable in this chapter because the calendar does not store them.
+=== Try it: inspect grounded calendar answers
+
+. With JDK 21 available, open a terminal and create this chapter's checkout:
++
+[source,bash]
+----
+jclaw_round_dir=$(mktemp -d "$PWD/jclaw-round-02.XXXXXX")
+git clone --branch round/02-tools --single-branch \
+  https://github.com/gamussa/jclaw-devoxx-be-2026.git "$jclaw_round_dir"
+cd "$jclaw_round_dir"
+cp .env.example .env
+----
+. Set `GOOGLE_API_KEY` in `.env`, save the file, and launch:
++
+[source,bash]
+----
+./jclaw tools
+----
+. Paste this request into the app:
++
+[source,text,role=lc4j-prompt]
+----
+Look up the Basic AI Proficiency Training on Tuesday, run by Dana from People Ops. Tell me its exact date, start time, time zone, and Dana's organizer sensitivity. Use the calendar and organizer tools; do not draft a decline yet.
+----
+. Press F3 TRACE and inspect the `getCalendar` and `getOrganizerSensitivity` requests and their returned values.
++
+*Expected:* Successful reads support Tuesday, October 6, 2026 at 15:00 CEST and sensitivity `TOUCHY`. The time belongs to the fictional calendar, not the conference schedule. No decline is sent or recorded.
+. Paste this independent follow-up:
++
+[source,text,role=lc4j-prompt]
+----
+Which reasons have I previously used to decline events organized by Dana from People Ops? If the available tools do not contain those reasons, say that you cannot retrieve them.
+----
++
+*Expected:* Previous decline reasons remain unavailable: calendar entries identify declined events but do not store their excuses. Stop the dashboard with Ctrl+C.
 
 *Adopt:* Expose the smallest useful tool surface. Keep a future send operation under application control.
 
@@ -275,11 +330,6 @@ image::/images/workshops/codepocalypse-langchain4j-chapter-03-memory.svg["The Ja
 
 The message window supplies conversation context. MemoryTools separately retrieves seed documents and confirmed sent records; calendar and organizer reads remain available.
 
-[source,bash]
-----
-./jclaw memory
-----
-
 [source,java]
 ----
 var conversation = MessageWindowChatMemory.withMaxMessages(30);
@@ -295,8 +345,51 @@ The message window retains session context. It does not serve as the record of w
 The separate retrieval tool reads committed prior-decline documents and confirmed literal messages in `state/sent-history.json`.
 This example uses document retrieval without an embedding store.
 
-*Try:* Submit the opening request, then ask “Which reasons did you retrieve?” Restart and ask again.
-*Expected:* The three seeded reasons (calendar conflict, family obligation, and customer escalation) remain retrievable after restart. Session conversation resets; confirmed sent history persists.
+=== Try it: distinguish session context from outcome history
+
+. With JDK 21 available, open a terminal and create this chapter's checkout:
++
+[source,bash]
+----
+jclaw_round_dir=$(mktemp -d "$PWD/jclaw-round-03.XXXXXX")
+git clone --branch round/03-memory --single-branch \
+  https://github.com/gamussa/jclaw-devoxx-be-2026.git "$jclaw_round_dir"
+cd "$jclaw_round_dir"
+cp .env.example .env
+----
+. Set `GOOGLE_API_KEY` in `.env`, save the file, and launch:
++
+[source,bash]
+----
+./jclaw memory
+----
+. Paste this request into the app:
++
+[source,text,role=lc4j-prompt]
+----
+Get me out of the Basic AI Proficiency Training on Tuesday, run by Dana from People Ops. Don't reuse an excuse I've already used on her - tell me which ones you're avoiding. Retrieve my recorded decline history. Also remember this conversation marker: violet kiwi.
+----
+. After the reply, paste this follow-up:
++
+[source,text,role=lc4j-prompt]
+----
+What conversation marker did I give you? Which past reasons did you retrieve for Dana from People Ops?
+----
++
+*Expected:* The session can recall `violet kiwi`. Retrieval supplies calendar conflict, family obligation, and customer escalation from the three seed documents. Inspect F3 TRACE for the history read rather than accepting an unsupported list. This round sends and records nothing.
+. Stop with Ctrl+C, relaunch from the same checkout, and paste the restart probe:
++
+[source,bash]
+----
+./jclaw memory
+----
++
+[source,text,role=lc4j-prompt]
+----
+What conversation marker did I give you in the previous application session? Separately, retrieve my recorded decline history with Dana from People Ops and list the past reasons to avoid.
+----
++
+*Expected:* The restarted conversation does not know the marker, while the same three document-backed reasons remain retrievable. Confirmed sent records would also survive a restart; this exercise has created none. Stop with Ctrl+C.
 
 *Adopt:* Store business outcomes separately from conversational context. For multiple users, give each conversation its own memory identity and isolate its durable records.
 
@@ -316,11 +409,6 @@ image::/images/workshops/codepocalypse-langchain4j-chapter-04-skills.svg["Java d
 ++++
 
 Java supplies catalog metadata in the system prompt. Gemini requests a selected skill body through readSkill; Java validates the selection before returning the instructions.
-
-[source,bash]
-----
-./jclaw skills
-----
 
 The demo's `SkillCatalog` discovers names and descriptions from a configured directory.
 The assistant sees that catalog at startup and loads the relevant `SKILL.md` body through `readSkill` before applying it:
@@ -344,8 +432,38 @@ var assistant = AiServices.builder(SkilledAssistant.class)
 The application rejects unknown names and paths outside that root.
 Loading instructions does not add send permissions.
 
-*Try:* Ask “Rewrite this in corporate-speak: I already build AI agents.” Then ask “Tone it down to 4.”
-*Expected:* The relevant skill is read, the first rewrite uses its default level eleven, and the follow-up reduces the style while preserving facts and commitments. Neither turn sends or saves a decline.
+=== Try it: load a skill and revise its style
+
+. With JDK 21 available, open a terminal and create this chapter's checkout:
++
+[source,bash]
+----
+jclaw_round_dir=$(mktemp -d "$PWD/jclaw-round-04.XXXXXX")
+git clone --branch round/04-skills --single-branch \
+  https://github.com/gamussa/jclaw-devoxx-be-2026.git "$jclaw_round_dir"
+cd "$jclaw_round_dir"
+cp .env.example .env
+----
+. Set `GOOGLE_API_KEY` in `.env`, save the file, and launch:
++
+[source,bash]
+----
+./jclaw skills
+----
+. Paste this request into the app:
++
+[source,text,role=lc4j-prompt]
+----
+Use the corporate-speak skill to rewrite this status update at its default level eleven. Preserve the facts and add no promises: We have resolved the caching issue.
+----
+. Inspect F3 TRACE for `readSkill` with `corporate-speak`, then paste:
++
+[source,text,role=lc4j-prompt]
+----
+Tone it down to level 4 using the corporate-speak skill. The only fact is: We have resolved the caching issue. Do not add a claim about verification, performance, alignment, or future reliability.
+----
++
+*Expected:* A skill-body read precedes the first rewrite. The second rewrite reduces the jargon while keeping the single caching fact. Conversation context is available, but the follow-up also includes the source text so it is easy to repeat. Neither turn sends or saves a decline. Stop with Ctrl+C.
 
 *Adopt:* Keep reusable writing rules or operating procedures outside a large permanent prompt. Load only the relevant instructions into the model context.
 
@@ -368,11 +486,6 @@ image::/images/workshops/codepocalypse-langchain4j-chapter-05-workflow.svg["The 
 ++++
 
 Java owns identity checks, grounded reads and native graph orchestration. Jev returns choices; Claude and OpenAI return typed records. This round ends with a reviewed proposal.
-
-[source,bash]
-----
-./jclaw workflow
-----
 
 === Assign a model to a specific job
 
@@ -525,8 +638,46 @@ Exhaustion, invalid Draft or Judge output, or an unavailable Draft or Judge prov
 Automatic retries are disabled, so a single rate-limit or overload error also shows `BLOCKED`; start a new request after it clears.
 This chapter stops at a reviewed proposal.
 
-*Try:* Submit the opening request, then start a separate request naming an organizer absent from the calendar.
-*Expected:* The first run shows a canonical request and typed review. The mismatched organizer requires clarification instead of silently choosing Dana. There is no human send gate in this round.
+=== Try it: review a typed request and reject an identity mismatch
+
+. With JDK 21 available, open a terminal and create this chapter's checkout:
++
+[source,bash]
+----
+jclaw_round_dir=$(mktemp -d "$PWD/jclaw-round-05.XXXXXX")
+git clone --branch round/05-workflow --single-branch \
+  https://github.com/gamussa/jclaw-devoxx-be-2026.git "$jclaw_round_dir"
+cd "$jclaw_round_dir"
+cp .env.example .env
+----
+. Set `GOOGLE_API_KEY`, `TYPESAFE_API_KEY`, `ANTHROPIC_API_KEY`, and `OPENAI_API_KEY` in `.env`. Save the file, then launch with Jev as the decider:
++
+[source,bash]
+----
+JCLAW_DECIDER=jev ./jclaw workflow
+----
+. Paste this complete fictional request into the app:
++
+[source,text,role=lc4j-prompt]
+----
+Get me out of the Basic AI Proficiency Training on Tuesday, run by Dana from People Ops. Don't reuse a past reason. For this fictional rehearsal, I have a hard release deadline this week and am responsible for final release verification. Ask Dana for permission to prioritize that work over the training. Use only the deadline reason; don't add my conference talk, proficiency, or a calendar conflict. Tell me which past reasons you're avoiding.
+----
+. Press F3 TRACE. Inspect Identify, the assembled request, Draft, and Judge; use F2 CANDIDATE to read the exact outward message.
++
+*Expected:* Jev selects the intent and event; Java supplies the verified Dana identity and retrieved history; Anthropic Claude produces a typed candidate; OpenAI Judge reviews it. A Judge-approved candidate ends at `PROPOSAL`. Rejections may cause refinements or reach `BLOCKED` at the shared limit. This round has no human send gate and records no delivery.
+. Paste this complete separate request, including `/new`:
++
+[source,text,role=lc4j-prompt]
+----
+/new Get me out of the Basic AI Proficiency Training on Tuesday, run by Morgan from People Ops.
+----
++
+*Expected:* The absent organizer requires clarification. The app does not silently choose Dana or run Draft/Judge for that mismatched request. Stop with Ctrl+C.
+
+A red review stage can mean a rejected candidate, not a failed API call.
+Inspect `MODEL_OUTPUT` versus `MODEL_ERROR` in F3 TRACE before diagnosing the provider.
+To repeat a decline request, restart the app first: `/new` starts a separate request but retains this session's proposed reasons.
+Restarting clears proposed reasons while preserving confirmed sent history in that checkout.
 
 *Adopt:* Use a decision model for bounded choices, a generation model for drafting, and application code for identity and state validation. Carry a real refinement budget across the request.
 
@@ -547,11 +698,6 @@ image::/images/workshops/codepocalypse-langchain4j-chapter-06-approval.svg["Star
 
 Java resumes the same request after feedback and runs fresh Refine → Judge → Human review. The application binds send approval and checks the mock receipt before writing history.
 
-[source,bash]
-----
-./jclaw guardrails
-----
-
 The native human node records a verdict supplied by the application:
 
 [source,java]
@@ -567,20 +713,6 @@ The terminal waits for your input between native workflow invocations.
 The demo does not implement durable workflow suspension or recovery after a process restart.
 Its human node also does not implement the application's candidate binding or delivery validation.
 
-*Try:* Inspect the reviewed email, then enter feedback before approving it.
-Keep the app at `HUMAN`; entering `yes` or `send` there approves the current message for the mock organizer.
-Enter this feedback:
-
-[quote]
-____
-Make the email shorter and more direct. Keep the proficiency reason; remove the Tuesday-afternoon reference.
-____
-
-*Expected:* Refine → fresh Judge → fresh human approval. The event, organizer, and run stay the same; the refinement counter continues, and Identify does not run again.
-Enter `hold` to end without sending or recording a new decline.
-After a reviewed candidate, `send` approves that exact message for the local mock organizer.
-Use `/chat ...` for ordinary conversation while approval waits, or `/new ...` to start a separate request.
-
 The application enforces four rules:
 
 * Judge rejection and human feedback share one budget of six refinements.
@@ -588,24 +720,139 @@ The application enforces four rules:
 * Approval applies to the current candidate. A revised message needs fresh approval.
 * History is written only after a valid receipt matches the call, candidate, event, and organizer IDs and includes a delivery timestamp.
 
-*Delivery exercise:* If you have not yet sent the proficiency-based decline, stop the app, restart `./jclaw guardrails`, and submit the opening request.
-At a Judge-approved `HUMAN` candidate, enter `send`.
-*Expected:* `DELIVERED` after a matching receipt, then the literal message appears in confirmed history.
-If you already confirmed that decline, continue with the next fixture.
+Each exercise below starts from its own checkout with only the three seeded prior declines.
+You can run any one independently; the successful delivery exercise cannot make its reason unavailable in the other two.
 
-Keep confirmed history for the remaining exercises.
-Proficiency is now a used reason, so use this additional fictional deadline fact:
+=== Try it: revise, review again, and hold
 
-[quote]
-____
+. With JDK 21 available, open a terminal and create this exercise's checkout:
++
+[source,bash]
+----
+jclaw_round_dir=$(mktemp -d "$PWD/jclaw-round-06-review.XXXXXX")
+git clone --branch round/06-guardrails --single-branch \
+  https://github.com/gamussa/jclaw-devoxx-be-2026.git "$jclaw_round_dir"
+cd "$jclaw_round_dir"
+cp .env.example .env
+----
+. Set `GOOGLE_API_KEY`, `TYPESAFE_API_KEY`, `ANTHROPIC_API_KEY`, and `OPENAI_API_KEY` in `.env`. Save the file and launch:
++
+[source,bash]
+----
+JCLAW_DECIDER=jev JCLAW_MOCK_DELIVERY=success ./jclaw guardrails
+----
+. Paste this complete fictional request into the app:
++
+[source,text,role=lc4j-prompt]
+----
 Get me out of the Basic AI Proficiency Training on Tuesday, run by Dana from People Ops. Don't reuse a past reason. For this fictional rehearsal, I have a hard release deadline this week and am responsible for final release verification. Ask Dana for permission to prioritize that work over the training. Use only the deadline reason; don't add my conference talk, proficiency, or a calendar conflict. Tell me which past reasons you're avoiding.
-____
+----
+. Wait for a Judge-approved `HUMAN` candidate, read it with F2 CANDIDATE, and paste this feedback into the app:
++
+[source,text,role=lc4j-prompt]
+----
+Make the email shorter and more direct. Keep only the release deadline and final-verification responsibility as the reason. Do not add a conference talk, proficiency, or a calendar conflict.
+----
++
+*Expected:* Refine → fresh Judge → fresh human review. The event, organizer, and run stay the same; the refinement counter continues, and Identify does not run again. Automatic Judge rejection and this human revision consume the same six-refinement budget.
+. Wait for the revised, approved `HUMAN` candidate, then enter:
++
+[source,text,role=lc4j-prompt]
+----
+hold
+----
++
+*Expected:* The request ends held, with no send and no new confirmed-history record. Stop with Ctrl+C. If review reaches `BLOCKED`, inspect the verdict instead of trying to approve it; repeat from a fresh launch when ready.
 
-Restarting clears current-session proposed alternatives while retaining confirmed history.
+At `HUMAN`, ordinary text is feedback on the pending candidate.
+Use `/chat ...` for ordinary conversation while approval waits, or `/new ...` to start a separate request.
+Restart before repeating a reason in the same checkout; `/new` retains current-session proposed reasons, while restart preserves confirmed history.
 
-*Failure exercise:* Stop the app and launch `JCLAW_MOCK_DELIVERY=wrong-candidate ./jclaw guardrails plain`.
-Submit the deadline request above, then enter `send` at a Judge-approved `HUMAN` candidate.
-*Expected:* Delivery stays unconfirmed and history is not updated. There is no automatic resend.
+=== Try it: confirm delivery before saving history
+
+. Stop any previous app. With JDK 21 available, open a terminal and create this delivery exercise's independent checkout:
++
+[source,bash]
+----
+jclaw_round_dir=$(mktemp -d "$PWD/jclaw-round-06-delivery.XXXXXX")
+git clone --branch round/06-guardrails --single-branch \
+  https://github.com/gamussa/jclaw-devoxx-be-2026.git "$jclaw_round_dir"
+cd "$jclaw_round_dir"
+cp .env.example .env
+----
+. Set `GOOGLE_API_KEY`, `TYPESAFE_API_KEY`, `ANTHROPIC_API_KEY`, and `OPENAI_API_KEY` in `.env`. Save the file and launch the successful mock:
++
+[source,bash]
+----
+JCLAW_DECIDER=jev JCLAW_MOCK_DELIVERY=success ./jclaw guardrails
+----
+. Paste this complete fictional request into the app:
++
+[source,text,role=lc4j-prompt]
+----
+Get me out of the Basic AI Proficiency Training on Tuesday, run by Dana from People Ops. Don't reuse a past reason. For this fictional rehearsal, I have a hard release deadline this week and am responsible for final release verification. Ask Dana for permission to prioritize that work over the training. Use only the deadline reason; don't add my conference talk, proficiency, or a calendar conflict. Tell me which past reasons you're avoiding.
+----
+. Wait for a Judge-approved `HUMAN` candidate, read the exact email with F2 CANDIDATE, then enter:
++
+[source,text,role=lc4j-prompt]
+----
+send
+----
++
+*Expected:* The local organizer mock returns a matching receipt. The trace records `DELIVERED` followed by `MEMORY_SAVED`; nobody outside the demo is contacted. A rejected or blocked candidate cannot be sent.
+. Stop with Ctrl+C, then inspect the saved record in the same terminal:
++
+[source,bash]
+----
+cat state/sent-history.json
+----
++
+*Expected:* A confirmed record contains the literal approved message and matching identities. Keep this file: its deadline reason is now used in this checkout and remains used after restart. For a repeat from seed-only history, rerun this exercise's checkout commands to create a new directory.
+
+=== Try it: refuse a mismatched delivery receipt
+
+. Stop any previous app. With JDK 21 available, open a terminal and create this failure exercise's independent checkout:
++
+[source,bash]
+----
+jclaw_round_dir=$(mktemp -d "$PWD/jclaw-round-06-receipt.XXXXXX")
+git clone --branch round/06-guardrails --single-branch \
+  https://github.com/gamussa/jclaw-devoxx-be-2026.git "$jclaw_round_dir"
+cd "$jclaw_round_dir"
+cp .env.example .env
+----
+. Set `GOOGLE_API_KEY`, `TYPESAFE_API_KEY`, `ANTHROPIC_API_KEY`, and `OPENAI_API_KEY` in `.env`. Save the file and launch the wrong-candidate mock in plain mode:
++
+[source,bash]
+----
+JCLAW_DECIDER=jev JCLAW_MOCK_DELIVERY=wrong-candidate ./jclaw guardrails plain
+----
+. Paste this complete fictional request into the app:
++
+[source,text,role=lc4j-prompt]
+----
+Get me out of the Basic AI Proficiency Training on Tuesday, run by Dana from People Ops. Don't reuse a past reason. For this fictional rehearsal, I have a hard release deadline this week and am responsible for final release verification. Ask Dana for permission to prioritize that work over the training. Use only the deadline reason; don't add my conference talk, proficiency, or a calendar conflict. Tell me which past reasons you're avoiding.
+----
+. Wait for a Judge-approved `HUMAN` candidate, read the literal outward message in the plain output, then enter:
++
+[source,text,role=lc4j-prompt]
+----
+send
+----
++
+*Expected:* `UNCONFIRMED` with a receipt-identity mismatch. There is no `DELIVERED` or `MEMORY_SAVED` event, and no automatic resend. An uncertain receipt does not establish what the organizer received.
+. Enter `/quit`, then verify that no confirmed-history file was created in this fresh checkout:
++
+[source,bash]
+----
+if [ -e state/sent-history.json ]; then
+  cat state/sent-history.json
+else
+  printf '%s\n' 'No confirmed history was written.'
+fi
+----
++
+*Expected:* `No confirmed history was written.` The successful delivery exercise's separate history remains intact.
 
 *Adopt:* Treat approval as a decision about specific content. Record only confirmed outcomes, and reconcile uncertain delivery before retrying.
 A content hash binds a candidate; it does not provide authentication or server-side idempotency.
@@ -627,11 +874,6 @@ image::/images/workshops/codepocalypse-langchain4j-chapter-07-observability.svg[
 ++++
 
 Native model and graph listeners emit their own observations. Java and MCP events describe application operations; TraceEvidence correlates them for the local file and dashboard.
-
-[source,bash]
-----
-./jclaw observability
-----
 
 A minimal chat listener can measure a model interaction without logging its prompt:
 
@@ -661,7 +903,7 @@ Application events separately describe MCP reads, canonical request assembly, hu
 The local trace is `state/trace.jsonl`; it includes fictional model inputs and outputs and should not be treated as a production logging policy.
 
 LangChain4j can also generate a self-contained HTML report of a native graph's topology and execution history.
-Attach a monitor to the sequence from Chapter 5:
+Attach a monitor to a Draft → assemble-review → Judge sequence:
 
 [source,java]
 ----
@@ -680,6 +922,7 @@ monitoredPass.invoke(Map.of(
 HtmlReportGenerator.generateReport(monitor, Path.of("review-loop.html"));
 ----
 
+Here, `draftAgent`, `assembleReview`, and `judgeAgent` are the typed nodes built in `agent/Workflow.java`, and `canonicalRequest` contains the verified event and retrieved history.
 This snippet illustrates report wiring; the demo's full workflow adds the bounded loop, safety checks, and shared human-refinement budget.
 The app attaches one monitor to the review loop and another to the human sequence, then updates both reports after each turn.
 Enter `/report` in the TUI or plain app to get their paths: `state/reports/<traceId>/review-loop.html` and `human-review.html`.
@@ -690,11 +933,53 @@ Jev Identify, ordinary chat, MCP reads, approval gating, delivery and history re
 Native scope/session IDs differ from the application trace ID in the directory name.
 A native "success" means the invocation completed; it does not mean the draft was approved or delivered.
 
-*Try:* Use the fictional deadline request from Chapter 6, give human feedback once, inspect the revised review, and choose `hold`.
-Use F3 TRACE to inspect the actual inputs, outputs, usage, and native callbacks.
-Use `/report` to open the review topology and timeline, then the human verdict report after `hold`.
-The file appends across launches, and `traceId` identifies an application session.
-After stopping, count events from the last session with the optional `jq` command:
+=== Try it: follow a revision through trace and HTML reports
+
+. With JDK 21 available, open a terminal and create this chapter's checkout:
++
+[source,bash]
+----
+jclaw_round_dir=$(mktemp -d "$PWD/jclaw-round-07.XXXXXX")
+git clone --branch round/07-observability --single-branch \
+  https://github.com/gamussa/jclaw-devoxx-be-2026.git "$jclaw_round_dir"
+cd "$jclaw_round_dir"
+cp .env.example .env
+----
+. Set `GOOGLE_API_KEY`, `TYPESAFE_API_KEY`, `ANTHROPIC_API_KEY`, and `OPENAI_API_KEY` in `.env`. Save the file and launch:
++
+[source,bash]
+----
+JCLAW_DECIDER=jev JCLAW_MOCK_DELIVERY=success ./jclaw observability
+----
+. Paste this complete fictional request into the app:
++
+[source,text,role=lc4j-prompt]
+----
+Get me out of the Basic AI Proficiency Training on Tuesday, run by Dana from People Ops. Don't reuse a past reason. For this fictional rehearsal, I have a hard release deadline this week and am responsible for final release verification. Ask Dana for permission to prioritize that work over the training. Use only the deadline reason; don't add my conference talk, proficiency, or a calendar conflict. Tell me which past reasons you're avoiding.
+----
+. Wait for a Judge-approved `HUMAN` candidate, inspect F2 CANDIDATE and F3 TRACE, then paste this feedback:
++
+[source,text,role=lc4j-prompt]
+----
+Make the email shorter and more direct. Keep only the release deadline and final-verification responsibility as the reason. Do not add a conference talk, proficiency, or a calendar conflict.
+----
++
+*Expected:* Claude Refine and a fresh OpenAI Judge run. Jev Identify does not run again. A red verification stage is a candidate rejection; use `MODEL_OUTPUT` and `MODEL_ERROR` to distinguish a completed provider response from an API failure. If the shared six-refinement limit is exhausted, the app blocks instead of allowing approval.
+. After the revised candidate reaches approved `HUMAN`, enter these commands one at a time:
++
+[source,text,role=lc4j-prompt]
+----
+hold
+----
++
+[source,text,role=lc4j-prompt]
+----
+/report
+----
++
+*Expected:* The request is held. `/report` prints the absolute paths for this session's `review-loop.html` and `human-review.html`; it makes no model call. Copy each printed path into your browser's address bar and press Enter. The review report shows both native review invocations, including any automatic refinement passes, and the human report records feedback and hold. There is no delivery or new confirmed-history record.
+
+Stop with Ctrl+C. If `jq` is installed, run this optional command in the same checkout to count the last session's events:
 
 [source,bash]
 ----
@@ -711,15 +996,43 @@ jq -n --arg traceId "$jclaw_trace_id" '
 ' state/trace.jsonl
 ----
 
-*Expected:* One Identify pass for the decline request, evidence for each candidate and Judge interaction, a human verdict, and no delivery/history-write event for the held candidate.
-The review HTML shows both native invocations, and the human HTML records feedback and hold.
+*Expected:* `DECISION_OUTPUT` is `1`; candidate, verdict, model-output, and native graph counts reflect the actual iterations. `HUMAN_HOLD` is `1`, while `DELIVERED` and `MEMORY_SAVED` are `0`.
+The trace file appends across launches; the command filters by `traceId` rather than mixing sessions.
 Separate native graph callbacks from application stages when explaining the trace.
 API usage and elapsed time are visible; there is no hosted telemetry exporter or subscription CLI usage in this implementation.
 
 *Adopt:* Correlate model, tool, workflow, and business events. Attach a role and actual provider to measurements, and choose which content your production logs may retain.
 
-For a provider-free example, run `./gradlew :app:reportFixture --offline` and open `state/report-fixture/review-loop.html` and `human-review.html`.
-These are prepared-response fixtures of real native execution, not reports from your live session.
+=== Try it: generate HTML reports without provider calls
+
+. With JDK 21 available, open a terminal and create a separate fixture checkout:
++
+[source,bash]
+----
+jclaw_round_dir=$(mktemp -d "$PWD/jclaw-round-07-fixture.XXXXXX")
+git clone --branch round/07-observability --single-branch \
+  https://github.com/gamussa/jclaw-devoxx-be-2026.git "$jclaw_round_dir"
+cd "$jclaw_round_dir"
+----
+. Fetch the pinned shared sources, then run the prepared-response report fixture:
++
+[source,bash]
+----
+bash scripts/shared.sh
+./gradlew :app:reportFixture --console=plain
+----
++
+*Expected:* `BUILD SUCCESSFUL` and two native HTML files under `state/report-fixture/`. No API keys or chat prompt are needed: the fixture supplies prepared model responses to real native workflow execution. The initial build can download Gradle dependencies; it makes no provider call.
+. Open the generated files in your browser. On macOS, run:
++
+[source,bash]
+----
+open state/report-fixture/review-loop.html
+open state/report-fixture/human-review.html
+----
++
+On Linux with a desktop browser, use `xdg-open` in place of `open`.
+The reports show the fixture's refinement and human verdicts; they are separate from your live session's reports.
 
 *Read the code:* `observability/TraceEvidence.java`, `observability/GraphEvents.java`, `agent/WorkflowReports.java`, and report wiring in `app/Main.java`.
 *Official documentation:* https://docs.langchain4j.dev/tutorials/observability/[Observability], https://docs.langchain4j.dev/tutorials/decision-models/#observability[Decision model listeners], and https://docs.langchain4j.dev/tutorials/agents/#observability[Agentic monitoring and HTML reports].
@@ -761,3 +1074,7 @@ The Koog app wires those calls in https://github.com/jbaruch/jclaw-devoxx/blob/7
 * https://docs.langchain4j.dev/[LangChain4j official documentation]
 * https://github.com/jbaruch/jclaw-devoxx/blob/70d1856ad32e718dc6c3594295b2eb144b132ea0/HANDOFF-LC4J.md[Pinned showdown handoff and shared scenario]
 * https://quarkus.io/quarkus-workshop-langchain4j/section-2/step-01/[Quarkus LangChain4j workshop], a companion resource for readers who want Quarkus integration. This workshop uses direct Java builders.
+
+=== Workshop updates
+
+* *2026-10-05:* Each round now includes an independent checkpoint checkout, credential setup, complete prompts, follow-up commands, and expected results. Delivery exercises use separate local histories.

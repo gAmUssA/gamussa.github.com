@@ -28,3 +28,9 @@
 .post-content .lc4j-chapter-diagram img {
   min-width: 45rem;
 }
+
+/* Keep complete exercise prompts readable beside their copy buttons. */
+.post-content .lc4j-prompt pre code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
