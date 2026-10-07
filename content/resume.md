@@ -103,7 +103,7 @@ Principal Developer Advocate promoting the integration of AI-assisted engineerin
 - Created [Flink SQL Playground](https://sql.selectstar.stream) — live environment for running Flink queries against streaming data
 - Developing MCP integrations connecting LLM agents to streaming data platforms for real-time reasoning
 - Featured speaker at WeAreDevelopers World Congress, IntelliJ IDEA Conf, KotlinConf, Devoxx, Current, JNation, Jfokus, Devnexus, Iceberg Summit
-- Created the *Codepocalypse Now* live framework duel (LangChain4j vs. Spring AI, LangChain4j vs. Koog) and *RoboCoders: Judgment Day* (AI coding agents head to head, with Baruch Sadogursky)
+- Created the *Codepocalypse Now* live framework duel (LangChain4j vs. Spring AI, LangChain4j vs. Koog) and *RoboCoders: Judgment Day* (AI coding agents head-to-head, with Baruch Sadogursky)
 - Took *One Does Not Simply Query a Stream* to a dozen-plus JUGs, Kafka, Iceberg, and Elastic community meetups across North America and Europe
 - Co-host of [DevRel Radio](https://www.youtube.com/@devrelradio) podcast
 - Host of [Confluent Developer Podcast](https://www.youtube.com/playlist?list=PLf38f5LhQtheIY9IXnYDi1_0Fhc3fPmG7) and [Streaming Frontiers](https://www.youtube.com/playlist?list=PLf38f5LhQtheqY3k6rv9Qvr4cezoUbW7m) live stream
@@ -195,8 +195,8 @@ Principal Developer Advocate promoting the integration of AI-assisted engineerin
 ## Selected Talks
 
 <div class="talk-grid">
-  <span class="talk-name">RoboCoders: Judgment Day — AI-Assisted Engineering Applied</span>
-  <span class="talk-venue">WeAreDevelopers World Congress NA 2026</span>
+  <span class="talk-name">RoboCoders: Judgment Day: AI-Assisted Engineering Applied – The Battle of Agents</span>
+  <span class="talk-venue">WeAreDevelopers World Congress North America 2026</span>
   <span class="talk-name">Codepocalypse Now: LangChain4j vs. Koog</span>
   <span class="talk-venue">IntelliJ IDEA Conf 2026 · JNation 2026</span>
   <span class="talk-name">Supersonic Streams: When Quarkus Met Kafka</span>
@@ -204,12 +204,12 @@ Principal Developer Advocate promoting the integration of AI-assisted engineerin
   <span class="talk-name">The Missing Protocol: How MCP Bridges LLMs and Data Streams</span>
   <span class="talk-venue">AgentCon Toronto 2026 · AI By The Bay 2025</span>
   <span class="talk-name">One Does Not Simply Query a Stream</span>
-  <span class="talk-venue">Iceberg Summit 2025 · Elastic & JUG tour 2024–2026</span>
+  <span class="talk-venue">Iceberg Summit 2025 · Elastic &amp; JUG tour 2024–2026</span>
   <span class="talk-name">From Tower of Babel to Babel Fish: Evolving Your Kafka Architecture With Schema Registry</span>
   <span class="talk-venue">IntelliJ IDEA Conf 2025 · Voxxed Days Thessaloniki 2025</span>
-  <span class="talk-name">Event-Driven Analytics with Apache Flink and Ktor</span>
+  <span class="talk-name">Event-Driven Analytics: Building Real-Time Dashboards with Apache Flink and Ktor</span>
   <span class="talk-venue">KotlinConf 2025</span>
-  <span class="talk-name">Stream Processing Smackdown: Kafka Streams vs. Flink</span>
+  <span class="talk-name">Stream Processing Smackdown: Kafka Streams vs. Apache Flink</span>
   <span class="talk-venue">Current London 2025</span>
   <span class="talk-name">Codepocalypse Now: LangChain4j vs. Spring AI</span>
   <span class="talk-venue">Devoxx France 2025 · Arc of AI 2026</span>
