@@ -5,9 +5,9 @@ title: "gamov.io"
 > *"...And as always, have a nice day!"*
 > — Viktor Gamov aka @gAmUssA
 
-Hello! My name is **Viktor Gamov**. I'm a Developer Advocate at [Confluent](https://confluent.io), where I help developers build better distributed systems.
+Hello! My name is **Viktor Gamov**. I'm a Principal Developer Advocate at [Confluent, an IBM Company](https://confluent.io), where I help developers build better distributed systems and AI agents that run on real-time data.
 
-I'm a [Java Champion](https://javachampions.org/) and an esteemed speaker at top industry events like JavaOne, Devoxx, Kafka Summit, and QCon. My expertise spans distributed systems, real-time data streaming, JVM, and DevOps.
+I'm a [Java Champion](https://javachampions.org/) and have been speaking since 2010 at events like JavaOne, Devoxx, Kafka Summit, QCon, Current, and KotlinConf. My talks and slides live at [speaking.gamov.io](https://speaking.gamov.io). My expertise spans distributed systems, real-time data streaming, JVM, and DevOps.
 
 Find me online: [GitHub](https://github.com/gamussa) ·  [Bluesky](https://bsky.app/profile/gamussa.dev) · [X/Twitter](https://twitter.com/gAmUssA) · [LinkedIn](https://linkedin.com/in/vikgamov) · [YouTube](https://www.youtube.com/@viktorgamov) · [Sessionize](https://sessionize.com/vikgamov)
 

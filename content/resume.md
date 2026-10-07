@@ -83,7 +83,7 @@ Principal Developer Advocate promoting the integration of AI-assisted engineerin
 
 **Platform Engineering:** 10+ years promoting Apache Kafka, Flink, distributed systems, and cloud-native architectures at Confluent, Kong, StarTree, and Hazelcast.
 
-**Thought Leadership:** Java Champion. Author of *Kafka in Action*. International speaker at JavaOne, Devoxx, Current, KotlinConf, QCon, Kafka Summit. Conference demos with real-time LLM integration.
+**Thought Leadership:** Java Champion. Co-author of *Kafka in Action*. International speaker since 2010 — 100+ talks at JavaOne, Devoxx, Current, KotlinConf, QCon, Kafka Summit, IntelliJ IDEA Conf, and WeAreDevelopers. Known for live-coded, theatrical sessions: framework duels built on stage round by round, and audience-driven demos of LLM agents working over streaming data.
 
 </div>
 
@@ -96,13 +96,15 @@ Principal Developer Advocate promoting the integration of AI-assisted engineerin
   <h3 class="role-title">Principal Developer Advocate</h3>
   <span class="role-date">Sep 2024 – Present</span>
 </div>
-<p class="role-company">Confluent</p>
+<p class="role-company">Confluent, an IBM Company</p>
 
 - Lead developer education for Apache Kafka, Flink SQL, and Confluent Cloud — workshops, tutorials, and conference talks reaching thousands of developers annually
 - Built [selectstar.stream](https://selectstar.stream) — interactive Flink SQL tutorial teaching table-stream duality with animated visualizations
 - Created [Flink SQL Playground](https://sql.selectstar.stream) — live environment for running Flink queries against streaming data
 - Developing MCP integrations connecting LLM agents to streaming data platforms for real-time reasoning
-- Featured speaker at KotlinConf, Devoxx, Current, Jfokus, Devnexus, Iceberg Summit
+- Featured speaker at WeAreDevelopers World Congress, IntelliJ IDEA Conf, KotlinConf, Devoxx, Current, JNation, Jfokus, Devnexus, Iceberg Summit
+- Created the *Codepocalypse Now* live framework duel (LangChain4j vs. Spring AI, LangChain4j vs. Koog) and *RoboCoders: Judgment Day* (AI coding agents head to head, with Baruch Sadogursky)
+- Took *One Does Not Simply Query a Stream* to a dozen-plus JUGs, Kafka, Iceberg, and Elastic community meetups across North America and Europe
 - Co-host of [DevRel Radio](https://www.youtube.com/@devrelradio) podcast
 - Host of [Confluent Developer Podcast](https://www.youtube.com/playlist?list=PLf38f5LhQtheIY9IXnYDi1_0Fhc3fPmG7) and [Streaming Frontiers](https://www.youtube.com/playlist?list=PLf38f5LhQtheqY3k6rv9Qvr4cezoUbW7m) live stream
 
@@ -193,21 +195,25 @@ Principal Developer Advocate promoting the integration of AI-assisted engineerin
 ## Selected Talks
 
 <div class="talk-grid">
+  <span class="talk-name">RoboCoders: Judgment Day — AI-Assisted Engineering Applied</span>
+  <span class="talk-venue">WeAreDevelopers World Congress NA 2026</span>
+  <span class="talk-name">Codepocalypse Now: LangChain4j vs. Koog</span>
+  <span class="talk-venue">IntelliJ IDEA Conf 2026 · JNation 2026</span>
+  <span class="talk-name">Supersonic Streams: When Quarkus Met Kafka</span>
+  <span class="talk-venue">Current London 2026</span>
   <span class="talk-name">The Missing Protocol: How MCP Bridges LLMs and Data Streams</span>
-  <span class="talk-venue">AgentCon Toronto 2026</span>
+  <span class="talk-venue">AgentCon Toronto 2026 · AI By The Bay 2025</span>
   <span class="talk-name">One Does Not Simply Query a Stream</span>
-  <span class="talk-venue">Elastic User Groups 2026</span>
+  <span class="talk-venue">Iceberg Summit 2025 · Elastic & JUG tour 2024–2026</span>
+  <span class="talk-name">From Tower of Babel to Babel Fish: Evolving Your Kafka Architecture With Schema Registry</span>
+  <span class="talk-venue">IntelliJ IDEA Conf 2025 · Voxxed Days Thessaloniki 2025</span>
   <span class="talk-name">Event-Driven Analytics with Apache Flink and Ktor</span>
   <span class="talk-venue">KotlinConf 2025</span>
   <span class="talk-name">Stream Processing Smackdown: Kafka Streams vs. Flink</span>
   <span class="talk-venue">Current London 2025</span>
   <span class="talk-name">Codepocalypse Now: LangChain4j vs. Spring AI</span>
-  <span class="talk-venue">Devoxx France 2025</span>
-  <span class="talk-name">Uncorking Real-time Analytics with Kafka, Flink, and Pinot</span>
-  <span class="talk-venue">Multiple venues</span>
+  <span class="talk-venue">Devoxx France 2025 · Arc of AI 2026</span>
   <span class="talk-name">Testing Data-Intensive Apps with Testcontainers</span>
-  <span class="talk-venue">Multiple venues</span>
-  <span class="talk-name">Streams Must Flow: Kafka Streams on Kubernetes</span>
   <span class="talk-venue">Multiple venues</span>
 </div>
 
