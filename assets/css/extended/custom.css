@@ -179,6 +179,7 @@ body {
 
 /* ---------- UI chrome — Inter ---------- */
 .nav,
+.header-nav,
 .post-meta,
 .post-tags,
 .footer,
@@ -227,7 +228,8 @@ header.header {
   padding: 0;
 }
 
-.nav {
+.nav,
+.header-nav {
   background: var(--nav-bg);
   max-width: var(--content-width);
   margin: 0 auto;
@@ -235,11 +237,14 @@ header.header {
 }
 
 .nav a,
-.nav #theme-toggle {
+.nav #theme-toggle,
+.header-nav a,
+.header-nav #theme-toggle {
   color: #e0e0e0 !important;
 }
 
-.nav a:hover {
+.nav a:hover,
+.header-nav a:hover {
   color: #fff !important;
 }
 
