@@ -1,16 +1,28 @@
-Tempus is a world clock and time zone converter built for people who work, travel, and stay in touch across time zones.
+Tempus is a world clock and time zone converter built for people who work, travel, and stay in touch across time zones. It is at home on iPhone, iPad, and Apple Watch.
 
 NAME YOUR CLOCKS
-Add clocks for cities or for the people you talk to. Give each one a custom name, an emoji, and a color tag so "Mum in Sydney" or "Design team, Berlin" is readable at a glance. Choose analog or digital faces, 12 or 24 hour time, and see the time difference from wherever you are.
+Add clocks for cities or for the people you talk to. Give each one a custom name, an emoji, and a color tag so "Mum in Sydney" or "Design team, Berlin" is readable at a glance. Choose emoji from a searchable catalog with recents and suggestions for the city. Pick analog or digital faces, 12 or 24 hour time, and see the time difference from wherever you are.
 
 CONVERT TIMES INSTANTLY
-Pick any time in any zone and see it in all your clocks at once. Drag the time scrubber to slide through the day and watch every clock move together. Day and night indicators show who is awake.
+Pick any time in any zone and see it in all your clocks at once. Drag the time scrubber to slide through the day and watch every clock move together. Day and night indicators follow the working hours you set for each city, so you can see at a glance who is reachable.
+
+PROFILES
+Group your clocks into profiles such as Work or Family and switch between them from the title on iPhone or the sidebar on iPad. A city can be in several profiles, and the active profile syncs to your other devices and Apple Watch.
+
+REMINDERS IN ANOTHER CITY'S TIME
+Set a reminder for 9:00 in Tokyo and Tempus alerts you when it is 9:00 there, whatever time it is where you are. Anchor a reminder to the city or to your own time, repeat it every day or on the weekdays you choose, or set it for a single date. Label it, pause it without deleting it, and turn alerts off on a device you would rather keep quiet.
+
+ON THE LOCK SCREEN
+Keep a reference city in the Dynamic Island and on the Lock Screen, with its current time and how far ahead or behind you it is. A countdown appears there before a reminder is due.
 
 FIND A MEETING TIME THAT WORKS
 Select two or more clocks, set working hours for each, and Tempus shows the overlapping windows where everyone is available. Add the meeting to your calendar in one tap or share it as an .ics invite.
 
 CITY DETAIL
-Tap any clock for a full city view: a skyline illustration that changes with the time of day, sunrise and sunset times, and current weather conditions.
+Tap any clock for a full city view: a skyline illustration that changes with the time of day, sunrise and sunset on a daylight arc, and current weather conditions.
+
+IPAD
+On iPad, Tempus uses a native split layout: browse your clocks in a sidebar while City Detail stays open beside them. Time Converter and Meeting Finder open in the detail column with room for a full-width overlap timeline. Keyboard shortcuts and pointer hover are supported throughout.
 
 APPLE WATCH
 Tempus on Apple Watch shows your clocks on your wrist, lets you convert times with the Digital Crown, and offers complications for your favorite clocks. Clocks sync instantly between iPhone and Apple Watch.
