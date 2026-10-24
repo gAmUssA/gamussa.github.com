@@ -1,9 +1,9 @@
 ---
-title: "Tempus — World Clock & Meeting Finder for iPhone & iPad"
+title: "Tempus — World Clock & Meeting Finder for iPhone, iPad & Apple Watch"
 layout: "tempus"
 url: "/tempus/"
-description: "Named clocks, reminders in another city’s time, and a meeting finder across time zones. No accounts, ads, or tracking. For iPhone, iPad and Apple Watch."
-summary: "Named clocks, reminders in another city’s time, and a meeting finder across time zones. No accounts, ads, or tracking. For iPhone, iPad and Apple Watch."
+description: "A new look for your world clocks, converter and meeting finder. Redesigned for iPhone, iPad and Apple Watch. No accounts, ads, or tracking."
+summary: "A new look for your world clocks, converter and meeting finder. Redesigned for iPhone, iPad and Apple Watch. No accounts, ads, or tracking."
 images:
   - "/images/og/tempus-landing.png"
 ---
