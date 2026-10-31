@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "package_roots": ["layouts/*", "assets/*", "static/*"],
+  "package_change_lines": 400,
+  "trust_boundary_paths": [".github/workflows/*", "hugo.toml", "config.toml", "netlify.toml", ".gitmodules"],
+  "cli_spec_paths": [],
+  "cli_surface_markers": [],
+  "user_doc_paths": ["content/*", "README.md"]
+}
