@@ -27,8 +27,8 @@ On iPad, Tempus uses a native split layout: browse your clocks in a sidebar whil
 APPLE WATCH
 Tempus on Apple Watch shows your clocks on your wrist, lets you convert times with the Digital Crown, and offers complications for your favorite clocks. Clocks sync instantly between iPhone and Apple Watch.
 
-WIDGETS AND SYNC
-Home Screen widgets keep your clocks in view. Your clocks sync across all your devices with iCloud.
+WIDGETS
+A city widget shows one city drawn as its skyline, lit for the time of day, with an optional weekday and date. The World Clocks widget shows the cities you choose on the Home Screen or the Lock Screen. Your clocks sync across all your devices with iCloud.
 
 PRIVACY FIRST
 Tempus has no account, no ads, and no tracking. Your clocks are stored on your device and in your private iCloud database. Weather is provided by Apple Weather for the cities you add, never for your own location.
