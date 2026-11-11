@@ -16,7 +16,7 @@ Koima is a nap timer for Apple Watch. Pick a length, rest, and near the end it w
 
 Email **support@gamov.io** with your watchOS version, the app version (Settings › About in the app) and a short description of what happened. We aim to reply within a few business days.
 
-If you are reporting a missed or late wake, it helps enormously to include: the nap length, whether a Focus was on, whether the watch was on silent, and whether the iPhone backup alarm was turned on.
+If you are reporting a missed or late wake, please include the nap length, whether a Focus was on, whether the watch was on silent, and whether the iPhone backup alarm was turned on.
 
 ## Frequently asked questions
 
@@ -26,17 +26,17 @@ If you are reporting a missed or late wake, it helps enormously to include: the 
 
 **Can I change the length mid-nap?** Yes. Use the −5 and +5 buttons on the nap screen. Stop asks you to confirm, so you cannot end a nap with a stray tap.
 
-**Do I need my iPhone nearby?** Not for a normal nap. The watch app runs independently. The optional iPhone backup alarm does need your paired iPhone in range.
+**Do I need my iPhone nearby?** Not for a normal nap. The watch app runs independently. Phone Alarm, the optional backup on your iPhone, does need your paired iPhone in range.
 
 **What does Koima do with my health data?** With your permission it reads heart rate from Apple Health during the nap, and writes one sleep sample when the nap completes. That data stays on your device and in Apple Health. It is never used for advertising or marketing, never mined, and never shared. See the [privacy policy](/koima/privacy/).
 
-**Does Koima work without Apple Health access?** Yes. You lose the heart-rate readout and the sleep record. The timer and the smart wake are unaffected.
+**Does Koima work without Apple Health access?** Yes. Without it you lose the heart-rate readout, the sleep record and the iPhone nap history, but the timer and the smart wake work the same.
 
-**Which wake guarantee should I choose?** In Settings › Wake guarantee on the watch. *Standard* uses a smart-alarm session plus an alarm notification, so your notification permission and Focus settings matter. *Sport Mode* runs a Mind & Body workout session so watchOS keeps Koima awake for the whole nap; it counts toward your Activity rings and saves no workout. *Phone Alarm* has your paired iPhone ring 45 seconds after your wake time unless the watch already woke you or you stopped the nap; it needs Koima installed on the iPhone with alarm permission granted. The choice applies to your next nap.
+**Which wake guarantee should I choose?** Choose in Settings › Wake guarantee on the watch. *Standard* uses a smart-alarm session plus an alarm notification, so your notification permission and Focus settings matter. *Sport Mode* runs a Mind & Body workout session so watchOS keeps Koima awake for the whole nap; it counts toward your Activity rings and saves no workout. *Phone Alarm* has your paired iPhone ring 45 seconds after your wake time unless the watch already woke you or you stopped the nap; it needs Koima installed on the iPhone with alarm permission granted. The choice applies to your next nap.
 
 **What is the orange line above the ring?** It appears only when the watch knows something is wrong with your wake guarantee: "Alarm blocked" (notifications off), "Sport degraded" (the workout session refused to start or ended), "Koima not on iPhone", "Phone Alarm queued" (the schedule has not reached the iPhone yet) or "Focus may block" (Time Sensitive alerts off for Koima). A blank line means the watch did its part; it cannot see whether the iPhone actually armed its alarm, so check the iPhone if that matters.
 
-**What is the "how do you feel" card?** After a nap Koima asks once whether you feel better, the same or worse. The answer stays on the watch with that nap. It is not sent anywhere and does not change how Koima wakes you. Close or skip it and it will not ask again about that nap.
+**What is the "how do you feel" card?** After a nap Koima asks once whether you feel better, the same or worse. The answer stays on the watch with that nap, is not sent anywhere, and does not change how Koima wakes you. Close or skip it and it will not ask again about that nap.
 
 **What does the free tier include, and how do I cancel Koima Unlimited?** The free tier is the complete app, limited to three nap starts in any rolling seven days (a start counts even if you stop early; a nap already running is never cut off). Koima Unlimited removes the limit for $0.99 a month or $9.99 a year; the two plans are one subscription, so you can switch between them. Cancel on your iPhone in Settings › your name › Subscriptions; the current month or year runs to its end.
 
@@ -44,7 +44,7 @@ If you are reporting a missed or late wake, it helps enormously to include: the 
 
 ## Known limitations
 
-These are real constraints, not bugs. Please read them before you rely on Koima for something that matters.
+These come from watchOS and your own settings, and Koima can't work around them. Read them before you rely on Koima for something that matters.
 
 **Focus and notification settings can suppress the alarm (Standard mode).** Koima's alarm is backed by a time-sensitive notification. If notifications are turned off for Koima, or if the Focus you are using denies time-sensitive alerts, the alarm can be silenced or delayed. Koima cannot override that, and it cannot always detect it. Check **Settings › Notifications › Koima** on your watch and make sure notifications and Time Sensitive alerts are allowed.
 
@@ -52,9 +52,9 @@ These are real constraints, not bugs. Please read them before you rely on Koima 
 
 **An unacknowledged wake stops on its own.** If you do not respond, the buzzing and tone stop after about two and a half minutes; the summary waits for you.
 
-**Phone Alarm mode needs a paired iPhone in range.** If your iPhone is out of Bluetooth and Wi-Fi range, off, or has not granted alarm permission, the backup alarm may not be scheduled. It is a backup, not a second guarantee.
+**Phone Alarm mode needs a paired iPhone in range.** If your iPhone is out of Bluetooth and Wi-Fi range, off, or has not granted alarm permission, the backup alarm may not be scheduled. Treat it as a backup to the watch alarm and don't rely on it alone.
 
-**The smart wake is a best effort, not a sleep stage measurement.** Koima infers "you are starting to stir" from wrist movement in the final minutes. It is not a clinical sleep tracker and does not measure sleep stages.
+**The smart wake guesses from movement and does not measure sleep stages.** Koima infers that you are starting to stir from wrist movement in the final minutes. It is not a clinical sleep tracker.
 
 **Battery and background limits apply.** watchOS decides how much time an app gets in the background. Low Power Mode, a very low battery, or the system reclaiming resources can affect a nap in progress.
 
