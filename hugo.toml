@@ -16,7 +16,7 @@ enableRobotsTXT = true
   koimaAppStoreURL = ""
   # Footnote for the name "Koima": an asterisk after its first mention on
   # /koima/ links to this line in the footer. Empty hides both. Markdown ok.
-  koimaNameNote = ""
+  koimaNameNote = "Koima, from the Greek *κοιμάμαι*, “to sleep”. Rest, perfectly timed."
   description = "Crash Course In Kafka Brain Surgery — insinuation and speculations"
   author = "Viktor Gamov"
   defaultTheme = "light"
