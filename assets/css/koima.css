@@ -39,3 +39,12 @@
 .health-note{margin-top:20px!important;padding:16px 20px;border-left:3px solid var(--gold-500);color:var(--text-secondary);font-size:16px}
 @media(max-width:900px){.koima-hero-art{justify-self:center;width:min(100%,340px);padding-bottom:48px}}
 @media(max-width:680px){.plan-grid{grid-template-columns:1fr}.terms dl{grid-template-columns:1fr;gap:2px 0}.terms dd{margin-bottom:10px}}
+
+/* Koima: wake-guarantee list inside a feature article */
+.modes { margin: 1.25rem 0; display: grid; gap: .75rem; }
+.modes dt { font-weight: 600; color: var(--tempus-ink, #f5f7fa); }
+.modes dd { margin: .15rem 0 0; opacity: .85; }
+/* App Store badge, rendered only once koimaAppStoreURL is set */
+.app-store-badge { display: inline-flex; align-items: center; gap: .55rem; padding: .6rem 1rem; border-radius: 999px; background: #000; color: #fff; text-decoration: none; font-weight: 600; letter-spacing: .01em; }
+.app-store-badge svg { width: 1.1rem; height: 1.1rem; }
+.app-store-badge:hover, .app-store-badge:focus-visible { background: #1d1d1f; }
