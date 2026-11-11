@@ -38,7 +38,7 @@ If you are reporting a missed or late wake, it helps enormously to include: the 
 
 **What is the "how do you feel" card?** After a nap Koima asks once whether you feel better, the same or worse. The answer stays on the watch with that nap. It is not sent anywhere and does not change how Koima wakes you. Close or skip it and it will not ask again about that nap.
 
-**What does the free tier include, and how do I cancel Koima Unlimited?** The free tier is the complete app, limited to three nap starts in any rolling seven days (a start counts even if you stop early; a nap already running is never cut off). Koima Unlimited removes the limit for $1.99 a year. Cancel on your iPhone in Settings › your name › Subscriptions; the current year runs to its end.
+**What does the free tier include, and how do I cancel Koima Unlimited?** The free tier is the complete app, limited to three nap starts in any rolling seven days (a start counts even if you stop early; a nap already running is never cut off). Koima Unlimited removes the limit for $0.99 a month or $9.99 a year; the two plans are one subscription, so you can switch between them. Cancel on your iPhone in Settings › your name › Subscriptions; the current month or year runs to its end.
 
 **How do I turn the alarm sound off?** In the app's settings, turn off the alarm sound to get wrist haptics only. Haptics alone are a gentler and less reliable wake — see the limitations below.
 

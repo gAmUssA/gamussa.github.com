@@ -48,3 +48,4 @@
 .app-store-badge { display: inline-flex; align-items: center; gap: .55rem; padding: .6rem 1rem; border-radius: 999px; background: #000; color: #fff; text-decoration: none; font-weight: 600; letter-spacing: .01em; }
 .app-store-badge svg { width: 1.1rem; height: 1.1rem; }
 .app-store-badge:hover, .app-store-badge:focus-visible { background: #1d1d1f; }
+.plan-or{color:var(--text-muted);font-family:inherit;font-size:13px;font-weight:400;margin:0 4px}

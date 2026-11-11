@@ -106,7 +106,7 @@ Koima schedules local notifications on your own device as the nap's alarm. They 
 
 ## Subscriptions
 
-Koima Unlimited is an auto-renewing yearly subscription sold through the App Store. The free tier is the whole app, limited to three nap starts in any rolling seven days; Koima Unlimited removes that limit. **Purchases are processed by Apple.** We receive no payment details — no card number, no billing address, no Apple Account identity. Apple's [privacy policy](https://www.apple.com/legal/privacy/) covers the purchase itself.
+Koima Unlimited is an auto-renewing subscription sold through the App Store, billed monthly or yearly depending on the plan you choose. The free tier is the whole app, limited to three nap starts in any rolling seven days; Koima Unlimited removes that limit. **Purchases are processed by Apple.** We receive no payment details — no card number, no billing address, no Apple Account identity. Apple's [privacy policy](https://www.apple.com/legal/privacy/) covers the purchase itself.
 
 ## What we do not do
 
