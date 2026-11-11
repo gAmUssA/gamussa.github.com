@@ -10,7 +10,7 @@ ShowShareButtons: false
 comments: false
 ---
 
-**Effective date:** September 3, 2026
+**Effective date:** November 11, 2026
 **Developer:** Viktor Gamov (support@gamov.io)
 
 Koima is a nap timer for Apple Watch, distributed as an iPhone app that embeds the watch app. This policy explains what data the app handles and where it goes.
@@ -66,6 +66,22 @@ To stop both, revoke both. Each can be reviewed in the Health app on your iPhone
 
 The nap timer, the smart wake and the alarm keep working with Health access revoked on either device or both. What you lose is the heart-rate readout, the Health record, and the iPhone nap history.
 
+## Wake guarantee modes
+
+Koima offers three ways to make sure a wake reaches you. Each is chosen on the watch and applies to the next nap.
+
+| Mode | What runs | What data moves |
+|------|-----------|-----------------|
+| Standard | A smart-alarm runtime session on the watch plus a local alarm notification | Nothing leaves the watch |
+| Sport Mode | A Mind & Body workout session on the watch keeps Koima running for the whole nap; it counts toward your Activity rings and no workout is saved to Apple Health | Nothing leaves the watch |
+| Phone Alarm | A backup alarm scheduled by the Koima iPhone app, see below | The alarm's identifier and fire time, watch to your own iPhone |
+
+During a nap the watch may show a short status line (for example "Alarm blocked") derived from the permissions and state it can see on the device. That status is computed on the watch and not recorded anywhere.
+
+## Post-nap feedback
+
+After a nap, Koima asks once how you feel (better, the same or worse). Your answer, or the fact that you skipped it, is stored **on the watch** with that nap's identifier and nothing else. It is never transmitted, never used to train anything, never shared, and never used to change how Koima wakes you. Deleting the app removes it.
+
 ## Motion data
 
 During the last minutes of a nap, Koima reads the watch's accelerometer to detect when you begin to stir. Those motion readings are used in the moment, on the device, to decide when to wake you. They are not stored beyond the nap, and never leave the watch.
@@ -79,7 +95,9 @@ Phone Alarm mode is optional and off unless you turn it on. When it is on, Koima
 | Data | Where it is stored | Why |
 |------|--------------------|-----|
 | The current nap (start time, wake time, chosen length) | On device, in the app's own container shared with the watch complication | To keep the countdown, the alarm and the complication in agreement, and to restore a nap if the app is relaunched |
-| Preferences (wake style, alarm sound, backup-alarm mode, onboarding state) | On device | To remember how you like Koima to work |
+| Preferences (wake style, alarm sound, wake guarantee mode, onboarding state) | On device | To remember how you like Koima to work |
+| Nap-start count for the free tier (start times within the last seven days) | On device | To apply the free tier's three-starts-per-seven-days limit without any server |
+| Post-nap feedback (your answer or skip, per nap) | On device, on the watch | To keep a private log of how naps felt |
 | Nap summary values (duration, average heart rate, time to settle) | On device, for the nap you just finished | To show the summary screen |
 
 ## Notifications
@@ -88,7 +106,7 @@ Koima schedules local notifications on your own device as the nap's alarm. They 
 
 ## Subscriptions
 
-Koima Plus is an auto-renewing subscription sold through the App Store. **Purchases are processed by Apple.** We receive no payment details — no card number, no billing address, no Apple Account identity. Apple's [privacy policy](https://www.apple.com/legal/privacy/) covers the purchase itself.
+Koima Unlimited is an auto-renewing subscription sold through the App Store, billed monthly or yearly depending on the plan you choose. The free tier is the whole app, limited to three nap starts in any rolling seven days; Koima Unlimited removes that limit. **Purchases are processed by Apple.** We receive no payment details — no card number, no billing address, no Apple Account identity. Apple's [privacy policy](https://www.apple.com/legal/privacy/) covers the purchase itself.
 
 ## What we do not do
 
@@ -105,7 +123,7 @@ Koima is not directed at children under 13 and does not knowingly collect inform
 ## Your choices
 
 - Revoke Health access in the Health app under Sharing › Apps. Remember it is per app and per device: revoke for the Apple Watch app to stop heart-rate reading and new sleep records, and for the iPhone app to stop the nap history being read. See [Revoking Health access](#revoking-health-access) above.
-- Turn off Phone Alarm mode in the app to stop any information leaving the watch.
+- Choose Standard or Sport Mode as the wake guarantee to stop any information leaving the watch.
 - Delete a sleep sample in the Health app to remove that record.
 - Delete the app to remove all local data.
 

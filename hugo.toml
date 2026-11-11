@@ -10,6 +10,10 @@ enableRobotsTXT = true
 
 [params]
   env = "production"
+  # Koima (/koima/): empty until the app is approved. After approval set
+  # koimaAppStoreURL = "https://apps.apple.com/app/id6790511430" and the
+  # "Coming to the App Store" pill becomes the App Store badge.
+  koimaAppStoreURL = ""
   description = "Crash Course In Kafka Brain Surgery — insinuation and speculations"
   author = "Viktor Gamov"
   defaultTheme = "light"
