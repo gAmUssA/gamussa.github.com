@@ -2,21 +2,25 @@
 <html lang="{{ site.Language.Lang }}">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="index, follow">
   <title>{{ .Title }}</title>
   <meta name="description" content="{{ .Description }}">
   <meta name="author" content="{{ partial "author.html" . }}">
   <link rel="canonical" href="{{ .Permalink }}">
-  <link rel="icon" href="{{ site.Params.assets.favicon | default "favicon.ico" | absURL }}">
-  <meta name="theme-color" content="#0A1424">
-  {{- partial "extend_head.html" . }}
+  <link rel="icon" type="image/webp" href="{{ "koima/app/icon-64.webp" | relURL }}">
+  <link rel="apple-touch-icon" href="{{ "koima/app/icon-180.png" | relURL }}">
+  <meta name="theme-color" content="#0b0a1f">
+  <meta name="color-scheme" content="dark">
+  {{- /* No extend_head on purpose: it loads Google Fonts, and a page that
+         promises "no tracking" makes no third-party requests. Type is the
+         Apple rounded system face, the same one the app uses. */}}
   {{- partial "templates/opengraph.html" . }}
   {{- partial "templates/twitter_cards.html" . }}
   {{- $koimaCSS := resources.Get "css/koima.css" | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $koimaCSS.RelPermalink }}" integrity="{{ $koimaCSS.Data.Integrity }}" crossorigin="anonymous">
 </head>
-<body class="tempus-page koima-page">
+<body class="koima-page">
   {{- block "main" . }}{{ end }}
 </body>
 </html>
