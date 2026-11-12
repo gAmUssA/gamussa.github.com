@@ -36,17 +36,15 @@ Koima records completed naps as sleep samples in Apple Health from the Apple Wat
 
 ### What "only Koima's own records" actually means
 
-We want to be precise here, because the distinction is easy to blur and we would rather state it than let a permission sheet imply it.
-
-**Apple Health's permission is for the whole Sleep category — not for Koima's own records.** iOS provides no way to grant an app access to only the sleep samples that app wrote. So when you allow Koima to read Sleep on your iPhone, you are granting access to sleep data in Apple Health that you permit, which may include sleep recorded by Apple Watch itself or by other apps.
+**Apple Health grants Sleep access for the whole category.** iOS provides no way to grant an app access to only the sleep samples that app wrote. So when you allow Koima to read Sleep on your iPhone, you are granting access to sleep data in Apple Health that you permit, which may include sleep recorded by Apple Watch itself or by other apps.
 
 **Koima narrows that itself.** It asks Apple Health only for samples whose source is Koima's own Apple Watch app, and it checks that source again before anything is shown to you. Sleep from any other source is not displayed, not retained by Koima, and not sent anywhere.
 
-That narrowing is a choice in how Koima queries, not a restriction the system places on it. The honest version is: the permission is broad, and we use a narrow slice of it.
+Koima applies that filter in its own queries. iOS does not enforce it, so the permission you grant stays broad.
 
 Koima also keeps **no copy of your nap history**. The iPhone app reads from Apple Health each time you open the history and holds the results only while you are looking at them. There is no second database of your naps inside Koima.
 
-Your sleep and heart-rate data remain in Apple Health on your devices. Koima does not send Health data to our servers, use it for advertising or marketing, or share it with third parties.
+Your sleep and heart-rate data remain in Apple Health on your devices. Koima does not send Health data to any server, use it for advertising or marketing, or share it with third parties.
 
 In detail:
 
@@ -68,7 +66,7 @@ The nap timer, the smart wake and the alarm keep working with Health access revo
 
 ## Wake guarantee modes
 
-Koima offers three ways to make sure a wake reaches you. Each is chosen on the watch and applies to the next nap.
+Koima has three wake guarantee modes. Each is chosen on the watch and applies to the next nap.
 
 | Mode | What runs | What data moves |
 |------|-----------|-----------------|

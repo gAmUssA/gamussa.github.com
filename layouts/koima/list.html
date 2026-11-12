@@ -28,7 +28,7 @@
       <div class="hero-copy">
         <p class="kicker"><span class="dot" aria-hidden="true"></span>Nap timer for Apple Watch</p>
         <h1 id="hero-title">Rest now.<br><span class="grad">Wake as you stir.</span></h1>
-        <p class="lede">Pick 10, 20, 30 or 60 minutes. Koima{{ with site.Params.koimaNameNote }}<sup class="name-mark"><a href="#name-note" aria-label="About the name">*</a></sup>{{ end }} wakes you at that time, or a little earlier if you start stirring in the last few minutes. <strong>Earlier, never later.</strong></p>
+        <p class="lede">Pick 10, 20, 30 or 60 minutes. Koima{{ with site.Params.koimaNameNote }}<sup class="name-mark"><a href="#name-note" aria-label="About the name">*</a></sup>{{ end }} wakes you on time, or a few minutes early if you start to stir.</p>
         <div class="hero-actions">
           {{ partial "koima-availability.html" . }}
           <a class="ghost-link" href="#how">See how it works<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
@@ -49,7 +49,7 @@
         </figure>
       </div>
     </div>
-    <div class="wrap"><p class="hero-note">Whether a wake reaches you depends on the wake guarantee you pick, your notification permission, Focus settings and the state of your watch. The <a href="{{ "/koima/support/" | relURL }}">support page</a> sets out the limits plainly.</p></div>
+    <div class="wrap"><p class="hero-note">Whether a wake reaches you depends on the wake guarantee you pick, your notification permission, your Focus settings and your watch's battery. The <a href="{{ "/koima/support/" | relURL }}">support page</a> lists the limits.</p></div>
   </section>
 
   <!-- Presets -->
@@ -67,7 +67,7 @@
     <div class="wrap">
       <header class="section-head">
         <p class="kicker">How it works</p>
-        <h2 id="how-title">Three taps from awake to asleep. One buzz back.</h2>
+        <h2 id="how-title">Tap a length and close your eyes.</h2>
       </header>
       <ol class="steps">
         <li class="step reveal">
@@ -80,7 +80,7 @@
         </li>
         <li class="step reveal">
           <figure class="watch"><img src="{{ printf "%swatch-03-summary.webp" $a | relURL }}" width="416" height="496" loading="lazy" decoding="async" alt="Koima's Nap complete screen showing time slept and a Done button."></figure>
-          <div><span class="step-num">3</span><h3>Wake to a summary</h3><p>Haptics and a tone on your wrist. Then how long you slept, your average heart rate and roughly how long you took to settle.</p></div>
+          <div><span class="step-num">3</span><h3>Wake to a summary</h3><p>Koima taps your wrist and plays a tone. The summary then shows how long you slept, your average heart rate and roughly how long you took to settle.</p></div>
         </li>
       </ol>
     </div>
@@ -91,9 +91,9 @@
     <div class="wrap split">
       <div class="reveal">
         <p class="kicker">Smart wake</p>
-        <h2 id="smart-title">Your time is the deadline. Stirring is the trigger.</h2>
-        <p class="body">In the last few minutes Koima watches for the wrist movement that comes with surfacing. Move, and it wakes you then, while you're already coming up. Stay still, and it wakes you exactly when you asked.</p>
-        <p class="body muted">Honest about the limits: Koima doesn't detect sleep stages. On a 10 or 20 minute nap most people never reach deep sleep, so waking on your first stir is a gentler finish, not a rescue. Longer naps give the timing more to work with.</p>
+        <h2 id="smart-title">It wakes you when you start to stir.</h2>
+        <p class="body">In the last few minutes Koima watches for the wrist movement that comes with surfacing. Move, and it wakes you then, while you're already coming up; otherwise the alarm goes off at the time you picked.</p>
+        <p class="body muted">Koima doesn't detect sleep stages. Most people don't reach deep sleep in a 10 or 20 minute nap, so there's little grogginess to avoid and waking on your first stir mostly makes the finish gentler. Longer naps give the timing more to work with.</p>
       </div>
       <figure class="timeline reveal" aria-label="Timeline of a 20 minute nap. The last few minutes are the smart wake window. Koima can wake you anywhere inside it, and never after the end.">
         <svg viewBox="0 0 440 210" aria-hidden="true">
@@ -122,7 +122,7 @@
       <header class="section-head">
         <p class="kicker">Wake guarantee</p>
         <h2 id="wake-title">Choose how sure you want to be.</h2>
-        <p class="sub">Pick one in Settings on the watch. Each has conditions, spelled out on the <a href="{{ "/koima/support/" | relURL }}">support page</a>. None of them is a promise.</p>
+        <p class="sub">Pick one in Settings on the watch. Each depends on conditions listed on the <a href="{{ "/koima/support/" | relURL }}">support page</a>, and none of them is a promise.</p>
       </header>
       <div class="wake-grid">
         <div class="modes">
@@ -138,7 +138,7 @@
             <span class="mode-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/></svg></span>
             <div><h3>Phone Alarm</h3><p>Your paired iPhone rings a backup alarm 45 seconds after your wake time, unless the watch already woke you or you stopped the nap. Only the alarm's ID and fire time go to your phone.</p></div>
           </article>
-          <p class="note">During a nap, a short orange line above the ring names any known problem with your choice, like "Alarm blocked" or "Focus may block". A blank line means the watch did its part, not that your iPhone armed anything.</p>
+          <p class="note">During a nap, a short orange line above the ring names any known problem with your choice, like "Alarm blocked" or "Focus may block". A blank line means the watch did its part. It can't tell whether your iPhone armed its alarm.</p>
         </div>
         <figure class="phone wake-phone reveal">
           <img src="{{ printf "%siphone-02-phone-alarm-enabled.webp" $a | relURL }}" width="660" height="1434" loading="lazy" decoding="async" alt="Koima on iPhone: Choose your wake guarantee, with Phone Alarm enabled.">
@@ -153,12 +153,12 @@
       <figure class="watch after-watch reveal"><img src="{{ printf "%swatch-04-feedback.webp" $a | relURL }}" width="416" height="496" loading="lazy" decoding="async" alt="Koima asking after a nap how you feel, with better, same and worse options."></figure>
       <div class="reveal">
         <p class="kicker">After the nap</p>
-        <h2 id="after-title">One question. Kept to yourself.</h2>
-        <p class="body">Koima asks once how you feel: better, the same or worse. Your answer stays on the watch with that nap. It's never sent anywhere, never trains anything, and never changes how Koima wakes you.</p>
+        <h2 id="after-title">One question after you wake.</h2>
+        <p class="body">Koima asks once how you feel: better, the same or worse. Your answer stays on the watch with that nap. It's never sent anywhere or used to train anything, and it never changes how Koima wakes you.</p>
         <ul class="checks">
           <li>Heart rate from Apple Health during the nap, with your permission</li>
           <li>One sleep sample written to Health when the nap finishes</li>
-          <li>Nap history on iPhone, showing only naps Koima recorded</li>
+          <li>Your iPhone shows nap history, but only for naps Koima recorded</li>
           <li>Everything still works without Health access</li>
         </ul>
       </div>
@@ -170,13 +170,13 @@
     <div class="wrap">
       <header class="section-head center">
         <p class="kicker">Privacy</p>
-        <h2 id="privacy-title">No accounts. No ads. No tracking. No servers.</h2>
+        <h2 id="privacy-title">No accounts, ads, tracking or servers.</h2>
       </header>
       <div class="privacy-grid">
-        <div class="pv reveal"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/><path d="M3 3l18 18"/></svg><h3>No sign-in</h3><p>Nothing to create, nothing to lose.</p></div>
-        <div class="pv reveal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/><path d="M3 3l18 18"/></svg><h3>No analytics</h3><p>No SDKs, no third-party trackers. This page has none either.</p></div>
+        <div class="pv reveal"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/><path d="M3 3l18 18"/></svg><h3>No sign-in</h3><p>You never make an account or a password.</p></div>
+        <div class="pv reveal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/><path d="M3 3l18 18"/></svg><h3>No analytics</h3><p>No third-party SDKs or trackers, in the app or on this page.</p></div>
         <div class="pv reveal"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><h3>On your devices</h3><p>Naps and settings live on your watch and iPhone.</p></div>
-        <div class="pv reveal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 6.6a5 5 0 0 0-8.8-1.9 5 5 0 0 0-8.8 1.9c-1 3 1.5 6 8.8 11.4 7.3-5.4 9.8-8.4 8.8-11.4Z"/></svg><h3>Health stays put</h3><p>Never used for ads or marketing, never mined, never shared.</p></div>
+        <div class="pv reveal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 6.6a5 5 0 0 0-8.8-1.9 5 5 0 0 0-8.8 1.9c-1 3 1.5 6 8.8 11.4 7.3-5.4 9.8-8.4 8.8-11.4Z"/></svg><h3>Health stays put</h3><p>Health data is never used for ads or marketing, never mined and never shared.</p></div>
       </div>
       <p class="center-link"><a class="ghost-link" href="{{ "/koima/privacy/" | relURL }}">Read the full privacy policy<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
     </div>
@@ -188,14 +188,14 @@
       <header class="section-head center">
         <p class="kicker">Pricing</p>
         <h2 id="pricing-title">The free tier is the whole app.</h2>
-        <p class="sub">Every feature is free, for three nap starts in any seven days. Unlimited just removes the limit.</p>
+        <p class="sub">You get three nap starts in any seven days. Unlimited removes that limit and changes nothing else.</p>
       </header>
       <div class="plans">
         <article class="plan reveal">
           <h3>Free</h3>
           <p class="price"><span class="amt">$0</span></p>
           <p class="plan-desc">Three nap starts in any seven days.</p>
-          <ul class="checks"><li>Smart wake</li><li>All three wake guarantees</li><li>Heart rate and nap summary</li><li>iPhone backup alarm</li></ul>
+          <ul class="checks"><li>Smart wake</li><li>All three wake guarantees</li><li>Heart rate and nap summary</li><li>Nap history on iPhone</li></ul>
         </article>
         <article class="plan reveal">
           <h3>Unlimited Monthly</h3>
@@ -234,13 +234,13 @@
         <h2 id="faq-title">Questions</h2>
       </header>
       <div class="faq">
-        <details><summary>How does the smart wake decide when to wake me?</summary><p>For the last few minutes before your chosen time, Koima watches wrist motion. Sustained movement reads as you starting to surface, and it wakes you then. If you stay still, it wakes you at the time you picked. The smart wake can only move your alarm earlier, never later.</p><p>Koima doesn't detect sleep stages and isn't a sleep tracker. On a short nap most people never reach deep sleep, so waking on your first stir is a gentler finish, not a rescue from grogginess.</p></details>
+        <details><summary>How does the smart wake decide when to wake me?</summary><p>For the last few minutes before your chosen time, Koima watches wrist motion. Sustained movement reads as you starting to surface, and it wakes you then. If you stay still, it wakes you at the time you picked. It never moves your alarm later.</p><p>Koima doesn't detect sleep stages and isn't a sleep tracker. Most people don't reach deep sleep in a short nap, so there's little grogginess to avoid and waking on your first stir mostly makes the finish gentler.</p></details>
         <details><summary>Will it wake me if my watch is in Sleep Focus or on Silent?</summary><p>Not always. Koima asks for time-sensitive delivery, which can reach you through some Focus modes, but a Focus that denies time-sensitive alerts, or notifications switched off, can suppress the alarm. Check <strong>Settings › Notifications › Koima</strong> on your watch and read the <a href="{{ "/koima/support/" | relURL }}">support page</a> before relying on it for anything that matters.</p></details>
-        <details><summary>Do I need my iPhone nearby?</summary><p>Not for a normal nap. The watch app runs on its own. The optional iPhone backup alarm needs your paired iPhone in range.</p></details>
+        <details><summary>Do I need my iPhone nearby?</summary><p>Not for a normal nap. The watch app runs on its own. Phone Alarm, the optional backup on your iPhone, needs your paired iPhone in range.</p></details>
         <details><summary>Which wake guarantee should I choose?</summary><p>Standard if your watch notifications and Focus allow time-sensitive alerts. Sport Mode if you nap with the watch alone and want Koima kept running for the whole nap. Phone Alarm if your iPhone is usually within reach and you want it to ring as a backup. Pick in Settings › Wake guarantee on the watch; the choice applies to your next nap.</p></details>
-        <details><summary>What is the orange line above the ring?</summary><p>A status line that appears only when the watch knows something is wrong with your wake guarantee: notifications off, the Sport Mode workout refused, Koima missing on iPhone, a Phone Alarm still queued, or a Focus that may block the alarm. Blank means the watch has done its part; it can't see whether your iPhone actually armed its alarm.</p></details>
-        <details><summary>What does Koima do with my health data?</summary><p>It reads heart rate from Apple Health during the nap and writes a sleep sample when the nap completes. Both need your permission, both stay on your device and in Apple Health, and neither is shared, sold or used for advertising. Without Health access the timer and smart wake work the same.</p></details>
-        <details><summary>What happens to my answer on the “how do you feel” card?</summary><p>It's stored on the watch with that nap and nowhere else. Koima doesn't send it anywhere, doesn't use it to train anything, and doesn't change how it wakes you.</p></details>
+        <details><summary>What is the orange line above the ring?</summary><p>A status line that appears only when the watch knows something is wrong with your wake guarantee: notifications off, the Sport Mode workout refused, Koima missing on iPhone, a Phone Alarm still queued, or a Focus that may block the alarm. Blank means the watch has done its part; it can't see whether your iPhone armed its alarm.</p></details>
+        <details><summary>What does Koima do with my health data?</summary><p>It reads heart rate from Apple Health during the nap and writes a sleep sample when the nap completes. Both need your permission and stay on your device and in Apple Health. Neither is shared, sold or used for advertising. Without Health access the timer and smart wake work the same.</p></details>
+        <details><summary>What happens to my answer on the "how do you feel" card?</summary><p>It stays on the watch with that nap. Koima doesn't send it anywhere or learn from it, and it has no effect on how you're woken.</p></details>
         <details><summary>How much does it cost, and how do I cancel?</summary><p>Free covers every feature for three nap starts in any seven days. Koima Unlimited removes the limit for $0.99 a month or $9.99 a year. Cancel in Settings › your name › Subscriptions on iPhone; the current period runs to its end. Purchases and refunds are handled by Apple.</p></details>
       </div>
       <p class="faq-contact">Still stuck? Email <a href="mailto:support@gamov.io">support@gamov.io</a> or see the <a href="{{ "/koima/support/" | relURL }}">full support page</a>.</p>
