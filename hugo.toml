@@ -10,10 +10,9 @@ enableRobotsTXT = true
 
 [params]
   env = "production"
-  # Koima (/koima/): empty until the app is approved. After approval set
-  # koimaAppStoreURL = "https://apps.apple.com/app/id6790511430" and the
-  # "Coming to the App Store" pill becomes the App Store badge.
-  koimaAppStoreURL = ""
+  # Koima (/koima/): the App Store listing. Empty shows the "Coming to the
+  # App Store" pill instead of the App Store badge.
+  koimaAppStoreURL = "https://apps.apple.com/us/app/koima/id6790511430"
   # Footnote for the name "Koima": an asterisk after its first mention on
   # /koima/ links to this line in the footer. Empty hides both. Markdown ok.
   koimaNameNote = "Koima, from the Greek *κοιμάμαι*, “to sleep”. Rest, perfectly timed."
