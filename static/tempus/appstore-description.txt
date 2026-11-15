@@ -4,7 +4,7 @@ NAME YOUR CLOCKS
 Add clocks for cities or for the people you talk to. Give each one a custom name, an emoji, and a color tag so "Mum in Sydney" or "Design team, Berlin" is readable at a glance. Choose emoji from a searchable catalog with recents and suggestions for the city. Pick analog or digital faces, 12 or 24 hour time, and see the time difference from wherever you are.
 
 CONVERT TIMES INSTANTLY
-Pick any time in any zone and see it in all your clocks at once. Drag the time scrubber to slide through the day and watch every clock move together. Day and night indicators follow the working hours you set for each city, so you can see at a glance who is reachable.
+Pick any time in any zone and see it in all your clocks at once. Drag the time scrubber to slide through the day and watch every clock move together, with each city's weather forecast for that hour. Day and night indicators follow the working hours you set for each city, so you can see at a glance who is reachable.
 
 PROFILES
 Group your clocks into profiles such as Work or Family and switch between them from the title on iPhone or the sidebar on iPad. A city can be in several profiles, and the active profile syncs to your other devices and Apple Watch.
@@ -15,8 +15,11 @@ Set a reminder for 9:00 in Tokyo and Tempus alerts you when it is 9:00 there, wh
 ON THE LOCK SCREEN
 Keep a reference city in the Dynamic Island and on the Lock Screen, with its current time and how far ahead or behind you it is. A countdown appears there before a reminder is due.
 
+UPCOMING TIME CHANGES
+See every clock change in the next 90 days for your cities, such as "London will be 4 hours ahead instead of 5", with an example time, so a daylight saving switch does not catch you out.
+
 FIND A MEETING TIME THAT WORKS
-Select two or more clocks, set working hours for each, and Tempus shows the overlapping windows where everyone is available. Add the meeting to your calendar in one tap or share it as an .ics invite.
+Select two or more clocks, set working hours for each, choose a meeting length from 30 minutes to 2 hours, and Tempus shows the windows where everyone is available for the whole meeting. Add the meeting to your calendar in one tap or share it as an .ics invite.
 
 CITY DETAIL
 Tap any clock for a full city view: a skyline illustration that changes with the time of day, sunrise and sunset on a daylight arc, and current weather conditions.
@@ -25,10 +28,10 @@ IPAD
 On iPad, Tempus uses a native split layout: browse your clocks in a sidebar while City Detail stays open beside them. Time Converter and Meeting Finder open in the detail column with room for a full-width overlap timeline. Keyboard shortcuts and pointer hover are supported throughout.
 
 APPLE WATCH
-Tempus on Apple Watch shows your clocks on your wrist, lets you convert times with the Digital Crown, and offers complications for your favorite clocks. Clocks sync instantly between iPhone and Apple Watch.
+Tempus on Apple Watch shows your clocks on your wrist, lets you convert times with the Digital Crown, and offers complications for your favorite clocks and for the next sunrise or sunset. Tap a city for its card with local time, offset and today's sunrise and sunset, and choose a Dark or Light appearance. Clocks sync instantly between iPhone and Apple Watch.
 
 WIDGETS
-A city widget shows one city drawn as its skyline, lit for the time of day, with an optional weekday and date. The World Clocks widget shows the cities you choose on the Home Screen or the Lock Screen. Your clocks sync across all your devices with iCloud.
+A city widget shows one city drawn as its skyline, lit for the time of day, with an optional weekday and date. The World Clocks widget shows the cities you choose on the Home Screen or the Lock Screen; tap −1h or +1h to see them an hour earlier or later. Your clocks sync across all your devices with iCloud.
 
 PRIVACY FIRST
 Tempus has no account, no ads, and no tracking. Your clocks are stored on your device and in your private iCloud database. Weather is provided by Apple Weather for the cities you add, never for your own location.
