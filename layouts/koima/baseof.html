@@ -12,6 +12,10 @@
   <link rel="apple-touch-icon" href="{{ "koima/app/icon-180.png" | relURL }}">
   <meta name="theme-color" content="#0b0a1f">
   <meta name="color-scheme" content="dark">
+  {{- /* Safari Smart App Banner, derived from the App Store URL's id. */}}
+  {{- with site.Params.koimaAppStoreURL }}{{ with findRESubmatch `/id([0-9]+)` . 1 }}
+  <meta name="apple-itunes-app" content="app-id={{ index (index . 0) 1 }}">
+  {{- end }}{{ end }}
   {{- /* No extend_head on purpose: it loads Google Fonts, and a page that
          promises "no tracking" makes no third-party requests. Type is the
          Apple rounded system face, the same one the app uses. */}}

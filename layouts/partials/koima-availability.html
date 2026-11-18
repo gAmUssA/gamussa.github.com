@@ -1,8 +1,7 @@
 {{- /*
-  Koima availability pill. Renders the App Store badge once the site param
-  `koimaAppStoreURL` is set (hugo.toml → [params]); until the app is approved
-  the param is empty and the "Coming to the App Store" pill stays. Flip the
-  param after approval: koimaAppStoreURL = "https://apps.apple.com/app/id6790511430"
+  Koima availability. Renders the App Store badge when the site param
+  `koimaAppStoreURL` is set (hugo.toml → [params]), and the "Coming to the
+  App Store" pill when it is empty.
 */ -}}
 {{- $url := site.Params.koimaAppStoreURL | default "" -}}
 {{- if $url -}}
